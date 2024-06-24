@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+        <CompatibilityMode Value="True"/>
+      </Flags>
+      <SessionStorage Value="InProjectDir"/>
+      <UseAppBundle Value="False"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True/PM"/>
+      </XPManifest>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="3"/>
+      <CharSet Value="04B0"/>
+      <StringTable Comments="Go Energy LCL for Windows" CompanyName="yanghy" FileDescription="Go Energy LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright yanghy" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="3.0.0.0"/>
+    </VersionInfo>
+    <MacroValues Count="1">
+      <Macro4 Name="LCLWidgetType" Value="win32"/>
+    </MacroValues>
+    <BuildModes Count="1">
+      <Item1 Name="Win32" Default="True"/>
+      <SharedMatrixOptions Count="9">
+        <Item1 ID="400096739333" Type="IDEMacro" MacroName="LCLWidgetType" Value="carbon"/>
+        <Item2 ID="558457850193" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
+        <Item3 ID="374570744772" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
+        <Item4 ID="929688853515" Modes="Win32" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
+        <Item5 ID="028265915746" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
+        <Item6 ID="316477307003" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item7 ID="411076831854" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+        <Item8 ID="184723594569" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item9 ID="471587070140" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+      </SharedMatrixOptions>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <RequiredPackages Count="10">
+      <Item1>
+        <PackageName Value="laz.virtualtreeview_package"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LazOpenGLContext"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="CEF4Delphi_Lazarus"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="atflatcontrols_package"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="richmemopackage"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="AnchorDockingDsgn"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="LazControls"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="Printer4Lazarus"/>
+      </Item9>
+      <Item10>
+        <PackageName Value="LCL"/>
+      </Item10>
+    </RequiredPackages>
+    <Units Count="11">
+      <Unit0>
+        <Filename Value="liblcl.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uGoForm.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="uMiniWebview.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="uExceptionHandle.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="uGauge.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="uLinkLabel.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="uMacOSPatchs.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="uLinuxPatchs.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="xButton.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="uRichEdit.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="uImageButton.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="${Home}\golcl\liblcl"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="3rd-party\WebView4Delphi\source"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <RelocatableUnit Value="True"/>
+      <TargetCPU Value="i386"/>
+      <TargetOS Value="win32"/>
+      <Optimizations>
+        <OptimizationLevel Value="4"/>
+      </Optimizations>
+      <SmallerCode Value="True"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+    <Other>
+      <OtherDefines Count="1">
+        <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
+      </OtherDefines>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

@@ -1,0 +1,568 @@
+//----------------------------------------
+
+// Copyright © yanghy. All Rights Reserved.
+
+// Licensed under Lazarus.modifiedLGPL
+
+//----------------------------------------
+
+unit uCEF_TypesConvert;
+
+{$mode objfpc}{$H+}
+{$Z4+}
+
+interface
+
+uses
+  Classes,
+  uTools,
+  uCEFMiscFunctions, uCEFTypes;
+
+type
+
+  PEngBrowserSettingsPtr = ^TEngBrowserSettingsPtr;
+
+  TEngBrowserSettingsPtr = record
+    WindowlessFrameRate: PInteger; // Integer
+    StandardFontFamily: PChar; // TCefString
+    FixedFontFamily: PChar; // TCefString
+    SerifFontFamily: PChar; // TCefString
+    SansSerifFontFamily: PChar; // TCefString
+    CursiveFontFamily: PChar; // TCefString
+    FantasyFontFamily: PChar; // TCefString
+    DefaultFontSize: PInteger; // Integer
+    DefaultFixedFontSize: PInteger; // Integer
+    MinimumFontSize: PInteger; // Integer
+    MinimumLogicalFontSize: PInteger; // Integer
+    DefaultEncoding: PChar; // TCefString
+    RemoteFonts: PInteger; // TCefState
+    Javascript: PInteger; // TCefState
+    JavascriptCloseWindows: PInteger; // TCefState
+    JavascriptAccessClipboard: PInteger; // TCefState
+    JavascriptDomPaste: PInteger; // TCefState
+    ImageLoading: PInteger; // TCefState
+    ImageShrinkStandaloneToFit: PInteger; // TCefState
+    TextAreaResize: PInteger; // TCefState
+    TabToLinks: PInteger; // TCefState
+    LocalStorage: PInteger; // TCefState
+    Databases: PInteger; // TCefState
+    Webgl: PInteger; // TCefState
+    BackgroundColor: PInteger; // TCefColor
+    ChromeStatusBubble: PInteger; // TCefState
+    ChromeZoomBubble: PInteger; // TCefState
+  end;
+
+  PEngCookiePtr = ^TEngCookiePtr;
+
+  TEngCookiePtr = record
+    Name: PChar; // TCefString
+    Value: PChar; // TCefString
+    Domain: PChar; // TCefString
+    Path: PChar; // TCefString
+    Secure: PInteger; // Integer
+    Httponly: PInteger; // Integer
+    Creation: PInt64; // TCefBaseTime
+    LastAccess: PInt64; // TCefBaseTime
+    HasExpires: PInteger; // Integer
+    Expires: PInt64; // TCefBaseTime
+    SameSite: PInteger; // TCefCookieSameSite
+    Priority: PInteger; // TCefCookiePriority
+  end;
+
+  PEngMediaSinkDeviceInfoPtr = ^TEngMediaSinkDeviceInfoPtr;
+
+  TEngMediaSinkDeviceInfoPtr = record
+    IpAddress: PChar; // TCefString
+    Port: PInteger; // integer
+    ModelName: PChar; // TCefString
+  end;
+
+  PEngPdfPrintSettingsPtr = ^TEngPdfPrintSettingsPtr;
+
+  TEngPdfPrintSettingsPtr = record
+    Landscape: PInteger; // Integer
+    PrintBackground: PInteger; // Integer
+    Scale: PDouble; // double
+    PaperWidth: PDouble; // double
+    PaperHeight: PDouble; // double
+    PreferCssPageSize: PInteger; // Integer
+    MarginType: PInteger; // TCefPdfPrintMarginType
+    MarginTop: PDouble; // double
+    MarginRight: PDouble; // double
+    MarginBottom: PDouble; // double
+    MarginLeft: PDouble; // double
+    PageRanges: PChar; // TCefString
+    DisplayHeaderFooter: PInteger; // Integer
+    HeaderTemplate: PChar; // TCefString
+    FooterTemplate: PChar; // TCefString
+    GenerateTaggedPdf: PInteger; // integer
+  end;
+
+  PEngRequestContextSettingsPtr = ^TEngRequestContextSettingsPtr;
+
+  TEngRequestContextSettingsPtr = record
+    CachePath: PChar; // TCefString
+    PersistSessionCookies: PInteger; // Integer
+    PersistUserPreferences: PInteger; // Integer
+    AcceptLanguageList: PChar; // TCefString
+    CookieableSchemesList: PChar; // TCefString
+    CookieableSchemesExcludeDefaults: PInteger; // integer
+  end;
+
+  PEngSettingsPtr = ^TEngSettingsPtr;
+
+  TEngSettingsPtr = record
+    NoSandbox: PInteger; // Integer
+    BrowserSubprocessPath: PChar; // TCefString
+    FrameworkDirPath: PChar; // TCefString
+    MainBundlePath: PChar; // TCefString
+    ChromeRuntime: PInteger; // Integer
+    MultiThreadedMessageLoop: PInteger; // Integer
+    ExternalMessagePump: PInteger; // Integer
+    WindowlessRenderingEnabled: PInteger; // Integer
+    CommandLineArgsDisabled: PInteger; // Integer
+    CachePath: PChar; // TCefString
+    RootCachePath: PChar; // TCefString
+    PersistSessionCookies: PInteger; // Integer
+    PersistUserPreferences: PInteger; // Integer
+    UserAgent: PChar; // TCefString
+    UserAgentProduct: PChar; // TCefString
+    Locale: PChar; // TCefString
+    LogFile: PChar; // TCefString
+    LogSeverity: PInteger; // TCefLogSeverity
+    LogItems: PInteger; // TCefLogItems
+    JavascriptFlags: PChar; // TCefString
+    ResourcesDirPath: PChar; // TCefString
+    LocalesDirPath: PChar; // TCefString
+    PackLoadingDisabled: PInteger; // Integer
+    RemoteDebuggingPort: PInteger; // Integer
+    UncaughtExceptionStackSize: PInteger; // Integer
+    BackgroundColor: PInteger; // TCefColor
+    AcceptLanguageList: PChar; // TCefString
+    CookieableSchemesList: PChar; // TCefString
+    CookieableSchemesExcludeDefaults: PInteger; // integer
+    ChromePolicyId: PChar; // TCefString
+  end;
+
+  PEngUrlPartsPtr = ^TEngUrlPartsPtr;
+
+  TEngUrlPartsPtr = record
+    Spec: PChar; // TCefString
+    Scheme: PChar; // TCefString
+    Username: PChar; // TCefString
+    Password: PChar; // TCefString
+    Host: PChar; // TCefString
+    Port: PChar; // TCefString
+    Origin: PChar; // TCefString
+    Path: PChar; // TCefString
+    Query: PChar; // TCefString
+    Fragment: PChar; // TCefString
+  end;
+
+  PCookiePtr = ^TCookiePtr;
+
+  TCookiePtr = record
+    Name: PChar; // ustring
+    Value: PChar; // ustring
+    Domain: PChar; // ustring
+    Path: PChar; // ustring
+    Creation: PDouble; // TDateTime
+    LastAccess: PDouble; // TDateTime
+    Expires: PDouble; // TDateTime
+    Secure: PBoolean; // boolean
+    Httponly: PBoolean; // boolean
+    HasExpires: PBoolean; // boolean
+    SameSite: PInteger; // TCefCookieSameSite
+    Priority: PInteger; // TCefCookiePriority
+  end;
+
+  PUrlPartsPtr = ^TUrlPartsPtr;
+
+  TUrlPartsPtr = record
+    Spec: PChar; // ustring
+    Scheme: PChar; // ustring
+    Username: PChar; // ustring
+    Password: PChar; // ustring
+    Host: PChar; // ustring
+    Port: PChar; // ustring
+    Origin: PChar; // ustring
+    Path: PChar; // ustring
+    Query: PChar; // ustring
+    Fragment: PChar; // ustring
+  end;
+
+// TCefBrowserSettings
+function EngBrowserSettingsToGo(const AData: TCefBrowserSettings): TEngBrowserSettingsPtr;
+function EngBrowserSettingsToPas(const AData: TEngBrowserSettingsPtr): TCefBrowserSettings;
+
+// TCefCookie
+function EngCookieToGo(const AData: TCefCookie): TEngCookiePtr;
+function EngCookieToPas(const AData: TEngCookiePtr): TCefCookie;
+
+// TCefMediaSinkDeviceInfo
+function EngMediaSinkDeviceInfoToGo(const AData: TCefMediaSinkDeviceInfo): TEngMediaSinkDeviceInfoPtr;
+function EngMediaSinkDeviceInfoToPas(const AData: TEngMediaSinkDeviceInfoPtr): TCefMediaSinkDeviceInfo;
+
+// TCefPdfPrintSettings
+function EngPdfPrintSettingsToGo(const AData: TCefPdfPrintSettings): TEngPdfPrintSettingsPtr;
+function EngPdfPrintSettingsToPas(const AData: TEngPdfPrintSettingsPtr): TCefPdfPrintSettings;
+
+// TCefRequestContextSettings
+function EngRequestContextSettingsToGo(const AData: TCefRequestContextSettings): TEngRequestContextSettingsPtr;
+function EngRequestContextSettingsToPas(const AData: TEngRequestContextSettingsPtr): TCefRequestContextSettings;
+
+// TCefSettings
+function EngSettingsToGo(const AData: TCefSettings): TEngSettingsPtr;
+function EngSettingsToPas(const AData: TEngSettingsPtr): TCefSettings;
+
+// TCefUrlParts
+function EngUrlPartsToGo(const AData: TCefUrlParts): TEngUrlPartsPtr;
+function EngUrlPartsToPas(const AData: TEngUrlPartsPtr): TCefUrlParts;
+
+// TCookie
+function CookieToGo(const AData: TCookie): TCookiePtr;
+function CookieToPas(const AData: TCookiePtr): TCookie;
+
+// TUrlParts
+function UrlPartsToGo(const AData: TUrlParts): TUrlPartsPtr;
+function UrlPartsToPas(const AData: TUrlPartsPtr): TUrlParts;
+
+implementation
+
+// TCefBrowserSettings
+function EngBrowserSettingsToGo(const AData: TCefBrowserSettings): TEngBrowserSettingsPtr;
+begin
+  Result.WindowlessFrameRate := @(AData.windowless_frame_rate);
+  Result.StandardFontFamily := ToPChar(CefString(@AData.standard_font_family));
+  Result.FixedFontFamily := ToPChar(CefString(@AData.fixed_font_family));
+  Result.SerifFontFamily := ToPChar(CefString(@AData.serif_font_family));
+  Result.SansSerifFontFamily := ToPChar(CefString(@AData.sans_serif_font_family));
+  Result.CursiveFontFamily := ToPChar(CefString(@AData.cursive_font_family));
+  Result.FantasyFontFamily := ToPChar(CefString(@AData.fantasy_font_family));
+  Result.DefaultFontSize := @(AData.default_font_size);
+  Result.DefaultFixedFontSize := @(AData.default_fixed_font_size);
+  Result.MinimumFontSize := @(AData.minimum_font_size);
+  Result.MinimumLogicalFontSize := @(AData.minimum_logical_font_size);
+  Result.DefaultEncoding := ToPChar(CefString(@AData.default_encoding));
+  Result.RemoteFonts := @(AData.remote_fonts);
+  Result.Javascript := @(AData.javascript);
+  Result.JavascriptCloseWindows := @(AData.javascript_close_windows);
+  Result.JavascriptAccessClipboard := @(AData.javascript_access_clipboard);
+  Result.JavascriptDomPaste := @(AData.javascript_dom_paste);
+  Result.ImageLoading := @(AData.image_loading);
+  Result.ImageShrinkStandaloneToFit := @(AData.image_shrink_standalone_to_fit);
+  Result.TextAreaResize := @(AData.text_area_resize);
+  Result.TabToLinks := @(AData.tab_to_links);
+  Result.LocalStorage := @(AData.local_storage);
+  Result.Databases := @(AData.databases);
+  Result.Webgl := @(AData.webgl);
+  Result.BackgroundColor := @(AData.background_color);
+  Result.ChromeStatusBubble := @(AData.chrome_status_bubble);
+  Result.ChromeZoomBubble := @(AData.chrome_zoom_bubble);
+end;
+
+function EngBrowserSettingsToPas(const AData: TEngBrowserSettingsPtr): TCefBrowserSettings;
+begin
+  Result.size := SizeOf(TCefBrowserSettings);
+  Result.windowless_frame_rate := Integer(AData.WindowlessFrameRate^);
+  Result.standard_font_family := CefString(PCharToUStr(AData.StandardFontFamily));
+  Result.fixed_font_family := CefString(PCharToUStr(AData.FixedFontFamily));
+  Result.serif_font_family := CefString(PCharToUStr(AData.SerifFontFamily));
+  Result.sans_serif_font_family := CefString(PCharToUStr(AData.SansSerifFontFamily));
+  Result.cursive_font_family := CefString(PCharToUStr(AData.CursiveFontFamily));
+  Result.fantasy_font_family := CefString(PCharToUStr(AData.FantasyFontFamily));
+  Result.default_font_size := Integer(AData.DefaultFontSize^);
+  Result.default_fixed_font_size := Integer(AData.DefaultFixedFontSize^);
+  Result.minimum_font_size := Integer(AData.MinimumFontSize^);
+  Result.minimum_logical_font_size := Integer(AData.MinimumLogicalFontSize^);
+  Result.default_encoding := CefString(PCharToUStr(AData.DefaultEncoding));
+  Result.remote_fonts := TCefState(AData.RemoteFonts^);
+  Result.javascript := TCefState(AData.Javascript^);
+  Result.javascript_close_windows := TCefState(AData.JavascriptCloseWindows^);
+  Result.javascript_access_clipboard := TCefState(AData.JavascriptAccessClipboard^);
+  Result.javascript_dom_paste := TCefState(AData.JavascriptDomPaste^);
+  Result.image_loading := TCefState(AData.ImageLoading^);
+  Result.image_shrink_standalone_to_fit := TCefState(AData.ImageShrinkStandaloneToFit^);
+  Result.text_area_resize := TCefState(AData.TextAreaResize^);
+  Result.tab_to_links := TCefState(AData.TabToLinks^);
+  Result.local_storage := TCefState(AData.LocalStorage^);
+  Result.databases := TCefState(AData.Databases^);
+  Result.webgl := TCefState(AData.Webgl^);
+  Result.background_color := TCefColor(AData.BackgroundColor^);
+  Result.chrome_status_bubble := TCefState(AData.ChromeStatusBubble^);
+  Result.chrome_zoom_bubble := TCefState(AData.ChromeZoomBubble^);
+end;
+
+// TCefCookie
+function EngCookieToGo(const AData: TCefCookie): TEngCookiePtr;
+begin
+  Result.Name := ToPChar(CefString(@AData.name));
+  Result.Value := ToPChar(CefString(@AData.value));
+  Result.Domain := ToPChar(CefString(@AData.domain));
+  Result.Path := ToPChar(CefString(@AData.path));
+  Result.Secure := @(AData.secure);
+  Result.Httponly := @(AData.httponly);
+  Result.Creation := @(AData.creation);
+  Result.LastAccess := @(AData.last_access);
+  Result.HasExpires := @(AData.has_expires);
+  Result.Expires := @(AData.expires);
+  Result.SameSite := @(AData.same_site);
+  Result.Priority := @(AData.priority);
+end;
+
+function EngCookieToPas(const AData: TEngCookiePtr): TCefCookie;
+begin
+  Result.name := CefString(PCharToUStr(AData.Name));
+  Result.value := CefString(PCharToUStr(AData.Value));
+  Result.domain := CefString(PCharToUStr(AData.Domain));
+  Result.path := CefString(PCharToUStr(AData.Path));
+  Result.secure := Integer(AData.Secure^);
+  Result.httponly := Integer(AData.Httponly^);
+  Result.creation := TCefBaseTime(AData.Creation^);
+  Result.last_access := TCefBaseTime(AData.LastAccess^);
+  Result.has_expires := Integer(AData.HasExpires^);
+  Result.expires := TCefBaseTime(AData.Expires^);
+  Result.same_site := TCefCookieSameSite(AData.SameSite^);
+  Result.priority := TCefCookiePriority(AData.Priority^);
+end;
+
+// TCefMediaSinkDeviceInfo
+function EngMediaSinkDeviceInfoToGo(const AData: TCefMediaSinkDeviceInfo): TEngMediaSinkDeviceInfoPtr;
+begin
+  Result.IpAddress := ToPChar(CefString(@AData.ip_address));
+  Result.Port := @(AData.port);
+  Result.ModelName := ToPChar(CefString(@AData.model_name));
+end;
+
+function EngMediaSinkDeviceInfoToPas(const AData: TEngMediaSinkDeviceInfoPtr): TCefMediaSinkDeviceInfo;
+begin
+  Result.ip_address := CefString(PCharToUStr(AData.IpAddress));
+  Result.port := integer(AData.Port^);
+  Result.model_name := CefString(PCharToUStr(AData.ModelName));
+end;
+
+// TCefPdfPrintSettings
+function EngPdfPrintSettingsToGo(const AData: TCefPdfPrintSettings): TEngPdfPrintSettingsPtr;
+begin
+  Result.Landscape := @(AData.landscape);
+  Result.PrintBackground := @(AData.print_background);
+  Result.Scale := @(AData.scale);
+  Result.PaperWidth := @(AData.paper_width);
+  Result.PaperHeight := @(AData.paper_height);
+  Result.PreferCssPageSize := @(AData.prefer_css_page_size);
+  Result.MarginType := @(AData.margin_type);
+  Result.MarginTop := @(AData.margin_top);
+  Result.MarginRight := @(AData.margin_right);
+  Result.MarginBottom := @(AData.margin_bottom);
+  Result.MarginLeft := @(AData.margin_left);
+  Result.PageRanges := ToPChar(CefString(@AData.page_ranges));
+  Result.DisplayHeaderFooter := @(AData.display_header_footer);
+  Result.HeaderTemplate := ToPChar(CefString(@AData.header_template));
+  Result.FooterTemplate := ToPChar(CefString(@AData.footer_template));
+  Result.GenerateTaggedPdf := @(AData.generate_tagged_pdf);
+end;
+
+function EngPdfPrintSettingsToPas(const AData: TEngPdfPrintSettingsPtr): TCefPdfPrintSettings;
+begin
+  Result.landscape := Integer(AData.Landscape^);
+  Result.print_background := Integer(AData.PrintBackground^);
+  Result.scale := double(AData.Scale^);
+  Result.paper_width := double(AData.PaperWidth^);
+  Result.paper_height := double(AData.PaperHeight^);
+  Result.prefer_css_page_size := Integer(AData.PreferCssPageSize^);
+  Result.margin_type := TCefPdfPrintMarginType(AData.MarginType^);
+  Result.margin_top := double(AData.MarginTop^);
+  Result.margin_right := double(AData.MarginRight^);
+  Result.margin_bottom := double(AData.MarginBottom^);
+  Result.margin_left := double(AData.MarginLeft^);
+  Result.page_ranges := CefString(PCharToUStr(AData.PageRanges));
+  Result.display_header_footer := Integer(AData.DisplayHeaderFooter^);
+  Result.header_template := CefString(PCharToUStr(AData.HeaderTemplate));
+  Result.footer_template := CefString(PCharToUStr(AData.FooterTemplate));
+  Result.generate_tagged_pdf := integer(AData.GenerateTaggedPdf^);
+end;
+
+// TCefRequestContextSettings
+function EngRequestContextSettingsToGo(const AData: TCefRequestContextSettings): TEngRequestContextSettingsPtr;
+begin
+  Result.CachePath := ToPChar(CefString(@AData.cache_path));
+  Result.PersistSessionCookies := @(AData.persist_session_cookies);
+  Result.PersistUserPreferences := @(AData.persist_user_preferences);
+  Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
+  Result.CookieableSchemesList := ToPChar(CefString(@AData.cookieable_schemes_list));
+  Result.CookieableSchemesExcludeDefaults := @(AData.cookieable_schemes_exclude_defaults);
+end;
+
+function EngRequestContextSettingsToPas(const AData: TEngRequestContextSettingsPtr): TCefRequestContextSettings;
+begin
+  Result.size := SizeOf(TCefRequestContextSettings);
+  Result.cache_path := CefString(PCharToUStr(AData.CachePath));
+  Result.persist_session_cookies := Integer(AData.PersistSessionCookies^);
+  Result.persist_user_preferences := Integer(AData.PersistUserPreferences^);
+  Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
+  Result.cookieable_schemes_list := CefString(PCharToUStr(AData.CookieableSchemesList));
+  Result.cookieable_schemes_exclude_defaults := integer(AData.CookieableSchemesExcludeDefaults^);
+end;
+
+// TCefSettings
+function EngSettingsToGo(const AData: TCefSettings): TEngSettingsPtr;
+begin
+  Result.NoSandbox := @(AData.no_sandbox);
+  Result.BrowserSubprocessPath := ToPChar(CefString(@AData.browser_subprocess_path));
+  Result.FrameworkDirPath := ToPChar(CefString(@AData.framework_dir_path));
+  Result.MainBundlePath := ToPChar(CefString(@AData.main_bundle_path));
+  Result.ChromeRuntime := @(AData.chrome_runtime);
+  Result.MultiThreadedMessageLoop := @(AData.multi_threaded_message_loop);
+  Result.ExternalMessagePump := @(AData.external_message_pump);
+  Result.WindowlessRenderingEnabled := @(AData.windowless_rendering_enabled);
+  Result.CommandLineArgsDisabled := @(AData.command_line_args_disabled);
+  Result.CachePath := ToPChar(CefString(@AData.cache_path));
+  Result.RootCachePath := ToPChar(CefString(@AData.root_cache_path));
+  Result.PersistSessionCookies := @(AData.persist_session_cookies);
+  Result.PersistUserPreferences := @(AData.persist_user_preferences);
+  Result.UserAgent := ToPChar(CefString(@AData.user_agent));
+  Result.UserAgentProduct := ToPChar(CefString(@AData.user_agent_product));
+  Result.Locale := ToPChar(CefString(@AData.locale));
+  Result.LogFile := ToPChar(CefString(@AData.log_file));
+  Result.LogSeverity := @(AData.log_severity);
+  Result.LogItems := @(AData.log_items);
+  Result.JavascriptFlags := ToPChar(CefString(@AData.javascript_flags));
+  Result.ResourcesDirPath := ToPChar(CefString(@AData.resources_dir_path));
+  Result.LocalesDirPath := ToPChar(CefString(@AData.locales_dir_path));
+  Result.PackLoadingDisabled := @(AData.pack_loading_disabled);
+  Result.RemoteDebuggingPort := @(AData.remote_debugging_port);
+  Result.UncaughtExceptionStackSize := @(AData.uncaught_exception_stack_size);
+  Result.BackgroundColor := @(AData.background_color);
+  Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
+  Result.CookieableSchemesList := ToPChar(CefString(@AData.cookieable_schemes_list));
+  Result.CookieableSchemesExcludeDefaults := @(AData.cookieable_schemes_exclude_defaults);
+  Result.ChromePolicyId := ToPChar(CefString(@AData.chrome_policy_id));
+end;
+
+function EngSettingsToPas(const AData: TEngSettingsPtr): TCefSettings;
+begin
+  Result.size := SizeOf(TCefSettings);
+  Result.no_sandbox := Integer(AData.NoSandbox^);
+  Result.browser_subprocess_path := CefString(PCharToUStr(AData.BrowserSubprocessPath));
+  Result.framework_dir_path := CefString(PCharToUStr(AData.FrameworkDirPath));
+  Result.main_bundle_path := CefString(PCharToUStr(AData.MainBundlePath));
+  Result.chrome_runtime := Integer(AData.ChromeRuntime^);
+  Result.multi_threaded_message_loop := Integer(AData.MultiThreadedMessageLoop^);
+  Result.external_message_pump := Integer(AData.ExternalMessagePump^);
+  Result.windowless_rendering_enabled := Integer(AData.WindowlessRenderingEnabled^);
+  Result.command_line_args_disabled := Integer(AData.CommandLineArgsDisabled^);
+  Result.cache_path := CefString(PCharToUStr(AData.CachePath));
+  Result.root_cache_path := CefString(PCharToUStr(AData.RootCachePath));
+  Result.persist_session_cookies := Integer(AData.PersistSessionCookies^);
+  Result.persist_user_preferences := Integer(AData.PersistUserPreferences^);
+  Result.user_agent := CefString(PCharToUStr(AData.UserAgent));
+  Result.user_agent_product := CefString(PCharToUStr(AData.UserAgentProduct));
+  Result.locale := CefString(PCharToUStr(AData.Locale));
+  Result.log_file := CefString(PCharToUStr(AData.LogFile));
+  Result.log_severity := TCefLogSeverity(AData.LogSeverity^);
+  Result.log_items := TCefLogItems(AData.LogItems^);
+  Result.javascript_flags := CefString(PCharToUStr(AData.JavascriptFlags));
+  Result.resources_dir_path := CefString(PCharToUStr(AData.ResourcesDirPath));
+  Result.locales_dir_path := CefString(PCharToUStr(AData.LocalesDirPath));
+  Result.pack_loading_disabled := Integer(AData.PackLoadingDisabled^);
+  Result.remote_debugging_port := Integer(AData.RemoteDebuggingPort^);
+  Result.uncaught_exception_stack_size := Integer(AData.UncaughtExceptionStackSize^);
+  Result.background_color := TCefColor(AData.BackgroundColor^);
+  Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
+  Result.cookieable_schemes_list := CefString(PCharToUStr(AData.CookieableSchemesList));
+  Result.cookieable_schemes_exclude_defaults := integer(AData.CookieableSchemesExcludeDefaults^);
+  Result.chrome_policy_id := CefString(PCharToUStr(AData.ChromePolicyId));
+end;
+
+// TCefUrlParts
+function EngUrlPartsToGo(const AData: TCefUrlParts): TEngUrlPartsPtr;
+begin
+  Result.Spec := ToPChar(CefString(@AData.spec));
+  Result.Scheme := ToPChar(CefString(@AData.scheme));
+  Result.Username := ToPChar(CefString(@AData.username));
+  Result.Password := ToPChar(CefString(@AData.password));
+  Result.Host := ToPChar(CefString(@AData.host));
+  Result.Port := ToPChar(CefString(@AData.port));
+  Result.Origin := ToPChar(CefString(@AData.origin));
+  Result.Path := ToPChar(CefString(@AData.path));
+  Result.Query := ToPChar(CefString(@AData.query));
+  Result.Fragment := ToPChar(CefString(@AData.fragment));
+end;
+
+function EngUrlPartsToPas(const AData: TEngUrlPartsPtr): TCefUrlParts;
+begin
+  Result.spec := CefString(PCharToUStr(AData.Spec));
+  Result.scheme := CefString(PCharToUStr(AData.Scheme));
+  Result.username := CefString(PCharToUStr(AData.Username));
+  Result.password := CefString(PCharToUStr(AData.Password));
+  Result.host := CefString(PCharToUStr(AData.Host));
+  Result.port := CefString(PCharToUStr(AData.Port));
+  Result.origin := CefString(PCharToUStr(AData.Origin));
+  Result.path := CefString(PCharToUStr(AData.Path));
+  Result.query := CefString(PCharToUStr(AData.Query));
+  Result.fragment := CefString(PCharToUStr(AData.Fragment));
+end;
+
+// TCookie
+function CookieToGo(const AData: TCookie): TCookiePtr;
+begin
+  Result.Name := ToPChar(AData.name);
+  Result.Value := ToPChar(AData.value);
+  Result.Domain := ToPChar(AData.domain);
+  Result.Path := ToPChar(AData.path);
+  Result.Creation := @(AData.creation);
+  Result.LastAccess := @(AData.last_access);
+  Result.Expires := @(AData.expires);
+  Result.Secure := @(AData.secure);
+  Result.Httponly := @(AData.httponly);
+  Result.HasExpires := @(AData.has_expires);
+  Result.SameSite := @(AData.same_site);
+  Result.Priority := @(AData.priority);
+end;
+
+function CookieToPas(const AData: TCookiePtr): TCookie;
+begin
+  Result.name := PCharToUStr(AData.Name);
+  Result.value := PCharToUStr(AData.Value);
+  Result.domain := PCharToUStr(AData.Domain);
+  Result.path := PCharToUStr(AData.Path);
+  Result.creation := TDateTime(AData.Creation^);
+  Result.last_access := TDateTime(AData.LastAccess^);
+  Result.expires := TDateTime(AData.Expires^);
+  Result.secure := boolean(AData.Secure^);
+  Result.httponly := boolean(AData.Httponly^);
+  Result.has_expires := boolean(AData.HasExpires^);
+  Result.same_site := TCefCookieSameSite(AData.SameSite^);
+  Result.priority := TCefCookiePriority(AData.Priority^);
+end;
+
+// TUrlParts
+function UrlPartsToGo(const AData: TUrlParts): TUrlPartsPtr;
+begin
+  Result.Spec := ToPChar(AData.spec);
+  Result.Scheme := ToPChar(AData.scheme);
+  Result.Username := ToPChar(AData.username);
+  Result.Password := ToPChar(AData.password);
+  Result.Host := ToPChar(AData.host);
+  Result.Port := ToPChar(AData.port);
+  Result.Origin := ToPChar(AData.origin);
+  Result.Path := ToPChar(AData.path);
+  Result.Query := ToPChar(AData.query);
+  Result.Fragment := ToPChar(AData.fragment);
+end;
+
+function UrlPartsToPas(const AData: TUrlPartsPtr): TUrlParts;
+begin
+  Result.spec := PCharToUStr(AData.Spec);
+  Result.scheme := PCharToUStr(AData.Scheme);
+  Result.username := PCharToUStr(AData.Username);
+  Result.password := PCharToUStr(AData.Password);
+  Result.host := PCharToUStr(AData.Host);
+  Result.port := PCharToUStr(AData.Port);
+  Result.origin := PCharToUStr(AData.Origin);
+  Result.path := PCharToUStr(AData.Path);
+  Result.query := PCharToUStr(AData.Query);
+  Result.fragment := PCharToUStr(AData.Fragment);
+end;
+
+end.

@@ -1,0 +1,54 @@
+
+//constructor
+function CustomLabeledEdit_Create(TheOwner: TComponent): TCustomLabeledEdit; extdecl;
+begin
+  handleExceptionBegin
+  Result := TCustomLabeledEdit.Create(TheOwner);
+  handleExceptionEnd
+end;
+
+//property
+function CustomLabeledEdit_EditLabel(AObj: TCustomLabeledEdit): TBoundLabel; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.EditLabel;
+  handleExceptionEnd
+end;
+
+//property
+function CustomLabeledEdit_LabelPosition(AIsSet: LongBool; AObj: TCustomLabeledEdit; AValue: TLabelPosition): TLabelPosition; extdecl;
+begin
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.LabelPosition := AValue;
+  end else
+    Result := AObj.LabelPosition;
+  handleExceptionEnd
+end;
+
+//property
+function CustomLabeledEdit_LabelSpacing(AIsSet: LongBool; AObj: TCustomLabeledEdit; AValue: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.LabelSpacing := AValue;
+  end else
+    Result := AObj.LabelSpacing;
+  handleExceptionEnd
+end;
+
+//function
+function CustomLabeledEdit_Class(): TClass; extdecl;
+begin
+  Result := TCustomLabeledEdit;
+end;
+
+
+exports
+  CustomLabeledEdit_Create,
+  CustomLabeledEdit_EditLabel,
+  CustomLabeledEdit_LabelPosition,
+  CustomLabeledEdit_LabelSpacing,
+  CustomLabeledEdit_Class;

@@ -1,0 +1,1159 @@
+//----------------------------------------
+//
+// Copyright © yanghy. All Rights Reserved.
+// 
+// Licensed under Lazarus.modifiedLGPL
+//
+//----------------------------------------
+
+// 不使用自动生成的
+// 这里主要是对自动生成做兼容和补充相关
+
+function DLibStringEncoding: TStringEncoding; extdecl;
+begin
+  Result := seUTF8;
+end;
+
+function DLibVersion: Cardinal; extdecl;
+begin
+  // 共8位，2位2位的
+  Result := $03000000;
+end;
+
+// 一些初始
+procedure InitLazarusDef;
+begin
+  // 注册与VCL中类名一致的TPngImage
+  TPicture.RegisterFileFormat(TPngImage.GetFileExtensions, rsPortableNetworkGraphic, TPngImage);
+end;
+
+// 注册 Lazarus 资源
+procedure AddLazarusResources(AName: PChar; AValueType: PChar; AValue: Pointer; ALength: NativeUInt);
+var
+  LRes: AnsiString;
+begin
+  handleExceptionBegin
+  if (ALength = 0) or (AValue = nil) then
+    Exit;
+  SetLength(LRes, ALength);
+  Move(AValue^, LRes[1], ALength);
+  LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), LRes);
+  handleExceptionEnd
+end;
+
+procedure AddLazarusResources2(AName: PChar; AValueType: PChar; AValue: PChar);
+begin
+  handleExceptionBegin
+  if AValue = nil then
+    Exit;
+  LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), AnsiString(AValue));
+  handleExceptionEnd
+end;
+
+// SysLocale  14byte
+procedure DSysLocale(var AInfo: TSysLocale); extdecl;
+begin
+  AInfo := SysLocale;
+end;
+
+
+// TApplication
+function Application_Instance: TApplication; extdecl;
+begin
+  Result := Application;
+end;
+
+{$IFDEF WINDOWS}
+// 当 IsLibrary = True 时，是不会调用 WidgetSet.CreateAppHandle 方法
+// 这时就需要手动去伪造一个 WidgetSet.AppHandle := CreateWindowsAppHandle;
+// 这里的代码来自win32object.inc单元中 CreateAppHandle方法。
+function CreateWindowsAppHandle: HWND;
+var
+  SysMenu: HMENU;
+begin
+  Result := CreateWindowW(@ClsNameW, PWideChar(UTF8ToUTF16(Application.Title)), WS_POPUP or WS_CLIPSIBLINGS or WS_SYSMENU or WS_MINIMIZEBOX, 0, 0, 0, 0, 0, 0, HInstance, nil);
+  if Result = 0 then
+    Exit(0);
+  AllocWindowInfo(Result);
+  // remove useless menuitems from sysmenu
+  SysMenu := Windows.GetSystemMenu(Result, False);
+  Windows.DeleteMenu(SysMenu, SC_MAXIMIZE, MF_BYCOMMAND);
+  Windows.DeleteMenu(SysMenu, SC_SIZE, MF_BYCOMMAND);
+  Windows.DeleteMenu(SysMenu, SC_MOVE, MF_BYCOMMAND);
+end;
+{$ENDIF}
+
+// LCL_Application.inc
+procedure Application_Initialize(AObj: TApplication); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Initialize;
+{$IFDEF WINDOWS}
+  if Application.Icon.Handle = 0 then
+     Application.Icon.Handle := LoadIcon(GetModuleHandle(nil), 'MAINICON');
+  WidgetSet.ThemeServices.UpdateThemes;
+  WidgetSet.AppHandle := CreateWindowsAppHandle;
+{$ENDIF}
+  handleExceptionEnd
+end;
+
+function Application_CreateForm(App: TApplication): TGoForm; extdecl;
+begin
+  handleExceptionBegin
+  App.CreateForm(TGoForm, Result);
+  handleExceptionEnd
+end;
+
+procedure RemoveAllForms;
+var
+  C: TComponent;
+  I: Integer;
+begin
+  for I := Application.ComponentCount - 1 downto 0 do
+  begin
+    C := Application.Components[I];
+    if C is TCustomForm then
+    begin
+      C.Free;
+    end;
+  end;
+end;
+
+procedure Application_Run(AObj: TApplication); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MyRun;
+  // 在Run结束后手动释放Application中的Form，主要是考虑在非Lazarus运行环境中造成的一些资源清理问题
+  RemoveAllForms;
+  handleExceptionEnd
+end;
+
+procedure Form_InheritedWndProc(AObj: TGoForm; var TheMessage: TLMessage); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InheritedWndProc(TheMessage);
+  handleExceptionEnd
+end;
+
+function Form_Create2(AOwner: TComponent): TGoForm; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result :=  TGoForm.Create2(AOwner);
+  handleExceptionEnd
+end;
+
+procedure Form_SetOnWndProc(AObj: TGoForm; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTWndProcEvent}
+  {$DEFINE EventName := OnWndProc}
+  EventMethodCode
+end;
+
+procedure Form_SetGoPtr(AObj: TGoForm; APtr: Pointer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GoPtr := APtr;
+  handleExceptionEnd
+end;
+
+
+procedure Form_SetOnMessagesEvent(AObj: TGoForm; AType: Integer; AEvent: Pointer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SetOnMessagesEvent(AType, AEvent);
+  handleExceptionEnd
+end;
+
+// mouse
+function Mouse_Instance: TMouse; extdecl;
+begin
+  Result := Mouse;
+end;
+
+// screen
+function Screen_Instance: TScreen; extdecl;
+begin
+  Result := Screen;
+end;
+
+function DTextToShortCut(AText: PChar): TShortCut; extdecl;
+begin
+{$ifdef UsehandleException}Result := TShortCut(0);{$endif}
+  handleExceptionBegin
+  Result := TextToShortCut(AText);
+  handleExceptionEnd
+end;
+
+function DShortCutToText(AVal: TShortCut): PChar; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(ShortCutToText(AVal));
+  handleExceptionEnd
+end;
+
+// TClipboard
+function Clipboard_Instance: TClipboard; extdecl;
+begin
+  Result := Clipboard;
+end;
+
+
+function DPredefinedClipboardFormat(AFormat: TPredefinedClipboardFormat): TClipboardFormat; extdecl;
+begin
+{$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
+  handleExceptionBegin
+  Result := PredefinedClipboardFormat(AFormat);
+  handleExceptionEnd
+end;
+
+function DSetClipboard(ANewClipboard: TClipboard): TClipboard; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := SetClipboard(ANewClipboard);
+  handleExceptionEnd
+end;
+
+type
+   // Note: tfComposited only supported by ThemeServices.DrawText
+  TTextFormats = (tfBottom, tfCalcRect, tfCenter, tfEditControl, tfEndEllipsis,
+    tfPathEllipsis, tfExpandTabs, tfExternalLeading, tfLeft, tfModifyString,
+    tfNoClip, tfNoPrefix, tfRight, tfRtlReading, tfSingleLine, tfTop,
+    tfVerticalCenter, tfWordBreak, tfHidePrefix, tfNoFullWidthCharBreak,
+    tfPrefixOnly, tfTabStop, tfWordEllipsis, tfComposited);
+  TTextFormat = set of TTextFormats;
+
+
+function DSendMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): LResult; extdecl;
+begin
+{$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.SendMessage(hWd, msg, wParam, lParam);
+  handleExceptionEnd
+end;
+
+function DPostMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.PostMessage(hWd, msg, wParam, lParam);
+  handleExceptionEnd
+end;
+
+function DIsIconic(hWnd: HWND): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.IsIconic(hWnd);
+  handleExceptionEnd
+end;
+
+function DIsWindow(hWnd: HWND): LongBool; extdecl;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.IsWindow(hWnd);
+  handleExceptionEnd
+end;
+
+function DIsZoomed(hWnd: HWND): LongBool; extdecl;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.IsZoomed(hWnd);
+  handleExceptionEnd
+end;
+
+function DIsWindowVisible(hWnd: HWND): LongBool; extdecl;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.IsWindowVisible(hWnd);
+  handleExceptionEnd
+end;
+
+function DGetDC(hWnd: HWND): HDC; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.GetDC(hWnd);
+  handleExceptionEnd
+end;
+
+function DReleaseDC(hWnd: HWND; dc: HDC): Integer; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.ReleaseDC(hWnd, dc);
+  handleExceptionEnd
+end;
+
+function DSetForegroundWindow(hWnd: HWND): LongBool; extdecl;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.SetForegroundWindow(hWnd);
+  handleExceptionEnd
+end;
+
+function DRegisterClipboardFormat(AFormat: PChar): TClipboardFormat; extdecl;
+begin
+  {$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
+  handleExceptionBegin
+  Result := Clipbrd.RegisterClipboardFormat(AFormat);
+  handleExceptionEnd
+end;
+
+function DWindowFromPoint(point: PPoint): HWND; extdecl;
+begin
+  if point = nil then
+    Exit(0);
+{$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := LCLIntf.WindowFromPoint(PPoint(point)^);
+  handleExceptionEnd
+end;
+
+
+// 事件回调 LCL
+
+procedure SetEventCallback(APtr: Pointer); extdecl;
+begin
+  GEventCallbackPtr := TEventCallbackPtr(APtr);
+end;
+
+procedure SetRemoveEventCallback(APtr: Pointer); extdecl;
+begin
+  GRemoveEventCallbackPtr := TRemoveEventCallPtr(APtr);
+end;
+
+procedure SetMessageCallback(APtr: Pointer); extdecl;
+begin
+  GMessageCallbackPtr := TMessageCallbackPtr(APtr);
+end;
+
+procedure SetExceptionHandlerCallback(APtr: Pointer); extdecl;
+begin
+  GExceptionHandlerCallbackPtr := APtr;
+end;
+
+procedure SetRequestCallCreateParamsCallback(APtr: Pointer); extdecl;
+begin
+  GRequestCallCreateParamsPtr := APtr;
+end;
+
+procedure SetRequestCallFormCreateCallback(APtr: Pointer); extdecl;
+begin
+  GRequestCallFormCreatePtr := APtr;
+end;
+
+// 设置主线程回调 异步
+procedure SetThreadAsyncCallback(APtr: Pointer); extdecl;
+begin
+  GThreadAsyncCallbackPtr := APtr;
+end;
+
+// 设置主线程回调 同步
+procedure SetThreadSyncCallback(APtr: Pointer); extdecl;
+begin
+  GThreadSyncCallbackPtr := APtr;
+end;
+
+// 在主线程中运行 异步
+procedure DRunMainAsyncCall(EventId: PtrInt); extdecl;
+begin
+  Application.QueueAsyncCall(TRunMainThreadCallback.RunMainThreadAsyncCall, EventId);
+end;
+
+// 在主线程中运行 同步
+procedure DRunMainSyncCall(); extdecl;
+begin
+  handleExceptionBegin
+  if MainThreadId = TThread.CurrentThread.ThreadID then
+    TRunMainThreadCallback.RunMainThreadSyncCall()
+  else
+    TThread.Synchronize(nil, TRunMainThreadCallback.RunMainThreadSyncCall);
+  handleExceptionEnd
+end;
+
+// 事件回调 CEF
+
+procedure SetCEFEventCallback(APtr: Pointer); extdecl;
+begin
+  GCEFEventCallbackPtr := APtr;
+end;
+
+procedure SetCEFRemoveEventCallback(APtr: Pointer); extdecl;
+begin
+  GCEFRemoveEventCallbackPtr := APtr;
+end;
+
+// 事件回调 WV
+{$IFDEF WINDOWS}
+procedure SetWVEventCallback(APtr: Pointer); extdecl;
+begin
+  GWVEventCallbackPtr := TWVEventCallbackPtr(APtr);
+end;
+
+procedure SetWVRemoveEventCallback(APtr: Pointer); extdecl;
+begin
+  GWVRemoveEventCallbackPtr := TWVRemoveEventCallPtr(APtr);
+end;
+{$ENDIF}
+
+// 事件回调 WK
+{$IFnDEF WINDOWS}
+procedure SetWKEventCallback(APtr: Pointer); extdecl;
+begin
+  GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
+end;
+
+procedure SetWKRemoveEventCallback(APtr: Pointer); extdecl;
+begin
+  GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
+end;
+{$ENDIF}
+
+// 从string数组中获取成员
+function DGetStringArrOf(P: Pointer; AIndex: NativeInt): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(PString(PByte(P) + AIndex * SizeOf(string))^);
+  handleExceptionEnd
+end;
+
+function DStrLen(p: PChar): NativeInt; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := Length(p); //UTF8Length(); UTF8LengthFast
+  handleExceptionEnd
+end;
+
+procedure DMove(Src, Dest: Pointer; Len: NativeInt); extdecl;
+begin
+  handleExceptionBegin
+  Move(Src^, Dest^, Len);
+  handleExceptionEnd
+end;
+
+procedure DShowMessage(AMsg: PChar); extdecl;
+begin
+  handleExceptionBegin
+  ShowMessage(AMsg);
+  handleExceptionEnd
+end;
+
+function DGetMainInstance: HINST; extdecl;
+begin
+{$IFDEF WINDOWS}
+  Result := GetModuleHandle(nil);
+{$ELSE}
+  Result := 0;
+{$ENDIF}
+end;
+
+function DMessageDlg(const Msg: PChar; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; HelpCtx: Longint): Integer; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := MessageDlg(Msg, DlgType, Buttons, HelpCtx);
+  handleExceptionEnd
+end;
+
+function DMainThreadId: TThreadID; extdecl;
+begin
+  Result := MainThreadId;
+end;
+
+function DCurrentThreadId: TThreadID; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := TThread.CurrentThread.ThreadID;
+  handleExceptionEnd
+end;
+
+procedure DSysOpen(FileName: PChar); extdecl;
+begin
+  handleExceptionBegin
+  OpenURL(FileName);
+  handleExceptionEnd
+end;
+
+function DExtractFilePath(AFileName: PChar): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(ExtractFilePath(AFileName));
+  handleExceptionEnd
+end;
+
+function DFileExists(AFileName: PChar): LongBool; extdecl;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := FileExists(AFileName);
+  handleExceptionEnd
+end;
+
+function DSelectDirectory1(var Directory: PChar; Options: TSelectDirOpts; HelpCtx: Longint): LongBool; extdecl;
+var
+  LDir: string;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := SelectDirectory(LDir, Options, HelpCtx);
+  if Result then
+    Directory := PChar(LDir);
+  handleExceptionEnd
+end;
+
+function DSelectDirectory2(Caption, Root: PChar; AShowHidden: LongBool; var Directory: PChar): LongBool;  extdecl;
+var
+  LDir: string;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result := SelectDirectory(Caption, Root, LDir, AShowHidden, 0);
+  if Result then
+    Directory := PChar(LDir);
+  handleExceptionEnd
+end;
+
+function DInputBox(ACaption, APrompt, ADefault: PChar): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(InputBox(ACaption, APrompt, ADefault));
+  handleExceptionEnd
+end;
+
+function DInputQuery(ACaption, APrompt: PChar; Value: PChar; out AOut: PChar): LongBool; extdecl;
+var
+  S: string;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  S := Value;
+  Result := InputQuery(string(ACaption), string(APrompt), S);
+  if Result then
+    AOut := PChar(S);
+  handleExceptionEnd
+end;
+
+
+function DPasswordBox(const ACaption, APrompt : PChar): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(PasswordBox(ACaption, APrompt));
+  handleExceptionEnd
+end;
+
+function DInputCombo(const ACaption, APrompt: PChar; const AList: TStrings): Integer; extdecl;
+begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
+  handleExceptionBegin
+  Result := InputCombo(ACaption, APrompt, AList);
+  handleExceptionEnd
+end;
+
+function DInputComboEx(const ACaption, APrompt: PChar; const AList: TStrings; AllowCustomText: LongBool): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(InputComboEx(ACaption, APrompt, AList, AllowCustomText));
+  handleExceptionEnd
+end;
+
+
+{$IFDEF WINDOWS}
+// 路径合并
+function PathCombine(A1, A2: string): string; inline;
+begin
+  if A1[Length(A1)] <> PathDelim then
+    A1 := A1 + PathDelim;
+  if (Length(A2) > 0) and (A2[1] = PathDelim) then
+    Delete(A2, 1, 1);
+  Result := A1 + A2;
+end;
+
+// 创建URL快捷方式
+procedure DCreateURLShortCut(ADestPath, AShortCutName, AURL: PChar); extdecl;
+var
+  Ini: TIniFile;
+begin
+  handleExceptionBegin
+  Ini := TIniFile.Create(PathCombine(ADestPath, AShortCutName) + '.url');
+  try
+    Ini.WriteString('{000214A0-0000-0000-C000-000000000046}', 'Prop3', '19,2');
+    Ini.WriteString('InternetShortcut', 'URL', AURL);
+  finally
+    Ini.Free;
+  end;
+  handleExceptionEnd
+end;
+
+// 创建快捷方式
+function DCreateShortCut(ADestPath, AShortCutName, ASrcFileName, AIconFileName, ADescription, ACmdArgs: PChar): LongBool; extdecl;
+var
+  LObject : IUnknown;
+  LPLink : IShellLink;
+  LPPFile : IPersistFile;
+  LinkFilename : WideString;
+begin
+  {$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  CoInitializeEx(nil, 0);
+  try
+    LObject := CreateComObject(CLSID_ShellLink);
+    LPLink := LObject as IShellLink;
+    LPPFile := LObject as IPersistFile;
+    LPLink.SetPath(ASrcFileName);
+    LPLink.SetWorkingDirectory(PChar(ExtractFilePath(ASrcFileName)));
+    LPLink.SetDescription(ADescription);
+    if AIconFileName = '' then
+      LPLink.SetIconLocation(ASrcFileName, 0)
+    else LPLink.SetIconLocation(AIconFileName, 0);
+    LPLink.SetArguments(ACmdArgs);
+    LinkFilename := WideString(PathCombine(ADestPath, AShortCutName) + '.lnk');
+    Result := LPPFile.Save(PWideChar(LinkFilename), FALSE) = S_OK;
+  finally
+    CoUninitialize;
+  end;
+  handleExceptionEnd
+end;
+{$ENDIF}
+
+
+// 属性设置，这里主要提供给多语言使用
+procedure DSetPropertyValue(Instance: TObject; PropName, Value: PChar); extdecl;
+var
+  LPropInfo: PPropInfo;
+begin
+  handleExceptionBegin
+  LPropInfo := GetPropInfo(Instance, PropName);
+  if LPropInfo <> nil then
+  begin
+    case LPropInfo^.PropType^.Kind of
+      tkInteger, tkInt64:
+        SetInt64Prop(Instance, LPropInfo, StrToIntDef(Value, -1));
+      tkChar, tkSString, tkLString, tkAString, tkWString, tkWChar, tkUString,tkUChar:
+        SetStrProp(Instance, LPropInfo, Value);
+    end;
+  end;
+  handleExceptionEnd
+end;
+
+procedure DSetPropertySecValue(Instance: TObject; PropName, SecPropName, Value: PChar); extdecl;
+//type
+  //TCallIndexGetClassProc = function(AData: Pointer; AIndex: Integer): Pointer;
+var
+  LPropInfo: PPropInfo;
+  LObj: TObject;
+  LPropName: string;
+  LP, LIndex: Integer;
+begin
+  handleExceptionBegin
+  LPropName := PropName;
+  LIndex := -1;
+  LP := LPropName.IndexOf('[');
+  if LP > 0 then
+  begin
+    LIndex := StrToIntDef(LPropName.Substring(LP + 1, LPropName.IndexOf(']') - LP - 1), -1);
+    LPropName := LPropName.Substring(0, LP);
+  end;
+  LPropInfo := GetPropInfo(Instance, LPropName);
+  if LPropInfo <> nil then
+  begin
+    LObj := GetObjectProp(Instance, LPropInfo);
+    if LObj <> nil then
+    begin
+      if LIndex <> -1 then
+      begin
+        if LPropInfo^.PropType^.Kind = tkClass then
+        begin
+          if LObj is TListColumns then
+          begin
+            if (LIndex >= 0) and (LIndex < TListColumns(LObj).Count) and string(SecPropName).Equals('Caption') then
+              TListColumns(LObj)[LIndex].Caption := Value;
+          end else
+          if LObj is TStrings then
+          begin
+            if (LIndex >= 0) and (LIndex < TStrings(LObj).Count) and (string(SecPropName).Equals('String') or string(SecPropName).IsEmpty) then
+              TStrings(LObj)[LIndex] := Value;
+          end;
+        end;
+      end else
+        DSetPropertyValue(LObj, SecPropName, Value);
+    end;
+  end;
+  handleExceptionEnd
+end;
+
+
+//PARAMS:1=nonPtr
+function DGUIDToString(var AGUID: TGUID): PChar; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := PChar(GUIDToString(AGUID));
+  handleExceptionEnd
+end;
+
+//RETURNISLASTPARAM:
+procedure DStringToGUID(AGUIDStr: PChar; out AGUID: TGUID); extdecl;
+begin
+  handleExceptionBegin
+  AGUID := StringToGUID(AGUIDStr);
+  handleExceptionEnd
+end;
+
+//RETURNISLASTPARAM:
+procedure DCreateGUID(out AGUID: TGUID); extdecl;
+begin
+  handleExceptionBegin
+  CreateGUID(AGUID);
+  handleExceptionEnd
+end;
+
+// Printer
+function Printer_Instance: TPrinter; extdecl;
+begin
+  Result := Printer;
+end;
+
+//CLASSMETHOD:
+//procedure Printer_SetPrinter(Obj: TPrinter; aName: PChar); extdecl;
+//begin
+//  handleExceptionBegin
+//  Obj.SetPrinter(aName);
+//  handleExceptionEnd
+//end;
+
+function DLibAbout: PChar; extdecl;
+var
+  LVal: string;
+begin
+  LVal := 'Author: yanghy'#13#10 +
+          'Official website: https://energye.github.io'#13#10 +
+          'github: https://github.com/energye/energy'#13#10 +
+          'Based on Lazarus ' + lcl_version + #13#10 +
+          'Third party library list:'#13#10;
+  LVal := LVal + '    CEF4Delphi'#13#10;
+  LVal := LVal + '    WebView4Delphi'#13#10;
+  LVal := LVal + '    TRichMemo'#13#10;
+  LVal := LVal + '    TATGauge';
+  Result := PChar(LVal);
+end;
+
+//----------------------------------------------------
+// 一些lib的资源
+type
+  TResItem = record
+    Name: PChar;
+    ValuePtr: Pointer;
+  end;
+
+const
+  GLibResouces: array[0..40] of TResItem = (
+     // 27
+    (Name: 'SOpenFileTitle'; ValuePtr: @rsmbOpen),
+    (Name: 'SOKButton'; ValuePtr: @rsMbOK),
+    (Name: 'SCancelButton'; ValuePtr: @rsMbCancel),
+    (Name: 'SYesButton'; ValuePtr: @rsMbYes),
+    (Name: 'SNoButton'; ValuePtr: @rsMbNo),
+    (Name: 'SHelpButton'; ValuePtr: @rsMbHelp),
+    (Name: 'SCloseButton'; ValuePtr: @rsMbClose),
+    (Name: 'SIgnoreButton'; ValuePtr: @rsMbIgnore),
+    (Name: 'SRetryButton'; ValuePtr: @rsMbRetry),
+    (Name: 'SAbortButton'; ValuePtr: @rsMbAbort),
+    (Name: 'SAllButton'; ValuePtr: @rsMbAll),
+    (Name: 'SMsgDlgWarning'; ValuePtr: @rsMtWarning),
+    (Name: 'SMsgDlgError'; ValuePtr: @rsMtError),
+    (Name: 'SMsgDlgInformation'; ValuePtr: @rsMtInformation),
+    (Name: 'SMsgDlgConfirm'; ValuePtr: @rsMtConfirmation),
+    (Name: 'SMsgDlgYes'; ValuePtr: @rsMbYes),
+    (Name: 'SMsgDlgNo'; ValuePtr: @rsMbNo),
+    (Name: 'SMsgDlgOK'; ValuePtr: @rsMbOK),
+    (Name: 'SMsgDlgCancel'; ValuePtr: @rsMbCancel),
+    (Name: 'SMsgDlgHelp'; ValuePtr: @rsMbHelp),
+    (Name: 'SMsgDlgAbort'; ValuePtr: @rsMbAbort),
+    (Name: 'SMsgDlgRetry'; ValuePtr: @rsMbRetry),
+    (Name: 'SMsgDlgIgnore'; ValuePtr: @rsMbIgnore),
+    (Name: 'SMsgDlgAll'; ValuePtr: @rsMbAll),
+    (Name: 'SMsgDlgNoToAll'; ValuePtr: @rsMbNoToAll),
+    (Name: 'SMsgDlgYesToAll'; ValuePtr: @rsMbYesToAll),
+    (Name: 'SMsgDlgClose'; ValuePtr: @rsMbClose),
+
+     // TFindDialog And TReplaceDialog
+     // 9
+    (Name: 'rsFind'; ValuePtr: @rsFind),
+    (Name: 'rsHelp'; ValuePtr: @rsHelp),
+    (Name: 'rsWholeWordsOnly'; ValuePtr: @rsWholeWordsOnly),
+    (Name: 'rsCaseSensitive'; ValuePtr: @rsCaseSensitive),
+    (Name: 'rsEntireScope'; ValuePtr: @rsEntireScope),
+    (Name: 'rsText'; ValuePtr: @rsText),
+    (Name: 'rsDirection'; ValuePtr: @rsDirection),
+    (Name: 'rsForward'; ValuePtr: @rsForward),
+    (Name: 'rsBackward'; ValuePtr: @rsBackward),
+
+    (Name: 'rsFindMore'; ValuePtr: @rsFindMore),
+    (Name: 'rsReplace'; ValuePtr: @rsReplace),
+    (Name: 'rsReplaceAll'; ValuePtr: @rsReplaceAll),
+
+    (Name: 'rsSelectcolorTitle'; ValuePtr: @rsSelectcolorTitle),
+    (Name: 'rsSelectFontTitle'; ValuePtr: @rsSelectFontTitle)
+
+  );
+
+function DGetLibResourceCount: Integer; extdecl;
+begin
+  Result := Length(GLibResouces);
+end;
+
+//RETURNISLASTPARAM:
+procedure DGetLibResourceItem(AIndex: Integer; out AResult: TResItem); extdecl;
+begin
+  handleExceptionBegin
+  if (AIndex >= 0)  and (AIndex < Length(GLibResouces)) then
+    AResult := GLibResouces[AIndex];
+  handleExceptionEnd
+end;
+
+// 说不好有没有内存泄露，啊，先这样呗
+procedure DModifyLibResource(APtr: Pointer; AValue: PChar); extdecl;
+begin
+  handleExceptionBegin
+  if APtr <> nil then
+    PResStringRec(APtr)^ := string(AValue);
+  handleExceptionEnd
+end;
+
+
+type TLibType = (ltVCL, ltLCL);
+
+function DGetLibType: TLibType; extdecl;
+begin
+  Result := ltLCL;
+end;
+
+
+//procedure DSetDefaultLang(ALang: PChar; ADir: PChar; AForceUpdate: LongBool);
+//begin
+//  SetDefaultLang(ALang, ADir, AForceUpdate);
+//end;
+//
+//function DGetDefaultLang: PChar;
+//begin
+//  Result := ToPChar(GetDefaultLang);
+//end;
+
+// 用于go编译成dll时使用
+procedure DInitGoDll(AMainThreadId: TThreadID); extdecl;
+begin
+  handleExceptionBegin
+  // 因为go编译为dll后，这个值不一定是主线程id了，所以得重新初始
+  if MainThreadId <> AMainThreadId then
+  begin
+    if AMainThreadId <= TThreadID(0) then
+      AMainThreadId := TThread.CurrentThread.ThreadID;
+    MainThreadId := AMainThreadId;
+  end;
+  // 初始下app
+  Application.MainFormOnTaskBar := True;
+  Application.Initialize;
+{$ifdef windows}
+  WidgetSet.ThemeServices.UpdateThemes;
+  // 设置App句柄
+  WidgetSet.AppHandle := CreateWindowsAppHandle;
+{$endif}
+  handleExceptionEnd
+end;
+
+function DFindControl(AHandle: HWND): TWinControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindControl(AHandle);
+  handleExceptionEnd
+end;
+
+//PARAMS:1=nonPtr
+function DFindLCLControl(var AScreenPos: TPoint): TControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindLCLControl(AScreenPos);
+  handleExceptionEnd
+end;
+
+function DFindOwnerControl(Handle: HWND): TWinControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindOwnerControl(Handle);
+  handleExceptionEnd
+end;
+
+//PARAMS:1=nonPtr
+function DFindControlAtPosition(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindControlAtPosition(APosition, AllowDisabled);
+  handleExceptionEnd
+end;
+
+//PARAMS:1=nonPtr
+function DFindLCLWindow(var AScreenPos: TPoint; AllowDisabled: LongBool): TWinControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindLCLWindow(AScreenPos, AllowDisabled);
+  handleExceptionEnd
+end;
+
+//PARAMS:1=nonPtr
+function DFindDragTarget(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
+begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result := FindDragTarget(APosition, AllowDisabled);
+  handleExceptionEnd
+end;
+
+procedure DFreeAndNil(var AObj: Pointer); extdecl;
+begin
+  FreeAndNil(AObj);
+end;
+
+procedure DToUnixTime(var ADateTime: TDateTime; var Result: TUnixDateTime); extdecl;
+begin
+  Result := ToUnixTime(ADateTime);
+end;
+
+procedure DUnixToTime(var ADateTime: TUnixDateTime; var Result: TDateTime); extdecl;
+begin
+  Result := UnixToTime(ADateTime);
+end;
+
+exports
+  // SysLocaled
+  DSysLocale,
+
+  AddLazarusResources,
+  AddLazarusResources2,
+
+  // 库的信息
+  DLibStringEncoding,
+  DLibVersion,
+
+  // TApplication
+  Application_Instance,
+  Application_CreateForm,
+  Application_Run,
+  Application_Initialize,
+  Application_SetRunLoopReceived,
+
+  // TForm
+  Form_InheritedWndProc,
+  Form_Create2,
+  Form_SetOnWndProc,
+  Form_SetGoPtr,
+  Form_SetOnMessagesEvent,
+
+  // TMouse
+  Mouse_Instance,
+  Screen_Instance,
+
+//{$IFNDEF WINDOWS}
+  DSendMessage,
+  DPostMessage,
+  DIsIconic,
+  DIsWindow,
+  DIsZoomed,
+  DIsWindowVisible,
+  DGetDC,
+  DReleaseDC,
+  DSetForegroundWindow,
+  DRegisterClipboardFormat,
+  DWindowFromPoint,
+//{$ENDIF}
+
+{$IFDEF LINUX}
+  GdkWindow_GetXId,
+  GtkWidget_GetGtkFixed,
+  GdkWindow_FromForm,
+  GtkWidget_Window,
+{$ENDIF}
+
+{$IFDEF LCLCocoa}
+  NSWindow_FromForm,
+  NSWindow_titleVisibility,
+  NSWindow_setTitleVisibility,
+  NSWindow_titlebarAppearsTransparent,
+  NSWindow_setTitlebarAppearsTransparent,
+  NSWindow_styleMask,
+  NSWindow_setStyleMask,
+  NSWindow_setRepresentedURL,
+  NSWindow_release,
+{$ENDIF}
+
+  // 设置 LCL 事件回调
+  SetEventCallback,
+  // 设置 LCL 事件移除回调
+  SetRemoveEventCallback,
+  // 设置 LCL 消息处理事件 WndProc 回调
+  SetMessageCallback,
+  // 设置 Application 底层库 异常处理 回调
+  SetExceptionHandlerCallback,
+  // 设置 LCL TForm CreateParams 回调
+  SetRequestCallCreateParamsCallback,
+  // 设置 LCL TForm Create 回调
+  SetRequestCallFormCreateCallback,
+
+  // 设置 CEF 事件回调
+  SetCEFEventCallback,
+  // 设置 CEF 事件移除回调
+  SetCEFRemoveEventCallback,
+
+  {$IFDEF WINDOWS}
+  // 设置 WV 事件回调
+  SetWVEventCallback,
+  // 设置 WV 事件移除回调
+  SetWVRemoveEventCallback,
+  {$ENDIF}
+
+  // 事件回调 WK
+  {$IFnDEF WINDOWS}
+  // 设置 WK 事件回调
+  SetWKEventCallback,
+  // 设置 WK 事件移除回调
+  SetWKRemoveEventCallback,
+  {$ENDIF}
+
+
+  // LCL 事件主线程中运行
+  SetThreadSyncCallback,
+  SetThreadAsyncCallback,
+
+  // LCL 在主线程运行回调
+  DRunMainAsyncCall,
+  DRunMainSyncCall,
+
+  DGetStringArrOf,
+  DStrLen,
+  DMove,
+
+  DShowMessage,
+  DGetMainInstance,
+  DSysOpen,
+  DTextToShortCut,
+  DShortCutToText,
+  DMessageDlg,
+  DExtractFilePath,
+  DFileExists,
+  DMainThreadId,
+  DCurrentThreadId,
+
+  DSelectDirectory1,
+  DSelectDirectory2,
+  DInputBox,
+  DInputQuery,
+  DPasswordBox,
+  DInputCombo,
+  DInputComboEx,
+
+{$IFDEF WINDOWS}
+  // ShortCut
+  DCreateURLShortCut,
+  DCreateShortCut,
+{$ENDIF}
+
+  // SetProperty
+  DSetPropertyValue,
+  DSetPropertySecValue,
+
+  // TMemoryStream
+  //MemoryStream_Write,
+  //MemoryStream_Read,
+
+  // TClipboard
+  Clipboard_Instance,
+  //Clipboard_HasFormat,
+  //Clipboard_GetTextBuf,
+  //Clipboard_GetAsText,
+  //Clipboard_SetAsText,
+  //Clipboard_GetAsHtml,
+  DPredefinedClipboardFormat,
+  DSetClipboard,
+
+
+  // TCanavs
+  //Canvas_BrushCopy,
+  //Canvas_CopyRect,
+  //Canvas_Draw1,
+  //Canvas_DrawFocusRect,
+  //Canvas_FillRect,
+  //Canvas_FrameRect,
+  //Canvas_TextRect1,
+  //Canvas_TextRect2,
+ // Canvas_Polygon,
+  //Canvas_Polyline,
+  //Canvas_PolyBezier,
+
+  // TImageList
+  //ImageList_Draw1,
+  //ImageList_Draw2,
+  //ImageList_DrawOverlay1,
+  //ImageList_DrawOverlay2,
+  //ImageList_GetIcon1,
+  //ImageList_GetIcon2,
+
+  // TMenuItem
+  //MenuItem_GetShortCutText,
+  //MenuItem_SetShortCutText,
+
+  //ResFormLoadFromStream,
+  //ResFormLoadFromFile,
+  //ResFormLoadFromResourceName,
+  //ResFormRegisterFormResource,
+  //ResFormLoadFromClassName,
+
+
+  // TGUID
+  DGUIDToString,
+  DStringToGUID,
+  DCreateGUID,
+
+  // Printer
+  Printer_Instance,
+  //Printer_SetPrinter,
+
+  // libResources
+  DGetLibResourceCount,
+  DGetLibResourceItem,
+  DModifyLibResource,
+  DLibAbout,
+
+  DGetLibType,
+
+  DInitGoDll,
+
+  DFindControl,
+  DFindLCLControl,
+  DFindOwnerControl,
+  DFindControlAtPosition,
+  DFindLCLWindow,
+  DFindDragTarget,
+
+  DFreeAndNil,
+
+  DToUnixTime,
+  DUnixToTime
+;

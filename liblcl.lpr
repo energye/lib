@@ -1,0 +1,92 @@
+//----------------------------------------
+//
+// Copyright © yanghy. All Rights Reserved.
+//
+// Licensed under Lazarus.modifiedLGPL
+//
+//----------------------------------------
+
+library liblcl;
+
+{$mode delphi}
+
+{$IFnDEF WINDOWS}
+  {$define UseCThreads}
+{$ENDIF}
+
+uses
+{$IFDEF UNIX}{$IFDEF UseCThreads}cthreads,{$ENDIF}{$ENDIF}
+  Interfaces, InterfaceBase,
+{$IFDEF WINDOWS}
+  Windows, MultiMon, ShlObj, ComObj, ActiveX, Win32Int, win32proc, CommCtrl, LazUTF8,
+{$ENDIF}
+  Types, LCLType, typinfo, LCLProc, LCLIntf, LCLStrConsts,
+  Messages, LMessages, DateUtils, IniFiles, Registry,
+  Forms, lazcontrols, datetimectrls, printer4lazarus,
+  StdCtrls, Dialogs, ExtCtrls, Graphics, Controls, Buttons,
+  ComCtrls, ToolWin, ImgList, ExtDlgs, ActnList, ColorBox,
+  PrintersDlgs, DateTimePicker, Calendar, Menus, Clipbrd, CheckLst,
+  MaskEdit, Grids, ValEdit, Spin, Printers, ComboEx, EditBtn,
+  LResources, GraphType, Themes, LCLClasses,
+  WSLCLClasses, GroupedEdit, CustApp, RichMemo, CustomTimer,
+  FPCanvas, FPImage, FPReadJPEG, IntfGraphics, DividerBevel,
+  LDockTree, Laz_AVL_Tree, laz.VirtualTrees, LazarusPackageIntf,
+  Classes, SysUtils, LCLVersion,
+{$IFDEF LCLCocoa}
+  uMacOSPatchs,
+{$ENDIF}
+{$IFDEF LINUX}
+  uLinuxPatchs,
+{$ENDIF}
+  uControlPatchs,
+  ATGauge, ATFlatThemes,
+  uGoForm, uRichEdit, uGauge,
+  uString, uRunMainThread,
+  //uComponents, uFormDesignerFile,
+  uLinkLabel, uImageButton, xButton,
+  uExceptionHandle,
+  uLCL_RecordStruct, uLCL_SortMethods,
+  //LCL 事件回调
+  uLCL_EventCallback,
+  // CEF unit's
+  {$I CEFComponentUnits.inc}
+{$IFDEF WINDOWS}
+  // WebView2 unit's
+ ,{$I WVComponentUnits.inc}
+{$ELSE}
+  // Webkit2 unit's
+  //,uMiniWebview
+ ,{$I WKComponentUnits.inc}
+{$ENDIF}
+;
+
+{$IFDEF WINDOWS}
+  {$R *.res}
+  {$SetPEFlags IMAGE_FILE_LARGE_ADDRESS_AWARE}
+{$ENDIF}
+
+{$I ExtDecl.inc}
+
+{$I CustomWidgetInterfaces.inc}
+{$I LazarusDef.inc}
+
+// LCL
+{$I ImportLCL.inc}
+
+// CEF
+{$I ImportCEF.inc}
+
+{$IFDEF WINDOWS}
+// Webview2 API
+{$I ImportWV.inc}
+{$ELSE}
+  // Webkit2
+{$I ImportWK.inc}
+{$ENDIF}
+
+begin
+  RequireDerivedFormResource := False;
+  IsMultiThread := True;
+  InitLazarusDef;
+end.
+
