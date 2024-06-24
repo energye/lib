@@ -1801,7 +1801,7 @@ function TCEFEvent.V8Handler_OnExecute(const Name: ustring; const object_: ICefv
 var
   PException: PChar;
 begin
-  SendEvent([ToPChar(Name), object_, @arguments[0], Length(arguments), @retval, @PException, @Result]);
+  SendEvent([ToPChar(Name), object_, @arguments[0], Integer(Length(arguments)), @retval, @PException, @Result]);
   if PException <> nil then
     Exception := PCharToUStr(PException);
   PException := nil;

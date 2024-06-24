@@ -72,7 +72,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_NewFunction(const name: PChar; const handler: ICefv8Handler; var Result: ICefv8Value); extdecl;
+procedure Cefv8Value_NewFunction(const name: PChar; const handler: TV8Handler; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewFunction(name, handler);
 end;
