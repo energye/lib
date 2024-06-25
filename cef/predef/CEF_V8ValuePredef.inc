@@ -8,17 +8,20 @@ begin
   handleExceptionBegin
   if argumentsLength > 0 then
   begin
-    SetLength(args, argumentsLength);
-    for i := 0 to argumentsLength - 1 do
-    begin
-      args[i] := arguments[i];
+    try
+      SetLength(args, argumentsLength);
+      for i := 0 to argumentsLength - 1 do
+      begin
+        args[i] := arguments[i];
+      end;
+      Result := AObj.ExecuteFunction(obj, args);
+    finally
+      SetLength(args, 0);
+      args := nil;
     end;
-    Result := AObj.ExecuteFunction(obj, args);
   end
   else
     Result := AObj.ExecuteFunction(obj, nil);
-  SetLength(args, 0);
-  args := nil;
   handleExceptionEnd
 end;
 
@@ -31,19 +34,22 @@ begin
   handleExceptionBegin
   if argumentsLength > 0 then
   begin
-    SetLength(args, argumentsLength);
-    for i := 0 to argumentsLength - 1 do
-    begin
-      args[i] := arguments[i];
+    try
+      SetLength(args, argumentsLength);
+      for i := 0 to argumentsLength - 1 do
+      begin
+        args[i] := arguments[i];
+      end;
+      Result := AObj.ExecuteFunctionWithContext(context, obj, args);
+    finally
+      SetLength(args, 0);
+      args := nil;
     end;
-    Result := AObj.ExecuteFunctionWithContext(context, obj, args);
   end
   else
   begin
     Result := AObj.ExecuteFunctionWithContext(context, obj, nil);
   end;
-  SetLength(args, 0);
-  args := nil;
   handleExceptionEnd
 end;
 
