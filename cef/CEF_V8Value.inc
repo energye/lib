@@ -452,22 +452,6 @@ begin
 end;
 
 //function
-procedure CefV8Value_ExecuteFunction(AObj: ICefV8Value; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
-begin
-  handleExceptionBegin
-  Result := AObj.ExecuteFunction(obj, arguments);
-  handleExceptionEnd
-end;
-
-//function
-procedure CefV8Value_ExecuteFunctionWithContext(AObj: ICefV8Value; const context: ICefv8Context; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
-begin
-  handleExceptionBegin
-  Result := AObj.ExecuteFunctionWithContext(context, obj, arguments);
-  handleExceptionEnd
-end;
-
-//function
 function CefV8Value_ResolvePromise(AObj: ICefV8Value; const arg: ICefv8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -545,7 +529,5 @@ exports
   CefV8Value_NeuterArrayBuffer,
   CefV8Value_GetFunctionName,
   CefV8Value_GetFunctionHandler,
-  CefV8Value_ExecuteFunction,
-  CefV8Value_ExecuteFunctionWithContext,
   CefV8Value_ResolvePromise,
   CefV8Value_RejectPromise;
