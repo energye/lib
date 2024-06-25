@@ -1,90 +1,90 @@
 
 //function
-procedure Cefv8Value_UnWrap(data: Pointer; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_UnWrap(data: Pointer; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.UnWrap(data);
 end;
 
 //function
-procedure Cefv8Value_NewUndefined(var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewUndefined(var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewUndefined();
 end;
 
 //function
-procedure Cefv8Value_NewNull(var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewNull(var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewNull();
 end;
 
 //function
-procedure Cefv8Value_NewBool(value: LongBool; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewBool(value: LongBool; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewBool(value);
 end;
 
 //function
-procedure Cefv8Value_NewInt(value: Integer; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewInt(value: Integer; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewInt(value);
 end;
 
 //function
-procedure Cefv8Value_NewUInt(value: uint32; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewUInt(value: uint32; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewUInt(value);
 end;
 
 //function
-procedure Cefv8Value_NewDouble(var value: Double; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewDouble(var value: Double; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewDouble(value);
 end;
 
 //function
-procedure Cefv8Value_NewDate(var value: TDateTime; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewDate(var value: TDateTime; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewDate(value);
 end;
 
 //function
-procedure Cefv8Value_NewString(const str: PChar; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewString(const str: PChar; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewString(str);
 end;
 
 //function
-procedure Cefv8Value_NewObject(const accessor: ICefV8Accessor; const interceptor: ICefV8Interceptor; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewObject(const accessor: ICefV8Accessor; const interceptor: ICefV8Interceptor; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewObject(accessor, interceptor);
 end;
 
 //function
-procedure Cefv8Value_NewArray(len: Integer; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewArray(len: Integer; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewArray(len);
 end;
 
 //function
-procedure Cefv8Value_NewArrayBuffer(buffer: Pointer; length: NativeUInt; const callback: ICefv8ArrayBufferReleaseCallback; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewArrayBuffer(buffer: Pointer; length: NativeUInt; const callback: ICefv8ArrayBufferReleaseCallback; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewArrayBuffer(buffer, length, callback);
 end;
 
 //function
-procedure Cefv8Value_NewFunction(const name: PChar; const handler: TV8Handler; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewFunction(const name: PChar; const handler: ICefv8Handler; var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewFunction(name, handler);
 end;
 
 //function
-procedure Cefv8Value_NewPromise(var Result: ICefv8Value); extdecl;
+procedure CefV8Value_NewPromise(var Result: ICefv8Value); extdecl;
 begin
   Result := TCefv8ValueRef.NewPromise();
 end;
 
 //function
-function Cefv8Value_IsValid(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsValid(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsValid();
@@ -92,7 +92,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsUndefined(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsUndefined(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsUndefined();
@@ -100,7 +100,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsNull(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsNull(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsNull();
@@ -108,7 +108,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsBool(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsBool(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsBool();
@@ -116,7 +116,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsInt(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsInt(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsInt();
@@ -124,7 +124,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsUInt(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsUInt(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsUInt();
@@ -132,7 +132,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsDouble(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsDouble(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsDouble();
@@ -140,7 +140,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsDate(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsDate(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsDate();
@@ -148,7 +148,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsString(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsString(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsString();
@@ -156,7 +156,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsObject(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsObject(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsObject();
@@ -164,7 +164,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsArray(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsArray(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsArray();
@@ -172,7 +172,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsArrayBuffer(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsArrayBuffer(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsArrayBuffer();
@@ -180,7 +180,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsFunction(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsFunction(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsFunction();
@@ -188,7 +188,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsPromise(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsPromise(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsPromise();
@@ -196,7 +196,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsSame(AObj: ICefv8Value; const that: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsSame(AObj: ICefV8Value; const that: ICefv8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsSame(that);
@@ -204,7 +204,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetBoolValue(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_GetBoolValue(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetBoolValue();
@@ -212,7 +212,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetIntValue(AObj: ICefv8Value): Integer; extdecl;
+function CefV8Value_GetIntValue(AObj: ICefV8Value): Integer; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetIntValue();
@@ -220,7 +220,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetUIntValue(AObj: ICefv8Value): uint32; extdecl;
+function CefV8Value_GetUIntValue(AObj: ICefV8Value): uint32; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetUIntValue();
@@ -228,7 +228,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetDoubleValue(AObj: ICefv8Value; var Result: Double); extdecl;
+procedure CefV8Value_GetDoubleValue(AObj: ICefV8Value; var Result: Double); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetDoubleValue();
@@ -236,7 +236,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetDateValue(AObj: ICefv8Value; var Result: TDateTime); extdecl;
+procedure CefV8Value_GetDateValue(AObj: ICefV8Value; var Result: TDateTime); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetDateValue();
@@ -244,7 +244,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetStringValue(AObj: ICefv8Value): PChar; extdecl;
+function CefV8Value_GetStringValue(AObj: ICefV8Value): PChar; extdecl;
 begin
   handleExceptionBegin
   Result := ToPChar(AObj.GetStringValue());
@@ -252,7 +252,7 @@ begin
 end;
 
 //function
-function Cefv8Value_IsUserCreated(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_IsUserCreated(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.IsUserCreated();
@@ -260,7 +260,7 @@ begin
 end;
 
 //function
-function Cefv8Value_HasException(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_HasException(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.HasException();
@@ -268,7 +268,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetException(AObj: ICefv8Value; var Result: ICefV8Exception); extdecl;
+procedure CefV8Value_GetException(AObj: ICefV8Value; var Result: ICefV8Exception); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetException();
@@ -276,7 +276,7 @@ begin
 end;
 
 //function
-function Cefv8Value_ClearException(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_ClearException(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ClearException();
@@ -284,7 +284,7 @@ begin
 end;
 
 //function
-function Cefv8Value_WillRethrowExceptions(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_WillRethrowExceptions(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.WillRethrowExceptions();
@@ -292,7 +292,7 @@ begin
 end;
 
 //function
-function Cefv8Value_SetRethrowExceptions(AObj: ICefv8Value; rethrow: LongBool): LongBool; extdecl;
+function CefV8Value_SetRethrowExceptions(AObj: ICefV8Value; rethrow: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.SetRethrowExceptions(rethrow);
@@ -300,7 +300,7 @@ begin
 end;
 
 //function
-function Cefv8Value_HasValueByKey(AObj: ICefv8Value; const key: PChar): LongBool; extdecl;
+function CefV8Value_HasValueByKey(AObj: ICefV8Value; const key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.HasValueByKey(key);
@@ -308,7 +308,7 @@ begin
 end;
 
 //function
-function Cefv8Value_HasValueByIndex(AObj: ICefv8Value; index: Integer): LongBool; extdecl;
+function CefV8Value_HasValueByIndex(AObj: ICefV8Value; index: Integer): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.HasValueByIndex(index);
@@ -316,7 +316,7 @@ begin
 end;
 
 //function
-function Cefv8Value_DeleteValueByKey(AObj: ICefv8Value; const key: PChar): LongBool; extdecl;
+function CefV8Value_DeleteValueByKey(AObj: ICefV8Value; const key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.DeleteValueByKey(key);
@@ -324,7 +324,7 @@ begin
 end;
 
 //function
-function Cefv8Value_DeleteValueByIndex(AObj: ICefv8Value; index: Integer): LongBool; extdecl;
+function CefV8Value_DeleteValueByIndex(AObj: ICefV8Value; index: Integer): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.DeleteValueByIndex(index);
@@ -332,7 +332,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetValueByKey(AObj: ICefv8Value; const key: PChar; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_GetValueByKey(AObj: ICefV8Value; const key: PChar; var Result: ICefv8Value); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetValueByKey(key);
@@ -340,7 +340,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetValueByIndex(AObj: ICefv8Value; index: Integer; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_GetValueByIndex(AObj: ICefV8Value; index: Integer; var Result: ICefv8Value); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetValueByIndex(index);
@@ -348,7 +348,7 @@ begin
 end;
 
 //function
-function Cefv8Value_SetValueByKey(AObj: ICefv8Value; const key: PChar; const value: ICefv8Value; attribute: TCefV8PropertyAttributes): LongBool; extdecl;
+function CefV8Value_SetValueByKey(AObj: ICefV8Value; const key: PChar; const value: ICefv8Value; attribute: TCefV8PropertyAttributes): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.SetValueByKey(key, value, attribute);
@@ -356,7 +356,7 @@ begin
 end;
 
 //function
-function Cefv8Value_SetValueByIndex(AObj: ICefv8Value; index: Integer; const value: ICefv8Value): LongBool; extdecl;
+function CefV8Value_SetValueByIndex(AObj: ICefV8Value; index: Integer; const value: ICefv8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.SetValueByIndex(index, value);
@@ -364,7 +364,7 @@ begin
 end;
 
 //function
-function Cefv8Value_SetValueByAccessor(AObj: ICefv8Value; const key: PChar; settings: TCefV8AccessControls; attribute: TCefV8PropertyAttributes): LongBool; extdecl;
+function CefV8Value_SetValueByAccessor(AObj: ICefV8Value; const key: PChar; settings: TCefV8AccessControls; attribute: TCefV8PropertyAttributes): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.SetValueByAccessor(key, settings, attribute);
@@ -372,7 +372,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetKeys(AObj: ICefv8Value; const keys: TStrings): Integer; extdecl;
+function CefV8Value_GetKeys(AObj: ICefV8Value; const keys: TStrings): Integer; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetKeys(keys);
@@ -380,7 +380,7 @@ begin
 end;
 
 //function
-function Cefv8Value_SetUserData(AObj: ICefv8Value; const data: ICefv8Value): LongBool; extdecl;
+function CefV8Value_SetUserData(AObj: ICefV8Value; const data: ICefv8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.SetUserData(data);
@@ -388,7 +388,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetUserData(AObj: ICefv8Value; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_GetUserData(AObj: ICefV8Value; var Result: ICefv8Value); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetUserData();
@@ -396,7 +396,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetExternallyAllocatedMemory(AObj: ICefv8Value): Integer; extdecl;
+function CefV8Value_GetExternallyAllocatedMemory(AObj: ICefV8Value): Integer; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetExternallyAllocatedMemory();
@@ -404,7 +404,7 @@ begin
 end;
 
 //function
-function Cefv8Value_AdjustExternallyAllocatedMemory(AObj: ICefv8Value; changeInBytes: Integer): Integer; extdecl;
+function CefV8Value_AdjustExternallyAllocatedMemory(AObj: ICefV8Value; changeInBytes: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.AdjustExternallyAllocatedMemory(changeInBytes);
@@ -412,7 +412,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetArrayLength(AObj: ICefv8Value): Integer; extdecl;
+function CefV8Value_GetArrayLength(AObj: ICefV8Value): Integer; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetArrayLength();
@@ -420,7 +420,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetArrayBufferReleaseCallback(AObj: ICefv8Value; var Result: ICefv8ArrayBufferReleaseCallback); extdecl;
+procedure CefV8Value_GetArrayBufferReleaseCallback(AObj: ICefV8Value; var Result: ICefv8ArrayBufferReleaseCallback); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetArrayBufferReleaseCallback();
@@ -428,7 +428,7 @@ begin
 end;
 
 //function
-function Cefv8Value_NeuterArrayBuffer(AObj: ICefv8Value): LongBool; extdecl;
+function CefV8Value_NeuterArrayBuffer(AObj: ICefV8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.NeuterArrayBuffer();
@@ -436,7 +436,7 @@ begin
 end;
 
 //function
-function Cefv8Value_GetFunctionName(AObj: ICefv8Value): PChar; extdecl;
+function CefV8Value_GetFunctionName(AObj: ICefV8Value): PChar; extdecl;
 begin
   handleExceptionBegin
   Result := ToPChar(AObj.GetFunctionName());
@@ -444,7 +444,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_GetFunctionHandler(AObj: ICefv8Value; var Result: ICefv8Handler); extdecl;
+procedure CefV8Value_GetFunctionHandler(AObj: ICefV8Value; var Result: ICefv8Handler); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetFunctionHandler();
@@ -452,7 +452,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_ExecuteFunction(AObj: ICefv8Value; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_ExecuteFunction(AObj: ICefV8Value; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ExecuteFunction(obj, arguments);
@@ -460,7 +460,7 @@ begin
 end;
 
 //function
-procedure Cefv8Value_ExecuteFunctionWithContext(AObj: ICefv8Value; const context: ICefv8Context; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
+procedure CefV8Value_ExecuteFunctionWithContext(AObj: ICefV8Value; const context: ICefv8Context; const obj: ICefv8Value; const arguments: TCefv8ValueArray; var Result: ICefv8Value); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ExecuteFunctionWithContext(context, obj, arguments);
@@ -468,7 +468,7 @@ begin
 end;
 
 //function
-function Cefv8Value_ResolvePromise(AObj: ICefv8Value; const arg: ICefv8Value): LongBool; extdecl;
+function CefV8Value_ResolvePromise(AObj: ICefV8Value; const arg: ICefv8Value): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ResolvePromise(arg);
@@ -476,7 +476,7 @@ begin
 end;
 
 //function
-function Cefv8Value_RejectPromise(AObj: ICefv8Value; const errorMsg: PChar): LongBool; extdecl;
+function CefV8Value_RejectPromise(AObj: ICefV8Value; const errorMsg: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.RejectPromise(errorMsg);
@@ -485,67 +485,67 @@ end;
 
 
 exports
-  Cefv8Value_UnWrap,
-  Cefv8Value_NewUndefined,
-  Cefv8Value_NewNull,
-  Cefv8Value_NewBool,
-  Cefv8Value_NewInt,
-  Cefv8Value_NewUInt,
-  Cefv8Value_NewDouble,
-  Cefv8Value_NewDate,
-  Cefv8Value_NewString,
-  Cefv8Value_NewObject,
-  Cefv8Value_NewArray,
-  Cefv8Value_NewArrayBuffer,
-  Cefv8Value_NewFunction,
-  Cefv8Value_NewPromise,
-  Cefv8Value_IsValid,
-  Cefv8Value_IsUndefined,
-  Cefv8Value_IsNull,
-  Cefv8Value_IsBool,
-  Cefv8Value_IsInt,
-  Cefv8Value_IsUInt,
-  Cefv8Value_IsDouble,
-  Cefv8Value_IsDate,
-  Cefv8Value_IsString,
-  Cefv8Value_IsObject,
-  Cefv8Value_IsArray,
-  Cefv8Value_IsArrayBuffer,
-  Cefv8Value_IsFunction,
-  Cefv8Value_IsPromise,
-  Cefv8Value_IsSame,
-  Cefv8Value_GetBoolValue,
-  Cefv8Value_GetIntValue,
-  Cefv8Value_GetUIntValue,
-  Cefv8Value_GetDoubleValue,
-  Cefv8Value_GetDateValue,
-  Cefv8Value_GetStringValue,
-  Cefv8Value_IsUserCreated,
-  Cefv8Value_HasException,
-  Cefv8Value_GetException,
-  Cefv8Value_ClearException,
-  Cefv8Value_WillRethrowExceptions,
-  Cefv8Value_SetRethrowExceptions,
-  Cefv8Value_HasValueByKey,
-  Cefv8Value_HasValueByIndex,
-  Cefv8Value_DeleteValueByKey,
-  Cefv8Value_DeleteValueByIndex,
-  Cefv8Value_GetValueByKey,
-  Cefv8Value_GetValueByIndex,
-  Cefv8Value_SetValueByKey,
-  Cefv8Value_SetValueByIndex,
-  Cefv8Value_SetValueByAccessor,
-  Cefv8Value_GetKeys,
-  Cefv8Value_SetUserData,
-  Cefv8Value_GetUserData,
-  Cefv8Value_GetExternallyAllocatedMemory,
-  Cefv8Value_AdjustExternallyAllocatedMemory,
-  Cefv8Value_GetArrayLength,
-  Cefv8Value_GetArrayBufferReleaseCallback,
-  Cefv8Value_NeuterArrayBuffer,
-  Cefv8Value_GetFunctionName,
-  Cefv8Value_GetFunctionHandler,
-  Cefv8Value_ExecuteFunction,
-  Cefv8Value_ExecuteFunctionWithContext,
-  Cefv8Value_ResolvePromise,
-  Cefv8Value_RejectPromise;
+  CefV8Value_UnWrap,
+  CefV8Value_NewUndefined,
+  CefV8Value_NewNull,
+  CefV8Value_NewBool,
+  CefV8Value_NewInt,
+  CefV8Value_NewUInt,
+  CefV8Value_NewDouble,
+  CefV8Value_NewDate,
+  CefV8Value_NewString,
+  CefV8Value_NewObject,
+  CefV8Value_NewArray,
+  CefV8Value_NewArrayBuffer,
+  CefV8Value_NewFunction,
+  CefV8Value_NewPromise,
+  CefV8Value_IsValid,
+  CefV8Value_IsUndefined,
+  CefV8Value_IsNull,
+  CefV8Value_IsBool,
+  CefV8Value_IsInt,
+  CefV8Value_IsUInt,
+  CefV8Value_IsDouble,
+  CefV8Value_IsDate,
+  CefV8Value_IsString,
+  CefV8Value_IsObject,
+  CefV8Value_IsArray,
+  CefV8Value_IsArrayBuffer,
+  CefV8Value_IsFunction,
+  CefV8Value_IsPromise,
+  CefV8Value_IsSame,
+  CefV8Value_GetBoolValue,
+  CefV8Value_GetIntValue,
+  CefV8Value_GetUIntValue,
+  CefV8Value_GetDoubleValue,
+  CefV8Value_GetDateValue,
+  CefV8Value_GetStringValue,
+  CefV8Value_IsUserCreated,
+  CefV8Value_HasException,
+  CefV8Value_GetException,
+  CefV8Value_ClearException,
+  CefV8Value_WillRethrowExceptions,
+  CefV8Value_SetRethrowExceptions,
+  CefV8Value_HasValueByKey,
+  CefV8Value_HasValueByIndex,
+  CefV8Value_DeleteValueByKey,
+  CefV8Value_DeleteValueByIndex,
+  CefV8Value_GetValueByKey,
+  CefV8Value_GetValueByIndex,
+  CefV8Value_SetValueByKey,
+  CefV8Value_SetValueByIndex,
+  CefV8Value_SetValueByAccessor,
+  CefV8Value_GetKeys,
+  CefV8Value_SetUserData,
+  CefV8Value_GetUserData,
+  CefV8Value_GetExternallyAllocatedMemory,
+  CefV8Value_AdjustExternallyAllocatedMemory,
+  CefV8Value_GetArrayLength,
+  CefV8Value_GetArrayBufferReleaseCallback,
+  CefV8Value_NeuterArrayBuffer,
+  CefV8Value_GetFunctionName,
+  CefV8Value_GetFunctionHandler,
+  CefV8Value_ExecuteFunction,
+  CefV8Value_ExecuteFunctionWithContext,
+  CefV8Value_ResolvePromise,
+  CefV8Value_RejectPromise;

@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure ResourceHandler_AsInterface(AObj: TResourceHandler; var Result: ICefResourceHandler); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure ResourceHandler_SetOnOpen(AObj: TResourceHandler; AEventData: Pointer); extdecl;
 begin
@@ -66,6 +74,7 @@ end;
 
 exports
   ResourceHandler_Create,
+  ResourceHandler_AsInterface,
   ResourceHandler_SetOnOpen,
   ResourceHandler_SetOnProcessRequest,
   ResourceHandler_SetOnGetResponseHeaders,

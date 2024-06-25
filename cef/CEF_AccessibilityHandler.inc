@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure AccessibilityHandler_AsInterface(AObj: TAccessibilityHandler; var Result: ICefAccessibilityHandler); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure AccessibilityHandler_SetOnTreeChange(AObj: TAccessibilityHandler; AEventData: Pointer); extdecl;
 begin
@@ -26,5 +34,6 @@ end;
 
 exports
   AccessibilityHandler_Create,
+  AccessibilityHandler_AsInterface,
   AccessibilityHandler_SetOnTreeChange,
   AccessibilityHandler_SetOnLocationChange;

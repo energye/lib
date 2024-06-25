@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure SchemeHandlerFactory_AsInterface(AObj: TSchemeHandlerFactory; var Result: ICefSchemeHandlerFactory); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure SchemeHandlerFactory_SetOnNew(AObj: TSchemeHandlerFactory; AEventData: Pointer); extdecl;
 begin
@@ -18,4 +26,5 @@ end;
 
 exports
   SchemeHandlerFactory_Create,
+  SchemeHandlerFactory_AsInterface,
   SchemeHandlerFactory_SetOnNew;

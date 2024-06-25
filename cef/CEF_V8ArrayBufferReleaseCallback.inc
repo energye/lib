@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure V8ArrayBufferReleaseCallback_AsInterface(AObj: TV8ArrayBufferReleaseCallback; var Result: ICefv8ArrayBufferReleaseCallback); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure V8ArrayBufferReleaseCallback_SetOnReleaseBuffer(AObj: TV8ArrayBufferReleaseCallback; AEventData: Pointer); extdecl;
 begin
@@ -18,4 +26,5 @@ end;
 
 exports
   V8ArrayBufferReleaseCallback_Create,
+  V8ArrayBufferReleaseCallback_AsInterface,
   V8ArrayBufferReleaseCallback_SetOnReleaseBuffer;

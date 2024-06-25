@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure RunFileDialogCallback_AsInterface(AObj: TRunFileDialogCallback; var Result: ICefRunFileDialogCallback); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure RunFileDialogCallback_SetOnRunFileDialogDismissed(AObj: TRunFileDialogCallback; AEventData: Pointer); extdecl;
 begin
@@ -18,4 +26,5 @@ end;
 
 exports
   RunFileDialogCallback_Create,
+  RunFileDialogCallback_AsInterface,
   RunFileDialogCallback_SetOnRunFileDialogDismissed;

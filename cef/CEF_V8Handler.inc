@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure V8Handler_AsInterface(AObj: TV8Handler; var Result: ICefV8Handler); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure V8Handler_SetOnExecute(AObj: TV8Handler; AEventData: Pointer); extdecl;
 begin
@@ -18,4 +26,5 @@ end;
 
 exports
   V8Handler_Create,
+  V8Handler_AsInterface,
   V8Handler_SetOnExecute;

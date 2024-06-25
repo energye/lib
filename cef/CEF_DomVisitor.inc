@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure DomVisitor_AsInterface(AObj: TDomVisitor; var Result: ICefDomVisitor); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure DomVisitor_SetOnDomVisitor(AObj: TDomVisitor; AEventData: Pointer); extdecl;
 begin
@@ -18,4 +26,5 @@ end;
 
 exports
   DomVisitor_Create,
+  DomVisitor_AsInterface,
   DomVisitor_SetOnDomVisitor;

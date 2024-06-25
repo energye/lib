@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure V8Interceptor_AsInterface(AObj: TV8Interceptor; var Result: ICefV8Interceptor); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure V8Interceptor_SetOnGetByName(AObj: TV8Interceptor; AEventData: Pointer); extdecl;
 begin
@@ -42,6 +50,7 @@ end;
 
 exports
   V8Interceptor_Create,
+  V8Interceptor_AsInterface,
   V8Interceptor_SetOnGetByName,
   V8Interceptor_SetOnGetByIndex,
   V8Interceptor_SetOnSetByName,

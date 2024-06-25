@@ -7,6 +7,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure MenuModelDelegate_AsInterface(AObj: TMenuModelDelegate; var Result: ICefMenuModelDelegate); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
 //property event
 procedure MenuModelDelegate_SetOnExecuteCommand(AObj: TMenuModelDelegate; AEventData: Pointer); extdecl;
 begin
@@ -66,6 +74,7 @@ end;
 
 exports
   MenuModelDelegate_Create,
+  MenuModelDelegate_AsInterface,
   MenuModelDelegate_SetOnExecuteCommand,
   MenuModelDelegate_SetOnMouseOutsideMenu,
   MenuModelDelegate_SetOnUnhandledOpenSubmenu,

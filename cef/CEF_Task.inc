@@ -8,6 +8,14 @@ begin
 end;
 
 //function
+procedure Task_AsInterface(AObj: TTask; var Result: ICefTask); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsInterface();
+  handleExceptionEnd
+end;
+
+//function
 function Task_OnlyPostTask(AObj: TTask; threadId: TCefThreadId): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -34,6 +42,7 @@ end;
 
 exports
   Task_Create,
+  Task_AsInterface,
   Task_OnlyPostTask,
   Task_OnlyPostDelayedTask,
   Task_SetOnExecute;
