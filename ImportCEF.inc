@@ -193,6 +193,7 @@
 {$I ./cef/CEF_X509CertPrincipal.inc}
 {$I ./cef/CEF_X509Certificate.inc}
 {$I ./cef/predef/CEF_ApplicationPredef.inc}
+{$I ./cef/predef/CEF_BaseRefCountedPredef.inc}
 {$I ./cef/predef/CEF_BrowserHostPredef.inc}
 {$I ./cef/predef/CEF_BufferPanelPredef.inc}
 {$I ./cef/predef/CEF_ChromiumCorePredef.inc}
