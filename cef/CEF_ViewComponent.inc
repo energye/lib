@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CEFViewComponent_AsInterface(AObj: TCEFViewComponent; var Result: ICefViewDelegateEvents); extdecl;
+begin
+  Result := AObj as ICefViewDelegateEvents;
+end;
+
 //property
 function CEFViewComponent_Initialized(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
@@ -490,6 +496,7 @@ end;
 
 exports
   CEFViewComponent_Create,
+  CEFViewComponent_AsInterface,
   CEFViewComponent_Initialized,
   CEFViewComponent_AsView,
   CEFViewComponent_AsBrowserView,

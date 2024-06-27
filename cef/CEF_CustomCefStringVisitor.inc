@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomCefStringVisitor_AsInterface(AObj: TCustomCefStringVisitor; var Result: ICefStringVisitor); extdecl;
+begin
+  Result := AObj as ICefStringVisitor;
+end;
+
 
 exports
-  CustomCefStringVisitor_Create;
+  CustomCefStringVisitor_Create,
+  CustomCefStringVisitor_AsInterface;

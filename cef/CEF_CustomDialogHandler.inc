@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomDialogHandler_AsInterface(AObj: TCustomDialogHandler; var Result: ICefDialogHandler); extdecl;
+begin
+  Result := AObj as ICefDialogHandler;
+end;
+
 
 exports
-  CustomDialogHandler_Create;
+  CustomDialogHandler_Create,
+  CustomDialogHandler_AsInterface;

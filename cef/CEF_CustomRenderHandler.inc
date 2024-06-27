@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomRenderHandler_AsInterface(AObj: TCustomRenderHandler; var Result: ICefRenderHandler); extdecl;
+begin
+  Result := AObj as ICefRenderHandler;
+end;
+
 
 exports
-  CustomRenderHandler_Create;
+  CustomRenderHandler_Create,
+  CustomRenderHandler_AsInterface;

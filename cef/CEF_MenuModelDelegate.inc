@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure MenuModelDelegate_AsInterface(AObj: TMenuModelDelegate; var Result: ICefMenuModelDelegate); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefMenuModelDelegate;
 end;
 
 //property event

@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure RunFileDialogCallback_AsInterface(AObj: TRunFileDialogCallback; var Result: ICefRunFileDialogCallback); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefRunFileDialogCallback;
 end;
 
 //property event

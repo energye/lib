@@ -8,6 +8,12 @@ begin
 end;
 
 //procedure
+procedure CustomClientHandler_AsInterface(AObj: TCustomClientHandler; var Result: ICefClient); extdecl;
+begin
+  Result := AObj as ICefClient;
+end;
+
+//procedure
 procedure CustomClientHandler_RemoveReferences(AObj: TCustomClientHandler); extdecl;
 begin
   handleExceptionBegin
@@ -18,4 +24,5 @@ end;
 
 exports
   CustomClientHandler_Create,
+  CustomClientHandler_AsInterface,
   CustomClientHandler_RemoveReferences;

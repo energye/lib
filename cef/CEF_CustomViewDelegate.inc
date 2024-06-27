@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomViewDelegate_AsInterface(AObj: TCustomViewDelegate; var Result: ICefViewDelegate); extdecl;
+begin
+  Result := AObj as ICefViewDelegate;
+end;
+
 
 exports
-  CustomViewDelegate_Create;
+  CustomViewDelegate_Create,
+  CustomViewDelegate_AsInterface;

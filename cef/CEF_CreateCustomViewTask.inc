@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCreateCustomViewTask_AsInterface(AObj: TCefCreateCustomViewTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefCreateCustomViewTask_Create;
+  CefCreateCustomViewTask_Create,
+  CefCreateCustomViewTask_AsInterface;

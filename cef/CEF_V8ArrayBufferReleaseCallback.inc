@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure V8ArrayBufferReleaseCallback_AsInterface(AObj: TV8ArrayBufferReleaseCallback; var Result: ICefv8ArrayBufferReleaseCallback); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefv8ArrayBufferReleaseCallback;
 end;
 
 //property event

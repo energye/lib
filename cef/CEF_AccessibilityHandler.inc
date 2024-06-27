@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure AccessibilityHandler_AsInterface(AObj: TAccessibilityHandler; var Result: ICefAccessibilityHandler); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefAccessibilityHandler;
 end;
 
 //property event

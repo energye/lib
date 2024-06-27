@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefEnableFocusTask_AsInterface(AObj: TCefEnableFocusTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefEnableFocusTask_Create;
+  CefEnableFocusTask_Create,
+  CefEnableFocusTask_AsInterface;

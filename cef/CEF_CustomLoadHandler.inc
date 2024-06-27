@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomLoadHandler_AsInterface(AObj: TCustomLoadHandler; var Result: ICefLoadHandler); extdecl;
+begin
+  Result := AObj as ICefLoadHandler;
+end;
+
 
 exports
-  CustomLoadHandler_Create;
+  CustomLoadHandler_Create,
+  CustomLoadHandler_AsInterface;

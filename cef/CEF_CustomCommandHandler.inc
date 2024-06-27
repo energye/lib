@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomCommandHandler_AsInterface(AObj: TCustomCommandHandler; var Result: ICefCommandHandler); extdecl;
+begin
+  Result := AObj as ICefCommandHandler;
+end;
+
 
 exports
-  CustomCommandHandler_Create;
+  CustomCommandHandler_Create,
+  CustomCommandHandler_AsInterface;

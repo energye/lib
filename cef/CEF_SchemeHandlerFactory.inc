@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure SchemeHandlerFactory_AsInterface(AObj: TSchemeHandlerFactory; var Result: ICefSchemeHandlerFactory); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefSchemeHandlerFactory;
 end;
 
 //property event

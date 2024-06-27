@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomDeleteCookiesCallback_AsInterface(AObj: TCefCustomDeleteCookiesCallback; var Result: ICefDeleteCookiesCallback); extdecl;
+begin
+  Result := AObj as ICefDeleteCookiesCallback;
+end;
+
 
 exports
-  CefCustomDeleteCookiesCallback_Create;
+  CefCustomDeleteCookiesCallback_Create,
+  CefCustomDeleteCookiesCallback_AsInterface;

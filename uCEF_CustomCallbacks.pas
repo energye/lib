@@ -35,7 +35,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefCookieVisitor;
   protected
     FOnCookieVisit: TOnCookieVisit;
     function visit(const Name, Value, domain, path: ustring; secure, httponly, hasExpires: boolean; const creation, lastAccess, expires: TDateTime;
@@ -63,7 +62,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefSetCookieCallback;
   protected
     FOnSetCookieComplete: TOnSetCookieComplete;
     procedure OnComplete(success: boolean); override;
@@ -87,7 +85,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefDeleteCookiesCallback;
   protected
     FOnDeleteCookiesComplete: TOnDeleteCookiesComplete;
     procedure OnComplete(numDeleted: integer); override;
@@ -111,7 +108,6 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    function AsInterface(): ICefRunFileDialogCallback;
   protected
     FOnRunFileDialogDismissed: TOnRunFileDialogDismissed;
     procedure OnFileDialogDismissed(const filePaths: TStrings); override;
@@ -136,7 +132,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefDomVisitor;
   protected
     FOnDomVisitor: TOnDomVisitor;
     procedure visit(const document: ICefDomDocument); override;
@@ -165,7 +160,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefMenuModelDelegate;
   protected
     FOnExecuteCommand: TOnExecuteCommand;
     FOnMouseOutsideMenu: TOnMouseOutsideMenu;
@@ -234,7 +228,6 @@ type
     /// <param name="AClass">Class of the custom resource handler used to handle custom scheme requests.</param>
     constructor Create(const AClass: TCefResourceHandlerClass); override;
     destructor Destroy; override;
-    function AsInterface(): ICefSchemeHandlerFactory;
   protected
     FOnNew: TOnSchemeHandlerFactoryNew;
     function New(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: ustring; const request: ICefRequest): ICefResourceHandler; override;
@@ -264,7 +257,6 @@ type
   public
     constructor Create(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: ustring; const request: ICefRequest); override;
     destructor Destroy; override;
-    function AsInterface(): ICefResourceHandler;
   protected
     FOnOpen: TOnResourceHandlerOpen;
     FOnProcessRequest: TOnResourceHandlerProcessRequest;
@@ -374,7 +366,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefv8ArrayBufferReleaseCallback;
   protected
     FOnReleaseBuffer: TOnV8ArrayBufferReleaseBuffer;
     procedure ReleaseBuffer(buffer: Pointer); override;
@@ -401,7 +392,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefV8Handler;
   protected
     FOnExecute: TOnV8HandlerExecute;
     function Execute(const Name: ustring; const object_: ICefv8Value; const arguments: TCefv8ValueArray; var retval: ICefv8Value; var Exception: ustring): boolean; override;
@@ -432,7 +422,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefV8Accessor;
   protected
     FOnGet: TOnV8AccessorGet;
     FOnSet: TOnV8AccessorSet;
@@ -473,7 +462,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefV8Interceptor;
   protected
     FOnGetByName: TOnV8InterceptorGetByName;
     FOnGetByIndex: TOnV8InterceptorGetByIndex;
@@ -536,7 +524,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefAccessibilityHandler;
   protected
     FOnTreeChange: TOnAccessibilityEvent;
     FOnLocationChange: TOnAccessibilityEvent;
@@ -604,7 +591,6 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    function AsInterface(): ICefTask;
     function OnlyPostTask(threadId: TCefThreadId): boolean;
     function OnlyPostDelayedTask(threadId: TCefThreadId; Delay: int64): boolean;
   published
@@ -639,11 +625,6 @@ begin
   FOnCookieVisit := nil;
 end;
 
-function TCookieVisitor.AsInterface(): ICefCookieVisitor;
-begin
-  Result := self as ICefCookieVisitor;
-end;
-
 // SetCookieCallback
 procedure TSetCookieCallback.OnComplete(success: boolean);
 begin
@@ -663,11 +644,6 @@ destructor TSetCookieCallback.Destroy;
 begin
   inherited Destroy;
   FOnSetCookieComplete := nil;
-end;
-
-function TSetCookieCallback.AsInterface(): ICefSetCookieCallback;
-begin
-  Result := self as ICefSetCookieCallback;
 end;
 
 // DeleteCookiesCallback
@@ -691,11 +667,6 @@ begin
   FOnDeleteCookiesComplete := nil;
 end;
 
-function TDeleteCookiesCallback.AsInterface(): ICefDeleteCookiesCallback;
-begin
-  Result := self as ICefDeleteCookiesCallback;
-end;
-
 // RunFileDialogCallback
 procedure TRunFileDialogCallback.OnFileDialogDismissed(const filePaths: TStrings);
 begin
@@ -717,11 +688,6 @@ begin
   FOnRunFileDialogDismissed := nil;
 end;
 
-function TRunFileDialogCallback.AsInterface(): ICefRunFileDialogCallback;
-begin
-  Result := self as ICefRunFileDialogCallback;
-end;
-
 // DomVisitor
 procedure TDomVisitor.visit(const document: ICefDomDocument);
 begin
@@ -741,11 +707,6 @@ destructor TDomVisitor.Destroy;
 begin
   inherited Destroy;
   FOnDomVisitor := nil;
-end;
-
-function TDomVisitor.AsInterface(): ICefDomVisitor;
-begin
-  Result := self as ICefDomVisitor;
 end;
 
 // TMenuModelDelegate
@@ -830,11 +791,6 @@ begin
   FOnFormatLabel := nil;
 end;
 
-function TMenuModelDelegate.AsInterface(): ICefMenuModelDelegate;
-begin
-  Result := self as ICefMenuModelDelegate;
-end;
-
 // TSchemeHandlerFactory
 function TSchemeHandlerFactory.New(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: ustring; const request: ICefRequest): ICefResourceHandler;
 begin
@@ -855,11 +811,6 @@ destructor TSchemeHandlerFactory.Destroy;
 begin
   FOnNew := nil;
   inherited Destroy;
-end;
-
-function TSchemeHandlerFactory.AsInterface(): ICefSchemeHandlerFactory;
-begin
-  Result := self as ICefSchemeHandlerFactory;
 end;
 
 // TResourceHandler
@@ -949,11 +900,6 @@ begin
   FOnCancel := nil;
 end;
 
-function TResourceHandler.AsInterface(): ICefResourceHandler;
-begin
-  Result := self as ICefResourceHandler;
-end;
-
 // TV8ArrayBufferReleaseCallback
 procedure TV8ArrayBufferReleaseCallback.ReleaseBuffer(buffer: Pointer);
 begin
@@ -973,11 +919,6 @@ destructor TV8ArrayBufferReleaseCallback.Destroy;
 begin
   inherited Destroy;
   FOnReleaseBuffer := nil;
-end;
-
-function TV8ArrayBufferReleaseCallback.AsInterface(): ICefv8ArrayBufferReleaseCallback;
-begin
-  Result := self as ICefv8ArrayBufferReleaseCallback;
 end;
 
 // TV8Handler
@@ -1000,11 +941,6 @@ destructor TV8Handler.Destroy;
 begin
   inherited Destroy;
   FOnExecute := nil;
-end;
-
-function TV8Handler.AsInterface(): ICefV8Handler;
-begin
-  Result := self as ICefv8Handler;
 end;
 
 // TV8Accessor
@@ -1038,11 +974,6 @@ begin
   inherited Destroy;
   FOnGet := nil;
   FOnSet := nil;
-end;
-
-function TV8Accessor.AsInterface(): ICefV8Accessor;
-begin
-  Result := self as ICefV8Accessor;
 end;
 
 // TV8Interceptor
@@ -1100,11 +1031,6 @@ begin
   FOnSetByIndex := nil;
 end;
 
-function TV8Interceptor.AsInterface(): ICefV8Interceptor;
-begin
-  Result := self as ICefV8Interceptor;
-end;
-
 // TAccessibilityHandler
 procedure TAccessibilityHandler.OnAccessibilityTreeChange(const Value: ICefValue);
 begin
@@ -1135,12 +1061,6 @@ begin
   FOnTreeChange := nil;
   FOnLocationChange := nil;
 end;
-
-function TAccessibilityHandler.AsInterface(): ICefAccessibilityHandler;
-begin
-  Result := self as ICefAccessibilityHandler;
-end;
-
 
 // TResponseFilter
 //constructor TResponseFilter.Create;
@@ -1206,11 +1126,6 @@ begin
   begin
     FOnExecute();
   end;
-end;
-
-function TTask.AsInterface(): ICefTask;
-begin
-  Result := self as ICefTask;
 end;
 
 end.

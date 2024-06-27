@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomCefNavigationEntryVisitor_AsInterface(AObj: TCustomCefNavigationEntryVisitor; var Result: ICefNavigationEntryVisitor); extdecl;
+begin
+  Result := AObj as ICefNavigationEntryVisitor;
+end;
+
 
 exports
-  CustomCefNavigationEntryVisitor_Create;
+  CustomCefNavigationEntryVisitor_Create,
+  CustomCefNavigationEntryVisitor_AsInterface;

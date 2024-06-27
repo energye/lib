@@ -8,6 +8,12 @@ begin
 end;
 
 //procedure
+procedure CustomRequestContextHandler_AsInterface(AObj: TCustomRequestContextHandler; var Result: ICefRequestContextHandler); extdecl;
+begin
+  Result := AObj as ICefRequestContextHandler;
+end;
+
+//procedure
 procedure CustomRequestContextHandler_RemoveReferences(AObj: TCustomRequestContextHandler); extdecl;
 begin
   handleExceptionBegin
@@ -18,4 +24,5 @@ end;
 
 exports
   CustomRequestContextHandler_Create,
+  CustomRequestContextHandler_AsInterface,
   CustomRequestContextHandler_RemoveReferences;

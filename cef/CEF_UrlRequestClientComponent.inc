@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CEFUrlRequestClientComponent_AsInterface(AObj: TCEFUrlRequestClientComponent; var Result: ICEFUrlRequestClientEvents); extdecl;
+begin
+  Result := AObj as ICEFUrlRequestClientEvents;
+end;
+
 //property
 procedure CEFUrlRequestClientComponent_Client(AObj: TCEFUrlRequestClientComponent; var Result: ICefUrlrequestClient); extdecl;
 begin
@@ -86,6 +92,7 @@ end;
 
 exports
   CEFUrlRequestClientComponent_Create,
+  CEFUrlRequestClientComponent_AsInterface,
   CEFUrlRequestClientComponent_Client,
   CEFUrlRequestClientComponent_ThreadID,
   CEFUrlRequestClientComponent_AddURLRequest,

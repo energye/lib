@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomAudioHandler_AsInterface(AObj: TCustomAudioHandler; var Result: ICefAudioHandler); extdecl;
+begin
+  Result := AObj as ICefAudioHandler;
+end;
+
 
 exports
-  CustomAudioHandler_Create;
+  CustomAudioHandler_Create,
+  CustomAudioHandler_AsInterface;

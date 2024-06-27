@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomJsDialogHandler_AsInterface(AObj: TCustomJsDialogHandler; var Result: ICefJsDialogHandler); extdecl;
+begin
+  Result := AObj as ICefJsDialogHandler;
+end;
+
 
 exports
-  CustomJsDialogHandler_Create;
+  CustomJsDialogHandler_Create,
+  CustomJsDialogHandler_AsInterface;

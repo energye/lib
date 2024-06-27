@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CEFServerComponent_AsInterface(AObj: TCEFServerComponent; var Result: IServerEvents); extdecl;
+begin
+  Result := AObj as IServerEvents;
+end;
+
 //property
 function CEFServerComponent_Initialized(AObj: TCEFServerComponent): LongBool; extdecl;
 begin
@@ -186,6 +192,7 @@ end;
 
 exports
   CEFServerComponent_Create,
+  CEFServerComponent_AsInterface,
   CEFServerComponent_Initialized,
   CEFServerComponent_IsRunning,
   CEFServerComponent_Address,

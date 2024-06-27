@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomSetCookieCallback_AsInterface(AObj: TCefCustomSetCookieCallback; var Result: ICefSetCookieCallback); extdecl;
+begin
+  Result := AObj as ICefSetCookieCallback;
+end;
+
 
 exports
-  CefCustomSetCookieCallback_Create;
+  CefCustomSetCookieCallback_Create,
+  CefCustomSetCookieCallback_AsInterface;

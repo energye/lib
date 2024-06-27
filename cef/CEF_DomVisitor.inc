@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure DomVisitor_AsInterface(AObj: TDomVisitor; var Result: ICefDomVisitor); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefDomVisitor;
 end;
 
 //property event

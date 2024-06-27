@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomCookieVisitor_AsInterface(AObj: TCefCustomCookieVisitor; var Result: ICefCookieVisitor); extdecl;
+begin
+  Result := AObj as ICefCookieVisitor;
+end;
+
 
 exports
-  CefCustomCookieVisitor_Create;
+  CefCustomCookieVisitor_Create,
+  CefCustomCookieVisitor_AsInterface;

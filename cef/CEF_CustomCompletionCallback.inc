@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomCompletionCallback_AsInterface(AObj: TCefCustomCompletionCallback; var Result: ICefCompletionCallback); extdecl;
+begin
+  Result := AObj as ICefCompletionCallback;
+end;
+
 
 exports
-  CefCustomCompletionCallback_Create;
+  CefCustomCompletionCallback_Create,
+  CefCustomCompletionCallback_AsInterface;

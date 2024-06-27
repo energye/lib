@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomDownloadHandler_AsInterface(AObj: TCustomDownloadHandler; var Result: ICefDownloadHandler); extdecl;
+begin
+  Result := AObj as ICefDownloadHandler;
+end;
+
 
 exports
-  CustomDownloadHandler_Create;
+  CustomDownloadHandler_Create,
+  CustomDownloadHandler_AsInterface;

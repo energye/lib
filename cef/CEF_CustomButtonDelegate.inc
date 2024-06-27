@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomButtonDelegate_AsInterface(AObj: TCustomButtonDelegate; var Result: ICefButtonDelegate); extdecl;
+begin
+  Result := AObj as ICefButtonDelegate;
+end;
+
 
 exports
-  CustomButtonDelegate_Create;
+  CustomButtonDelegate_Create,
+  CustomButtonDelegate_AsInterface;

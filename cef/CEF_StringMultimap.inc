@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefStringMultimap_AsInterface(AObj: TCefCustomStringMultimap; var Result: ICefStringMultimap); extdecl;
+begin
+  Result := AObj as ICefStringMultimap;
+end;
+
 //function
 procedure CefStringMultimap_GetHandle(AObj: ICefStringMultimap; var Result: TCefStringMultimap); extdecl;
 begin
@@ -74,6 +80,7 @@ end;
 
 exports
   CefStringMultimap_Create,
+  CefStringMultimap_AsInterface,
   CefStringMultimap_GetHandle,
   CefStringMultimap_GetSize,
   CefStringMultimap_FindCount,

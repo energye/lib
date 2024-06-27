@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomPDFPrintCallBack_AsInterface(AObj: TCefCustomPDFPrintCallBack; var Result: ICefPdfPrintCallback); extdecl;
+begin
+  Result := AObj as ICefPdfPrintCallback;
+end;
+
 
 exports
-  CefCustomPDFPrintCallBack_Create;
+  CefCustomPDFPrintCallBack_Create,
+  CefCustomPDFPrintCallBack_AsInterface;

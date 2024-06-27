@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomExtensionHandler_AsInterface(AObj: TCustomExtensionHandler; var Result: ICefExtensionHandler); extdecl;
+begin
+  Result := AObj as ICefExtensionHandler;
+end;
+
 
 exports
-  CustomExtensionHandler_Create;
+  CustomExtensionHandler_Create,
+  CustomExtensionHandler_AsInterface;

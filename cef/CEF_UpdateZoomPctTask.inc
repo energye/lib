@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefUpdateZoomPctTask_AsInterface(AObj: TCefUpdateZoomPctTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefUpdateZoomPctTask_Create;
+  CefUpdateZoomPctTask_Create,
+  CefUpdateZoomPctTask_AsInterface;

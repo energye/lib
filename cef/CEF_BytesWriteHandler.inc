@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefBytesWriteHandler_AsInterface(AObj: TCefBytesWriteHandler; var Result: ICefWriteHandler); extdecl;
+begin
+  Result := AObj as ICefWriteHandler;
+end;
+
 //function
 function CefBytesWriteHandler_Write(AObj: TCefBytesWriteHandler; const ptr: Pointer; size,  n: NativeUInt): NativeUInt; extdecl;
 begin
@@ -66,6 +72,7 @@ end;
 
 exports
   CefBytesWriteHandler_Create,
+  CefBytesWriteHandler_AsInterface,
   CefBytesWriteHandler_Write,
   CefBytesWriteHandler_Seek,
   CefBytesWriteHandler_Tell,

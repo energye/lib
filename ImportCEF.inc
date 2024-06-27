@@ -157,6 +157,7 @@
 {$I ./cef/CEF_SslInfo.inc}
 {$I ./cef/CEF_StreamReader.inc}
 {$I ./cef/CEF_StreamWriter.inc}
+{$I ./cef/CEF_StringList.inc}
 {$I ./cef/CEF_StringListRef.inc}
 {$I ./cef/CEF_StringMap.inc}
 {$I ./cef/CEF_StringMapRef.inc}

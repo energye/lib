@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure ChromiumCore_AsInterface(AObj: TChromiumCore; var Result: IChromiumEvents); extdecl;
+begin
+  Result := AObj as IChromiumEvents;
+end;
+
 //property
 function ChromiumCore_DefaultUrl(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
@@ -3246,6 +3252,7 @@ end;
 
 exports
   ChromiumCore_Create,
+  ChromiumCore_AsInterface,
   ChromiumCore_DefaultUrl,
   ChromiumCore_Options,
   ChromiumCore_FontOptions,

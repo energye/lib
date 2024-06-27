@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomPanelDelegate_AsInterface(AObj: TCustomPanelDelegate; var Result: ICefPanelDelegate); extdecl;
+begin
+  Result := AObj as ICefPanelDelegate;
+end;
+
 
 exports
-  CustomPanelDelegate_Create;
+  CustomPanelDelegate_Create,
+  CustomPanelDelegate_AsInterface;

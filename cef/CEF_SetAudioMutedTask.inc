@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefSetAudioMutedTask_AsInterface(AObj: TCefSetAudioMutedTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefSetAudioMutedTask_Create;
+  CefSetAudioMutedTask_Create,
+  CefSetAudioMutedTask_AsInterface;

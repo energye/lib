@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure V8Interceptor_AsInterface(AObj: TV8Interceptor; var Result: ICefV8Interceptor); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefV8Interceptor;
 end;
 
 //property event

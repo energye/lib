@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomDisplayHandler_AsInterface(AObj: TCustomDisplayHandler; var Result: ICefDisplayHandler); extdecl;
+begin
+  Result := AObj as ICefDisplayHandler;
+end;
+
 
 exports
-  CustomDisplayHandler_Create;
+  CustomDisplayHandler_Create,
+  CustomDisplayHandler_AsInterface;

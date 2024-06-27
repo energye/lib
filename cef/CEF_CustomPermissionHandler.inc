@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomPermissionHandler_AsInterface(AObj: TCustomPermissionHandler; var Result: ICefPermissionHandler); extdecl;
+begin
+  Result := AObj as ICefPermissionHandler;
+end;
+
 
 exports
-  CustomPermissionHandler_Create;
+  CustomPermissionHandler_Create,
+  CustomPermissionHandler_AsInterface;

@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomTextfieldDelegate_AsInterface(AObj: TCustomTextfieldDelegate; var Result: ICefTextfieldDelegate); extdecl;
+begin
+  Result := AObj as ICefTextfieldDelegate;
+end;
+
 
 exports
-  CustomTextfieldDelegate_Create;
+  CustomTextfieldDelegate_Create,
+  CustomTextfieldDelegate_AsInterface;

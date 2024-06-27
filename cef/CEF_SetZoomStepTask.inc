@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefSetZoomStepTask_AsInterface(AObj: TCefSetZoomStepTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefSetZoomStepTask_Create;
+  CefSetZoomStepTask_Create,
+  CefSetZoomStepTask_AsInterface;

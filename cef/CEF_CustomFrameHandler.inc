@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomFrameHandler_AsInterface(AObj: TCustomFrameHandler; var Result: ICefFrameHandler); extdecl;
+begin
+  Result := AObj as ICefFrameHandler;
+end;
+
 
 exports
-  CustomFrameHandler_Create;
+  CustomFrameHandler_Create,
+  CustomFrameHandler_AsInterface;

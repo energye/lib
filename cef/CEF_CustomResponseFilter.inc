@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomResponseFilter_AsInterface(AObj: TCustomResponseFilter; var Result: ICefResponseFilter); extdecl;
+begin
+  Result := AObj as ICefResponseFilter;
+end;
+
 //property event
 procedure CustomResponseFilter_SetOnFilter(AObj: TCustomResponseFilter; AEventData: Pointer); extdecl;
 begin
@@ -26,5 +32,6 @@ end;
 
 exports
   CustomResponseFilter_Create,
+  CustomResponseFilter_AsInterface,
   CustomResponseFilter_SetOnFilter,
   CustomResponseFilter_SetOnInitFilter;

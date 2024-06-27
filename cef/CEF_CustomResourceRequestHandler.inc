@@ -8,6 +8,12 @@ begin
 end;
 
 //procedure
+procedure CustomResourceRequestHandler_AsInterface(AObj: TCustomResourceRequestHandler; var Result: ICefResourceRequestHandler); extdecl;
+begin
+  Result := AObj as ICefResourceRequestHandler;
+end;
+
+//procedure
 procedure CustomResourceRequestHandler_RemoveReferences(AObj: TCustomResourceRequestHandler); extdecl;
 begin
   handleExceptionBegin
@@ -18,4 +24,5 @@ end;
 
 exports
   CustomResourceRequestHandler_Create,
+  CustomResourceRequestHandler_AsInterface,
   CustomResourceRequestHandler_RemoveReferences;

@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefStringListRef_AsInterface(AObj: TCefStringListRef; var Result: ICefStringList); extdecl;
+begin
+  Result := AObj as ICefStringList;
+end;
+
 
 exports
-  CefStringListRef_Create;
+  CefStringListRef_Create,
+  CefStringListRef_AsInterface;

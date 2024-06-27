@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefGenericTask_AsInterface(AObj: TCefGenericTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefGenericTask_Create;
+  CefGenericTask_Create,
+  CefGenericTask_AsInterface;

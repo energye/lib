@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomFocusHandler_AsInterface(AObj: TCustomFocusHandler; var Result: ICefFocusHandler); extdecl;
+begin
+  Result := AObj as ICefFocusHandler;
+end;
+
 
 exports
-  CustomFocusHandler_Create;
+  CustomFocusHandler_Create,
+  CustomFocusHandler_AsInterface;

@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomMediaRouteCreateCallback_AsInterface(AObj: TCefCustomMediaRouteCreateCallback; var Result: ICefMediaRouteCreateCallback); extdecl;
+begin
+  Result := AObj as ICefMediaRouteCreateCallback;
+end;
+
 
 exports
-  CefCustomMediaRouteCreateCallback_Create;
+  CefCustomMediaRouteCreateCallback_Create,
+  CefCustomMediaRouteCreateCallback_AsInterface;

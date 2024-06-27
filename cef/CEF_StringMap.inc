@@ -7,6 +7,12 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefStringMap_AsInterface(AObj: TCefCustomStringMap; var Result: ICefStringMap); extdecl;
+begin
+  Result := AObj as ICefStringMap;
+end;
+
 //function
 procedure CefStringMap_GetHandle(AObj: ICefStringMap; var Result: TCefStringMap); extdecl;
 begin
@@ -66,6 +72,7 @@ end;
 
 exports
   CefStringMap_Create,
+  CefStringMap_AsInterface,
   CefStringMap_GetHandle,
   CefStringMap_GetSize,
   CefStringMap_Find,

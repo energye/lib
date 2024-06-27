@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//function
+//procedure
 procedure ResourceHandler_AsInterface(AObj: TResourceHandler; var Result: ICefResourceHandler); extdecl;
 begin
-  handleExceptionBegin
-  Result := AObj.AsInterface();
-  handleExceptionEnd
+  Result := AObj as ICefResourceHandler;
 end;
 
 //property event

@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CustomMediaObserver_AsInterface(AObj: TCustomMediaObserver; var Result: ICefMediaObserver); extdecl;
+begin
+  Result := AObj as ICefMediaObserver;
+end;
+
 
 exports
-  CustomMediaObserver_Create;
+  CustomMediaObserver_Create,
+  CustomMediaObserver_AsInterface;

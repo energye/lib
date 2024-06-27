@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCustomMediaSinkDeviceInfoCallback_AsInterface(AObj: TCefCustomMediaSinkDeviceInfoCallback; var Result: ICefMediaSinkDeviceInfoCallback); extdecl;
+begin
+  Result := AObj as ICefMediaSinkDeviceInfoCallback;
+end;
+
 
 exports
-  CefCustomMediaSinkDeviceInfoCallback_Create;
+  CefCustomMediaSinkDeviceInfoCallback_Create,
+  CefCustomMediaSinkDeviceInfoCallback_AsInterface;

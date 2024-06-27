@@ -7,6 +7,13 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefUpdatePrefsTask_AsInterface(AObj: TCefUpdatePrefsTask; var Result: ICefTask); extdecl;
+begin
+  Result := AObj as ICefTask;
+end;
+
 
 exports
-  CefUpdatePrefsTask_Create;
+  CefUpdatePrefsTask_Create,
+  CefUpdatePrefsTask_AsInterface;
