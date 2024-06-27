@@ -27,6 +27,12 @@ begin
   handleExceptionEnd
 end;
 
+procedure ChromiumCore_AsChromiumEvents(AObj: TChromiumCore; var Result: IChromiumEvents); extdecl;
+begin
+  Result := AObj as IChromiumEvents;
+end;
+
 exports
   ChromiumCore_IMESetComposition,
-  ChromiumCore_SetCookie;
+  ChromiumCore_SetCookie,
+  ChromiumCore_AsChromiumEvents;
