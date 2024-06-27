@@ -513,10 +513,9 @@
       </Unit20>
       <Unit21>
         <Filename Value="ImportCEF.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="116"/>
-        <CursorPos X="30" Y="80"/>
+        <TopLine Value="131"/>
+        <CursorPos X="34" Y="154"/>
         <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -833,10 +832,10 @@
       </Unit62>
       <Unit63>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFInterfaces.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="196"/>
         <CursorPos X="45" Y="219"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit63>
       <Unit64>
@@ -988,9 +987,9 @@
       </Unit85>
       <Unit86>
         <Filename Value="cef\CEF_AccessibilityHandler.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <CursorPos X="99" Y="11"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit86>
@@ -1003,45 +1002,49 @@
       </Unit87>
       <Unit88>
         <Filename Value="cef\CEF_CustomStringList.inc"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="13"/>
+        <EditorIndex Value="5"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit88>
       <Unit89>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFStringList.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="10"/>
         <CursorPos X="49" Y="71"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit89>
       <Unit90>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFTypes.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="402"/>
         <CursorPos X="3" Y="421"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit90>
       <Unit91>
         <Filename Value="cef\CEF_StringListRef.inc"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit91>
       <Unit92>
         <Filename Value="cef\CEF_StringList.inc"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="11"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="34"/>
+        <CursorPos X="41" Y="59"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit92>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="11" HistoryIndex="10">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="ImportCEF.inc"/>
         <Caret Line="21" Column="28" TopLine="17"/>
@@ -1084,6 +1087,10 @@
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFStringList.pas"/>
         <Caret Line="71" Column="49" TopLine="10"/>
       </Position11>
+      <Position12>
+        <Filename Value="ImportCEF.inc"/>
+        <Caret Line="154" Column="34" TopLine="131"/>
+      </Position12>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
