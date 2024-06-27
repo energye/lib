@@ -17,7 +17,7 @@
 {$Z4+}
 
 // 开启异步处理
-//{$define UsehandleException}
+{$define UsehandleException}
 
 // 异常宏定义
 {$ifdef UsehandleException}

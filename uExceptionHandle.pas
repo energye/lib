@@ -17,22 +17,29 @@ uses
   Classes, SysUtils, Forms, Dialogs;
 
 type
-  TExceptionHandlerCallbackPtr = function(AErrorMsg: PChar): Pointer; extdecl; // 留给支持异常处理的语言所用
+  TExceptionHandlerCallbackPtr = function(AFuncName, AErrorMsg: PChar): Pointer; extdecl; // 留给支持异常处理的语言所用
 
 var
   GExceptionHandlerCallbackPtr: TExceptionHandlerCallbackPtr;
 
 
   procedure CallException(E: Exception);
+  procedure CallException(FuncName: string; E: Exception);
+
 implementation
 
 // 显示异常
 procedure CallException(E: Exception);
 begin
+  CallException('', E);
+end;
+
+procedure CallException(FuncName: string; E: Exception);
+begin
   // 优先这个
   if Assigned(GExceptionHandlerCallbackPtr) then
   begin
-    GExceptionHandlerCallbackPtr(PChar(E.Message));
+    GExceptionHandlerCallbackPtr(PChar(FuncName), PChar(E.Message));
     Exit;
   end;
 
