@@ -2,6 +2,7 @@
 //constructor
 function CEFSentinel_Create(aOwner: TComponent): TCEFSentinel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFSentinel.Create(aOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CEFSentinel_Status(AObj: TCEFSentinel): TSentinelStatus; extdecl;
 begin
+  {$define handleExceptionFuncName :='Status'}
   handleExceptionBegin
   Result := AObj.Status;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CEFSentinel_ChildProcCount(AObj: TCEFSentinel): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ChildProcCount'}
   handleExceptionBegin
   Result := AObj.ChildProcCount;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CEFSentinel_DelayPerProcMs(AIsSet: LongBool; AObj: TCEFSentinel; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='DelayPerProcMs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CEFSentinel_MinInitDelayMs(AIsSet: LongBool; AObj: TCEFSentinel; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinInitDelayMs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CEFSentinel_FinalDelayMs(AIsSet: LongBool; AObj: TCEFSentinel; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='FinalDelayMs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function CEFSentinel_MinChildProcs(AIsSet: LongBool; AObj: TCEFSentinel; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinChildProcs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 function CEFSentinel_MaxCheckCount(AIsSet: LongBool; AObj: TCEFSentinel; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxCheckCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //procedure
 procedure CEFSentinel_Start(AObj: TCEFSentinel); extdecl;
 begin
+  {$define handleExceptionFuncName :='Start'}
   handleExceptionBegin
   AObj.Start();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomButtonDelegate_Create(const events: ICefButtonDelegateEvents): TCustomButtonDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomButtonDelegate.Create(events);
   handleExceptionEnd

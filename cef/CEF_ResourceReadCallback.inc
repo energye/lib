@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefResourceReadCallback_Cont(AObj: ICefResourceReadCallback; var bytesread: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(bytesread);
   handleExceptionEnd

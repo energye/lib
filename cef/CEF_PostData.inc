@@ -14,6 +14,7 @@ end;
 //function
 function CefPostData_IsReadOnly(AObj: ICefPostData): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsReadOnly'}
   handleExceptionBegin
   Result := AObj.IsReadOnly();
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 function CefPostData_HasExcludedElements(AObj: ICefPostData): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasExcludedElements'}
   handleExceptionBegin
   Result := AObj.HasExcludedElements();
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //function
 function CefPostData_GetElementCount(AObj: ICefPostData): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetElementCount'}
   handleExceptionBegin
   Result := AObj.GetElementCount();
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //function
 function CefPostData_RemoveElement(AObj: ICefPostData; const element: ICefPostDataElement): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveElement'}
   handleExceptionBegin
   Result := AObj.RemoveElement(element);
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //function
 function CefPostData_AddElement(AObj: ICefPostData; const element: ICefPostDataElement): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddElement'}
   handleExceptionBegin
   Result := AObj.AddElement(element);
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //procedure
 procedure CefPostData_RemoveElements(AObj: ICefPostData); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveElements'}
   handleExceptionBegin
   AObj.RemoveElements();
   handleExceptionEnd

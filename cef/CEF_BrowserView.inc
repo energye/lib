@@ -20,6 +20,7 @@ end;
 //function
 procedure CefBrowserView_GetBrowser(AObj: ICefBrowserView; var Result: ICefBrowser); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetBrowser'}
   handleExceptionBegin
   Result := AObj.GetBrowser();
   handleExceptionEnd
@@ -28,6 +29,7 @@ end;
 //function
 procedure CefBrowserView_GetChromeToolbar(AObj: ICefBrowserView; var Result: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetChromeToolbar'}
   handleExceptionBegin
   Result := AObj.GetChromeToolbar();
   handleExceptionEnd
@@ -36,6 +38,7 @@ end;
 //procedure
 procedure CefBrowserView_SetPreferAccelerators(AObj: ICefBrowserView; preferaccelerators: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetPreferAccelerators'}
   handleExceptionBegin
   AObj.SetPreferAccelerators(preferaccelerators);
   handleExceptionEnd

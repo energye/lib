@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefFileDialogCallback_Cont(AObj: ICefFileDialogCallback; const filePaths: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(filePaths);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefFileDialogCallback_Cancel(AObj: ICefFileDialogCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   AObj.Cancel();
   handleExceptionEnd

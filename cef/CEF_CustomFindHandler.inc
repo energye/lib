@@ -2,6 +2,7 @@
 //constructor
 function CustomFindHandler_Create(const events: IChromiumEvents): TCustomFindHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFindHandler.Create(events);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomMediaObserver_Create(const events: IChromiumEvents): TCustomMediaObserver; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomMediaObserver.Create(events);
   handleExceptionEnd

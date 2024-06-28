@@ -2,6 +2,7 @@
 //constructor
 function CustomTextfieldDelegate_Create(const events: ICefTextfieldDelegateEvents): TCustomTextfieldDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTextfieldDelegate.Create(events);
   handleExceptionEnd

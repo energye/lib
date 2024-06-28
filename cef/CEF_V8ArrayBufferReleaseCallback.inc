@@ -2,6 +2,7 @@
 //constructor
 function V8ArrayBufferReleaseCallback_Create(): TV8ArrayBufferReleaseCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TV8ArrayBufferReleaseCallback.Create();
   handleExceptionEnd

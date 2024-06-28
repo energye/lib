@@ -4,6 +4,7 @@ var
   ranges: TCefRangeArray;
   idx: Integer;
 begin
+  {$define handleExceptionFuncName :='SetPageRanges'}
   handleExceptionBegin
   if ASize > 0 then
   begin
@@ -25,6 +26,7 @@ procedure CefPrintSettings_GetPageRanges(AObj: ICefPrintSettings; out ARanges: T
 var
   ranges: TCefRangeArray;
 begin
+  {$define handleExceptionFuncName :='GetPageRanges'}
   handleExceptionBegin
   AObj.GetPageRanges(ranges);
   ASize := Length(ranges);

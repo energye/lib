@@ -32,6 +32,7 @@ end;
 //function
 function CefStreamReader_Read(AObj: ICefStreamReader; ptr: Pointer; size,  n: NativeUInt): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Read'}
   handleExceptionBegin
   Result := AObj.Read(ptr, size,  n);
   handleExceptionEnd
@@ -40,6 +41,7 @@ end;
 //function
 function CefStreamReader_Seek(AObj: ICefStreamReader; var offset: Int64; whence: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Seek'}
   handleExceptionBegin
   Result := AObj.Seek(offset, whence);
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //function
 procedure CefStreamReader_Tell(AObj: ICefStreamReader; var Result: Int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='Tell'}
   handleExceptionBegin
   Result := AObj.Tell();
   handleExceptionEnd
@@ -56,6 +59,7 @@ end;
 //function
 function CefStreamReader_Eof(AObj: ICefStreamReader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Eof'}
   handleExceptionBegin
   Result := AObj.Eof();
   handleExceptionEnd
@@ -64,6 +68,7 @@ end;
 //function
 function CefStreamReader_MayBlock(AObj: ICefStreamReader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MayBlock'}
   handleExceptionBegin
   Result := AObj.MayBlock();
   handleExceptionEnd

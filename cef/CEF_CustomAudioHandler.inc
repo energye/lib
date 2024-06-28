@@ -2,6 +2,7 @@
 //constructor
 function CustomAudioHandler_Create(const events: IChromiumEvents): TCustomAudioHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomAudioHandler.Create(events);
   handleExceptionEnd

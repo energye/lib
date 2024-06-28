@@ -2,6 +2,7 @@
 //constructor
 function AccessibilityHandler_Create(): TAccessibilityHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TAccessibilityHandler.Create();
   handleExceptionEnd

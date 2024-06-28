@@ -2,6 +2,7 @@
 //constructor
 function MenuModelDelegate_Create(): TMenuModelDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMenuModelDelegate.Create();
   handleExceptionEnd

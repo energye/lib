@@ -8,6 +8,7 @@ end;
 //function
 function CefX509CertPrincipal_GetDisplayName(AObj: ICefX509CertPrincipal): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDisplayName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetDisplayName());
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 function CefX509CertPrincipal_GetCommonName(AObj: ICefX509CertPrincipal): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCommonName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetCommonName());
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 function CefX509CertPrincipal_GetLocalityName(AObj: ICefX509CertPrincipal): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetLocalityName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetLocalityName());
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //function
 function CefX509CertPrincipal_GetStateOrProvinceName(AObj: ICefX509CertPrincipal): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetStateOrProvinceName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetStateOrProvinceName());
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //function
 function CefX509CertPrincipal_GetCountryName(AObj: ICefX509CertPrincipal): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCountryName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetCountryName());
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //procedure
 procedure CefX509CertPrincipal_GetOrganizationNames(AObj: ICefX509CertPrincipal; const names: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOrganizationNames'}
   handleExceptionBegin
   AObj.GetOrganizationNames(names);
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //procedure
 procedure CefX509CertPrincipal_GetOrganizationUnitNames(AObj: ICefX509CertPrincipal; const names: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOrganizationUnitNames'}
   handleExceptionBegin
   AObj.GetOrganizationUnitNames(names);
   handleExceptionEnd

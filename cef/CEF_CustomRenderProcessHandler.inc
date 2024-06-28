@@ -2,6 +2,7 @@
 //constructor
 function CefCustomRenderProcessHandler_Create(const aCefApp: TCefApplicationCore): TCefCustomRenderProcessHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomRenderProcessHandler.Create(aCefApp);
   handleExceptionEnd

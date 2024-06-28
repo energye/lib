@@ -8,6 +8,7 @@ end;
 //function
 procedure CefX509Certificate_GetSubject(AObj: ICefX509Certificate; var Result: ICefX509CertPrincipal); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSubject'}
   handleExceptionBegin
   Result := AObj.GetSubject();
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 procedure CefX509Certificate_GetIssuer(AObj: ICefX509Certificate; var Result: ICefX509CertPrincipal); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIssuer'}
   handleExceptionBegin
   Result := AObj.GetIssuer();
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 procedure CefX509Certificate_GetSerialNumber(AObj: ICefX509Certificate; var Result: ICefBinaryValue); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSerialNumber'}
   handleExceptionBegin
   Result := AObj.GetSerialNumber();
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //function
 function CefX509Certificate_GetValidStart(AObj: ICefX509Certificate): TCefBaseTime; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetValidStart'}
   handleExceptionBegin
   Result := AObj.GetValidStart();
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //function
 function CefX509Certificate_GetValidExpiry(AObj: ICefX509Certificate): TCefBaseTime; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetValidExpiry'}
   handleExceptionBegin
   Result := AObj.GetValidExpiry();
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //function
 procedure CefX509Certificate_GetValidStartAsDateTime(AObj: ICefX509Certificate; var Result: TDateTime); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetValidStartAsDateTime'}
   handleExceptionBegin
   Result := AObj.GetValidStartAsDateTime();
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //function
 procedure CefX509Certificate_GetValidExpiryAsDateTime(AObj: ICefX509Certificate; var Result: TDateTime); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetValidExpiryAsDateTime'}
   handleExceptionBegin
   Result := AObj.GetValidExpiryAsDateTime();
   handleExceptionEnd
@@ -64,6 +71,7 @@ end;
 //function
 procedure CefX509Certificate_GetDerEncoded(AObj: ICefX509Certificate; var Result: ICefBinaryValue); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDerEncoded'}
   handleExceptionBegin
   Result := AObj.GetDerEncoded();
   handleExceptionEnd
@@ -72,6 +80,7 @@ end;
 //function
 procedure CefX509Certificate_GetPemEncoded(AObj: ICefX509Certificate; var Result: ICefBinaryValue); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetPemEncoded'}
   handleExceptionBegin
   Result := AObj.GetPemEncoded();
   handleExceptionEnd
@@ -80,6 +89,7 @@ end;
 //function
 function CefX509Certificate_GetIssuerChainSize(AObj: ICefX509Certificate): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIssuerChainSize'}
   handleExceptionBegin
   Result := AObj.GetIssuerChainSize();
   handleExceptionEnd

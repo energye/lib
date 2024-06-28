@@ -2,6 +2,7 @@
 //constructor
 function SchemeHandlerFactory_Create(const aClass: TCefResourceHandlerClass): TSchemeHandlerFactory; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TSchemeHandlerFactory.Create(aClass);
   handleExceptionEnd

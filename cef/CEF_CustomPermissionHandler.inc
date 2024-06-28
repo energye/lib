@@ -2,6 +2,7 @@
 //constructor
 function CustomPermissionHandler_Create(const events: IChromiumEvents): TCustomPermissionHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPermissionHandler.Create(events);
   handleExceptionEnd

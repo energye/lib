@@ -2,6 +2,7 @@
 //constructor
 function V8Interceptor_Create(): TV8Interceptor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TV8Interceptor.Create();
   handleExceptionEnd

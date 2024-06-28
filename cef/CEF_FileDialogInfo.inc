@@ -2,6 +2,7 @@
 //constructor
 function CEFFileDialogInfo_Create(): TCEFFileDialogInfo; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFFileDialogInfo.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CEFFileDialogInfo_Mode(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='Mode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CEFFileDialogInfo_Title(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Title'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultFilePath(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultFilePath'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 procedure CEFFileDialogInfo_AcceptFilters(AObj: TCEFFileDialogInfo; AValue: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='AcceptFilters'}
   handleExceptionBegin
   AObj.AcceptFilters := AValue;
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //property
 procedure CEFFileDialogInfo_Callback(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: ICefFileDialogCallback; var Result: ICefFileDialogCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Callback'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function CEFFileDialogInfo_DialogFilter(AObj: TCEFFileDialogInfo): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DialogFilter'}
   handleExceptionBegin
   Result := ToPChar(AObj.DialogFilter);
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //property
 function CEFFileDialogInfo_DialogType(AObj: TCEFFileDialogInfo): TCEFDialogType; extdecl;
 begin
+  {$define handleExceptionFuncName :='DialogType'}
   handleExceptionBegin
   Result := AObj.DialogType;
   handleExceptionEnd
@@ -82,6 +90,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultAudioFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultAudioFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +103,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultVideoFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultVideoFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +116,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultTextFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultTextFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +129,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultImageFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultImageFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +142,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultAllFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultAllFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +155,7 @@ end;
 //property
 function CEFFileDialogInfo_DefaultUnknownFileDesc(AIsSet: LongBool; AObj: TCEFFileDialogInfo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultUnknownFileDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +168,7 @@ end;
 //procedure
 procedure CEFFileDialogInfo_Clear(AObj: TCEFFileDialogInfo); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function Task_Create(): TTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTask.Create();
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 function Task_OnlyPostTask(AObj: TTask; threadId: TCefThreadId): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OnlyPostTask'}
   handleExceptionBegin
   Result := AObj.OnlyPostTask(threadId);
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 function Task_OnlyPostDelayedTask(AObj: TTask; threadId: TCefThreadId; var delay: int64): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OnlyPostDelayedTask'}
   handleExceptionBegin
   Result := AObj.OnlyPostDelayedTask(threadId, delay);
   handleExceptionEnd

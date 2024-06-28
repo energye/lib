@@ -2,6 +2,7 @@
 //constructor
 function CustomDownloadHandler_Create(const events: IChromiumEvents): TCustomDownloadHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDownloadHandler.Create(events);
   handleExceptionEnd

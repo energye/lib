@@ -2,6 +2,7 @@
 //constructor
 function CustomFrameHandler_Create(const events: IChromiumEvents): TCustomFrameHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFrameHandler.Create(events);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function RunFileDialogCallback_Create(): TRunFileDialogCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TRunFileDialogCallback.Create();
   handleExceptionEnd

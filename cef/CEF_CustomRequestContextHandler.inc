@@ -2,6 +2,7 @@
 //constructor
 function CustomRequestContextHandler_Create(const events: IChromiumEvents): TCustomRequestContextHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomRequestContextHandler.Create(events);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CustomRequestContextHandler_RemoveReferences(AObj: TCustomRequestContextHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveReferences'}
   handleExceptionBegin
   AObj.RemoveReferences();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CEFViewComponent_Create(aOwner: TComponent): TCEFViewComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFViewComponent.Create(aOwner);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //property
 function CEFViewComponent_Initialized(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //property
 procedure CEFViewComponent_AsView(AObj: TCEFViewComponent; var Result: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsView'}
   handleExceptionBegin
   Result := AObj.AsView;
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //property
 procedure CEFViewComponent_AsBrowserView(AObj: TCEFViewComponent; var Result: ICefBrowserView); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsBrowserView'}
   handleExceptionBegin
   Result := AObj.AsBrowserView;
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //property
 procedure CEFViewComponent_AsButton(AObj: TCEFViewComponent; var Result: ICefButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsButton'}
   handleExceptionBegin
   Result := AObj.AsButton;
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //property
 procedure CEFViewComponent_AsPanel(AObj: TCEFViewComponent; var Result: ICefPanel); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsPanel'}
   handleExceptionBegin
   Result := AObj.AsPanel;
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //property
 procedure CEFViewComponent_AsScrollView(AObj: TCEFViewComponent; var Result: ICefScrollView); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsScrollView'}
   handleExceptionBegin
   Result := AObj.AsScrollView;
   handleExceptionEnd
@@ -64,6 +71,7 @@ end;
 //property
 procedure CEFViewComponent_AsTextfield(AObj: TCEFViewComponent; var Result: ICefTextfield); extdecl;
 begin
+  {$define handleExceptionFuncName :='AsTextfield'}
   handleExceptionBegin
   Result := AObj.AsTextfield;
   handleExceptionEnd
@@ -72,6 +80,7 @@ end;
 //property
 procedure CEFViewComponent_ViewForID(AObj: TCEFViewComponent; id: Integer; var Result: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='ViewForID'}
   handleExceptionBegin
   Result := AObj.ViewForID[id];
   handleExceptionEnd
@@ -80,6 +89,7 @@ end;
 //property
 function CEFViewComponent_Valid(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Valid'}
   handleExceptionBegin
   Result := AObj.Valid;
   handleExceptionEnd
@@ -88,6 +98,7 @@ end;
 //property
 function CEFViewComponent_Attached(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Attached'}
   handleExceptionBegin
   Result := AObj.Attached;
   handleExceptionEnd
@@ -96,6 +107,7 @@ end;
 //property
 procedure CEFViewComponent_Delegate(AObj: TCEFViewComponent; var Result: ICefViewDelegate); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delegate'}
   handleExceptionBegin
   Result := AObj.Delegate;
   handleExceptionEnd
@@ -104,6 +116,7 @@ end;
 //property
 procedure CEFViewComponent_Window(AObj: TCEFViewComponent; var Result: ICefWindow); extdecl;
 begin
+  {$define handleExceptionFuncName :='Window'}
   handleExceptionBegin
   Result := AObj.Window;
   handleExceptionEnd
@@ -112,6 +125,7 @@ end;
 //property
 procedure CEFViewComponent_ParentView(AObj: TCEFViewComponent; var Result: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentView'}
   handleExceptionBegin
   Result := AObj.ParentView;
   handleExceptionEnd
@@ -120,6 +134,7 @@ end;
 //property
 procedure CEFViewComponent_BoundsInScreen(AObj: TCEFViewComponent; var Result: TCefRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='BoundsInScreen'}
   handleExceptionBegin
   Result := AObj.BoundsInScreen;
   handleExceptionEnd
@@ -128,6 +143,7 @@ end;
 //property
 procedure CEFViewComponent_PreferredSize(AObj: TCEFViewComponent; var Result: TCefSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='PreferredSize'}
   handleExceptionBegin
   Result := AObj.PreferredSize;
   handleExceptionEnd
@@ -136,6 +152,7 @@ end;
 //property
 procedure CEFViewComponent_MinimumSize(AObj: TCEFViewComponent; var Result: TCefSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='MinimumSize'}
   handleExceptionBegin
   Result := AObj.MinimumSize;
   handleExceptionEnd
@@ -144,6 +161,7 @@ end;
 //property
 procedure CEFViewComponent_MaximumSize(AObj: TCEFViewComponent; var Result: TCefSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='MaximumSize'}
   handleExceptionBegin
   Result := AObj.MaximumSize;
   handleExceptionEnd
@@ -152,6 +170,7 @@ end;
 //property
 function CEFViewComponent_Visible(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -164,6 +183,7 @@ end;
 //property
 function CEFViewComponent_Drawn(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Drawn'}
   handleExceptionBegin
   Result := AObj.Drawn;
   handleExceptionEnd
@@ -172,6 +192,7 @@ end;
 //property
 function CEFViewComponent_Enabled(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Enabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -184,6 +205,7 @@ end;
 //property
 function CEFViewComponent_Focusable(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Focusable'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -196,6 +218,7 @@ end;
 //property
 function CEFViewComponent_AccessibilityFocusable(AObj: TCEFViewComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AccessibilityFocusable'}
   handleExceptionBegin
   Result := AObj.AccessibilityFocusable;
   handleExceptionEnd
@@ -204,6 +227,7 @@ end;
 //property
 function CEFViewComponent_BackgroundColor(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: TCefColor): TCefColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BackgroundColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -216,6 +240,7 @@ end;
 //property
 function CEFViewComponent_ID(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ID'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -228,6 +253,7 @@ end;
 //property
 function CEFViewComponent_GroupID(AIsSet: LongBool; AObj: TCEFViewComponent; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GroupID'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -240,6 +266,7 @@ end;
 //property
 procedure CEFViewComponent_Bounds(AIsSet: LongBool; AObj: TCEFViewComponent; var AValue: TCefRect; var Result: TCefRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Bounds'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -252,6 +279,7 @@ end;
 //property
 procedure CEFViewComponent_Size(AIsSet: LongBool; AObj: TCEFViewComponent; var AValue: TCefSize; var Result: TCefSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='Size'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -264,6 +292,7 @@ end;
 //property
 procedure CEFViewComponent_Position(AIsSet: LongBool; AObj: TCEFViewComponent; var AValue: TCefPoint; var Result: TCefPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -276,6 +305,7 @@ end;
 //property
 procedure CEFViewComponent_Insets(AIsSet: LongBool; AObj: TCEFViewComponent; var AValue: TCefInsets; var Result: TCefInsets); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insets'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -288,6 +318,7 @@ end;
 //property
 function CEFViewComponent_TypeString(AObj: TCEFViewComponent): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TypeString'}
   handleExceptionBegin
   Result := ToPChar(AObj.TypeString);
   handleExceptionEnd
@@ -296,6 +327,7 @@ end;
 //property
 function CEFViewComponent_HeightForWidth(AObj: TCEFViewComponent; width: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeightForWidth'}
   handleExceptionBegin
   Result := AObj.HeightForWidth[width];
   handleExceptionEnd
@@ -304,6 +336,7 @@ end;
 //function
 function CEFViewComponent_ToStringEx(AObj: TCEFViewComponent; includechildren: LongBool): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToStringEx'}
   handleExceptionBegin
   Result := ToPChar(AObj.ToStringEx(includechildren));
   handleExceptionEnd
@@ -312,6 +345,7 @@ end;
 //function
 function CEFViewComponent_IsSame(AObj: TCEFViewComponent; const that: ICefView): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSame'}
   handleExceptionBegin
   Result := AObj.IsSame(that);
   handleExceptionEnd
@@ -322,6 +356,7 @@ function CEFViewComponent_ConvertPointToScreen(AObj: TCEFViewComponent; var poin
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointToScreen'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointToScreen(Retpoint);
@@ -334,6 +369,7 @@ function CEFViewComponent_ConvertPointFromScreen(AObj: TCEFViewComponent; var po
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointFromScreen'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointFromScreen(Retpoint);
@@ -346,6 +382,7 @@ function CEFViewComponent_ConvertPointToWindow(AObj: TCEFViewComponent; var poin
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointToWindow'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointToWindow(Retpoint);
@@ -358,6 +395,7 @@ function CEFViewComponent_ConvertPointFromWindow(AObj: TCEFViewComponent; var po
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointFromWindow'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointFromWindow(Retpoint);
@@ -370,6 +408,7 @@ function CEFViewComponent_ConvertPointToView(AObj: TCEFViewComponent; const view
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointToView'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointToView(view, Retpoint);
@@ -382,6 +421,7 @@ function CEFViewComponent_ConvertPointFromView(AObj: TCEFViewComponent; const vi
 var
   Retpoint: TCefPoint;
 begin
+  {$define handleExceptionFuncName :='ConvertPointFromView'}
   handleExceptionBegin
   Retpoint := point;
   Result := AObj.ConvertPointFromView(view, Retpoint);
@@ -392,6 +432,7 @@ end;
 //procedure
 procedure CEFViewComponent_SizeToPreferredSize(AObj: TCEFViewComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='SizeToPreferredSize'}
   handleExceptionBegin
   AObj.SizeToPreferredSize();
   handleExceptionEnd
@@ -400,6 +441,7 @@ end;
 //procedure
 procedure CEFViewComponent_InvalidateLayout(AObj: TCEFViewComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidateLayout'}
   handleExceptionBegin
   AObj.InvalidateLayout();
   handleExceptionEnd
@@ -408,6 +450,7 @@ end;
 //procedure
 procedure CEFViewComponent_RequestFocus(AObj: TCEFViewComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='RequestFocus'}
   handleExceptionBegin
   AObj.RequestFocus();
   handleExceptionEnd

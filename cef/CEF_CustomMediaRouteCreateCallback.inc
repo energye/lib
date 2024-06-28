@@ -2,6 +2,7 @@
 //constructor
 function CefCustomMediaRouteCreateCallback_Create(const aEvents: IChromiumEvents): TCefCustomMediaRouteCreateCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomMediaRouteCreateCallback.Create(aEvents);
   handleExceptionEnd

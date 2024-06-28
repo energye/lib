@@ -4,6 +4,7 @@ procedure CefResponse_GetHeaderMap(AObj: ICefResponse; var Result: ICefStringMul
 var
   headerMap: TCefStringMultimapOwn;
 begin
+  {$define handleExceptionFuncName :='GetHeaderMap'}
   handleExceptionBegin
   headerMap := TCefStringMultimapOwn.Create();
   AObj.GetHeaderMap(headerMap);

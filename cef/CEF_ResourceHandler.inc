@@ -2,6 +2,7 @@
 //constructor
 function ResourceHandler_Create(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: PChar; const request: ICefRequest): TResourceHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TResourceHandler.Create(browser, frame, schemeName, request);
   handleExceptionEnd

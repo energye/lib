@@ -8,6 +8,7 @@ end;
 //function
 function CefSslInfo_GetCertStatus(AObj: ICefSslInfo): TCefCertStatus; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCertStatus'}
   handleExceptionBegin
   Result := AObj.GetCertStatus();
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 procedure CefSslInfo_GetX509Certificate(AObj: ICefSslInfo; var Result: ICefX509Certificate); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetX509Certificate'}
   handleExceptionBegin
   Result := AObj.GetX509Certificate();
   handleExceptionEnd

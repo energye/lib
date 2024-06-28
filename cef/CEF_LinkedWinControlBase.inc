@@ -3,6 +3,7 @@
 function CEFLinkedWinControlBase_UseSetFocus(AIsSet: LongBool; AObj: TCEFLinkedWinControlBase; AValue: LongBool): LongBool; extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='UseSetFocus'}
   handleExceptionBegin
   if AIsSet then
   begin

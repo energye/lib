@@ -2,6 +2,7 @@
 //constructor
 function CefBrowserNavigationTask_Create(const aEvents: IChromiumEvents; aTask: TCefBrowserNavigation): TCefBrowserNavigationTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefBrowserNavigationTask.Create(aEvents, aTask);
   handleExceptionEnd

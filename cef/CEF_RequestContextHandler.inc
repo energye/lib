@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefRequestContextHandler_OnRequestContextInitialized(AObj: ICefRequestContextHandler; const requestcontext: ICefRequestContext); extdecl;
 begin
+  {$define handleExceptionFuncName :='OnRequestContextInitialized'}
   handleExceptionBegin
   AObj.OnRequestContextInitialized(requestcontext);
   handleExceptionEnd
@@ -19,6 +20,7 @@ var
   Retdisabledefaulthandling: boolean;
   RetaResourceRequestHandler: ICefResourceRequestHandler;
 begin
+  {$define handleExceptionFuncName :='GetResourceRequestHandler'}
   handleExceptionBegin
   Retdisabledefaulthandling := disabledefaulthandling;
   RetaResourceRequestHandler := aResourceRequestHandler;
@@ -31,6 +33,7 @@ end;
 //procedure
 procedure CefRequestContextHandler_RemoveReferences(AObj: ICefRequestContextHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveReferences'}
   handleExceptionBegin
   AObj.RemoveReferences();
   handleExceptionEnd

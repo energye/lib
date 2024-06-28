@@ -4,6 +4,7 @@ var
   underline: TCefCompositionUnderlineDynArray;
   idx: Integer;
 begin
+  {$define handleExceptionFuncName :='IMESetComposition'}
   handleExceptionBegin
   SetLength(underline, ASize);
   for idx := 0 to ASize - 1 do
@@ -20,6 +21,7 @@ function ChromiumCore_SetCookie(AObj: TChromiumCore; const url: PChar; aSetImmed
 var
   InCookie: TCookie;
 begin
+  {$define handleExceptionFuncName :='SetCookie'}
   handleExceptionBegin
   InCookie := CookieToPas(cookie);
   Result := AObj.SetCookie(url, InCookie.name, InCookie.value, InCookie.domain, InCookie.path, InCookie.secure, InCookie.httponly, InCookie.has_expires, InCookie.creation,
@@ -27,12 +29,6 @@ begin
   handleExceptionEnd
 end;
 
-procedure ChromiumCore_AsChromiumEvents(AObj: TChromiumCore; var Result: IChromiumEvents); extdecl;
-begin
-  Result := AObj as IChromiumEvents;
-end;
-
 exports
   ChromiumCore_IMESetComposition,
-  ChromiumCore_SetCookie,
-  ChromiumCore_AsChromiumEvents;
+  ChromiumCore_SetCookie;

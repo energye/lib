@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefBeforeDownloadCallback_Cont(AObj: ICefBeforeDownloadCallback; const downloadPath: PChar; showDialog: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(downloadPath, showDialog);
   handleExceptionEnd

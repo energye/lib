@@ -2,6 +2,7 @@
 //constructor
 function CustomDevToolsMessageObserver_Create(const events: IChromiumEvents): TCustomDevToolsMessageObserver; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDevToolsMessageObserver.Create(events);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomFocusHandler_Create(const events: IChromiumEvents): TCustomFocusHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFocusHandler.Create(events);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomWindowDelegate_Create(const events: ICefWindowDelegateEvents): TCustomWindowDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomWindowDelegate.Create(events);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CefToggleAudioMutedTask_Create(const aEvents: IChromiumEvents): TCefToggleAudioMutedTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefToggleAudioMutedTask.Create(aEvents);
   handleExceptionEnd

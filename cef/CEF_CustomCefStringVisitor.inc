@@ -2,6 +2,7 @@
 //constructor
 function CustomCefStringVisitor_Create(const aEvents: IChromiumEvents): TCustomCefStringVisitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCefStringVisitor.Create(aEvents);
   handleExceptionEnd

@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefPrintJobCallback_Cont(AObj: ICefPrintJobCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.cont();
   handleExceptionEnd

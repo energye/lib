@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefBoxLayout_SetFlexForView(AObj: ICefBoxLayout; const view: ICefView; flex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFlexForView'}
   handleExceptionBegin
   AObj.SetFlexForView(view, flex);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefBoxLayout_ClearFlexForView(AObj: ICefBoxLayout; const view: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearFlexForView'}
   handleExceptionBegin
   AObj.ClearFlexForView(view);
   handleExceptionEnd

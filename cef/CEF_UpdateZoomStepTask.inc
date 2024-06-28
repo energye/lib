@@ -2,6 +2,7 @@
 //constructor
 function CefUpdateZoomStepTask_Create(const aEvents: IChromiumEvents; aInc: LongBool): TCefUpdateZoomStepTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefUpdateZoomStepTask.Create(aEvents, aInc);
   handleExceptionEnd

@@ -14,6 +14,7 @@ end;
 //function
 function CefSharedProcessMessageBuilder_IsValid(AObj: ICefSharedProcessMessageBuilder): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsValid'}
   handleExceptionBegin
   Result := AObj.IsValid();
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 function CefSharedProcessMessageBuilder_Size(AObj: ICefSharedProcessMessageBuilder): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Size'}
   handleExceptionBegin
   Result := AObj.Size();
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //function
 function CefSharedProcessMessageBuilder_Memory(AObj: ICefSharedProcessMessageBuilder): pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Memory'}
   handleExceptionBegin
   Result := AObj.Memory();
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //function
 procedure CefSharedProcessMessageBuilder_Build(AObj: ICefSharedProcessMessageBuilder; var Result: ICefProcessMessage); extdecl;
 begin
+  {$define handleExceptionFuncName :='Build'}
   handleExceptionBegin
   Result := AObj.Build();
   handleExceptionEnd

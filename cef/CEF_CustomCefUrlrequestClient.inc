@@ -2,6 +2,7 @@
 //constructor
 function CustomCefUrlrequestClient_Create(const events: ICEFUrlRequestClientEvents): TCustomCefUrlrequestClient; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCefUrlrequestClient.Create(events);
   handleExceptionEnd

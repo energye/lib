@@ -2,6 +2,7 @@
 //constructor
 function CefReadZoomTask_Create(const aEvents: IChromiumEvents): TCefReadZoomTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefReadZoomTask.Create(aEvents);
   handleExceptionEnd

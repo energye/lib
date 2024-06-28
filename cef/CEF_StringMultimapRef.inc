@@ -2,6 +2,7 @@
 //constructor
 function CefStringMultimapRef_Create(aHandle: TCefStringMultimap): TCefStringMultimapRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefStringMultimapRef.Create(aHandle);
   handleExceptionEnd

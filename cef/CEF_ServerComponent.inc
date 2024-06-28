@@ -2,6 +2,7 @@
 //constructor
 function CEFServerComponent_Create(aOwner: TComponent): TCEFServerComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFServerComponent.Create(aOwner);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //property
 function CEFServerComponent_Initialized(AObj: TCEFServerComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //property
 function CEFServerComponent_IsRunning(AObj: TCEFServerComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsRunning'}
   handleExceptionBegin
   Result := AObj.IsRunning;
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //property
 function CEFServerComponent_Address(AObj: TCEFServerComponent): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Address'}
   handleExceptionBegin
   Result := ToPChar(AObj.Address);
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //property
 function CEFServerComponent_HasConnection(AObj: TCEFServerComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasConnection'}
   handleExceptionBegin
   Result := AObj.HasConnection;
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //function
 function CEFServerComponent_IsValidConnection(AObj: TCEFServerComponent; connectionid: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsValidConnection'}
   handleExceptionBegin
   Result := AObj.IsValidConnection(connectionid);
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //procedure
 procedure CEFServerComponent_CreateServer(AObj: TCEFServerComponent; const address: PChar; port: uint16; backlog: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateServer'}
   handleExceptionBegin
   AObj.CreateServer(address, port, backlog);
   handleExceptionEnd
@@ -64,6 +71,7 @@ end;
 //procedure
 procedure CEFServerComponent_Shutdown(AObj: TCEFServerComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='Shutdown'}
   handleExceptionBegin
   AObj.Shutdown();
   handleExceptionEnd
@@ -72,6 +80,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendHttp200response(AObj: TCEFServerComponent; connectionid: Integer; const contenttype: PChar; const data: Pointer; datasize: NativeUInt); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendHttp200response'}
   handleExceptionBegin
   AObj.SendHttp200response(connectionid, contenttype, data, datasize);
   handleExceptionEnd
@@ -80,6 +89,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendHttp404response(AObj: TCEFServerComponent; connectionid: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendHttp404response'}
   handleExceptionBegin
   AObj.SendHttp404response(connectionid);
   handleExceptionEnd
@@ -88,6 +98,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendHttp500response(AObj: TCEFServerComponent; connectionid: Integer; const errormessage: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendHttp500response'}
   handleExceptionBegin
   AObj.SendHttp500response(connectionid, errormessage);
   handleExceptionEnd
@@ -96,6 +107,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendHttpResponse(AObj: TCEFServerComponent; connectionid,  responsecode: Integer; const contenttype: PChar; var contentlength: int64; const extraheaders: ICefStringMultimap); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendHttpResponse'}
   handleExceptionBegin
   AObj.SendHttpResponse(connectionid,  responsecode, contenttype, contentlength, extraheaders);
   handleExceptionEnd
@@ -104,6 +116,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendRawData(AObj: TCEFServerComponent; connectionid: Integer; const data: Pointer; datasize: NativeUInt); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendRawData'}
   handleExceptionBegin
   AObj.SendRawData(connectionid, data, datasize);
   handleExceptionEnd
@@ -112,6 +125,7 @@ end;
 //procedure
 procedure CEFServerComponent_CloseConnection(AObj: TCEFServerComponent; connectionid: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseConnection'}
   handleExceptionBegin
   AObj.CloseConnection(connectionid);
   handleExceptionEnd
@@ -120,6 +134,7 @@ end;
 //procedure
 procedure CEFServerComponent_SendWebSocketMessage(AObj: TCEFServerComponent; connectionid: Integer; const data: Pointer; datasize: NativeUInt); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendWebSocketMessage'}
   handleExceptionBegin
   AObj.SendWebSocketMessage(connectionid, data, datasize);
   handleExceptionEnd

@@ -14,6 +14,7 @@ end;
 //function
 function CefStreamWriter_Write(AObj: ICefStreamWriter; const ptr: Pointer; size,  n: NativeUInt): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Write'}
   handleExceptionBegin
   Result := AObj.write(ptr, size,  n);
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 function CefStreamWriter_Seek(AObj: ICefStreamWriter; var offset: Int64; whence: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Seek'}
   handleExceptionBegin
   Result := AObj.Seek(offset, whence);
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //function
 procedure CefStreamWriter_Tell(AObj: ICefStreamWriter; var Result: Int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='Tell'}
   handleExceptionBegin
   Result := AObj.Tell();
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //function
 function CefStreamWriter_Flush(AObj: ICefStreamWriter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flush'}
   handleExceptionBegin
   Result := AObj.Flush();
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //function
 function CefStreamWriter_MayBlock(AObj: ICefStreamWriter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MayBlock'}
   handleExceptionBegin
   Result := AObj.MayBlock();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CefCustomResolveCallback_Create(const aEvents: IChromiumEvents): TCefCustomResolveCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomResolveCallback.Create(aEvents);
   handleExceptionEnd

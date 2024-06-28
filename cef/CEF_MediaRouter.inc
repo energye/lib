@@ -14,6 +14,7 @@ end;
 //function
 procedure CefMediaRouter_AddObserver(AObj: ICefMediaRouter; const observer: ICefMediaObserver; var Result: ICefRegistration); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddObserver'}
   handleExceptionBegin
   Result := AObj.AddObserver(observer);
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 procedure CefMediaRouter_GetSource(AObj: ICefMediaRouter; const urn: PChar; var Result: ICefMediaSource); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSource'}
   handleExceptionBegin
   Result := AObj.GetSource(urn);
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //procedure
 procedure CefMediaRouter_NotifyCurrentSinks(AObj: ICefMediaRouter); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyCurrentSinks'}
   handleExceptionBegin
   AObj.NotifyCurrentSinks();
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //procedure
 procedure CefMediaRouter_CreateRoute(AObj: ICefMediaRouter; const source: ICefMediaSource; const sink: ICefMediaSink; const callback: ICefMediaRouteCreateCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateRoute'}
   handleExceptionBegin
   AObj.CreateRoute(source, sink, callback);
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //procedure
 procedure CefMediaRouter_NotifyCurrentRoutes(AObj: ICefMediaRouter); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyCurrentRoutes'}
   handleExceptionBegin
   AObj.NotifyCurrentRoutes();
   handleExceptionEnd

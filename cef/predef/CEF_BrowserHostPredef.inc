@@ -4,6 +4,7 @@ var
   underline: TCefCompositionUnderlineDynArray;
   idx: Integer;
 begin
+  {$define handleExceptionFuncName :='IMESetComposition'}
   handleExceptionBegin
   if ASize > 0 then
     try

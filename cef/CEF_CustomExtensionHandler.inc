@@ -2,6 +2,7 @@
 //constructor
 function CustomExtensionHandler_Create(const events: IChromiumEvents): TCustomExtensionHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomExtensionHandler.Create(events);
   handleExceptionEnd

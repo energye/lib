@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefSelectClientCertificateCallback_Select(AObj: ICefSelectClientCertificateCallback; const cert: ICefX509Certificate); extdecl;
 begin
+  {$define handleExceptionFuncName :='Select'}
   handleExceptionBegin
   AObj.Select(cert);
   handleExceptionEnd

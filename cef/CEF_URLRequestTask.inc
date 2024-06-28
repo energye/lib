@@ -2,6 +2,7 @@
 //constructor
 function CefURLRequestTask_Create(const aEvents: ICEFUrlRequestClientEvents): TCefURLRequestTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefURLRequestTask.Create(aEvents);
   handleExceptionEnd

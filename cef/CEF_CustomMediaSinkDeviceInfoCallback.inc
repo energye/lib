@@ -2,6 +2,7 @@
 //constructor
 function CefCustomMediaSinkDeviceInfoCallback_Create(const aEvents: IChromiumEvents): TCefCustomMediaSinkDeviceInfoCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomMediaSinkDeviceInfoCallback.Create(aEvents);
   handleExceptionEnd

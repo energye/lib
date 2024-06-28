@@ -2,6 +2,7 @@
 //constructor
 function CustomMenuButtonDelegate_Create(const events: ICefMenuButtonDelegateEvents): TCustomMenuButtonDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomMenuButtonDelegate.Create(events);
   handleExceptionEnd

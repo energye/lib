@@ -2,6 +2,7 @@
 //constructor
 function CefEnableFocusTask_Create(const aEvents: IChromiumEvents): TCefEnableFocusTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefEnableFocusTask.Create(aEvents);
   handleExceptionEnd

@@ -5,6 +5,7 @@ var
   RetelementsCount: NativeUInt;
   Retelements: TCefPostDataElementArray;
 begin
+  {$define handleExceptionFuncName :='GetElements'}
   handleExceptionBegin
   RetelementsCount := elementsCount;
   Retelements := elements;

@@ -2,6 +2,7 @@
 //constructor
 function CefCustomDownloadImageCallback_Create(const aEvents: IChromiumEvents): TCefCustomDownloadImageCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomDownloadImageCallback.Create(aEvents);
   handleExceptionEnd

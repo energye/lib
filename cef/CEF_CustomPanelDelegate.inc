@@ -2,6 +2,7 @@
 //constructor
 function CustomPanelDelegate_Create(const events: ICefPanelDelegateEvents): TCustomPanelDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPanelDelegate.Create(events);
   handleExceptionEnd

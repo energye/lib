@@ -2,6 +2,7 @@
 //constructor
 function CustomKeyboardHandler_Create(const events: IChromiumEvents): TCustomKeyboardHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomKeyboardHandler.Create(events);
   handleExceptionEnd

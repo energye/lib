@@ -2,6 +2,7 @@
 //constructor
 function EnergyStringMap_Create(): TEnergyStringMap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TEnergyStringMap.Create();
   handleExceptionEnd

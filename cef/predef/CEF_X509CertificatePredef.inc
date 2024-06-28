@@ -5,6 +5,7 @@ var
   RetchainCount: NativeUInt;
   Retchain: TCefBinaryValueArray;
 begin
+  {$define handleExceptionFuncName :='GetDEREncodedIssuerChain'}
   handleExceptionBegin
   RetchainCount := chainCount;
   Retchain := chain;
@@ -20,6 +21,7 @@ var
   RetchainCount: NativeUInt;
   Retchain: TCefBinaryValueArray;
 begin
+  {$define handleExceptionFuncName :='GetPEMEncodedIssuerChain'}
   handleExceptionBegin
   RetchainCount := chainCount;
   Retchain := chain;

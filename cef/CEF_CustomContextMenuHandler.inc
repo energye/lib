@@ -2,6 +2,7 @@
 //constructor
 function CustomContextMenuHandler_Create(const events: IChromiumEvents): TCustomContextMenuHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomContextMenuHandler.Create(events);
   handleExceptionEnd

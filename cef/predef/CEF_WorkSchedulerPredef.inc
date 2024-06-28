@@ -1,6 +1,7 @@
 
 procedure GlobalCEFWorkScheduler_SetGlobalWorkScheduler(const AObj: TCEFWorkScheduler); extdecl;
 begin
+  {$define handleExceptionFuncName :=''}
   handleExceptionBegin
   if GlobalCEFWorkScheduler = nil then
     GlobalCEFWorkScheduler := AObj;
@@ -9,6 +10,7 @@ end;
 
 procedure GlobalCEFWorkScheduler_DestroyGlobalCEFWorkScheduler(); extdecl;
 begin
+  {$define handleExceptionFuncName :='DestroyGlobalCEFWorkScheduler'}
   handleExceptionBegin
   DestroyGlobalCEFWorkScheduler();
   handleExceptionEnd

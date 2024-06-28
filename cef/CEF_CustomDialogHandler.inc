@@ -2,6 +2,7 @@
 //constructor
 function CustomDialogHandler_Create(const events: IChromiumEvents): TCustomDialogHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDialogHandler.Create(events);
   handleExceptionEnd

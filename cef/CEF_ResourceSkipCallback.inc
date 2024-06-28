@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefResourceSkipCallback_Cont(AObj: ICefResourceSkipCallback; var bytesskipped: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(bytesskipped);
   handleExceptionEnd

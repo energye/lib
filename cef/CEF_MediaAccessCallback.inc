@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefMediaAccessCallback_Cont(AObj: ICefMediaAccessCallback; allowedpermissions: TCefMediaAccessPermissionTypes); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.cont(allowedpermissions);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefMediaAccessCallback_Cancel(AObj: ICefMediaAccessCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   AObj.cancel();
   handleExceptionEnd

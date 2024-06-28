@@ -2,6 +2,7 @@
 //constructor
 function CustomRenderHandler_Create(const events: IChromiumEvents): TCustomRenderHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomRenderHandler.Create(events);
   handleExceptionEnd

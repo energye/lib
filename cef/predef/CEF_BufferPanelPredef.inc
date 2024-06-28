@@ -7,6 +7,7 @@ var
 {$ENDIF}
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='ChangeCompositionRange'}
   handleExceptionBegin
   SetLength(characterbounds, ASize);
   for idx := 0 to ASize - 1 do

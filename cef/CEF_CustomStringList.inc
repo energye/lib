@@ -2,6 +2,7 @@
 //constructor
 function CefCustomStringList_Create(): TCefCustomStringList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomStringList.Create();
   handleExceptionEnd

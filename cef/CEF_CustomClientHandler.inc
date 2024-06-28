@@ -2,6 +2,7 @@
 //constructor
 function CustomClientHandler_Create(const events: IChromiumEvents; aDevToolsClient: LongBool): TCustomClientHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomClientHandler.Create(events, aDevToolsClient);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CustomClientHandler_RemoveReferences(AObj: TCustomClientHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveReferences'}
   handleExceptionBegin
   AObj.RemoveReferences();
   handleExceptionEnd

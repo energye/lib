@@ -2,6 +2,7 @@
 //constructor
 function ChromiumFontOptions_Create(): TChromiumFontOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TChromiumFontOptions.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ChromiumFontOptions_StandardFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='StandardFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ChromiumFontOptions_FixedFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ChromiumFontOptions_SerifFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SerifFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ChromiumFontOptions_SansSerifFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SansSerifFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ChromiumFontOptions_CursiveFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CursiveFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ChromiumFontOptions_FantasyFontFamily(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FantasyFontFamily'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ChromiumFontOptions_DefaultFontSize(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function ChromiumFontOptions_DefaultFixedFontSize(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultFixedFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function ChromiumFontOptions_MinimumFontSize(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinimumFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function ChromiumFontOptions_MinimumLogicalFontSize(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinimumLogicalFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function ChromiumFontOptions_RemoteFonts(AIsSet: LongBool; AObj: TChromiumFontOptions; AValue: TCefState): TCefState; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoteFonts'}
   handleExceptionBegin
   if AIsSet then
   begin

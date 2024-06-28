@@ -2,6 +2,7 @@
 //constructor
 function CefBaseRefCounted_Create(data: Pointer): TCefBaseRefCountedRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefBaseRefCountedRef.Create(data);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 function CefBaseRefCounted_HasOneRef(AObj: ICefBaseRefCounted): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasOneRef'}
   handleExceptionBegin
   Result := AObj.HasOneRef();
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 function CefBaseRefCounted_HasAtLeastOneRef(AObj: ICefBaseRefCounted): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasAtLeastOneRef'}
   handleExceptionBegin
   Result := AObj.HasAtLeastOneRef();
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //function
 function CefBaseRefCounted_SameAs(AObj: ICefBaseRefCounted; aData: Pointer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SameAs'}
   handleExceptionBegin
   Result := AObj.SameAs(aData);
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //function
 function CefBaseRefCounted_SameAs1(AObj: ICefBaseRefCounted; const aBaseRefCounted: ICefBaseRefCounted): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SameAs1'}
   handleExceptionBegin
   Result := AObj.SameAs(aBaseRefCounted);
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //function
 function CefBaseRefCounted_Wrap(AObj: ICefBaseRefCounted): Pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wrap'}
   handleExceptionBegin
   Result := AObj.Wrap();
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //procedure
 procedure CefBaseRefCounted_DestroyOtherRefs(AObj: ICefBaseRefCounted); extdecl;
 begin
+  {$define handleExceptionFuncName :='DestroyOtherRefs'}
   handleExceptionBegin
   AObj.DestroyOtherRefs();
   handleExceptionEnd

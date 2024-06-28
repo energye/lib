@@ -20,6 +20,7 @@ end;
 //function
 function CefTaskRunner_IsSame(AObj: ICefTaskRunner; const that: ICefTaskRunner): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSame'}
   handleExceptionBegin
   Result := AObj.IsSame(that);
   handleExceptionEnd
@@ -28,6 +29,7 @@ end;
 //function
 function CefTaskRunner_BelongsToCurrentThread(AObj: ICefTaskRunner): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='BelongsToCurrentThread'}
   handleExceptionBegin
   Result := AObj.BelongsToCurrentThread();
   handleExceptionEnd
@@ -36,6 +38,7 @@ end;
 //function
 function CefTaskRunner_BelongsToThread(AObj: ICefTaskRunner; threadId: TCefThreadId): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='BelongsToThread'}
   handleExceptionBegin
   Result := AObj.BelongsToThread(threadId);
   handleExceptionEnd
@@ -44,6 +47,7 @@ end;
 //function
 function CefTaskRunner_PostTask(AObj: ICefTaskRunner; const task: ICefTask): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PostTask'}
   handleExceptionBegin
   Result := AObj.PostTask(task);
   handleExceptionEnd
@@ -52,6 +56,7 @@ end;
 //function
 function CefTaskRunner_PostDelayedTask(AObj: ICefTaskRunner; const task: ICefTask; var delayMs: Int64): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PostDelayedTask'}
   handleExceptionBegin
   Result := AObj.PostDelayedTask(task, delayMs);
   handleExceptionEnd

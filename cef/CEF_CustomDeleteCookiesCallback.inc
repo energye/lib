@@ -2,6 +2,7 @@
 //constructor
 function CefCustomDeleteCookiesCallback_Create(const aEvents: IChromiumEvents): TCefCustomDeleteCookiesCallback; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomDeleteCookiesCallback.Create(aEvents);
   handleExceptionEnd

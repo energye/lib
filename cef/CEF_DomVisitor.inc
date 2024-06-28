@@ -2,6 +2,7 @@
 //constructor
 function DomVisitor_Create(): TDomVisitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDomVisitor.Create();
   handleExceptionEnd

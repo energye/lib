@@ -2,6 +2,7 @@
 //constructor
 function CefStringListRef_Create(aHandle: TCefStringList): TCefStringListRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefStringListRef.Create(aHandle);
   handleExceptionEnd

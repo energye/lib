@@ -14,6 +14,7 @@ end;
 //function
 function CefImage_IsEmpty(AObj: ICefImage): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsEmpty'}
   handleExceptionBegin
   Result := AObj.IsEmpty();
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 function CefImage_IsSame(AObj: ICefImage; const that: ICefImage): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSame'}
   handleExceptionBegin
   Result := AObj.IsSame(that);
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //function
 function CefImage_AddBitmap(AObj: ICefImage; var scaleFactor: Single; pixelWidth,  pixelHeight: Integer; colorType: TCefColorType; alphaType: TCefAlphaType; const pixelData: Pointer; pixelDataSize: NativeUInt): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddBitmap'}
   handleExceptionBegin
   Result := AObj.AddBitmap(scaleFactor, pixelWidth,  pixelHeight, colorType, alphaType, pixelData, pixelDataSize);
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //function
 function CefImage_AddPng(AObj: ICefImage; var scaleFactor: Single; const pngData: Pointer; pngDataSize: NativeUInt): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddPng'}
   handleExceptionBegin
   Result := AObj.AddPng(scaleFactor, pngData, pngDataSize);
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //function
 function CefImage_AddJpeg(AObj: ICefImage; var scaleFactor: Single; const jpegData: Pointer; jpegDataSize: NativeUInt): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddJpeg'}
   handleExceptionBegin
   Result := AObj.AddJpeg(scaleFactor, jpegData, jpegDataSize);
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //function
 function CefImage_GetWidth(AObj: ICefImage): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetWidth'}
   handleExceptionBegin
   Result := AObj.GetWidth();
   handleExceptionEnd
@@ -62,6 +68,7 @@ end;
 //function
 function CefImage_GetHeight(AObj: ICefImage): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetHeight'}
   handleExceptionBegin
   Result := AObj.GetHeight();
   handleExceptionEnd
@@ -70,6 +77,7 @@ end;
 //function
 function CefImage_HasRepresentation(AObj: ICefImage; var scaleFactor: Single): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasRepresentation'}
   handleExceptionBegin
   Result := AObj.HasRepresentation(scaleFactor);
   handleExceptionEnd
@@ -78,6 +86,7 @@ end;
 //function
 function CefImage_RemoveRepresentation(AObj: ICefImage; var scaleFactor: Single): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveRepresentation'}
   handleExceptionBegin
   Result := AObj.RemoveRepresentation(scaleFactor);
   handleExceptionEnd
@@ -90,6 +99,7 @@ var
   RetpixelWidth: Integer;
   RetpixelHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='GetRepresentationInfo'}
   handleExceptionBegin
   RetactualScaleFactor := actualScaleFactor;
   RetpixelWidth := pixelWidth;
@@ -107,6 +117,7 @@ var
   RetpixelWidth: Integer;
   RetpixelHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='GetAsBitmap'}
   handleExceptionBegin
   RetpixelWidth := pixelWidth;
   RetpixelHeight := pixelHeight;
@@ -122,6 +133,7 @@ var
   RetpixelWidth: Integer;
   RetpixelHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='GetAsPng'}
   handleExceptionBegin
   RetpixelWidth := pixelWidth;
   RetpixelHeight := pixelHeight;
@@ -137,6 +149,7 @@ var
   RetpixelWidth: Integer;
   RetpixelHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='GetAsJpeg'}
   handleExceptionBegin
   RetpixelWidth := pixelWidth;
   RetpixelHeight := pixelHeight;

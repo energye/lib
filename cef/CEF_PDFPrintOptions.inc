@@ -2,6 +2,7 @@
 //constructor
 function PDFPrintOptions_Create(): TPDFPrintOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPDFPrintOptions.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PDFPrintOptions_Landscape(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Landscape'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function PDFPrintOptions_PrintBackground(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintBackground'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function PDFPrintOptions_PreferCSSPageSize(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PreferCSSPageSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function PDFPrintOptions_PageRanges(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageRanges'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function PDFPrintOptions_DisplayHeaderFooter(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisplayHeaderFooter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function PDFPrintOptions_HeaderTemplate(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderTemplate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function PDFPrintOptions_FooterTemplate(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FooterTemplate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function PDFPrintOptions_GenerateTaggedPDF(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GenerateTaggedPDF'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 procedure PDFPrintOptions_Scale(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='Scale'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 procedure PDFPrintOptions_ScalePct(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ScalePct'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 procedure PDFPrintOptions_PaperWidthInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaperWidthInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 procedure PDFPrintOptions_PaperHeightInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaperHeightInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 procedure PDFPrintOptions_PaperWidthMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaperWidthMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 procedure PDFPrintOptions_PaperHeightMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaperHeightMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function PDFPrintOptions_MarginType(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: TCefPdfPrintMarginType): TCefPdfPrintMarginType; extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginTopInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginTopInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginRightInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginRightInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +232,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginBottomInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginBottomInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +245,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginLeftInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginLeftInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +258,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginTopMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginTopMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +271,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginRightMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginRightMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +284,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginBottomMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginBottomMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +297,7 @@ end;
 //property
 procedure PDFPrintOptions_MarginLeftMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginLeftMM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -288,6 +312,7 @@ procedure PDFPrintOptions_CopyToSettings(AObj: TPDFPrintOptions; var aSettings: 
 var
   RetaSettings: TCefPdfPrintSettings;
 begin
+  {$define handleExceptionFuncName :='CopyToSettings'}
   handleExceptionBegin
   RetaSettings := aSettings;
   AObj.CopyToSettings(RetaSettings);

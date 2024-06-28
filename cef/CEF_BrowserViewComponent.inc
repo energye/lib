@@ -2,6 +2,7 @@
 //constructor
 function CEFBrowserViewComponent_Create(aOwner: TComponent): TCEFBrowserViewComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFBrowserViewComponent.Create(aOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 procedure CEFBrowserViewComponent_Browser(AObj: TCEFBrowserViewComponent; var Result: ICefBrowser); extdecl;
 begin
+  {$define handleExceptionFuncName :='Browser'}
   handleExceptionBegin
   Result := AObj.Browser;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CEFBrowserViewComponent_BrowserView(AObj: TCEFBrowserViewComponent; var Result: ICefBrowserView); extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserView'}
   handleExceptionBegin
   Result := AObj.BrowserView;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //function
 function CEFBrowserViewComponent_CreateBrowserView(AObj: TCEFBrowserViewComponent; const client: ICefClient; const url: PChar; const settings: TCefBrowserSettings; const extrainfo: ICefDictionaryValue; const requestcontext: ICefRequestContext): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateBrowserView'}
   handleExceptionBegin
   Result := AObj.CreateBrowserView(client, url, settings, extrainfo, requestcontext);
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //function
 function CEFBrowserViewComponent_GetForBrowser(AObj: TCEFBrowserViewComponent; const browser: ICefBrowser): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetForBrowser'}
   handleExceptionBegin
   Result := AObj.GetForBrowser(browser);
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //procedure
 procedure CEFBrowserViewComponent_SetPreferAccelerators(AObj: TCEFBrowserViewComponent; preferaccelerators: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetPreferAccelerators'}
   handleExceptionBegin
   AObj.SetPreferAccelerators(preferaccelerators);
   handleExceptionEnd

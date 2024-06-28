@@ -8,6 +8,7 @@ end;
 //function
 function CefV8Exception_GetMessage(AObj: ICefV8Exception): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetMessage'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetMessage());
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 function CefV8Exception_GetSourceLine(AObj: ICefV8Exception): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSourceLine'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetSourceLine());
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 function CefV8Exception_GetScriptResourceName(AObj: ICefV8Exception): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetScriptResourceName'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetScriptResourceName());
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //function
 function CefV8Exception_GetLineNumber(AObj: ICefV8Exception): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetLineNumber'}
   handleExceptionBegin
   Result := AObj.GetLineNumber();
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //function
 function CefV8Exception_GetStartPosition(AObj: ICefV8Exception): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetStartPosition'}
   handleExceptionBegin
   Result := AObj.GetStartPosition();
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //function
 function CefV8Exception_GetEndPosition(AObj: ICefV8Exception): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEndPosition'}
   handleExceptionBegin
   Result := AObj.GetEndPosition();
   handleExceptionEnd
@@ -56,6 +62,7 @@ end;
 //function
 function CefV8Exception_GetStartColumn(AObj: ICefV8Exception): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetStartColumn'}
   handleExceptionBegin
   Result := AObj.GetStartColumn();
   handleExceptionEnd
@@ -64,6 +71,7 @@ end;
 //function
 function CefV8Exception_GetEndColumn(AObj: ICefV8Exception): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEndColumn'}
   handleExceptionBegin
   Result := AObj.GetEndColumn();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function EnergyStringList_Create(): TEnergyStringList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TEnergyStringList.Create();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function ChromiumCore_Create(aOwner: TComponent): TChromiumCore; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TChromiumCore.Create(aOwner);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //property
 function ChromiumCore_DefaultUrl(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultUrl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -28,6 +30,7 @@ end;
 //property
 procedure ChromiumCore_Options(AIsSet: LongBool; AObj: TChromiumCore; AValue: TChromiumOptions; var Result: TChromiumOptions); extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -40,6 +43,7 @@ end;
 //property
 function ChromiumCore_FontOptions(AIsSet: LongBool; AObj: TChromiumCore; AValue: TChromiumFontOptions): TChromiumFontOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='FontOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -52,6 +56,7 @@ end;
 //property
 function ChromiumCore_PDFPrintOptions(AIsSet: LongBool; AObj: TChromiumCore; AValue: TPDFPrintOptions): TPDFPrintOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='PDFPrintOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -64,6 +69,7 @@ end;
 //property
 function ChromiumCore_BrowserId(AObj: TChromiumCore): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserId'}
   handleExceptionBegin
   Result := AObj.BrowserId;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //property
 procedure ChromiumCore_Browser(AObj: TChromiumCore; var Result: ICefBrowser); extdecl;
 begin
+  {$define handleExceptionFuncName :='Browser'}
   handleExceptionBegin
   Result := AObj.Browser;
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //property
 procedure ChromiumCore_BrowserById(AObj: TChromiumCore; id: integer; var Result: ICefBrowser); extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserById'}
   handleExceptionBegin
   Result := AObj.BrowserById[id];
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //property
 function ChromiumCore_BrowserCount(AObj: TChromiumCore): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserCount'}
   handleExceptionBegin
   Result := AObj.BrowserCount;
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //property
 function ChromiumCore_BrowserIdByIndex(AObj: TChromiumCore; i: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserIdByIndex'}
   handleExceptionBegin
   Result := AObj.BrowserIdByIndex[i];
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //property
 procedure ChromiumCore_CefClient(AObj: TChromiumCore; var Result: ICefClient); extdecl;
 begin
+  {$define handleExceptionFuncName :='CefClient'}
   handleExceptionBegin
   Result := AObj.CefClient;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //property
 procedure ChromiumCore_ReqContextHandler(AObj: TChromiumCore; var Result: ICefRequestContextHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReqContextHandler'}
   handleExceptionBegin
   Result := AObj.ReqContextHandler;
   handleExceptionEnd
@@ -120,6 +132,7 @@ end;
 //property
 procedure ChromiumCore_ResourceRequestHandler(AObj: TChromiumCore; var Result: ICefResourceRequestHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResourceRequestHandler'}
   handleExceptionBegin
   Result := AObj.ResourceRequestHandler;
   handleExceptionEnd
@@ -128,6 +141,7 @@ end;
 //property
 function ChromiumCore_CefWindowInfo(AObj: TChromiumCore): TCefWindowInfo; extdecl;
 begin
+  {$define handleExceptionFuncName :='CefWindowInfo'}
   handleExceptionBegin
   Result := AObj.CefWindowInfo;
   handleExceptionEnd
@@ -136,6 +150,7 @@ end;
 //property
 procedure ChromiumCore_VisibleNavigationEntry(AObj: TChromiumCore; var Result: ICefNavigationEntry); extdecl;
 begin
+  {$define handleExceptionFuncName :='VisibleNavigationEntry'}
   handleExceptionBegin
   Result := AObj.VisibleNavigationEntry;
   handleExceptionEnd
@@ -144,6 +159,7 @@ end;
 //property
 procedure ChromiumCore_RequestContext(AObj: TChromiumCore; var Result: ICefRequestContext); extdecl;
 begin
+  {$define handleExceptionFuncName :='RequestContext'}
   handleExceptionBegin
   Result := AObj.RequestContext;
   handleExceptionEnd
@@ -152,6 +168,7 @@ end;
 //property
 procedure ChromiumCore_MediaRouter(AObj: TChromiumCore; var Result: ICefMediaRouter); extdecl;
 begin
+  {$define handleExceptionFuncName :='MediaRouter'}
   handleExceptionBegin
   Result := AObj.MediaRouter;
   handleExceptionEnd
@@ -160,6 +177,7 @@ end;
 //property
 procedure ChromiumCore_MediaObserver(AObj: TChromiumCore; var Result: ICefMediaObserver); extdecl;
 begin
+  {$define handleExceptionFuncName :='MediaObserver'}
   handleExceptionBegin
   Result := AObj.MediaObserver;
   handleExceptionEnd
@@ -168,6 +186,7 @@ end;
 //property
 procedure ChromiumCore_MediaObserverReg(AObj: TChromiumCore; var Result: ICefRegistration); extdecl;
 begin
+  {$define handleExceptionFuncName :='MediaObserverReg'}
   handleExceptionBegin
   Result := AObj.MediaObserverReg;
   handleExceptionEnd
@@ -176,6 +195,7 @@ end;
 //property
 procedure ChromiumCore_DevToolsMsgObserver(AObj: TChromiumCore; var Result: ICefDevToolsMessageObserver); extdecl;
 begin
+  {$define handleExceptionFuncName :='DevToolsMsgObserver'}
   handleExceptionBegin
   Result := AObj.DevToolsMsgObserver;
   handleExceptionEnd
@@ -184,6 +204,7 @@ end;
 //property
 procedure ChromiumCore_DevToolsMsgObserverReg(AObj: TChromiumCore; var Result: ICefRegistration); extdecl;
 begin
+  {$define handleExceptionFuncName :='DevToolsMsgObserverReg'}
   handleExceptionBegin
   Result := AObj.DevToolsMsgObserverReg;
   handleExceptionEnd
@@ -192,6 +213,7 @@ end;
 //property
 procedure ChromiumCore_ExtensionHandler(AObj: TChromiumCore; var Result: ICefExtensionHandler); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtensionHandler'}
   handleExceptionBegin
   Result := AObj.ExtensionHandler;
   handleExceptionEnd
@@ -200,6 +222,7 @@ end;
 //property
 function ChromiumCore_MultithreadApp(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MultithreadApp'}
   handleExceptionBegin
   Result := AObj.MultithreadApp;
   handleExceptionEnd
@@ -208,6 +231,7 @@ end;
 //property
 function ChromiumCore_IsLoading(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsLoading'}
   handleExceptionBegin
   Result := AObj.IsLoading;
   handleExceptionEnd
@@ -216,6 +240,7 @@ end;
 //property
 function ChromiumCore_HasDocument(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasDocument'}
   handleExceptionBegin
   Result := AObj.HasDocument;
   handleExceptionEnd
@@ -224,6 +249,7 @@ end;
 //property
 function ChromiumCore_HasView(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasView'}
   handleExceptionBegin
   Result := AObj.HasView;
   handleExceptionEnd
@@ -232,6 +258,7 @@ end;
 //property
 function ChromiumCore_HasDevTools(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasDevTools'}
   handleExceptionBegin
   Result := AObj.HasDevTools;
   handleExceptionEnd
@@ -240,6 +267,7 @@ end;
 //property
 function ChromiumCore_HasClientHandler(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasClientHandler'}
   handleExceptionBegin
   Result := AObj.HasClientHandler;
   handleExceptionEnd
@@ -248,6 +276,7 @@ end;
 //property
 function ChromiumCore_HasBrowser(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasBrowser'}
   handleExceptionBegin
   Result := AObj.HasBrowser;
   handleExceptionEnd
@@ -256,6 +285,7 @@ end;
 //property
 function ChromiumCore_CanGoBack(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanGoBack'}
   handleExceptionBegin
   Result := AObj.CanGoBack;
   handleExceptionEnd
@@ -264,6 +294,7 @@ end;
 //property
 function ChromiumCore_CanGoForward(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanGoForward'}
   handleExceptionBegin
   Result := AObj.CanGoForward;
   handleExceptionEnd
@@ -272,6 +303,7 @@ end;
 //property
 function ChromiumCore_IsPopUp(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsPopUp'}
   handleExceptionBegin
   Result := AObj.IsPopUp;
   handleExceptionEnd
@@ -280,6 +312,7 @@ end;
 //property
 function ChromiumCore_WindowHandle(AObj: TChromiumCore): TCefWindowHandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='WindowHandle'}
   handleExceptionBegin
   Result := AObj.WindowHandle;
   handleExceptionEnd
@@ -288,6 +321,7 @@ end;
 //property
 function ChromiumCore_OpenerWindowHandle(AObj: TChromiumCore): TCefWindowHandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='OpenerWindowHandle'}
   handleExceptionBegin
   Result := AObj.OpenerWindowHandle;
   handleExceptionEnd
@@ -297,6 +331,7 @@ end;
 function ChromiumCore_BrowserHandle(AObj: TChromiumCore): THandle; extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='BrowserHandle'}
   handleExceptionBegin
   Result := AObj.BrowserHandle;
   handleExceptionEnd
@@ -307,6 +342,7 @@ end;
 function ChromiumCore_WidgetHandle(AObj: TChromiumCore): THandle; extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='WidgetHandle'}
   handleExceptionBegin
   Result := AObj.WidgetHandle;
   handleExceptionEnd
@@ -317,6 +353,7 @@ end;
 function ChromiumCore_RenderHandle(AObj: TChromiumCore): THandle; extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='RenderHandle'}
   handleExceptionBegin
   Result := AObj.RenderHandle;
   handleExceptionEnd
@@ -326,6 +363,7 @@ end;
 //property
 function ChromiumCore_FrameIsFocused(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FrameIsFocused'}
   handleExceptionBegin
   Result := AObj.FrameIsFocused;
   handleExceptionEnd
@@ -334,6 +372,7 @@ end;
 //property
 function ChromiumCore_Initialized(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -342,6 +381,7 @@ end;
 //property
 function ChromiumCore_RequestContextCache(AObj: TChromiumCore): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='RequestContextCache'}
   handleExceptionBegin
   Result := ToPChar(AObj.RequestContextCache);
   handleExceptionEnd
@@ -350,6 +390,7 @@ end;
 //property
 function ChromiumCore_RequestContextIsGlobal(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RequestContextIsGlobal'}
   handleExceptionBegin
   Result := AObj.RequestContextIsGlobal;
   handleExceptionEnd
@@ -358,6 +399,7 @@ end;
 //property
 function ChromiumCore_DocumentURL(AObj: TChromiumCore): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DocumentURL'}
   handleExceptionBegin
   Result := ToPChar(AObj.DocumentURL);
   handleExceptionEnd
@@ -366,6 +408,7 @@ end;
 //property
 procedure ChromiumCore_ZoomLevel(AIsSet: LongBool; AObj: TChromiumCore; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomLevel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -378,6 +421,7 @@ end;
 //property
 procedure ChromiumCore_DefaultZoomLevel(AObj: TChromiumCore; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultZoomLevel'}
   handleExceptionBegin
   Result := AObj.DefaultZoomLevel;
   handleExceptionEnd
@@ -386,6 +430,7 @@ end;
 //property
 function ChromiumCore_CanIncZoom(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanIncZoom'}
   handleExceptionBegin
   Result := AObj.CanIncZoom;
   handleExceptionEnd
@@ -394,6 +439,7 @@ end;
 //property
 function ChromiumCore_CanDecZoom(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanDecZoom'}
   handleExceptionBegin
   Result := AObj.CanDecZoom;
   handleExceptionEnd
@@ -402,6 +448,7 @@ end;
 //property
 function ChromiumCore_CanResetZoom(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanResetZoom'}
   handleExceptionBegin
   Result := AObj.CanResetZoom;
   handleExceptionEnd
@@ -410,6 +457,7 @@ end;
 //property
 procedure ChromiumCore_ZoomPct(AIsSet: LongBool; AObj: TChromiumCore; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomPct'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -422,6 +470,7 @@ end;
 //property
 function ChromiumCore_ZoomStep(AIsSet: LongBool; AObj: TChromiumCore; AValue: byte): byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomStep'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -434,6 +483,7 @@ end;
 //property
 function ChromiumCore_WindowlessFrameRate(AIsSet: LongBool; AObj: TChromiumCore; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='WindowlessFrameRate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -446,6 +496,7 @@ end;
 //property
 function ChromiumCore_CustomHeaderName(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomHeaderName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -458,6 +509,7 @@ end;
 //property
 function ChromiumCore_CustomHeaderValue(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomHeaderValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -470,6 +522,7 @@ end;
 //property
 function ChromiumCore_DoNotTrack(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DoNotTrack'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -482,6 +535,7 @@ end;
 //property
 function ChromiumCore_SendReferrer(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SendReferrer'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -494,6 +548,7 @@ end;
 //property
 function ChromiumCore_HyperlinkAuditing(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HyperlinkAuditing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -506,6 +561,7 @@ end;
 //property
 function ChromiumCore_AllowOutdatedPlugins(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowOutdatedPlugins'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -518,6 +574,7 @@ end;
 //property
 function ChromiumCore_AlwaysAuthorizePlugins(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlwaysAuthorizePlugins'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -530,6 +587,7 @@ end;
 //property
 function ChromiumCore_AlwaysOpenPDFExternally(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlwaysOpenPDFExternally'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -542,6 +600,7 @@ end;
 //property
 function ChromiumCore_SpellChecking(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SpellChecking'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -554,6 +613,7 @@ end;
 //property
 function ChromiumCore_SpellCheckerDicts(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SpellCheckerDicts'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -566,6 +626,7 @@ end;
 //property
 function ChromiumCore_HasValidMainFrame(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasValidMainFrame'}
   handleExceptionBegin
   Result := AObj.HasValidMainFrame;
   handleExceptionEnd
@@ -574,6 +635,7 @@ end;
 //property
 function ChromiumCore_FrameCount(AObj: TChromiumCore): NativeUInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='FrameCount'}
   handleExceptionBegin
   Result := AObj.FrameCount;
   handleExceptionEnd
@@ -582,6 +644,7 @@ end;
 //property
 function ChromiumCore_DragOperations(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefDragOperations): TCefDragOperations; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragOperations'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -594,6 +657,7 @@ end;
 //property
 function ChromiumCore_AudioMuted(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AudioMuted'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -606,6 +670,7 @@ end;
 //property
 function ChromiumCore_Fullscreen(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Fullscreen'}
   handleExceptionBegin
   Result := AObj.Fullscreen;
   handleExceptionEnd
@@ -614,6 +679,7 @@ end;
 //property
 function ChromiumCore_SafeSearch(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SafeSearch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -626,6 +692,7 @@ end;
 //property
 function ChromiumCore_YouTubeRestrict(AIsSet: LongBool; AObj: TChromiumCore; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='YouTubeRestrict'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -638,6 +705,7 @@ end;
 //property
 function ChromiumCore_PrintingEnabled(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintingEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -650,6 +718,7 @@ end;
 //property
 function ChromiumCore_AcceptLanguageList(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AcceptLanguageList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -662,6 +731,7 @@ end;
 //property
 function ChromiumCore_AcceptCookies(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefCookiePref): TCefCookiePref; extdecl;
 begin
+  {$define handleExceptionFuncName :='AcceptCookies'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -674,6 +744,7 @@ end;
 //property
 function ChromiumCore_Block3rdPartyCookies(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Block3rdPartyCookies'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -686,6 +757,7 @@ end;
 //property
 function ChromiumCore_MultiBrowserMode(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MultiBrowserMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -698,6 +770,7 @@ end;
 //property
 function ChromiumCore_DefaultWindowInfoExStyle(AIsSet: LongBool; AObj: TChromiumCore; AValue: DWORD): DWORD; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultWindowInfoExStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -710,6 +783,7 @@ end;
 //property
 function ChromiumCore_Offline(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Offline'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -722,6 +796,7 @@ end;
 //property
 function ChromiumCore_QuicAllowed(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='QuicAllowed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -734,6 +809,7 @@ end;
 //property
 function ChromiumCore_JavascriptEnabled(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='JavascriptEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -746,6 +822,7 @@ end;
 //property
 function ChromiumCore_LoadImagesAutomatically(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadImagesAutomatically'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -758,6 +835,7 @@ end;
 //property
 function ChromiumCore_BatterySaverModeState(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefBatterySaverModeState): TCefBatterySaverModeState; extdecl;
 begin
+  {$define handleExceptionFuncName :='BatterySaverModeState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -770,6 +848,7 @@ end;
 //property
 function ChromiumCore_HighEfficiencyModeState(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefHighEfficiencyModeState): TCefHighEfficiencyModeState; extdecl;
 begin
+  {$define handleExceptionFuncName :='HighEfficiencyModeState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -782,6 +861,7 @@ end;
 //property
 function ChromiumCore_CanFocus(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanFocus'}
   handleExceptionBegin
   Result := AObj.CanFocus;
   handleExceptionEnd
@@ -790,6 +870,7 @@ end;
 //property
 function ChromiumCore_EnableFocusDelayMs(AIsSet: LongBool; AObj: TChromiumCore; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableFocusDelayMs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -802,6 +883,7 @@ end;
 //property
 function ChromiumCore_WebRTCIPHandlingPolicy(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefWebRTCHandlingPolicy): TCefWebRTCHandlingPolicy; extdecl;
 begin
+  {$define handleExceptionFuncName :='WebRTCIPHandlingPolicy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -814,6 +896,7 @@ end;
 //property
 function ChromiumCore_WebRTCMultipleRoutes(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefState): TCefState; extdecl;
 begin
+  {$define handleExceptionFuncName :='WebRTCMultipleRoutes'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -826,6 +909,7 @@ end;
 //property
 function ChromiumCore_WebRTCNonproxiedUDP(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefState): TCefState; extdecl;
 begin
+  {$define handleExceptionFuncName :='WebRTCNonproxiedUDP'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -838,6 +922,7 @@ end;
 //property
 function ChromiumCore_ProxyType(AIsSet: LongBool; AObj: TChromiumCore; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -850,6 +935,7 @@ end;
 //property
 function ChromiumCore_ProxyScheme(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefProxyScheme): TCefProxyScheme; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyScheme'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -862,6 +948,7 @@ end;
 //property
 function ChromiumCore_ProxyServer(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyServer'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -874,6 +961,7 @@ end;
 //property
 function ChromiumCore_ProxyPort(AIsSet: LongBool; AObj: TChromiumCore; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyPort'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -886,6 +974,7 @@ end;
 //property
 function ChromiumCore_ProxyUsername(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyUsername'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -898,6 +987,7 @@ end;
 //property
 function ChromiumCore_ProxyPassword(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyPassword'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -910,6 +1000,7 @@ end;
 //property
 function ChromiumCore_ProxyScriptURL(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyScriptURL'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -922,6 +1013,7 @@ end;
 //property
 function ChromiumCore_ProxyByPassList(AIsSet: LongBool; AObj: TChromiumCore; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxyByPassList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -934,6 +1026,7 @@ end;
 //property
 function ChromiumCore_MaxConnectionsPerProxy(AIsSet: LongBool; AObj: TChromiumCore; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxConnectionsPerProxy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -946,6 +1039,7 @@ end;
 //function
 function ChromiumCore_CreateClientHandler(AObj: TChromiumCore; aIsOSR: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateClientHandler'}
   handleExceptionBegin
   Result := AObj.CreateClientHandler(aIsOSR);
   handleExceptionEnd
@@ -956,6 +1050,7 @@ function ChromiumCore_CreateClientHandler1(AObj: TChromiumCore; var aClient: ICe
 var
   RetaClient: ICefClient;
 begin
+  {$define handleExceptionFuncName :='CreateClientHandler1'}
   handleExceptionBegin
   RetaClient := aClient;
   Result := AObj.CreateClientHandler(RetaClient, aIsOSR);
@@ -966,6 +1061,7 @@ end;
 //function
 function ChromiumCore_TryCloseBrowser(AObj: TChromiumCore): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='TryCloseBrowser'}
   handleExceptionBegin
   Result := AObj.TryCloseBrowser();
   handleExceptionEnd
@@ -974,6 +1070,7 @@ end;
 //function
 function ChromiumCore_SelectBrowser(AObj: TChromiumCore; aID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectBrowser'}
   handleExceptionBegin
   Result := AObj.SelectBrowser(aID);
   handleExceptionEnd
@@ -982,6 +1079,7 @@ end;
 //function
 function ChromiumCore_IndexOfBrowserID(AObj: TChromiumCore; aID: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfBrowserID'}
   handleExceptionBegin
   Result := AObj.IndexOfBrowserID(aID);
   handleExceptionEnd
@@ -992,6 +1090,7 @@ function ChromiumCore_ShareRequestContext(AObj: TChromiumCore; var aContext: ICe
 var
   RetaContext: ICefRequestContext;
 begin
+  {$define handleExceptionFuncName :='ShareRequestContext'}
   handleExceptionBegin
   RetaContext := aContext;
   Result := AObj.ShareRequestContext(RetaContext, aHandler);
@@ -1003,6 +1102,7 @@ end;
 function ChromiumCore_SetNewBrowserParent(AObj: TChromiumCore; aNewParentHwnd: HWND): LongBool; extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='SetNewBrowserParent'}
   handleExceptionBegin
   Result := AObj.SetNewBrowserParent(aNewParentHwnd);
   handleExceptionEnd
@@ -1012,6 +1112,7 @@ end;
 //function
 function ChromiumCore_CreateBrowserByWindowHandle(AObj: TChromiumCore; aParentHandle: TCefWindowHandle; var aParentRect: TRect; const aWindowName: PChar; const aContext: ICefRequestContext; const aExtraInfo: ICefDictionaryValue; aForceAsPopup: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateBrowserByWindowHandle'}
   handleExceptionBegin
   Result := AObj.CreateBrowser(aParentHandle, aParentRect, aWindowName, aContext, aExtraInfo, aForceAsPopup);
   handleExceptionEnd
@@ -1020,6 +1121,7 @@ end;
 //function
 function ChromiumCore_CreateBrowserByBrowserViewComponent(AObj: TChromiumCore; const aURL: PChar; const aBrowserViewComp: TCEFBrowserViewComponent; const aContext: ICefRequestContext; const aExtraInfo: ICefDictionaryValue): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateBrowserByBrowserViewComponent'}
   handleExceptionBegin
   Result := AObj.CreateBrowser(aURL, aBrowserViewComp, aContext, aExtraInfo);
   handleExceptionEnd
@@ -1028,6 +1130,7 @@ end;
 //function
 function ChromiumCore_ClearCertificateExceptions(AObj: TChromiumCore; aClearImmediately: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearCertificateExceptions'}
   handleExceptionBegin
   Result := AObj.ClearCertificateExceptions(aClearImmediately);
   handleExceptionEnd
@@ -1036,6 +1139,7 @@ end;
 //function
 function ChromiumCore_ClearHttpAuthCredentials(AObj: TChromiumCore; aClearImmediately: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearHttpAuthCredentials'}
   handleExceptionBegin
   Result := AObj.ClearHttpAuthCredentials(aClearImmediately);
   handleExceptionEnd
@@ -1044,6 +1148,7 @@ end;
 //function
 function ChromiumCore_CloseAllConnections(AObj: TChromiumCore; aCloseImmediately: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseAllConnections'}
   handleExceptionBegin
   Result := AObj.CloseAllConnections(aCloseImmediately);
   handleExceptionEnd
@@ -1054,6 +1159,7 @@ function ChromiumCore_GetFrameNames(AObj: TChromiumCore; var aFrameNames: TStrin
 var
   RetaFrameNames: TStrings;
 begin
+  {$define handleExceptionFuncName :='GetFrameNames'}
   handleExceptionBegin
   RetaFrameNames := aFrameNames;
   Result := AObj.GetFrameNames(RetaFrameNames);
@@ -1067,6 +1173,7 @@ var
   RetaFrameCount: NativeUInt;
   RetaFrameIdentifierArray: TCefFrameIdentifierArray;
 begin
+  {$define handleExceptionFuncName :='GetFrameIdentifiers'}
   handleExceptionBegin
   RetaFrameCount := aFrameCount;
   RetaFrameIdentifierArray := aFrameIdentifierArray;
@@ -1079,6 +1186,7 @@ end;
 //function
 function ChromiumCore_IsSameBrowser(AObj: TChromiumCore; const aBrowser: ICefBrowser): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSameBrowser'}
   handleExceptionBegin
   Result := AObj.IsSameBrowser(aBrowser);
   handleExceptionEnd
@@ -1087,6 +1195,7 @@ end;
 //function
 function ChromiumCore_ExecuteTaskOnCefThread(AObj: TChromiumCore; aCefThreadId: TCefThreadId; aTaskID: uint32; var aDelayMs: Int64): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteTaskOnCefThread'}
   handleExceptionBegin
   Result := AObj.ExecuteTaskOnCefThread(aCefThreadId, aTaskID, aDelayMs);
   handleExceptionEnd
@@ -1095,6 +1204,7 @@ end;
 //function
 function ChromiumCore_DeleteCookies(AObj: TChromiumCore; const url: PChar; const cookieName: PChar; aDeleteImmediately: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookies'}
   handleExceptionBegin
   Result := AObj.DeleteCookies(url, cookieName, aDeleteImmediately);
   handleExceptionEnd
@@ -1103,6 +1213,7 @@ end;
 //function
 function ChromiumCore_VisitAllCookies(AObj: TChromiumCore; aID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisitAllCookies'}
   handleExceptionBegin
   Result := AObj.VisitAllCookies(aID);
   handleExceptionEnd
@@ -1111,6 +1222,7 @@ end;
 //function
 function ChromiumCore_VisitURLCookies(AObj: TChromiumCore; const url: PChar; includeHttpOnly: LongBool; aID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisitURLCookies'}
   handleExceptionBegin
   Result := AObj.VisitURLCookies(url, includeHttpOnly, aID);
   handleExceptionEnd
@@ -1119,6 +1231,7 @@ end;
 //function
 function ChromiumCore_FlushCookieStore(AObj: TChromiumCore; aFlushImmediately: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FlushCookieStore'}
   handleExceptionBegin
   Result := AObj.FlushCookieStore(aFlushImmediately);
   handleExceptionEnd
@@ -1127,6 +1240,7 @@ end;
 //function
 function ChromiumCore_SendDevToolsMessage(AObj: TChromiumCore; const message: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SendDevToolsMessage'}
   handleExceptionBegin
   Result := AObj.SendDevToolsMessage(message);
   handleExceptionEnd
@@ -1135,6 +1249,7 @@ end;
 //function
 function ChromiumCore_ExecuteDevToolsMethod(AObj: TChromiumCore; messageid: integer; const method: PChar; const params: ICefDictionaryValue): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteDevToolsMethod'}
   handleExceptionBegin
   Result := AObj.ExecuteDevToolsMethod(messageid, method, params);
   handleExceptionEnd
@@ -1143,6 +1258,7 @@ end;
 //function
 procedure ChromiumCore_AddDevToolsMessageObserver(AObj: TChromiumCore; const observer: ICefDevToolsMessageObserver; var Result: ICefRegistration); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddDevToolsMessageObserver'}
   handleExceptionBegin
   Result := AObj.AddDevToolsMessageObserver(observer);
   handleExceptionEnd
@@ -1151,6 +1267,7 @@ end;
 //function
 procedure ChromiumCore_CreateUrlRequest(AObj: TChromiumCore; const request: ICefRequest; const client: ICefUrlrequestClient; const aFrameName: PChar; var Result: ICefUrlRequest); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateUrlRequest'}
   handleExceptionBegin
   Result := AObj.CreateUrlRequest(request, client, aFrameName);
   handleExceptionEnd
@@ -1159,6 +1276,7 @@ end;
 //function
 procedure ChromiumCore_CreateUrlRequest1(AObj: TChromiumCore; const request: ICefRequest; const client: ICefUrlrequestClient; const aFrame: ICefFrame; var Result: ICefUrlRequest); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateUrlRequest1'}
   handleExceptionBegin
   Result := AObj.CreateUrlRequest(request, client, aFrame);
   handleExceptionEnd
@@ -1167,6 +1285,7 @@ end;
 //function
 procedure ChromiumCore_CreateUrlRequest2(AObj: TChromiumCore; const request: ICefRequest; const client: ICefUrlrequestClient; var aFrameIdentifier: int64; var Result: ICefUrlRequest); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateUrlRequest2'}
   handleExceptionBegin
   Result := AObj.CreateUrlRequest(request, client, aFrameIdentifier);
   handleExceptionEnd
@@ -1175,6 +1294,7 @@ end;
 //function
 procedure ChromiumCore_AddObserver(AObj: TChromiumCore; const observer: ICefMediaObserver; var Result: ICefRegistration); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddObserver'}
   handleExceptionBegin
   Result := AObj.AddObserver(observer);
   handleExceptionEnd
@@ -1183,6 +1303,7 @@ end;
 //function
 procedure ChromiumCore_GetSource(AObj: TChromiumCore; const urn: PChar; var Result: ICefMediaSource); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSource'}
   handleExceptionBegin
   Result := AObj.GetSource(urn);
   handleExceptionEnd
@@ -1191,6 +1312,7 @@ end;
 //function
 function ChromiumCore_LoadExtension(AObj: TChromiumCore; const rootdirectory: PChar; const manifest: ICefDictionaryValue; const handler: ICefExtensionHandler; const requestContext: ICefRequestContext): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadExtension'}
   handleExceptionBegin
   Result := AObj.LoadExtension(rootdirectory, manifest, handler, requestContext);
   handleExceptionEnd
@@ -1199,6 +1321,7 @@ end;
 //function
 function ChromiumCore_DidLoadExtension(AObj: TChromiumCore; const extensionid: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DidLoadExtension'}
   handleExceptionBegin
   Result := AObj.DidLoadExtension(extensionid);
   handleExceptionEnd
@@ -1207,6 +1330,7 @@ end;
 //function
 function ChromiumCore_HasExtension(AObj: TChromiumCore; const extensionid: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasExtension'}
   handleExceptionBegin
   Result := AObj.HasExtension(extensionid);
   handleExceptionEnd
@@ -1215,6 +1339,7 @@ end;
 //function
 function ChromiumCore_GetExtensions(AObj: TChromiumCore; const extensionids: TStringList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetExtensions'}
   handleExceptionBegin
   Result := AObj.GetExtensions(extensionids);
   handleExceptionEnd
@@ -1223,6 +1348,7 @@ end;
 //function
 procedure ChromiumCore_GetExtension(AObj: TChromiumCore; const extensionid: PChar; var Result: ICefExtension); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetExtension'}
   handleExceptionBegin
   Result := AObj.GetExtension(extensionid);
   handleExceptionEnd
@@ -1231,6 +1357,7 @@ end;
 //function
 procedure ChromiumCore_GetWebsiteSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; var Result: ICefValue); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetWebsiteSetting'}
   handleExceptionBegin
   Result := AObj.GetWebsiteSetting(requestingurl,  toplevelurl, contenttype);
   handleExceptionEnd
@@ -1239,6 +1366,7 @@ end;
 //function
 function ChromiumCore_GetContentSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes): TCefContentSettingValues; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetContentSetting'}
   handleExceptionBegin
   Result := AObj.GetContentSetting(requestingurl,  toplevelurl, contenttype);
   handleExceptionEnd
@@ -1247,6 +1375,7 @@ end;
 //procedure
 procedure ChromiumCore_CloseBrowser(AObj: TChromiumCore; aForceClose: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseBrowser'}
   handleExceptionBegin
   AObj.CloseBrowser(aForceClose);
   handleExceptionEnd
@@ -1255,6 +1384,7 @@ end;
 //procedure
 procedure ChromiumCore_CloseAllBrowsers(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseAllBrowsers'}
   handleExceptionBegin
   AObj.CloseAllBrowsers();
   handleExceptionEnd
@@ -1264,6 +1394,7 @@ end;
 procedure ChromiumCore_InitializeDragAndDrop(AObj: TChromiumCore; const aDropTargetWnd: HWND); extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='InitializeDragAndDrop'}
   handleExceptionBegin
   AObj.InitializeDragAndDrop(aDropTargetWnd);
   handleExceptionEnd
@@ -1274,6 +1405,7 @@ end;
 procedure ChromiumCore_ShutdownDragAndDrop(AObj: TChromiumCore); extdecl;
 begin
 {$IFDEF MSWINDOWS}
+  {$define handleExceptionFuncName :='ShutdownDragAndDrop'}
   handleExceptionBegin
   AObj.ShutdownDragAndDrop();
   handleExceptionEnd
@@ -1283,6 +1415,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadURL(AObj: TChromiumCore; const aURL: PChar; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadURL'}
   handleExceptionBegin
   AObj.LoadURL(aURL, aFrameName);
   handleExceptionEnd
@@ -1291,6 +1424,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadURL1(AObj: TChromiumCore; const aURL: PChar; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadURL1'}
   handleExceptionBegin
   AObj.LoadURL(aURL, aFrame);
   handleExceptionEnd
@@ -1299,6 +1433,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadURL2(AObj: TChromiumCore; const aURL: PChar; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadURL2'}
   handleExceptionBegin
   AObj.LoadURL(aURL, aFrameIdentifier);
   handleExceptionEnd
@@ -1307,6 +1442,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadString(AObj: TChromiumCore; const aHTML: PChar; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadString'}
   handleExceptionBegin
   AObj.LoadString(aHTML, aFrameName);
   handleExceptionEnd
@@ -1315,6 +1451,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadString1(AObj: TChromiumCore; const aHTML: PChar; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadString1'}
   handleExceptionBegin
   AObj.LoadString(aHTML, aFrame);
   handleExceptionEnd
@@ -1323,6 +1460,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadString2(AObj: TChromiumCore; const aHTML: PChar; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadString2'}
   handleExceptionBegin
   AObj.LoadString(aHTML, aFrameIdentifier);
   handleExceptionEnd
@@ -1331,6 +1469,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadResource(AObj: TChromiumCore; const aStream: TCustomMemoryStream; const aMimeType,  aCharset: PChar; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadResource'}
   handleExceptionBegin
   AObj.LoadResource(aStream, aMimeType,  aCharset, aFrameName);
   handleExceptionEnd
@@ -1339,6 +1478,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadResource1(AObj: TChromiumCore; const aStream: TCustomMemoryStream; const aMimeType,  aCharset: PChar; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadResource1'}
   handleExceptionBegin
   AObj.LoadResource(aStream, aMimeType,  aCharset, aFrame);
   handleExceptionEnd
@@ -1347,6 +1487,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadResource2(AObj: TChromiumCore; const aStream: TCustomMemoryStream; const aMimeType,  aCharset: PChar; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadResource2'}
   handleExceptionBegin
   AObj.LoadResource(aStream, aMimeType,  aCharset, aFrameIdentifier);
   handleExceptionEnd
@@ -1355,6 +1496,7 @@ end;
 //procedure
 procedure ChromiumCore_LoadRequest(AObj: TChromiumCore; const aRequest: ICefRequest); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadRequest'}
   handleExceptionBegin
   AObj.LoadRequest(aRequest);
   handleExceptionEnd
@@ -1363,6 +1505,7 @@ end;
 //procedure
 procedure ChromiumCore_GoBack(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='GoBack'}
   handleExceptionBegin
   AObj.GoBack();
   handleExceptionEnd
@@ -1371,6 +1514,7 @@ end;
 //procedure
 procedure ChromiumCore_GoForward(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='GoForward'}
   handleExceptionBegin
   AObj.GoForward();
   handleExceptionEnd
@@ -1379,6 +1523,7 @@ end;
 //procedure
 procedure ChromiumCore_Reload(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='Reload'}
   handleExceptionBegin
   AObj.Reload();
   handleExceptionEnd
@@ -1387,6 +1532,7 @@ end;
 //procedure
 procedure ChromiumCore_ReloadIgnoreCache(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReloadIgnoreCache'}
   handleExceptionBegin
   AObj.ReloadIgnoreCache();
   handleExceptionEnd
@@ -1395,6 +1541,7 @@ end;
 //procedure
 procedure ChromiumCore_StopLoad(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='StopLoad'}
   handleExceptionBegin
   AObj.StopLoad();
   handleExceptionEnd
@@ -1403,6 +1550,7 @@ end;
 //procedure
 procedure ChromiumCore_StartDownload(AObj: TChromiumCore; const aURL: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='StartDownload'}
   handleExceptionBegin
   AObj.StartDownload(aURL);
   handleExceptionEnd
@@ -1411,6 +1559,7 @@ end;
 //procedure
 procedure ChromiumCore_DownloadImage(AObj: TChromiumCore; const imageUrl: PChar; isFavicon: LongBool; maxImageSize: uint32; bypassCache: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='DownloadImage'}
   handleExceptionBegin
   AObj.DownloadImage(imageUrl, isFavicon, maxImageSize, bypassCache);
   handleExceptionEnd
@@ -1419,6 +1568,7 @@ end;
 //procedure
 procedure ChromiumCore_SimulateMouseWheel(AObj: TChromiumCore; aDeltaX,  aDeltaY: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SimulateMouseWheel'}
   handleExceptionBegin
   AObj.SimulateMouseWheel(aDeltaX,  aDeltaY);
   handleExceptionEnd
@@ -1427,6 +1577,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveHTML(AObj: TChromiumCore; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveHTML'}
   handleExceptionBegin
   AObj.RetrieveHTML(aFrameName);
   handleExceptionEnd
@@ -1435,6 +1586,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveHTML1(AObj: TChromiumCore; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveHTML1'}
   handleExceptionBegin
   AObj.RetrieveHTML(aFrame);
   handleExceptionEnd
@@ -1443,6 +1595,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveHTML2(AObj: TChromiumCore; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveHTML2'}
   handleExceptionBegin
   AObj.RetrieveHTML(aFrameIdentifier);
   handleExceptionEnd
@@ -1451,6 +1604,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveText(AObj: TChromiumCore; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveText'}
   handleExceptionBegin
   AObj.RetrieveText(aFrameName);
   handleExceptionEnd
@@ -1459,6 +1613,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveText1(AObj: TChromiumCore; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveText1'}
   handleExceptionBegin
   AObj.RetrieveText(aFrame);
   handleExceptionEnd
@@ -1467,6 +1622,7 @@ end;
 //procedure
 procedure ChromiumCore_RetrieveText2(AObj: TChromiumCore; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveText2'}
   handleExceptionBegin
   AObj.RetrieveText(aFrameIdentifier);
   handleExceptionEnd
@@ -1475,6 +1631,7 @@ end;
 //procedure
 procedure ChromiumCore_GetNavigationEntries(AObj: TChromiumCore; currentOnly: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetNavigationEntries'}
   handleExceptionBegin
   AObj.GetNavigationEntries(currentOnly);
   handleExceptionEnd
@@ -1483,6 +1640,7 @@ end;
 //procedure
 procedure ChromiumCore_ExecuteJavaScript(AObj: TChromiumCore; const aCode,  aScriptURL: PChar; const aFrameName: PChar; aStartLine: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteJavaScript'}
   handleExceptionBegin
   AObj.ExecuteJavaScript(aCode,  aScriptURL, aFrameName, aStartLine);
   handleExceptionEnd
@@ -1491,6 +1649,7 @@ end;
 //procedure
 procedure ChromiumCore_ExecuteJavaScript1(AObj: TChromiumCore; const aCode,  aScriptURL: PChar; const aFrame: ICefFrame; aStartLine: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteJavaScript1'}
   handleExceptionBegin
   AObj.ExecuteJavaScript(aCode,  aScriptURL, aFrame, aStartLine);
   handleExceptionEnd
@@ -1499,6 +1658,7 @@ end;
 //procedure
 procedure ChromiumCore_ExecuteJavaScript2(AObj: TChromiumCore; const aCode,  aScriptURL: PChar; var aFrameIdentifier: int64; aStartLine: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteJavaScript2'}
   handleExceptionBegin
   AObj.ExecuteJavaScript(aCode,  aScriptURL, aFrameIdentifier, aStartLine);
   handleExceptionEnd
@@ -1507,6 +1667,7 @@ end;
 //procedure
 procedure ChromiumCore_UpdatePreferences(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdatePreferences'}
   handleExceptionBegin
   AObj.UpdatePreferences();
   handleExceptionEnd
@@ -1515,6 +1676,7 @@ end;
 //procedure
 procedure ChromiumCore_SavePreferences(AObj: TChromiumCore; const aFileName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SavePreferences'}
   handleExceptionBegin
   AObj.SavePreferences(aFileName);
   handleExceptionEnd
@@ -1523,6 +1685,7 @@ end;
 //procedure
 procedure ChromiumCore_ResolveHost(AObj: TChromiumCore; const aURL: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolveHost'}
   handleExceptionBegin
   AObj.ResolveHost(aURL);
   handleExceptionEnd
@@ -1531,6 +1694,7 @@ end;
 //procedure
 procedure ChromiumCore_SetUserAgentOverride(AObj: TChromiumCore; const aUserAgent: PChar; const aAcceptLanguage: PChar; const aPlatform: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetUserAgentOverride'}
   handleExceptionBegin
   AObj.SetUserAgentOverride(aUserAgent, aAcceptLanguage, aPlatform);
   handleExceptionEnd
@@ -1539,6 +1703,7 @@ end;
 //procedure
 procedure ChromiumCore_ClearDataForOrigin(AObj: TChromiumCore; const aOrigin: PChar; aStorageTypes: TCefClearDataStorageTypes); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearDataForOrigin'}
   handleExceptionBegin
   AObj.ClearDataForOrigin(aOrigin, aStorageTypes);
   handleExceptionEnd
@@ -1547,6 +1712,7 @@ end;
 //procedure
 procedure ChromiumCore_ClearCache(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearCache'}
   handleExceptionBegin
   AObj.ClearCache();
   handleExceptionEnd
@@ -1555,6 +1721,7 @@ end;
 //procedure
 procedure ChromiumCore_ToggleAudioMuted(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ToggleAudioMuted'}
   handleExceptionBegin
   AObj.ToggleAudioMuted();
   handleExceptionEnd
@@ -1565,6 +1732,7 @@ procedure ChromiumCore_ShowDevTools(AObj: TChromiumCore; var inspectElementAt: T
 var
   InaWindowInfo: TCefWindowInfo;
 begin
+  {$define handleExceptionFuncName :='ShowDevTools'}
   handleExceptionBegin
   InaWindowInfo := EngWindowInfoToPas(aWindowInfo);
   AObj.ShowDevTools(inspectElementAt, @InaWindowInfo);
@@ -1574,6 +1742,7 @@ end;
 //procedure
 procedure ChromiumCore_CloseDevTools(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseDevTools'}
   handleExceptionBegin
   AObj.CloseDevTools();
   handleExceptionEnd
@@ -1582,6 +1751,7 @@ end;
 //procedure
 procedure ChromiumCore_CloseDevTools1(AObj: TChromiumCore; const aDevToolsWnd: TCefWindowHandle); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseDevTools1'}
   handleExceptionBegin
   AObj.CloseDevTools(aDevToolsWnd);
   handleExceptionEnd
@@ -1590,6 +1760,7 @@ end;
 //procedure
 procedure ChromiumCore_Find(AObj: TChromiumCore; const aSearchText: PChar; aForward,  aMatchCase,  aFindNext: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Find'}
   handleExceptionBegin
   AObj.Find(aSearchText, aForward,  aMatchCase,  aFindNext);
   handleExceptionEnd
@@ -1598,6 +1769,7 @@ end;
 //procedure
 procedure ChromiumCore_StopFinding(AObj: TChromiumCore; aClearSelection: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='StopFinding'}
   handleExceptionBegin
   AObj.StopFinding(aClearSelection);
   handleExceptionEnd
@@ -1606,6 +1778,7 @@ end;
 //procedure
 procedure ChromiumCore_Print(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='Print'}
   handleExceptionBegin
   AObj.Print();
   handleExceptionEnd
@@ -1614,6 +1787,7 @@ end;
 //procedure
 procedure ChromiumCore_PrintToPDF(AObj: TChromiumCore; const aFilePath: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintToPDF'}
   handleExceptionBegin
   AObj.PrintToPDF(aFilePath);
   handleExceptionEnd
@@ -1622,6 +1796,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardCopy(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardCopy'}
   handleExceptionBegin
   AObj.ClipboardCopy();
   handleExceptionEnd
@@ -1630,6 +1805,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardPaste(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardPaste'}
   handleExceptionBegin
   AObj.ClipboardPaste();
   handleExceptionEnd
@@ -1638,6 +1814,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardCut(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardCut'}
   handleExceptionBegin
   AObj.ClipboardCut();
   handleExceptionEnd
@@ -1646,6 +1823,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardUndo(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardUndo'}
   handleExceptionBegin
   AObj.ClipboardUndo();
   handleExceptionEnd
@@ -1654,6 +1832,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardRedo(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardRedo'}
   handleExceptionBegin
   AObj.ClipboardRedo();
   handleExceptionEnd
@@ -1662,6 +1841,7 @@ end;
 //procedure
 procedure ChromiumCore_ClipboardDel(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardDel'}
   handleExceptionBegin
   AObj.ClipboardDel();
   handleExceptionEnd
@@ -1670,6 +1850,7 @@ end;
 //procedure
 procedure ChromiumCore_SelectAll(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectAll'}
   handleExceptionBegin
   AObj.SelectAll();
   handleExceptionEnd
@@ -1678,6 +1859,7 @@ end;
 //procedure
 procedure ChromiumCore_IncZoomStep(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='IncZoomStep'}
   handleExceptionBegin
   AObj.IncZoomStep();
   handleExceptionEnd
@@ -1686,6 +1868,7 @@ end;
 //procedure
 procedure ChromiumCore_DecZoomStep(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='DecZoomStep'}
   handleExceptionBegin
   AObj.DecZoomStep();
   handleExceptionEnd
@@ -1694,6 +1877,7 @@ end;
 //procedure
 procedure ChromiumCore_IncZoomPct(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='IncZoomPct'}
   handleExceptionBegin
   AObj.IncZoomPct();
   handleExceptionEnd
@@ -1702,6 +1886,7 @@ end;
 //procedure
 procedure ChromiumCore_DecZoomPct(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='DecZoomPct'}
   handleExceptionBegin
   AObj.DecZoomPct();
   handleExceptionEnd
@@ -1710,6 +1895,7 @@ end;
 //procedure
 procedure ChromiumCore_ResetZoomStep(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetZoomStep'}
   handleExceptionBegin
   AObj.ResetZoomStep();
   handleExceptionEnd
@@ -1718,6 +1904,7 @@ end;
 //procedure
 procedure ChromiumCore_ResetZoomLevel(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetZoomLevel'}
   handleExceptionBegin
   AObj.ResetZoomLevel();
   handleExceptionEnd
@@ -1726,6 +1913,7 @@ end;
 //procedure
 procedure ChromiumCore_ResetZoomPct(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetZoomPct'}
   handleExceptionBegin
   AObj.ResetZoomPct();
   handleExceptionEnd
@@ -1734,6 +1922,7 @@ end;
 //procedure
 procedure ChromiumCore_ReadZoom(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadZoom'}
   handleExceptionBegin
   AObj.ReadZoom();
   handleExceptionEnd
@@ -1742,6 +1931,7 @@ end;
 //procedure
 procedure ChromiumCore_IncZoomCommand(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='IncZoomCommand'}
   handleExceptionBegin
   AObj.IncZoomCommand();
   handleExceptionEnd
@@ -1750,6 +1940,7 @@ end;
 //procedure
 procedure ChromiumCore_DecZoomCommand(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='DecZoomCommand'}
   handleExceptionBegin
   AObj.DecZoomCommand();
   handleExceptionEnd
@@ -1758,6 +1949,7 @@ end;
 //procedure
 procedure ChromiumCore_ResetZoomCommand(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetZoomCommand'}
   handleExceptionBegin
   AObj.ResetZoomCommand();
   handleExceptionEnd
@@ -1766,6 +1958,7 @@ end;
 //procedure
 procedure ChromiumCore_WasResized(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='WasResized'}
   handleExceptionBegin
   AObj.WasResized();
   handleExceptionEnd
@@ -1774,6 +1967,7 @@ end;
 //procedure
 procedure ChromiumCore_WasHidden(AObj: TChromiumCore; hidden: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='WasHidden'}
   handleExceptionBegin
   AObj.WasHidden(hidden);
   handleExceptionEnd
@@ -1782,6 +1976,7 @@ end;
 //procedure
 procedure ChromiumCore_NotifyScreenInfoChanged(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyScreenInfoChanged'}
   handleExceptionBegin
   AObj.NotifyScreenInfoChanged();
   handleExceptionEnd
@@ -1790,6 +1985,7 @@ end;
 //procedure
 procedure ChromiumCore_NotifyMoveOrResizeStarted(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyMoveOrResizeStarted'}
   handleExceptionBegin
   AObj.NotifyMoveOrResizeStarted();
   handleExceptionEnd
@@ -1798,6 +1994,7 @@ end;
 //procedure
 procedure ChromiumCore_Invalidate(AObj: TChromiumCore; type_: TCefPaintElementType); extdecl;
 begin
+  {$define handleExceptionFuncName :='Invalidate'}
   handleExceptionBegin
   AObj.Invalidate(type_);
   handleExceptionEnd
@@ -1806,6 +2003,7 @@ end;
 //procedure
 procedure ChromiumCore_ExitFullscreen(AObj: TChromiumCore; willcauseresize: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExitFullscreen'}
   handleExceptionBegin
   AObj.ExitFullscreen(willcauseresize);
   handleExceptionEnd
@@ -1814,6 +2012,7 @@ end;
 //procedure
 procedure ChromiumCore_SendExternalBeginFrame(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendExternalBeginFrame'}
   handleExceptionBegin
   AObj.SendExternalBeginFrame();
   handleExceptionEnd
@@ -1822,6 +2021,7 @@ end;
 //procedure
 procedure ChromiumCore_SendKeyEvent(AObj: TChromiumCore; const event: PCefKeyEvent); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendKeyEvent'}
   handleExceptionBegin
   AObj.SendKeyEvent(event);
   handleExceptionEnd
@@ -1830,6 +2030,7 @@ end;
 //procedure
 procedure ChromiumCore_SendMouseClickEvent(AObj: TChromiumCore; const event: PCefMouseEvent; type_: TCefMouseButtonType; mouseUp: LongBool; clickCount: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendMouseClickEvent'}
   handleExceptionBegin
   AObj.SendMouseClickEvent(event, type_, mouseUp, clickCount);
   handleExceptionEnd
@@ -1838,6 +2039,7 @@ end;
 //procedure
 procedure ChromiumCore_SendMouseMoveEvent(AObj: TChromiumCore; const event: PCefMouseEvent; mouseLeave: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendMouseMoveEvent'}
   handleExceptionBegin
   AObj.SendMouseMoveEvent(event, mouseLeave);
   handleExceptionEnd
@@ -1846,6 +2048,7 @@ end;
 //procedure
 procedure ChromiumCore_SendMouseWheelEvent(AObj: TChromiumCore; const event: PCefMouseEvent; deltaX,  deltaY: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendMouseWheelEvent'}
   handleExceptionBegin
   AObj.SendMouseWheelEvent(event, deltaX,  deltaY);
   handleExceptionEnd
@@ -1854,6 +2057,7 @@ end;
 //procedure
 procedure ChromiumCore_SendTouchEvent(AObj: TChromiumCore; const event: PCefTouchEvent); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendTouchEvent'}
   handleExceptionBegin
   AObj.SendTouchEvent(event);
   handleExceptionEnd
@@ -1862,6 +2066,7 @@ end;
 //procedure
 procedure ChromiumCore_SendCaptureLostEvent(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendCaptureLostEvent'}
   handleExceptionBegin
   AObj.SendCaptureLostEvent();
   handleExceptionEnd
@@ -1870,6 +2075,7 @@ end;
 //procedure
 procedure ChromiumCore_SendProcessMessage(AObj: TChromiumCore; targetProcess: TCefProcessId; const procMessage: ICefProcessMessage; const aFrameName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendProcessMessage'}
   handleExceptionBegin
   AObj.SendProcessMessage(targetProcess, procMessage, aFrameName);
   handleExceptionEnd
@@ -1878,6 +2084,7 @@ end;
 //procedure
 procedure ChromiumCore_SendProcessMessage1(AObj: TChromiumCore; targetProcess: TCefProcessId; const procMessage: ICefProcessMessage; const aFrame: ICefFrame); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendProcessMessage1'}
   handleExceptionBegin
   AObj.SendProcessMessage(targetProcess, procMessage, aFrame);
   handleExceptionEnd
@@ -1886,6 +2093,7 @@ end;
 //procedure
 procedure ChromiumCore_SendProcessMessage2(AObj: TChromiumCore; targetProcess: TCefProcessId; const procMessage: ICefProcessMessage; var aFrameIdentifier: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendProcessMessage2'}
   handleExceptionBegin
   AObj.SendProcessMessage(targetProcess, procMessage, aFrameIdentifier);
   handleExceptionEnd
@@ -1894,6 +2102,7 @@ end;
 //procedure
 procedure ChromiumCore_SetFocus(AObj: TChromiumCore; focus: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFocus'}
   handleExceptionBegin
   AObj.SetFocus(focus);
   handleExceptionEnd
@@ -1902,6 +2111,7 @@ end;
 //procedure
 procedure ChromiumCore_SetAccessibilityState(AObj: TChromiumCore; accessibilityState: TCefState); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetAccessibilityState'}
   handleExceptionBegin
   AObj.SetAccessibilityState(accessibilityState);
   handleExceptionEnd
@@ -1910,6 +2120,7 @@ end;
 //procedure
 procedure ChromiumCore_DragTargetDragEnter(AObj: TChromiumCore; const dragData: ICefDragData; const event: PCefMouseEvent; allowedOps: TCefDragOperations); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTargetDragEnter'}
   handleExceptionBegin
   AObj.DragTargetDragEnter(dragData, event, allowedOps);
   handleExceptionEnd
@@ -1918,6 +2129,7 @@ end;
 //procedure
 procedure ChromiumCore_DragTargetDragOver(AObj: TChromiumCore; const event: PCefMouseEvent; allowedOps: TCefDragOperations); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTargetDragOver'}
   handleExceptionBegin
   AObj.DragTargetDragOver(event, allowedOps);
   handleExceptionEnd
@@ -1926,6 +2138,7 @@ end;
 //procedure
 procedure ChromiumCore_DragTargetDragLeave(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTargetDragLeave'}
   handleExceptionBegin
   AObj.DragTargetDragLeave();
   handleExceptionEnd
@@ -1934,6 +2147,7 @@ end;
 //procedure
 procedure ChromiumCore_DragTargetDrop(AObj: TChromiumCore; const event: PCefMouseEvent); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTargetDrop'}
   handleExceptionBegin
   AObj.DragTargetDrop(event);
   handleExceptionEnd
@@ -1942,6 +2156,7 @@ end;
 //procedure
 procedure ChromiumCore_DragSourceEndedAt(AObj: TChromiumCore; x,  y: Integer; op: TCefDragOperation); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragSourceEndedAt'}
   handleExceptionBegin
   AObj.DragSourceEndedAt(x,  y, op);
   handleExceptionEnd
@@ -1950,6 +2165,7 @@ end;
 //procedure
 procedure ChromiumCore_DragSourceSystemDragEnded(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragSourceSystemDragEnded'}
   handleExceptionBegin
   AObj.DragSourceSystemDragEnded();
   handleExceptionEnd
@@ -1958,6 +2174,7 @@ end;
 //procedure
 procedure ChromiumCore_IMECommitText(AObj: TChromiumCore; const text: PChar; const replacementrange: PCefRange; relativecursorpos: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='IMECommitText'}
   handleExceptionBegin
   AObj.IMECommitText(text, replacementrange, relativecursorpos);
   handleExceptionEnd
@@ -1966,6 +2183,7 @@ end;
 //procedure
 procedure ChromiumCore_IMEFinishComposingText(AObj: TChromiumCore; keepselection: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='IMEFinishComposingText'}
   handleExceptionBegin
   AObj.IMEFinishComposingText(keepselection);
   handleExceptionEnd
@@ -1974,6 +2192,7 @@ end;
 //procedure
 procedure ChromiumCore_IMECancelComposition(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='IMECancelComposition'}
   handleExceptionBegin
   AObj.IMECancelComposition();
   handleExceptionEnd
@@ -1982,6 +2201,7 @@ end;
 //procedure
 procedure ChromiumCore_ReplaceMisspelling(AObj: TChromiumCore; const aWord: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceMisspelling'}
   handleExceptionBegin
   AObj.ReplaceMisspelling(aWord);
   handleExceptionEnd
@@ -1990,6 +2210,7 @@ end;
 //procedure
 procedure ChromiumCore_AddWordToDictionary(AObj: TChromiumCore; const aWord: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddWordToDictionary'}
   handleExceptionBegin
   AObj.AddWordToDictionary(aWord);
   handleExceptionEnd
@@ -1999,6 +2220,7 @@ end;
 procedure ChromiumCore_UpdateBrowserSize(AObj: TChromiumCore; aLeft,  aTop,  aWidth,  aHeight: integer); extdecl;
 begin
 {$IFDEF LINUX}
+  {$define handleExceptionFuncName :='UpdateBrowserSize'}
   handleExceptionBegin
   AObj.UpdateBrowserSize(aLeft,  aTop,  aWidth,  aHeight);
   handleExceptionEnd
@@ -2009,6 +2231,7 @@ end;
 procedure ChromiumCore_UpdateXWindowVisibility(AObj: TChromiumCore; aVisible: LongBool); extdecl;
 begin
 {$IFDEF LINUX}
+  {$define handleExceptionFuncName :='UpdateXWindowVisibility'}
   handleExceptionBegin
   AObj.UpdateXWindowVisibility(aVisible);
   handleExceptionEnd
@@ -2018,6 +2241,7 @@ end;
 //procedure
 procedure ChromiumCore_NotifyCurrentSinks(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyCurrentSinks'}
   handleExceptionBegin
   AObj.NotifyCurrentSinks();
   handleExceptionEnd
@@ -2026,6 +2250,7 @@ end;
 //procedure
 procedure ChromiumCore_NotifyCurrentRoutes(AObj: TChromiumCore); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyCurrentRoutes'}
   handleExceptionBegin
   AObj.NotifyCurrentRoutes();
   handleExceptionEnd
@@ -2034,6 +2259,7 @@ end;
 //procedure
 procedure ChromiumCore_CreateRoute(AObj: TChromiumCore; const source: ICefMediaSource; const sink: ICefMediaSink); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateRoute'}
   handleExceptionBegin
   AObj.CreateRoute(source, sink);
   handleExceptionEnd
@@ -2042,6 +2268,7 @@ end;
 //procedure
 procedure ChromiumCore_GetDeviceInfo(AObj: TChromiumCore; const aMediaSink: ICefMediaSink); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDeviceInfo'}
   handleExceptionBegin
   AObj.GetDeviceInfo(aMediaSink);
   handleExceptionEnd
@@ -2050,6 +2277,7 @@ end;
 //procedure
 procedure ChromiumCore_SetWebsiteSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; const value: ICefValue); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetWebsiteSetting'}
   handleExceptionBegin
   AObj.SetWebsiteSetting(requestingurl,  toplevelurl, contenttype, value);
   handleExceptionEnd
@@ -2058,6 +2286,7 @@ end;
 //procedure
 procedure ChromiumCore_SetContentSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; value: TCefContentSettingValues); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetContentSetting'}
   handleExceptionBegin
   AObj.SetContentSetting(requestingurl,  toplevelurl, contenttype, value);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CEFUrlRequestClientComponent_Create(aOwner: TComponent): TCEFUrlRequestClientComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFUrlRequestClientComponent.Create(aOwner);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //property
 procedure CEFUrlRequestClientComponent_Client(AObj: TCEFUrlRequestClientComponent; var Result: ICefUrlrequestClient); extdecl;
 begin
+  {$define handleExceptionFuncName :='Client'}
   handleExceptionBegin
   Result := AObj.Client;
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //property
 function CEFUrlRequestClientComponent_ThreadID(AIsSet: LongBool; AObj: TCEFUrlRequestClientComponent; AValue: TCefThreadId): TCefThreadId; extdecl;
 begin
+  {$define handleExceptionFuncName :='ThreadID'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -36,6 +39,7 @@ end;
 //procedure
 procedure CEFUrlRequestClientComponent_AddURLRequest(AObj: TCEFUrlRequestClientComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddURLRequest'}
   handleExceptionBegin
   AObj.AddURLRequest();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CefCustomCookieVisitor_Create(const aEvents: IChromiumEvents; aID: integer): TCefCustomCookieVisitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCustomCookieVisitor.Create(aEvents, aID);
   handleExceptionEnd

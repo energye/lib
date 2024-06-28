@@ -2,6 +2,7 @@
 //constructor
 function CustomCefNavigationEntryVisitor_Create(const aEvents: IChromiumEvents): TCustomCefNavigationEntryVisitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCefNavigationEntryVisitor.Create(aEvents);
   handleExceptionEnd

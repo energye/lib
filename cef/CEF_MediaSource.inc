@@ -8,6 +8,7 @@ end;
 //function
 function CefMediaSource_GetId(AObj: ICefMediaSource): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetId'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetId());
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //function
 function CefMediaSource_IsCastSource(AObj: ICefMediaSource): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsCastSource'}
   handleExceptionBegin
   Result := AObj.IsCastSource();
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //function
 function CefMediaSource_IsDialSource(AObj: ICefMediaSource): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsDialSource'}
   handleExceptionBegin
   Result := AObj.IsDialSource();
   handleExceptionEnd

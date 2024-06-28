@@ -21,14 +21,16 @@
 
 // 异常宏定义
 {$ifdef UsehandleException}
+  {$define handleExceptionFuncName :=''}
   {$define handleExceptionBegin :=try}
   {$define handleExceptionEnd :=
      except
        on E: Exception do
-         CallException(E);
+         CallException(handleExceptionFuncName, E);
      end;
   }
 {$else}
+  {$define handleExceptionFuncName :=}
   {$define handleExceptionBegin :=}
   {$define handleExceptionEnd :=}
 {$endif}

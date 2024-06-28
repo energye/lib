@@ -14,6 +14,7 @@ end;
 //function
 procedure CefScrollView_GetContentView(AObj: ICefScrollView; var Result: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetContentView'}
   handleExceptionBegin
   Result := AObj.GetContentView();
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //function
 procedure CefScrollView_GetVisibleContentRect(AObj: ICefScrollView; var Result: TCefRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetVisibleContentRect'}
   handleExceptionBegin
   Result := AObj.GetVisibleContentRect();
   handleExceptionEnd
@@ -30,6 +32,7 @@ end;
 //function
 function CefScrollView_HasHorizontalScrollbar(AObj: ICefScrollView): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasHorizontalScrollbar'}
   handleExceptionBegin
   Result := AObj.HasHorizontalScrollbar();
   handleExceptionEnd
@@ -38,6 +41,7 @@ end;
 //function
 function CefScrollView_GetHorizontalScrollbarHeight(AObj: ICefScrollView): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetHorizontalScrollbarHeight'}
   handleExceptionBegin
   Result := AObj.GetHorizontalScrollbarHeight();
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //function
 function CefScrollView_HasVerticalScrollbar(AObj: ICefScrollView): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasVerticalScrollbar'}
   handleExceptionBegin
   Result := AObj.HasVerticalScrollbar();
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //function
 function CefScrollView_GetVerticalScrollbarWidth(AObj: ICefScrollView): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetVerticalScrollbarWidth'}
   handleExceptionBegin
   Result := AObj.GetVerticalScrollbarWidth();
   handleExceptionEnd
@@ -62,6 +68,7 @@ end;
 //procedure
 procedure CefScrollView_SetContentView(AObj: ICefScrollView; const view: ICefView); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetContentView'}
   handleExceptionBegin
   AObj.SetContentView(view);
   handleExceptionEnd

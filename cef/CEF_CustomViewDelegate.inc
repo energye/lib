@@ -2,6 +2,7 @@
 //constructor
 function CustomViewDelegate_Create(const events: ICefViewDelegateEvents): TCustomViewDelegate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomViewDelegate.Create(events);
   handleExceptionEnd

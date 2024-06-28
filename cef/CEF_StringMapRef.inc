@@ -2,6 +2,7 @@
 //constructor
 function CefStringMapRef_Create(aHandle: TCefStringMap): TCefStringMapRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefStringMapRef.Create(aHandle);
   handleExceptionEnd

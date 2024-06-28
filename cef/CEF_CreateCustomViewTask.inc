@@ -2,6 +2,7 @@
 //constructor
 function CefCreateCustomViewTask_Create(const aEvents: ICefViewDelegateEvents): TCefCreateCustomViewTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefCreateCustomViewTask.Create(aEvents);
   handleExceptionEnd

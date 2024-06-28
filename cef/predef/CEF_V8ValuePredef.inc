@@ -5,6 +5,7 @@ var
   i: integer;
   args: TCefv8ValueArray;
 begin
+  {$define handleExceptionFuncName :='ExecuteFunction'}
   handleExceptionBegin
   if argumentsLength > 0 then
   begin
@@ -31,6 +32,7 @@ var
   i: integer;
   args: TCefv8ValueArray;
 begin
+  {$define handleExceptionFuncName :='ExecuteFunctionWithContext'}
   handleExceptionBegin
   if argumentsLength > 0 then
   begin

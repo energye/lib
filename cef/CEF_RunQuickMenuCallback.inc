@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefRunQuickMenuCallback_Cont(AObj: ICefRunQuickMenuCallback; commandid: Integer; eventflags: TCefEventFlags); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(commandid, eventflags);
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefRunQuickMenuCallback_Cancel(AObj: ICefRunQuickMenuCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   AObj.Cancel();
   handleExceptionEnd

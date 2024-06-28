@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefCallback_Cont(AObj: ICefCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont();
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefCallback_Cancel(AObj: ICefCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   AObj.Cancel();
   handleExceptionEnd

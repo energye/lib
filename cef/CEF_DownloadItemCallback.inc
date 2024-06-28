@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefDownloadItemCallback_Cancel(AObj: ICefDownloadItemCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   AObj.Cancel();
   handleExceptionEnd
@@ -16,6 +17,7 @@ end;
 //procedure
 procedure CefDownloadItemCallback_Pause(AObj: ICefDownloadItemCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Pause'}
   handleExceptionBegin
   AObj.Pause();
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //procedure
 procedure CefDownloadItemCallback_Resume(AObj: ICefDownloadItemCallback); extdecl;
 begin
+  {$define handleExceptionFuncName :='Resume'}
   handleExceptionBegin
   AObj.Resume();
   handleExceptionEnd

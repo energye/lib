@@ -2,6 +2,7 @@
 //constructor
 function CustomPrintHandler_Create(const events: IChromiumEvents): TCustomPrintHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPrintHandler.Create(events);
   handleExceptionEnd

@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefPermissionPromptCallback_Cont(AObj: ICefPermissionPromptCallback; result: TCefPermissionRequestResult); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.cont(result);
   handleExceptionEnd

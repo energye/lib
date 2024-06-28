@@ -2,6 +2,7 @@
 //constructor
 function CEFWinControl_Create(theOwner: TComponent): TCEFWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCEFWinControl.Create(theOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CEFWinControl_ChildWindowHandle(AObj: TCEFWinControl): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ChildWindowHandle'}
   handleExceptionBegin
   Result := AObj.ChildWindowHandle;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CEFWinControl_DragKind(AIsSet: LongBool; AObj: TCEFWinControl; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CEFWinControl_DragCursor(AIsSet: LongBool; AObj: TCEFWinControl; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function CEFWinControl_DragMode(AIsSet: LongBool; AObj: TCEFWinControl; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 procedure CEFWinControl_Touch(AObj: TCEFWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Touch'}
   handleExceptionBegin
   handleExceptionEnd
 end;
@@ -63,6 +69,7 @@ function CEFWinControl_TakeSnapshot(AObj: TCEFWinControl; var aBitmap: TBitmap):
 var
   RetaBitmap: TBitmap;
 begin
+  {$define handleExceptionFuncName :='TakeSnapshot'}
   handleExceptionBegin
   RetaBitmap := aBitmap;
   Result := AObj.TakeSnapshot(RetaBitmap);
@@ -73,6 +80,7 @@ end;
 //function
 function CEFWinControl_DestroyChildWindow(AObj: TCEFWinControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DestroyChildWindow'}
   handleExceptionBegin
   Result := AObj.DestroyChildWindow();
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 //procedure
 procedure CEFWinControl_CreateHandle(AObj: TCEFWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateHandle'}
   handleExceptionBegin
   AObj.CreateHandle();
   handleExceptionEnd
@@ -89,6 +98,7 @@ end;
 //procedure
 procedure CEFWinControl_InvalidateChildren(AObj: TCEFWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidateChildren'}
   handleExceptionBegin
   AObj.InvalidateChildren();
   handleExceptionEnd
@@ -97,6 +107,7 @@ end;
 //procedure
 procedure CEFWinControl_UpdateSize(AObj: TCEFWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateSize'}
   handleExceptionBegin
   AObj.UpdateSize();
   handleExceptionEnd

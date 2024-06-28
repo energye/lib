@@ -2,6 +2,7 @@
 //constructor
 function CustomResponseFilter_Create(): TCustomResponseFilter; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomResponseFilter.Create();
   handleExceptionEnd

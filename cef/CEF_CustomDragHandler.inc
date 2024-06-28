@@ -2,6 +2,7 @@
 //constructor
 function CustomDragHandler_Create(const events: IChromiumEvents): TCustomDragHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDragHandler.Create(events);
   handleExceptionEnd

@@ -14,6 +14,7 @@ end;
 //procedure
 procedure CefMenuButton_ShowMenu(AObj: ICefMenuButton; const menumodel: ICefMenuModel; var screenpoint: TCefPoint; anchorposition: TCefMenuAnchorPosition); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowMenu'}
   handleExceptionBegin
   AObj.ShowMenu(menumodel, screenpoint, anchorposition);
   handleExceptionEnd
@@ -22,6 +23,7 @@ end;
 //procedure
 procedure CefMenuButton_TriggerMenu(AObj: ICefMenuButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='TriggerMenu'}
   handleExceptionBegin
   AObj.TriggerMenu();
   handleExceptionEnd

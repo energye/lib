@@ -2,6 +2,7 @@
 //constructor
 function CefUpdatePrefsTask_Create(const aEvents: IChromiumEvents): TCefUpdatePrefsTask; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCefUpdatePrefsTask.Create(aEvents);
   handleExceptionEnd

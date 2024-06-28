@@ -8,6 +8,7 @@ end;
 //procedure
 procedure CefJsDialogCallback_Cont(AObj: ICefJsDialogCallback; success: LongBool; const userInput: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cont'}
   handleExceptionBegin
   AObj.Cont(success, userInput);
   handleExceptionEnd
