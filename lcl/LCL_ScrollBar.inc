@@ -2,6 +2,7 @@
 //constructor
 function ScrollBar_Create(AOwner: TComponent): TScrollBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TScrollBar.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ScrollBar_DragCursor(AIsSet: LongBool; AObj: TScrollBar; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ScrollBar_DragKind(AIsSet: LongBool; AObj: TScrollBar; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ScrollBar_DragMode(AIsSet: LongBool; AObj: TScrollBar; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ScrollBar_ParentShowHint(AIsSet: LongBool; AObj: TScrollBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

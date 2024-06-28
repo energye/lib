@@ -2,6 +2,7 @@
 //constructor
 function CustomBitmap_Create(): TCustomBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomBitmap.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomBitmap_Handle(AIsSet: LongBool; AObj: TCustomBitmap; AValue: HBITMAP): HBITMAP; extdecl;
 begin
+  {$define handleExceptionFuncName :='Handle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomBitmap_HandleType(AIsSet: LongBool; AObj: TCustomBitmap; AValue: TBitmapHandleType): TBitmapHandleType; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomBitmap_Monochrome(AIsSet: LongBool; AObj: TCustomBitmap; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Monochrome'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //function
 function CustomBitmap_ReleaseHandle(AObj: TCustomBitmap): HBITMAP; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReleaseHandle'}
   handleExceptionBegin
   Result := AObj.ReleaseHandle();
   handleExceptionEnd
@@ -60,6 +65,7 @@ end;
 //procedure
 procedure CustomBitmap_SetSize(AObj: TCustomBitmap; AWidth, AHeight: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetSize'}
   handleExceptionBegin
   AObj.SetSize(AWidth, AHeight);
   handleExceptionEnd

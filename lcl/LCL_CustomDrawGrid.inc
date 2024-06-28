@@ -2,6 +2,7 @@
 //constructor
 function CustomDrawGrid_Create(AOwner: TComponent): TCustomDrawGrid; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDrawGrid.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomDrawGrid_AllowOutboundEvents(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowOutboundEvents'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomDrawGrid_BorderColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomDrawGrid_Col(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Col'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomDrawGrid_ColWidths(AIsSet: LongBool; AObj: TCustomDrawGrid; aCol: Integer; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColWidths'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 procedure CustomDrawGrid_ColRow(AIsSet: LongBool; AObj: TCustomDrawGrid; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ColRow'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomDrawGrid_DisabledFontColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledFontColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomDrawGrid_Editor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Editor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomDrawGrid_EditorBorderStyle(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditorBorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomDrawGrid_EditorMode(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditorMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomDrawGrid_ExtendedColSizing(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtendedColSizing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomDrawGrid_AltColorStartNormal(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AltColorStartNormal'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomDrawGrid_FastEditing(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FastEditing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomDrawGrid_FixedGridLineColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedGridLineColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomDrawGrid_FocusColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function CustomDrawGrid_FocusRectVisible(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusRectVisible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function CustomDrawGrid_GridHeight(AObj: TCustomDrawGrid): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridHeight'}
   handleExceptionBegin
   Result := AObj.GridHeight;
   handleExceptionEnd
@@ -198,6 +215,7 @@ end;
 //property
 function CustomDrawGrid_GridWidth(AObj: TCustomDrawGrid): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridWidth'}
   handleExceptionBegin
   Result := AObj.GridWidth;
   handleExceptionEnd
@@ -206,6 +224,7 @@ end;
 //property
 function CustomDrawGrid_IsCellSelected(AObj: TCustomDrawGrid; aCol, aRow: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsCellSelected'}
   handleExceptionBegin
   Result := AObj.IsCellSelected[aCol, aRow];
   handleExceptionEnd
@@ -214,6 +233,7 @@ end;
 //property
 function CustomDrawGrid_LeftCol(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LeftCol'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +246,7 @@ end;
 //property
 function CustomDrawGrid_Row(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Row'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +259,7 @@ end;
 //property
 function CustomDrawGrid_RowHeights(AIsSet: LongBool; AObj: TCustomDrawGrid; aRow: Integer; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RowHeights'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +272,7 @@ end;
 //property
 function CustomDrawGrid_SaveOptions(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TSaveOptions): TSaveOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +285,7 @@ end;
 //property
 function CustomDrawGrid_SelectedColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectedColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +298,7 @@ end;
 //property
 function CustomDrawGrid_SelectedColumn(AObj: TCustomDrawGrid): TGridColumn; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectedColumn'}
   handleExceptionBegin
   Result := AObj.SelectedColumn;
   handleExceptionEnd
@@ -282,6 +307,7 @@ end;
 //property
 procedure CustomDrawGrid_Selection(AIsSet: LongBool; AObj: TCustomDrawGrid; var AValue: TGridRect; var Result: TGridRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Selection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +320,7 @@ end;
 //property
 function CustomDrawGrid_StrictSort(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StrictSort'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -306,6 +333,7 @@ end;
 //property
 function CustomDrawGrid_TopRow(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TopRow'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -318,6 +346,7 @@ end;
 //property
 function CustomDrawGrid_UseXORFeatures(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseXORFeatures'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -330,6 +359,7 @@ end;
 //property
 function CustomDrawGrid_AutoAdvance(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TAutoAdvance): TAutoAdvance; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoAdvance'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -342,6 +372,7 @@ end;
 //property
 function CustomDrawGrid_AutoFillColumns(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoFillColumns'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -354,6 +385,7 @@ end;
 //property
 function CustomDrawGrid_ColCount(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -366,6 +398,7 @@ end;
 //property
 function CustomDrawGrid_Columns(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TGridColumns): TGridColumns; extdecl;
 begin
+  {$define handleExceptionFuncName :='Columns'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -378,6 +411,7 @@ end;
 //property
 function CustomDrawGrid_DefaultColWidth(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultColWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -390,6 +424,7 @@ end;
 //property
 function CustomDrawGrid_DefaultDrawing(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultDrawing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -402,6 +437,7 @@ end;
 //property
 function CustomDrawGrid_DefaultRowHeight(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultRowHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -414,6 +450,7 @@ end;
 //property
 function CustomDrawGrid_FadeUnfocusedSelection(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FadeUnfocusedSelection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -426,6 +463,7 @@ end;
 //property
 function CustomDrawGrid_FixedColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -438,6 +476,7 @@ end;
 //property
 function CustomDrawGrid_FixedCols(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedCols'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -450,6 +489,7 @@ end;
 //property
 function CustomDrawGrid_FixedHotColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedHotColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -462,6 +502,7 @@ end;
 //property
 function CustomDrawGrid_FixedRows(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedRows'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -474,6 +515,7 @@ end;
 //property
 function CustomDrawGrid_Flat(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -486,6 +528,7 @@ end;
 //property
 function CustomDrawGrid_GridLineColor(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridLineColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -498,6 +541,7 @@ end;
 //property
 function CustomDrawGrid_GridLineStyle(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TPenStyle): TPenStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridLineStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -510,6 +554,7 @@ end;
 //property
 function CustomDrawGrid_GridLineWidth(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridLineWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -522,6 +567,7 @@ end;
 //property
 function CustomDrawGrid_Options(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TGridOptions): TGridOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -534,6 +580,7 @@ end;
 //property
 function CustomDrawGrid_Options2(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TGridOptions2): TGridOptions2; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options2'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -546,6 +593,7 @@ end;
 //property
 function CustomDrawGrid_ParentShowHint(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -558,6 +606,7 @@ end;
 //property
 function CustomDrawGrid_RowCount(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RowCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -570,6 +619,7 @@ end;
 //property
 function CustomDrawGrid_ScrollBars(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TScrollStyle): TScrollStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollBars'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -582,6 +632,7 @@ end;
 //property
 function CustomDrawGrid_TabAdvance(AIsSet: LongBool; AObj: TCustomDrawGrid; AValue: TAutoAdvance): TAutoAdvance; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabAdvance'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -594,6 +645,7 @@ end;
 //property
 function CustomDrawGrid_VisibleColCount(AObj: TCustomDrawGrid): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisibleColCount'}
   handleExceptionBegin
   Result := AObj.VisibleColCount;
   handleExceptionEnd
@@ -602,6 +654,7 @@ end;
 //property
 function CustomDrawGrid_VisibleRowCount(AObj: TCustomDrawGrid): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisibleRowCount'}
   handleExceptionBegin
   Result := AObj.VisibleRowCount;
   handleExceptionEnd
@@ -616,6 +669,7 @@ end;
 //procedure
 procedure CustomDrawGrid_DeleteColRow(AObj: TCustomDrawGrid; IsColumn: LongBool; index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteColRow'}
   handleExceptionBegin
   AObj.DeleteColRow(IsColumn, index);
   handleExceptionEnd
@@ -624,6 +678,7 @@ end;
 //procedure
 procedure CustomDrawGrid_DeleteCol(AObj: TCustomDrawGrid; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCol'}
   handleExceptionBegin
   AObj.DeleteCol(Index);
   handleExceptionEnd
@@ -632,6 +687,7 @@ end;
 //procedure
 procedure CustomDrawGrid_DeleteRow(AObj: TCustomDrawGrid; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteRow'}
   handleExceptionBegin
   AObj.DeleteRow(Index);
   handleExceptionEnd
@@ -640,6 +696,7 @@ end;
 //procedure
 procedure CustomDrawGrid_ExchangeColRow(AObj: TCustomDrawGrid; IsColumn: LongBool; index, WithIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExchangeColRow'}
   handleExceptionBegin
   AObj.ExchangeColRow(IsColumn, index, WithIndex);
   handleExceptionEnd
@@ -648,6 +705,7 @@ end;
 //procedure
 procedure CustomDrawGrid_InsertColRow(AObj: TCustomDrawGrid; IsColumn: LongBool; index: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertColRow'}
   handleExceptionBegin
   AObj.InsertColRow(IsColumn, index);
   handleExceptionEnd
@@ -656,6 +714,7 @@ end;
 //procedure
 procedure CustomDrawGrid_MoveColRow(AObj: TCustomDrawGrid; IsColumn: LongBool; FromIndex, ToIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='MoveColRow'}
   handleExceptionBegin
   AObj.MoveColRow(IsColumn, FromIndex, ToIndex);
   handleExceptionEnd
@@ -664,6 +723,7 @@ end;
 //procedure
 procedure CustomDrawGrid_SortColRow(AObj: TCustomDrawGrid; IsColumn: LongBool; index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SortColRow'}
   handleExceptionBegin
   AObj.SortColRow(IsColumn, index);
   handleExceptionEnd
@@ -672,6 +732,7 @@ end;
 //procedure
 procedure CustomDrawGrid_SortColRow1(AObj: TCustomDrawGrid; IsColumn: LongBool; Index, FromIndex, ToIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SortColRow1'}
   handleExceptionBegin
   AObj.SortColRow(IsColumn, Index, FromIndex, ToIndex);
   handleExceptionEnd
@@ -682,6 +743,7 @@ procedure CustomDrawGrid_DefaultDrawCell(AObj: TCustomDrawGrid; aCol, aRow: Inte
 var
   RetaRect: TRect;
 begin
+  {$define handleExceptionFuncName :='DefaultDrawCell'}
   handleExceptionBegin
   RetaRect := aRect;
   AObj.DefaultDrawCell(aCol, aRow, RetaRect, aState);

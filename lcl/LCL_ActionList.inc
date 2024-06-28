@@ -2,6 +2,7 @@
 //constructor
 function ActionList_Create(AOwner: TComponent): TActionList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TActionList.Create(AOwner);
   handleExceptionEnd

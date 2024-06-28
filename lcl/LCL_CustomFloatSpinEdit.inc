@@ -2,6 +2,7 @@
 //constructor
 function CustomFloatSpinEdit_Create(TheOwner: TComponent): TCustomFloatSpinEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFloatSpinEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomFloatSpinEdit_DecimalPlaces(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DecimalPlaces'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomFloatSpinEdit_EditorEnabled(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditorEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 procedure CustomFloatSpinEdit_Increment(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='Increment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 procedure CustomFloatSpinEdit_MinValue(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MinValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 procedure CustomFloatSpinEdit_MaxValue(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 procedure CustomFloatSpinEdit_Value(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='Value'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomFloatSpinEdit_ValueEmpty(AIsSet: LongBool; AObj: TCustomFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ValueEmpty'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //function
 procedure CustomFloatSpinEdit_GetLimitedValue(AObj: TCustomFloatSpinEdit; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetLimitedValue'}
   handleExceptionBegin
   Result := AObj.GetLimitedValue(AValue);
   handleExceptionEnd
@@ -102,6 +111,7 @@ end;
 //function
 function CustomFloatSpinEdit_ValueToStr(AObj: TCustomFloatSpinEdit; var AValue: Double): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ValueToStr'}
   handleExceptionBegin
   Result := ToPChar(AObj.ValueToStr(AValue));
   handleExceptionEnd
@@ -110,6 +120,7 @@ end;
 //function
 procedure CustomFloatSpinEdit_StrToValue(AObj: TCustomFloatSpinEdit; const S: PChar; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='StrToValue'}
   handleExceptionBegin
   Result := AObj.StrToValue(S);
   handleExceptionEnd

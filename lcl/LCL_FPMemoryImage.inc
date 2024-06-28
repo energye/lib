@@ -2,6 +2,7 @@
 //constructor
 function FPMemoryImage_Create(AWidth, AHeight: integer): TFPMemoryImage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFPMemoryImage.Create(AWidth, AHeight);
   handleExceptionEnd

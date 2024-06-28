@@ -2,6 +2,7 @@
 //property
 function CustomAbstractGroupedEdit_AutoSizeHeightIsEditHeight(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSizeHeightIsEditHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -14,6 +15,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_Alignment(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -26,6 +28,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_CanUndo(AObj: TCustomAbstractGroupedEdit): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanUndo'}
   handleExceptionBegin
   Result := AObj.CanUndo;
   handleExceptionEnd
@@ -34,6 +37,7 @@ end;
 //property
 procedure CustomAbstractGroupedEdit_CaretPos(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='CaretPos'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_CharCase(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: TEditCharCase): TEditCharCase; extdecl;
 begin
+  {$define handleExceptionFuncName :='CharCase'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_ParentColor(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_EchoMode(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: TEchoMode): TEchoMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='EchoMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_HideSelection(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HideSelection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_MaxLength(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxLength'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_Modified(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Modified'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_NumbersOnly(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NumbersOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_PasswordChar(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: char): char; extdecl;
 begin
+  {$define handleExceptionFuncName :='PasswordChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_ReadOnly(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_SelLength(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelLength'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_SelStart(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelStart'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_SelText(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_Text(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 function CustomAbstractGroupedEdit_TextHint(AIsSet: LongBool; AObj: TCustomAbstractGroupedEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TextHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -220,6 +238,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_Clear(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -228,6 +247,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_ClearSelection(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearSelection'}
   handleExceptionBegin
   AObj.ClearSelection();
   handleExceptionEnd
@@ -236,6 +256,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_CopyToClipboard(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='CopyToClipboard'}
   handleExceptionBegin
   AObj.CopyToClipboard();
   handleExceptionEnd
@@ -244,6 +265,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_CutToClipboard(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='CutToClipboard'}
   handleExceptionBegin
   AObj.CutToClipboard();
   handleExceptionEnd
@@ -252,6 +274,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_PasteFromClipboard(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='PasteFromClipboard'}
   handleExceptionBegin
   AObj.PasteFromClipboard();
   handleExceptionEnd
@@ -260,6 +283,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_SelectAll(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectAll'}
   handleExceptionBegin
   AObj.SelectAll();
   handleExceptionEnd
@@ -268,6 +292,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_Undo(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='Undo'}
   handleExceptionBegin
   AObj.Undo();
   handleExceptionEnd
@@ -276,6 +301,7 @@ end;
 //procedure
 procedure CustomAbstractGroupedEdit_ValidateEdit(AObj: TCustomAbstractGroupedEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='ValidateEdit'}
   handleExceptionBegin
   AObj.ValidateEdit();
   handleExceptionEnd

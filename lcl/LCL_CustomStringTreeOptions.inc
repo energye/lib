@@ -2,6 +2,7 @@
 //constructor
 function CustomStringTreeOptions_Create(AOwner: TBaseVirtualTree): TCustomStringTreeOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomStringTreeOptions.Create(AOwner);
   handleExceptionEnd

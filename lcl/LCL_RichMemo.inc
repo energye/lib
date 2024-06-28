@@ -2,6 +2,7 @@
 //constructor
 function RichMemo_Create(AOwner: TComponent): TRichMemo; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TRichMemo.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function RichMemo_DragCursor(AIsSet: LongBool; AObj: TRichMemo; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function RichMemo_DragKind(AIsSet: LongBool; AObj: TRichMemo; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function RichMemo_DragMode(AIsSet: LongBool; AObj: TRichMemo; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function RichMemo_ParentColor(AIsSet: LongBool; AObj: TRichMemo; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function RichMemo_ParentFont(AIsSet: LongBool; AObj: TRichMemo; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function RichMemo_ParentShowHint(AIsSet: LongBool; AObj: TRichMemo; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function RichMemo_Rtf(AIsSet: LongBool; AObj: TRichMemo; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Rtf'}
   handleExceptionBegin
   if AIsSet then
   begin

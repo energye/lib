@@ -2,6 +2,7 @@
 //constructor
 function Control_Create(TheOwner: TComponent): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Control_AnchoredControls(AObj: TControl; Index: Integer): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchoredControls'}
   handleExceptionBegin
   Result := AObj.AnchoredControls[Index];
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure Control_BaseBounds(AObj: TControl; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseBounds'}
   handleExceptionBegin
   Result := AObj.BaseBounds;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 procedure Control_ReadBounds(AObj: TControl; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadBounds'}
   handleExceptionBegin
   Result := AObj.ReadBounds;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 procedure Control_BaseParentClientSize(AObj: TControl; var Result: TSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseParentClientSize'}
   handleExceptionBegin
   Result := AObj.BaseParentClientSize;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function Control_AccessibleName(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AccessibleName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +60,7 @@ end;
 //property
 function Control_AccessibleDescription(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AccessibleDescription'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +73,7 @@ end;
 //property
 function Control_AccessibleValue(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AccessibleValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +86,7 @@ end;
 //property
 function Control_AccessibleRole(AIsSet: LongBool; AObj: TControl; AValue: TLazAccessibilityRole): TLazAccessibilityRole; extdecl;
 begin
+  {$define handleExceptionFuncName :='AccessibleRole'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +99,7 @@ end;
 //property
 function Control_Action(AIsSet: LongBool; AObj: TControl; AValue: TBasicAction): TBasicAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Action'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +112,7 @@ end;
 //property
 function Control_Align(AIsSet: LongBool; AObj: TControl; AValue: TAlign): TAlign; extdecl;
 begin
+  {$define handleExceptionFuncName :='Align'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +125,7 @@ end;
 //property
 function Control_Anchors(AIsSet: LongBool; AObj: TControl; AValue: TAnchors): TAnchors; extdecl;
 begin
+  {$define handleExceptionFuncName :='Anchors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +138,7 @@ end;
 //property
 function Control_AnchorSide(AObj: TControl; Kind: TAnchorKind): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSide'}
   handleExceptionBegin
   Result := AObj.AnchorSide[Kind];
   handleExceptionEnd
@@ -134,6 +147,7 @@ end;
 //property
 function Control_AutoSize(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +160,7 @@ end;
 //property
 function Control_BorderSpacing(AIsSet: LongBool; AObj: TControl; AValue: TControlBorderSpacing): TControlBorderSpacing; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderSpacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +173,7 @@ end;
 //property
 procedure Control_BoundsRect(AIsSet: LongBool; AObj: TControl; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='BoundsRect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +186,7 @@ end;
 //property
 procedure Control_BoundsRectForNewParent(AIsSet: LongBool; AObj: TControl; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='BoundsRectForNewParent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +199,7 @@ end;
 //property
 function Control_Caption(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +212,7 @@ end;
 //property
 function Control_CaptureMouseButtons(AIsSet: LongBool; AObj: TControl; AValue: TCaptureMouseButtons): TCaptureMouseButtons; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaptureMouseButtons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +225,7 @@ end;
 //property
 function Control_ClientHeight(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +238,7 @@ end;
 //property
 procedure Control_ClientOrigin(AObj: TControl; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientOrigin'}
   handleExceptionBegin
   Result := AObj.ClientOrigin;
   handleExceptionEnd
@@ -226,6 +247,7 @@ end;
 //property
 procedure Control_ClientRect(AObj: TControl; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientRect'}
   handleExceptionBegin
   Result := AObj.ClientRect;
   handleExceptionEnd
@@ -234,6 +256,7 @@ end;
 //property
 function Control_ClientWidth(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +269,7 @@ end;
 //property
 function Control_Color(AIsSet: LongBool; AObj: TControl; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +282,7 @@ end;
 //property
 function Control_Constraints(AIsSet: LongBool; AObj: TControl; AValue: TSizeConstraints): TSizeConstraints; extdecl;
 begin
+  {$define handleExceptionFuncName :='Constraints'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +295,7 @@ end;
 //property
 procedure Control_ControlOrigin(AObj: TControl; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlOrigin'}
   handleExceptionBegin
   Result := AObj.ControlOrigin;
   handleExceptionEnd
@@ -278,6 +304,7 @@ end;
 //property
 function Control_ControlState(AIsSet: LongBool; AObj: TControl; AValue: TControlState): TControlState; extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -290,6 +317,7 @@ end;
 //property
 function Control_ControlStyle(AIsSet: LongBool; AObj: TControl; AValue: TControlStyle): TControlStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -302,6 +330,7 @@ end;
 //property
 function Control_Enabled(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Enabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -314,6 +343,7 @@ end;
 //property
 function Control_Font(AIsSet: LongBool; AObj: TControl; AValue: TFont): TFont; extdecl;
 begin
+  {$define handleExceptionFuncName :='Font'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -326,6 +356,7 @@ end;
 //property
 function Control_IsControl(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -338,6 +369,7 @@ end;
 //property
 function Control_MouseInClient(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MouseInClient'}
   handleExceptionBegin
   Result := AObj.MouseInClient;
   handleExceptionEnd
@@ -346,6 +378,7 @@ end;
 //property
 function Control_Parent(AIsSet: LongBool; AObj: TControl; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Parent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -358,6 +391,7 @@ end;
 //property
 function Control_PopupMenu(AIsSet: LongBool; AObj: TControl; AValue: TPopupmenu): TPopupmenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='PopupMenu'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -370,6 +404,7 @@ end;
 //property
 function Control_ShowHint(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -382,6 +417,7 @@ end;
 //property
 function Control_Visible(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -394,6 +430,7 @@ end;
 //property
 function Control_DockOrientation(AIsSet: LongBool; AObj: TControl; AValue: TDockOrientation): TDockOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='DockOrientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -406,6 +443,7 @@ end;
 //property
 function Control_Floating(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Floating'}
   handleExceptionBegin
   Result := AObj.Floating;
   handleExceptionEnd
@@ -414,6 +452,7 @@ end;
 //property
 function Control_FloatingDockSiteClass(AIsSet: LongBool; AObj: TControl; AValue: TWinControlClass): TWinControlClass; extdecl;
 begin
+  {$define handleExceptionFuncName :='FloatingDockSiteClass'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -426,6 +465,7 @@ end;
 //property
 function Control_HostDockSite(AIsSet: LongBool; AObj: TControl; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='HostDockSite'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -438,6 +478,7 @@ end;
 //property
 function Control_LRDockWidth(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LRDockWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -450,6 +491,7 @@ end;
 //property
 function Control_TBDockHeight(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TBDockHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -462,6 +504,7 @@ end;
 //property
 function Control_UndockHeight(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='UndockHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -474,6 +517,7 @@ end;
 //property
 function Control_UndockWidth(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='UndockWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -486,6 +530,7 @@ end;
 //property
 function Control_BiDiMode(AIsSet: LongBool; AObj: TControl; AValue: TBiDiMode): TBiDiMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='BiDiMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -498,6 +543,7 @@ end;
 //property
 function Control_ParentBiDiMode(AIsSet: LongBool; AObj: TControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBiDiMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -510,6 +556,7 @@ end;
 //property
 function Control_AnchorSideLeft(AIsSet: LongBool; AObj: TControl; AValue: TAnchorSide): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSideLeft'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -522,6 +569,7 @@ end;
 //property
 function Control_AnchorSideTop(AIsSet: LongBool; AObj: TControl; AValue: TAnchorSide): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSideTop'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -534,6 +582,7 @@ end;
 //property
 function Control_AnchorSideRight(AIsSet: LongBool; AObj: TControl; AValue: TAnchorSide): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSideRight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -546,6 +595,7 @@ end;
 //property
 function Control_AnchorSideBottom(AIsSet: LongBool; AObj: TControl; AValue: TAnchorSide): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSideBottom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -558,6 +608,7 @@ end;
 //property
 function Control_Cursor(AIsSet: LongBool; AObj: TControl; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Cursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -570,6 +621,7 @@ end;
 //property
 function Control_Left(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Left'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -582,6 +634,7 @@ end;
 //property
 function Control_Height(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -594,6 +647,7 @@ end;
 //property
 function Control_Hint(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -606,6 +660,7 @@ end;
 //property
 function Control_Top(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Top'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -618,6 +673,7 @@ end;
 //property
 function Control_Width(AIsSet: LongBool; AObj: TControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -630,6 +686,7 @@ end;
 //property
 function Control_HelpType(AIsSet: LongBool; AObj: TControl; AValue: THelpType): THelpType; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -642,6 +699,7 @@ end;
 //property
 function Control_HelpKeyword(AIsSet: LongBool; AObj: TControl; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpKeyword'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -654,6 +712,7 @@ end;
 //property
 function Control_HelpContext(AIsSet: LongBool; AObj: TControl; AValue: THelpContext): THelpContext; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -666,6 +725,7 @@ end;
 //function
 function Control_ManualDock(AObj: TControl; NewDockSite: TWinControl; DropControl: TControl; ControlSide: TAlign; KeepDockSiteSize: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ManualDock'}
   handleExceptionBegin
   Result := AObj.ManualDock(NewDockSite, DropControl, ControlSide, KeepDockSiteSize);
   handleExceptionEnd
@@ -674,6 +734,7 @@ end;
 //function
 function Control_ManualFloat(AObj: TControl; var TheScreenRect: TRect; KeepDockSiteSize: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ManualFloat'}
   handleExceptionBegin
   Result := AObj.ManualFloat(TheScreenRect, KeepDockSiteSize);
   handleExceptionEnd
@@ -682,6 +743,7 @@ end;
 //function
 function Control_ReplaceDockedControl(AObj: TControl; Control: TControl; NewDockSite: TWinControl; DropControl: TControl; ControlSide: TAlign): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceDockedControl'}
   handleExceptionBegin
   Result := AObj.ReplaceDockedControl(Control, NewDockSite, DropControl, ControlSide);
   handleExceptionEnd
@@ -690,6 +752,7 @@ end;
 //function
 function Control_Docked(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Docked'}
   handleExceptionBegin
   Result := AObj.Docked();
   handleExceptionEnd
@@ -698,6 +761,7 @@ end;
 //function
 function Control_Dragging(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Dragging'}
   handleExceptionBegin
   Result := AObj.Dragging();
   handleExceptionEnd
@@ -706,6 +770,7 @@ end;
 //function
 function Control_GetAccessibleObject(AObj: TControl): TLazAccessibleObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetAccessibleObject'}
   handleExceptionBegin
   Result := AObj.GetAccessibleObject();
   handleExceptionEnd
@@ -714,6 +779,7 @@ end;
 //function
 function Control_CreateAccessibleObject(AObj: TControl): TLazAccessibleObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateAccessibleObject'}
   handleExceptionBegin
   Result := AObj.CreateAccessibleObject();
   handleExceptionEnd
@@ -722,6 +788,7 @@ end;
 //function
 function Control_GetSelectedChildAccessibleObject(AObj: TControl): TLazAccessibleObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSelectedChildAccessibleObject'}
   handleExceptionBegin
   Result := AObj.GetSelectedChildAccessibleObject();
   handleExceptionEnd
@@ -730,6 +797,7 @@ end;
 //function
 function Control_GetChildAccessibleObjectAtPos(AObj: TControl; var APos: TPoint): TLazAccessibleObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetChildAccessibleObjectAtPos'}
   handleExceptionBegin
   Result := AObj.GetChildAccessibleObjectAtPos(APos);
   handleExceptionEnd
@@ -738,6 +806,7 @@ end;
 //function
 function Control_ScaleDesignToForm(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleDesignToForm'}
   handleExceptionBegin
   Result := AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -746,6 +815,7 @@ end;
 //function
 function Control_ScaleFormToDesign(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFormToDesign'}
   handleExceptionBegin
   Result := AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -754,6 +824,7 @@ end;
 //function
 function Control_Scale96ToForm(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scale96ToForm'}
   handleExceptionBegin
   Result := AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -762,6 +833,7 @@ end;
 //function
 function Control_ScaleFormTo96(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFormTo96'}
   handleExceptionBegin
   Result := AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -770,6 +842,7 @@ end;
 //function
 function Control_Scale96ToFont(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scale96ToFont'}
   handleExceptionBegin
   Result := AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -778,6 +851,7 @@ end;
 //function
 function Control_ScaleFontTo96(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFontTo96'}
   handleExceptionBegin
   Result := AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -786,6 +860,7 @@ end;
 //function
 function Control_ScaleScreenToFont(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleScreenToFont'}
   handleExceptionBegin
   Result := AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -794,6 +869,7 @@ end;
 //function
 function Control_ScaleFontToScreen(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFontToScreen'}
   handleExceptionBegin
   Result := AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -802,6 +878,7 @@ end;
 //function
 function Control_Scale96ToScreen(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scale96ToScreen'}
   handleExceptionBegin
   Result := AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -810,6 +887,7 @@ end;
 //function
 function Control_ScaleScreenTo96(AObj: TControl; const ASize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleScreenTo96'}
   handleExceptionBegin
   Result := AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -818,6 +896,7 @@ end;
 //function
 function Control_AutoSizePhases(AObj: TControl): TControlAutoSizePhases; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSizePhases'}
   handleExceptionBegin
   Result := AObj.AutoSizePhases();
   handleExceptionEnd
@@ -826,6 +905,7 @@ end;
 //function
 function Control_AutoSizeDelayed(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSizeDelayed'}
   handleExceptionBegin
   Result := AObj.AutoSizeDelayed();
   handleExceptionEnd
@@ -834,6 +914,7 @@ end;
 //function
 function Control_AutoSizeDelayedReport(AObj: TControl): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSizeDelayedReport'}
   handleExceptionBegin
   Result := ToPChar(AObj.AutoSizeDelayedReport());
   handleExceptionEnd
@@ -842,6 +923,7 @@ end;
 //function
 function Control_AutoSizeDelayedHandle(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSizeDelayedHandle'}
   handleExceptionBegin
   Result := AObj.AutoSizeDelayedHandle();
   handleExceptionEnd
@@ -850,6 +932,7 @@ end;
 //function
 function Control_AnchoredControlCount(AObj: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchoredControlCount'}
   handleExceptionBegin
   Result := AObj.AnchoredControlCount();
   handleExceptionEnd
@@ -858,6 +941,7 @@ end;
 //function
 procedure Control_GetCanvasScaleFactor(AObj: TControl; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCanvasScaleFactor'}
   handleExceptionBegin
   Result := AObj.GetCanvasScaleFactor();
   handleExceptionEnd
@@ -866,6 +950,7 @@ end;
 //function
 function Control_GetDefaultWidth(AObj: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDefaultWidth'}
   handleExceptionBegin
   Result := AObj.GetDefaultWidth();
   handleExceptionEnd
@@ -874,6 +959,7 @@ end;
 //function
 function Control_GetDefaultHeight(AObj: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDefaultHeight'}
   handleExceptionBegin
   Result := AObj.GetDefaultHeight();
   handleExceptionEnd
@@ -882,6 +968,7 @@ end;
 //function
 function Control_GetDefaultColor(AObj: TControl; const DefaultColorType: TDefaultColorType): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDefaultColor'}
   handleExceptionBegin
   Result := AObj.GetDefaultColor(DefaultColorType);
   handleExceptionEnd
@@ -890,6 +977,7 @@ end;
 //function
 function Control_GetColorResolvingParent(AObj: TControl): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetColorResolvingParent'}
   handleExceptionBegin
   Result := AObj.GetColorResolvingParent();
   handleExceptionEnd
@@ -898,6 +986,7 @@ end;
 //function
 function Control_GetRGBColorResolvingParent(AObj: TControl): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetRGBColorResolvingParent'}
   handleExceptionBegin
   Result := AObj.GetRGBColorResolvingParent();
   handleExceptionEnd
@@ -906,6 +995,7 @@ end;
 //function
 function Control_GetSidePosition(AObj: TControl; Side: TAnchorKind): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSidePosition'}
   handleExceptionBegin
   Result := AObj.GetSidePosition(Side);
   handleExceptionEnd
@@ -914,6 +1004,7 @@ end;
 //function
 function Control_GetAnchorsDependingOnParent(AObj: TControl; WithNormalAnchors: LongBool): TAnchors; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetAnchorsDependingOnParent'}
   handleExceptionBegin
   Result := AObj.GetAnchorsDependingOnParent(WithNormalAnchors);
   handleExceptionEnd
@@ -922,6 +1013,7 @@ end;
 //function
 function Control_IsParentOf(AObj: TControl; AControl: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsParentOf'}
   handleExceptionBegin
   Result := AObj.IsParentOf(AControl);
   handleExceptionEnd
@@ -930,6 +1022,7 @@ end;
 //function
 function Control_GetTopParent(AObj: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetTopParent'}
   handleExceptionBegin
   Result := AObj.GetTopParent();
   handleExceptionEnd
@@ -938,6 +1031,7 @@ end;
 //function
 function Control_FindSubComponent(AObj: TControl; AName: PChar): TComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindSubComponent'}
   handleExceptionBegin
   Result := AObj.FindSubComponent(AName);
   handleExceptionEnd
@@ -946,6 +1040,7 @@ end;
 //function
 function Control_IsVisible(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsVisible'}
   handleExceptionBegin
   Result := AObj.IsVisible();
   handleExceptionEnd
@@ -954,6 +1049,7 @@ end;
 //function
 function Control_IsControlVisible(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsControlVisible'}
   handleExceptionBegin
   Result := AObj.IsControlVisible();
   handleExceptionEnd
@@ -962,6 +1058,7 @@ end;
 //function
 function Control_IsEnabled(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsEnabled'}
   handleExceptionBegin
   Result := AObj.IsEnabled();
   handleExceptionEnd
@@ -970,6 +1067,7 @@ end;
 //function
 function Control_IsParentColor(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsParentColor'}
   handleExceptionBegin
   Result := AObj.IsParentColor();
   handleExceptionEnd
@@ -978,6 +1076,7 @@ end;
 //function
 function Control_IsParentFont(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsParentFont'}
   handleExceptionBegin
   Result := AObj.IsParentFont();
   handleExceptionEnd
@@ -986,6 +1085,7 @@ end;
 //function
 function Control_FormIsUpdating(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FormIsUpdating'}
   handleExceptionBegin
   Result := AObj.FormIsUpdating();
   handleExceptionEnd
@@ -994,6 +1094,7 @@ end;
 //function
 function Control_IsProcessingPaintMsg(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsProcessingPaintMsg'}
   handleExceptionBegin
   Result := AObj.IsProcessingPaintMsg();
   handleExceptionEnd
@@ -1002,6 +1103,7 @@ end;
 //function
 function Control_CheckChildClassAllowed(AObj: TControl; ChildClass: TClass; ExceptionOnInvalid: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckChildClassAllowed'}
   handleExceptionBegin
   Result := AObj.CheckChildClassAllowed(ChildClass, ExceptionOnInvalid);
   handleExceptionEnd
@@ -1010,6 +1112,7 @@ end;
 //function
 function Control_GetTextBuf(AObj: TControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetTextBuf'}
   handleExceptionBegin
   Result := AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -1018,6 +1121,7 @@ end;
 //function
 function Control_GetTextLen(AObj: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetTextLen'}
   handleExceptionBegin
   Result := AObj.GetTextLen();
   handleExceptionEnd
@@ -1026,6 +1130,7 @@ end;
 //function
 function Control_Perform(AObj: TControl; Msg: uint32; WParam: WParam; LParam: LParam): LRESULT; extdecl;
 begin
+  {$define handleExceptionFuncName :='Perform'}
   handleExceptionBegin
   Result := AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -1034,6 +1139,7 @@ end;
 //function
 procedure Control_ScreenToClient(AObj: TControl; var APoint: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ScreenToClient'}
   handleExceptionBegin
   Result := AObj.ScreenToClient(APoint);
   handleExceptionEnd
@@ -1042,6 +1148,7 @@ end;
 //function
 procedure Control_ClientToScreen(AObj: TControl; var APoint: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientToScreen'}
   handleExceptionBegin
   Result := AObj.ClientToScreen(APoint);
   handleExceptionEnd
@@ -1050,6 +1157,7 @@ end;
 //function
 procedure Control_ClientToScreen1(AObj: TControl; var ARect: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientToScreen1'}
   handleExceptionBegin
   Result := AObj.ClientToScreen(ARect);
   handleExceptionEnd
@@ -1058,6 +1166,7 @@ end;
 //function
 procedure Control_ScreenToControl(AObj: TControl; var APoint: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ScreenToControl'}
   handleExceptionBegin
   Result := AObj.ScreenToControl(APoint);
   handleExceptionEnd
@@ -1066,6 +1175,7 @@ end;
 //function
 procedure Control_ControlToScreen(AObj: TControl; var APoint: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlToScreen'}
   handleExceptionBegin
   Result := AObj.ControlToScreen(APoint);
   handleExceptionEnd
@@ -1074,6 +1184,7 @@ end;
 //function
 procedure Control_ClientToParent(AObj: TControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientToParent'}
   handleExceptionBegin
   Result := AObj.ClientToParent(Point, AParent);
   handleExceptionEnd
@@ -1082,6 +1193,7 @@ end;
 //function
 procedure Control_ParentToClient(AObj: TControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentToClient'}
   handleExceptionBegin
   Result := AObj.ParentToClient(Point, AParent);
   handleExceptionEnd
@@ -1090,6 +1202,7 @@ end;
 //function
 procedure Control_GetChildrenRect(AObj: TControl; Scrolled: LongBool; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetChildrenRect'}
   handleExceptionBegin
   Result := AObj.GetChildrenRect(Scrolled);
   handleExceptionEnd
@@ -1098,6 +1211,7 @@ end;
 //function
 function Control_HandleObjectShouldBeVisible(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleObjectShouldBeVisible'}
   handleExceptionBegin
   Result := AObj.HandleObjectShouldBeVisible();
   handleExceptionEnd
@@ -1106,6 +1220,7 @@ end;
 //function
 function Control_ParentDestroyingHandle(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentDestroyingHandle'}
   handleExceptionBegin
   Result := AObj.ParentDestroyingHandle();
   handleExceptionEnd
@@ -1114,6 +1229,7 @@ end;
 //function
 function Control_ParentHandlesAllocated(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentHandlesAllocated'}
   handleExceptionBegin
   Result := AObj.ParentHandlesAllocated();
   handleExceptionEnd
@@ -1122,6 +1238,7 @@ end;
 //function
 function Control_HasHelp(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasHelp'}
   handleExceptionBegin
   Result := AObj.HasHelp();
   handleExceptionEnd
@@ -1130,6 +1247,7 @@ end;
 //function
 function Control_UseRightToLeftAlignment(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseRightToLeftAlignment'}
   handleExceptionBegin
   Result := AObj.UseRightToLeftAlignment();
   handleExceptionEnd
@@ -1138,6 +1256,7 @@ end;
 //function
 function Control_UseRightToLeftReading(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseRightToLeftReading'}
   handleExceptionBegin
   Result := AObj.UseRightToLeftReading();
   handleExceptionEnd
@@ -1146,6 +1265,7 @@ end;
 //function
 function Control_UseRightToLeftScrollBar(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseRightToLeftScrollBar'}
   handleExceptionBegin
   Result := AObj.UseRightToLeftScrollBar();
   handleExceptionEnd
@@ -1154,6 +1274,7 @@ end;
 //function
 function Control_IsRightToLeft(AObj: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsRightToLeft'}
   handleExceptionBegin
   Result := AObj.IsRightToLeft();
   handleExceptionEnd
@@ -1168,6 +1289,7 @@ end;
 //procedure
 procedure Control_DragDrop(AObj: TControl; Source: TObject; X, Y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragDrop'}
   handleExceptionBegin
   AObj.DragDrop(Source, X, Y);
   handleExceptionEnd
@@ -1176,6 +1298,7 @@ end;
 //procedure
 procedure Control_Dock(AObj: TControl; NewDockSite: TWinControl; var ARect: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Dock'}
   handleExceptionBegin
   AObj.Dock(NewDockSite, ARect);
   handleExceptionEnd
@@ -1184,6 +1307,7 @@ end;
 //procedure
 procedure Control_AdjustSize(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AdjustSize'}
   handleExceptionBegin
   AObj.AdjustSize();
   handleExceptionEnd
@@ -1192,6 +1316,7 @@ end;
 //procedure
 procedure Control_AnchorToNeighbour(AObj: TControl; Side: TAnchorKind; Space: TSpacingSize; Sibling: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorToNeighbour'}
   handleExceptionBegin
   AObj.AnchorToNeighbour(Side, Space, Sibling);
   handleExceptionEnd
@@ -1200,6 +1325,7 @@ end;
 //procedure
 procedure Control_AnchorParallel(AObj: TControl; Side: TAnchorKind; Space: TSpacingSize; Sibling: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorParallel'}
   handleExceptionBegin
   AObj.AnchorParallel(Side, Space, Sibling);
   handleExceptionEnd
@@ -1208,6 +1334,7 @@ end;
 //procedure
 procedure Control_AnchorHorizontalCenterTo(AObj: TControl; Sibling: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorHorizontalCenterTo'}
   handleExceptionBegin
   AObj.AnchorHorizontalCenterTo(Sibling);
   handleExceptionEnd
@@ -1216,6 +1343,7 @@ end;
 //procedure
 procedure Control_AnchorVerticalCenterTo(AObj: TControl; Sibling: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorVerticalCenterTo'}
   handleExceptionBegin
   AObj.AnchorVerticalCenterTo(Sibling);
   handleExceptionEnd
@@ -1224,6 +1352,7 @@ end;
 //procedure
 procedure Control_AnchorToCompanion(AObj: TControl; Side: TAnchorKind; Space: TSpacingSize; Sibling: TControl; FreeCompositeSide: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorToCompanion'}
   handleExceptionBegin
   AObj.AnchorToCompanion(Side, Space, Sibling, FreeCompositeSide);
   handleExceptionEnd
@@ -1232,6 +1361,7 @@ end;
 //procedure
 procedure Control_AnchorSame(AObj: TControl; Side: TAnchorKind; Sibling: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSame'}
   handleExceptionBegin
   AObj.AnchorSame(Side, Sibling);
   handleExceptionEnd
@@ -1240,6 +1370,7 @@ end;
 //procedure
 procedure Control_AnchorAsAlign(AObj: TControl; TheAlign: TAlign; Space: TSpacingSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorAsAlign'}
   handleExceptionBegin
   AObj.AnchorAsAlign(TheAlign, Space);
   handleExceptionEnd
@@ -1248,6 +1379,7 @@ end;
 //procedure
 procedure Control_AnchorClient(AObj: TControl; Space: TSpacingSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorClient'}
   handleExceptionBegin
   AObj.AnchorClient(Space);
   handleExceptionEnd
@@ -1256,6 +1388,7 @@ end;
 //procedure
 procedure Control_SetBounds(AObj: TControl; aLeft, aTop, aWidth, aHeight: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetBounds'}
   handleExceptionBegin
   AObj.SetBounds(aLeft, aTop, aWidth, aHeight);
   handleExceptionEnd
@@ -1264,6 +1397,7 @@ end;
 //procedure
 procedure Control_SetInitialBounds(AObj: TControl; aLeft, aTop, aWidth, aHeight: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetInitialBounds'}
   handleExceptionBegin
   AObj.SetInitialBounds(aLeft, aTop, aWidth, aHeight);
   handleExceptionEnd
@@ -1272,6 +1406,7 @@ end;
 //procedure
 procedure Control_SetBoundsKeepBase(AObj: TControl; aLeft, aTop, aWidth, aHeight: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetBoundsKeepBase'}
   handleExceptionBegin
   AObj.SetBoundsKeepBase(aLeft, aTop, aWidth, aHeight);
   handleExceptionEnd
@@ -1283,6 +1418,7 @@ var
   RetPreferredWidth: Integer;
   RetPreferredHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='GetPreferredSize'}
   handleExceptionBegin
   RetPreferredWidth := PreferredWidth;
   RetPreferredHeight := PreferredHeight;
@@ -1295,6 +1431,7 @@ end;
 //procedure
 procedure Control_CNPreferredSizeChanged(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='CNPreferredSizeChanged'}
   handleExceptionBegin
   AObj.CNPreferredSizeChanged();
   handleExceptionEnd
@@ -1303,6 +1440,7 @@ end;
 //procedure
 procedure Control_InvalidatePreferredSize(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidatePreferredSize'}
   handleExceptionBegin
   AObj.InvalidatePreferredSize();
   handleExceptionEnd
@@ -1311,6 +1449,7 @@ end;
 //procedure
 procedure Control_DisableAutoSizing(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableAutoSizing'}
   handleExceptionBegin
   AObj.DisableAutoSizing();
   handleExceptionEnd
@@ -1319,6 +1458,7 @@ end;
 //procedure
 procedure Control_EnableAutoSizing(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableAutoSizing'}
   handleExceptionBegin
   AObj.EnableAutoSizing();
   handleExceptionEnd
@@ -1327,6 +1467,7 @@ end;
 //procedure
 procedure Control_UpdateBaseBounds(AObj: TControl; StoreBounds, StoreParentClientSize, UseLoadedValues: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateBaseBounds'}
   handleExceptionBegin
   AObj.UpdateBaseBounds(StoreBounds, StoreParentClientSize, UseLoadedValues);
   handleExceptionEnd
@@ -1335,6 +1476,7 @@ end;
 //procedure
 procedure Control_WriteLayoutDebugReport(AObj: TControl; const Prefix: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='WriteLayoutDebugReport'}
   handleExceptionBegin
   AObj.WriteLayoutDebugReport(Prefix);
   handleExceptionEnd
@@ -1343,6 +1485,7 @@ end;
 //procedure
 procedure Control_AutoAdjustLayout(AObj: TControl; AMode: TLayoutAdjustmentPolicy; const AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoAdjustLayout'}
   handleExceptionBegin
   AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
   handleExceptionEnd
@@ -1354,6 +1497,7 @@ var
   RetAWidth: boolean;
   RetAHeight: boolean;
 begin
+  {$define handleExceptionFuncName :='ShouldAutoAdjust'}
   handleExceptionBegin
   RetAWidth := AWidth;
   RetAHeight := AHeight;
@@ -1366,6 +1510,7 @@ end;
 //procedure
 procedure Control_FixDesignFontsPPI(AObj: TControl; const ADesignTimePPI: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='FixDesignFontsPPI'}
   handleExceptionBegin
   AObj.FixDesignFontsPPI(ADesignTimePPI);
   handleExceptionEnd
@@ -1374,6 +1519,7 @@ end;
 //procedure
 procedure Control_ScaleFontsPPI(AObj: TControl; const AToPPI: Integer; var AProportion: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFontsPPI'}
   handleExceptionBegin
   AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
@@ -1382,6 +1528,7 @@ end;
 //procedure
 procedure Control_EditingDone(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='EditingDone'}
   handleExceptionBegin
   AObj.EditingDone();
   handleExceptionEnd
@@ -1390,6 +1537,7 @@ end;
 //procedure
 procedure Control_ExecuteDefaultAction(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteDefaultAction'}
   handleExceptionBegin
   AObj.ExecuteDefaultAction();
   handleExceptionEnd
@@ -1398,6 +1546,7 @@ end;
 //procedure
 procedure Control_ExecuteCancelAction(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteCancelAction'}
   handleExceptionBegin
   AObj.ExecuteCancelAction();
   handleExceptionEnd
@@ -1406,6 +1555,7 @@ end;
 //procedure
 procedure Control_BeginDrag(AObj: TControl; Immediate: LongBool; Threshold: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginDrag'}
   handleExceptionBegin
   AObj.BeginDrag(Immediate, Threshold);
   handleExceptionEnd
@@ -1414,6 +1564,7 @@ end;
 //procedure
 procedure Control_EndDrag(AObj: TControl; Drop: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndDrag'}
   handleExceptionBegin
   AObj.EndDrag(Drop);
   handleExceptionEnd
@@ -1422,6 +1573,7 @@ end;
 //procedure
 procedure Control_BringToFront(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='BringToFront'}
   handleExceptionBegin
   AObj.BringToFront();
   handleExceptionEnd
@@ -1430,6 +1582,7 @@ end;
 //procedure
 procedure Control_Hide(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Hide'}
   handleExceptionBegin
   AObj.Hide();
   handleExceptionEnd
@@ -1438,6 +1591,7 @@ end;
 //procedure
 procedure Control_Refresh(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Refresh'}
   handleExceptionBegin
   AObj.Refresh();
   handleExceptionEnd
@@ -1446,6 +1600,7 @@ end;
 //procedure
 procedure Control_Repaint(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Repaint'}
   handleExceptionBegin
   AObj.Repaint();
   handleExceptionEnd
@@ -1454,6 +1609,7 @@ end;
 //procedure
 procedure Control_Invalidate(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Invalidate'}
   handleExceptionBegin
   AObj.Invalidate();
   handleExceptionEnd
@@ -1462,6 +1618,7 @@ end;
 //procedure
 procedure Control_CheckNewParent(AObj: TControl; AParent: TWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckNewParent'}
   handleExceptionBegin
   AObj.CheckNewParent(AParent);
   handleExceptionEnd
@@ -1470,6 +1627,7 @@ end;
 //procedure
 procedure Control_SendToBack(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='SendToBack'}
   handleExceptionBegin
   AObj.SendToBack();
   handleExceptionEnd
@@ -1478,6 +1636,7 @@ end;
 //procedure
 procedure Control_SetTempCursor(AObj: TControl; Value: TCursor); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetTempCursor'}
   handleExceptionBegin
   AObj.SetTempCursor(Value);
   handleExceptionEnd
@@ -1486,6 +1645,7 @@ end;
 //procedure
 procedure Control_UpdateRolesForForm(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateRolesForForm'}
   handleExceptionBegin
   AObj.UpdateRolesForForm();
   handleExceptionEnd
@@ -1494,6 +1654,7 @@ end;
 //procedure
 procedure Control_ActiveDefaultControlChanged(AObj: TControl; NewControl: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='ActiveDefaultControlChanged'}
   handleExceptionBegin
   AObj.ActiveDefaultControlChanged(NewControl);
   handleExceptionEnd
@@ -1502,6 +1663,7 @@ end;
 //procedure
 procedure Control_SetTextBuf(AObj: TControl; Buffer: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetTextBuf'}
   handleExceptionBegin
   AObj.SetTextBuf(Buffer);
   handleExceptionEnd
@@ -1510,6 +1672,7 @@ end;
 //procedure
 procedure Control_Show(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Show'}
   handleExceptionBegin
   AObj.Show();
   handleExceptionEnd
@@ -1518,6 +1681,7 @@ end;
 //procedure
 procedure Control_Update(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Update'}
   handleExceptionBegin
   AObj.Update();
   handleExceptionEnd
@@ -1526,6 +1690,7 @@ end;
 //procedure
 procedure Control_InitiateAction(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='InitiateAction'}
   handleExceptionBegin
   AObj.InitiateAction();
   handleExceptionEnd
@@ -1534,6 +1699,7 @@ end;
 //procedure
 procedure Control_ShowHelp(AObj: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowHelp'}
   handleExceptionBegin
   AObj.ShowHelp();
   handleExceptionEnd

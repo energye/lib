@@ -2,6 +2,7 @@
 //constructor
 function ATGauge_Create(AOwner: TComponent): TATGauge; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TATGauge.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ATGauge_PercentDone(AObj: TATGauge): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PercentDone'}
   handleExceptionBegin
   Result := AObj.PercentDone;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function ATGauge_Theme(AIsSet: LongBool; AObj: TATGauge; AValue: PATFlatTheme): PATFlatTheme; extdecl;
 begin
+  {$define handleExceptionFuncName :='Theme'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function ATGauge_BorderStyle(AIsSet: LongBool; AObj: TATGauge; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function ATGauge_DoubleBuffered(AIsSet: LongBool; AObj: TATGauge; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DoubleBuffered'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function ATGauge_ParentColor(AIsSet: LongBool; AObj: TATGauge; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function ATGauge_ParentShowHint(AIsSet: LongBool; AObj: TATGauge; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function ATGauge_Kind(AIsSet: LongBool; AObj: TATGauge; AValue: TATGaugeKind): TATGaugeKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function ATGauge_Progress(AIsSet: LongBool; AObj: TATGauge; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Progress'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function ATGauge_MinValue(AIsSet: LongBool; AObj: TATGauge; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function ATGauge_MaxValue(AIsSet: LongBool; AObj: TATGauge; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function ATGauge_ShowText(AIsSet: LongBool; AObj: TATGauge; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function ATGauge_ShowTextInverted(AIsSet: LongBool; AObj: TATGauge; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowTextInverted'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -156,6 +169,7 @@ end;
 //procedure
 procedure ATGauge_AddProgress(AObj: TATGauge; AValue: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddProgress'}
   handleExceptionBegin
   AObj.AddProgress(AValue);
   handleExceptionEnd

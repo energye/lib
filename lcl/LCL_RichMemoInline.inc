@@ -2,6 +2,7 @@
 //constructor
 function RichMemoInline_Create(): TRichMemoInline; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TRichMemoInline.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function RichMemoInline_Owner(AObj: TRichMemoInline): TCustomRichMemo; extdecl;
 begin
+  {$define handleExceptionFuncName :='Owner'}
   handleExceptionBegin
   Result := AObj.Owner;
   handleExceptionEnd
@@ -24,6 +26,7 @@ end;
 //procedure
 procedure RichMemoInline_Draw(AObj: TRichMemoInline; Canvas: TCanvas; var ASize: TSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='Draw'}
   handleExceptionBegin
   AObj.Draw(Canvas, ASize);
   handleExceptionEnd
@@ -32,6 +35,7 @@ end;
 //procedure
 procedure RichMemoInline_SetVisible(AObj: TRichMemoInline; AVisible: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetVisible'}
   handleExceptionBegin
   AObj.SetVisible(AVisible);
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //procedure
 procedure RichMemoInline_Invalidate(AObj: TRichMemoInline); extdecl;
 begin
+  {$define handleExceptionFuncName :='Invalidate'}
   handleExceptionBegin
   AObj.Invalidate();
   handleExceptionEnd

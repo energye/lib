@@ -2,6 +2,7 @@
 //constructor
 function ColorButton_Create(AnOwner: TComponent): TColorButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TColorButton.Create(AnOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ColorButton_BorderWidth(AIsSet: LongBool; AObj: TColorButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ColorButton_ButtonColorAutoSize(AIsSet: LongBool; AObj: TColorButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonColorAutoSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ColorButton_ButtonColorSize(AIsSet: LongBool; AObj: TColorButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonColorSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ColorButton_ButtonColor(AIsSet: LongBool; AObj: TColorButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ColorButton_ColorDialog(AIsSet: LongBool; AObj: TColorButton; AValue: TColorDialog): TColorDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorDialog'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ColorButton_ParentFont(AIsSet: LongBool; AObj: TColorButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ColorButton_ParentShowHint(AIsSet: LongBool; AObj: TColorButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

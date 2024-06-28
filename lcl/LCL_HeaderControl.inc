@@ -2,6 +2,7 @@
 //constructor
 function HeaderControl_Create(AOwner: TComponent): THeaderControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := THeaderControl.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function HeaderControl_DragCursor(AIsSet: LongBool; AObj: THeaderControl; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function HeaderControl_DragKind(AIsSet: LongBool; AObj: THeaderControl; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function HeaderControl_DragMode(AIsSet: LongBool; AObj: THeaderControl; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function HeaderControl_ParentFont(AIsSet: LongBool; AObj: THeaderControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function HeaderControl_ParentShowHint(AIsSet: LongBool; AObj: THeaderControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

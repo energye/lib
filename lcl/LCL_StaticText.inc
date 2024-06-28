@@ -2,6 +2,7 @@
 //constructor
 function StaticText_Create(AOwner: TComponent): TStaticText; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TStaticText.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function StaticText_DragCursor(AIsSet: LongBool; AObj: TStaticText; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function StaticText_DragKind(AIsSet: LongBool; AObj: TStaticText; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function StaticText_DragMode(AIsSet: LongBool; AObj: TStaticText; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function StaticText_ParentFont(AIsSet: LongBool; AObj: TStaticText; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function StaticText_ParentColor(AIsSet: LongBool; AObj: TStaticText; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function StaticText_ParentShowHint(AIsSet: LongBool; AObj: TStaticText; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

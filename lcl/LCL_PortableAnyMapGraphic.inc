@@ -2,6 +2,7 @@
 //constructor
 function PortableAnyMapGraphic_Create(): TPortableAnyMapGraphic; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPortableAnyMapGraphic.Create();
   handleExceptionEnd

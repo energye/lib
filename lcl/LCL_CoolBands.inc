@@ -2,6 +2,7 @@
 //constructor
 function CoolBands_Create(ACoolBar: TCustomCoolBar): TCoolBands; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoolBands.Create(ACoolBar);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoolBands_ItemsForCoolBand(AIsSet: LongBool; AObj: TCoolBands; Index: Integer; AValue: TCoolBand): TCoolBand; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemsForCoolBand'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //function
 function CoolBands_AddForCoolBand(AObj: TCoolBands): TCoolBand; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddForCoolBand'}
   handleExceptionBegin
   Result := AObj.Add();
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //function
 function CoolBands_FindBand(AObj: TCoolBands; AControl: TControl): TCoolBand; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindBand'}
   handleExceptionBegin
   Result := AObj.FindBand(AControl);
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //function
 function CoolBands_FindBandIndex(AObj: TCoolBands; AControl: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindBandIndex'}
   handleExceptionBegin
   Result := AObj.FindBandIndex(AControl);
   handleExceptionEnd

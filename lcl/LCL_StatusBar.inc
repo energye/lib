@@ -2,6 +2,7 @@
 //constructor
 function StatusBar_Create(TheOwner: TComponent): TStatusBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TStatusBar.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function StatusBar_Canvas(AObj: TStatusBar): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   Result := AObj.Canvas;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function StatusBar_AutoHint(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function StatusBar_DragCursor(AIsSet: LongBool; AObj: TStatusBar; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function StatusBar_DragKind(AIsSet: LongBool; AObj: TStatusBar; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function StatusBar_DragMode(AIsSet: LongBool; AObj: TStatusBar; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function StatusBar_Panels(AIsSet: LongBool; AObj: TStatusBar; AValue: TStatusPanels): TStatusPanels; extdecl;
 begin
+  {$define handleExceptionFuncName :='Panels'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function StatusBar_ParentColor(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function StatusBar_ParentFont(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function StatusBar_ParentShowHint(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function StatusBar_SimpleText(AIsSet: LongBool; AObj: TStatusBar; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SimpleText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function StatusBar_SimplePanel(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SimplePanel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function StatusBar_SizeGrip(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SizeGrip'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function StatusBar_UseSystemFont(AIsSet: LongBool; AObj: TStatusBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseSystemFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //function
 function StatusBar_GetPanelIndexAt(AObj: TStatusBar; X, Y: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetPanelIndexAt'}
   handleExceptionBegin
   Result := AObj.GetPanelIndexAt(X, Y);
   handleExceptionEnd
@@ -170,6 +185,7 @@ end;
 //function
 function StatusBar_SizeGripEnabled(AObj: TStatusBar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SizeGripEnabled'}
   handleExceptionBegin
   Result := AObj.SizeGripEnabled();
   handleExceptionEnd
@@ -178,6 +194,7 @@ end;
 //function
 function StatusBar_UpdatingStatusBar(AObj: TStatusBar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdatingStatusBar'}
   handleExceptionBegin
   Result := AObj.UpdatingStatusBar();
   handleExceptionEnd
@@ -192,6 +209,7 @@ end;
 //procedure
 procedure StatusBar_InvalidatePanel(AObj: TStatusBar; PanelIndex: integer; PanelParts: TPanelParts); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidatePanel'}
   handleExceptionBegin
   AObj.InvalidatePanel(PanelIndex, PanelParts);
   handleExceptionEnd
@@ -200,6 +218,7 @@ end;
 //procedure
 procedure StatusBar_BeginUpdate(AObj: TStatusBar); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginUpdate'}
   handleExceptionBegin
   AObj.BeginUpdate();
   handleExceptionEnd
@@ -208,6 +227,7 @@ end;
 //procedure
 procedure StatusBar_EndUpdate(AObj: TStatusBar); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndUpdate'}
   handleExceptionBegin
   AObj.EndUpdate();
   handleExceptionEnd

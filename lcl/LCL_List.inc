@@ -2,6 +2,7 @@
 //constructor
 function List_Create(): TList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TList.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function List_Capacity(AIsSet: LongBool; AObj: TList; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Capacity'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function List_Count(AIsSet: LongBool; AObj: TList; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Count'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function List_Items(AIsSet: LongBool; AObj: TList; Index: Integer; AValue: Pointer): Pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Items'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function List_List(AObj: TList): PPointerList; extdecl;
 begin
+  {$define handleExceptionFuncName :='List'}
   handleExceptionBegin
   Result := AObj.List;
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //function
 function List_Add(AObj: TList; Item: Pointer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Add'}
   handleExceptionBegin
   Result := AObj.Add(Item);
   handleExceptionEnd
@@ -62,6 +68,7 @@ end;
 //function
 function List_Expand(AObj: TList): TList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Expand'}
   handleExceptionBegin
   Result := AObj.Expand();
   handleExceptionEnd
@@ -70,6 +77,7 @@ end;
 //function
 function List_Extract(AObj: TList; item: Pointer): Pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Extract'}
   handleExceptionBegin
   Result := AObj.Extract(item);
   handleExceptionEnd
@@ -78,6 +86,7 @@ end;
 //function
 function List_First(AObj: TList): Pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='First'}
   handleExceptionBegin
   Result := AObj.First();
   handleExceptionEnd
@@ -86,6 +95,7 @@ end;
 //function
 function List_GetEnumerator(AObj: TList): TListEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnumerator'}
   handleExceptionBegin
   Result := AObj.GetEnumerator();
   handleExceptionEnd
@@ -94,6 +104,7 @@ end;
 //function
 function List_IndexOf(AObj: TList; Item: Pointer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf'}
   handleExceptionBegin
   Result := AObj.IndexOf(Item);
   handleExceptionEnd
@@ -102,6 +113,7 @@ end;
 //function
 function List_Last(AObj: TList): Pointer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Last'}
   handleExceptionBegin
   Result := AObj.Last();
   handleExceptionEnd
@@ -110,6 +122,7 @@ end;
 //function
 function List_Remove(AObj: TList; Item: Pointer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Remove'}
   handleExceptionBegin
   Result := AObj.Remove(Item);
   handleExceptionEnd
@@ -124,6 +137,7 @@ end;
 //procedure
 procedure List_FPOAttachObserver(AObj: TList; AObserver: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='FPOAttachObserver'}
   handleExceptionBegin
   AObj.FPOAttachObserver(AObserver);
   handleExceptionEnd
@@ -132,6 +146,7 @@ end;
 //procedure
 procedure List_FPODetachObserver(AObj: TList; AObserver: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='FPODetachObserver'}
   handleExceptionBegin
   AObj.FPODetachObserver(AObserver);
   handleExceptionEnd
@@ -140,6 +155,7 @@ end;
 //procedure
 procedure List_FPONotifyObservers(AObj: TList; ASender: TObject; AOperation: TFPObservedOperation; Data: Pointer); extdecl;
 begin
+  {$define handleExceptionFuncName :='FPONotifyObservers'}
   handleExceptionBegin
   AObj.FPONotifyObservers(ASender, AOperation, Data);
   handleExceptionEnd
@@ -148,6 +164,7 @@ end;
 //procedure
 procedure List_AddList(AObj: TList; AList: TList); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddList'}
   handleExceptionBegin
   AObj.AddList(AList);
   handleExceptionEnd
@@ -156,6 +173,7 @@ end;
 //procedure
 procedure List_Clear(AObj: TList); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -164,6 +182,7 @@ end;
 //procedure
 procedure List_Delete(AObj: TList; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delete'}
   handleExceptionBegin
   AObj.Delete(Index);
   handleExceptionEnd
@@ -172,6 +191,7 @@ end;
 //procedure
 procedure List_Exchange(AObj: TList; Index1, Index2: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Exchange'}
   handleExceptionBegin
   AObj.Exchange(Index1, Index2);
   handleExceptionEnd
@@ -180,6 +200,7 @@ end;
 //procedure
 procedure List_Insert(AObj: TList; Index: Integer; Item: Pointer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insert'}
   handleExceptionBegin
   AObj.Insert(Index, Item);
   handleExceptionEnd
@@ -188,6 +209,7 @@ end;
 //procedure
 procedure List_Move(AObj: TList; CurIndex, NewIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Move'}
   handleExceptionBegin
   AObj.Move(CurIndex, NewIndex);
   handleExceptionEnd
@@ -196,6 +218,7 @@ end;
 //procedure
 procedure List_Pack(AObj: TList); extdecl;
 begin
+  {$define handleExceptionFuncName :='Pack'}
   handleExceptionBegin
   AObj.Pack();
   handleExceptionEnd

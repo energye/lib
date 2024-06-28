@@ -2,6 +2,7 @@
 //constructor
 function WindowMagnetOptions_Create(): TWindowMagnetOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TWindowMagnetOptions.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function WindowMagnetOptions_SnapToMonitor(AIsSet: LongBool; AObj: TWindowMagnetOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SnapToMonitor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function WindowMagnetOptions_SnapToForms(AIsSet: LongBool; AObj: TWindowMagnetOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SnapToForms'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function WindowMagnetOptions_SnapFormTarget(AIsSet: LongBool; AObj: TWindowMagnetOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SnapFormTarget'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function WindowMagnetOptions_Distance(AIsSet: LongBool; AObj: TWindowMagnetOptions; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Distance'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -64,6 +69,7 @@ end;
 //procedure
 procedure WindowMagnetOptions_AssignTo(AObj: TWindowMagnetOptions; Dest: TPersistent); extdecl;
 begin
+  {$define handleExceptionFuncName :='AssignTo'}
   handleExceptionBegin
   AObj.AssignTo(Dest);
   handleExceptionEnd

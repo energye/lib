@@ -2,6 +2,7 @@
 //constructor
 function ScrollBox_Create(AOwner: TComponent): TScrollBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TScrollBox.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ScrollBox_AutoScroll(AIsSet: LongBool; AObj: TScrollBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoScroll'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ScrollBox_DragCursor(AIsSet: LongBool; AObj: TScrollBox; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ScrollBox_DragKind(AIsSet: LongBool; AObj: TScrollBox; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ScrollBox_DragMode(AIsSet: LongBool; AObj: TScrollBox; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ScrollBox_ParentBackground(AIsSet: LongBool; AObj: TScrollBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBackground'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ScrollBox_ParentColor(AIsSet: LongBool; AObj: TScrollBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ScrollBox_ParentFont(AIsSet: LongBool; AObj: TScrollBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function ScrollBox_ParentShowHint(AIsSet: LongBool; AObj: TScrollBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

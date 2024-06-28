@@ -2,6 +2,7 @@
 //constructor
 function DateTimePicker_Create(AOwner: TComponent): TDateTimePicker; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDateTimePicker.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DateTimePicker_DateTime(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDateTime): TDateTime; extdecl;
 begin
+  {$define handleExceptionFuncName :='DateTime'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function DateTimePicker_DroppedDown(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DroppedDown'}
   handleExceptionBegin
   Result := AObj.DroppedDown;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function DateTimePicker_ArrowShape(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TArrowShape): TArrowShape; extdecl;
 begin
+  {$define handleExceptionFuncName :='ArrowShape'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function DateTimePicker_ShowCheckBox(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCheckBox'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function DateTimePicker_Checked(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function DateTimePicker_CenturyFrom(AIsSet: LongBool; AObj: TDateTimePicker; AValue: Word): Word; extdecl;
 begin
+  {$define handleExceptionFuncName :='CenturyFrom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function DateTimePicker_DateDisplayOrder(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDateDisplayOrder): TDateDisplayOrder; extdecl;
 begin
+  {$define handleExceptionFuncName :='DateDisplayOrder'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function DateTimePicker_MaxDate(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDate): TDate; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxDate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function DateTimePicker_MinDate(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDate): TDate; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinDate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function DateTimePicker_ReadOnly(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function DateTimePicker_ParentFont(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function DateTimePicker_ParentColor(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function DateTimePicker_DateSeparator(AIsSet: LongBool; AObj: TDateTimePicker; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DateSeparator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function DateTimePicker_TrailingSeparator(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='TrailingSeparator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function DateTimePicker_TextForNullDate(AIsSet: LongBool; AObj: TDateTimePicker; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TextForNullDate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function DateTimePicker_LeadingZeros(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LeadingZeros'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function DateTimePicker_ParentShowHint(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function DateTimePicker_NullInputAllowed(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NullInputAllowed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //property
 function DateTimePicker_Kind(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDateTimeKind): TDateTimeKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +254,7 @@ end;
 //property
 function DateTimePicker_TimeSeparator(AIsSet: LongBool; AObj: TDateTimePicker; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TimeSeparator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +267,7 @@ end;
 //property
 function DateTimePicker_DecimalSeparator(AIsSet: LongBool; AObj: TDateTimePicker; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DecimalSeparator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +280,7 @@ end;
 //property
 function DateTimePicker_TimeFormat(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TTimeFormat): TTimeFormat; extdecl;
 begin
+  {$define handleExceptionFuncName :='TimeFormat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +293,7 @@ end;
 //property
 function DateTimePicker_TimeDisplay(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TTimeDisplay): TTimeDisplay; extdecl;
 begin
+  {$define handleExceptionFuncName :='TimeDisplay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -282,6 +306,7 @@ end;
 //property
 function DateTimePicker_DateMode(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDTDateMode): TDTDateMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DateMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +319,7 @@ end;
 //property
 function DateTimePicker_Date(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDate): TDate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Date'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -306,6 +332,7 @@ end;
 //property
 function DateTimePicker_Time(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TTime): TTime; extdecl;
 begin
+  {$define handleExceptionFuncName :='Time'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -318,6 +345,7 @@ end;
 //property
 function DateTimePicker_UseDefaultSeparators(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseDefaultSeparators'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -330,6 +358,7 @@ end;
 //property
 function DateTimePicker_Cascade(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Cascade'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -342,6 +371,7 @@ end;
 //property
 function DateTimePicker_AutoButtonSize(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoButtonSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -354,6 +384,7 @@ end;
 //property
 function DateTimePicker_AutoAdvance(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoAdvance'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -366,6 +397,7 @@ end;
 //property
 function DateTimePicker_HideDateTimeParts(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDateTimeParts): TDateTimeParts; extdecl;
 begin
+  {$define handleExceptionFuncName :='HideDateTimeParts'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -378,6 +410,7 @@ end;
 //property
 function DateTimePicker_MonthDisplay(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TMonthDisplay): TMonthDisplay; extdecl;
 begin
+  {$define handleExceptionFuncName :='MonthDisplay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -390,6 +423,7 @@ end;
 //property
 function DateTimePicker_CustomMonthNames(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomMonthNames'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -402,6 +436,7 @@ end;
 //property
 function DateTimePicker_ShowMonthNames(AIsSet: LongBool; AObj: TDateTimePicker; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowMonthNames'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -414,6 +449,7 @@ end;
 //property
 function DateTimePicker_CalAlignment(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDTCalAlignment): TDTCalAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='CalAlignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -426,6 +462,7 @@ end;
 //property
 function DateTimePicker_Alignment(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -438,6 +475,7 @@ end;
 //property
 function DateTimePicker_Options(AIsSet: LongBool; AObj: TDateTimePicker; AValue: TDateTimePickerOptions): TDateTimePickerOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin

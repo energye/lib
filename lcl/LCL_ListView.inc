@@ -2,6 +2,7 @@
 //constructor
 function ListView_Create(AOwner: TComponent): TListView; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TListView.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ListView_AllocBy(AIsSet: LongBool; AObj: TListView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllocBy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ListView_AutoSort(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSort'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ListView_AutoSortIndicator(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSortIndicator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ListView_AutoWidthLastColumn(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoWidthLastColumn'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ListView_Columns(AIsSet: LongBool; AObj: TListView; AValue: TListColumns): TListColumns; extdecl;
 begin
+  {$define handleExceptionFuncName :='Columns'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ListView_ColumnClick(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColumnClick'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ListView_DragCursor(AIsSet: LongBool; AObj: TListView; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function ListView_DragKind(AIsSet: LongBool; AObj: TListView; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function ListView_DragMode(AIsSet: LongBool; AObj: TListView; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function ListView_HideSelection(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HideSelection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function ListView_LargeImages(AIsSet: LongBool; AObj: TListView; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='LargeImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function ListView_LargeImagesWidth(AIsSet: LongBool; AObj: TListView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LargeImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function ListView_OwnerDraw(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OwnerDraw'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function ListView_ParentColor(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function ListView_ParentFont(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function ListView_ParentShowHint(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 function ListView_ScrollBars(AIsSet: LongBool; AObj: TListView; AValue: TScrollStyle): TScrollStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollBars'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +232,7 @@ end;
 //property
 function ListView_ShowColumnHeaders(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowColumnHeaders'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +245,7 @@ end;
 //property
 function ListView_SmallImages(AIsSet: LongBool; AObj: TListView; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmallImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +258,7 @@ end;
 //property
 function ListView_SmallImagesWidth(AIsSet: LongBool; AObj: TListView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmallImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +271,7 @@ end;
 //property
 function ListView_SortColumn(AIsSet: LongBool; AObj: TListView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortColumn'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +284,7 @@ end;
 //property
 function ListView_SortDirection(AIsSet: LongBool; AObj: TListView; AValue: ComCtrls.TSortDirection): ComCtrls.TSortDirection; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortDirection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +297,7 @@ end;
 //property
 function ListView_SortType(AIsSet: LongBool; AObj: TListView; AValue: TSortType): TSortType; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -286,6 +310,7 @@ end;
 //property
 function ListView_StateImages(AIsSet: LongBool; AObj: TListView; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='StateImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -298,6 +323,7 @@ end;
 //property
 function ListView_StateImagesWidth(AIsSet: LongBool; AObj: TListView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='StateImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -310,6 +336,7 @@ end;
 //property
 function ListView_ToolTips(AIsSet: LongBool; AObj: TListView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToolTips'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -322,6 +349,7 @@ end;
 //property
 function ListView_ViewStyle(AIsSet: LongBool; AObj: TListView; AValue: TViewStyle): TViewStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ViewStyle'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //property
 function Strings_AlwaysQuote(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlwaysQuote'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -14,6 +15,7 @@ end;
 //property
 function Strings_Capacity(AIsSet: LongBool; AObj: TStrings; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Capacity'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -26,6 +28,7 @@ end;
 //property
 function Strings_CommaText(AIsSet: LongBool; AObj: TStrings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CommaText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +41,7 @@ end;
 //property
 function Strings_Count(AObj: TStrings): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Count'}
   handleExceptionBegin
   Result := AObj.Count;
   handleExceptionEnd
@@ -46,6 +50,7 @@ end;
 //property
 function Strings_DelimitedText(AIsSet: LongBool; AObj: TStrings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DelimitedText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function Strings_Delimiter(AIsSet: LongBool; AObj: TStrings; AValue: Char): Char; extdecl;
 begin
+  {$define handleExceptionFuncName :='Delimiter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function Strings_LineBreak(AIsSet: LongBool; AObj: TStrings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='LineBreak'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function Strings_MissingNameValueSeparatorAction(AIsSet: LongBool; AObj: TStrings; AValue: TMissingNameValueSeparatorAction): TMissingNameValueSeparatorAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='MissingNameValueSeparatorAction'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function Strings_Names(AObj: TStrings; Index: Integer): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Names'}
   handleExceptionBegin
   Result := ToPChar(AObj.Names[Index]);
   handleExceptionEnd
@@ -102,6 +111,7 @@ end;
 //property
 function Strings_NameValueSeparator(AIsSet: LongBool; AObj: TStrings; AValue: Char): Char; extdecl;
 begin
+  {$define handleExceptionFuncName :='NameValueSeparator'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function Strings_Objects(AIsSet: LongBool; AObj: TStrings; Index: Integer; AValue: TObject): TObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='Objects'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function Strings_Options(AIsSet: LongBool; AObj: TStrings; AValue: TStringsOptions): TStringsOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function Strings_QuoteChar(AIsSet: LongBool; AObj: TStrings; AValue: Char): Char; extdecl;
 begin
+  {$define handleExceptionFuncName :='QuoteChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function Strings_SkipLastLineBreak(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SkipLastLineBreak'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function Strings_TrailingLineBreak(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='TrailingLineBreak'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function Strings_StrictDelimiter(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StrictDelimiter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function Strings_Strings(AIsSet: LongBool; AObj: TStrings; Index: Integer; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Strings'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function Strings_Text(AIsSet: LongBool; AObj: TStrings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function Strings_TextLineBreakStyle(AIsSet: LongBool; AObj: TStrings; AValue: TTextLineBreakStyle): TTextLineBreakStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='TextLineBreakStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //property
 function Strings_UseLocale(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseLocale'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +254,7 @@ end;
 //property
 function Strings_ValueFromIndex(AIsSet: LongBool; AObj: TStrings; Index: Integer; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ValueFromIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +267,7 @@ end;
 //property
 function Strings_Values(AIsSet: LongBool; AObj: TStrings; const Name: PChar; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Values'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +280,7 @@ end;
 //property
 function Strings_WriteBOM(AIsSet: LongBool; AObj: TStrings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='WriteBOM'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +293,7 @@ end;
 //function
 function Strings_ToObjectArray(AObj: TStrings; aStart, aEnd: Integer): TObjectDynArray; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToObjectArray'}
   handleExceptionBegin
   Result := AObj.ToObjectArray(aStart, aEnd);
   handleExceptionEnd
@@ -278,6 +302,7 @@ end;
 //function
 function Strings_ToObjectArray1(AObj: TStrings): TObjectDynArray; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToObjectArray1'}
   handleExceptionBegin
   Result := AObj.ToObjectArray();
   handleExceptionEnd
@@ -286,6 +311,7 @@ end;
 //function
 function Strings_ToStringArray(AObj: TStrings; aStart, aEnd: Integer): TStringDynArray; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToStringArray'}
   handleExceptionBegin
   Result := AObj.ToStringArray(aStart, aEnd);
   handleExceptionEnd
@@ -294,6 +320,7 @@ end;
 //function
 function Strings_ToStringArray1(AObj: TStrings): TStringDynArray; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToStringArray1'}
   handleExceptionBegin
   Result := AObj.ToStringArray();
   handleExceptionEnd
@@ -302,6 +329,7 @@ end;
 //function
 function Strings_Add(AObj: TStrings; const S: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Add'}
   handleExceptionBegin
   Result := AObj.Add(S);
   handleExceptionEnd
@@ -310,6 +338,7 @@ end;
 //function
 function Strings_AddObject(AObj: TStrings; const S: PChar; AObject: TObject): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddObject'}
   handleExceptionBegin
   Result := AObj.AddObject(S, AObject);
   handleExceptionEnd
@@ -318,6 +347,7 @@ end;
 //function
 function Strings_AddPair(AObj: TStrings; const AName, AValue: PChar): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddPair'}
   handleExceptionBegin
   Result := AObj.AddPair(AName, AValue);
   handleExceptionEnd
@@ -326,6 +356,7 @@ end;
 //function
 function Strings_AddPair1(AObj: TStrings; const AName, AValue: PChar; AObject: TObject): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddPair1'}
   handleExceptionBegin
   Result := AObj.AddPair(AName, AValue, AObject);
   handleExceptionEnd
@@ -334,6 +365,7 @@ end;
 //function
 function Strings_EqualsForBool(AObj: TStrings; TheStrings: TStrings): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EqualsForBool'}
   handleExceptionBegin
   Result := AObj.Equals(TheStrings);
   handleExceptionEnd
@@ -342,6 +374,7 @@ end;
 //function
 function Strings_ExtractName(AObj: TStrings; const S: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtractName'}
   handleExceptionBegin
   Result := ToPChar(AObj.ExtractName(S));
   handleExceptionEnd
@@ -350,6 +383,7 @@ end;
 //function
 function Strings_GetEnumerator(AObj: TStrings): TStringsEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnumerator'}
   handleExceptionBegin
   Result := AObj.GetEnumerator();
   handleExceptionEnd
@@ -358,6 +392,7 @@ end;
 //function
 function Strings_GetText1(AObj: TStrings): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetText1'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetText());
   handleExceptionEnd
@@ -366,6 +401,7 @@ end;
 //function
 function Strings_IndexOf(AObj: TStrings; const S: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf'}
   handleExceptionBegin
   Result := AObj.IndexOf(S);
   handleExceptionEnd
@@ -374,6 +410,7 @@ end;
 //function
 function Strings_IndexOf1(AObj: TStrings; const S: PChar; aStart: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf1'}
   handleExceptionBegin
   Result := AObj.IndexOf(S, aStart);
   handleExceptionEnd
@@ -382,6 +419,7 @@ end;
 //function
 function Strings_IndexOfName(AObj: TStrings; const Name: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfName'}
   handleExceptionBegin
   Result := AObj.IndexOfName(Name);
   handleExceptionEnd
@@ -390,6 +428,7 @@ end;
 //function
 function Strings_IndexOfObject(AObj: TStrings; AObject: TObject): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfObject'}
   handleExceptionBegin
   Result := AObj.IndexOfObject(AObject);
   handleExceptionEnd
@@ -398,6 +437,7 @@ end;
 //function
 function Strings_LastIndexOf(AObj: TStrings; const S: PChar; aStart: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LastIndexOf'}
   handleExceptionBegin
   Result := AObj.LastIndexOf(S, aStart);
   handleExceptionEnd
@@ -406,6 +446,7 @@ end;
 //function
 function Strings_LastIndexOf1(AObj: TStrings; const S: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LastIndexOf1'}
   handleExceptionBegin
   Result := AObj.LastIndexOf(S);
   handleExceptionEnd
@@ -414,6 +455,7 @@ end;
 //function
 function Strings_Pop(AObj: TStrings): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pop'}
   handleExceptionBegin
   Result := ToPChar(AObj.Pop());
   handleExceptionEnd
@@ -422,6 +464,7 @@ end;
 //function
 function Strings_Reverse(AObj: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Reverse'}
   handleExceptionBegin
   Result := AObj.Reverse();
   handleExceptionEnd
@@ -430,6 +473,7 @@ end;
 //function
 function Strings_Shift(AObj: TStrings): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Shift'}
   handleExceptionBegin
   Result := ToPChar(AObj.Shift());
   handleExceptionEnd
@@ -438,6 +482,7 @@ end;
 //function
 function Strings_Slice(AObj: TStrings; fromIndex: integer): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Slice'}
   handleExceptionBegin
   Result := AObj.Slice(fromIndex);
   handleExceptionEnd
@@ -452,6 +497,7 @@ end;
 //procedure
 procedure Strings_AddStrings(AObj: TStrings; TheStrings: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddStrings'}
   handleExceptionBegin
   AObj.AddStrings(TheStrings);
   handleExceptionEnd
@@ -460,6 +506,7 @@ end;
 //procedure
 procedure Strings_AddStrings1(AObj: TStrings; TheStrings: TStrings; ClearFirst: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddStrings1'}
   handleExceptionBegin
   AObj.AddStrings(TheStrings, ClearFirst);
   handleExceptionEnd
@@ -468,6 +515,7 @@ end;
 //procedure
 procedure Strings_SetStrings1(AObj: TStrings; TheStrings: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetStrings1'}
   handleExceptionBegin
   AObj.SetStrings(TheStrings);
   handleExceptionEnd
@@ -476,6 +524,7 @@ end;
 //procedure
 procedure Strings_AddText(AObj: TStrings; const S: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddText'}
   handleExceptionBegin
   AObj.AddText(S);
   handleExceptionEnd
@@ -484,6 +533,7 @@ end;
 //procedure
 procedure Strings_AddCommaText(AObj: TStrings; const S: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddCommaText'}
   handleExceptionBegin
   AObj.AddCommaText(S);
   handleExceptionEnd
@@ -492,6 +542,7 @@ end;
 //procedure
 procedure Strings_AddDelimitedText(AObj: TStrings; const S: PChar; ADelimiter: char; AStrictDelimiter: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddDelimitedText'}
   handleExceptionBegin
   AObj.AddDelimitedText(S, ADelimiter, AStrictDelimiter);
   handleExceptionEnd
@@ -500,6 +551,7 @@ end;
 //procedure
 procedure Strings_AddDelimitedtext1(AObj: TStrings; const S: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddDelimitedtext1'}
   handleExceptionBegin
   AObj.AddDelimitedtext(S);
   handleExceptionEnd
@@ -508,6 +560,7 @@ end;
 //procedure
 procedure Strings_Append(AObj: TStrings; const S: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='Append'}
   handleExceptionBegin
   AObj.Append(S);
   handleExceptionEnd
@@ -516,6 +569,7 @@ end;
 //procedure
 procedure Strings_BeginUpdate(AObj: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginUpdate'}
   handleExceptionBegin
   AObj.BeginUpdate();
   handleExceptionEnd
@@ -524,6 +578,7 @@ end;
 //procedure
 procedure Strings_Clear(AObj: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -532,6 +587,7 @@ end;
 //procedure
 procedure Strings_Delete(AObj: TStrings; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delete'}
   handleExceptionBegin
   AObj.Delete(Index);
   handleExceptionEnd
@@ -540,6 +596,7 @@ end;
 //procedure
 procedure Strings_EndUpdate(AObj: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndUpdate'}
   handleExceptionBegin
   AObj.EndUpdate();
   handleExceptionEnd
@@ -548,6 +605,7 @@ end;
 //procedure
 procedure Strings_Exchange(AObj: TStrings; Index1, Index2: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Exchange'}
   handleExceptionBegin
   AObj.Exchange(Index1, Index2);
   handleExceptionEnd
@@ -556,6 +614,7 @@ end;
 //procedure
 procedure Strings_Fill(AObj: TStrings; const aValue: PChar; aStart, aEnd: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Fill'}
   handleExceptionBegin
   AObj.Fill(aValue, aStart, aEnd);
   handleExceptionEnd
@@ -567,6 +626,7 @@ var
   RetOutName: string;
   RetOutValue: string;
 begin
+  {$define handleExceptionFuncName :='GetNameValue'}
   handleExceptionBegin
   RetOutName := OutName;
   RetOutValue := OutValue;
@@ -579,6 +639,7 @@ end;
 //procedure
 procedure Strings_Insert(AObj: TStrings; Index: Integer; const S: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insert'}
   handleExceptionBegin
   AObj.Insert(Index, S);
   handleExceptionEnd
@@ -587,6 +648,7 @@ end;
 //procedure
 procedure Strings_InsertObject(AObj: TStrings; Index: Integer; const S: PChar; AObject: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertObject'}
   handleExceptionBegin
   AObj.InsertObject(Index, S, AObject);
   handleExceptionEnd
@@ -595,6 +657,7 @@ end;
 //procedure
 procedure Strings_LoadFromFile(AObj: TStrings; const FileName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromFile'}
   handleExceptionBegin
   AObj.LoadFromFile(FileName);
   handleExceptionEnd
@@ -603,6 +666,7 @@ end;
 //procedure
 procedure Strings_LoadFromFile1(AObj: TStrings; const FileName: PChar; IgnoreEncoding: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromFile1'}
   handleExceptionBegin
   AObj.LoadFromFile(FileName, IgnoreEncoding);
   handleExceptionEnd
@@ -611,6 +675,7 @@ end;
 //procedure
 procedure Strings_LoadFromStream(AObj: TStrings; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream'}
   handleExceptionBegin
   AObj.LoadFromStream(Stream);
   handleExceptionEnd
@@ -619,6 +684,7 @@ end;
 //procedure
 procedure Strings_LoadFromStream1(AObj: TStrings; Stream: TStream; IgnoreEncoding: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream1'}
   handleExceptionBegin
   AObj.LoadFromStream(Stream, IgnoreEncoding);
   handleExceptionEnd
@@ -627,6 +693,7 @@ end;
 //procedure
 procedure Strings_Move(AObj: TStrings; CurIndex, NewIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Move'}
   handleExceptionBegin
   AObj.Move(CurIndex, NewIndex);
   handleExceptionEnd
@@ -635,6 +702,7 @@ end;
 //procedure
 procedure Strings_Reverse1(AObj: TStrings; aList: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='Reverse1'}
   handleExceptionBegin
   AObj.Reverse(aList);
   handleExceptionEnd
@@ -643,6 +711,7 @@ end;
 //procedure
 procedure Strings_SaveToFile(AObj: TStrings; const FileName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToFile'}
   handleExceptionBegin
   AObj.SaveToFile(FileName);
   handleExceptionEnd
@@ -651,6 +720,7 @@ end;
 //procedure
 procedure Strings_SaveToFile1(AObj: TStrings; const FileName: PChar; IgnoreEncoding: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToFile1'}
   handleExceptionBegin
   AObj.SaveToFile(FileName, IgnoreEncoding);
   handleExceptionEnd
@@ -659,6 +729,7 @@ end;
 //procedure
 procedure Strings_SaveToStream(AObj: TStrings; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream'}
   handleExceptionBegin
   AObj.SaveToStream(Stream);
   handleExceptionEnd
@@ -667,6 +738,7 @@ end;
 //procedure
 procedure Strings_SaveToStream1(AObj: TStrings; Stream: TStream; IgnoreEncoding: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream1'}
   handleExceptionBegin
   AObj.SaveToStream(Stream, IgnoreEncoding);
   handleExceptionEnd
@@ -675,6 +747,7 @@ end;
 //procedure
 procedure Strings_Slice1(AObj: TStrings; fromIndex: integer; aList: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='Slice1'}
   handleExceptionBegin
   AObj.Slice(fromIndex, aList);
   handleExceptionEnd
@@ -683,6 +756,7 @@ end;
 //procedure
 procedure Strings_SetText1(AObj: TStrings; TheText: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetText1'}
   handleExceptionBegin
   AObj.SetText(TheText);
   handleExceptionEnd

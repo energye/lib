@@ -2,6 +2,7 @@
 //constructor
 function SelectDirectoryDialog_Create(AOwner: TComponent): TSelectDirectoryDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TSelectDirectoryDialog.Create(AOwner);
   handleExceptionEnd

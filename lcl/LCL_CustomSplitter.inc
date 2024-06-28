@@ -2,6 +2,7 @@
 //constructor
 function CustomSplitter_Create(TheOwner: TComponent): TCustomSplitter; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomSplitter.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomSplitter_ResizeControl(AIsSet: LongBool; AObj: TCustomSplitter; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResizeControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomSplitter_AutoSnap(AIsSet: LongBool; AObj: TCustomSplitter; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSnap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomSplitter_Beveled(AIsSet: LongBool; AObj: TCustomSplitter; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Beveled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomSplitter_MinSize(AIsSet: LongBool; AObj: TCustomSplitter; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomSplitter_ResizeAnchor(AIsSet: LongBool; AObj: TCustomSplitter; AValue: TAnchorKind): TAnchorKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResizeAnchor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomSplitter_ResizeStyle(AIsSet: LongBool; AObj: TCustomSplitter; AValue: TResizeStyle): TResizeStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResizeStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //function
 function CustomSplitter_GetOtherResizeControl(AObj: TCustomSplitter): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOtherResizeControl'}
   handleExceptionBegin
   Result := AObj.GetOtherResizeControl();
   handleExceptionEnd
@@ -90,6 +98,7 @@ end;
 //function
 function CustomSplitter_GetSplitterPosition(AObj: TCustomSplitter): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSplitterPosition'}
   handleExceptionBegin
   Result := AObj.GetSplitterPosition();
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //procedure
 procedure CustomSplitter_AnchorSplitter(AObj: TCustomSplitter; Kind: TAnchorKind; AControl: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='AnchorSplitter'}
   handleExceptionBegin
   AObj.AnchorSplitter(Kind, AControl);
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //procedure
 procedure CustomSplitter_MoveSplitter(AObj: TCustomSplitter; Offset: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='MoveSplitter'}
   handleExceptionBegin
   AObj.MoveSplitter(Offset);
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 //procedure
 procedure CustomSplitter_SetSplitterPosition(AObj: TCustomSplitter; NewPosition: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetSplitterPosition'}
   handleExceptionBegin
   AObj.SetSplitterPosition(NewPosition);
   handleExceptionEnd

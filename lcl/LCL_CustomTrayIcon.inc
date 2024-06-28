@@ -2,6 +2,7 @@
 //constructor
 function CustomTrayIcon_Create(TheOwner: TComponent): TCustomTrayIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTrayIcon.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomTrayIcon_Animate(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Animate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomTrayIcon_AnimateInterval(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnimateInterval'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomTrayIcon_BalloonFlags(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: TBalloonFlags): TBalloonFlags; extdecl;
 begin
+  {$define handleExceptionFuncName :='BalloonFlags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomTrayIcon_BalloonHint(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BalloonHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomTrayIcon_BalloonTimeout(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BalloonTimeout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomTrayIcon_BalloonTitle(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BalloonTitle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomTrayIcon_Canvas(AObj: TCustomTrayIcon): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   Result := AObj.Canvas;
   handleExceptionEnd
@@ -90,6 +98,7 @@ end;
 //property
 function CustomTrayIcon_PopUpMenu(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: TPopupMenu): TPopupMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='PopUpMenu'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function CustomTrayIcon_Icon(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: TIcon): TIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Icon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function CustomTrayIcon_Icons(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Icons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function CustomTrayIcon_Hint(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function CustomTrayIcon_ShowIcon(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowIcon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function CustomTrayIcon_Visible(AIsSet: LongBool; AObj: TCustomTrayIcon; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //function
 function CustomTrayIcon_Hide(AObj: TCustomTrayIcon): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hide'}
   handleExceptionBegin
   Result := AObj.Hide();
   handleExceptionEnd
@@ -170,6 +185,7 @@ end;
 //function
 function CustomTrayIcon_Show(AObj: TCustomTrayIcon): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Show'}
   handleExceptionBegin
   Result := AObj.Show();
   handleExceptionEnd
@@ -178,6 +194,7 @@ end;
 //function
 procedure CustomTrayIcon_GetPosition(AObj: TCustomTrayIcon; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetPosition'}
   handleExceptionBegin
   Result := AObj.GetPosition();
   handleExceptionEnd
@@ -192,6 +209,7 @@ end;
 //procedure
 procedure CustomTrayIcon_InternalUpdate(AObj: TCustomTrayIcon); extdecl;
 begin
+  {$define handleExceptionFuncName :='InternalUpdate'}
   handleExceptionBegin
   AObj.InternalUpdate();
   handleExceptionEnd
@@ -200,6 +218,7 @@ end;
 //procedure
 procedure CustomTrayIcon_ShowBalloonHint(AObj: TCustomTrayIcon); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowBalloonHint'}
   handleExceptionBegin
   AObj.ShowBalloonHint();
   handleExceptionEnd

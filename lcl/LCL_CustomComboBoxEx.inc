@@ -2,6 +2,7 @@
 //constructor
 function CustomComboBoxEx_Create(TheOwner: TComponent): TCustomComboBoxEx; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomComboBoxEx.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomComboBoxEx_AutoCompleteOptions(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: TAutoCompleteOptions): TAutoCompleteOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCompleteOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomComboBoxEx_Images(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomComboBoxEx_ImagesWidth(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomComboBoxEx_ItemsEx(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: TComboExItems): TComboExItems; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemsEx'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomComboBoxEx_StyleForComboBoxExStyle(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: TComboBoxExStyle): TComboBoxExStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='StyleForComboBoxExStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomComboBoxEx_StyleEx(AIsSet: LongBool; AObj: TCustomComboBoxEx; AValue: TComboBoxExStyles): TComboBoxExStyles; extdecl;
 begin
+  {$define handleExceptionFuncName :='StyleEx'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //function
 function CustomComboBoxEx_Add(AObj: TCustomComboBoxEx): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Add'}
   handleExceptionBegin
   Result := AObj.Add();
   handleExceptionEnd
@@ -96,6 +104,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_Add1(AObj: TCustomComboBoxEx; const ACaption: PChar; AIndent: Integer; AImgIdx: TImageIndex; AOverlayImgIdx: TImageIndex; ASelectedImgIdx: TImageIndex); extdecl;
 begin
+  {$define handleExceptionFuncName :='Add1'}
   handleExceptionBegin
   AObj.Add(ACaption, AIndent, AImgIdx, AOverlayImgIdx, ASelectedImgIdx);
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_AssignItemsEx(AObj: TCustomComboBoxEx; AItems: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='AssignItemsEx'}
   handleExceptionBegin
   AObj.AssignItemsEx(AItems);
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_AssignItemsEx1(AObj: TCustomComboBoxEx; AItemsEx: TComboExItems); extdecl;
 begin
+  {$define handleExceptionFuncName :='AssignItemsEx1'}
   handleExceptionBegin
   AObj.AssignItemsEx(AItemsEx);
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_Delete(AObj: TCustomComboBoxEx; AIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delete'}
   handleExceptionBegin
   AObj.Delete(AIndex);
   handleExceptionEnd
@@ -128,6 +140,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_DeleteSelected(AObj: TCustomComboBoxEx); extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteSelected'}
   handleExceptionBegin
   AObj.DeleteSelected();
   handleExceptionEnd
@@ -136,6 +149,7 @@ end;
 //procedure
 procedure CustomComboBoxEx_Insert(AObj: TCustomComboBoxEx; AIndex: Integer; const ACaption: PChar; AIndent: Integer; AImgIdx: TImageIndex; AOverlayImgIdx: TImageIndex; ASelectedImgIdx: TImageIndex); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insert'}
   handleExceptionBegin
   AObj.Insert(AIndex, ACaption, AIndent, AImgIdx, AOverlayImgIdx, ASelectedImgIdx);
   handleExceptionEnd

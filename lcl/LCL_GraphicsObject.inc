@@ -2,6 +2,7 @@
 //constructor
 function GraphicsObject_Create(): TGraphicsObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TGraphicsObject.Create();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function PreviewFileControl_Create(TheOwner: TComponent): TPreviewFileControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPreviewFileControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PreviewFileControl_PreviewFileDialog(AIsSet: LongBool; AObj: TPreviewFileControl; AValue: TPreviewFileDialog): TPreviewFileDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='PreviewFileDialog'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function Bevel_Create(AOwner: TComponent): TBevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TBevel.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Bevel_ParentShowHint(AIsSet: LongBool; AObj: TBevel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Bevel_Shape(AIsSet: LongBool; AObj: TBevel; AValue: TBevelShape): TBevelShape; extdecl;
 begin
+  {$define handleExceptionFuncName :='Shape'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Bevel_Style(AIsSet: LongBool; AObj: TBevel; AValue: TBevelStyle): TBevelStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin

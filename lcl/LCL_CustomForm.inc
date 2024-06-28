@@ -2,6 +2,7 @@
 //constructor
 function CustomForm_Create(AOwner: TComponent): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomForm.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //constructor
 function CustomForm_CreateNew(AOwner: TComponent; Num: Integer): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateNew'}
   handleExceptionBegin
   Result := TCustomForm.CreateNew(AOwner, Num);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomForm_Active(AObj: TCustomForm): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Active'}
   handleExceptionBegin
   Result := AObj.Active;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CustomForm_ActiveControl(AIsSet: LongBool; AObj: TCustomForm; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActiveControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CustomForm_ActiveDefaultControl(AIsSet: LongBool; AObj: TCustomForm; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActiveDefaultControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CustomForm_AllowDropFiles(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowDropFiles'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function CustomForm_AlphaBlend(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlphaBlend'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 function CustomForm_AlphaBlendValue(AIsSet: LongBool; AObj: TCustomForm; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlphaBlendValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 function CustomForm_AutoScroll(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoScroll'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 function CustomForm_BorderIcons(AIsSet: LongBool; AObj: TCustomForm; AValue: TBorderIcons): TBorderIcons; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderIcons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 function CustomForm_BorderStyleForFormBorderStyle(AIsSet: LongBool; AObj: TCustomForm; AValue: TFormBorderStyle): TFormBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderStyleForFormBorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function CustomForm_CancelControl(AIsSet: LongBool; AObj: TCustomForm; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='CancelControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 function CustomForm_DefaultControl(AIsSet: LongBool; AObj: TCustomForm; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CustomForm_DefaultMonitor(AIsSet: LongBool; AObj: TCustomForm; AValue: TDefaultMonitor): TDefaultMonitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultMonitor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CustomForm_Designer(AIsSet: LongBool; AObj: TCustomForm; AValue: TIDesigner): TIDesigner; extdecl;
 begin
+  {$define handleExceptionFuncName :='Designer'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CustomForm_EffectiveShowInTaskBar(AObj: TCustomForm): TShowInTaskBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EffectiveShowInTaskBar'}
   handleExceptionBegin
   Result := AObj.EffectiveShowInTaskBar;
   handleExceptionEnd
@@ -178,6 +194,7 @@ end;
 //property
 function CustomForm_FormState(AObj: TCustomForm): TFormState; extdecl;
 begin
+  {$define handleExceptionFuncName :='FormState'}
   handleExceptionBegin
   Result := AObj.FormState;
   handleExceptionEnd
@@ -186,6 +203,7 @@ end;
 //property
 function CustomForm_FormStyle(AIsSet: LongBool; AObj: TCustomForm; AValue: TFormStyle): TFormStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='FormStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +216,7 @@ end;
 //property
 function CustomForm_HelpFile(AIsSet: LongBool; AObj: TCustomForm; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpFile'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +229,7 @@ end;
 //property
 function CustomForm_Icon(AIsSet: LongBool; AObj: TCustomForm; AValue: TIcon): TIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Icon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +242,7 @@ end;
 //property
 function CustomForm_KeyPreview(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeyPreview'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +255,7 @@ end;
 //property
 function CustomForm_MDIChildren(AObj: TCustomForm; I: Integer): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='MDIChildren'}
   handleExceptionBegin
   Result := AObj.MDIChildren[I];
   handleExceptionEnd
@@ -242,6 +264,7 @@ end;
 //property
 function CustomForm_Menu(AIsSet: LongBool; AObj: TCustomForm; AValue: TMainMenu): TMainMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='Menu'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -254,6 +277,7 @@ end;
 //property
 function CustomForm_ModalResult(AIsSet: LongBool; AObj: TCustomForm; AValue: TModalResult): TModalResult; extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalResult'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -266,6 +290,7 @@ end;
 //property
 function CustomForm_Monitor(AObj: TCustomForm): TMonitor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Monitor'}
   handleExceptionBegin
   Result := AObj.Monitor;
   handleExceptionEnd
@@ -274,6 +299,7 @@ end;
 //property
 function CustomForm_LastActiveControl(AObj: TCustomForm): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='LastActiveControl'}
   handleExceptionBegin
   Result := AObj.LastActiveControl;
   handleExceptionEnd
@@ -282,6 +308,7 @@ end;
 //property
 function CustomForm_PopupMode(AIsSet: LongBool; AObj: TCustomForm; AValue: TPopupMode): TPopupMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='PopupMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +321,7 @@ end;
 //property
 function CustomForm_PopupParent(AIsSet: LongBool; AObj: TCustomForm; AValue: TCustomForm): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='PopupParent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -306,6 +334,7 @@ end;
 //property
 function CustomForm_SnapOptions(AIsSet: LongBool; AObj: TCustomForm; AValue: TWindowMagnetOptions): TWindowMagnetOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='SnapOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -318,6 +347,7 @@ end;
 //property
 function CustomForm_ScreenSnap(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScreenSnap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -330,6 +360,7 @@ end;
 //property
 function CustomForm_SnapBuffer(AIsSet: LongBool; AObj: TCustomForm; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SnapBuffer'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -342,6 +373,7 @@ end;
 //property
 function CustomForm_ParentFont(AIsSet: LongBool; AObj: TCustomForm; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -354,6 +386,7 @@ end;
 //property
 function CustomForm_Position(AIsSet: LongBool; AObj: TCustomForm; AValue: TPosition): TPosition; extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -366,6 +399,7 @@ end;
 //property
 function CustomForm_RestoredLeft(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoredLeft'}
   handleExceptionBegin
   Result := AObj.RestoredLeft;
   handleExceptionEnd
@@ -374,6 +408,7 @@ end;
 //property
 function CustomForm_RestoredTop(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoredTop'}
   handleExceptionBegin
   Result := AObj.RestoredTop;
   handleExceptionEnd
@@ -382,6 +417,7 @@ end;
 //property
 function CustomForm_RestoredWidth(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoredWidth'}
   handleExceptionBegin
   Result := AObj.RestoredWidth;
   handleExceptionEnd
@@ -390,6 +426,7 @@ end;
 //property
 function CustomForm_RestoredHeight(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoredHeight'}
   handleExceptionBegin
   Result := AObj.RestoredHeight;
   handleExceptionEnd
@@ -398,6 +435,7 @@ end;
 //property
 function CustomForm_ShowInTaskBar(AIsSet: LongBool; AObj: TCustomForm; AValue: TShowInTaskbar): TShowInTaskbar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowInTaskBar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -410,6 +448,7 @@ end;
 //property
 function CustomForm_WindowState(AIsSet: LongBool; AObj: TCustomForm; AValue: TWindowState): TWindowState; extdecl;
 begin
+  {$define handleExceptionFuncName :='WindowState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -422,6 +461,7 @@ end;
 //function
 function CustomForm_BigIconHandle(AObj: TCustomForm): HICON; extdecl;
 begin
+  {$define handleExceptionFuncName :='BigIconHandle'}
   handleExceptionBegin
   Result := AObj.BigIconHandle();
   handleExceptionEnd
@@ -430,6 +470,7 @@ end;
 //function
 function CustomForm_CloseQuery(AObj: TCustomForm): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseQuery'}
   handleExceptionBegin
   Result := AObj.CloseQuery();
   handleExceptionEnd
@@ -438,6 +479,7 @@ end;
 //function
 function CustomForm_GetFormImage(AObj: TCustomForm): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetFormImage'}
   handleExceptionBegin
   Result := AObj.GetFormImage();
   handleExceptionEnd
@@ -446,6 +488,7 @@ end;
 //function
 function CustomForm_GetRolesForControl(AObj: TCustomForm; AControl: TControl): TControlRolesForForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetRolesForControl'}
   handleExceptionBegin
   Result := AObj.GetRolesForControl(AControl);
   handleExceptionEnd
@@ -454,6 +497,7 @@ end;
 //function
 function CustomForm_GetRealPopupParent(AObj: TCustomForm): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetRealPopupParent'}
   handleExceptionBegin
   Result := AObj.GetRealPopupParent();
   handleExceptionEnd
@@ -464,6 +508,7 @@ function CustomForm_IsShortcut(AObj: TCustomForm; var Message: TLMKey): LongBool
 var
   RetMessage: TLMKey;
 begin
+  {$define handleExceptionFuncName :='IsShortcut'}
   handleExceptionBegin
   RetMessage := Message;
   Result := AObj.IsShortcut(RetMessage);
@@ -474,6 +519,7 @@ end;
 //function
 function CustomForm_SetFocusedControl(AObj: TCustomForm; Control: TWinControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFocusedControl'}
   handleExceptionBegin
   Result := AObj.SetFocusedControl(Control);
   handleExceptionEnd
@@ -482,6 +528,7 @@ end;
 //function
 function CustomForm_ShowModal(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowModal'}
   handleExceptionBegin
   Result := AObj.ShowModal();
   handleExceptionEnd
@@ -490,6 +537,7 @@ end;
 //function
 function CustomForm_SmallIconHandle(AObj: TCustomForm): HICON; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmallIconHandle'}
   handleExceptionBegin
   Result := AObj.SmallIconHandle();
   handleExceptionEnd
@@ -500,6 +548,7 @@ function CustomForm_WantChildKey(AObj: TCustomForm; Child: TControl; var Message
 var
   RetMessage: TLMessage;
 begin
+  {$define handleExceptionFuncName :='WantChildKey'}
   handleExceptionBegin
   RetMessage := Message;
   Result := AObj.WantChildKey(Child, RetMessage);
@@ -510,6 +559,7 @@ end;
 //function
 function CustomForm_ActiveMDIChild(AObj: TCustomForm): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActiveMDIChild'}
   handleExceptionBegin
   Result := AObj.ActiveMDIChild();
   handleExceptionEnd
@@ -518,6 +568,7 @@ end;
 //function
 function CustomForm_GetMDIChildren(AObj: TCustomForm; AIndex: Integer): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetMDIChildren'}
   handleExceptionBegin
   Result := AObj.GetMDIChildren(AIndex);
   handleExceptionEnd
@@ -526,6 +577,7 @@ end;
 //function
 function CustomForm_MDIChildCount(AObj: TCustomForm): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MDIChildCount'}
   handleExceptionBegin
   Result := AObj.MDIChildCount();
   handleExceptionEnd
@@ -540,6 +592,7 @@ end;
 //procedure
 procedure CustomForm_Close(AObj: TCustomForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Close'}
   handleExceptionBegin
   AObj.Close();
   handleExceptionEnd
@@ -548,6 +601,7 @@ end;
 //procedure
 procedure CustomForm_DefocusControl(AObj: TCustomForm; Control: TWinControl; Removing: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='DefocusControl'}
   handleExceptionBegin
   AObj.DefocusControl(Control, Removing);
   handleExceptionEnd
@@ -556,6 +610,7 @@ end;
 //procedure
 procedure CustomForm_DestroyWnd(AObj: TCustomForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='DestroyWnd'}
   handleExceptionBegin
   AObj.DestroyWnd();
   handleExceptionEnd
@@ -564,6 +619,7 @@ end;
 //procedure
 procedure CustomForm_EnsureVisible(AObj: TCustomForm; AMoveToTop: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='EnsureVisible'}
   handleExceptionBegin
   AObj.EnsureVisible(AMoveToTop);
   handleExceptionEnd
@@ -572,6 +628,7 @@ end;
 //procedure
 procedure CustomForm_FocusControl(AObj: TCustomForm; WinControl: TWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusControl'}
   handleExceptionBegin
   AObj.FocusControl(WinControl);
   handleExceptionEnd
@@ -580,6 +637,7 @@ end;
 //procedure
 procedure CustomForm_IntfHelp(AObj: TCustomForm; AComponent: TComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfHelp'}
   handleExceptionBegin
   AObj.IntfHelp(AComponent);
   handleExceptionEnd
@@ -588,6 +646,7 @@ end;
 //procedure
 procedure CustomForm_MakeFullyVisible(AObj: TCustomForm; AMonitor: TMonitor; UseWorkarea: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='MakeFullyVisible'}
   handleExceptionBegin
   AObj.MakeFullyVisible(AMonitor, UseWorkarea);
   handleExceptionEnd
@@ -596,6 +655,7 @@ end;
 //procedure
 procedure CustomForm_Release(AObj: TCustomForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Release'}
   handleExceptionBegin
   AObj.Release();
   handleExceptionEnd
@@ -604,6 +664,7 @@ end;
 //procedure
 procedure CustomForm_SetRestoredBounds(AObj: TCustomForm; ALeft, ATop, AWidth, AHeight: Integer; const ADefaultPosition: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetRestoredBounds'}
   handleExceptionBegin
   AObj.SetRestoredBounds(ALeft, ATop, AWidth, AHeight, ADefaultPosition);
   handleExceptionEnd
@@ -612,6 +673,7 @@ end;
 //procedure
 procedure CustomForm_ShowOnTop(AObj: TCustomForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowOnTop'}
   handleExceptionBegin
   AObj.ShowOnTop();
   handleExceptionEnd
@@ -620,6 +682,7 @@ end;
 //procedure
 procedure CustomForm_AutoScale(AObj: TCustomForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoScale'}
   handleExceptionBegin
   AObj.AutoScale();
   handleExceptionEnd

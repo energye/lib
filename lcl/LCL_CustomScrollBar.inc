@@ -2,6 +2,7 @@
 //constructor
 function CustomScrollBar_Create(AOwner: TComponent): TCustomScrollBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomScrollBar.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomScrollBar_Kind(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: TScrollBarKind): TScrollBarKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomScrollBar_LargeChange(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: TScrollBarInc): TScrollBarInc; extdecl;
 begin
+  {$define handleExceptionFuncName :='LargeChange'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomScrollBar_Max(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Max'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomScrollBar_Min(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Min'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomScrollBar_PageSize(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomScrollBar_Position(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomScrollBar_SmallChange(AIsSet: LongBool; AObj: TCustomScrollBar; AValue: TScrollBarInc): TScrollBarInc; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmallChange'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -100,6 +108,7 @@ end;
 //procedure
 procedure CustomScrollBar_SetParams(AObj: TCustomScrollBar; APosition, AMin, AMax, APageSize: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParams'}
   handleExceptionBegin
   AObj.SetParams(APosition, AMin, AMax, APageSize);
   handleExceptionEnd
@@ -108,6 +117,7 @@ end;
 //procedure
 procedure CustomScrollBar_SetParams1(AObj: TCustomScrollBar; APosition, AMin, AMax: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParams1'}
   handleExceptionBegin
   AObj.SetParams(APosition, AMin, AMax);
   handleExceptionEnd

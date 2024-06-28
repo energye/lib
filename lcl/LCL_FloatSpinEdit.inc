@@ -2,6 +2,7 @@
 //constructor
 function FloatSpinEdit_Create(TheOwner: TComponent): TFloatSpinEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFloatSpinEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FloatSpinEdit_AutoSelected(AIsSet: LongBool; AObj: TFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelected'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function FloatSpinEdit_AutoSelect(AIsSet: LongBool; AObj: TFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function FloatSpinEdit_ParentColor(AIsSet: LongBool; AObj: TFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function FloatSpinEdit_ParentFont(AIsSet: LongBool; AObj: TFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function FloatSpinEdit_ParentShowHint(AIsSet: LongBool; AObj: TFloatSpinEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

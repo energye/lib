@@ -2,6 +2,7 @@
 //constructor
 function Icon_Create(): TIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TIcon.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Icon_Handle(AIsSet: LongBool; AObj: TIcon; AValue: HICON): HICON; extdecl;
 begin
+  {$define handleExceptionFuncName :='Handle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //function
 function Icon_ReleaseHandle(AObj: TIcon): HICON; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReleaseHandle'}
   handleExceptionBegin
   Result := AObj.ReleaseHandle();
   handleExceptionEnd

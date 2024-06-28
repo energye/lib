@@ -2,6 +2,7 @@
 //constructor
 function Shape_Create(TheOwner: TComponent): TShape; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TShape.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Shape_Brush(AIsSet: LongBool; AObj: TShape; AValue: TBrush): TBrush; extdecl;
 begin
+  {$define handleExceptionFuncName :='Brush'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Shape_DragCursor(AIsSet: LongBool; AObj: TShape; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Shape_DragKind(AIsSet: LongBool; AObj: TShape; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function Shape_DragMode(AIsSet: LongBool; AObj: TShape; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function Shape_ParentShowHint(AIsSet: LongBool; AObj: TShape; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function Shape_Pen(AIsSet: LongBool; AObj: TShape; AValue: TPen): TPen; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pen'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function Shape_Shape(AIsSet: LongBool; AObj: TShape; AValue: TShapeType): TShapeType; extdecl;
 begin
+  {$define handleExceptionFuncName :='Shape'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -100,6 +108,7 @@ end;
 //procedure
 procedure Shape_Paint(AObj: TShape); extdecl;
 begin
+  {$define handleExceptionFuncName :='Paint'}
   handleExceptionBegin
   AObj.Paint();
   handleExceptionEnd
@@ -108,6 +117,7 @@ end;
 //procedure
 procedure Shape_StyleChanged(AObj: TShape; Sender: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='StyleChanged'}
   handleExceptionBegin
   AObj.StyleChanged(Sender);
   handleExceptionEnd

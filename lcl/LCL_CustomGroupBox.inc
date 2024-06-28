@@ -2,6 +2,7 @@
 //constructor
 function CustomGroupBox_Create(AOwner: TComponent): TCustomGroupBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomGroupBox.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomGroupBox_ParentBackground(AIsSet: LongBool; AObj: TCustomGroupBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBackground'}
   handleExceptionBegin
   if AIsSet then
   begin

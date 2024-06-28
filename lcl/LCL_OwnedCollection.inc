@@ -2,6 +2,7 @@
 //constructor
 function OwnedCollection_Create(AOwner: TPersistent; AItemClass: TCollectionItemClass): TOwnedCollection; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TOwnedCollection.Create(AOwner, AItemClass);
   handleExceptionEnd

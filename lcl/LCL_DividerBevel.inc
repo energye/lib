@@ -2,6 +2,7 @@
 //constructor
 function DividerBevel_Create(AOwner: TComponent): TDividerBevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDividerBevel.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DividerBevel_BevelStyle(AIsSet: LongBool; AObj: TDividerBevel; AValue: TBevelStyle): TBevelStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function DividerBevel_BevelWidth(AIsSet: LongBool; AObj: TDividerBevel; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function DividerBevel_CaptionSpacing(AIsSet: LongBool; AObj: TDividerBevel; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaptionSpacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function DividerBevel_DragCursor(AIsSet: LongBool; AObj: TDividerBevel; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function DividerBevel_DragKind(AIsSet: LongBool; AObj: TDividerBevel; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function DividerBevel_DragMode(AIsSet: LongBool; AObj: TDividerBevel; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function DividerBevel_LeftIndent(AIsSet: LongBool; AObj: TDividerBevel; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LeftIndent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function DividerBevel_Orientation(AIsSet: LongBool; AObj: TDividerBevel; AValue: TTrackBarOrientation): TTrackBarOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function DividerBevel_ParentColor(AIsSet: LongBool; AObj: TDividerBevel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function DividerBevel_ParentFont(AIsSet: LongBool; AObj: TDividerBevel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function DividerBevel_ParentShowHint(AIsSet: LongBool; AObj: TDividerBevel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function DividerBevel_Style(AIsSet: LongBool; AObj: TDividerBevel; AValue: TGrabStyle): TGrabStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function DividerBevel_Transparent(AIsSet: LongBool; AObj: TDividerBevel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //property
 function FPCustomImage_Height(AIsSet: LongBool; AObj: TFPCustomImage; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -14,6 +15,7 @@ end;
 //property
 function FPCustomImage_Width(AIsSet: LongBool; AObj: TFPCustomImage; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -26,6 +28,7 @@ end;
 //property
 function FPCustomImage_Colors(AIsSet: LongBool; AObj: TFPCustomImage; x, y: integer; AValue: TFPColor): TFPColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Colors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +41,7 @@ end;
 //property
 function FPCustomImage_UsePalette(AIsSet: LongBool; AObj: TFPCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UsePalette'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +54,7 @@ end;
 //property
 function FPCustomImage_Palette(AObj: TFPCustomImage): TFPPalette; extdecl;
 begin
+  {$define handleExceptionFuncName :='Palette'}
   handleExceptionBegin
   Result := AObj.Palette;
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //property
 function FPCustomImage_Pixels(AIsSet: LongBool; AObj: TFPCustomImage; x, y: integer; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pixels'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function FPCustomImage_Extra(AIsSet: LongBool; AObj: TFPCustomImage; const key: PChar; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Extra'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function FPCustomImage_ExtraValue(AIsSet: LongBool; AObj: TFPCustomImage; index: integer; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtraValue'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function FPCustomImage_ExtraKey(AIsSet: LongBool; AObj: TFPCustomImage; index: integer; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtraKey'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //function
 function FPCustomImage_LoadFromFile(AObj: TFPCustomImage; const filename: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromFile'}
   handleExceptionBegin
   Result := AObj.LoadFromFile(filename);
   handleExceptionEnd
@@ -114,6 +124,7 @@ end;
 //function
 function FPCustomImage_SaveToFile(AObj: TFPCustomImage; const filename: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToFile'}
   handleExceptionBegin
   Result := AObj.SaveToFile(filename);
   handleExceptionEnd
@@ -122,6 +133,7 @@ end;
 //function
 function FPCustomImage_ExtraCount(AObj: TFPCustomImage): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtraCount'}
   handleExceptionBegin
   Result := AObj.ExtraCount();
   handleExceptionEnd
@@ -136,6 +148,7 @@ end;
 //procedure
 procedure FPCustomImage_LoadFromStream(AObj: TFPCustomImage; Str: TStream; Handler: TFPCustomImageReader); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream'}
   handleExceptionBegin
   AObj.LoadFromStream(Str, Handler);
   handleExceptionEnd
@@ -144,6 +157,7 @@ end;
 //procedure
 procedure FPCustomImage_LoadFromStream1(AObj: TFPCustomImage; Str: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream1'}
   handleExceptionBegin
   AObj.LoadFromStream(Str);
   handleExceptionEnd
@@ -152,6 +166,7 @@ end;
 //procedure
 procedure FPCustomImage_LoadFromFile1(AObj: TFPCustomImage; const filename: PChar; Handler: TFPCustomImageReader); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromFile1'}
   handleExceptionBegin
   AObj.LoadFromFile(filename, Handler);
   handleExceptionEnd
@@ -160,6 +175,7 @@ end;
 //procedure
 procedure FPCustomImage_SaveToStream(AObj: TFPCustomImage; Str: TStream; Handler: TFPCustomImageWriter); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream'}
   handleExceptionBegin
   AObj.SaveToStream(Str, Handler);
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 //procedure
 procedure FPCustomImage_SaveToFile1(AObj: TFPCustomImage; const filename: PChar; Handler: TFPCustomImageWriter); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToFile1'}
   handleExceptionBegin
   AObj.SaveToFile(filename, Handler);
   handleExceptionEnd
@@ -176,6 +193,7 @@ end;
 //procedure
 procedure FPCustomImage_SetSize(AObj: TFPCustomImage; AWidth, AHeight: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetSize'}
   handleExceptionBegin
   AObj.SetSize(AWidth, AHeight);
   handleExceptionEnd
@@ -184,6 +202,7 @@ end;
 //procedure
 procedure FPCustomImage_RemoveExtra(AObj: TFPCustomImage; const key: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveExtra'}
   handleExceptionBegin
   AObj.RemoveExtra(key);
   handleExceptionEnd

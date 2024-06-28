@@ -2,6 +2,7 @@
 //constructor
 function StatusPanels_Create(AStatusBar: TStatusBar): TStatusPanels; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TStatusPanels.Create(AStatusBar);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function StatusPanels_ItemsForStatusPanel(AIsSet: LongBool; AObj: TStatusPanels; Index: Integer; AValue: TStatusPanel): TStatusPanel; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemsForStatusPanel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function StatusPanels_StatusBar(AObj: TStatusPanels): TStatusBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='StatusBar'}
   handleExceptionBegin
   Result := AObj.StatusBar;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //function
 function StatusPanels_AddForStatusPanel(AObj: TStatusPanels): TStatusPanel; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddForStatusPanel'}
   handleExceptionBegin
   Result := AObj.Add();
   handleExceptionEnd

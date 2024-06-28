@@ -2,6 +2,7 @@
 //constructor
 function TaskDialogRadioButtonItem_Create(ACollection: TCollection): TTaskDialogRadioButtonItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTaskDialogRadioButtonItem.Create(ACollection);
   handleExceptionEnd

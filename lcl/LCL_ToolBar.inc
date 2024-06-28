@@ -2,6 +2,7 @@
 //constructor
 function ToolBar_Create(TheOwner: TComponent): TToolBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TToolBar.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ToolBar_ButtonCount(AObj: TToolBar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonCount'}
   handleExceptionBegin
   Result := AObj.ButtonCount;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function ToolBar_Buttons(AObj: TToolBar; Index: Integer): TToolButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Buttons'}
   handleExceptionBegin
   Result := AObj.Buttons[Index];
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function ToolBar_ButtonList(AObj: TToolBar): TList; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonList'}
   handleExceptionBegin
   Result := AObj.ButtonList;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function ToolBar_RowCount(AObj: TToolBar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RowCount'}
   handleExceptionBegin
   Result := AObj.RowCount;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function ToolBar_ButtonDropWidth(AObj: TToolBar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonDropWidth'}
   handleExceptionBegin
   Result := AObj.ButtonDropWidth;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function ToolBar_ButtonHeight(AIsSet: LongBool; AObj: TToolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +69,7 @@ end;
 //property
 function ToolBar_ButtonWidth(AIsSet: LongBool; AObj: TToolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +82,7 @@ end;
 //property
 function ToolBar_DisabledImages(AIsSet: LongBool; AObj: TToolBar; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +95,7 @@ end;
 //property
 function ToolBar_DragCursor(AIsSet: LongBool; AObj: TToolBar; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +108,7 @@ end;
 //property
 function ToolBar_DragKind(AIsSet: LongBool; AObj: TToolBar; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +121,7 @@ end;
 //property
 function ToolBar_DragMode(AIsSet: LongBool; AObj: TToolBar; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +134,7 @@ end;
 //property
 function ToolBar_DropDownWidth(AIsSet: LongBool; AObj: TToolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropDownWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +147,7 @@ end;
 //property
 function ToolBar_Flat(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +160,7 @@ end;
 //property
 function ToolBar_HotImages(AIsSet: LongBool; AObj: TToolBar; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +173,7 @@ end;
 //property
 function ToolBar_Images(AIsSet: LongBool; AObj: TToolBar; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +186,7 @@ end;
 //property
 function ToolBar_ImagesWidth(AIsSet: LongBool; AObj: TToolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +199,7 @@ end;
 //property
 function ToolBar_Indent(AIsSet: LongBool; AObj: TToolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Indent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +212,7 @@ end;
 //property
 function ToolBar_List(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='List'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +225,7 @@ end;
 //property
 function ToolBar_ParentColor(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +238,7 @@ end;
 //property
 function ToolBar_ParentFont(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -230,6 +251,7 @@ end;
 //property
 function ToolBar_ParentShowHint(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +264,7 @@ end;
 //property
 function ToolBar_ShowCaptions(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCaptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -254,6 +277,7 @@ end;
 //property
 function ToolBar_Transparent(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -266,6 +290,7 @@ end;
 //property
 function ToolBar_Wrapable(AIsSet: LongBool; AObj: TToolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wrapable'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -278,6 +303,7 @@ end;
 //function
 function ToolBar_GetEnumeratorForToolBarEnumerator(AObj: TToolBar): TToolBarEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnumeratorForToolBarEnumerator'}
   handleExceptionBegin
   Result := AObj.GetEnumerator();
   handleExceptionEnd
@@ -292,6 +318,7 @@ end;
 //procedure
 procedure ToolBar_SetButtonSize(AObj: TToolBar; NewButtonWidth, NewButtonHeight: integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetButtonSize'}
   handleExceptionBegin
   AObj.SetButtonSize(NewButtonWidth, NewButtonHeight);
   handleExceptionEnd

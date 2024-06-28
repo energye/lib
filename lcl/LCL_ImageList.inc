@@ -2,6 +2,7 @@
 //constructor
 function ImageList_Create(AOwner: TComponent): TImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TImageList.Create(AOwner);
   handleExceptionEnd

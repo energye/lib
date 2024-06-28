@@ -2,6 +2,7 @@
 //constructor
 function CustomTabControl_Create(TheOwner: TComponent): TCustomTabControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTabControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomTabControl_HotTrack(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotTrack'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomTabControl_Images(AIsSet: LongBool; AObj: TCustomTabControl; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomTabControl_ImagesWidth(AIsSet: LongBool; AObj: TCustomTabControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomTabControl_MultiLine(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MultiLine'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomTabControl_MultiSelect(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MultiSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomTabControl_Options(AIsSet: LongBool; AObj: TCustomTabControl; AValue: TCTabControlOptions): TCTabControlOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomTabControl_OwnerDraw(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OwnerDraw'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomTabControl_Page(AObj: TCustomTabControl; Index: Integer): TCustomPage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Page'}
   handleExceptionBegin
   Result := AObj.Page[Index];
   handleExceptionEnd
@@ -102,6 +111,7 @@ end;
 //property
 function CustomTabControl_PageCount(AObj: TCustomTabControl): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageCount'}
   handleExceptionBegin
   Result := AObj.PageCount;
   handleExceptionEnd
@@ -110,6 +120,7 @@ end;
 //property
 function CustomTabControl_PageIndex(AIsSet: LongBool; AObj: TCustomTabControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function CustomTabControl_Pages(AIsSet: LongBool; AObj: TCustomTabControl; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 function CustomTabControl_RaggedRight(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RaggedRight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CustomTabControl_ScrollOpposite(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollOpposite'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CustomTabControl_ShowTabs(AIsSet: LongBool; AObj: TCustomTabControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowTabs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CustomTabControl_Style(AIsSet: LongBool; AObj: TCustomTabControl; AValue: TTabStyle): TTabStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function CustomTabControl_TabHeight(AIsSet: LongBool; AObj: TCustomTabControl; AValue: Smallint): Smallint; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 function CustomTabControl_TabPosition(AIsSet: LongBool; AObj: TCustomTabControl; AValue: TTabPosition): TTabPosition; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabPosition'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function CustomTabControl_TabWidth(AIsSet: LongBool; AObj: TCustomTabControl; AValue: Smallint): Smallint; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //function
 procedure CustomTabControl_TabRect(AObj: TCustomTabControl; AIndex: Integer; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='TabRect'}
   handleExceptionBegin
   Result := AObj.TabRect(AIndex);
   handleExceptionEnd
@@ -226,6 +246,7 @@ end;
 //function
 function CustomTabControl_GetImageIndex(AObj: TCustomTabControl; ThePageIndex: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetImageIndex'}
   handleExceptionBegin
   Result := AObj.GetImageIndex(ThePageIndex);
   handleExceptionEnd
@@ -234,6 +255,7 @@ end;
 //function
 function CustomTabControl_IndexOf(AObj: TCustomTabControl; APage: TPersistent): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf'}
   handleExceptionBegin
   Result := AObj.IndexOf(APage);
   handleExceptionEnd
@@ -242,6 +264,7 @@ end;
 //function
 function CustomTabControl_CustomPage(AObj: TCustomTabControl; Index: integer): TCustomPage; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomPage'}
   handleExceptionBegin
   Result := AObj.CustomPage(Index);
   handleExceptionEnd
@@ -250,6 +273,7 @@ end;
 //function
 function CustomTabControl_CanChangePageIndex(AObj: TCustomTabControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanChangePageIndex'}
   handleExceptionBegin
   Result := AObj.CanChangePageIndex();
   handleExceptionEnd
@@ -258,6 +282,7 @@ end;
 //function
 function CustomTabControl_GetMinimumTabWidth(AObj: TCustomTabControl): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetMinimumTabWidth'}
   handleExceptionBegin
   Result := AObj.GetMinimumTabWidth();
   handleExceptionEnd
@@ -266,6 +291,7 @@ end;
 //function
 function CustomTabControl_GetMinimumTabHeight(AObj: TCustomTabControl): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetMinimumTabHeight'}
   handleExceptionBegin
   Result := AObj.GetMinimumTabHeight();
   handleExceptionEnd
@@ -274,6 +300,7 @@ end;
 //function
 function CustomTabControl_GetCapabilities(AObj: TCustomTabControl): TCTabControlCapabilities; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCapabilities'}
   handleExceptionBegin
   Result := AObj.GetCapabilities();
   handleExceptionEnd
@@ -282,6 +309,7 @@ end;
 //function
 function CustomTabControl_TabToPageIndex(AObj: TCustomTabControl; AIndex: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabToPageIndex'}
   handleExceptionBegin
   Result := AObj.TabToPageIndex(AIndex);
   handleExceptionEnd
@@ -290,6 +318,7 @@ end;
 //function
 function CustomTabControl_PageToTabIndex(AObj: TCustomTabControl; AIndex: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageToTabIndex'}
   handleExceptionBegin
   Result := AObj.PageToTabIndex(AIndex);
   handleExceptionEnd
@@ -304,6 +333,7 @@ end;
 //procedure
 procedure CustomTabControl_DoCloseTabClicked(AObj: TCustomTabControl; APage: TCustomPage); extdecl;
 begin
+  {$define handleExceptionFuncName :='DoCloseTabClicked'}
   handleExceptionBegin
   AObj.DoCloseTabClicked(APage);
   handleExceptionEnd

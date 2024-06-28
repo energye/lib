@@ -2,6 +2,7 @@
 //constructor
 function VirtualTreeColumn_Create(Collection: TCollection): TVirtualTreeColumn; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TVirtualTreeColumn.Create(Collection);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function VirtualTreeColumn_Left(AObj: TVirtualTreeColumn): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Left'}
   handleExceptionBegin
   Result := AObj.Left;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function VirtualTreeColumn_Owner(AObj: TVirtualTreeColumn): TVirtualTreeColumns; extdecl;
 begin
+  {$define handleExceptionFuncName :='Owner'}
   handleExceptionBegin
   Result := AObj.Owner;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function VirtualTreeColumn_Alignment(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function VirtualTreeColumn_BiDiMode(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TBiDiMode): TBiDiMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='BiDiMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function VirtualTreeColumn_CaptionAlignment(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaptionAlignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function VirtualTreeColumn_CaptionText(AObj: TVirtualTreeColumn): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaptionText'}
   handleExceptionBegin
   Result := ToPChar(AObj.CaptionText);
   handleExceptionEnd
@@ -70,6 +77,7 @@ end;
 //property
 function VirtualTreeColumn_CheckType(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TCheckType): TCheckType; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +90,7 @@ end;
 //property
 function VirtualTreeColumn_CheckState(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TCheckState): TCheckState; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +103,7 @@ end;
 //property
 function VirtualTreeColumn_CheckBox(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckBox'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +116,7 @@ end;
 //property
 function VirtualTreeColumn_Color(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +129,7 @@ end;
 //property
 function VirtualTreeColumn_DefaultSortDirection(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TSortDirection): TSortDirection; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultSortDirection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +142,7 @@ end;
 //property
 function VirtualTreeColumn_Hint(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +155,7 @@ end;
 //property
 function VirtualTreeColumn_ImageIndex(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +168,7 @@ end;
 //property
 function VirtualTreeColumn_Layout(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TVTHeaderColumnLayout): TVTHeaderColumnLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +181,7 @@ end;
 //property
 function VirtualTreeColumn_Margin(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Margin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +194,7 @@ end;
 //property
 function VirtualTreeColumn_MaxWidth(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +207,7 @@ end;
 //property
 function VirtualTreeColumn_MinWidth(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +220,7 @@ end;
 //property
 function VirtualTreeColumn_Options(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TVTColumnOptions): TVTColumnOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +233,7 @@ end;
 //property
 function VirtualTreeColumn_Position(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TColumnPosition): TColumnPosition; extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +246,7 @@ end;
 //property
 function VirtualTreeColumn_Spacing(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Spacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +259,7 @@ end;
 //property
 function VirtualTreeColumn_Style(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: TVirtualTreeColumnStyle): TVirtualTreeColumnStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +272,7 @@ end;
 //property
 function VirtualTreeColumn_Tag(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: NativeInt): NativeInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Tag'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +285,7 @@ end;
 //property
 function VirtualTreeColumn_Text(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +298,7 @@ end;
 //property
 function VirtualTreeColumn_Width(AIsSet: LongBool; AObj: TVirtualTreeColumn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -286,6 +311,7 @@ end;
 //function
 procedure VirtualTreeColumn_GetRect(AObj: TVirtualTreeColumn; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetRect'}
   handleExceptionBegin
   Result := AObj.GetRect();
   handleExceptionEnd
@@ -294,6 +320,7 @@ end;
 //function
 function VirtualTreeColumn_UseRightToLeftReading(AObj: TVirtualTreeColumn): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseRightToLeftReading'}
   handleExceptionBegin
   Result := AObj.UseRightToLeftReading();
   handleExceptionEnd
@@ -308,6 +335,7 @@ end;
 //procedure
 procedure VirtualTreeColumn_LoadFromStream(AObj: TVirtualTreeColumn; const Stream: TStream; Version: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream'}
   handleExceptionBegin
   AObj.LoadFromStream(Stream, Version);
   handleExceptionEnd
@@ -316,6 +344,7 @@ end;
 //procedure
 procedure VirtualTreeColumn_ParentBiDiModeChanged(AObj: TVirtualTreeColumn); extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBiDiModeChanged'}
   handleExceptionBegin
   AObj.ParentBiDiModeChanged();
   handleExceptionEnd
@@ -324,6 +353,7 @@ end;
 //procedure
 procedure VirtualTreeColumn_ParentColorChanged(AObj: TVirtualTreeColumn); extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColorChanged'}
   handleExceptionBegin
   AObj.ParentColorChanged();
   handleExceptionEnd
@@ -332,6 +362,7 @@ end;
 //procedure
 procedure VirtualTreeColumn_RestoreLastWidth(AObj: TVirtualTreeColumn); extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoreLastWidth'}
   handleExceptionBegin
   AObj.RestoreLastWidth();
   handleExceptionEnd
@@ -340,6 +371,7 @@ end;
 //procedure
 procedure VirtualTreeColumn_SaveToStream(AObj: TVirtualTreeColumn; const Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream'}
   handleExceptionBegin
   AObj.SaveToStream(Stream);
   handleExceptionEnd

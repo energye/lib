@@ -2,6 +2,7 @@
 //constructor
 function MainMenu_Create(AOwner: TComponent): TMainMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMainMenu.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function MainMenu_Height(AObj: TMainMenu): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   Result := AObj.Height;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function MainMenu_WindowHandle(AIsSet: LongBool; AObj: TMainMenu; AValue: HWND): HWND; extdecl;
 begin
+  {$define handleExceptionFuncName :='WindowHandle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -36,6 +39,7 @@ end;
 //procedure
 procedure MainMenu_Merge(AObj: TMainMenu; Menu: TMainMenu); extdecl;
 begin
+  {$define handleExceptionFuncName :='Merge'}
   handleExceptionBegin
   AObj.Merge(Menu);
   handleExceptionEnd
@@ -44,6 +48,7 @@ end;
 //procedure
 procedure MainMenu_Unmerge(AObj: TMainMenu; Menu: TMainMenu); extdecl;
 begin
+  {$define handleExceptionFuncName :='Unmerge'}
   handleExceptionBegin
   AObj.Unmerge(Menu);
   handleExceptionEnd

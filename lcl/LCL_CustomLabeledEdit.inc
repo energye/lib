@@ -2,6 +2,7 @@
 //constructor
 function CustomLabeledEdit_Create(TheOwner: TComponent): TCustomLabeledEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomLabeledEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomLabeledEdit_EditLabel(AObj: TCustomLabeledEdit): TBoundLabel; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditLabel'}
   handleExceptionBegin
   Result := AObj.EditLabel;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomLabeledEdit_LabelPosition(AIsSet: LongBool; AObj: TCustomLabeledEdit; AValue: TLabelPosition): TLabelPosition; extdecl;
 begin
+  {$define handleExceptionFuncName :='LabelPosition'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CustomLabeledEdit_LabelSpacing(AIsSet: LongBool; AObj: TCustomLabeledEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LabelSpacing'}
   handleExceptionBegin
   if AIsSet then
   begin

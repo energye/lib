@@ -8,6 +8,7 @@ end;
 //procedure
 procedure FPCustomImageWriter_ImageWrite(AObj: TFPCustomImageWriter; Str: TStream; Img: TFPCustomImage); extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWrite'}
   handleExceptionBegin
   AObj.ImageWrite(Str, Img);
   handleExceptionEnd

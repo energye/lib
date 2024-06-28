@@ -2,6 +2,7 @@
 //constructor
 function CustomTaskDialog_Create(AOwner: TComponent): TCustomTaskDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTaskDialog.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomTaskDialog_Button(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogButtonItem): TTaskDialogButtonItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Button'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomTaskDialog_Buttons(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogButtons): TTaskDialogButtons; extdecl;
 begin
+  {$define handleExceptionFuncName :='Buttons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomTaskDialog_Caption(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomTaskDialog_CommonButtons(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogCommonButtons): TTaskDialogCommonButtons; extdecl;
 begin
+  {$define handleExceptionFuncName :='CommonButtons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomTaskDialog_DefaultButton(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogCommonButton): TTaskDialogCommonButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultButton'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomTaskDialog_ExpandButtonCaption(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExpandButtonCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomTaskDialog_ExpandedText(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExpandedText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomTaskDialog_Flags(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogFlags): TTaskDialogFlags; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomTaskDialog_FooterIcon(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogIcon): TTaskDialogIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='FooterIcon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomTaskDialog_FooterText(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FooterText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomTaskDialog_MainIcon(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogIcon): TTaskDialogIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='MainIcon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomTaskDialog_ModalResult(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TModalResult): TModalResult; extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalResult'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomTaskDialog_RadioButton(AObj: TCustomTaskDialog): TTaskDialogRadioButtonItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='RadioButton'}
   handleExceptionBegin
   Result := AObj.RadioButton;
   handleExceptionEnd
@@ -162,6 +176,7 @@ end;
 //property
 function CustomTaskDialog_RadioButtons(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: TTaskDialogButtons): TTaskDialogButtons; extdecl;
 begin
+  {$define handleExceptionFuncName :='RadioButtons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function CustomTaskDialog_Text(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function CustomTaskDialog_Title(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Title'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function CustomTaskDialog_VerificationText(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='VerificationText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function CustomTaskDialog_Width(AIsSet: LongBool; AObj: TCustomTaskDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //function
 function CustomTaskDialog_Execute(AObj: TCustomTaskDialog): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Execute'}
   handleExceptionBegin
   Result := AObj.Execute();
   handleExceptionEnd
@@ -230,6 +250,7 @@ end;
 //function
 function CustomTaskDialog_Execute1(AObj: TCustomTaskDialog; ParentWnd: HWND): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Execute1'}
   handleExceptionBegin
   Result := AObj.Execute(ParentWnd);
   handleExceptionEnd

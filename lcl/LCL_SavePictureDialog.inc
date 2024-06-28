@@ -2,6 +2,7 @@
 //constructor
 function SavePictureDialog_Create(TheOwner: TComponent): TSavePictureDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TSavePictureDialog.Create(TheOwner);
   handleExceptionEnd

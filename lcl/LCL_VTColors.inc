@@ -2,6 +2,7 @@
 //constructor
 function VTColors_Create(AOwner: TBaseVirtualTree): TVTColors; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TVTColors.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function VTColors_BackGroundColor(AObj: TVTColors): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BackGroundColor'}
   handleExceptionBegin
   Result := AObj.BackGroundColor;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function VTColors_HeaderFontColor(AObj: TVTColors): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderFontColor'}
   handleExceptionBegin
   Result := AObj.HeaderFontColor;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function VTColors_NodeFontColor(AObj: TVTColors): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='NodeFontColor'}
   handleExceptionBegin
   Result := AObj.NodeFontColor;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function VTColors_BorderColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +51,7 @@ end;
 //property
 function VTColors_DisabledColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +64,7 @@ end;
 //property
 function VTColors_DropMarkColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropMarkColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +77,7 @@ end;
 //property
 function VTColors_DropTargetColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropTargetColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +90,7 @@ end;
 //property
 function VTColors_DropTargetBorderColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropTargetBorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +103,7 @@ end;
 //property
 function VTColors_FocusedSelectionColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusedSelectionColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +116,7 @@ end;
 //property
 function VTColors_FocusedSelectionBorderColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusedSelectionBorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +129,7 @@ end;
 //property
 function VTColors_GridLineColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='GridLineColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +142,7 @@ end;
 //property
 function VTColors_HeaderHotColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderHotColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +155,7 @@ end;
 //property
 function VTColors_HotColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +168,7 @@ end;
 //property
 function VTColors_SelectionRectangleBlendColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionRectangleBlendColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +181,7 @@ end;
 //property
 function VTColors_SelectionRectangleBorderColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionRectangleBorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +194,7 @@ end;
 //property
 function VTColors_SelectionTextColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionTextColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +207,7 @@ end;
 //property
 function VTColors_TreeLineColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='TreeLineColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +220,7 @@ end;
 //property
 function VTColors_UnfocusedColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='UnfocusedColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +233,7 @@ end;
 //property
 function VTColors_UnfocusedSelectionColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='UnfocusedSelectionColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +246,7 @@ end;
 //property
 function VTColors_UnfocusedSelectionBorderColor(AIsSet: LongBool; AObj: TVTColors; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='UnfocusedSelectionBorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin

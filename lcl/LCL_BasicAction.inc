@@ -2,6 +2,7 @@
 //constructor
 function BasicAction_Create(AOwner: TComponent): TBasicAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TBasicAction.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function BasicAction_ActionComponent(AIsSet: LongBool; AObj: TBasicAction; AValue: TComponent): TComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActionComponent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //function
 function BasicAction_HandlesTarget(AObj: TBasicAction; Target: TObject): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandlesTarget'}
   handleExceptionBegin
   Result := AObj.HandlesTarget(Target);
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //function
 function BasicAction_Execute(AObj: TBasicAction): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Execute'}
   handleExceptionBegin
   Result := AObj.Execute();
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //function
 function BasicAction_Update(AObj: TBasicAction): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Update'}
   handleExceptionBegin
   Result := AObj.Update();
   handleExceptionEnd
@@ -52,6 +57,7 @@ end;
 //procedure
 procedure BasicAction_UpdateTarget(AObj: TBasicAction; Target: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateTarget'}
   handleExceptionBegin
   AObj.UpdateTarget(Target);
   handleExceptionEnd
@@ -60,6 +66,7 @@ end;
 //procedure
 procedure BasicAction_ExecuteTarget(AObj: TBasicAction; Target: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteTarget'}
   handleExceptionBegin
   AObj.ExecuteTarget(Target);
   handleExceptionEnd
@@ -68,6 +75,7 @@ end;
 //procedure
 procedure BasicAction_RegisterChanges(AObj: TBasicAction; Value: TBasicActionLink); extdecl;
 begin
+  {$define handleExceptionFuncName :='RegisterChanges'}
   handleExceptionBegin
   AObj.RegisterChanges(Value);
   handleExceptionEnd
@@ -76,6 +84,7 @@ end;
 //procedure
 procedure BasicAction_UnRegisterChanges(AObj: TBasicAction; Value: TBasicActionLink); extdecl;
 begin
+  {$define handleExceptionFuncName :='UnRegisterChanges'}
   handleExceptionBegin
   AObj.UnRegisterChanges(Value);
   handleExceptionEnd

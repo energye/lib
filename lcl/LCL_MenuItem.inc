@@ -2,6 +2,7 @@
 //constructor
 function MenuItem_Create(TheOwner: TComponent): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMenuItem.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function MenuItem_Merged(AObj: TMenuItem): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Merged'}
   handleExceptionBegin
   Result := AObj.Merged;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function MenuItem_MergedWith(AObj: TMenuItem): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='MergedWith'}
   handleExceptionBegin
   Result := AObj.MergedWith;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function MenuItem_Count(AObj: TMenuItem): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Count'}
   handleExceptionBegin
   Result := AObj.Count;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function MenuItem_Handle(AIsSet: LongBool; AObj: TMenuItem; AValue: HMenu): HMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='Handle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +51,7 @@ end;
 //property
 function MenuItem_Items(AObj: TMenuItem; Index: Integer): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Items'}
   handleExceptionBegin
   Result := AObj.Items[Index];
   handleExceptionEnd
@@ -54,6 +60,7 @@ end;
 //property
 function MenuItem_MergedItems(AObj: TMenuItem): TMergedMenuItems; extdecl;
 begin
+  {$define handleExceptionFuncName :='MergedItems'}
   handleExceptionBegin
   Result := AObj.MergedItems;
   handleExceptionEnd
@@ -62,6 +69,7 @@ end;
 //property
 function MenuItem_MenuIndex(AIsSet: LongBool; AObj: TMenuItem; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MenuIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +82,7 @@ end;
 //property
 function MenuItem_Menu(AObj: TMenuItem): TMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='Menu'}
   handleExceptionBegin
   Result := AObj.Menu;
   handleExceptionEnd
@@ -82,6 +91,7 @@ end;
 //property
 function MenuItem_Parent(AObj: TMenuItem): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Parent'}
   handleExceptionBegin
   Result := AObj.Parent;
   handleExceptionEnd
@@ -90,6 +100,7 @@ end;
 //property
 function MenuItem_MergedParent(AObj: TMenuItem): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='MergedParent'}
   handleExceptionBegin
   Result := AObj.MergedParent;
   handleExceptionEnd
@@ -98,6 +109,7 @@ end;
 //property
 function MenuItem_Command(AObj: TMenuItem): Word; extdecl;
 begin
+  {$define handleExceptionFuncName :='Command'}
   handleExceptionBegin
   Result := AObj.Command;
   handleExceptionEnd
@@ -106,6 +118,7 @@ end;
 //property
 function MenuItem_Action(AIsSet: LongBool; AObj: TMenuItem; AValue: TBasicAction): TBasicAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Action'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +131,7 @@ end;
 //property
 function MenuItem_AutoCheck(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCheck'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +144,7 @@ end;
 //property
 function MenuItem_Caption(AIsSet: LongBool; AObj: TMenuItem; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +157,7 @@ end;
 //property
 function MenuItem_Checked(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +170,7 @@ end;
 //property
 function MenuItem_Default(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Default'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +183,7 @@ end;
 //property
 function MenuItem_Enabled(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Enabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +196,7 @@ end;
 //property
 function MenuItem_Bitmap(AIsSet: LongBool; AObj: TMenuItem; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Bitmap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +209,7 @@ end;
 //property
 function MenuItem_GroupIndex(AIsSet: LongBool; AObj: TMenuItem; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='GroupIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +222,7 @@ end;
 //property
 function MenuItem_GlyphShowMode(AIsSet: LongBool; AObj: TMenuItem; AValue: TGlyphShowMode): TGlyphShowMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='GlyphShowMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +235,7 @@ end;
 //property
 function MenuItem_HelpContext(AIsSet: LongBool; AObj: TMenuItem; AValue: THelpContext): THelpContext; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +248,7 @@ end;
 //property
 function MenuItem_Hint(AIsSet: LongBool; AObj: TMenuItem; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +261,7 @@ end;
 //property
 function MenuItem_ImageIndex(AIsSet: LongBool; AObj: TMenuItem; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +274,7 @@ end;
 //property
 function MenuItem_RadioItem(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RadioItem'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +287,7 @@ end;
 //property
 function MenuItem_RightJustify(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RightJustify'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +300,7 @@ end;
 //property
 function MenuItem_ShortCut(AIsSet: LongBool; AObj: TMenuItem; AValue: TShortCut): TShortCut; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShortCut'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -286,6 +313,7 @@ end;
 //property
 function MenuItem_ShortCutKey2(AIsSet: LongBool; AObj: TMenuItem; AValue: TShortCut): TShortCut; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShortCutKey2'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -298,6 +326,7 @@ end;
 //property
 function MenuItem_ShowAlwaysCheckable(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowAlwaysCheckable'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -310,6 +339,7 @@ end;
 //property
 function MenuItem_SubMenuImages(AIsSet: LongBool; AObj: TMenuItem; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='SubMenuImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -322,6 +352,7 @@ end;
 //property
 function MenuItem_SubMenuImagesWidth(AIsSet: LongBool; AObj: TMenuItem; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SubMenuImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -334,6 +365,7 @@ end;
 //property
 function MenuItem_Visible(AIsSet: LongBool; AObj: TMenuItem; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -346,6 +378,7 @@ end;
 //function
 function MenuItem_Find(AObj: TMenuItem; const ACaption: PChar): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Find'}
   handleExceptionBegin
   Result := AObj.Find(ACaption);
   handleExceptionEnd
@@ -354,6 +387,7 @@ end;
 //function
 function MenuItem_GetEnumeratorForMenuItemEnumerator(AObj: TMenuItem): TMenuItemEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnumeratorForMenuItemEnumerator'}
   handleExceptionBegin
   Result := AObj.GetEnumerator();
   handleExceptionEnd
@@ -362,6 +396,7 @@ end;
 //function
 function MenuItem_GetImageList(AObj: TMenuItem): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetImageList'}
   handleExceptionBegin
   Result := AObj.GetImageList();
   handleExceptionEnd
@@ -370,6 +405,7 @@ end;
 //function
 function MenuItem_GetParentMenu(AObj: TMenuItem): TMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetParentMenu'}
   handleExceptionBegin
   Result := AObj.GetParentMenu();
   handleExceptionEnd
@@ -378,6 +414,7 @@ end;
 //function
 function MenuItem_GetMergedParentMenu(AObj: TMenuItem): TMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetMergedParentMenu'}
   handleExceptionBegin
   Result := AObj.GetMergedParentMenu();
   handleExceptionEnd
@@ -386,6 +423,7 @@ end;
 //function
 function MenuItem_GetIsRightToLeft(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIsRightToLeft'}
   handleExceptionBegin
   Result := AObj.GetIsRightToLeft();
   handleExceptionEnd
@@ -394,6 +432,7 @@ end;
 //function
 function MenuItem_HandleAllocated(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleAllocated'}
   handleExceptionBegin
   Result := AObj.HandleAllocated();
   handleExceptionEnd
@@ -402,6 +441,7 @@ end;
 //function
 function MenuItem_HasIcon(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasIcon'}
   handleExceptionBegin
   Result := AObj.HasIcon();
   handleExceptionEnd
@@ -410,6 +450,7 @@ end;
 //function
 function MenuItem_IndexOf(AObj: TMenuItem; Item: TMenuItem): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf'}
   handleExceptionBegin
   Result := AObj.IndexOf(Item);
   handleExceptionEnd
@@ -418,6 +459,7 @@ end;
 //function
 function MenuItem_IndexOfCaption(AObj: TMenuItem; const ACaption: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfCaption'}
   handleExceptionBegin
   Result := AObj.IndexOfCaption(ACaption);
   handleExceptionEnd
@@ -426,6 +468,7 @@ end;
 //function
 function MenuItem_VisibleIndexOf(AObj: TMenuItem; Item: TMenuItem): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisibleIndexOf'}
   handleExceptionBegin
   Result := AObj.VisibleIndexOf(Item);
   handleExceptionEnd
@@ -434,6 +477,7 @@ end;
 //function
 function MenuItem_IsCheckItem(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsCheckItem'}
   handleExceptionBegin
   Result := AObj.IsCheckItem();
   handleExceptionEnd
@@ -442,6 +486,7 @@ end;
 //function
 function MenuItem_IsLine(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsLine'}
   handleExceptionBegin
   Result := AObj.IsLine();
   handleExceptionEnd
@@ -450,6 +495,7 @@ end;
 //function
 function MenuItem_IsInMenuBar(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsInMenuBar'}
   handleExceptionBegin
   Result := AObj.IsInMenuBar();
   handleExceptionEnd
@@ -458,6 +504,7 @@ end;
 //function
 function MenuItem_HasBitmap(AObj: TMenuItem): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasBitmap'}
   handleExceptionBegin
   Result := AObj.HasBitmap();
   handleExceptionEnd
@@ -466,6 +513,7 @@ end;
 //function
 procedure MenuItem_GetIconSize(AObj: TMenuItem; ADC: HDC; DPI: Integer; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIconSize'}
   handleExceptionBegin
   Result := AObj.GetIconSize(ADC, DPI);
   handleExceptionEnd
@@ -474,6 +522,7 @@ end;
 //function
 function MenuItem_MenuVisibleIndex(AObj: TMenuItem): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MenuVisibleIndex'}
   handleExceptionBegin
   Result := AObj.MenuVisibleIndex();
   handleExceptionEnd
@@ -491,6 +540,7 @@ var
   RetOutImages: TCustomImageList;
   RetOutImagesWidth: Integer;
 begin
+  {$define handleExceptionFuncName :='GetImageList1'}
   handleExceptionBegin
   RetOutImages := OutImages;
   RetOutImagesWidth := OutImagesWidth;
@@ -503,6 +553,7 @@ end;
 //procedure
 procedure MenuItem_InitiateAction(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='InitiateAction'}
   handleExceptionBegin
   AObj.InitiateAction();
   handleExceptionEnd
@@ -511,6 +562,7 @@ end;
 //procedure
 procedure MenuItem_IntfDoSelect(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfDoSelect'}
   handleExceptionBegin
   AObj.IntfDoSelect();
   handleExceptionEnd
@@ -519,6 +571,7 @@ end;
 //procedure
 procedure MenuItem_InvalidateMergedItems(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidateMergedItems'}
   handleExceptionBegin
   AObj.InvalidateMergedItems();
   handleExceptionEnd
@@ -527,6 +580,7 @@ end;
 //procedure
 procedure MenuItem_Add(AObj: TMenuItem; Item: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='Add'}
   handleExceptionBegin
   AObj.Add(Item);
   handleExceptionEnd
@@ -535,6 +589,7 @@ end;
 //procedure
 procedure MenuItem_AddSeparator(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddSeparator'}
   handleExceptionBegin
   AObj.AddSeparator();
   handleExceptionEnd
@@ -543,6 +598,7 @@ end;
 //procedure
 procedure MenuItem_Click(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='Click'}
   handleExceptionBegin
   AObj.Click();
   handleExceptionEnd
@@ -551,6 +607,7 @@ end;
 //procedure
 procedure MenuItem_Delete(AObj: TMenuItem; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delete'}
   handleExceptionBegin
   AObj.Delete(Index);
   handleExceptionEnd
@@ -559,6 +616,7 @@ end;
 //procedure
 procedure MenuItem_HandleNeeded(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleNeeded'}
   handleExceptionBegin
   AObj.HandleNeeded();
   handleExceptionEnd
@@ -567,6 +625,7 @@ end;
 //procedure
 procedure MenuItem_Insert(AObj: TMenuItem; Index: Integer; Item: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insert'}
   handleExceptionBegin
   AObj.Insert(Index, Item);
   handleExceptionEnd
@@ -575,6 +634,7 @@ end;
 //procedure
 procedure MenuItem_RecreateHandle(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='RecreateHandle'}
   handleExceptionBegin
   AObj.RecreateHandle();
   handleExceptionEnd
@@ -583,6 +643,7 @@ end;
 //procedure
 procedure MenuItem_Remove(AObj: TMenuItem; Item: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='Remove'}
   handleExceptionBegin
   AObj.Remove(Item);
   handleExceptionEnd
@@ -591,6 +652,7 @@ end;
 //procedure
 procedure MenuItem_UpdateImage(AObj: TMenuItem; forced: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateImage'}
   handleExceptionBegin
   AObj.UpdateImage(forced);
   handleExceptionEnd
@@ -599,6 +661,7 @@ end;
 //procedure
 procedure MenuItem_UpdateImages(AObj: TMenuItem; forced: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateImages'}
   handleExceptionBegin
   AObj.UpdateImages(forced);
   handleExceptionEnd
@@ -607,6 +670,7 @@ end;
 //procedure
 procedure MenuItem_Clear(AObj: TMenuItem); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -615,6 +679,7 @@ end;
 //procedure
 procedure MenuItem_WriteDebugReport(AObj: TMenuItem; const Prefix: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='WriteDebugReport'}
   handleExceptionBegin
   AObj.WriteDebugReport(Prefix);
   handleExceptionEnd

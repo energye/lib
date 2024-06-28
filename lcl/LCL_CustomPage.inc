@@ -2,6 +2,7 @@
 //constructor
 function CustomPage_Create(TheOwner: TComponent): TCustomPage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPage.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomPage_PageIndex(AIsSet: LongBool; AObj: TCustomPage; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomPage_TabVisible(AIsSet: LongBool; AObj: TCustomPage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabVisible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomPage_ImageIndex(AIsSet: LongBool; AObj: TCustomPage; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //function
 function CustomPage_CanTab(AObj: TCustomPage): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanTab'}
   handleExceptionBegin
   Result := AObj.CanTab();
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //function
 function CustomPage_VisibleIndex(AObj: TCustomPage): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='VisibleIndex'}
   handleExceptionBegin
   Result := AObj.VisibleIndex();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function DockTree_Create(TheDockSite: TWinControl): TDockTree; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDockTree.Create(TheDockSite);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DockTree_DockZoneClass(AObj: TDockTree): TDockZoneClass; extdecl;
 begin
+  {$define handleExceptionFuncName :='DockZoneClass'}
   handleExceptionBegin
   Result := AObj.DockZoneClass;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function DockTree_DockSite(AIsSet: LongBool; AObj: TDockTree; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='DockSite'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function DockTree_RootZone(AObj: TDockTree): TDockZone; extdecl;
 begin
+  {$define handleExceptionFuncName :='RootZone'}
   handleExceptionBegin
   Result := AObj.RootZone;
   handleExceptionEnd
@@ -46,6 +50,7 @@ procedure DockTree_AdjustDockRect(AObj: TDockTree; AControl: TControl; var ARect
 var
   RetARect: TRect;
 begin
+  {$define handleExceptionFuncName :='AdjustDockRect'}
   handleExceptionBegin
   RetARect := ARect;
   AObj.AdjustDockRect(AControl, RetARect);
@@ -56,6 +61,7 @@ end;
 //procedure
 procedure DockTree_DumpLayout(AObj: TDockTree; FileName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='DumpLayout'}
   handleExceptionBegin
   AObj.DumpLayout(FileName);
   handleExceptionEnd

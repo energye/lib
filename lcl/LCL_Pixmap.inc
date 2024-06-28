@@ -2,6 +2,7 @@
 //constructor
 function Pixmap_Create(): TPixmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPixmap.Create();
   handleExceptionEnd

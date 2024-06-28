@@ -2,6 +2,7 @@
 //constructor
 function RadioButton_Create(TheOwner: TComponent): TRadioButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TRadioButton.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function RadioButton_Checked(AIsSet: LongBool; AObj: TRadioButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function RadioButton_DragCursor(AIsSet: LongBool; AObj: TRadioButton; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function RadioButton_DragKind(AIsSet: LongBool; AObj: TRadioButton; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function RadioButton_DragMode(AIsSet: LongBool; AObj: TRadioButton; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function RadioButton_ParentColor(AIsSet: LongBool; AObj: TRadioButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function RadioButton_ParentFont(AIsSet: LongBool; AObj: TRadioButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function RadioButton_ParentShowHint(AIsSet: LongBool; AObj: TRadioButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

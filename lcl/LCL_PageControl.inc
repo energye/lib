@@ -2,6 +2,7 @@
 //constructor
 function PageControl_Create(TheOwner: TComponent): TPageControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPageControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PageControl_ActivePageIndex(AIsSet: LongBool; AObj: TPageControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActivePageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function PageControl_PagesForTabSheet(AObj: TPageControl; Index: Integer): TTabSheet; extdecl;
 begin
+  {$define handleExceptionFuncName :='PagesForTabSheet'}
   handleExceptionBegin
   Result := AObj.Pages[Index];
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function PageControl_ActivePage(AIsSet: LongBool; AObj: TPageControl; AValue: TTabSheet): TTabSheet; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActivePage'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function PageControl_DragCursor(AIsSet: LongBool; AObj: TPageControl; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function PageControl_DragKind(AIsSet: LongBool; AObj: TPageControl; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function PageControl_DragMode(AIsSet: LongBool; AObj: TPageControl; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function PageControl_ParentFont(AIsSet: LongBool; AObj: TPageControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function PageControl_ParentShowHint(AIsSet: LongBool; AObj: TPageControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function PageControl_TabIndex(AIsSet: LongBool; AObj: TPageControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //function
 function PageControl_FindNextPage(AObj: TPageControl; CurPage: TTabSheet; GoForward, CheckTabVisible: LongBool): TTabSheet; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindNextPage'}
   handleExceptionBegin
   Result := AObj.FindNextPage(CurPage, GoForward, CheckTabVisible);
   handleExceptionEnd
@@ -122,6 +133,7 @@ end;
 //function
 function PageControl_IndexOfTabAt(AObj: TPageControl; X, Y: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfTabAt'}
   handleExceptionBegin
   Result := AObj.IndexOfTabAt(X, Y);
   handleExceptionEnd
@@ -130,6 +142,7 @@ end;
 //function
 function PageControl_IndexOfTabAt1(AObj: TPageControl; var P: TPoint): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfTabAt1'}
   handleExceptionBegin
   Result := AObj.IndexOfTabAt(P);
   handleExceptionEnd
@@ -138,6 +151,7 @@ end;
 //function
 function PageControl_IndexOfPageAt(AObj: TPageControl; X, Y: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfPageAt'}
   handleExceptionBegin
   Result := AObj.IndexOfPageAt(X, Y);
   handleExceptionEnd
@@ -146,6 +160,7 @@ end;
 //function
 function PageControl_IndexOfPageAt1(AObj: TPageControl; var P: TPoint): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOfPageAt1'}
   handleExceptionBegin
   Result := AObj.IndexOfPageAt(P);
   handleExceptionEnd
@@ -154,6 +169,7 @@ end;
 //function
 function PageControl_AddTabSheet(AObj: TPageControl): TTabSheet; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddTabSheet'}
   handleExceptionBegin
   Result := AObj.AddTabSheet();
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 //procedure
 procedure PageControl_Clear(AObj: TPageControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -176,6 +193,7 @@ end;
 //procedure
 procedure PageControl_SelectNextPage(AObj: TPageControl; GoForward: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectNextPage'}
   handleExceptionBegin
   AObj.SelectNextPage(GoForward);
   handleExceptionEnd
@@ -184,6 +202,7 @@ end;
 //procedure
 procedure PageControl_SelectNextPage1(AObj: TPageControl; GoForward: LongBool; CheckTabVisible: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectNextPage1'}
   handleExceptionBegin
   AObj.SelectNextPage(GoForward, CheckTabVisible);
   handleExceptionEnd

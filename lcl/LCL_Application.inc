@@ -2,6 +2,7 @@
 //constructor
 function Application_Create(AOwner: TComponent): TApplication; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TApplication.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Application_Active(AObj: TApplication): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Active'}
   handleExceptionBegin
   Result := AObj.Active;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function Application_ApplicationType(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationType): TApplicationType; extdecl;
 begin
+  {$define handleExceptionFuncName :='ApplicationType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function Application_BidiMode(AIsSet: LongBool; AObj: TApplication; AValue: TBiDiMode): TBiDiMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='BidiMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function Application_CaptureExceptions(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaptureExceptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function Application_DoubleBuffered(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationDoubleBuffered): TApplicationDoubleBuffered; extdecl;
 begin
+  {$define handleExceptionFuncName :='DoubleBuffered'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function Application_ExtendedKeysSupport(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtendedKeysSupport'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function Application_ExceptionDialog(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationExceptionDlg): TApplicationExceptionDlg; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExceptionDialog'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function Application_FindGlobalComponentEnabled(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindGlobalComponentEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function Application_Flags(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationFlags): TApplicationFlags; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function Application_Handle(AIsSet: LongBool; AObj: TApplication; AValue: THandle): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Handle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function Application_Hint(AIsSet: LongBool; AObj: TApplication; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function Application_HintColor(AIsSet: LongBool; AObj: TApplication; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function Application_HintHidePause(AIsSet: LongBool; AObj: TApplication; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintHidePause'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function Application_HintHidePausePerChar(AIsSet: LongBool; AObj: TApplication; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintHidePausePerChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function Application_HintPause(AIsSet: LongBool; AObj: TApplication; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintPause'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function Application_HintShortCuts(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintShortCuts'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function Application_HintShortPause(AIsSet: LongBool; AObj: TApplication; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintShortPause'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function Application_Icon(AIsSet: LongBool; AObj: TApplication; AValue: TIcon): TIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Icon'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //property
 function Application_LayoutAdjustmentPolicy(AIsSet: LongBool; AObj: TApplication; AValue: TLayoutAdjustmentPolicy): TLayoutAdjustmentPolicy; extdecl;
 begin
+  {$define handleExceptionFuncName :='LayoutAdjustmentPolicy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +254,7 @@ end;
 //property
 function Application_Navigation(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationNavigationOptions): TApplicationNavigationOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Navigation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +267,7 @@ end;
 //property
 function Application_MainForm(AObj: TApplication): TForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='MainForm'}
   handleExceptionBegin
   Result := AObj.MainForm;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 //property
 function Application_MainFormHandle(AObj: TApplication): HWND; extdecl;
 begin
+  {$define handleExceptionFuncName :='MainFormHandle'}
   handleExceptionBegin
   Result := AObj.MainFormHandle;
   handleExceptionEnd
@@ -262,6 +285,7 @@ end;
 //property
 function Application_MainFormOnTaskBar(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MainFormOnTaskBar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +298,7 @@ end;
 //property
 function Application_ModalLevel(AObj: TApplication): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalLevel'}
   handleExceptionBegin
   Result := AObj.ModalLevel;
   handleExceptionEnd
@@ -282,6 +307,7 @@ end;
 //property
 function Application_MoveFormFocusToChildren(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MoveFormFocusToChildren'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +320,7 @@ end;
 //property
 function Application_MouseControl(AObj: TApplication): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='MouseControl'}
   handleExceptionBegin
   Result := AObj.MouseControl;
   handleExceptionEnd
@@ -302,6 +329,7 @@ end;
 //property
 function Application_TaskBarBehavior(AIsSet: LongBool; AObj: TApplication; AValue: TTaskBarBehavior): TTaskBarBehavior; extdecl;
 begin
+  {$define handleExceptionFuncName :='TaskBarBehavior'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -314,6 +342,7 @@ end;
 //property
 function Application_UpdateFormatSettings(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateFormatSettings'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -326,6 +355,7 @@ end;
 //property
 function Application_ShowButtonGlyphs(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationShowGlyphs): TApplicationShowGlyphs; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowButtonGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -338,6 +368,7 @@ end;
 //property
 function Application_ShowMenuGlyphs(AIsSet: LongBool; AObj: TApplication; AValue: TApplicationShowGlyphs): TApplicationShowGlyphs; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowMenuGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -350,6 +381,7 @@ end;
 //property
 function Application_ShowHint(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -362,6 +394,7 @@ end;
 //property
 function Application_ShowMainForm(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowMainForm'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -374,6 +407,7 @@ end;
 //property
 function Application_Scaled(AIsSet: LongBool; AObj: TApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scaled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -386,6 +420,7 @@ end;
 //function
 function Application_GetControlAtMouse(AObj: TApplication): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetControlAtMouse'}
   handleExceptionBegin
   Result := AObj.GetControlAtMouse();
   handleExceptionEnd
@@ -394,6 +429,7 @@ end;
 //function
 function Application_GetControlAtPos(AObj: TApplication; var P: TPoint): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetControlAtPos'}
   handleExceptionBegin
   Result := AObj.GetControlAtPos(P);
   handleExceptionEnd
@@ -402,6 +438,7 @@ end;
 //function
 function Application_BigIconHandle(AObj: TApplication): HIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='BigIconHandle'}
   handleExceptionBegin
   Result := AObj.BigIconHandle();
   handleExceptionEnd
@@ -410,6 +447,7 @@ end;
 //function
 function Application_SmallIconHandle(AObj: TApplication): HIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmallIconHandle'}
   handleExceptionBegin
   Result := AObj.SmallIconHandle();
   handleExceptionEnd
@@ -418,6 +456,7 @@ end;
 //function
 function Application_HelpCommand(AObj: TApplication; Command: Word; Data: NativeInt): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpCommand'}
   handleExceptionBegin
   Result := AObj.HelpCommand(Command, Data);
   handleExceptionEnd
@@ -426,6 +465,7 @@ end;
 //function
 function Application_HelpContext(AObj: TApplication; Context: THelpContext): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   Result := AObj.HelpContext(Context);
   handleExceptionEnd
@@ -434,6 +474,7 @@ end;
 //function
 function Application_HelpKeyword(AObj: TApplication; const Keyword: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpKeyword'}
   handleExceptionBegin
   Result := AObj.HelpKeyword(Keyword);
   handleExceptionEnd
@@ -442,6 +483,7 @@ end;
 //function
 function Application_HelpShowTableOfContents(AObj: TApplication): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpShowTableOfContents'}
   handleExceptionBegin
   Result := AObj.HelpShowTableOfContents();
   handleExceptionEnd
@@ -450,6 +492,7 @@ end;
 //function
 function Application_IsWaiting(AObj: TApplication): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsWaiting'}
   handleExceptionBegin
   Result := AObj.IsWaiting();
   handleExceptionEnd
@@ -458,6 +501,7 @@ end;
 //function
 function Application_MessageBox(AObj: TApplication; Text, Caption: PChar; Flags: LongInt): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MessageBox'}
   handleExceptionBegin
   Result := AObj.MessageBox(Text, Caption, Flags);
   handleExceptionEnd
@@ -468,6 +512,7 @@ function Application_IsShortcut(AObj: TApplication; var Message: TLMKey): LongBo
 var
   RetMessage: TLMKey;
 begin
+  {$define handleExceptionFuncName :='IsShortcut'}
   handleExceptionBegin
   RetMessage := Message;
   Result := AObj.IsShortcut(RetMessage);
@@ -478,6 +523,7 @@ end;
 //function
 function Application_IsRightToLeft(AObj: TApplication): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsRightToLeft'}
   handleExceptionBegin
   Result := AObj.IsRightToLeft();
   handleExceptionEnd
@@ -486,6 +532,7 @@ end;
 //function
 function Application_IsRTLLang(AObj: TApplication; const ALang: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsRTLLang'}
   handleExceptionBegin
   Result := AObj.IsRTLLang(ALang);
   handleExceptionEnd
@@ -494,6 +541,7 @@ end;
 //function
 function Application_Direction(AObj: TApplication; const ALang: PChar): TBiDiMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='Direction'}
   handleExceptionBegin
   Result := AObj.Direction(ALang);
   handleExceptionEnd
@@ -508,6 +556,7 @@ end;
 //procedure
 procedure Application_ActivateHint(AObj: TApplication; var CursorPos: TPoint; CheckHintControlChange: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ActivateHint'}
   handleExceptionBegin
   AObj.ActivateHint(CursorPos, CheckHintControlChange);
   handleExceptionEnd
@@ -516,6 +565,7 @@ end;
 //procedure
 procedure Application_ControlDestroyed(AObj: TApplication; AControl: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlDestroyed'}
   handleExceptionBegin
   AObj.ControlDestroyed(AControl);
   handleExceptionEnd
@@ -524,6 +574,7 @@ end;
 //procedure
 procedure Application_BringToFront(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='BringToFront'}
   handleExceptionBegin
   AObj.BringToFront();
   handleExceptionEnd
@@ -532,6 +583,7 @@ end;
 //procedure
 procedure Application_UpdateMainForm(AObj: TApplication; AForm: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateMainForm'}
   handleExceptionBegin
   AObj.UpdateMainForm(AForm);
   handleExceptionEnd
@@ -540,6 +592,7 @@ end;
 //procedure
 procedure Application_RemoveAsyncCalls(AObj: TApplication; const AnObject: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveAsyncCalls'}
   handleExceptionBegin
   AObj.RemoveAsyncCalls(AnObject);
   handleExceptionEnd
@@ -548,6 +601,7 @@ end;
 //procedure
 procedure Application_ReleaseComponent(AObj: TApplication; AComponent: TComponent); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReleaseComponent'}
   handleExceptionBegin
   AObj.ReleaseComponent(AComponent);
   handleExceptionEnd
@@ -556,6 +610,7 @@ end;
 //procedure
 procedure Application_HandleMessage(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleMessage'}
   handleExceptionBegin
   AObj.HandleMessage();
   handleExceptionEnd
@@ -564,6 +619,7 @@ end;
 //procedure
 procedure Application_ShowHelpForObject(AObj: TApplication; Sender: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowHelpForObject'}
   handleExceptionBegin
   AObj.ShowHelpForObject(Sender);
   handleExceptionEnd
@@ -572,6 +628,7 @@ end;
 //procedure
 procedure Application_RemoveStayOnTop(AObj: TApplication; const ASystemTopAlso: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveStayOnTop'}
   handleExceptionBegin
   AObj.RemoveStayOnTop(ASystemTopAlso);
   handleExceptionEnd
@@ -580,6 +637,7 @@ end;
 //procedure
 procedure Application_RestoreStayOnTop(AObj: TApplication; const ASystemTopAlso: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoreStayOnTop'}
   handleExceptionBegin
   AObj.RestoreStayOnTop(ASystemTopAlso);
   handleExceptionEnd
@@ -588,6 +646,7 @@ end;
 //procedure
 procedure Application_CancelHint(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='CancelHint'}
   handleExceptionBegin
   AObj.CancelHint();
   handleExceptionEnd
@@ -596,6 +655,7 @@ end;
 //procedure
 procedure Application_HideHint(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='HideHint'}
   handleExceptionBegin
   AObj.HideHint();
   handleExceptionEnd
@@ -606,6 +666,7 @@ procedure Application_HintMouseMessage(AObj: TApplication; Control: TControl; va
 var
   RetAMessage: TLMessage;
 begin
+  {$define handleExceptionFuncName :='HintMouseMessage'}
   handleExceptionBegin
   RetAMessage := AMessage;
   AObj.HintMouseMessage(Control, RetAMessage);
@@ -616,6 +677,7 @@ end;
 //procedure
 procedure Application_Minimize(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='Minimize'}
   handleExceptionBegin
   AObj.Minimize();
   handleExceptionEnd
@@ -624,6 +686,7 @@ end;
 //procedure
 procedure Application_ModalStarted(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalStarted'}
   handleExceptionBegin
   AObj.ModalStarted();
   handleExceptionEnd
@@ -632,6 +695,7 @@ end;
 //procedure
 procedure Application_ModalFinished(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalFinished'}
   handleExceptionBegin
   AObj.ModalFinished();
   handleExceptionEnd
@@ -640,6 +704,7 @@ end;
 //procedure
 procedure Application_Restore(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='Restore'}
   handleExceptionBegin
   AObj.Restore();
   handleExceptionEnd
@@ -648,6 +713,7 @@ end;
 //procedure
 procedure Application_Notification(AObj: TApplication; AComponent: TComponent; Operation: TOperation); extdecl;
 begin
+  {$define handleExceptionFuncName :='Notification'}
   handleExceptionBegin
   AObj.Notification(AComponent, Operation);
   handleExceptionEnd
@@ -656,6 +722,7 @@ end;
 //procedure
 procedure Application_ProcessMessages(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='ProcessMessages'}
   handleExceptionBegin
   AObj.ProcessMessages();
   handleExceptionEnd
@@ -664,6 +731,7 @@ end;
 //procedure
 procedure Application_Idle(AObj: TApplication; Wait: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Idle'}
   handleExceptionBegin
   AObj.Idle(Wait);
   handleExceptionEnd
@@ -672,6 +740,7 @@ end;
 //procedure
 procedure Application_DisableIdleHandler(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableIdleHandler'}
   handleExceptionBegin
   AObj.DisableIdleHandler();
   handleExceptionEnd
@@ -680,6 +749,7 @@ end;
 //procedure
 procedure Application_EnableIdleHandler(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableIdleHandler'}
   handleExceptionBegin
   AObj.EnableIdleHandler();
   handleExceptionEnd
@@ -688,6 +758,7 @@ end;
 //procedure
 procedure Application_NotifyUserInputHandler(AObj: TApplication; Sender: TObject; Msg: uint32); extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyUserInputHandler'}
   handleExceptionBegin
   AObj.NotifyUserInputHandler(Sender, Msg);
   handleExceptionEnd
@@ -698,6 +769,7 @@ procedure Application_NotifyKeyDownBeforeHandler(AObj: TApplication; Sender: TOb
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='NotifyKeyDownBeforeHandler'}
   handleExceptionBegin
   RetKey := Key;
   AObj.NotifyKeyDownBeforeHandler(Sender, RetKey, Shift);
@@ -710,6 +782,7 @@ procedure Application_NotifyKeyDownHandler(AObj: TApplication; Sender: TObject; 
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='NotifyKeyDownHandler'}
   handleExceptionBegin
   RetKey := Key;
   AObj.NotifyKeyDownHandler(Sender, RetKey, Shift);
@@ -722,6 +795,7 @@ procedure Application_ControlKeyDown(AObj: TApplication; Sender: TObject; var Ke
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='ControlKeyDown'}
   handleExceptionBegin
   RetKey := Key;
   AObj.ControlKeyDown(Sender, RetKey, Shift);
@@ -734,6 +808,7 @@ procedure Application_ControlKeyUp(AObj: TApplication; Sender: TObject; var Key:
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='ControlKeyUp'}
   handleExceptionBegin
   RetKey := Key;
   AObj.ControlKeyUp(Sender, RetKey, Shift);
@@ -744,6 +819,7 @@ end;
 //procedure
 procedure Application_RemoveAllHandlersOfObject(AObj: TApplication; AnObject: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveAllHandlersOfObject'}
   handleExceptionBegin
   AObj.RemoveAllHandlersOfObject(AnObject);
   handleExceptionEnd
@@ -752,6 +828,7 @@ end;
 //procedure
 procedure Application_DoBeforeMouseMessage(AObj: TApplication; CurMouseControl: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='DoBeforeMouseMessage'}
   handleExceptionBegin
   AObj.DoBeforeMouseMessage(CurMouseControl);
   handleExceptionEnd
@@ -760,6 +837,7 @@ end;
 //procedure
 procedure Application_IntfEndSession(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfEndSession'}
   handleExceptionBegin
   AObj.IntfEndSession();
   handleExceptionEnd
@@ -768,6 +846,7 @@ end;
 //procedure
 procedure Application_IntfAppActivate(AObj: TApplication; const Async: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfAppActivate'}
   handleExceptionBegin
   AObj.IntfAppActivate(Async);
   handleExceptionEnd
@@ -776,6 +855,7 @@ end;
 //procedure
 procedure Application_IntfAppDeactivate(AObj: TApplication; const Async: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfAppDeactivate'}
   handleExceptionBegin
   AObj.IntfAppDeactivate(Async);
   handleExceptionEnd
@@ -784,6 +864,7 @@ end;
 //procedure
 procedure Application_IntfAppMinimize(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfAppMinimize'}
   handleExceptionBegin
   AObj.IntfAppMinimize();
   handleExceptionEnd
@@ -792,6 +873,7 @@ end;
 //procedure
 procedure Application_IntfAppRestore(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfAppRestore'}
   handleExceptionBegin
   AObj.IntfAppRestore();
   handleExceptionEnd
@@ -800,6 +882,7 @@ end;
 //procedure
 procedure Application_IntfSettingsChange(AObj: TApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfSettingsChange'}
   handleExceptionBegin
   AObj.IntfSettingsChange();
   handleExceptionEnd
@@ -808,6 +891,7 @@ end;
 //procedure
 procedure Application_IntfThemeOptionChange(AObj: TApplication; AThemeServices: TThemeServices; AOption: TThemeOption); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfThemeOptionChange'}
   handleExceptionBegin
   AObj.IntfThemeOptionChange(AThemeServices, AOption);
   handleExceptionEnd
@@ -818,6 +902,7 @@ procedure Application_DoArrowKey(AObj: TApplication; AControl: TWinControl; var 
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='DoArrowKey'}
   handleExceptionBegin
   RetKey := Key;
   AObj.DoArrowKey(AControl, RetKey, Shift);
@@ -830,6 +915,7 @@ procedure Application_DoTabKey(AObj: TApplication; AControl: TWinControl; var Ke
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='DoTabKey'}
   handleExceptionBegin
   RetKey := Key;
   AObj.DoTabKey(AControl, RetKey, Shift);
@@ -842,6 +928,7 @@ procedure Application_DoEscapeKey(AObj: TApplication; AControl: TWinControl; var
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='DoEscapeKey'}
   handleExceptionBegin
   RetKey := Key;
   AObj.DoEscapeKey(AControl, RetKey, Shift);
@@ -854,6 +941,7 @@ procedure Application_DoReturnKey(AObj: TApplication; AControl: TWinControl; var
 var
   RetKey: Word;
 begin
+  {$define handleExceptionFuncName :='DoReturnKey'}
   handleExceptionBegin
   RetKey := Key;
   AObj.DoReturnKey(AControl, RetKey, Shift);

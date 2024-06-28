@@ -2,6 +2,7 @@
 //constructor
 function SizeConstraints_Create(AControl: TControl): TSizeConstraints; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TSizeConstraints.Create(AControl);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function SizeConstraints_MaxInterfaceHeight(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxInterfaceHeight'}
   handleExceptionBegin
   Result := AObj.MaxInterfaceHeight;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function SizeConstraints_MaxInterfaceWidth(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxInterfaceWidth'}
   handleExceptionBegin
   Result := AObj.MaxInterfaceWidth;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function SizeConstraints_MinInterfaceHeight(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinInterfaceHeight'}
   handleExceptionBegin
   Result := AObj.MinInterfaceHeight;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function SizeConstraints_MinInterfaceWidth(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinInterfaceWidth'}
   handleExceptionBegin
   Result := AObj.MinInterfaceWidth;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function SizeConstraints_Control(AObj: TSizeConstraints): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Control'}
   handleExceptionBegin
   Result := AObj.Control;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function SizeConstraints_Options(AIsSet: LongBool; AObj: TSizeConstraints; AValue: TSizeConstraintsOptions): TSizeConstraintsOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +69,7 @@ end;
 //property
 function SizeConstraints_MaxHeight(AIsSet: LongBool; AObj: TSizeConstraints; AValue: TConstraintSize): TConstraintSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +82,7 @@ end;
 //property
 function SizeConstraints_MaxWidth(AIsSet: LongBool; AObj: TSizeConstraints; AValue: TConstraintSize): TConstraintSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +95,7 @@ end;
 //property
 function SizeConstraints_MinHeight(AIsSet: LongBool; AObj: TSizeConstraints; AValue: TConstraintSize): TConstraintSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +108,7 @@ end;
 //property
 function SizeConstraints_MinWidth(AIsSet: LongBool; AObj: TSizeConstraints; AValue: TConstraintSize): TConstraintSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +121,7 @@ end;
 //function
 function SizeConstraints_EffectiveMinWidth(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='EffectiveMinWidth'}
   handleExceptionBegin
   Result := AObj.EffectiveMinWidth();
   handleExceptionEnd
@@ -118,6 +130,7 @@ end;
 //function
 function SizeConstraints_EffectiveMinHeight(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='EffectiveMinHeight'}
   handleExceptionBegin
   Result := AObj.EffectiveMinHeight();
   handleExceptionEnd
@@ -126,6 +139,7 @@ end;
 //function
 function SizeConstraints_EffectiveMaxWidth(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='EffectiveMaxWidth'}
   handleExceptionBegin
   Result := AObj.EffectiveMaxWidth();
   handleExceptionEnd
@@ -134,6 +148,7 @@ end;
 //function
 function SizeConstraints_EffectiveMaxHeight(AObj: TSizeConstraints): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='EffectiveMaxHeight'}
   handleExceptionBegin
   Result := AObj.EffectiveMaxHeight();
   handleExceptionEnd
@@ -142,6 +157,7 @@ end;
 //function
 function SizeConstraints_MinMaxWidth(AObj: TSizeConstraints; Width: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMaxWidth'}
   handleExceptionBegin
   Result := AObj.MinMaxWidth(Width);
   handleExceptionEnd
@@ -150,6 +166,7 @@ end;
 //function
 function SizeConstraints_MinMaxHeight(AObj: TSizeConstraints; Height: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMaxHeight'}
   handleExceptionBegin
   Result := AObj.MinMaxHeight(Height);
   handleExceptionEnd
@@ -164,6 +181,7 @@ end;
 //procedure
 procedure SizeConstraints_UpdateInterfaceConstraints(AObj: TSizeConstraints); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateInterfaceConstraints'}
   handleExceptionBegin
   AObj.UpdateInterfaceConstraints();
   handleExceptionEnd
@@ -172,6 +190,7 @@ end;
 //procedure
 procedure SizeConstraints_SetInterfaceConstraints(AObj: TSizeConstraints; MinW, MinH, MaxW, MaxH: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetInterfaceConstraints'}
   handleExceptionBegin
   AObj.SetInterfaceConstraints(MinW, MinH, MaxW, MaxH);
   handleExceptionEnd
@@ -180,6 +199,7 @@ end;
 //procedure
 procedure SizeConstraints_AutoAdjustLayout(AObj: TSizeConstraints; var AXProportion, AYProportion: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoAdjustLayout'}
   handleExceptionBegin
   AObj.AutoAdjustLayout(AXProportion, AYProportion);
   handleExceptionEnd

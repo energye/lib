@@ -2,6 +2,7 @@
 //constructor
 function Timer_Create(AOwner: TComponent): TTimer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTimer.Create(AOwner);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomTrackBar_Create(AOwner: TComponent): TCustomTrackBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTrackBar.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomTrackBar_Frequency(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Frequency'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomTrackBar_LineSize(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='LineSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomTrackBar_Max(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Max'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomTrackBar_Min(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Min'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomTrackBar_Orientation(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: TTrackBarOrientation): TTrackBarOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomTrackBar_PageSize(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomTrackBar_Position(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomTrackBar_Reversed(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Reversed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomTrackBar_ScalePos(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: TTrackBarScalePos): TTrackBarScalePos; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScalePos'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomTrackBar_SelEnd(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelEnd'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomTrackBar_SelStart(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelStart'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomTrackBar_ShowSelRange(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowSelRange'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomTrackBar_TickMarks(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: TTickMark): TTickMark; extdecl;
 begin
+  {$define handleExceptionFuncName :='TickMarks'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomTrackBar_TickStyle(AIsSet: LongBool; AObj: TCustomTrackBar; AValue: TTickStyle): TTickStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='TickStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -184,6 +199,7 @@ end;
 //procedure
 procedure CustomTrackBar_SetTick(AObj: TCustomTrackBar; Value: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetTick'}
   handleExceptionBegin
   AObj.SetTick(Value);
   handleExceptionEnd
@@ -192,6 +208,7 @@ end;
 //procedure
 procedure CustomTrackBar_SetParams(AObj: TCustomTrackBar; APosition, AMin, AMax: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParams'}
   handleExceptionBegin
   AObj.SetParams(APosition, AMin, AMax);
   handleExceptionEnd

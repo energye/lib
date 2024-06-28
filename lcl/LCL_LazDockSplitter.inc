@@ -2,6 +2,7 @@
 //constructor
 function LazDockSplitter_Create(AOwner: TComponent): TLazDockSplitter; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TLazDockSplitter.Create(AOwner);
   handleExceptionEnd

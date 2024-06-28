@@ -2,6 +2,7 @@
 //constructor
 function DirectoryEdit_Create(AOwner: TComponent): TDirectoryEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDirectoryEdit.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DirectoryEdit_AutoSelected(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelected'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function DirectoryEdit_Directory(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Directory'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function DirectoryEdit_RootDir(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='RootDir'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function DirectoryEdit_DialogTitle(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DialogTitle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function DirectoryEdit_DialogOptions(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TOpenOptions): TOpenOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='DialogOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function DirectoryEdit_ShowHidden(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowHidden'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function DirectoryEdit_ButtonCaption(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function DirectoryEdit_ButtonCursor(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function DirectoryEdit_ButtonHint(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function DirectoryEdit_ButtonOnlyWhenFocused(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonOnlyWhenFocused'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function DirectoryEdit_ButtonWidth(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function DirectoryEdit_DirectInput(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DirectInput'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function DirectoryEdit_Glyph(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Glyph'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function DirectoryEdit_NumGlyphs(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='NumGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function DirectoryEdit_Images(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function DirectoryEdit_ImageIndex(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 function DirectoryEdit_ImageWidth(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +232,7 @@ end;
 //property
 function DirectoryEdit_Flat(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +245,7 @@ end;
 //property
 function DirectoryEdit_FocusOnButtonClick(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusOnButtonClick'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +258,7 @@ end;
 //property
 function DirectoryEdit_AutoSelect(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +271,7 @@ end;
 //property
 function DirectoryEdit_DragCursor(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +284,7 @@ end;
 //property
 function DirectoryEdit_DragMode(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -274,6 +297,7 @@ end;
 //property
 function DirectoryEdit_Layout(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: TLeftRight): TLeftRight; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -286,6 +310,7 @@ end;
 //property
 function DirectoryEdit_ParentFont(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -298,6 +323,7 @@ end;
 //property
 function DirectoryEdit_ParentShowHint(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -310,6 +336,7 @@ end;
 //property
 function DirectoryEdit_Spacing(AIsSet: LongBool; AObj: TDirectoryEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Spacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -328,6 +355,7 @@ end;
 //procedure
 procedure DirectoryEdit_RunDialog(AObj: TDirectoryEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='RunDialog'}
   handleExceptionBegin
   AObj.RunDialog();
   handleExceptionEnd

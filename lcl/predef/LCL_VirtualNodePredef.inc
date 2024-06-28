@@ -3,6 +3,7 @@ procedure VirtualNode_Create(out Result: PVirtualNode); extdecl;
 var
   RetNode: TVirtualNode;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := @RetNode;
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 
 function VirtualNode_Index(AIsSet: LongBool; AObj: PVirtualNode; AValue: Cardinal): Cardinal; extdecl;
 begin
+  {$define handleExceptionFuncName :='Index'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -21,6 +23,7 @@ end;
 
 function VirtualNode_ChildCount(AIsSet: LongBool; AObj: PVirtualNode; AValue: Cardinal): Cardinal; extdecl;
 begin
+  {$define handleExceptionFuncName :='ChildCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -32,6 +35,7 @@ end;
 
 function VirtualNode_NodeHeight(AIsSet: LongBool; AObj: PVirtualNode; AValue: Word): Word; extdecl;
 begin
+  {$define handleExceptionFuncName :='NodeHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -43,6 +47,7 @@ end;
 
 function VirtualNode_States(AIsSet: LongBool; AObj: PVirtualNode; AValue: TVirtualNodeStates): TVirtualNodeStates; extdecl;
 begin
+  {$define handleExceptionFuncName :='States'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 
 function VirtualNode_Align(AIsSet: LongBool; AObj: PVirtualNode; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='Align'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -65,6 +71,7 @@ end;
 
 function VirtualNode_CheckState(AIsSet: LongBool; AObj: PVirtualNode; AValue: TCheckState): TCheckState; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckState'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -76,6 +83,7 @@ end;
 
 function VirtualNode_CheckType(AIsSet: LongBool; AObj: PVirtualNode; AValue: TCheckType): TCheckType; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -87,6 +95,7 @@ end;
 
 function VirtualNode_Dummy(AIsSet: LongBool; AObj: PVirtualNode; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='Dummy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 
 function VirtualNode_TotalCount(AIsSet: LongBool; AObj: PVirtualNode; AValue: Cardinal): Cardinal; extdecl;
 begin
+  {$define handleExceptionFuncName :='TotalCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -109,6 +119,7 @@ end;
 
 function VirtualNode_TotalHeight(AIsSet: LongBool; AObj: PVirtualNode; AValue: Cardinal): Cardinal; extdecl;
 begin
+  {$define handleExceptionFuncName :='TotalHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -120,6 +131,7 @@ end;
 
 procedure VirtualNode_Parent(AIsSet: LongBool; AObj: PVirtualNode; AValue: PVirtualNode; out Result: PVirtualNode); extdecl;
 begin
+  {$define handleExceptionFuncName :='Parent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -131,6 +143,7 @@ end;
 
 procedure VirtualNode_PrevSibling(AIsSet: LongBool; AObj: PVirtualNode; AValue: PVirtualNode; out Result: PVirtualNode); extdecl;
 begin
+  {$define handleExceptionFuncName :='PrevSibling'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +155,7 @@ end;
 
 procedure VirtualNode_NextSibling(AIsSet: LongBool; AObj: PVirtualNode; AValue: PVirtualNode; out Result: PVirtualNode); extdecl;
 begin
+  {$define handleExceptionFuncName :='NextSibling'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -153,6 +167,7 @@ end;
 
 procedure VirtualNode_FirstChild(AIsSet: LongBool; AObj: PVirtualNode; AValue: PVirtualNode; out Result: PVirtualNode); extdecl;
 begin
+  {$define handleExceptionFuncName :='FirstChild'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -164,6 +179,7 @@ end;
 
 procedure VirtualNode_LastChild(AIsSet: LongBool; AObj: PVirtualNode; AValue: PVirtualNode; out Result: PVirtualNode); extdecl;
 begin
+  {$define handleExceptionFuncName :='LastChild'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -177,6 +193,7 @@ procedure VirtualNode_Data(AIsSet: LongBool; AObj: PVirtualNode; AValue: Pointer
 var
   Data: ^Pointer;
 begin
+  {$define handleExceptionFuncName :='Data'}
   handleExceptionBegin
   if AIsSet then
   begin

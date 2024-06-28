@@ -2,6 +2,7 @@
 //constructor
 function CustomFlowPanel_Create(AOwner: TComponent): TCustomFlowPanel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFlowPanel.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomFlowPanel_AutoWrap(AIsSet: LongBool; AObj: TCustomFlowPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoWrap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomFlowPanel_ControlList(AIsSet: LongBool; AObj: TCustomFlowPanel; AValue: TFlowPanelControlList): TFlowPanelControlList; extdecl;
 begin
+  {$define handleExceptionFuncName :='ControlList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomFlowPanel_FlowStyle(AIsSet: LongBool; AObj: TCustomFlowPanel; AValue: TFlowStyle): TFlowStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='FlowStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomFlowPanel_FlowLayout(AIsSet: LongBool; AObj: TCustomFlowPanel; AValue: TTextLayout): TTextLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='FlowLayout'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function ToolButton_Create(TheOwner: TComponent): TToolButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TToolButton.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ToolButton_Index(AObj: TToolButton): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Index'}
   handleExceptionBegin
   Result := AObj.Index;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function ToolButton_AllowAllUp(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowAllUp'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function ToolButton_Down(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Down'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function ToolButton_DragCursor(AIsSet: LongBool; AObj: TToolButton; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function ToolButton_DragKind(AIsSet: LongBool; AObj: TToolButton; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function ToolButton_DragMode(AIsSet: LongBool; AObj: TToolButton; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function ToolButton_DropdownMenu(AIsSet: LongBool; AObj: TToolButton; AValue: TPopupMenu): TPopupMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropdownMenu'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function ToolButton_Grouped(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Grouped'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function ToolButton_ImageIndex(AIsSet: LongBool; AObj: TToolButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function ToolButton_Indeterminate(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Indeterminate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function ToolButton_Marked(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Marked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function ToolButton_MenuItem(AIsSet: LongBool; AObj: TToolButton; AValue: TMenuItem): TMenuItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='MenuItem'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function ToolButton_ParentShowHint(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function ToolButton_ShowCaption(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function ToolButton_Style(AIsSet: LongBool; AObj: TToolButton; AValue: TToolButtonStyle): TToolButtonStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function ToolButton_Wrap(AIsSet: LongBool; AObj: TToolButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wrap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //function
 function ToolButton_CheckMenuDropdown(AObj: TToolButton): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckMenuDropdown'}
   handleExceptionBegin
   Result := AObj.CheckMenuDropdown();
   handleExceptionEnd
@@ -206,6 +224,7 @@ end;
 //function
 function ToolButton_PointInArrow(AObj: TToolButton; const X, Y: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PointInArrow'}
   handleExceptionBegin
   Result := AObj.PointInArrow(X, Y);
   handleExceptionEnd
@@ -220,6 +239,7 @@ end;
 //procedure
 procedure ToolButton_Click(AObj: TToolButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='Click'}
   handleExceptionBegin
   AObj.Click();
   handleExceptionEnd
@@ -228,6 +248,7 @@ end;
 //procedure
 procedure ToolButton_ArrowClick(AObj: TToolButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='ArrowClick'}
   handleExceptionBegin
   AObj.ArrowClick();
   handleExceptionEnd
@@ -240,6 +261,7 @@ var
   RetTheIndex: integer;
   RetTheEffect: TGraphicsDrawEffect;
 begin
+  {$define handleExceptionFuncName :='GetCurrentIcon'}
   handleExceptionBegin
   RetImageList := ImageList;
   RetTheIndex := TheIndex;

@@ -2,6 +2,7 @@
 //property
 function Graphic_Empty(AObj: TGraphic): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Empty'}
   handleExceptionBegin
   Result := AObj.Empty;
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Graphic_Height(AIsSet: LongBool; AObj: TGraphic; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Graphic_Modified(AIsSet: LongBool; AObj: TGraphic; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Modified'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Graphic_MimeType(AObj: TGraphic): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='MimeType'}
   handleExceptionBegin
   Result := ToPChar(AObj.MimeType);
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //property
 function Graphic_Palette(AIsSet: LongBool; AObj: TGraphic; AValue: HPALETTE): HPALETTE; extdecl;
 begin
+  {$define handleExceptionFuncName :='Palette'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function Graphic_PaletteModified(AIsSet: LongBool; AObj: TGraphic; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PaletteModified'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function Graphic_Transparent(AIsSet: LongBool; AObj: TGraphic; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function Graphic_Width(AIsSet: LongBool; AObj: TGraphic; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //function
 function Graphic_LazarusResourceTypeValid(AObj: TGraphic; const AResourceType: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LazarusResourceTypeValid'}
   handleExceptionBegin
   Result := AObj.LazarusResourceTypeValid(AResourceType);
   handleExceptionEnd
@@ -98,6 +107,7 @@ end;
 //function
 function Graphic_GetResourceType(AObj: TGraphic): TResourceType; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetResourceType'}
   handleExceptionBegin
   Result := AObj.GetResourceType();
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //procedure
 procedure Graphic_Clear(AObj: TGraphic); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 //procedure
 procedure Graphic_LoadFromFile(AObj: TGraphic; const Filename: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromFile'}
   handleExceptionBegin
   AObj.LoadFromFile(Filename);
   handleExceptionEnd
@@ -128,6 +140,7 @@ end;
 //procedure
 procedure Graphic_LoadFromStream(AObj: TGraphic; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream'}
   handleExceptionBegin
   AObj.LoadFromStream(Stream);
   handleExceptionEnd
@@ -136,6 +149,7 @@ end;
 //procedure
 procedure Graphic_LoadFromMimeStream(AObj: TGraphic; AStream: TStream; const AMimeType: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromMimeStream'}
   handleExceptionBegin
   AObj.LoadFromMimeStream(AStream, AMimeType);
   handleExceptionEnd
@@ -144,6 +158,7 @@ end;
 //procedure
 procedure Graphic_LoadFromLazarusResource(AObj: TGraphic; const ResName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromLazarusResource'}
   handleExceptionBegin
   AObj.LoadFromLazarusResource(ResName);
   handleExceptionEnd
@@ -152,6 +167,7 @@ end;
 //procedure
 procedure Graphic_LoadFromResourceName(AObj: TGraphic; Instance: THandle; const ResName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromResourceName'}
   handleExceptionBegin
   AObj.LoadFromResourceName(Instance, ResName);
   handleExceptionEnd
@@ -160,6 +176,7 @@ end;
 //procedure
 procedure Graphic_LoadFromResourceID(AObj: TGraphic; Instance: THandle; ResID: NativeInt); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromResourceID'}
   handleExceptionBegin
   AObj.LoadFromResourceID(Instance, ResID);
   handleExceptionEnd
@@ -168,6 +185,7 @@ end;
 //procedure
 procedure Graphic_LoadFromClipboardFormat(AObj: TGraphic; FormatID: TClipboardFormat); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromClipboardFormat'}
   handleExceptionBegin
   AObj.LoadFromClipboardFormat(FormatID);
   handleExceptionEnd
@@ -176,6 +194,7 @@ end;
 //procedure
 procedure Graphic_LoadFromClipboardFormatID(AObj: TGraphic; ClipboardType: TClipboardType; FormatID: TClipboardFormat); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromClipboardFormatID'}
   handleExceptionBegin
   AObj.LoadFromClipboardFormatID(ClipboardType, FormatID);
   handleExceptionEnd
@@ -184,6 +203,7 @@ end;
 //procedure
 procedure Graphic_SaveToFile(AObj: TGraphic; const Filename: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToFile'}
   handleExceptionBegin
   AObj.SaveToFile(Filename);
   handleExceptionEnd
@@ -192,6 +212,7 @@ end;
 //procedure
 procedure Graphic_SaveToStream(AObj: TGraphic; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream'}
   handleExceptionBegin
   AObj.SaveToStream(Stream);
   handleExceptionEnd
@@ -200,6 +221,7 @@ end;
 //procedure
 procedure Graphic_SaveToClipboardFormat(AObj: TGraphic; FormatID: TClipboardFormat); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToClipboardFormat'}
   handleExceptionBegin
   AObj.SaveToClipboardFormat(FormatID);
   handleExceptionEnd
@@ -208,6 +230,7 @@ end;
 //procedure
 procedure Graphic_SaveToClipboardFormatID(AObj: TGraphic; ClipboardType: TClipboardType; FormatID: TClipboardFormat); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToClipboardFormatID'}
   handleExceptionBegin
   AObj.SaveToClipboardFormatID(ClipboardType, FormatID);
   handleExceptionEnd
@@ -216,6 +239,7 @@ end;
 //procedure
 procedure Graphic_GetSupportedSourceMimeTypes(AObj: TGraphic; List: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSupportedSourceMimeTypes'}
   handleExceptionBegin
   AObj.GetSupportedSourceMimeTypes(List);
   handleExceptionEnd

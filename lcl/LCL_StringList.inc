@@ -2,6 +2,7 @@
 //constructor
 function StringList_Create(): TStringList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TStringList.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function StringList_Duplicates(AIsSet: LongBool; AObj: TStringList; AValue: TDuplicates): TDuplicates; extdecl;
 begin
+  {$define handleExceptionFuncName :='Duplicates'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function StringList_Sorted(AIsSet: LongBool; AObj: TStringList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Sorted'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function StringList_CaseSensitive(AIsSet: LongBool; AObj: TStringList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaseSensitive'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function StringList_OwnsObjects(AIsSet: LongBool; AObj: TStringList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OwnsObjects'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function StringList_SortStyle(AIsSet: LongBool; AObj: TStringList; AValue: TStringsSortStyle): TStringsSortStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -72,6 +78,7 @@ function StringList_Find(AObj: TStringList; const S: PChar; out OutIndex: Intege
 var
   RetOutIndex: Integer;
 begin
+  {$define handleExceptionFuncName :='Find'}
   handleExceptionBegin
   RetOutIndex := OutIndex;
   Result := AObj.Find(S, RetOutIndex);
@@ -88,6 +95,7 @@ end;
 //procedure
 procedure StringList_Sort(AObj: TStringList); extdecl;
 begin
+  {$define handleExceptionFuncName :='Sort'}
   handleExceptionBegin
   AObj.Sort();
   handleExceptionEnd

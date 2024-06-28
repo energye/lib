@@ -2,6 +2,7 @@
 //constructor
 function ColorDialog_Create(TheOwner: TComponent): TColorDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TColorDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ColorDialog_Color(AIsSet: LongBool; AObj: TColorDialog; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ColorDialog_CustomColors(AIsSet: LongBool; AObj: TColorDialog; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomColors'}
   handleExceptionBegin
   if AIsSet then
   begin

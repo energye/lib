@@ -3,6 +3,7 @@ procedure VTImageInfo_Get(AVTImageInfo: Pointer; Index: TVTImageInfoIndex; out R
 var
   ImageInfos: TImageInfoArray;
 begin
+  {$define handleExceptionFuncName :='ImageInfoArray.Get'}
   handleExceptionBegin
   ImageInfos := PImageInfoArray(AVTImageInfo)^;
   Result := VTImageInfoToGo(ImageInfos[Index]);

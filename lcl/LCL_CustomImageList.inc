@@ -2,6 +2,7 @@
 //constructor
 function CustomImageList_Create(AOwner: TComponent): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomImageList.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //constructor
 function CustomImageList_CreateSize(AWidth, AHeight: Integer): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateSize'}
   handleExceptionBegin
   Result := TCustomImageList.CreateSize(AWidth, AHeight);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomImageList_HasOverlays(AObj: TCustomImageList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasOverlays'}
   handleExceptionBegin
   Result := AObj.HasOverlays;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CustomImageList_AllocBy(AIsSet: LongBool; AObj: TCustomImageList; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllocBy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CustomImageList_BlendColor(AIsSet: LongBool; AObj: TCustomImageList; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BlendColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CustomImageList_BkColor(AIsSet: LongBool; AObj: TCustomImageList; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BkColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function CustomImageList_Count(AObj: TCustomImageList): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Count'}
   handleExceptionBegin
   Result := AObj.Count;
   handleExceptionEnd
@@ -70,6 +77,7 @@ end;
 //property
 function CustomImageList_DrawingStyle(AIsSet: LongBool; AObj: TCustomImageList; AValue: TDrawingStyle): TDrawingStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawingStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +90,7 @@ end;
 //property
 function CustomImageList_Height(AIsSet: LongBool; AObj: TCustomImageList; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +103,7 @@ end;
 //property
 function CustomImageList_HeightForPPI(AObj: TCustomImageList; AImageWidth, APPI: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeightForPPI'}
   handleExceptionBegin
   Result := AObj.HeightForPPI[AImageWidth, APPI];
   handleExceptionEnd
@@ -102,6 +112,7 @@ end;
 //property
 function CustomImageList_HeightForWidth(AObj: TCustomImageList; AWidth: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeightForWidth'}
   handleExceptionBegin
   Result := AObj.HeightForWidth[AWidth];
   handleExceptionEnd
@@ -110,6 +121,7 @@ end;
 //property
 function CustomImageList_Width(AIsSet: LongBool; AObj: TCustomImageList; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +134,7 @@ end;
 //property
 function CustomImageList_WidthForPPI(AObj: TCustomImageList; AImageWidth, APPI: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='WidthForPPI'}
   handleExceptionBegin
   Result := AObj.WidthForPPI[AImageWidth, APPI];
   handleExceptionEnd
@@ -130,6 +143,7 @@ end;
 //property
 procedure CustomImageList_SizeForPPI(AObj: TCustomImageList; AImageWidth, APPI: Integer; var Result: TSize); extdecl;
 begin
+  {$define handleExceptionFuncName :='SizeForPPI'}
   handleExceptionBegin
   Result := AObj.SizeForPPI[AImageWidth, APPI];
   handleExceptionEnd
@@ -138,6 +152,7 @@ end;
 //property
 function CustomImageList_Masked(AIsSet: LongBool; AObj: TCustomImageList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Masked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +165,7 @@ end;
 //property
 function CustomImageList_Resolution(AObj: TCustomImageList; AImageWidth: Integer): TCustomImageListResolution; extdecl;
 begin
+  {$define handleExceptionFuncName :='Resolution'}
   handleExceptionBegin
   Result := AObj.Resolution[AImageWidth];
   handleExceptionEnd
@@ -158,6 +174,7 @@ end;
 //property
 function CustomImageList_ResolutionByIndex(AObj: TCustomImageList; AIndex: Integer): TCustomImageListResolution; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolutionByIndex'}
   handleExceptionBegin
   Result := AObj.ResolutionByIndex[AIndex];
   handleExceptionEnd
@@ -166,6 +183,7 @@ end;
 //property
 function CustomImageList_ResolutionForPPI(AObj: TCustomImageList; AImageWidth, APPI: Integer; var ACanvasScaleFactor: Double): TScaledImageListResolution; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolutionForPPI'}
   handleExceptionBegin
   Result := AObj.ResolutionForPPI[AImageWidth, APPI, ACanvasScaleFactor];
   handleExceptionEnd
@@ -174,6 +192,7 @@ end;
 //property
 function CustomImageList_ResolutionCount(AObj: TCustomImageList): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolutionCount'}
   handleExceptionBegin
   Result := AObj.ResolutionCount;
   handleExceptionEnd
@@ -182,6 +201,7 @@ end;
 //property
 function CustomImageList_Scaled(AIsSet: LongBool; AObj: TCustomImageList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scaled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +214,7 @@ end;
 //property
 function CustomImageList_ShareImages(AIsSet: LongBool; AObj: TCustomImageList; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShareImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +227,7 @@ end;
 //property
 function CustomImageList_ImageType(AIsSet: LongBool; AObj: TCustomImageList; AValue: TImageType): TImageType; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +240,7 @@ end;
 //function
 function CustomImageList_Add(AObj: TCustomImageList; Image, Mask: TCustomBitmap): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Add'}
   handleExceptionBegin
   Result := AObj.Add(Image, Mask);
   handleExceptionEnd
@@ -226,6 +249,7 @@ end;
 //function
 function CustomImageList_AddSliced(AObj: TCustomImageList; Image: TCustomBitmap; AHorizontalCount, AVerticalCount: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddSliced'}
   handleExceptionBegin
   Result := AObj.AddSliced(Image, AHorizontalCount, AVerticalCount);
   handleExceptionEnd
@@ -234,6 +258,7 @@ end;
 //function
 function CustomImageList_AddSlice(AObj: TCustomImageList; Image: TCustomBitmap; var AImageRect: TRect): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddSlice'}
   handleExceptionBegin
   Result := AObj.AddSlice(Image, AImageRect);
   handleExceptionEnd
@@ -242,6 +267,7 @@ end;
 //function
 function CustomImageList_AddSliceCentered(AObj: TCustomImageList; Image: TCustomBitmap): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddSliceCentered'}
   handleExceptionBegin
   Result := AObj.AddSliceCentered(Image);
   handleExceptionEnd
@@ -250,6 +276,7 @@ end;
 //function
 function CustomImageList_AddIcon(AObj: TCustomImageList; Image: TCustomIcon): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddIcon'}
   handleExceptionBegin
   Result := AObj.AddIcon(Image);
   handleExceptionEnd
@@ -258,6 +285,7 @@ end;
 //function
 function CustomImageList_AddMasked(AObj: TCustomImageList; Image: TBitmap; MaskColor: TColor): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddMasked'}
   handleExceptionBegin
   Result := AObj.AddMasked(Image, MaskColor);
   handleExceptionEnd
@@ -266,6 +294,7 @@ end;
 //function
 function CustomImageList_AddLazarusResource(AObj: TCustomImageList; const ResourceName: PChar; MaskColor: TColor): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddLazarusResource'}
   handleExceptionBegin
   Result := AObj.AddLazarusResource(ResourceName, MaskColor);
   handleExceptionEnd
@@ -274,6 +303,7 @@ end;
 //function
 function CustomImageList_AddResourceName(AObj: TCustomImageList; Instance: THandle; const ResourceName: PChar; MaskColor: TColor): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddResourceName'}
   handleExceptionBegin
   Result := AObj.AddResourceName(Instance, ResourceName, MaskColor);
   handleExceptionEnd
@@ -282,6 +312,7 @@ end;
 //function
 procedure CustomImageList_GetHotSpot(AObj: TCustomImageList; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetHotSpot'}
   handleExceptionBegin
   Result := AObj.GetHotSpot();
   handleExceptionEnd
@@ -292,6 +323,7 @@ function CustomImageList_FindResolution(AObj: TCustomImageList; AImageWidth: Int
 var
   RetOutResolution: TCustomImageListResolution;
 begin
+  {$define handleExceptionFuncName :='FindResolution'}
   handleExceptionBegin
   RetOutResolution := OutResolution;
   Result := AObj.FindResolution(AImageWidth, RetOutResolution);
@@ -302,6 +334,7 @@ end;
 //function
 function CustomImageList_Resolutions(AObj: TCustomImageList): TCustomImageListResolutionEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='Resolutions'}
   handleExceptionBegin
   Result := AObj.Resolutions();
   handleExceptionEnd
@@ -310,6 +343,7 @@ end;
 //function
 function CustomImageList_ResolutionsDesc(AObj: TCustomImageList): TCustomImageListResolutionEnumerator; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolutionsDesc'}
   handleExceptionBegin
   Result := AObj.ResolutionsDesc();
   handleExceptionEnd
@@ -324,6 +358,7 @@ end;
 //procedure
 procedure CustomImageList_AssignTo(AObj: TCustomImageList; Dest: TPersistent); extdecl;
 begin
+  {$define handleExceptionFuncName :='AssignTo'}
   handleExceptionBegin
   AObj.AssignTo(Dest);
   handleExceptionEnd
@@ -332,6 +367,7 @@ end;
 //procedure
 procedure CustomImageList_WriteData(AObj: TCustomImageList; AStream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='WriteData'}
   handleExceptionBegin
   AObj.WriteData(AStream);
   handleExceptionEnd
@@ -340,6 +376,7 @@ end;
 //procedure
 procedure CustomImageList_ReadData(AObj: TCustomImageList; AStream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadData'}
   handleExceptionBegin
   AObj.ReadData(AStream);
   handleExceptionEnd
@@ -348,6 +385,7 @@ end;
 //procedure
 procedure CustomImageList_WriteAdvData(AObj: TCustomImageList; AStream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='WriteAdvData'}
   handleExceptionBegin
   AObj.WriteAdvData(AStream);
   handleExceptionEnd
@@ -356,6 +394,7 @@ end;
 //procedure
 procedure CustomImageList_ReadAdvData(AObj: TCustomImageList; AStream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadAdvData'}
   handleExceptionBegin
   AObj.ReadAdvData(AStream);
   handleExceptionEnd
@@ -364,6 +403,7 @@ end;
 //procedure
 procedure CustomImageList_BeginUpdate(AObj: TCustomImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginUpdate'}
   handleExceptionBegin
   AObj.BeginUpdate();
   handleExceptionEnd
@@ -372,6 +412,7 @@ end;
 //procedure
 procedure CustomImageList_EndUpdate(AObj: TCustomImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndUpdate'}
   handleExceptionBegin
   AObj.EndUpdate();
   handleExceptionEnd
@@ -380,6 +421,7 @@ end;
 //procedure
 procedure CustomImageList_AddImages(AObj: TCustomImageList; AValue: TCustomImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddImages'}
   handleExceptionBegin
   AObj.AddImages(AValue);
   handleExceptionEnd
@@ -388,6 +430,7 @@ end;
 //procedure
 procedure CustomImageList_Change(AObj: TCustomImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='Change'}
   handleExceptionBegin
   AObj.Change();
   handleExceptionEnd
@@ -396,6 +439,7 @@ end;
 //procedure
 procedure CustomImageList_Clear(AObj: TCustomImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -404,6 +448,7 @@ end;
 //procedure
 procedure CustomImageList_Delete(AObj: TCustomImageList; AIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Delete'}
   handleExceptionBegin
   AObj.Delete(AIndex);
   handleExceptionEnd
@@ -412,6 +457,7 @@ end;
 //procedure
 procedure CustomImageList_Draw(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AEnabled: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Draw'}
   handleExceptionBegin
   AObj.Draw(ACanvas, AX, AY, AIndex, AEnabled);
   handleExceptionEnd
@@ -420,6 +466,7 @@ end;
 //procedure
 procedure CustomImageList_Draw1(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; ADrawEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Draw1'}
   handleExceptionBegin
   AObj.Draw(ACanvas, AX, AY, AIndex, ADrawEffect);
   handleExceptionEnd
@@ -428,6 +475,7 @@ end;
 //procedure
 procedure CustomImageList_Draw2(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; ADrawingStyle: TDrawingStyle; AImageType: TImageType; AEnabled: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Draw2'}
   handleExceptionBegin
   AObj.Draw(ACanvas, AX, AY, AIndex, ADrawingStyle, AImageType, AEnabled);
   handleExceptionEnd
@@ -436,6 +484,7 @@ end;
 //procedure
 procedure CustomImageList_Draw3(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; ADrawingStyle: TDrawingStyle; AImageType: TImageType; ADrawEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Draw3'}
   handleExceptionBegin
   AObj.Draw(ACanvas, AX, AY, AIndex, ADrawingStyle, AImageType, ADrawEffect);
   handleExceptionEnd
@@ -444,6 +493,7 @@ end;
 //procedure
 procedure CustomImageList_DrawForPPI(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AImageWidthAt96PPI, ATargetPPI: Integer; var ACanvasFactor: Double; AEnabled: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawForPPI'}
   handleExceptionBegin
   AObj.DrawForPPI(ACanvas, AX, AY, AIndex, AImageWidthAt96PPI, ATargetPPI, ACanvasFactor, AEnabled);
   handleExceptionEnd
@@ -452,6 +502,7 @@ end;
 //procedure
 procedure CustomImageList_DrawForPPI1(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AImageWidthAt96PPI, ATargetPPI: Integer; var ACanvasFactor: Double; ADrawEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawForPPI1'}
   handleExceptionBegin
   AObj.DrawForPPI(ACanvas, AX, AY, AIndex, AImageWidthAt96PPI, ATargetPPI, ACanvasFactor, ADrawEffect);
   handleExceptionEnd
@@ -460,6 +511,7 @@ end;
 //procedure
 procedure CustomImageList_DrawOverlay(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AOverlay: TOverlay; AEnabled: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawOverlay'}
   handleExceptionBegin
   AObj.DrawOverlay(ACanvas, AX, AY, AIndex, AOverlay, AEnabled);
   handleExceptionEnd
@@ -468,6 +520,7 @@ end;
 //procedure
 procedure CustomImageList_DrawOverlay1(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AOverlay: TOverlay; ADrawEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawOverlay1'}
   handleExceptionBegin
   AObj.DrawOverlay(ACanvas, AX, AY, AIndex, AOverlay, ADrawEffect);
   handleExceptionEnd
@@ -476,6 +529,7 @@ end;
 //procedure
 procedure CustomImageList_DrawOverlay2(AObj: TCustomImageList; ACanvas: TCanvas; AX, AY, AIndex: Integer; AOverlay: TOverlay; ADrawingStyle: TDrawingStyle; AImageType: TImageType; ADrawEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawOverlay2'}
   handleExceptionBegin
   AObj.DrawOverlay(ACanvas, AX, AY, AIndex, AOverlay, ADrawingStyle, AImageType, ADrawEffect);
   handleExceptionEnd
@@ -484,6 +538,7 @@ end;
 //procedure
 procedure CustomImageList_GetBitmap(AObj: TCustomImageList; Index: Integer; Image: TCustomBitmap); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetBitmap'}
   handleExceptionBegin
   AObj.GetBitmap(Index, Image);
   handleExceptionEnd
@@ -492,6 +547,7 @@ end;
 //procedure
 procedure CustomImageList_GetBitmap1(AObj: TCustomImageList; Index: Integer; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetBitmap1'}
   handleExceptionBegin
   AObj.GetBitmap(Index, Image, AEffect);
   handleExceptionEnd
@@ -500,6 +556,7 @@ end;
 //procedure
 procedure CustomImageList_GetFullBitmap(AObj: TCustomImageList; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetFullBitmap'}
   handleExceptionBegin
   AObj.GetFullBitmap(Image, AEffect);
   handleExceptionEnd
@@ -510,6 +567,7 @@ procedure CustomImageList_GetFullRawImage(AObj: TCustomImageList; out OutImage: 
 var
   RetOutImage: TRawImage;
 begin
+  {$define handleExceptionFuncName :='GetFullRawImage'}
   handleExceptionBegin
   RetOutImage := OutImage;
   AObj.GetFullRawImage(RetOutImage);
@@ -520,6 +578,7 @@ end;
 //procedure
 procedure CustomImageList_GetIcon(AObj: TCustomImageList; Index: Integer; Image: TIcon; AEffect: TGraphicsDrawEffect); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIcon'}
   handleExceptionBegin
   AObj.GetIcon(Index, Image, AEffect);
   handleExceptionEnd
@@ -528,6 +587,7 @@ end;
 //procedure
 procedure CustomImageList_GetIcon1(AObj: TCustomImageList; Index: Integer; Image: TIcon); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetIcon1'}
   handleExceptionBegin
   AObj.GetIcon(Index, Image);
   handleExceptionEnd
@@ -538,6 +598,7 @@ procedure CustomImageList_GetRawImage(AObj: TCustomImageList; Index: Integer; ou
 var
   RetOutImage: TRawImage;
 begin
+  {$define handleExceptionFuncName :='GetRawImage'}
   handleExceptionBegin
   RetOutImage := OutImage;
   AObj.GetRawImage(Index, RetOutImage);
@@ -548,6 +609,7 @@ end;
 //procedure
 procedure CustomImageList_Insert(AObj: TCustomImageList; AIndex: Integer; AImage, AMask: TCustomBitmap); extdecl;
 begin
+  {$define handleExceptionFuncName :='Insert'}
   handleExceptionBegin
   AObj.Insert(AIndex, AImage, AMask);
   handleExceptionEnd
@@ -556,6 +618,7 @@ end;
 //procedure
 procedure CustomImageList_InsertIcon(AObj: TCustomImageList; AIndex: Integer; AIcon: TCustomIcon); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertIcon'}
   handleExceptionBegin
   AObj.InsertIcon(AIndex, AIcon);
   handleExceptionEnd
@@ -564,6 +627,7 @@ end;
 //procedure
 procedure CustomImageList_InsertMasked(AObj: TCustomImageList; Index: Integer; AImage: TCustomBitmap; MaskColor: TColor); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertMasked'}
   handleExceptionBegin
   AObj.InsertMasked(Index, AImage, MaskColor);
   handleExceptionEnd
@@ -572,6 +636,7 @@ end;
 //procedure
 procedure CustomImageList_Move(AObj: TCustomImageList; ACurIndex, ANewIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Move'}
   handleExceptionBegin
   AObj.Move(ACurIndex, ANewIndex);
   handleExceptionEnd
@@ -580,6 +645,7 @@ end;
 //procedure
 procedure CustomImageList_Overlay(AObj: TCustomImageList; AIndex: Integer; Overlay: TOverlay); extdecl;
 begin
+  {$define handleExceptionFuncName :='Overlay'}
   handleExceptionBegin
   AObj.Overlay(AIndex, Overlay);
   handleExceptionEnd
@@ -588,6 +654,7 @@ end;
 //procedure
 procedure CustomImageList_Replace(AObj: TCustomImageList; AIndex: Integer; AImage, AMask: TCustomBitmap; const AllResolutions: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='Replace'}
   handleExceptionBegin
   AObj.Replace(AIndex, AImage, AMask, AllResolutions);
   handleExceptionEnd
@@ -596,6 +663,7 @@ end;
 //procedure
 procedure CustomImageList_ReplaceSlice(AObj: TCustomImageList; AIndex: Integer; Image: TCustomBitmap; var AImageRect: TRect; const AllResolutions: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceSlice'}
   handleExceptionBegin
   AObj.ReplaceSlice(AIndex, Image, AImageRect, AllResolutions);
   handleExceptionEnd
@@ -604,6 +672,7 @@ end;
 //procedure
 procedure CustomImageList_ReplaceSliceCentered(AObj: TCustomImageList; AIndex, AImageWidth: Integer; Image: TCustomBitmap; const AllResolutions: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceSliceCentered'}
   handleExceptionBegin
   AObj.ReplaceSliceCentered(AIndex, AImageWidth, Image, AllResolutions);
   handleExceptionEnd
@@ -612,6 +681,7 @@ end;
 //procedure
 procedure CustomImageList_ReplaceIcon(AObj: TCustomImageList; AIndex: Integer; AIcon: TCustomIcon); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceIcon'}
   handleExceptionBegin
   AObj.ReplaceIcon(AIndex, AIcon);
   handleExceptionEnd
@@ -620,6 +690,7 @@ end;
 //procedure
 procedure CustomImageList_ReplaceMasked(AObj: TCustomImageList; Index: Integer; NewImage: TCustomBitmap; MaskColor: TColor; const AllResolutions: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceMasked'}
   handleExceptionBegin
   AObj.ReplaceMasked(Index, NewImage, MaskColor, AllResolutions);
   handleExceptionEnd
@@ -628,6 +699,7 @@ end;
 //procedure
 procedure CustomImageList_RegisterChanges(AObj: TCustomImageList; Value: TChangeLink); extdecl;
 begin
+  {$define handleExceptionFuncName :='RegisterChanges'}
   handleExceptionBegin
   AObj.RegisterChanges(Value);
   handleExceptionEnd
@@ -636,6 +708,7 @@ end;
 //procedure
 procedure CustomImageList_StretchDraw(AObj: TCustomImageList; Canvas: TCanvas; Index: Integer; var ARect: TRect; Enabled: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='StretchDraw'}
   handleExceptionBegin
   AObj.StretchDraw(Canvas, Index, ARect, Enabled);
   handleExceptionEnd
@@ -644,6 +717,7 @@ end;
 //procedure
 procedure CustomImageList_UnRegisterChanges(AObj: TCustomImageList; Value: TChangeLink); extdecl;
 begin
+  {$define handleExceptionFuncName :='UnRegisterChanges'}
   handleExceptionBegin
   AObj.UnRegisterChanges(Value);
   handleExceptionEnd
@@ -652,6 +726,7 @@ end;
 //procedure
 procedure CustomImageList_DeleteResolution(AObj: TCustomImageList; const AWidth: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteResolution'}
   handleExceptionBegin
   AObj.DeleteResolution(AWidth);
   handleExceptionEnd

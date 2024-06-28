@@ -2,6 +2,7 @@
 //constructor
 function ToggleBox_Create(TheOwner: TComponent): TToggleBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TToggleBox.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ToggleBox_Checked(AIsSet: LongBool; AObj: TToggleBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ToggleBox_DragCursor(AIsSet: LongBool; AObj: TToggleBox; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ToggleBox_DragKind(AIsSet: LongBool; AObj: TToggleBox; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ToggleBox_DragMode(AIsSet: LongBool; AObj: TToggleBox; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ToggleBox_ParentFont(AIsSet: LongBool; AObj: TToggleBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ToggleBox_ParentShowHint(AIsSet: LongBool; AObj: TToggleBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

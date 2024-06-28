@@ -2,6 +2,7 @@
 //constructor
 function Mouse_Create(): TMouse; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMouse.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Mouse_Capture(AIsSet: LongBool; AObj: TMouse; AValue: HWND): HWND; extdecl;
 begin
+  {$define handleExceptionFuncName :='Capture'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 procedure Mouse_CursorPos(AIsSet: LongBool; AObj: TMouse; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='CursorPos'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Mouse_IsDragging(AObj: TMouse): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsDragging'}
   handleExceptionBegin
   Result := AObj.IsDragging;
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //property
 function Mouse_WheelScrollLines(AObj: TMouse): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='WheelScrollLines'}
   handleExceptionBegin
   Result := AObj.WheelScrollLines;
   handleExceptionEnd
@@ -50,6 +55,7 @@ end;
 //property
 function Mouse_DragImmediate(AIsSet: LongBool; AObj: TMouse; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragImmediate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function Mouse_DragThreshold(AIsSet: LongBool; AObj: TMouse; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragThreshold'}
   handleExceptionBegin
   if AIsSet then
   begin

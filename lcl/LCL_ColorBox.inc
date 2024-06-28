@@ -2,6 +2,7 @@
 //constructor
 function ColorBox_Create(AOwner: TComponent): TColorBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TColorBox.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ColorBox_DragCursor(AIsSet: LongBool; AObj: TColorBox; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ColorBox_DragMode(AIsSet: LongBool; AObj: TColorBox; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ColorBox_ItemHeight(AIsSet: LongBool; AObj: TColorBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ColorBox_ItemWidth(AIsSet: LongBool; AObj: TColorBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ColorBox_ParentColor(AIsSet: LongBool; AObj: TColorBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ColorBox_ParentFont(AIsSet: LongBool; AObj: TColorBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ColorBox_ParentShowHint(AIsSet: LongBool; AObj: TColorBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

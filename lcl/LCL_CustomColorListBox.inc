@@ -2,6 +2,7 @@
 //constructor
 function CustomColorListBox_Create(AOwner: TComponent): TCustomColorListBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomColorListBox.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomColorListBox_ColorRectWidth(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorRectWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomColorListBox_ColorRectOffset(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorRectOffset'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomColorListBox_StyleForColorBoxStyle(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: TColorBoxStyle): TColorBoxStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='StyleForColorBoxStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomColorListBox_Colors(AIsSet: LongBool; AObj: TCustomColorListBox; Index: Integer; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Colors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomColorListBox_ColorNames(AObj: TCustomColorListBox; Index: Integer): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorNames'}
   handleExceptionBegin
   Result := ToPChar(AObj.ColorNames[Index]);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //property
 function CustomColorListBox_SelectedForColor(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectedForColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function CustomColorListBox_DefaultColorColor(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultColorColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function CustomColorListBox_NoneColorColor(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='NoneColorColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function CustomColorListBox_ColorDialog(AIsSet: LongBool; AObj: TCustomColorListBox; AValue: TColorDialog): TColorDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorDialog'}
   handleExceptionBegin
   if AIsSet then
   begin

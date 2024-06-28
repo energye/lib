@@ -2,6 +2,7 @@
 //constructor
 function CustomMaskEdit_Create(TheOwner: TComponent): TCustomMaskEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomMaskEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomMaskEdit_EnableSets(AIsSet: LongBool; AObj: TCustomMaskEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableSets'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomMaskEdit_ValidationErrorMode(AIsSet: LongBool; AObj: TCustomMaskEdit; AValue: TMaskEditValidationErrorMode): TMaskEditValidationErrorMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='ValidationErrorMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -40,6 +43,7 @@ end;
 //procedure
 procedure CustomMaskEdit_ValidateEdit(AObj: TCustomMaskEdit); extdecl;
 begin
+  {$define handleExceptionFuncName :='ValidateEdit'}
   handleExceptionBegin
   AObj.ValidateEdit();
   handleExceptionEnd

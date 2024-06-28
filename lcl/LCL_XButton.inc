@@ -2,6 +2,7 @@
 //constructor
 function XButton_Create(AOwner: TComponent): TXButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TXButton.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function XButton_Caption(AIsSet: LongBool; AObj: TXButton; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function XButton_ShowCaption(AIsSet: LongBool; AObj: TXButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function XButton_BackColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BackColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function XButton_HoverColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HoverColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function XButton_DownColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DownColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function XButton_BorderWidth(AIsSet: LongBool; AObj: TXButton; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function XButton_BorderColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function XButton_Picture(AIsSet: LongBool; AObj: TXButton; AValue: TPicture): TPicture; extdecl;
 begin
+  {$define handleExceptionFuncName :='Picture'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function XButton_DrawMode(AIsSet: LongBool; AObj: TXButton; AValue: TDrawImageMode): TDrawImageMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function XButton_NormalFontColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='NormalFontColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function XButton_DownFontColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DownFontColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function XButton_HoverFontColor(AIsSet: LongBool; AObj: TXButton; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HoverFontColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function XButton_ParentFont(AIsSet: LongBool; AObj: TXButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function XButton_ParentShowHint(AIsSet: LongBool; AObj: TXButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -184,6 +199,7 @@ end;
 //procedure
 procedure XButton_Paint(AObj: TXButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='Paint'}
   handleExceptionBegin
   AObj.Paint();
   handleExceptionEnd
@@ -192,6 +208,7 @@ end;
 //procedure
 procedure XButton_Resize(AObj: TXButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='Resize'}
   handleExceptionBegin
   AObj.Resize();
   handleExceptionEnd

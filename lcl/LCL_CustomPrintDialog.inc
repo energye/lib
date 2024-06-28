@@ -2,6 +2,7 @@
 //constructor
 function CustomPrintDialog_Create(TheOwner: TComponent): TCustomPrintDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPrintDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomPrintDialog_Collate(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Collate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomPrintDialog_Copies(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Copies'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomPrintDialog_FromPage(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FromPage'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomPrintDialog_MinPage(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinPage'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomPrintDialog_MaxPage(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxPage'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomPrintDialog_Options(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: TPrintDialogOptions): TPrintDialogOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomPrintDialog_PrintToFile(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintToFile'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomPrintDialog_PrintRange(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: TPrintRange): TPrintRange; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintRange'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomPrintDialog_ToPage(AIsSet: LongBool; AObj: TCustomPrintDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToPage'}
   handleExceptionBegin
   if AIsSet then
   begin

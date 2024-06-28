@@ -2,6 +2,7 @@
 //constructor
 function EditButton_Create(AOwner: TComponent): TEditButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TEditButton.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function EditButton_AutoSelected(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelected'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function EditButton_Button(AObj: TEditButton): TSpeedButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Button'}
   handleExceptionBegin
   Result := AObj.Button;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function EditButton_Edit(AObj: TEditButton): TEbEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Edit'}
   handleExceptionBegin
   Result := AObj.Edit;
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //property
 function EditButton_AutoSelect(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function EditButton_ButtonCaption(AIsSet: LongBool; AObj: TEditButton; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function EditButton_ButtonCursor(AIsSet: LongBool; AObj: TEditButton; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 function EditButton_ButtonHint(AIsSet: LongBool; AObj: TEditButton; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 function EditButton_ButtonOnlyWhenFocused(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonOnlyWhenFocused'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 function EditButton_ButtonWidth(AIsSet: LongBool; AObj: TEditButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 function EditButton_DirectInput(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DirectInput'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function EditButton_Flat(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 function EditButton_FocusOnButtonClick(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusOnButtonClick'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function EditButton_Glyph(AIsSet: LongBool; AObj: TEditButton; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Glyph'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function EditButton_Images(AIsSet: LongBool; AObj: TEditButton; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function EditButton_ImageIndex(AIsSet: LongBool; AObj: TEditButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function EditButton_ImageWidth(AIsSet: LongBool; AObj: TEditButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 function EditButton_Layout(AIsSet: LongBool; AObj: TEditButton; AValue: TLeftRight): TLeftRight; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function EditButton_NumGlyphs(AIsSet: LongBool; AObj: TEditButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='NumGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //property
 function EditButton_ParentFont(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -230,6 +250,7 @@ end;
 //property
 function EditButton_ParentShowHint(AIsSet: LongBool; AObj: TEditButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +263,7 @@ end;
 //property
 function EditButton_Spacing(AIsSet: LongBool; AObj: TEditButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Spacing'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function OpenDialog_Create(TheOwner: TComponent): TOpenDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TOpenDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function OpenDialog_Options(AIsSet: LongBool; AObj: TOpenDialog; AValue: TOpenOptions): TOpenOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -28,6 +30,7 @@ end;
 //procedure
 procedure OpenDialog_DoFolderChange(AObj: TOpenDialog); extdecl;
 begin
+  {$define handleExceptionFuncName :='DoFolderChange'}
   handleExceptionBegin
   AObj.DoFolderChange();
   handleExceptionEnd
@@ -36,6 +39,7 @@ end;
 //procedure
 procedure OpenDialog_DoSelectionChange(AObj: TOpenDialog); extdecl;
 begin
+  {$define handleExceptionFuncName :='DoSelectionChange'}
   handleExceptionBegin
   AObj.DoSelectionChange();
   handleExceptionEnd
@@ -44,6 +48,7 @@ end;
 //procedure
 procedure OpenDialog_IntfSetOption(AObj: TOpenDialog; const AOption: TOpenOption; const AValue: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfSetOption'}
   handleExceptionBegin
   AObj.IntfSetOption(AOption, AValue);
   handleExceptionEnd

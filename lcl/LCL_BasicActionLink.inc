@@ -2,6 +2,7 @@
 //constructor
 function BasicActionLink_Create(AClient: TObject): TBasicActionLink; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TBasicActionLink.Create(AClient);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function BasicActionLink_Action(AIsSet: LongBool; AObj: TBasicActionLink; AValue: TBasicAction): TBasicAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Action'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //function
 function BasicActionLink_Execute(AObj: TBasicActionLink; AComponent: TComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Execute'}
   handleExceptionBegin
   Result := AObj.Execute(AComponent);
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //function
 function BasicActionLink_Update(AObj: TBasicActionLink): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Update'}
   handleExceptionBegin
   Result := AObj.Update();
   handleExceptionEnd

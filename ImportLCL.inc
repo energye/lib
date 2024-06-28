@@ -1,6 +1,3 @@
-{$I ./lcl/COM_StreamAdapter.inc}
-{$I ./lcl/COM_Types.inc}
-{$I ./lcl/InterfacedObject.inc}
 {$I ./lcl/LCL_ATGauge.inc}
 {$I ./lcl/LCL_AVLTree.inc}
 {$I ./lcl/LCL_AVLTreeNode.inc}
@@ -313,6 +310,9 @@
 {$I ./lcl/LCL_WinControlEnumerator.inc}
 {$I ./lcl/LCL_WindowMagnetOptions.inc}
 {$I ./lcl/LCL_XButton.inc}
+{$I ./lcl/predef/COM_StreamAdapter.inc}
+{$I ./lcl/predef/COM_Types.inc}
+{$I ./lcl/predef/InterfacedObject.inc}
 {$I ./lcl/predef/LCL_LazIntfImagePredef.inc}
 {$I ./lcl/predef/LCL_RawImageDescriptionPredef.inc}
 {$I ./lcl/predef/LCL_VTImageInfoPredef.inc}

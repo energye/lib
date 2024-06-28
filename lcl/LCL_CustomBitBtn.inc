@@ -2,6 +2,7 @@
 //constructor
 function CustomBitBtn_Create(TheOwner: TComponent): TCustomBitBtn; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomBitBtn.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomBitBtn_DefaultCaption(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomBitBtn_DisabledImageIndex(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomBitBtn_Glyph(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Glyph'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomBitBtn_NumGlyphs(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='NumGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomBitBtn_HotImageIndex(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomBitBtn_Images(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomBitBtn_ImageIndex(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomBitBtn_ImageWidth(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomBitBtn_Kind(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TBitBtnKind): TBitBtnKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomBitBtn_Layout(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TButtonLayout): TButtonLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomBitBtn_Margin(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Margin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomBitBtn_PressedImageIndex(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='PressedImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomBitBtn_Spacing(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Spacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomBitBtn_GlyphShowMode(AIsSet: LongBool; AObj: TCustomBitBtn; AValue: TGlyphShowMode): TGlyphShowMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='GlyphShowMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //function
 function CustomBitBtn_CanShowGlyph(AObj: TCustomBitBtn; const AWithShowMode: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanShowGlyph'}
   handleExceptionBegin
   Result := AObj.CanShowGlyph(AWithShowMode);
   handleExceptionEnd
@@ -192,6 +208,7 @@ end;
 //procedure
 procedure CustomBitBtn_LoadGlyphFromResourceName(AObj: TCustomBitBtn; Instance: THandle; const AName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromResourceName'}
   handleExceptionBegin
   AObj.LoadGlyphFromResourceName(Instance, AName);
   handleExceptionEnd
@@ -200,6 +217,7 @@ end;
 //procedure
 procedure CustomBitBtn_LoadGlyphFromLazarusResource(AObj: TCustomBitBtn; const AName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromLazarusResource'}
   handleExceptionBegin
   AObj.LoadGlyphFromLazarusResource(AName);
   handleExceptionEnd
@@ -208,6 +226,7 @@ end;
 //procedure
 procedure CustomBitBtn_LoadGlyphFromStock(AObj: TCustomBitBtn; idButton: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromStock'}
   handleExceptionBegin
   AObj.LoadGlyphFromStock(idButton);
   handleExceptionEnd
@@ -216,6 +235,7 @@ end;
 //procedure
 procedure CustomBitBtn_LoadGlyphFromResource(AObj: TCustomBitBtn; idButton: TButtonImage); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromResource'}
   handleExceptionBegin
   AObj.LoadGlyphFromResource(idButton);
   handleExceptionEnd

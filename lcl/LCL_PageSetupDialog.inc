@@ -2,6 +2,7 @@
 //constructor
 function PageSetupDialog_Create(TheOwner: TComponent): TPageSetupDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPageSetupDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PageSetupDialog_AttachTo(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: TCustomForm): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='AttachTo'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function PageSetupDialog_PageWidth(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function PageSetupDialog_PageHeight(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function PageSetupDialog_MarginLeft(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginLeft'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function PageSetupDialog_MarginTop(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginTop'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function PageSetupDialog_MarginRight(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginRight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function PageSetupDialog_MarginBottom(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginBottom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function PageSetupDialog_MinMarginLeft(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMarginLeft'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function PageSetupDialog_MinMarginTop(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMarginTop'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function PageSetupDialog_MinMarginRight(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMarginRight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function PageSetupDialog_MinMarginBottom(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinMarginBottom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function PageSetupDialog_Options(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: TPageSetupDialogOptions): TPageSetupDialogOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function PageSetupDialog_Units(AIsSet: LongBool; AObj: TPageSetupDialog; AValue: TPageMeasureUnits): TPageMeasureUnits; extdecl;
 begin
+  {$define handleExceptionFuncName :='Units'}
   handleExceptionBegin
   if AIsSet then
   begin

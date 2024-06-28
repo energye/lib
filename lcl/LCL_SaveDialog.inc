@@ -2,6 +2,7 @@
 //constructor
 function SaveDialog_Create(AOwner: TComponent): TSaveDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TSaveDialog.Create(AOwner);
   handleExceptionEnd

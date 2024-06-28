@@ -2,6 +2,7 @@
 //constructor
 function AnchorSide_Create(TheOwner: TControl; TheKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TAnchorSide.Create(TheOwner, TheKind);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function AnchorSide_Owner(AObj: TAnchorSide): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Owner'}
   handleExceptionBegin
   Result := AObj.Owner;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function AnchorSide_Kind(AObj: TAnchorSide): TAnchorKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   Result := AObj.Kind;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function AnchorSide_Control(AIsSet: LongBool; AObj: TAnchorSide; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Control'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function AnchorSide_Side(AIsSet: LongBool; AObj: TAnchorSide; AValue: TAnchorSideReference): TAnchorSideReference; extdecl;
 begin
+  {$define handleExceptionFuncName :='Side'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ var
   RetOutReferenceSide: TAnchorSideReference;
   RetOutPosition: Integer;
 begin
+  {$define handleExceptionFuncName :='CheckSidePosition'}
   handleExceptionBegin
   RetOutReferenceControl := OutReferenceControl;
   RetOutReferenceSide := OutReferenceSide;
@@ -68,6 +74,7 @@ end;
 //function
 function AnchorSide_IsAnchoredToParent(AObj: TAnchorSide; ParentSide: TAnchorKind): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsAnchoredToParent'}
   handleExceptionBegin
   Result := AObj.IsAnchoredToParent(ParentSide);
   handleExceptionEnd
@@ -86,6 +93,7 @@ var
   RetOutReferenceSide: TAnchorSideReference;
   RetOutPosition: Integer;
 begin
+  {$define handleExceptionFuncName :='GetSidePosition'}
   handleExceptionBegin
   RetOutReferenceControl := OutReferenceControl;
   RetOutReferenceSide := OutReferenceSide;
@@ -100,6 +108,7 @@ end;
 //procedure
 procedure AnchorSide_FixCenterAnchoring(AObj: TAnchorSide); extdecl;
 begin
+  {$define handleExceptionFuncName :='FixCenterAnchoring'}
   handleExceptionBegin
   AObj.FixCenterAnchoring();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function DragObject_Create(AControl: TControl): TDragObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDragObject.Create(AControl);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //constructor
 function DragObject_AutoCreate(AControl: TControl): TDragObject; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCreate'}
   handleExceptionBegin
   Result := TDragObject.AutoCreate(AControl);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function DragObject_AlwaysShowDragImages(AIsSet: LongBool; AObj: TDragObject; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlwaysShowDragImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function DragObject_AutoCreated(AObj: TDragObject): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCreated'}
   handleExceptionBegin
   Result := AObj.AutoCreated;
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //property
 function DragObject_AutoFree(AObj: TDragObject): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoFree'}
   handleExceptionBegin
   Result := AObj.AutoFree;
   handleExceptionEnd
@@ -46,6 +51,7 @@ end;
 //property
 function DragObject_Control(AIsSet: LongBool; AObj: TDragObject; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Control'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +64,7 @@ end;
 //property
 procedure DragObject_DragPos(AIsSet: LongBool; AObj: TDragObject; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragPos'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +77,7 @@ end;
 //property
 function DragObject_DragTarget(AIsSet: LongBool; AObj: TDragObject; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTarget'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +90,7 @@ end;
 //property
 procedure DragObject_DragTargetPos(AIsSet: LongBool; AObj: TDragObject; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragTargetPos'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +103,7 @@ end;
 //property
 function DragObject_Dropped(AObj: TDragObject): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Dropped'}
   handleExceptionBegin
   Result := AObj.Dropped;
   handleExceptionEnd
@@ -108,6 +118,7 @@ end;
 //procedure
 procedure DragObject_HideDragImage(AObj: TDragObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='HideDragImage'}
   handleExceptionBegin
   AObj.HideDragImage();
   handleExceptionEnd
@@ -116,6 +127,7 @@ end;
 //procedure
 procedure DragObject_ShowDragImage(AObj: TDragObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowDragImage'}
   handleExceptionBegin
   AObj.ShowDragImage();
   handleExceptionEnd

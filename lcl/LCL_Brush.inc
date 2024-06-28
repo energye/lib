@@ -2,6 +2,7 @@
 //constructor
 function Brush_Create(): TBrush; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TBrush.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Brush_Bitmap(AIsSet: LongBool; AObj: TBrush; AValue: TCustomBitmap): TCustomBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Bitmap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Brush_Color(AIsSet: LongBool; AObj: TBrush; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //function
 function Brush_EqualsBrush(AObj: TBrush; ABrush: TBrush): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EqualsBrush'}
   handleExceptionBegin
   Result := AObj.EqualsBrush(ABrush);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function GEEdit_Create(TheOwner: TComponent): TGEEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TGEEdit.Create(TheOwner);
   handleExceptionEnd

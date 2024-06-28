@@ -2,6 +2,7 @@
 //constructor
 function CustomComboBox_Create(TheOwner: TComponent): TCustomComboBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomComboBox.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomComboBox_CharCase(AIsSet: LongBool; AObj: TCustomComboBox; AValue: TEditCharCase): TEditCharCase; extdecl;
 begin
+  {$define handleExceptionFuncName :='CharCase'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomComboBox_DroppedDown(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DroppedDown'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomComboBox_AutoComplete(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoComplete'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomComboBox_AutoCompleteText(AIsSet: LongBool; AObj: TCustomComboBox; AValue: TComboBoxAutoCompleteText): TComboBoxAutoCompleteText; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCompleteText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomComboBox_AutoDropDown(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoDropDown'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomComboBox_AutoSelect(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomComboBox_AutoSelected(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelected'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomComboBox_ArrowKeysTraverseList(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ArrowKeysTraverseList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomComboBox_Canvas(AObj: TCustomComboBox): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   Result := AObj.Canvas;
   handleExceptionEnd
@@ -114,6 +124,7 @@ end;
 //property
 function CustomComboBox_DropDownCount(AIsSet: LongBool; AObj: TCustomComboBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DropDownCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function CustomComboBox_EmulatedTextHintStatus(AObj: TCustomComboBox): TEmulatedTextHintStatus; extdecl;
 begin
+  {$define handleExceptionFuncName :='EmulatedTextHintStatus'}
   handleExceptionBegin
   Result := AObj.EmulatedTextHintStatus;
   handleExceptionEnd
@@ -134,6 +146,7 @@ end;
 //property
 function CustomComboBox_Items(AIsSet: LongBool; AObj: TCustomComboBox; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Items'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CustomComboBox_ItemIndex(AIsSet: LongBool; AObj: TCustomComboBox; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CustomComboBox_ReadOnly(AIsSet: LongBool; AObj: TCustomComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CustomComboBox_SelLength(AIsSet: LongBool; AObj: TCustomComboBox; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelLength'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function CustomComboBox_SelStart(AIsSet: LongBool; AObj: TCustomComboBox; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelStart'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 function CustomComboBox_SelText(AIsSet: LongBool; AObj: TCustomComboBox; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function CustomComboBox_Style(AIsSet: LongBool; AObj: TCustomComboBox; AValue: TComboBoxStyle): TComboBoxStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //property
 function CustomComboBox_Text(AIsSet: LongBool; AObj: TCustomComboBox; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -230,6 +250,7 @@ end;
 //property
 function CustomComboBox_TextHint(AIsSet: LongBool; AObj: TCustomComboBox; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TextHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +263,7 @@ end;
 //function
 function CustomComboBox_MatchListItem(AObj: TCustomComboBox; const AValue: PChar): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MatchListItem'}
   handleExceptionBegin
   Result := AObj.MatchListItem(AValue);
   handleExceptionEnd
@@ -256,6 +278,7 @@ end;
 //procedure
 procedure CustomComboBox_IntfGetItems(AObj: TCustomComboBox); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfGetItems'}
   handleExceptionBegin
   AObj.IntfGetItems();
   handleExceptionEnd
@@ -264,6 +287,7 @@ end;
 //procedure
 procedure CustomComboBox_AddItem(AObj: TCustomComboBox; const Item: PChar; AnObject: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddItem'}
   handleExceptionBegin
   AObj.AddItem(Item, AnObject);
   handleExceptionEnd
@@ -272,6 +296,7 @@ end;
 //procedure
 procedure CustomComboBox_AddHistoryItem(AObj: TCustomComboBox; const Item: PChar; MaxHistoryCount: integer; SetAsText, CaseSensitive: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddHistoryItem'}
   handleExceptionBegin
   AObj.AddHistoryItem(Item, MaxHistoryCount, SetAsText, CaseSensitive);
   handleExceptionEnd
@@ -280,6 +305,7 @@ end;
 //procedure
 procedure CustomComboBox_AddHistoryItem1(AObj: TCustomComboBox; const Item: PChar; AnObject: TObject; MaxHistoryCount: integer; SetAsText, CaseSensitive: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='AddHistoryItem1'}
   handleExceptionBegin
   AObj.AddHistoryItem(Item, AnObject, MaxHistoryCount, SetAsText, CaseSensitive);
   handleExceptionEnd
@@ -288,6 +314,7 @@ end;
 //procedure
 procedure CustomComboBox_Clear(AObj: TCustomComboBox); extdecl;
 begin
+  {$define handleExceptionFuncName :='Clear'}
   handleExceptionBegin
   AObj.Clear();
   handleExceptionEnd
@@ -296,6 +323,7 @@ end;
 //procedure
 procedure CustomComboBox_ClearSelection(AObj: TCustomComboBox); extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearSelection'}
   handleExceptionBegin
   AObj.ClearSelection();
   handleExceptionEnd
@@ -304,6 +332,7 @@ end;
 //procedure
 procedure CustomComboBox_SelectAll(AObj: TCustomComboBox); extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectAll'}
   handleExceptionBegin
   AObj.SelectAll();
   handleExceptionEnd

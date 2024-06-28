@@ -2,6 +2,7 @@
 //constructor
 function StringTreeOptions_Create(AOwner: TBaseVirtualTree): TStringTreeOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TStringTreeOptions.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function StringTreeOptions_AnimationOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTAnimationOptions): TVTAnimationOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnimationOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function StringTreeOptions_AutoOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTAutoOptions): TVTAutoOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function StringTreeOptions_ExportMode(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTExportMode): TVTExportMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExportMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function StringTreeOptions_MiscOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTMiscOptions): TVTMiscOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='MiscOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function StringTreeOptions_PaintOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTPaintOptions): TVTPaintOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='PaintOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function StringTreeOptions_SelectionOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTSelectionOptions): TVTSelectionOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function StringTreeOptions_StringOptions(AIsSet: LongBool; AObj: TStringTreeOptions; AValue: TVTStringOptions): TVTStringOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='StringOptions'}
   handleExceptionBegin
   if AIsSet then
   begin

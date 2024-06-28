@@ -2,6 +2,7 @@
 //constructor
 function ChangeLink_Create(): TChangeLink; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TChangeLink.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ChangeLink_Sender(AIsSet: LongBool; AObj: TChangeLink; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Sender'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -28,6 +30,7 @@ end;
 //procedure
 procedure ChangeLink_Change(AObj: TChangeLink); extdecl;
 begin
+  {$define handleExceptionFuncName :='Change'}
   handleExceptionBegin
   AObj.Change();
   handleExceptionEnd

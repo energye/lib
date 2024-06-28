@@ -2,6 +2,7 @@
 //constructor
 function GraphicControl_Create(AOwner: TComponent): TGraphicControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TGraphicControl.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function GraphicControl_Canvas(AObj: TGraphicControl): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   Result := AObj.Canvas;
   handleExceptionEnd

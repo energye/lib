@@ -2,6 +2,7 @@
 //constructor
 function CustomControl_Create(AOwner: TComponent): TCustomControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomControl.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomControl_Canvas(AIsSet: LongBool; AObj: TCustomControl; AValue: TCanvas): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomControl_BorderStyle(AIsSet: LongBool; AObj: TCustomControl; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin

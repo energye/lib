@@ -2,6 +2,7 @@
 //constructor
 function ContainedAction_Create(AOwner: TComponent): TContainedAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TContainedAction.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ContainedAction_ActionList(AIsSet: LongBool; AObj: TContainedAction; AValue: TCustomActionList): TCustomActionList; extdecl;
 begin
+  {$define handleExceptionFuncName :='ActionList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ContainedAction_Index(AIsSet: LongBool; AObj: TContainedAction; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Index'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ContainedAction_Category(AIsSet: LongBool; AObj: TContainedAction; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Category'}
   handleExceptionBegin
   if AIsSet then
   begin

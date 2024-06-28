@@ -2,6 +2,7 @@
 //constructor
 function DrawGrid_Create(AOwner: TComponent): TDrawGrid; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDrawGrid.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DrawGrid_InplaceEditor(AObj: TDrawGrid): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='InplaceEditor'}
   handleExceptionBegin
   Result := AObj.InplaceEditor;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function DrawGrid_AlternateColor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlternateColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function DrawGrid_AutoEdit(AIsSet: LongBool; AObj: TDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoEdit'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function DrawGrid_ColRowDraggingCursor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColRowDraggingCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function DrawGrid_ColRowDragIndicatorColor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColRowDragIndicatorColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function DrawGrid_ColSizingCursor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColSizingCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function DrawGrid_ColumnClickSorts(AIsSet: LongBool; AObj: TDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColumnClickSorts'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function DrawGrid_DragCursor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function DrawGrid_DragKind(AIsSet: LongBool; AObj: TDrawGrid; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function DrawGrid_DragMode(AIsSet: LongBool; AObj: TDrawGrid; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function DrawGrid_ExtendedSelect(AIsSet: LongBool; AObj: TDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExtendedSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function DrawGrid_HeaderHotZones(AIsSet: LongBool; AObj: TDrawGrid; AValue: TGridZoneSet): TGridZoneSet; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderHotZones'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function DrawGrid_HeaderPushZones(AIsSet: LongBool; AObj: TDrawGrid; AValue: TGridZoneSet): TGridZoneSet; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderPushZones'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function DrawGrid_ImageIndexSortAsc(AIsSet: LongBool; AObj: TDrawGrid; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndexSortAsc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function DrawGrid_ImageIndexSortDesc(AIsSet: LongBool; AObj: TDrawGrid; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndexSortDesc'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function DrawGrid_MouseWheelOption(AIsSet: LongBool; AObj: TDrawGrid; AValue: TMouseWheelOption): TMouseWheelOption; extdecl;
 begin
+  {$define handleExceptionFuncName :='MouseWheelOption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function DrawGrid_ParentColor(AIsSet: LongBool; AObj: TDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function DrawGrid_ParentFont(AIsSet: LongBool; AObj: TDrawGrid; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //property
 function DrawGrid_RangeSelectMode(AIsSet: LongBool; AObj: TDrawGrid; AValue: TRangeSelectMode): TRangeSelectMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='RangeSelectMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +254,7 @@ end;
 //property
 function DrawGrid_RowSizingCursor(AIsSet: LongBool; AObj: TDrawGrid; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='RowSizingCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +267,7 @@ end;
 //property
 function DrawGrid_TitleFont(AIsSet: LongBool; AObj: TDrawGrid; AValue: TFont): TFont; extdecl;
 begin
+  {$define handleExceptionFuncName :='TitleFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +280,7 @@ end;
 //property
 function DrawGrid_TitleImageList(AIsSet: LongBool; AObj: TDrawGrid; AValue: TImageList): TImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='TitleImageList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +293,7 @@ end;
 //property
 function DrawGrid_TitleImageListWidth(AIsSet: LongBool; AObj: TDrawGrid; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TitleImageListWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -282,6 +306,7 @@ end;
 //property
 function DrawGrid_TitleStyle(AIsSet: LongBool; AObj: TDrawGrid; AValue: TTitleStyle): TTitleStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='TitleStyle'}
   handleExceptionBegin
   if AIsSet then
   begin

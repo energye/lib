@@ -2,6 +2,7 @@
 //constructor
 function Label_Create(TheOwner: TComponent): TLabel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TLabel.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Label_Alignment(AIsSet: LongBool; AObj: TLabel; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Label_DragCursor(AIsSet: LongBool; AObj: TLabel; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Label_DragKind(AIsSet: LongBool; AObj: TLabel; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function Label_DragMode(AIsSet: LongBool; AObj: TLabel; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function Label_FocusControl(AIsSet: LongBool; AObj: TLabel; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function Label_Layout(AIsSet: LongBool; AObj: TLabel; AValue: TTextLayout): TTextLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function Label_OptimalFill(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OptimalFill'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function Label_ParentColor(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function Label_ParentFont(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function Label_ParentShowHint(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function Label_ShowAccelChar(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowAccelChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function Label_Transparent(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function Label_WordWrap(AIsSet: LongBool; AObj: TLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='WordWrap'}
   handleExceptionBegin
   if AIsSet then
   begin

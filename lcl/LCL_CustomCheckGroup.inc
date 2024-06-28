@@ -2,6 +2,7 @@
 //constructor
 function CustomCheckGroup_Create(TheOwner: TComponent): TCustomCheckGroup; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCheckGroup.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomCheckGroup_AutoFill(AIsSet: LongBool; AObj: TCustomCheckGroup; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoFill'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomCheckGroup_Items(AIsSet: LongBool; AObj: TCustomCheckGroup; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Items'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomCheckGroup_Checked(AIsSet: LongBool; AObj: TCustomCheckGroup; Index: integer; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomCheckGroup_CheckEnabled(AIsSet: LongBool; AObj: TCustomCheckGroup; Index: integer; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomCheckGroup_Columns(AIsSet: LongBool; AObj: TCustomCheckGroup; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Columns'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomCheckGroup_ColumnLayout(AIsSet: LongBool; AObj: TCustomCheckGroup; AValue: TColumnLayout): TColumnLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColumnLayout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //function
 function CustomCheckGroup_Rows(AObj: TCustomCheckGroup): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Rows'}
   handleExceptionBegin
   Result := AObj.Rows();
   handleExceptionEnd

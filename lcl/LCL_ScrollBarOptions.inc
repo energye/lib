@@ -2,6 +2,7 @@
 //constructor
 function ScrollBarOptions_Create(AOwner: TBaseVirtualTree): TScrollBarOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TScrollBarOptions.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ScrollBarOptions_AlwaysVisible(AIsSet: LongBool; AObj: TScrollBarOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlwaysVisible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ScrollBarOptions_HorizontalIncrement(AIsSet: LongBool; AObj: TScrollBarOptions; AValue: TVTScrollIncrement): TVTScrollIncrement; extdecl;
 begin
+  {$define handleExceptionFuncName :='HorizontalIncrement'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ScrollBarOptions_ScrollBars(AIsSet: LongBool; AObj: TScrollBarOptions; AValue: TScrollStyle): TScrollStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollBars'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ScrollBarOptions_ScrollBarStyle(AIsSet: LongBool; AObj: TScrollBarOptions; AValue: TVTScrollBarStyle): TVTScrollBarStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollBarStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ScrollBarOptions_VerticalIncrement(AIsSet: LongBool; AObj: TScrollBarOptions; AValue: TVTScrollIncrement): TVTScrollIncrement; extdecl;
 begin
+  {$define handleExceptionFuncName :='VerticalIncrement'}
   handleExceptionBegin
   if AIsSet then
   begin

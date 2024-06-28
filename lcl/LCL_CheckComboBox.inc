@@ -2,6 +2,7 @@
 //constructor
 function CheckComboBox_Create(AOwner: TComponent): TCheckComboBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCheckComboBox.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CheckComboBox_BorderStyle(AIsSet: LongBool; AObj: TCheckComboBox; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CheckComboBox_DragCursor(AIsSet: LongBool; AObj: TCheckComboBox; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CheckComboBox_DragKind(AIsSet: LongBool; AObj: TCheckComboBox; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CheckComboBox_DragMode(AIsSet: LongBool; AObj: TCheckComboBox; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CheckComboBox_ItemHeight(AIsSet: LongBool; AObj: TCheckComboBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CheckComboBox_ItemWidth(AIsSet: LongBool; AObj: TCheckComboBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CheckComboBox_MaxLength(AIsSet: LongBool; AObj: TCheckComboBox; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxLength'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CheckComboBox_ParentColor(AIsSet: LongBool; AObj: TCheckComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CheckComboBox_ParentFont(AIsSet: LongBool; AObj: TCheckComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CheckComboBox_ParentShowHint(AIsSet: LongBool; AObj: TCheckComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CheckComboBox_Sorted(AIsSet: LongBool; AObj: TCheckComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Sorted'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function TaskDialogButtonItem_Create(ACollection: TCollection): TTaskDialogButtonItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTaskDialogButtonItem.Create(ACollection);
   handleExceptionEnd

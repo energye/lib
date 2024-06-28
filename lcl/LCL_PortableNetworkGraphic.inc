@@ -2,6 +2,7 @@
 //constructor
 function PortableNetworkGraphic_Create(): TPortableNetworkGraphic; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPortableNetworkGraphic.Create();
   handleExceptionEnd

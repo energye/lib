@@ -2,6 +2,7 @@
 //constructor
 function TrayIcon_Create(TheOwner: TComponent): TTrayIcon; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTrayIcon.Create(TheOwner);
   handleExceptionEnd

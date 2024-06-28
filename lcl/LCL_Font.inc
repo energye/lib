@@ -2,6 +2,7 @@
 //constructor
 function Font_Create(): TFont; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFont.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Font_FontData(AIsSet: LongBool; AObj: TFont; AValue: TFontData): TFontData; extdecl;
 begin
+  {$define handleExceptionFuncName :='FontData'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Font_Handle(AIsSet: LongBool; AObj: TFont; AValue: HFONT): HFONT; extdecl;
 begin
+  {$define handleExceptionFuncName :='Handle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Font_IsMonoSpace(AObj: TFont): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsMonoSpace'}
   handleExceptionBegin
   Result := AObj.IsMonoSpace;
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //property
 function Font_PixelsPerInch(AIsSet: LongBool; AObj: TFont; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PixelsPerInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function Font_CharSet(AIsSet: LongBool; AObj: TFont; AValue: TFontCharSet): TFontCharSet; extdecl;
 begin
+  {$define handleExceptionFuncName :='CharSet'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function Font_Color(AIsSet: LongBool; AObj: TFont; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function Font_Height(AIsSet: LongBool; AObj: TFont; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function Font_Pitch(AIsSet: LongBool; AObj: TFont; AValue: TFontPitch): TFontPitch; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pitch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function Font_Quality(AIsSet: LongBool; AObj: TFont; AValue: TFontQuality): TFontQuality; extdecl;
 begin
+  {$define handleExceptionFuncName :='Quality'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function Font_Style(AIsSet: LongBool; AObj: TFont; AValue: TFontStyles): TFontStyles; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //function
 function Font_HandleAllocated(AObj: TFont): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleAllocated'}
   handleExceptionBegin
   Result := AObj.HandleAllocated();
   handleExceptionEnd
@@ -134,6 +146,7 @@ end;
 //function
 function Font_IsDefault(AObj: TFont): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsDefault'}
   handleExceptionBegin
   Result := AObj.IsDefault();
   handleExceptionEnd
@@ -142,6 +155,7 @@ end;
 //function
 function Font_IsEqual(AObj: TFont; AFont: TFont): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsEqual'}
   handleExceptionBegin
   Result := AObj.IsEqual(AFont);
   handleExceptionEnd
@@ -156,6 +170,7 @@ end;
 //procedure
 procedure Font_BeginUpdate(AObj: TFont); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginUpdate'}
   handleExceptionBegin
   AObj.BeginUpdate();
   handleExceptionEnd
@@ -164,6 +179,7 @@ end;
 //procedure
 procedure Font_EndUpdate(AObj: TFont); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndUpdate'}
   handleExceptionBegin
   AObj.EndUpdate();
   handleExceptionEnd
@@ -172,6 +188,7 @@ end;
 //procedure
 procedure Font_SetDefault(AObj: TFont); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetDefault'}
   handleExceptionBegin
   AObj.SetDefault();
   handleExceptionEnd

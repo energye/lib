@@ -2,6 +2,7 @@
 //constructor
 function ListColumn_Create(ACollection: TCollection): TListColumn; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TListColumn.Create(ACollection);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ListColumn_WidthType(AObj: TListColumn): TWidth; extdecl;
 begin
+  {$define handleExceptionFuncName :='WidthType'}
   handleExceptionBegin
   Result := AObj.WidthType;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function ListColumn_Alignment(AIsSet: LongBool; AObj: TListColumn; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function ListColumn_AutoSize(AIsSet: LongBool; AObj: TListColumn; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function ListColumn_Caption(AIsSet: LongBool; AObj: TListColumn; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function ListColumn_ImageIndex(AIsSet: LongBool; AObj: TListColumn; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function ListColumn_MaxWidth(AIsSet: LongBool; AObj: TListColumn; AValue: TWidth): TWidth; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function ListColumn_MinWidth(AIsSet: LongBool; AObj: TListColumn; AValue: TWidth): TWidth; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function ListColumn_Tag(AIsSet: LongBool; AObj: TListColumn; AValue: NativeInt): NativeInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Tag'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function ListColumn_Visible(AIsSet: LongBool; AObj: TListColumn; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function ListColumn_Width(AIsSet: LongBool; AObj: TListColumn; AValue: TWidth): TWidth; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function ListColumn_SortIndicator(AIsSet: LongBool; AObj: TListColumn; AValue: TSortIndicator): TSortIndicator; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortIndicator'}
   handleExceptionBegin
   if AIsSet then
   begin

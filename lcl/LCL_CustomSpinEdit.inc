@@ -2,6 +2,7 @@
 //constructor
 function CustomSpinEdit_Create(TheOwner: TComponent): TCustomSpinEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomSpinEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomSpinEdit_ValueForInteger(AIsSet: LongBool; AObj: TCustomSpinEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ValueForInteger'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomSpinEdit_MinValueForInteger(AIsSet: LongBool; AObj: TCustomSpinEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinValueForInteger'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomSpinEdit_MaxValueForInteger(AIsSet: LongBool; AObj: TCustomSpinEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxValueForInteger'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomSpinEdit_IncrementForInteger(AIsSet: LongBool; AObj: TCustomSpinEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IncrementForInteger'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function FlowPanelControlList_Create(AOwner: TPersistent): TFlowPanelControlList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFlowPanelControlList.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FlowPanelControlList_ItemsForFlowPanelControl(AIsSet: LongBool; AObj: TFlowPanelControlList; Index: Integer; AValue: TFlowPanelControl): TFlowPanelControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemsForFlowPanelControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //function
 function FlowPanelControlList_IndexOf(AObj: TFlowPanelControlList; AControl: TControl): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='IndexOf'}
   handleExceptionBegin
   Result := AObj.IndexOf(AControl);
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //function
 function FlowPanelControlList_AllowAdd(AObj: TFlowPanelControlList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowAdd'}
   handleExceptionBegin
   Result := AObj.AllowAdd();
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //function
 function FlowPanelControlList_AllowDelete(AObj: TFlowPanelControlList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowDelete'}
   handleExceptionBegin
   Result := AObj.AllowDelete();
   handleExceptionEnd

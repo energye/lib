@@ -2,6 +2,7 @@
 //constructor
 function CustomFrame_Create(AOwner: TComponent): TCustomFrame; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomFrame.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomFrame_ParentBackground(AIsSet: LongBool; AObj: TCustomFrame; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBackground'}
   handleExceptionBegin
   if AIsSet then
   begin

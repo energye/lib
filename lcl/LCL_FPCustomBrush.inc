@@ -2,6 +2,7 @@
 //constructor
 function FPCustomBrush_Create(): TFPCustomBrush; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFPCustomBrush.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FPCustomBrush_Style(AIsSet: LongBool; AObj: TFPCustomBrush; AValue: TFPBrushStyle): TFPBrushStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function FPCustomBrush_Image(AIsSet: LongBool; AObj: TFPCustomBrush; AValue: TFPCustomImage): TFPCustomImage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Image'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //function
 function FPCustomBrush_CopyBrush(AObj: TFPCustomBrush): TFPCustomBrush; extdecl;
 begin
+  {$define handleExceptionFuncName :='CopyBrush'}
   handleExceptionBegin
   Result := AObj.CopyBrush();
   handleExceptionEnd

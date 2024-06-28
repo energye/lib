@@ -2,6 +2,7 @@
 //constructor
 function MemoScrollBar_Create(AControl: TWinControl; AKind: TScrollBarKind): TMemoScrollBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMemoScrollBar.Create(AControl, AKind);
   handleExceptionEnd

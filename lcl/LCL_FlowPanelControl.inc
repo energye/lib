@@ -2,6 +2,7 @@
 //constructor
 function FlowPanelControl_Create(ACollection: TCollection): TFlowPanelControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFlowPanelControl.Create(ACollection);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FlowPanelControl_Control(AIsSet: LongBool; AObj: TFlowPanelControl; AValue: TControl): TControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Control'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function FlowPanelControl_WrapAfter(AIsSet: LongBool; AObj: TFlowPanelControl; AValue: TWrapAfter): TWrapAfter; extdecl;
 begin
+  {$define handleExceptionFuncName :='WrapAfter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //function
 function FlowPanelControl_AllowAdd(AObj: TFlowPanelControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowAdd'}
   handleExceptionBegin
   Result := AObj.AllowAdd();
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //function
 function FlowPanelControl_AllowDelete(AObj: TFlowPanelControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowDelete'}
   handleExceptionBegin
   Result := AObj.AllowDelete();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function ImageButton_Create(AOwner: TComponent): TImageButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TImageButton.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ImageButton_Caption(AIsSet: LongBool; AObj: TImageButton; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ImageButton_DragCursor(AIsSet: LongBool; AObj: TImageButton; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ImageButton_DragKind(AIsSet: LongBool; AObj: TImageButton; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ImageButton_DragMode(AIsSet: LongBool; AObj: TImageButton; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ImageButton_ImageCount(AIsSet: LongBool; AObj: TImageButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ImageButton_Orientation(AIsSet: LongBool; AObj: TImageButton; AValue: TImageOrientation): TImageOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ImageButton_ModalResult(AIsSet: LongBool; AObj: TImageButton; AValue: TModalResult): TModalResult; extdecl;
 begin
+  {$define handleExceptionFuncName :='ModalResult'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function ImageButton_ParentShowHint(AIsSet: LongBool; AObj: TImageButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function ImageButton_ParentFont(AIsSet: LongBool; AObj: TImageButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function ImageButton_Picture(AIsSet: LongBool; AObj: TImageButton; AValue: TPicture): TPicture; extdecl;
 begin
+  {$define handleExceptionFuncName :='Picture'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function ImageButton_ShowCaption(AIsSet: LongBool; AObj: TImageButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function ImageButton_Wordwarp(AIsSet: LongBool; AObj: TImageButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wordwarp'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -160,6 +173,7 @@ end;
 //procedure
 procedure ImageButton_Click(AObj: TImageButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='Click'}
   handleExceptionBegin
   AObj.Click();
   handleExceptionEnd

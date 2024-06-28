@@ -2,6 +2,7 @@
 //constructor
 function FPRectRegion_Create(): TFPRectRegion; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFPRectRegion.Create();
   handleExceptionEnd

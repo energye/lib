@@ -2,6 +2,7 @@
 //constructor
 function CustomSpeedButton_Create(AOwner: TComponent): TCustomSpeedButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomSpeedButton.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomSpeedButton_Alignment(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomSpeedButton_AllowAllUp(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowAllUp'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomSpeedButton_DisabledImageIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomSpeedButton_Down(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Down'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomSpeedButton_Flat(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomSpeedButton_Glyph(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Glyph'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomSpeedButton_GroupIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GroupIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomSpeedButton_HotImageIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomSpeedButton_Images(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomSpeedButton_ImageIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomSpeedButton_ImageWidth(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomSpeedButton_Layout(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TButtonLayout): TButtonLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomSpeedButton_Margin(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Margin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomSpeedButton_NumGlyphs(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='NumGlyphs'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function CustomSpeedButton_PressedImageIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='PressedImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function CustomSpeedButton_SelectedImageIndex(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectedImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 function CustomSpeedButton_ShowAccelChar(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowAccelChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +232,7 @@ end;
 //property
 function CustomSpeedButton_ShowCaption(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowCaption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +245,7 @@ end;
 //property
 function CustomSpeedButton_Spacing(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Spacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +258,7 @@ end;
 //property
 function CustomSpeedButton_Transparent(AIsSet: LongBool; AObj: TCustomSpeedButton; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +271,7 @@ end;
 //function
 function CustomSpeedButton_FindDownButton(AObj: TCustomSpeedButton): TCustomSpeedButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindDownButton'}
   handleExceptionBegin
   Result := AObj.FindDownButton();
   handleExceptionEnd
@@ -264,6 +286,7 @@ end;
 //procedure
 procedure CustomSpeedButton_Click(AObj: TCustomSpeedButton); extdecl;
 begin
+  {$define handleExceptionFuncName :='Click'}
   handleExceptionBegin
   AObj.Click();
   handleExceptionEnd
@@ -272,6 +295,7 @@ end;
 //procedure
 procedure CustomSpeedButton_LoadGlyphFromResourceName(AObj: TCustomSpeedButton; Instance: THandle; const AName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromResourceName'}
   handleExceptionBegin
   AObj.LoadGlyphFromResourceName(Instance, AName);
   handleExceptionEnd
@@ -280,6 +304,7 @@ end;
 //procedure
 procedure CustomSpeedButton_LoadGlyphFromLazarusResource(AObj: TCustomSpeedButton; const AName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadGlyphFromLazarusResource'}
   handleExceptionBegin
   AObj.LoadGlyphFromLazarusResource(AName);
   handleExceptionEnd

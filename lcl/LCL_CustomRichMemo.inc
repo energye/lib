@@ -2,6 +2,7 @@
 //constructor
 function CustomRichMemo_Create(AOwner: TComponent): TCustomRichMemo; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomRichMemo.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 procedure CustomRichMemo_ZoomFactor(AIsSet: LongBool; AObj: TCustomRichMemo; var AValue: Double; var Result: Double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomRichMemo_CanRedo(AObj: TCustomRichMemo): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanRedo'}
   handleExceptionBegin
   Result := AObj.CanRedo;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function CustomRichMemo_Transparent(AIsSet: LongBool; AObj: TCustomRichMemo; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //function
 function CustomRichMemo_CanPaste(AObj: TCustomRichMemo): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanPaste'}
   handleExceptionBegin
   Result := AObj.CanPaste();
   handleExceptionEnd
@@ -52,6 +57,7 @@ function CustomRichMemo_GetTextAttributes(AObj: TCustomRichMemo; TextStart: Inte
 var
   RetTextParams: TFontParams;
 begin
+  {$define handleExceptionFuncName :='GetTextAttributes'}
   handleExceptionBegin
   RetTextParams := TextParams;
   Result := AObj.GetTextAttributes(TextStart, RetTextParams);
@@ -65,6 +71,7 @@ var
   RetRangeStart: Integer;
   RetRangeLen: Integer;
 begin
+  {$define handleExceptionFuncName :='GetStyleRange'}
   handleExceptionBegin
   RetRangeStart := RangeStart;
   RetRangeLen := RangeLen;
@@ -79,6 +86,7 @@ function CustomRichMemo_GetParaAlignment(AObj: TCustomRichMemo; TextStart: Integ
 var
   RetAAlign: TParaAlignment;
 begin
+  {$define handleExceptionFuncName :='GetParaAlignment'}
   handleExceptionBegin
   RetAAlign := AAlign;
   Result := AObj.GetParaAlignment(TextStart, RetAAlign);
@@ -89,6 +97,7 @@ end;
 //function
 function CustomRichMemo_GetParaAlignment1(AObj: TCustomRichMemo; TextStart: Integer): TParaAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetParaAlignment1'}
   handleExceptionBegin
   Result := AObj.GetParaAlignment(TextStart);
   handleExceptionEnd
@@ -99,6 +108,7 @@ function CustomRichMemo_GetParaMetric(AObj: TCustomRichMemo; TextStart: Integer;
 var
   RetAMetric: TParaMetric;
 begin
+  {$define handleExceptionFuncName :='GetParaMetric'}
   handleExceptionBegin
   RetAMetric := AMetric;
   Result := AObj.GetParaMetric(TextStart, RetAMetric);
@@ -111,6 +121,7 @@ function CustomRichMemo_GetParaNumbering(AObj: TCustomRichMemo; TextStart: Integ
 var
   RetANumber: TParaNumbering;
 begin
+  {$define handleExceptionFuncName :='GetParaNumbering'}
   handleExceptionBegin
   RetANumber := ANumber;
   Result := AObj.GetParaNumbering(TextStart, RetANumber);
@@ -123,6 +134,7 @@ function CustomRichMemo_GetParaRange(AObj: TCustomRichMemo; CharOfs: Integer; va
 var
   RetParaRange: TParaRange;
 begin
+  {$define handleExceptionFuncName :='GetParaRange'}
   handleExceptionBegin
   RetParaRange := ParaRange;
   Result := AObj.GetParaRange(CharOfs, RetParaRange);
@@ -136,6 +148,7 @@ var
   RetTextStart: Integer;
   RetTextLength: Integer;
 begin
+  {$define handleExceptionFuncName :='GetParaRange1'}
   handleExceptionBegin
   RetTextStart := TextStart;
   RetTextLength := TextLength;
@@ -150,6 +163,7 @@ function CustomRichMemo_GetParaTabs(AObj: TCustomRichMemo; CharOfs: Integer; var
 var
   RetAStopList: TTabStopList;
 begin
+  {$define handleExceptionFuncName :='GetParaTabs'}
   handleExceptionBegin
   RetAStopList := AStopList;
   Result := AObj.GetParaTabs(CharOfs, RetAStopList);
@@ -160,6 +174,7 @@ end;
 //function
 function CustomRichMemo_IsLink(AObj: TCustomRichMemo; TextStart: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsLink'}
   handleExceptionBegin
   Result := AObj.isLink(TextStart);
   handleExceptionEnd
@@ -168,6 +183,7 @@ end;
 //function
 function CustomRichMemo_LoadRichText(AObj: TCustomRichMemo; Source: TStream): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadRichText'}
   handleExceptionBegin
   Result := AObj.LoadRichText(Source);
   handleExceptionEnd
@@ -176,6 +192,7 @@ end;
 //function
 function CustomRichMemo_SaveRichText(AObj: TCustomRichMemo; Dest: TStream): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveRichText'}
   handleExceptionBegin
   Result := AObj.SaveRichText(Dest);
   handleExceptionEnd
@@ -184,6 +201,7 @@ end;
 //function
 function CustomRichMemo_InDelText(AObj: TCustomRichMemo; const UTF8Text: PChar; InsStartChar, ReplaceLength: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='InDelText'}
   handleExceptionBegin
   Result := AObj.InDelText(UTF8Text, InsStartChar, ReplaceLength);
   handleExceptionEnd
@@ -192,6 +210,7 @@ end;
 //function
 function CustomRichMemo_InDelInline(AObj: TCustomRichMemo; inlineobj: TRichMemoInline; InsStartChar, ReplaceLength: Integer; var ASize: TSize): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='InDelInline'}
   handleExceptionBegin
   Result := AObj.InDelInline(inlineobj, InsStartChar, ReplaceLength, ASize);
   handleExceptionEnd
@@ -200,6 +219,7 @@ end;
 //function
 function CustomRichMemo_GetTextForString(AObj: TCustomRichMemo; TextStart, TextLength: Integer): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetTextForString'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetText(TextStart, TextLength));
   handleExceptionEnd
@@ -208,6 +228,7 @@ end;
 //function
 function CustomRichMemo_GetUText(AObj: TCustomRichMemo; TextStart, TextLength: Integer): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetUText'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetUText(TextStart, TextLength));
   handleExceptionEnd
@@ -216,6 +237,7 @@ end;
 //function
 function CustomRichMemo_Search(AObj: TCustomRichMemo; const ANiddle: PChar; Start, Len: Integer; const SearchOpt: TSearchOptions): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Search'}
   handleExceptionBegin
   Result := AObj.Search(ANiddle, Start, Len, SearchOpt);
   handleExceptionEnd
@@ -227,6 +249,7 @@ var
   RetATextStart: Integer;
   RetATextLength: Integer;
 begin
+  {$define handleExceptionFuncName :='Search1'}
   handleExceptionBegin
   RetATextStart := ATextStart;
   RetATextLength := ATextLength;
@@ -239,6 +262,7 @@ end;
 //function
 function CustomRichMemo_Print(AObj: TCustomRichMemo; const params: TPrintParams): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Print'}
   handleExceptionBegin
   Result := AObj.Print(params);
   handleExceptionEnd
@@ -247,6 +271,7 @@ end;
 //function
 function CustomRichMemo_CharAtPos(AObj: TCustomRichMemo; x, y: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='CharAtPos'}
   handleExceptionBegin
   Result := AObj.CharAtPos(x, y);
   handleExceptionEnd
@@ -261,6 +286,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetTextAttributes(AObj: TCustomRichMemo; TextStart, TextLen: Integer; const TextParams: TFontParams); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetTextAttributes'}
   handleExceptionBegin
   AObj.SetTextAttributes(TextStart, TextLen, TextParams);
   handleExceptionEnd
@@ -269,6 +295,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetParaAlignment(AObj: TCustomRichMemo; TextStart, TextLen: Integer; AAlign: TParaAlignment); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParaAlignment'}
   handleExceptionBegin
   AObj.SetParaAlignment(TextStart, TextLen, AAlign);
   handleExceptionEnd
@@ -277,6 +304,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetParaMetric(AObj: TCustomRichMemo; TextStart, TextLen: Integer; const AMetric: TParaMetric); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParaMetric'}
   handleExceptionBegin
   AObj.SetParaMetric(TextStart, TextLen, AMetric);
   handleExceptionEnd
@@ -285,6 +313,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetParaNumbering(AObj: TCustomRichMemo; TextStart, TextLen: Integer; const ANumber: TParaNumbering); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParaNumbering'}
   handleExceptionBegin
   AObj.SetParaNumbering(TextStart, TextLen, ANumber);
   handleExceptionEnd
@@ -293,6 +322,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetParaTabs(AObj: TCustomRichMemo; TextStart, TextLen: Integer; const AStopList: TTabStopList); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetParaTabs'}
   handleExceptionBegin
   AObj.SetParaTabs(TextStart, TextLen, AStopList);
   handleExceptionEnd
@@ -301,6 +331,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetTextAttributes1(AObj: TCustomRichMemo; TextStart, TextLen: Integer; AFont: TFont); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetTextAttributes1'}
   handleExceptionBegin
   AObj.SetTextAttributes(TextStart, TextLen, AFont);
   handleExceptionEnd
@@ -309,6 +340,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetRangeColor(AObj: TCustomRichMemo; TextStart, TextLength: Integer; FontColor: TColor); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetRangeColor'}
   handleExceptionBegin
   AObj.SetRangeColor(TextStart, TextLength, FontColor);
   handleExceptionEnd
@@ -317,6 +349,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetRangeParams(AObj: TCustomRichMemo; TextStart, TextLength: Integer; ModifyMask: TTextModifyMask; const FontName: PChar; FontSize: Integer; FontColor: TColor; AddFontStyle, RemoveFontStyle: TFontStyles); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetRangeParams'}
   handleExceptionBegin
   AObj.SetRangeParams(TextStart, TextLength, ModifyMask, FontName, FontSize, FontColor, AddFontStyle, RemoveFontStyle);
   handleExceptionEnd
@@ -325,6 +358,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetRangeParams1(AObj: TCustomRichMemo; TextStart, TextLength: Integer; ModifyMask: TTextModifyMask; const fnt: TFontParams; AddFontStyle, RemoveFontStyle: TFontStyles); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetRangeParams1'}
   handleExceptionBegin
   AObj.SetRangeParams(TextStart, TextLength, ModifyMask, fnt, AddFontStyle, RemoveFontStyle);
   handleExceptionEnd
@@ -333,6 +367,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetRangeParaParams(AObj: TCustomRichMemo; TextStart, TextLength: Integer; ModifyMask: TParaModifyMask; const ParaMetric: TParaMetric); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetRangeParaParams'}
   handleExceptionBegin
   AObj.SetRangeParaParams(TextStart, TextLength, ModifyMask, ParaMetric);
   handleExceptionEnd
@@ -341,6 +376,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetLink(AObj: TCustomRichMemo; TextStart, TextLength: Integer; AIsLink: LongBool; const ALinkRef: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetLink'}
   handleExceptionBegin
   AObj.SetLink(TextStart, TextLength, AIsLink, ALinkRef);
   handleExceptionEnd
@@ -349,6 +385,7 @@ end;
 //procedure
 procedure CustomRichMemo_SetSelLengthFor(AObj: TCustomRichMemo; const aselstr: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetSelLengthFor'}
   handleExceptionBegin
   AObj.SetSelLengthFor(aselstr);
   handleExceptionEnd
@@ -357,6 +394,7 @@ end;
 //procedure
 procedure CustomRichMemo_Redo(AObj: TCustomRichMemo); extdecl;
 begin
+  {$define handleExceptionFuncName :='Redo'}
   handleExceptionBegin
   AObj.Redo();
   handleExceptionEnd

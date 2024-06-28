@@ -2,6 +2,7 @@
 //constructor
 function TaskDialog_Create(AOwner: TComponent): TTaskDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTaskDialog.Create(AOwner);
   handleExceptionEnd

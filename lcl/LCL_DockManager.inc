@@ -2,6 +2,7 @@
 //function
 function DockManager_GetDockEdge(AObj: TDockManager; ADockObject: TDragDockObject): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetDockEdge'}
   handleExceptionBegin
   Result := AObj.GetDockEdge(ADockObject);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //function
 function DockManager_AutoFreeByControl(AObj: TDockManager): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoFreeByControl'}
   handleExceptionBegin
   Result := AObj.AutoFreeByControl();
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //function
 function DockManager_IsEnabledControl(AObj: TDockManager; Control: TControl): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsEnabledControl'}
   handleExceptionBegin
   Result := AObj.IsEnabledControl(Control);
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //function
 function DockManager_CanBeDoubleDocked(AObj: TDockManager): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanBeDoubleDocked'}
   handleExceptionBegin
   Result := AObj.CanBeDoubleDocked();
   handleExceptionEnd
@@ -40,6 +44,7 @@ end;
 //procedure
 procedure DockManager_BeginUpdate(AObj: TDockManager); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginUpdate'}
   handleExceptionBegin
   AObj.BeginUpdate();
   handleExceptionEnd
@@ -48,6 +53,7 @@ end;
 //procedure
 procedure DockManager_EndUpdate(AObj: TDockManager); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndUpdate'}
   handleExceptionBegin
   AObj.EndUpdate();
   handleExceptionEnd
@@ -58,6 +64,7 @@ procedure DockManager_GetControlBounds(AObj: TDockManager; Control: TControl; va
 var
   RetOutControlBounds: TRect;
 begin
+  {$define handleExceptionFuncName :='GetControlBounds'}
   handleExceptionBegin
   RetOutControlBounds := OutControlBounds;
   AObj.GetControlBounds(Control, RetOutControlBounds);
@@ -68,6 +75,7 @@ end;
 //procedure
 procedure DockManager_InsertControl(AObj: TDockManager; ADockObject: TDragDockObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertControl'}
   handleExceptionBegin
   AObj.InsertControl(ADockObject);
   handleExceptionEnd
@@ -76,6 +84,7 @@ end;
 //procedure
 procedure DockManager_InsertControl1(AObj: TDockManager; Control: TControl; InsertAt: TAlign; DropCtl: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='InsertControl1'}
   handleExceptionBegin
   AObj.InsertControl(Control, InsertAt, DropCtl);
   handleExceptionEnd
@@ -84,6 +93,7 @@ end;
 //procedure
 procedure DockManager_LoadFromStream(AObj: TDockManager; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='LoadFromStream'}
   handleExceptionBegin
   AObj.LoadFromStream(Stream);
   handleExceptionEnd
@@ -92,6 +102,7 @@ end;
 //procedure
 procedure DockManager_PaintSite(AObj: TDockManager; DC: HDC); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaintSite'}
   handleExceptionBegin
   AObj.PaintSite(DC);
   handleExceptionEnd
@@ -102,6 +113,7 @@ procedure DockManager_MessageHandler(AObj: TDockManager; Sender: TControl; var M
 var
   RetMessage: TLMessage;
 begin
+  {$define handleExceptionFuncName :='MessageHandler'}
   handleExceptionBegin
   RetMessage := Message;
   AObj.MessageHandler(Sender, RetMessage);
@@ -112,6 +124,7 @@ end;
 //procedure
 procedure DockManager_PositionDockRect(AObj: TDockManager; ADockObject: TDragDockObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='PositionDockRect'}
   handleExceptionBegin
   AObj.PositionDockRect(ADockObject);
   handleExceptionEnd
@@ -122,6 +135,7 @@ procedure DockManager_PositionDockRect1(AObj: TDockManager; Client, DropCtl: TCo
 var
   RetDockRect: TRect;
 begin
+  {$define handleExceptionFuncName :='PositionDockRect1'}
   handleExceptionBegin
   RetDockRect := DockRect;
   AObj.PositionDockRect(Client, DropCtl, DropAlign, RetDockRect);
@@ -132,6 +146,7 @@ end;
 //procedure
 procedure DockManager_RemoveControl(AObj: TDockManager; Control: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveControl'}
   handleExceptionBegin
   AObj.RemoveControl(Control);
   handleExceptionEnd
@@ -140,6 +155,7 @@ end;
 //procedure
 procedure DockManager_ResetBounds(AObj: TDockManager; Force: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetBounds'}
   handleExceptionBegin
   AObj.ResetBounds(Force);
   handleExceptionEnd
@@ -148,6 +164,7 @@ end;
 //procedure
 procedure DockManager_SaveToStream(AObj: TDockManager; Stream: TStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='SaveToStream'}
   handleExceptionBegin
   AObj.SaveToStream(Stream);
   handleExceptionEnd
@@ -156,6 +173,7 @@ end;
 //procedure
 procedure DockManager_SetReplacingControl(AObj: TDockManager; Control: TControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetReplacingControl'}
   handleExceptionBegin
   AObj.SetReplacingControl(Control);
   handleExceptionEnd

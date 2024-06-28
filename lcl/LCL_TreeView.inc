@@ -2,6 +2,7 @@
 //constructor
 function TreeView_Create(AnOwner: TComponent): TTreeView; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTreeView.Create(AnOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function TreeView_AutoExpand(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoExpand'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function TreeView_DisabledFontColor(AIsSet: LongBool; AObj: TTreeView; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisabledFontColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function TreeView_DragKind(AIsSet: LongBool; AObj: TTreeView; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function TreeView_DragCursor(AIsSet: LongBool; AObj: TTreeView; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function TreeView_DragMode(AIsSet: LongBool; AObj: TTreeView; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function TreeView_HideSelection(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HideSelection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function TreeView_HotTrack(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotTrack'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function TreeView_HotTrackColor(AIsSet: LongBool; AObj: TTreeView; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotTrackColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function TreeView_Indent(AIsSet: LongBool; AObj: TTreeView; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Indent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function TreeView_MultiSelect(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MultiSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function TreeView_ParentColor(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function TreeView_ParentFont(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function TreeView_ParentShowHint(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function TreeView_ReadOnly(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReadOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function TreeView_RightClickSelect(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RightClickSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -190,6 +206,7 @@ end;
 //property
 function TreeView_RowSelect(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RowSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -202,6 +219,7 @@ end;
 //property
 function TreeView_ShowButtons(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowButtons'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -214,6 +232,7 @@ end;
 //property
 function TreeView_ShowLines(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowLines'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -226,6 +245,7 @@ end;
 //property
 function TreeView_ShowRoot(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowRoot'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -238,6 +258,7 @@ end;
 //property
 function TreeView_ShowSeparators(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowSeparators'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -250,6 +271,7 @@ end;
 //property
 function TreeView_SortType(AIsSet: LongBool; AObj: TTreeView; AValue: TSortType): TSortType; extdecl;
 begin
+  {$define handleExceptionFuncName :='SortType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -262,6 +284,7 @@ end;
 //property
 function TreeView_ToolTips(AIsSet: LongBool; AObj: TTreeView; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToolTips'}
   handleExceptionBegin
   if AIsSet then
   begin

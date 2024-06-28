@@ -2,6 +2,7 @@
 //constructor
 function CustomEditButton_Create(AOwner: TComponent): TCustomEditButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomEditButton.Create(AOwner);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function FindDialog_Create(AOwner: TComponent): TFindDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFindDialog.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FindDialog_Left(AIsSet: LongBool; AObj: TFindDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Left'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 procedure FindDialog_Position(AIsSet: LongBool; AObj: TFindDialog; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function FindDialog_Top(AIsSet: LongBool; AObj: TFindDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Top'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function FindDialog_FindText(AIsSet: LongBool; AObj: TFindDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function FindDialog_Options(AIsSet: LongBool; AObj: TFindDialog; AValue: TFindOptions): TFindOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -76,6 +82,7 @@ end;
 //procedure
 procedure FindDialog_CloseDialog(AObj: TFindDialog); extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseDialog'}
   handleExceptionBegin
   AObj.CloseDialog();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function RichEdit_Create(AOnwer: TComponent): TRichEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TRichEdit.Create(AOnwer);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function RichEdit_Zoom(AIsSet: LongBool; AObj: TRichEdit; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Zoom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function RichEdit_HideScrollBars(AIsSet: LongBool; AObj: TRichEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HideScrollBars'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function RichEdit_PlainText(AIsSet: LongBool; AObj: TRichEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PlainText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function RichEdit_DefAttributes(AIsSet: LongBool; AObj: TRichEdit; AValue: TTextAttributes): TTextAttributes; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefAttributes'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function RichEdit_SelAttributes(AIsSet: LongBool; AObj: TRichEdit; AValue: TTextAttributes): TTextAttributes; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelAttributes'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function RichEdit_Paragraph(AIsSet: LongBool; AObj: TRichEdit; AValue: TParaAttributes): TParaAttributes; extdecl;
 begin
+  {$define handleExceptionFuncName :='Paragraph'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //function
 function RichEdit_FindText(AObj: TRichEdit; ASearchStr: PChar; AStartPos: Integer; ALength: Integer; AOptions: TSearchTypes): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FindText'}
   handleExceptionBegin
   Result := AObj.FindText(ASearchStr, AStartPos, ALength, AOptions);
   handleExceptionEnd

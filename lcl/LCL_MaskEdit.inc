@@ -2,6 +2,7 @@
 //constructor
 function MaskEdit_Create(TheOwner: TComponent): TMaskEdit; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TMaskEdit.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function MaskEdit_IsMasked(AObj: TMaskEdit): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsMasked'}
   handleExceptionBegin
   Result := AObj.IsMasked;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function MaskEdit_EditText(AIsSet: LongBool; AObj: TMaskEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function MaskEdit_AutoSelect(AIsSet: LongBool; AObj: TMaskEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoSelect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function MaskEdit_DragCursor(AIsSet: LongBool; AObj: TMaskEdit; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function MaskEdit_DragKind(AIsSet: LongBool; AObj: TMaskEdit; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function MaskEdit_DragMode(AIsSet: LongBool; AObj: TMaskEdit; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function MaskEdit_ParentColor(AIsSet: LongBool; AObj: TMaskEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function MaskEdit_ParentFont(AIsSet: LongBool; AObj: TMaskEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function MaskEdit_ParentShowHint(AIsSet: LongBool; AObj: TMaskEdit; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function MaskEdit_EditMask(AIsSet: LongBool; AObj: TMaskEdit; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditMask'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function MaskEdit_SpaceChar(AIsSet: LongBool; AObj: TMaskEdit; AValue: Char): Char; extdecl;
 begin
+  {$define handleExceptionFuncName :='SpaceChar'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function BoundLabel_Create(TheOwner: TComponent): TBoundLabel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TBoundLabel.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function BoundLabel_FocusControl(AIsSet: LongBool; AObj: TBoundLabel; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function BoundLabel_DragCursor(AIsSet: LongBool; AObj: TBoundLabel; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function BoundLabel_DragMode(AIsSet: LongBool; AObj: TBoundLabel; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function BoundLabel_ParentColor(AIsSet: LongBool; AObj: TBoundLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function BoundLabel_ParentFont(AIsSet: LongBool; AObj: TBoundLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function BoundLabel_ParentShowHint(AIsSet: LongBool; AObj: TBoundLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function BoundLabel_ShowAccelChar(AIsSet: LongBool; AObj: TBoundLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowAccelChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function BoundLabel_Layout(AIsSet: LongBool; AObj: TBoundLabel; AValue: TTextLayout): TTextLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='Layout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function BoundLabel_WordWrap(AIsSet: LongBool; AObj: TBoundLabel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='WordWrap'}
   handleExceptionBegin
   if AIsSet then
   begin

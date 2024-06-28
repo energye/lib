@@ -2,6 +2,7 @@
 //constructor
 function Printer_Create(): TPrinter; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPrinter.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Printer_PrinterIndex(AIsSet: LongBool; AObj: TPrinter; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrinterIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Printer_PrinterName(AObj: TPrinter): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrinterName'}
   handleExceptionBegin
   Result := ToPChar(AObj.PrinterName);
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function Printer_PaperSize(AObj: TPrinter): TPaperSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='PaperSize'}
   handleExceptionBegin
   Result := AObj.PaperSize;
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //property
 function Printer_Orientation(AIsSet: LongBool; AObj: TPrinter; AValue: TPrinterOrientation): TPrinterOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function Printer_PrinterState(AObj: TPrinter): TPrinterState; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrinterState'}
   handleExceptionBegin
   Result := AObj.PrinterState;
   handleExceptionEnd
@@ -58,6 +64,7 @@ end;
 //property
 function Printer_Copies(AIsSet: LongBool; AObj: TPrinter; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Copies'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +77,7 @@ end;
 //property
 function Printer_Printers(AObj: TPrinter): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Printers'}
   handleExceptionBegin
   Result := AObj.Printers;
   handleExceptionEnd
@@ -78,6 +86,7 @@ end;
 //property
 function Printer_FileName(AIsSet: LongBool; AObj: TPrinter; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FileName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +99,7 @@ end;
 //property
 function Printer_Fonts(AObj: TPrinter): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Fonts'}
   handleExceptionBegin
   Result := AObj.Fonts;
   handleExceptionEnd
@@ -98,6 +108,7 @@ end;
 //property
 function Printer_Canvas(AObj: TPrinter): TCanvas; extdecl;
 begin
+  {$define handleExceptionFuncName :='Canvas'}
   handleExceptionBegin
   Result := AObj.Canvas;
   handleExceptionEnd
@@ -106,6 +117,7 @@ end;
 //property
 function Printer_CanvasClass(AIsSet: LongBool; AObj: TPrinter; AValue: TPrinterCanvasRef): TPrinterCanvasRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanvasClass'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +130,7 @@ end;
 //property
 function Printer_PageHeight(AObj: TPrinter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageHeight'}
   handleExceptionBegin
   Result := AObj.PageHeight;
   handleExceptionEnd
@@ -126,6 +139,7 @@ end;
 //property
 function Printer_PageWidth(AObj: TPrinter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageWidth'}
   handleExceptionBegin
   Result := AObj.PageWidth;
   handleExceptionEnd
@@ -134,6 +148,7 @@ end;
 //property
 function Printer_PageNumber(AObj: TPrinter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageNumber'}
   handleExceptionBegin
   Result := AObj.PageNumber;
   handleExceptionEnd
@@ -142,6 +157,7 @@ end;
 //property
 function Printer_Aborted(AObj: TPrinter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Aborted'}
   handleExceptionBegin
   Result := AObj.Aborted;
   handleExceptionEnd
@@ -150,6 +166,7 @@ end;
 //property
 function Printer_Printing(AObj: TPrinter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Printing'}
   handleExceptionBegin
   Result := AObj.Printing;
   handleExceptionEnd
@@ -158,6 +175,7 @@ end;
 //property
 function Printer_Title(AIsSet: LongBool; AObj: TPrinter; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Title'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +188,7 @@ end;
 //property
 function Printer_PrinterType(AObj: TPrinter): TPrinterType; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrinterType'}
   handleExceptionBegin
   Result := AObj.PrinterType;
   handleExceptionEnd
@@ -178,6 +197,7 @@ end;
 //property
 function Printer_CanPrint(AObj: TPrinter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanPrint'}
   handleExceptionBegin
   Result := AObj.CanPrint;
   handleExceptionEnd
@@ -186,6 +206,7 @@ end;
 //property
 function Printer_CanRenderCopies(AObj: TPrinter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanRenderCopies'}
   handleExceptionBegin
   Result := AObj.CanRenderCopies;
   handleExceptionEnd
@@ -194,6 +215,7 @@ end;
 //property
 function Printer_XDPI(AObj: TPrinter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='XDPI'}
   handleExceptionBegin
   Result := AObj.XDPI;
   handleExceptionEnd
@@ -202,6 +224,7 @@ end;
 //property
 function Printer_YDPI(AObj: TPrinter): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='YDPI'}
   handleExceptionBegin
   Result := AObj.YDPI;
   handleExceptionEnd
@@ -210,6 +233,7 @@ end;
 //property
 function Printer_RawMode(AIsSet: LongBool; AObj: TPrinter; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RawMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +246,7 @@ end;
 //property
 function Printer_DefaultBinName(AObj: TPrinter): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultBinName'}
   handleExceptionBegin
   Result := ToPChar(AObj.DefaultBinName);
   handleExceptionEnd
@@ -230,6 +255,7 @@ end;
 //property
 function Printer_BinName(AIsSet: LongBool; AObj: TPrinter; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BinName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +268,7 @@ end;
 //property
 function Printer_SupportedBins(AObj: TPrinter): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='SupportedBins'}
   handleExceptionBegin
   Result := AObj.SupportedBins;
   handleExceptionEnd
@@ -252,6 +279,7 @@ function Printer_Write(AObj: TPrinter; const Buffer: Pointer; Count: Integer; ou
 var
   RetOutWritten: Integer;
 begin
+  {$define handleExceptionFuncName :='Write'}
   handleExceptionBegin
   RetOutWritten := OutWritten;
   Result := AObj.Write(Buffer^, Count, RetOutWritten);
@@ -262,6 +290,7 @@ end;
 //function
 function Printer_Write1(AObj: TPrinter; const s: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Write1'}
   handleExceptionBegin
   Result := AObj.Write(s);
   handleExceptionEnd
@@ -276,6 +305,7 @@ end;
 //procedure
 procedure Printer_Abort(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='Abort'}
   handleExceptionBegin
   AObj.Abort();
   handleExceptionEnd
@@ -284,6 +314,7 @@ end;
 //procedure
 procedure Printer_BeginDoc(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginDoc'}
   handleExceptionBegin
   AObj.BeginDoc();
   handleExceptionEnd
@@ -292,6 +323,7 @@ end;
 //procedure
 procedure Printer_EndDoc(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndDoc'}
   handleExceptionBegin
   AObj.EndDoc();
   handleExceptionEnd
@@ -300,6 +332,7 @@ end;
 //procedure
 procedure Printer_NewPage(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='NewPage'}
   handleExceptionBegin
   AObj.NewPage();
   handleExceptionEnd
@@ -308,6 +341,7 @@ end;
 //procedure
 procedure Printer_BeginPage(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginPage'}
   handleExceptionBegin
   AObj.BeginPage();
   handleExceptionEnd
@@ -316,6 +350,7 @@ end;
 //procedure
 procedure Printer_EndPage(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='EndPage'}
   handleExceptionBegin
   AObj.EndPage();
   handleExceptionEnd
@@ -324,6 +359,7 @@ end;
 //procedure
 procedure Printer_Refresh(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='Refresh'}
   handleExceptionBegin
   AObj.Refresh();
   handleExceptionEnd
@@ -332,6 +368,7 @@ end;
 //procedure
 procedure Printer_SetPrinter(AObj: TPrinter; aName: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetPrinter'}
   handleExceptionBegin
   AObj.SetPrinter(aName);
   handleExceptionEnd
@@ -340,6 +377,7 @@ end;
 //procedure
 procedure Printer_RestoreDefaultBin(AObj: TPrinter); extdecl;
 begin
+  {$define handleExceptionFuncName :='RestoreDefaultBin'}
   handleExceptionBegin
   AObj.RestoreDefaultBin();
   handleExceptionEnd

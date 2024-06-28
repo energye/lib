@@ -2,6 +2,7 @@
 //constructor
 function FPCustomImageHandler_Create(): TFPCustomImageHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFPCustomImageHandler.Create();
   handleExceptionEnd

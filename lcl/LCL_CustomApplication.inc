@@ -2,6 +2,7 @@
 //constructor
 function CustomApplication_Create(AOwner: TComponent): TCustomApplication; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomApplication.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomApplication_ExeName(AObj: TCustomApplication): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExeName'}
   handleExceptionBegin
   Result := ToPChar(AObj.ExeName);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomApplication_HelpFile(AIsSet: LongBool; AObj: TCustomApplication; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpFile'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CustomApplication_Terminated(AObj: TCustomApplication): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Terminated'}
   handleExceptionBegin
   Result := AObj.Terminated;
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //property
 function CustomApplication_Title(AIsSet: LongBool; AObj: TCustomApplication; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Title'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CustomApplication_Location(AObj: TCustomApplication): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Location'}
   handleExceptionBegin
   Result := ToPChar(AObj.Location);
   handleExceptionEnd
@@ -58,6 +64,7 @@ end;
 //property
 function CustomApplication_Params(AObj: TCustomApplication; Index: integer): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Params'}
   handleExceptionBegin
   Result := ToPChar(AObj.Params[Index]);
   handleExceptionEnd
@@ -66,6 +73,7 @@ end;
 //property
 function CustomApplication_ParamCount(AObj: TCustomApplication): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParamCount'}
   handleExceptionBegin
   Result := AObj.ParamCount;
   handleExceptionEnd
@@ -74,6 +82,7 @@ end;
 //property
 function CustomApplication_EnvironmentVariable(AObj: TCustomApplication; envName: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnvironmentVariable'}
   handleExceptionBegin
   Result := ToPChar(AObj.EnvironmentVariable[envName]);
   handleExceptionEnd
@@ -82,6 +91,7 @@ end;
 //property
 function CustomApplication_OptionChar(AIsSet: LongBool; AObj: TCustomApplication; AValue: Char): Char; extdecl;
 begin
+  {$define handleExceptionFuncName :='OptionChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +104,7 @@ end;
 //property
 function CustomApplication_CaseSensitiveOptions(AIsSet: LongBool; AObj: TCustomApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CaseSensitiveOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +117,7 @@ end;
 //property
 function CustomApplication_StopOnException(AIsSet: LongBool; AObj: TCustomApplication; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StopOnException'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +130,7 @@ end;
 //property
 function CustomApplication_ExceptionExitCode(AIsSet: LongBool; AObj: TCustomApplication; AValue: LongInt): LongInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExceptionExitCode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +143,7 @@ end;
 //property
 function CustomApplication_EventLogFilter(AIsSet: LongBool; AObj: TCustomApplication; AValue: TEventLogTypes): TEventLogTypes; extdecl;
 begin
+  {$define handleExceptionFuncName :='EventLogFilter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -144,6 +158,7 @@ function CustomApplication_FindOptionIndex(AObj: TCustomApplication; const S: PC
 var
   RetLongopt: boolean;
 begin
+  {$define handleExceptionFuncName :='FindOptionIndex'}
   handleExceptionBegin
   RetLongopt := Longopt;
   Result := AObj.FindOptionIndex(S, RetLongopt, StartAt);
@@ -154,6 +169,7 @@ end;
 //function
 function CustomApplication_GetOptionValue(AObj: TCustomApplication; const S: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOptionValue'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetOptionValue(S));
   handleExceptionEnd
@@ -162,6 +178,7 @@ end;
 //function
 function CustomApplication_GetOptionValue1(AObj: TCustomApplication; const C: Char; const S: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOptionValue1'}
   handleExceptionBegin
   Result := ToPChar(AObj.GetOptionValue(C, S));
   handleExceptionEnd
@@ -170,6 +187,7 @@ end;
 //function
 function CustomApplication_GetOptionValues(AObj: TCustomApplication; const C: Char; const S: PChar): TStringArray; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetOptionValues'}
   handleExceptionBegin
   Result := AObj.GetOptionValues(C, S);
   handleExceptionEnd
@@ -178,6 +196,7 @@ end;
 //function
 function CustomApplication_HasOption(AObj: TCustomApplication; const S: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasOption'}
   handleExceptionBegin
   Result := AObj.HasOption(S);
   handleExceptionEnd
@@ -186,6 +205,7 @@ end;
 //function
 function CustomApplication_HasOption1(AObj: TCustomApplication; const C: Char; const S: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasOption1'}
   handleExceptionBegin
   Result := AObj.HasOption(C, S);
   handleExceptionEnd
@@ -194,6 +214,7 @@ end;
 //function
 function CustomApplication_CheckOptions(AObj: TCustomApplication; const ShortOptions: PChar; const Longopts: TStrings; Opts, NonOpts: TStrings; AllErrors: LongBool): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckOptions'}
   handleExceptionBegin
   Result := ToPChar(AObj.CheckOptions(ShortOptions, Longopts, Opts, NonOpts, AllErrors));
   handleExceptionEnd
@@ -202,6 +223,7 @@ end;
 //function
 function CustomApplication_CheckOptions1(AObj: TCustomApplication; const ShortOptions: PChar; const Longopts: TStrings; AllErrors: LongBool): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckOptions1'}
   handleExceptionBegin
   Result := ToPChar(AObj.CheckOptions(ShortOptions, Longopts, AllErrors));
   handleExceptionEnd
@@ -210,6 +232,7 @@ end;
 //function
 function CustomApplication_CheckOptions2(AObj: TCustomApplication; const ShortOptions: PChar; const LongOpts: PChar; AllErrors: LongBool): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckOptions2'}
   handleExceptionBegin
   Result := ToPChar(AObj.CheckOptions(ShortOptions, LongOpts, AllErrors));
   handleExceptionEnd
@@ -224,6 +247,7 @@ end;
 //procedure
 procedure CustomApplication_HandleException(AObj: TCustomApplication; Sender: TObject); extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleException'}
   handleExceptionBegin
   AObj.HandleException(Sender);
   handleExceptionEnd
@@ -232,6 +256,7 @@ end;
 //procedure
 procedure CustomApplication_Initialize(AObj: TCustomApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialize'}
   handleExceptionBegin
   AObj.Initialize();
   handleExceptionEnd
@@ -240,6 +265,7 @@ end;
 //procedure
 procedure CustomApplication_Run(AObj: TCustomApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='Run'}
   handleExceptionBegin
   AObj.Run();
   handleExceptionEnd
@@ -248,6 +274,7 @@ end;
 //procedure
 procedure CustomApplication_ShowException(AObj: TCustomApplication; E: Exception); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowException'}
   handleExceptionBegin
   AObj.ShowException(E);
   handleExceptionEnd
@@ -256,6 +283,7 @@ end;
 //procedure
 procedure CustomApplication_Terminate(AObj: TCustomApplication); extdecl;
 begin
+  {$define handleExceptionFuncName :='Terminate'}
   handleExceptionBegin
   AObj.Terminate();
   handleExceptionEnd
@@ -264,6 +292,7 @@ end;
 //procedure
 procedure CustomApplication_Terminate1(AObj: TCustomApplication; AExitCode: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='Terminate1'}
   handleExceptionBegin
   AObj.Terminate(AExitCode);
   handleExceptionEnd
@@ -272,6 +301,7 @@ end;
 //procedure
 procedure CustomApplication_GetEnvironmentList(AObj: TCustomApplication; List: TStrings; NamesOnly: LongBool); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnvironmentList'}
   handleExceptionBegin
   AObj.GetEnvironmentList(List, NamesOnly);
   handleExceptionEnd
@@ -280,6 +310,7 @@ end;
 //procedure
 procedure CustomApplication_GetEnvironmentList1(AObj: TCustomApplication; List: TStrings); extdecl;
 begin
+  {$define handleExceptionFuncName :='GetEnvironmentList1'}
   handleExceptionBegin
   AObj.GetEnvironmentList(List);
   handleExceptionEnd
@@ -288,6 +319,7 @@ end;
 //procedure
 procedure CustomApplication_Log(AObj: TCustomApplication; EventType: TEventType; const Msg: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='Log'}
   handleExceptionBegin
   AObj.Log(EventType, Msg);
   handleExceptionEnd

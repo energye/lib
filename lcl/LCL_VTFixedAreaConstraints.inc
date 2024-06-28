@@ -2,6 +2,7 @@
 //constructor
 function VTFixedAreaConstraints_Create(AOwner: TVTHeader): TVTFixedAreaConstraints; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TVTFixedAreaConstraints.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function VTFixedAreaConstraints_MaxHeightPercent(AIsSet: LongBool; AObj: TVTFixedAreaConstraints; AValue: TVTConstraintPercent): TVTConstraintPercent; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxHeightPercent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function VTFixedAreaConstraints_MaxWidthPercent(AIsSet: LongBool; AObj: TVTFixedAreaConstraints; AValue: TVTConstraintPercent): TVTConstraintPercent; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxWidthPercent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function VTFixedAreaConstraints_MinHeightPercent(AIsSet: LongBool; AObj: TVTFixedAreaConstraints; AValue: TVTConstraintPercent): TVTConstraintPercent; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinHeightPercent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function VTFixedAreaConstraints_MinWidthPercent(AIsSet: LongBool; AObj: TVTFixedAreaConstraints; AValue: TVTConstraintPercent): TVTConstraintPercent; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidthPercent'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //property
 function LCLReferenceComponent_HandleAllocated(AObj: TLCLReferenceComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HandleAllocated'}
   handleExceptionBegin
   Result := AObj.HandleAllocated;
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function LCLReferenceComponent_ReferenceAllocated(AObj: TLCLReferenceComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReferenceAllocated'}
   handleExceptionBegin
   Result := AObj.ReferenceAllocated;
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CustomPrinterSetupDialog_Create(TheOwner: TComponent): TCustomPrinterSetupDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPrinterSetupDialog.Create(TheOwner);
   handleExceptionEnd

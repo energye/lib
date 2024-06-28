@@ -2,6 +2,7 @@
 //constructor
 function TextAttributes_Create(AOwner: TRichMemo; AType: TAttributeType): TTextAttributes; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTextAttributes.Create(AOwner, AType);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function TextAttributes_Name(AIsSet: LongBool; AObj: TTextAttributes; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Name'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function TextAttributes_Pitch(AIsSet: LongBool; AObj: TTextAttributes; AValue: TFontPitch): TFontPitch; extdecl;
 begin
+  {$define handleExceptionFuncName :='Pitch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function TextAttributes_Charset(AIsSet: LongBool; AObj: TTextAttributes; AValue: TFontCharset): TFontCharset; extdecl;
 begin
+  {$define handleExceptionFuncName :='Charset'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function TextAttributes_Color(AIsSet: LongBool; AObj: TTextAttributes; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='Color'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function TextAttributes_Size(AIsSet: LongBool; AObj: TTextAttributes; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Size'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function TextAttributes_Style(AIsSet: LongBool; AObj: TTextAttributes; AValue: TFontStyles): TFontStyles; extdecl;
 begin
+  {$define handleExceptionFuncName :='Style'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function TextAttributes_Height(AIsSet: LongBool; AObj: TTextAttributes; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Height'}
   handleExceptionBegin
   if AIsSet then
   begin

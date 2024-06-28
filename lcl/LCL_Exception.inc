@@ -2,6 +2,7 @@
 //constructor
 function Exception_Create(const msg: PChar): Exception; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := Exception.Create(msg);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //constructor
 function Exception_CreateHelp(const Msg: PChar; AHelpContext: LongInt): Exception; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateHelp'}
   handleExceptionBegin
   Result := Exception.CreateHelp(Msg, AHelpContext);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function Exception_HelpContext(AIsSet: LongBool; AObj: Exception; AValue: LongInt): LongInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function Exception_Message(AIsSet: LongBool; AObj: Exception; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Message'}
   handleExceptionBegin
   if AIsSet then
   begin

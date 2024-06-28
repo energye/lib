@@ -2,6 +2,7 @@
 //constructor
 function ValueListStrings_Create(AOwner: TValueListEditor): TValueListStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TValueListStrings.Create(AOwner);
   handleExceptionEnd

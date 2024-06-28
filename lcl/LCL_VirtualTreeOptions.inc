@@ -2,6 +2,7 @@
 //constructor
 function VirtualTreeOptions_Create(AOwner: TBaseVirtualTree): TVirtualTreeOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TVirtualTreeOptions.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function VirtualTreeOptions_AnimationOptions(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTAnimationOptions): TVTAnimationOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnimationOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function VirtualTreeOptions_AutoOptions(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTAutoOptions): TVTAutoOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function VirtualTreeOptions_ExportMode(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTExportMode): TVTExportMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExportMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function VirtualTreeOptions_MiscOptions(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTMiscOptions): TVTMiscOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='MiscOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function VirtualTreeOptions_PaintOptions(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTPaintOptions): TVTPaintOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='PaintOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function VirtualTreeOptions_SelectionOptions(AIsSet: LongBool; AObj: TVirtualTreeOptions; AValue: TVTSelectionOptions): TVTSelectionOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionOptions'}
   handleExceptionBegin
   if AIsSet then
   begin

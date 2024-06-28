@@ -2,6 +2,7 @@
 //constructor
 function CustomCoolBar_Create(AOwner: TComponent): TCustomCoolBar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCoolBar.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomCoolBar_BandBorderStyle(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BandBorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomCoolBar_BandMaximize(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TCoolBandMaximize): TCoolBandMaximize; extdecl;
 begin
+  {$define handleExceptionFuncName :='BandMaximize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomCoolBar_Bands(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TCoolBands): TCoolBands; extdecl;
 begin
+  {$define handleExceptionFuncName :='Bands'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomCoolBar_Bitmap(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TBitmap): TBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Bitmap'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomCoolBar_FixedSize(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomCoolBar_FixedOrder(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FixedOrder'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomCoolBar_GrabStyle(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TGrabStyle): TGrabStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='GrabStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomCoolBar_GrabWidth(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GrabWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomCoolBar_HorizontalSpacing(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='HorizontalSpacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomCoolBar_Images(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomCoolBar_ImagesWidth(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomCoolBar_ShowText(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomCoolBar_Themed(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Themed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomCoolBar_Vertical(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Vertical'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function CustomCoolBar_VerticalSpacing(AIsSet: LongBool; AObj: TCustomCoolBar; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='VerticalSpacing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -196,6 +212,7 @@ end;
 //procedure
 procedure CustomCoolBar_AutosizeBands(AObj: TCustomCoolBar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AutosizeBands'}
   handleExceptionBegin
   AObj.AutosizeBands();
   handleExceptionEnd
@@ -207,6 +224,7 @@ var
   RetOutBand: Integer;
   RetOutGrabber: boolean;
 begin
+  {$define handleExceptionFuncName :='MouseToBandPos'}
   handleExceptionBegin
   RetOutBand := OutBand;
   RetOutGrabber := OutGrabber;

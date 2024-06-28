@@ -2,6 +2,7 @@
 //constructor
 function CustomVirtualDrawTree_Create(AOwner: TComponent): TCustomVirtualDrawTree; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomVirtualDrawTree.Create(AOwner);
   handleExceptionEnd

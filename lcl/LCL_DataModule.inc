@@ -2,6 +2,7 @@
 //constructor
 function DataModule_Create(AOwner: TComponent): TDataModule; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDataModule.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //constructor
 function DataModule_CreateNew(AOwner: TComponent): TDataModule; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateNew'}
   handleExceptionBegin
   Result := TDataModule.CreateNew(AOwner);
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //constructor
 function DataModule_CreateNew1(AOwner: TComponent; CreateMode: Integer): TDataModule; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateNew1'}
   handleExceptionBegin
   Result := TDataModule.CreateNew(AOwner, CreateMode);
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 procedure DataModule_DesignOffset(AIsSet: LongBool; AObj: TDataModule; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DesignOffset'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 procedure DataModule_DesignSize(AIsSet: LongBool; AObj: TDataModule; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DesignSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function DataModule_DesignPPI(AIsSet: LongBool; AObj: TDataModule; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DesignPPI'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function DataModule_OldCreateOrder(AIsSet: LongBool; AObj: TDataModule; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OldCreateOrder'}
   handleExceptionBegin
   if AIsSet then
   begin

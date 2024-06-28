@@ -2,6 +2,7 @@
 //constructor
 function CustomCheckBox_Create(TheOwner: TComponent): TCustomCheckBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomCheckBox.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomCheckBox_Alignment(AIsSet: LongBool; AObj: TCustomCheckBox; AValue: TLeftRight): TLeftRight; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomCheckBox_AllowGrayed(AIsSet: LongBool; AObj: TCustomCheckBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowGrayed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomCheckBox_State(AIsSet: LongBool; AObj: TCustomCheckBox; AValue: TCheckBoxState): TCheckBoxState; extdecl;
 begin
+  {$define handleExceptionFuncName :='State'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomCheckBox_ShortCut(AObj: TCustomCheckBox): TShortcut; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShortCut'}
   handleExceptionBegin
   Result := AObj.ShortCut;
   handleExceptionEnd
@@ -54,6 +59,7 @@ end;
 //property
 function CustomCheckBox_ShortCutKey2(AObj: TCustomCheckBox): TShortcut; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShortCutKey2'}
   handleExceptionBegin
   Result := AObj.ShortCutKey2;
   handleExceptionEnd

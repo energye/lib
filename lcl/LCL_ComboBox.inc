@@ -2,6 +2,7 @@
 //constructor
 function ComboBox_Create(TheOwner: TComponent): TComboBox; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TComboBox.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ComboBox_BorderStyle(AIsSet: LongBool; AObj: TComboBox; AValue: TBorderStyle): TBorderStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='BorderStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ComboBox_DragCursor(AIsSet: LongBool; AObj: TComboBox; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ComboBox_DragKind(AIsSet: LongBool; AObj: TComboBox; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function ComboBox_DragMode(AIsSet: LongBool; AObj: TComboBox; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function ComboBox_ItemHeight(AIsSet: LongBool; AObj: TComboBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function ComboBox_ItemWidth(AIsSet: LongBool; AObj: TComboBox; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function ComboBox_MaxLength(AIsSet: LongBool; AObj: TComboBox; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxLength'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function ComboBox_ParentColor(AIsSet: LongBool; AObj: TComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function ComboBox_ParentFont(AIsSet: LongBool; AObj: TComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function ComboBox_ParentShowHint(AIsSet: LongBool; AObj: TComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function ComboBox_Sorted(AIsSet: LongBool; AObj: TComboBox; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Sorted'}
   handleExceptionBegin
   if AIsSet then
   begin

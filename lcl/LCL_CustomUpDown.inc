@@ -2,6 +2,7 @@
 //constructor
 function CustomUpDown_Create(AOwner: TComponent): TCustomUpDown; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomUpDown.Create(AOwner);
   handleExceptionEnd

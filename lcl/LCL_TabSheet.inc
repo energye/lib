@@ -2,6 +2,7 @@
 //constructor
 function TabSheet_Create(TheOwner: TComponent): TTabSheet; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TTabSheet.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function TabSheet_PageControl(AIsSet: LongBool; AObj: TTabSheet; AValue: TPageControl): TPageControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageControl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function TabSheet_TabIndex(AObj: TTabSheet): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TabIndex'}
   handleExceptionBegin
   Result := AObj.TabIndex;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function TabSheet_ParentFont(AIsSet: LongBool; AObj: TTabSheet; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function TabSheet_ParentShowHint(AIsSet: LongBool; AObj: TTabSheet; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin

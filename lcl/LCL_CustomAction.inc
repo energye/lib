@@ -2,6 +2,7 @@
 //constructor
 function CustomAction_Create(AOwner: TComponent): TCustomAction; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomAction.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomAction_AutoCheck(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoCheck'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomAction_Caption(AIsSet: LongBool; AObj: TCustomAction; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomAction_Checked(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Checked'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomAction_Grayed(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Grayed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomAction_DisableIfNoHandler(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableIfNoHandler'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomAction_Enabled(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Enabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomAction_GroupIndex(AIsSet: LongBool; AObj: TCustomAction; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GroupIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomAction_HelpContext(AIsSet: LongBool; AObj: TCustomAction; AValue: THelpContext): THelpContext; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function CustomAction_HelpKeyword(AIsSet: LongBool; AObj: TCustomAction; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpKeyword'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function CustomAction_HelpType(AIsSet: LongBool; AObj: TCustomAction; AValue: THelpType): THelpType; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function CustomAction_Hint(AIsSet: LongBool; AObj: TCustomAction; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Hint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function CustomAction_ImageIndex(AIsSet: LongBool; AObj: TCustomAction; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function CustomAction_SecondaryShortCuts(AIsSet: LongBool; AObj: TCustomAction; AValue: TShortCutList): TShortCutList; extdecl;
 begin
+  {$define handleExceptionFuncName :='SecondaryShortCuts'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function CustomAction_ShortCut(AIsSet: LongBool; AObj: TCustomAction; AValue: TShortCut): TShortCut; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShortCut'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -178,6 +193,7 @@ end;
 //property
 function CustomAction_Visible(AIsSet: LongBool; AObj: TCustomAction; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin

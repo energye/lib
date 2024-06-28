@@ -2,6 +2,7 @@
 //constructor
 function FileDialog_Create(TheOwner: TComponent): TFileDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFileDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FileDialog_Files(AObj: TFileDialog): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Files'}
   handleExceptionBegin
   Result := AObj.Files;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function FileDialog_HistoryList(AIsSet: LongBool; AObj: TFileDialog; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='HistoryList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function FileDialog_DefaultExt(AIsSet: LongBool; AObj: TFileDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultExt'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function FileDialog_FileName(AIsSet: LongBool; AObj: TFileDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FileName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function FileDialog_Filter(AIsSet: LongBool; AObj: TFileDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Filter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function FileDialog_FilterIndex(AIsSet: LongBool; AObj: TFileDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='FilterIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function FileDialog_InitialDir(AIsSet: LongBool; AObj: TFileDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='InitialDir'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -96,6 +104,7 @@ end;
 //procedure
 procedure FileDialog_DoTypeChange(AObj: TFileDialog); extdecl;
 begin
+  {$define handleExceptionFuncName :='DoTypeChange'}
   handleExceptionBegin
   AObj.DoTypeChange();
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //procedure
 procedure FileDialog_IntfFileTypeChanged(AObj: TFileDialog; NewFilterIndex: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='IntfFileTypeChanged'}
   handleExceptionBegin
   AObj.IntfFileTypeChanged(NewFilterIndex);
   handleExceptionEnd

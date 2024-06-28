@@ -2,6 +2,7 @@
 //constructor
 function CustomTimer_Create(AOwner: TComponent): TCustomTimer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomTimer.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomTimer_Enabled(AIsSet: LongBool; AObj: TCustomTimer; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Enabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomTimer_Interval(AIsSet: LongBool; AObj: TCustomTimer; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='Interval'}
   handleExceptionBegin
   if AIsSet then
   begin

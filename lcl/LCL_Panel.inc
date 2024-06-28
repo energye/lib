@@ -2,6 +2,7 @@
 //constructor
 function Panel_Create(TheOwner: TComponent): TPanel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPanel.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Panel_DragCursor(AIsSet: LongBool; AObj: TPanel; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function Panel_DragKind(AIsSet: LongBool; AObj: TPanel; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function Panel_DragMode(AIsSet: LongBool; AObj: TPanel; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function Panel_ParentFont(AIsSet: LongBool; AObj: TPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function Panel_ParentShowHint(AIsSet: LongBool; AObj: TPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function Panel_ShowAccelChar(AIsSet: LongBool; AObj: TPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowAccelChar'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function Panel_VerticalAlignment(AIsSet: LongBool; AObj: TPanel; AValue: TVerticalAlignment): TVerticalAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='VerticalAlignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function Panel_Wordwrap(AIsSet: LongBool; AObj: TPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wordwrap'}
   handleExceptionBegin
   if AIsSet then
   begin

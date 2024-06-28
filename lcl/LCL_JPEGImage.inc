@@ -2,6 +2,7 @@
 //constructor
 function JPEGImage_Create(): TJPEGImage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TJPEGImage.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function JPEGImage_CompressionQuality(AIsSet: LongBool; AObj: TJPEGImage; AValue: TJPEGQualityRange): TJPEGQualityRange; extdecl;
 begin
+  {$define handleExceptionFuncName :='CompressionQuality'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function JPEGImage_GrayScale(AObj: TJPEGImage): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GrayScale'}
   handleExceptionBegin
   Result := AObj.GrayScale;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function JPEGImage_MinHeight(AIsSet: LongBool; AObj: TJPEGImage; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function JPEGImage_MinWidth(AIsSet: LongBool; AObj: TJPEGImage; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function JPEGImage_ProgressiveEncoding(AIsSet: LongBool; AObj: TJPEGImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProgressiveEncoding'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function JPEGImage_Performance(AIsSet: LongBool; AObj: TJPEGImage; AValue: TJPEGPerformance): TJPEGPerformance; extdecl;
 begin
+  {$define handleExceptionFuncName :='Performance'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function JPEGImage_Scale(AIsSet: LongBool; AObj: TJPEGImage; AValue: TJPEGScale): TJPEGScale; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scale'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function JPEGImage_Smoothing(AIsSet: LongBool; AObj: TJPEGImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Smoothing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -108,6 +117,7 @@ end;
 //procedure
 procedure JPEGImage_Compress(AObj: TJPEGImage); extdecl;
 begin
+  {$define handleExceptionFuncName :='Compress'}
   handleExceptionBegin
   AObj.Compress();
   handleExceptionEnd

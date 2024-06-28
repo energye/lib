@@ -2,6 +2,7 @@
 //constructor
 function CustomLabel_Create(TheOwner: TComponent): TCustomLabel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomLabel.Create(TheOwner);
   handleExceptionEnd
@@ -14,6 +15,7 @@ var
   RetOutNeededWidth: Integer;
   RetOutNeededHeight: Integer;
 begin
+  {$define handleExceptionFuncName :='CalcFittingFontHeight'}
   handleExceptionBegin
   RetOutFontHeight := OutFontHeight;
   RetOutNeededWidth := OutNeededWidth;
@@ -28,6 +30,7 @@ end;
 //function
 function CustomLabel_AdjustFontForOptimalFill(AObj: TCustomLabel): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AdjustFontForOptimalFill'}
   handleExceptionBegin
   Result := AObj.AdjustFontForOptimalFill();
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //procedure
 procedure CustomLabel_Paint(AObj: TCustomLabel); extdecl;
 begin
+  {$define handleExceptionFuncName :='Paint'}
   handleExceptionBegin
   AObj.Paint();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function PopupMenu_Create(AOwner: TComponent): TPopupMenu; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPopupMenu.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PopupMenu_PopupComponent(AIsSet: LongBool; AObj: TPopupMenu; AValue: TComponent): TComponent; extdecl;
 begin
+  {$define handleExceptionFuncName :='PopupComponent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 procedure PopupMenu_PopupPoint(AObj: TPopupMenu; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='PopupPoint'}
   handleExceptionBegin
   Result := AObj.PopupPoint;
   handleExceptionEnd
@@ -30,6 +33,7 @@ end;
 //property
 function PopupMenu_Alignment(AIsSet: LongBool; AObj: TPopupMenu; AValue: TPopupAlignment): TPopupAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function PopupMenu_AutoPopup(AIsSet: LongBool; AObj: TPopupMenu; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoPopup'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function PopupMenu_HelpContext(AIsSet: LongBool; AObj: TPopupMenu; AValue: THelpContext): THelpContext; extdecl;
 begin
+  {$define handleExceptionFuncName :='HelpContext'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function PopupMenu_TrackButton(AIsSet: LongBool; AObj: TPopupMenu; AValue: TTrackButton): TTrackButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='TrackButton'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -84,6 +91,7 @@ end;
 //procedure
 procedure PopupMenu_PopUp(AObj: TPopupMenu); extdecl;
 begin
+  {$define handleExceptionFuncName :='PopUp'}
   handleExceptionBegin
   AObj.PopUp();
   handleExceptionEnd
@@ -92,6 +100,7 @@ end;
 //procedure
 procedure PopupMenu_PopUp1(AObj: TPopupMenu; X, Y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='PopUp1'}
   handleExceptionBegin
   AObj.PopUp(X, Y);
   handleExceptionEnd
@@ -100,6 +109,7 @@ end;
 //procedure
 procedure PopupMenu_Close(AObj: TPopupMenu); extdecl;
 begin
+  {$define handleExceptionFuncName :='Close'}
   handleExceptionBegin
   AObj.Close();
   handleExceptionEnd

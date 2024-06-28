@@ -2,6 +2,7 @@
 //constructor
 function ButtonControl_Create(TheOwner: TComponent): TButtonControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TButtonControl.Create(TheOwner);
   handleExceptionEnd

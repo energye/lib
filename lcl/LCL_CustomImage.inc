@@ -2,6 +2,7 @@
 //constructor
 function CustomImage_Create(AOwner: TComponent): TCustomImage; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomImage.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomImage_HasGraphic(AObj: TCustomImage): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HasGraphic'}
   handleExceptionBegin
   Result := AObj.HasGraphic;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomImage_AntialiasingMode(AIsSet: LongBool; AObj: TCustomImage; AValue: TAntialiasingMode): TAntialiasingMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='AntialiasingMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CustomImage_Center(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Center'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function CustomImage_KeepOriginXWhenClipped(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeepOriginXWhenClipped'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function CustomImage_KeepOriginYWhenClipped(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeepOriginYWhenClipped'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function CustomImage_ImageIndex(AIsSet: LongBool; AObj: TCustomImage; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function CustomImage_ImageWidth(AIsSet: LongBool; AObj: TCustomImage; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function CustomImage_Images(AIsSet: LongBool; AObj: TCustomImage; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function CustomImage_Picture(AIsSet: LongBool; AObj: TCustomImage; AValue: TPicture): TPicture; extdecl;
 begin
+  {$define handleExceptionFuncName :='Picture'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function CustomImage_Stretch(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Stretch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function CustomImage_StretchOutEnabled(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StretchOutEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function CustomImage_StretchInEnabled(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StretchInEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function CustomImage_Transparent(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Transparent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function CustomImage_Proportional(AIsSet: LongBool; AObj: TCustomImage; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Proportional'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //function
 procedure CustomImage_DestRect(AObj: TCustomImage; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='DestRect'}
   handleExceptionBegin
   Result := AObj.DestRect();
   handleExceptionEnd

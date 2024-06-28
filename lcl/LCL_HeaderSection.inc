@@ -2,6 +2,7 @@
 //constructor
 function HeaderSection_Create(ACollection: TCollection): THeaderSection; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := THeaderSection.Create(ACollection);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function HeaderSection_Left(AObj: THeaderSection): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Left'}
   handleExceptionBegin
   Result := AObj.Left;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function HeaderSection_Right(AObj: THeaderSection): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Right'}
   handleExceptionBegin
   Result := AObj.Right;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function HeaderSection_State(AIsSet: LongBool; AObj: THeaderSection; AValue: THeaderSectionState): THeaderSectionState; extdecl;
 begin
+  {$define handleExceptionFuncName :='State'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function HeaderSection_Alignment(AIsSet: LongBool; AObj: THeaderSection; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function HeaderSection_ImageIndex(AIsSet: LongBool; AObj: THeaderSection; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function HeaderSection_MaxWidth(AIsSet: LongBool; AObj: THeaderSection; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 function HeaderSection_MinWidth(AIsSet: LongBool; AObj: THeaderSection; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 function HeaderSection_Text(AIsSet: LongBool; AObj: THeaderSection; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Text'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 function HeaderSection_Width(AIsSet: LongBool; AObj: THeaderSection; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Width'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 function HeaderSection_Visible(AIsSet: LongBool; AObj: THeaderSection; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Visible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function HeaderSection_OriginalIndex(AObj: THeaderSection): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='OriginalIndex'}
   handleExceptionBegin
   Result := AObj.OriginalIndex;
   handleExceptionEnd

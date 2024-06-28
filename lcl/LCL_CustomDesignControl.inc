@@ -2,6 +2,7 @@
 //constructor
 function CustomDesignControl_Create(TheOwner: TComponent): TCustomDesignControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomDesignControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomDesignControl_DesignTimePPI(AIsSet: LongBool; AObj: TCustomDesignControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DesignTimePPI'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomDesignControl_PixelsPerInch(AIsSet: LongBool; AObj: TCustomDesignControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PixelsPerInch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomDesignControl_Scaled(AIsSet: LongBool; AObj: TCustomDesignControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Scaled'}
   handleExceptionBegin
   if AIsSet then
   begin

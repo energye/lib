@@ -2,6 +2,7 @@
 //constructor
 function UpDown_Create(AOwner: TComponent): TUpDown; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TUpDown.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function UpDown_AlignButton(AIsSet: LongBool; AObj: TUpDown; AValue: TUDAlignButton): TUDAlignButton; extdecl;
 begin
+  {$define handleExceptionFuncName :='AlignButton'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function UpDown_ArrowKeys(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ArrowKeys'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function UpDown_Associate(AIsSet: LongBool; AObj: TUpDown; AValue: TWinControl): TWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Associate'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function UpDown_Increment(AIsSet: LongBool; AObj: TUpDown; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Increment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function UpDown_Max(AIsSet: LongBool; AObj: TUpDown; AValue: SmallInt): SmallInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Max'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function UpDown_Min(AIsSet: LongBool; AObj: TUpDown; AValue: SmallInt): SmallInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Min'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function UpDown_MinRepeatInterval(AIsSet: LongBool; AObj: TUpDown; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinRepeatInterval'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function UpDown_Orientation(AIsSet: LongBool; AObj: TUpDown; AValue: TUDOrientation): TUDOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -106,6 +115,7 @@ end;
 //property
 function UpDown_ParentColor(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -118,6 +128,7 @@ end;
 //property
 function UpDown_ParentShowHint(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -130,6 +141,7 @@ end;
 //property
 function UpDown_Position(AIsSet: LongBool; AObj: TUpDown; AValue: SmallInt): SmallInt; extdecl;
 begin
+  {$define handleExceptionFuncName :='Position'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +154,7 @@ end;
 //property
 function UpDown_Thousands(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Thousands'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -154,6 +167,7 @@ end;
 //property
 function UpDown_Flat(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Flat'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -166,6 +180,7 @@ end;
 //property
 function UpDown_Wrap(AIsSet: LongBool; AObj: TUpDown; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Wrap'}
   handleExceptionBegin
   if AIsSet then
   begin

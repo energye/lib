@@ -2,6 +2,7 @@
 //constructor
 function ReplaceDialog_Create(AOwner: TComponent): TReplaceDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TReplaceDialog.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ReplaceDialog_ReplaceText(AIsSet: LongBool; AObj: TReplaceDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReplaceText'}
   handleExceptionBegin
   if AIsSet then
   begin

@@ -2,6 +2,7 @@
 //constructor
 function Calendar_Create(AOwner: TComponent): TCalendar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCalendar.Create(AOwner);
   handleExceptionEnd

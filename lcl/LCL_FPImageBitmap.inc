@@ -2,6 +2,7 @@
 //constructor
 function FPImageBitmap_Create(): TFPImageBitmap; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFPImageBitmap.Create();
   handleExceptionEnd

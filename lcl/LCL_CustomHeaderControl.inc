@@ -2,6 +2,7 @@
 //constructor
 function CustomHeaderControl_Create(AOwner: TComponent): TCustomHeaderControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomHeaderControl.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomHeaderControl_SectionFromOriginalIndex(AObj: TCustomHeaderControl; OriginalIndex: Integer): THeaderSection; extdecl;
 begin
+  {$define handleExceptionFuncName :='SectionFromOriginalIndex'}
   handleExceptionBegin
   Result := AObj.SectionFromOriginalIndex[OriginalIndex];
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function CustomHeaderControl_DragReorder(AIsSet: LongBool; AObj: TCustomHeaderControl; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragReorder'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CustomHeaderControl_Images(AIsSet: LongBool; AObj: TCustomHeaderControl; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function CustomHeaderControl_ImagesWidth(AIsSet: LongBool; AObj: TCustomHeaderControl; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImagesWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function CustomHeaderControl_Sections(AIsSet: LongBool; AObj: TCustomHeaderControl; AValue: THeaderSections): THeaderSections; extdecl;
 begin
+  {$define handleExceptionFuncName :='Sections'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //function
 function CustomHeaderControl_GetSectionAt(AObj: TCustomHeaderControl; var P: TPoint): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetSectionAt'}
   handleExceptionBegin
   Result := AObj.GetSectionAt(P);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //procedure
 procedure CustomHeaderControl_Click(AObj: TCustomHeaderControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Click'}
   handleExceptionBegin
   AObj.Click();
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //procedure
 procedure CustomHeaderControl_DblClick(AObj: TCustomHeaderControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='DblClick'}
   handleExceptionBegin
   AObj.DblClick();
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //procedure
 procedure CustomHeaderControl_Paint(AObj: TCustomHeaderControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='Paint'}
   handleExceptionBegin
   AObj.Paint();
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //procedure
 procedure CustomHeaderControl_PaintSection(AObj: TCustomHeaderControl; Index: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='PaintSection'}
   handleExceptionBegin
   AObj.PaintSection(Index);
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //procedure
 procedure CustomHeaderControl_ChangeScale(AObj: TCustomHeaderControl; M, D: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ChangeScale'}
   handleExceptionBegin
   AObj.ChangeScale(M, D);
   handleExceptionEnd

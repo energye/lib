@@ -2,6 +2,7 @@
 //constructor
 function DragImageList_Create(AOwner: TComponent): TDragImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TDragImageList.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function DragImageList_DragCursor(AIsSet: LongBool; AObj: TDragImageList; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 procedure DragImageList_DragHotspot(AIsSet: LongBool; AObj: TDragImageList; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragHotspot'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function DragImageList_Dragging(AObj: TDragImageList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Dragging'}
   handleExceptionBegin
   Result := AObj.Dragging;
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //property
 function DragImageList_DraggingResolution(AObj: TDragImageList): TDragImageListResolution; extdecl;
 begin
+  {$define handleExceptionFuncName :='DraggingResolution'}
   handleExceptionBegin
   Result := AObj.DraggingResolution;
   handleExceptionEnd
@@ -50,6 +55,7 @@ end;
 //property
 function DragImageList_ResolutionForDragImageListResolution(AObj: TDragImageList; AImageWidth: Integer): TDragImageListResolution; extdecl;
 begin
+  {$define handleExceptionFuncName :='ResolutionForDragImageListResolution'}
   handleExceptionBegin
   Result := AObj.Resolution[AImageWidth];
   handleExceptionEnd
@@ -58,6 +64,7 @@ end;
 //function
 function DragImageList_BeginDrag(AObj: TDragImageList; Window: HWND; X, Y: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='BeginDrag'}
   handleExceptionBegin
   Result := AObj.BeginDrag(Window, X, Y);
   handleExceptionEnd
@@ -66,6 +73,7 @@ end;
 //function
 function DragImageList_DragLock(AObj: TDragImageList; Window: HWND; XPos, YPos: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragLock'}
   handleExceptionBegin
   Result := AObj.DragLock(Window, XPos, YPos);
   handleExceptionEnd
@@ -74,6 +82,7 @@ end;
 //function
 function DragImageList_DragMove(AObj: TDragImageList; X, Y: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMove'}
   handleExceptionBegin
   Result := AObj.DragMove(X, Y);
   handleExceptionEnd
@@ -82,6 +91,7 @@ end;
 //function
 function DragImageList_EndDrag(AObj: TDragImageList): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EndDrag'}
   handleExceptionBegin
   Result := AObj.EndDrag();
   handleExceptionEnd
@@ -90,6 +100,7 @@ end;
 //function
 function DragImageList_SetDragImage(AObj: TDragImageList; Index, HotSpotX, HotSpotY: Integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetDragImage'}
   handleExceptionBegin
   Result := AObj.SetDragImage(Index, HotSpotX, HotSpotY);
   handleExceptionEnd
@@ -104,6 +115,7 @@ end;
 //procedure
 procedure DragImageList_DragUnlock(AObj: TDragImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='DragUnlock'}
   handleExceptionBegin
   AObj.DragUnlock();
   handleExceptionEnd
@@ -112,6 +124,7 @@ end;
 //procedure
 procedure DragImageList_HideDragImage(AObj: TDragImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='HideDragImage'}
   handleExceptionBegin
   AObj.HideDragImage();
   handleExceptionEnd
@@ -120,6 +133,7 @@ end;
 //procedure
 procedure DragImageList_ShowDragImage(AObj: TDragImageList); extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowDragImage'}
   handleExceptionBegin
   AObj.ShowDragImage();
   handleExceptionEnd

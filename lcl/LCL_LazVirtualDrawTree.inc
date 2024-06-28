@@ -2,6 +2,7 @@
 //constructor
 function LazVirtualDrawTree_Create(AOwner: TComponent): TLazVirtualDrawTree; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TLazVirtualDrawTree.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function LazVirtualDrawTree_LastDragEffect(AObj: TLazVirtualDrawTree): LongWord; extdecl;
 begin
+  {$define handleExceptionFuncName :='LastDragEffect'}
   handleExceptionBegin
   Result := AObj.LastDragEffect;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function LazVirtualDrawTree_Alignment(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function LazVirtualDrawTree_AnimationDuration(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='AnimationDuration'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function LazVirtualDrawTree_AutoExpandDelay(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoExpandDelay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function LazVirtualDrawTree_AutoScrollDelay(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoScrollDelay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -66,6 +72,7 @@ end;
 //property
 function LazVirtualDrawTree_AutoScrollInterval(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TAutoScrollInterval): TAutoScrollInterval; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoScrollInterval'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +85,7 @@ end;
 //property
 function LazVirtualDrawTree_Background(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TPicture): TPicture; extdecl;
 begin
+  {$define handleExceptionFuncName :='Background'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +98,7 @@ end;
 //property
 function LazVirtualDrawTree_BackgroundOffsetX(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BackgroundOffsetX'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +111,7 @@ end;
 //property
 function LazVirtualDrawTree_BackgroundOffsetY(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='BackgroundOffsetY'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +124,7 @@ end;
 //property
 function LazVirtualDrawTree_BottomSpace(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='BottomSpace'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -126,6 +137,7 @@ end;
 //property
 function LazVirtualDrawTree_ButtonFillMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTButtonFillMode): TVTButtonFillMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonFillMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -138,6 +150,7 @@ end;
 //property
 function LazVirtualDrawTree_ButtonStyle(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTButtonStyle): TVTButtonStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -150,6 +163,7 @@ end;
 //property
 function LazVirtualDrawTree_ChangeDelay(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='ChangeDelay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +176,7 @@ end;
 //property
 function LazVirtualDrawTree_CheckImageKind(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCheckImageKind): TCheckImageKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckImageKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +189,7 @@ end;
 //property
 function LazVirtualDrawTree_ClipboardFormats(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TClipboardFormats): TClipboardFormats; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClipboardFormats'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +202,7 @@ end;
 //property
 function LazVirtualDrawTree_Colors(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTColors): TVTColors; extdecl;
 begin
+  {$define handleExceptionFuncName :='Colors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +215,7 @@ end;
 //property
 function LazVirtualDrawTree_CustomCheckImages(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomCheckImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +228,7 @@ end;
 //property
 function LazVirtualDrawTree_DefaultNodeHeight(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultNodeHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +241,7 @@ end;
 //property
 function LazVirtualDrawTree_DefaultPasteMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTNodeAttachMode): TVTNodeAttachMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultPasteMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +254,7 @@ end;
 //property
 function LazVirtualDrawTree_DragCursor(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +267,7 @@ end;
 //property
 function LazVirtualDrawTree_DragHeight(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +280,7 @@ end;
 //property
 function LazVirtualDrawTree_DragKind(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +293,7 @@ end;
 //property
 function LazVirtualDrawTree_DragImageKind(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTDragImageKind): TVTDragImageKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragImageKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -282,6 +306,7 @@ end;
 //property
 function LazVirtualDrawTree_DragMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +319,7 @@ end;
 //property
 function LazVirtualDrawTree_DragOperations(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TDragOperations): TDragOperations; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragOperations'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -306,6 +332,7 @@ end;
 //property
 function LazVirtualDrawTree_DragType(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTDragType): TVTDragType; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragType'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -318,6 +345,7 @@ end;
 //property
 function LazVirtualDrawTree_DragWidth(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -330,6 +358,7 @@ end;
 //property
 function LazVirtualDrawTree_DrawSelectionMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTDrawSelectionMode): TVTDrawSelectionMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DrawSelectionMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -342,6 +371,7 @@ end;
 //property
 function LazVirtualDrawTree_EditDelay(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='EditDelay'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -354,6 +384,7 @@ end;
 //property
 function LazVirtualDrawTree_Header(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTHeader): TVTHeader; extdecl;
 begin
+  {$define handleExceptionFuncName :='Header'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -366,6 +397,7 @@ end;
 //property
 function LazVirtualDrawTree_HintMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTHintMode): TVTHintMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='HintMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -378,6 +410,7 @@ end;
 //property
 function LazVirtualDrawTree_HotCursor(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='HotCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -390,6 +423,7 @@ end;
 //property
 function LazVirtualDrawTree_Images(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='Images'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -402,6 +436,7 @@ end;
 //property
 function LazVirtualDrawTree_IncrementalSearch(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTIncrementalSearch): TVTIncrementalSearch; extdecl;
 begin
+  {$define handleExceptionFuncName :='IncrementalSearch'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -414,6 +449,7 @@ end;
 //property
 function LazVirtualDrawTree_IncrementalSearchDirection(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTSearchDirection): TVTSearchDirection; extdecl;
 begin
+  {$define handleExceptionFuncName :='IncrementalSearchDirection'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -426,6 +462,7 @@ end;
 //property
 function LazVirtualDrawTree_IncrementalSearchStart(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTSearchStart): TVTSearchStart; extdecl;
 begin
+  {$define handleExceptionFuncName :='IncrementalSearchStart'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -438,6 +475,7 @@ end;
 //property
 function LazVirtualDrawTree_IncrementalSearchTimeout(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='IncrementalSearchTimeout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -450,6 +488,7 @@ end;
 //property
 function LazVirtualDrawTree_Indent(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='Indent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -462,6 +501,7 @@ end;
 //property
 function LazVirtualDrawTree_LineMode(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTLineMode): TVTLineMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='LineMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -474,6 +514,7 @@ end;
 //property
 function LazVirtualDrawTree_LineStyle(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTLineStyle): TVTLineStyle; extdecl;
 begin
+  {$define handleExceptionFuncName :='LineStyle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -486,6 +527,7 @@ end;
 //property
 function LazVirtualDrawTree_Margin(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Margin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -498,6 +540,7 @@ end;
 //property
 function LazVirtualDrawTree_NodeAlignment(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVTNodeAlignment): TVTNodeAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='NodeAlignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -510,6 +553,7 @@ end;
 //property
 function LazVirtualDrawTree_NodeDataSize(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='NodeDataSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -522,6 +566,7 @@ end;
 //property
 function LazVirtualDrawTree_OperationCanceled(AObj: TLazVirtualDrawTree): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OperationCanceled'}
   handleExceptionBegin
   Result := AObj.OperationCanceled;
   handleExceptionEnd
@@ -530,6 +575,7 @@ end;
 //property
 function LazVirtualDrawTree_ParentColor(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -542,6 +588,7 @@ end;
 //property
 function LazVirtualDrawTree_ParentFont(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentFont'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -554,6 +601,7 @@ end;
 //property
 function LazVirtualDrawTree_ParentShowHint(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentShowHint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -566,6 +614,7 @@ end;
 //property
 function LazVirtualDrawTree_RootNodeCount(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='RootNodeCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -578,6 +627,7 @@ end;
 //property
 function LazVirtualDrawTree_ScrollBarOptions(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TScrollBarOptions): TScrollBarOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScrollBarOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -590,6 +640,7 @@ end;
 //property
 function LazVirtualDrawTree_SelectionBlendFactor(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Byte): Byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionBlendFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -602,6 +653,7 @@ end;
 //property
 function LazVirtualDrawTree_SelectionCurveRadius(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='SelectionCurveRadius'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -614,6 +666,7 @@ end;
 //property
 function LazVirtualDrawTree_StateImages(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TCustomImageList): TCustomImageList; extdecl;
 begin
+  {$define handleExceptionFuncName :='StateImages'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -626,6 +679,7 @@ end;
 //property
 function LazVirtualDrawTree_TextMargin(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='TextMargin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -638,6 +692,7 @@ end;
 //property
 function LazVirtualDrawTree_TreeOptions(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: TVirtualTreeOptions): TVirtualTreeOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='TreeOptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -650,6 +705,7 @@ end;
 //property
 function LazVirtualDrawTree_WantTabs(AIsSet: LongBool; AObj: TLazVirtualDrawTree; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='WantTabs'}
   handleExceptionBegin
   if AIsSet then
   begin

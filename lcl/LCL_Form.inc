@@ -2,6 +2,7 @@
 //constructor
 function Form_Create(TheOwner: TComponent): TForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TGoForm.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function Form_ClientHandle(AObj: TForm): HWND; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClientHandle'}
   handleExceptionBegin
   Result := AObj.ClientHandle;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function Form_DragKind(AIsSet: LongBool; AObj: TForm; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function Form_DragMode(AIsSet: LongBool; AObj: TForm; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function Form_SessionProperties(AIsSet: LongBool; AObj: TForm; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='SessionProperties'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function Form_LCLVersion(AIsSet: LongBool; AObj: TForm; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='LCLVersion'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -72,6 +78,7 @@ end;
 //procedure
 procedure Form_Cascade(AObj: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Cascade'}
   handleExceptionBegin
   AObj.Cascade();
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //procedure
 procedure Form_Next(AObj: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Next'}
   handleExceptionBegin
   AObj.Next();
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //procedure
 procedure Form_Previous(AObj: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Previous'}
   handleExceptionBegin
   AObj.Previous();
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //procedure
 procedure Form_Tile(AObj: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='Tile'}
   handleExceptionBegin
   AObj.Tile();
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //procedure
 procedure Form_ArrangeIcons(AObj: TForm); extdecl;
 begin
+  {$define handleExceptionFuncName :='ArrangeIcons'}
   handleExceptionBegin
   AObj.ArrangeIcons();
   handleExceptionEnd

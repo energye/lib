@@ -2,6 +2,7 @@
 //constructor
 function CustomPanel_Create(TheOwner: TComponent): TCustomPanel; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomPanel.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomPanel_Alignment(AIsSet: LongBool; AObj: TCustomPanel; AValue: TAlignment): TAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Alignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomPanel_BevelColor(AIsSet: LongBool; AObj: TCustomPanel; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomPanel_BevelInner(AIsSet: LongBool; AObj: TCustomPanel; AValue: TPanelBevel): TPanelBevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelInner'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomPanel_BevelOuter(AIsSet: LongBool; AObj: TCustomPanel; AValue: TPanelBevel): TPanelBevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelOuter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomPanel_BevelWidth(AIsSet: LongBool; AObj: TCustomPanel; AValue: TBevelWidth): TBevelWidth; extdecl;
 begin
+  {$define handleExceptionFuncName :='BevelWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //property
 function CustomPanel_FullRepaint(AIsSet: LongBool; AObj: TCustomPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FullRepaint'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -82,6 +89,7 @@ end;
 //property
 function CustomPanel_ParentBackground(AIsSet: LongBool; AObj: TCustomPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentBackground'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -94,6 +102,7 @@ end;
 //property
 function CustomPanel_ParentColor(AIsSet: LongBool; AObj: TCustomPanel; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentColor'}
   handleExceptionBegin
   if AIsSet then
   begin

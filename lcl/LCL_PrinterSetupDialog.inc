@@ -2,6 +2,7 @@
 //constructor
 function PrinterSetupDialog_Create(TheOwner: TComponent): TPrinterSetupDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TPrinterSetupDialog.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function PrinterSetupDialog_AttachTo(AIsSet: LongBool; AObj: TPrinterSetupDialog; AValue: TCustomForm): TCustomForm; extdecl;
 begin
+  {$define handleExceptionFuncName :='AttachTo'}
   handleExceptionBegin
   if AIsSet then
   begin

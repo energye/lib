@@ -2,6 +2,7 @@
 //constructor
 function ListControlItem_Create(ACollection: TCollection): TListControlItem; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TListControlItem.Create(ACollection);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function ListControlItem_Data(AIsSet: LongBool; AObj: TListControlItem; AValue: TCustomData): TCustomData; extdecl;
 begin
+  {$define handleExceptionFuncName :='Data'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function ListControlItem_Caption(AIsSet: LongBool; AObj: TListControlItem; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Caption'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function ListControlItem_ImageIndex(AIsSet: LongBool; AObj: TListControlItem; AValue: TImageIndex): TImageIndex; extdecl;
 begin
+  {$define handleExceptionFuncName :='ImageIndex'}
   handleExceptionBegin
   if AIsSet then
   begin

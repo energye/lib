@@ -2,6 +2,7 @@
 //constructor
 function FontDialog_Create(AOwner: TComponent): TFontDialog; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TFontDialog.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function FontDialog_Font(AIsSet: LongBool; AObj: TFontDialog; AValue: TFont): TFont; extdecl;
 begin
+  {$define handleExceptionFuncName :='Font'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function FontDialog_MinFontSize(AIsSet: LongBool; AObj: TFontDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MinFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function FontDialog_MaxFontSize(AIsSet: LongBool; AObj: TFontDialog; AValue: Integer): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='MaxFontSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function FontDialog_Options(AIsSet: LongBool; AObj: TFontDialog; AValue: TFontDialogOptions): TFontDialogOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Options'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function FontDialog_PreviewText(AIsSet: LongBool; AObj: TFontDialog; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PreviewText'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -76,6 +82,7 @@ end;
 //procedure
 procedure FontDialog_ApplyClicked(AObj: TFontDialog); extdecl;
 begin
+  {$define handleExceptionFuncName :='ApplyClicked'}
   handleExceptionBegin
   AObj.ApplyClicked();
   handleExceptionEnd

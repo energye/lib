@@ -2,6 +2,7 @@
 //constructor
 function CustomRadioGroup_Create(TheOwner: TComponent): TCustomRadioGroup; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCustomRadioGroup.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CustomRadioGroup_AutoFill(AIsSet: LongBool; AObj: TCustomRadioGroup; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoFill'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function CustomRadioGroup_ItemIndex(AIsSet: LongBool; AObj: TCustomRadioGroup; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ItemIndex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function CustomRadioGroup_Items(AIsSet: LongBool; AObj: TCustomRadioGroup; AValue: TStrings): TStrings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Items'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function CustomRadioGroup_Columns(AIsSet: LongBool; AObj: TCustomRadioGroup; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Columns'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function CustomRadioGroup_ColumnLayout(AIsSet: LongBool; AObj: TCustomRadioGroup; AValue: TColumnLayout): TColumnLayout; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColumnLayout'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -70,6 +76,7 @@ end;
 //function
 function CustomRadioGroup_CanModify(AObj: TCustomRadioGroup): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanModify'}
   handleExceptionBegin
   Result := AObj.CanModify();
   handleExceptionEnd
@@ -78,6 +85,7 @@ end;
 //function
 function CustomRadioGroup_Rows(AObj: TCustomRadioGroup): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Rows'}
   handleExceptionBegin
   Result := AObj.Rows();
   handleExceptionEnd
