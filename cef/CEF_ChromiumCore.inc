@@ -1161,7 +1161,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetFrameNames'}
   handleExceptionBegin
-  RetaFrameNames := aFrameNames;
+  RetaFrameNames := TStringList.Create();
   Result := AObj.GetFrameNames(RetaFrameNames);
   aFrameNames := RetaFrameNames;
   handleExceptionEnd

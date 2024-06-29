@@ -135,7 +135,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetFileNames'}
   handleExceptionBegin
-  Retnames := names;
+  Retnames := TStringList.Create();
   Result := AObj.GetFileNames(Retnames);
   names := Retnames;
   handleExceptionEnd
@@ -148,7 +148,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetFilePaths'}
   handleExceptionBegin
-  Retpaths := paths;
+  Retpaths := TStringList.Create();
   Result := AObj.GetFilePaths(Retpaths);
   paths := Retpaths;
   handleExceptionEnd

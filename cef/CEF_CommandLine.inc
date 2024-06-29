@@ -96,7 +96,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetSwitches'}
   handleExceptionBegin
-  Retswitches := switches;
+  Retswitches := TStringList.Create();
   Result := AObj.GetSwitches(Retswitches);
   switches := Retswitches;
   handleExceptionEnd
@@ -161,7 +161,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetArgv'}
   handleExceptionBegin
-  Retargs := args;
+  Retargs := TStringList.Create();
   AObj.GetArgv(Retargs);
   args := Retargs;
   handleExceptionEnd
@@ -201,7 +201,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetArguments'}
   handleExceptionBegin
-  Retarguments := arguments;
+  Retarguments := TStringList.Create();
   AObj.GetArguments(Retarguments);
   arguments := Retarguments;
   handleExceptionEnd

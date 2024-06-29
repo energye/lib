@@ -246,7 +246,7 @@ var
 begin
   {$define handleExceptionFuncName :='GetElementAttributes1'}
   handleExceptionBegin
-  RetattrList := attrList;
+  RetattrList := TStringList.Create();
   AObj.GetElementAttributes(RetattrList);
   attrList := RetattrList;
   handleExceptionEnd
