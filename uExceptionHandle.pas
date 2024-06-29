@@ -17,7 +17,8 @@ uses
   Classes, SysUtils, Forms, Dialogs;
 
 type
-  TExceptionHandlerCallbackPtr = function(AFuncName, AErrorMsg: PChar): Pointer; extdecl; // 留给支持异常处理的语言所用
+  // 自定义全局异常处理
+  TExceptionHandlerCallbackPtr = function(AFuncName, AErrorMsg: PChar): Pointer; extdecl;
 
 var
   GExceptionHandlerCallbackPtr: TExceptionHandlerCallbackPtr;
@@ -28,7 +29,6 @@ var
 
 implementation
 
-// 显示异常
 procedure CallException(E: Exception);
 begin
   CallException('', E);
@@ -36,21 +36,21 @@ end;
 
 procedure CallException(FuncName: string; E: Exception);
 begin
-  // 优先这个
+  // 1. 自定义全局异常处理
   if Assigned(GExceptionHandlerCallbackPtr) then
   begin
     GExceptionHandlerCallbackPtr(PChar(FuncName), PChar(E.Message));
     Exit;
   end;
 
-  // 然后再是Application.OnException事件的
+  // 2. Application.OnException 事件
   if Assigned(Application) and Assigned(Application.OnException) then
   begin
     Application.OnException(Application, E);
     Exit;
   end;
 
-  // 都没有的话，弹出错误对话框。
+  // 3. 都没有, 弹出错误对话框
   MessageDlg(E.Message,  mtError, [mbOK], 0);
 end;
 
