@@ -543,7 +543,7 @@ end;
 procedure TCEFEvent.ChromiumCore_OnAcceleratedPaint(Sender: TObject; const browser: ICefBrowser; type_: TCefPaintElementType;
   dirtyRectsCount: nativeuint; const dirtyRects: PCefRectArray; shared_handle: Pointer);
 begin
-  SendEvent([Sender, browser, type_, dirtyRectsCount, dirtyRects, shared_handle]);
+  SendEvent([Sender, browser, type_, uint32(dirtyRectsCount), dirtyRects, shared_handle]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnAllConnectionsClosed(Sender: TObject);
@@ -656,7 +656,7 @@ end;
 procedure TCEFEvent.ChromiumCore_OnDevToolsMethodRawResult(Sender: TObject; const browser: ICefBrowser; message_id: integer; success: boolean;
   const Result: Pointer; result_size: nativeuint);
 begin
-  SendEvent([Sender, browser, message_id, success, Result, result_size]);
+  SendEvent([Sender, browser, message_id, success, Result, uint32(result_size)]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnDevToolsMethodResult(Sender: TObject; const browser: ICefBrowser; message_id: integer; success: boolean; const Result: ICefValue);
@@ -666,12 +666,12 @@ end;
 
 procedure TCEFEvent.ChromiumCore_OnDevToolsRawEvent(Sender: TObject; const browser: ICefBrowser; const method: ustring; const params: Pointer; params_size: nativeuint);
 begin
-  SendEvent([Sender, browser, ToPChar(method), params, params_size]);
+  SendEvent([Sender, browser, ToPChar(method), params, uint32(params_size)]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnDevToolsRawMessage(Sender: TObject; const browser: ICefBrowser; const message_: Pointer; message_size: nativeuint; var aHandled: boolean);
 begin
-  SendEvent([Sender, browser, message_, message_size, @aHandled]);
+  SendEvent([Sender, browser, message_, uint32(message_size), @aHandled]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnDialogClosed(Sender: TObject; const browser: ICefBrowser);
@@ -784,7 +784,7 @@ end;
 procedure TCEFEvent.ChromiumCore_OnIMECompositionRangeChanged(Sender: TObject; const browser: ICefBrowser; const selected_range: PCefRange;
   character_boundsCount: nativeuint; const character_bounds: PCefRect);
 begin
-  SendEvent([Sender, browser, selected_range, character_boundsCount, character_bounds]);
+  SendEvent([Sender, browser, selected_range, uint32(character_boundsCount), character_bounds]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnJsDialog(Sender: TObject; const browser: ICefBrowser; const originUrl: ustring; dialogType: TCefJsDialogType;
@@ -919,7 +919,7 @@ end;
 procedure TCEFEvent.ChromiumCore_OnSelectClientCertificate(Sender: TObject; const browser: ICefBrowser; isProxy: boolean; const host: ustring;
   port: integer; certificatesCount: nativeuint; const certificates: TCefX509CertificateArray; const callback: ICefSelectClientCertificateCallback; var aResult: boolean);
 begin
-  SendEvent([Sender, browser, isProxy, ToPChar(host), port, integer(certificatesCount), @certificates, callback, @aResult]);
+  SendEvent([Sender, browser, isProxy, ToPChar(host), port, uint32(certificatesCount), @certificates, callback, @aResult]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnSetFocus(Sender: TObject; const browser: ICefBrowser; Source: TCefFocusSource; out Result: boolean);
@@ -1304,7 +1304,7 @@ end;
 procedure TCEFEvent.ChromiumCore_OnDraggableRegionsChanged(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame;
   regionsCount: nativeuint; const regions: PCefDraggableRegionArray);
 begin
-  SendEvent([Sender, browser, frame, integer(regionsCount), regions]);
+  SendEvent([Sender, browser, frame, uint32(regionsCount), regions]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnGetAuthCredentials(Sender: TObject; const browser: ICefBrowser; const originUrl: ustring; isProxy: boolean;
@@ -1450,7 +1450,7 @@ end;
 
 procedure TCEFEvent.UrlRequestClientComponent_OnDownloadData(Sender: TObject; const request: ICefUrlRequest; Data: Pointer; dataLength: nativeuint);
 begin
-  SendEvent([Sender, request, Data, dataLength]);
+  SendEvent([Sender, request, Data, uint32(dataLength)]);
 end;
 
 procedure TCEFEvent.UrlRequestClientComponent_OnGetAuthCredentials(Sender: TObject; isProxy: boolean; const host: ustring; port: integer;
@@ -2065,7 +2065,7 @@ end;
 
 procedure  TCEFEvent.ServerComponent_OnWebSocketMessage(Sender: TObject; const server: ICefServer; connection_id: Integer; const data: Pointer; data_size: NativeUInt);
 begin
-  SendEvent([Sender, server, connection_id, data, data_size]);
+  SendEvent([Sender, server, connection_id, data, uint32(data_size)]);
 end;
 
 // TCEFSentinel
@@ -2091,7 +2091,8 @@ begin
   SendEvent([Sender, @aResult]);
 end;
 
-procedure TCEFEvent.CustomResponseFilter_OnFilter(Sender: TObject; data_in: Pointer; data_in_size: NativeUInt; var data_in_read: NativeUInt; data_out: Pointer; data_out_size : NativeUInt; var data_out_written: NativeUInt; var aResult: TCefResponseFilterStatus);
+procedure TCEFEvent.CustomResponseFilter_OnFilter(Sender: TObject; data_in: Pointer; data_in_size: NativeUInt; var data_in_read: NativeUInt; data_out: Pointer; data_out_size : NativeUInt;
+  var data_out_written: NativeUInt; var aResult: TCefResponseFilterStatus);
 begin
   SendEvent([Sender, data_in, uint32(data_in_size), @data_in_read, data_out, uint32(data_out_size), @data_out_written, @aResult]);
 end;
