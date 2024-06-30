@@ -823,7 +823,8 @@ begin
   end;
 end;
 
-function TResourceHandler.ProcessRequest(const request: ICefRequest; const callback: ICefCallback): boolean; // deprecated
+// deprecated
+function TResourceHandler.ProcessRequest(const request: ICefRequest; const callback: ICefCallback): boolean;
 begin
   Result := False;
   if assigned(FOnProcessRequest) then
@@ -858,8 +859,8 @@ begin
   end;
 end;
 
+// deprecated
 function TResourceHandler.ReadResponse(const dataOut: Pointer; bytesToRead: integer; var bytesRead: integer; const callback: ICefCallback): boolean;
-  // deprecated
 begin
   Result := False;
   if assigned(FOnReadResponse) then
