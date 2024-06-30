@@ -71,5 +71,5 @@ uCEFSharedMemoryRegion, uCEFPreferenceManager, uCEFPreferenceRegistrar,
 uCEFApplicationEvents, uCEFBrowserBitmap,
 // CEF 自定义单元
 uCEF_EventCallback,
-uTools, uCEF_Application, uCEF_WinAPICallbackRef, uCEF_CustomCallbacks, uCEF_CustomClasss, uCEF_ValueConvert,
+uTools, uCEF_Application, uCEF_CustomCallbacks, uCEF_CustomClasss, uCEF_ValueConvert,
 uTypes, uCEF_RecordStruct, uCEF_TypesConvert

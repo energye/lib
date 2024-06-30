@@ -14,7 +14,7 @@ interface
 uses
 {$ifdef WINDOWS}windows,{$endif WINDOWS}
 {$IFnDEF MSWINDOWS}LCLType,{$ENDIF}
-  uTools, uCEF_EventCallback;
+uCEF_EventCallback;
 
 type
 
@@ -60,7 +60,6 @@ type
 
 var
   WinApiCallback: TWinApiCallback;
-
 
 implementation
 

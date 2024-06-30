@@ -206,3 +206,4 @@
 {$I ./cef/predef/CEF_V8ValuePredef.inc}
 {$I ./cef/predef/CEF_WorkSchedulerPredef.inc}
 {$I ./cef/predef/CEF_X509CertificatePredef.inc}
+{$I ./cef/predef/CEF_MiscFunctions.inc}

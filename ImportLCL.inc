@@ -318,3 +318,4 @@
 {$I ./lcl/predef/LCL_VTImageInfoPredef.inc}
 {$I ./lcl/predef/LCL_VirtualNodePredef.inc}
 {$I ./lcl/predef/LCL_VirtualTreeColumnsPredef.inc}
+{$I ./lcl/predef/LCL_WinAPIPredef.inc}
