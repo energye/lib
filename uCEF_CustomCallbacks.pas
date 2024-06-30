@@ -820,7 +820,9 @@ begin
   if assigned(FOnOpen) then
   begin
     Result := FOnOpen(request, handle_request, callback);
-  end;
+  end
+  else
+    Result := inherited Open(request, handle_request, callback);
 end;
 
 // deprecated
@@ -830,7 +832,9 @@ begin
   if assigned(FOnProcessRequest) then
   begin
     Result := FOnProcessRequest(request, callback);
-  end;
+  end
+  else
+    Result := inherited ProcessRequest(request, callback);
 end;
 
 procedure TResourceHandler.GetResponseHeaders(const response: ICefResponse; out responseLength: int64; out redirectUrl: ustring);
@@ -838,7 +842,9 @@ begin
   if assigned(FOnGetResponseHeaders) then
   begin
     FOnGetResponseHeaders(response, responseLength, redirectUrl);
-  end;
+  end
+  else
+    inherited GetResponseHeaders(response, responseLength, redirectUrl);
 end;
 
 function TResourceHandler.Skip(bytes_to_skip: int64; var bytes_skipped: int64; const callback: ICefResourceSkipCallback): boolean;
@@ -847,7 +853,9 @@ begin
   if assigned(FOnSkip) then
   begin
     Result := FOnSkip(bytes_to_skip, bytes_skipped, callback);
-  end;
+  end
+  else
+    Result := inherited skip(bytes_to_skip, bytes_skipped, callback);
 end;
 
 function TResourceHandler.Read(const data_out: Pointer; bytes_to_read: integer; var bytes_read: integer; const callback: ICefResourceReadCallback): boolean;
@@ -856,7 +864,9 @@ begin
   if assigned(FOnRead) then
   begin
     Result := FOnRead(data_out, bytes_to_read, bytes_read, callback);
-  end;
+  end
+  else
+    Result := inherited Read(data_out, bytes_to_read, bytes_read, callback);
 end;
 
 // deprecated
@@ -866,7 +876,9 @@ begin
   if assigned(FOnReadResponse) then
   begin
     Result := FOnReadResponse(dataOut, bytesToRead, bytesRead, callback);
-  end;
+  end
+  else
+    Result := inherited ReadResponse(dataOut, bytesToRead, bytesRead, callback);
 end;
 
 procedure TResourceHandler.Cancel;
@@ -874,7 +886,9 @@ begin
   if assigned(FOnCancel) then
   begin
     FOnCancel();
-  end;
+  end
+  else
+    inherited Cancel();
 end;
 
 constructor TResourceHandler.Create(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: ustring; const request: ICefRequest);
