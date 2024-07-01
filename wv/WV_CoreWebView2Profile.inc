@@ -136,7 +136,7 @@ begin
 end;
 
 //function
-function CoreWebView2Profile_ClearBrowsingDataInTimeRange(AObj: TCoreWebView2Profile; dataKinds: TWVBrowsingDataKinds; const startTime, endTime: TDateTime; const handler: ICoreWebView2ClearBrowsingDataCompletedHandler): LongBool; extdecl;
+function CoreWebView2Profile_ClearBrowsingDataInTimeRange(AObj: TCoreWebView2Profile; dataKinds: TWVBrowsingDataKinds; var startTime, endTime: TDateTime; const handler: ICoreWebView2ClearBrowsingDataCompletedHandler): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ClearBrowsingDataInTimeRange(dataKinds, startTime, endTime, handler);

@@ -1500,7 +1500,7 @@ begin
 end;
 
 //function
-function WVBrowserBase_ClearBrowsingDataInTimeRange(AObj: TWVBrowserBase; dataKinds: TWVBrowsingDataKinds; const startTime, endTime: TDateTime): LongBool; extdecl;
+function WVBrowserBase_ClearBrowsingDataInTimeRange(AObj: TWVBrowserBase; dataKinds: TWVBrowsingDataKinds; var startTime, endTime: TDateTime): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ClearBrowsingDataInTimeRange(dataKinds, startTime, endTime);

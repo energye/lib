@@ -44,7 +44,7 @@ begin
 end;
 
 //property
-function CoreWebView2ClientCertificate_ValidFrom(AObj: TCoreWebView2ClientCertificate): TDateTime; extdecl;
+procedure CoreWebView2ClientCertificate_ValidFrom(AObj: TCoreWebView2ClientCertificate; var Result: TDateTime); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ValidFrom;
@@ -52,7 +52,7 @@ begin
 end;
 
 //property
-function CoreWebView2ClientCertificate_ValidTo(AObj: TCoreWebView2ClientCertificate): TDateTime; extdecl;
+procedure CoreWebView2ClientCertificate_ValidTo(AObj: TCoreWebView2ClientCertificate; var Result: TDateTime); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.ValidTo;

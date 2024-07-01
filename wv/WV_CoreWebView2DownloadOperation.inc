@@ -72,7 +72,7 @@ begin
 end;
 
 //property
-function CoreWebView2DownloadOperation_EstimatedEndTime(AObj: TCoreWebView2DownloadOperation): TDateTime; extdecl;
+procedure CoreWebView2DownloadOperation_EstimatedEndTime(AObj: TCoreWebView2DownloadOperation; var Result: TDateTime); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.EstimatedEndTime;

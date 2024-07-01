@@ -76,7 +76,7 @@ begin
 end;
 
 //property
-function CoreWebView2Cookie_ExpiresDate(AIsSet: LongBool; AObj: TCoreWebView2Cookie; AValue: TDateTime): TDateTime; extdecl;
+procedure CoreWebView2Cookie_ExpiresDate(AIsSet: LongBool; AObj: TCoreWebView2Cookie; var AValue: TDateTime; var Result: TDateTime); extdecl;
 begin
   handleExceptionBegin
   if AIsSet then
