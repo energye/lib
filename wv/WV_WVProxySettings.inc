@@ -2,6 +2,7 @@
 //constructor
 function WVProxySettings_Create(): TWVProxySettings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TWVProxySettings.Create();
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function WVProxySettings_NoProxyServer(AIsSet: LongBool; AObj: TWVProxySettings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NoProxyServer'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -22,6 +24,7 @@ end;
 //property
 function WVProxySettings_AutoDetect(AIsSet: LongBool; AObj: TWVProxySettings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoDetect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -34,6 +37,7 @@ end;
 //property
 function WVProxySettings_ByPassList(AIsSet: LongBool; AObj: TWVProxySettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ByPassList'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -46,6 +50,7 @@ end;
 //property
 function WVProxySettings_PacUrl(AIsSet: LongBool; AObj: TWVProxySettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PacUrl'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -58,6 +63,7 @@ end;
 //property
 function WVProxySettings_Server(AIsSet: LongBool; AObj: TWVProxySettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Server'}
   handleExceptionBegin
   if AIsSet then
   begin

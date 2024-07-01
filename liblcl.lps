@@ -356,8 +356,9 @@
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="55"/>
-        <CursorPos Y="91"/>
+        <CursorPos Y="77"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -888,17 +889,16 @@
         <Filename Value="wv\WV_CoreWebView2ClientCertificate.inc"/>
         <EditorIndex Value="8"/>
         <TopLine Value="31"/>
-        <CursorPos X="21" Y="59"/>
+        <CursorPos Y="59"/>
         <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit71>
       <Unit72>
         <Filename Value="wv\WV_WVBrowserBase.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="1479"/>
-        <CursorPos X="121" Y="1503"/>
+        <CursorPos X="11" Y="1505"/>
         <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>

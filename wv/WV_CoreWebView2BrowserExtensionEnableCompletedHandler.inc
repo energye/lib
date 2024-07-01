@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2BrowserExtensionEnableCompletedHandler_Create(const aEvents: IWVBrowserEvents; const aExtensionID: PChar): TCoreWebView2BrowserExtensionEnableCompletedHandler; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2BrowserExtensionEnableCompletedHandler.Create(aEvents, aExtensionID);
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2Settings_Create(const aBaseIntf: ICoreWebView2Settings): TCoreWebView2Settings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2Settings.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2Settings_Initialized(AObj: TCoreWebView2Settings): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2Settings_BaseIntf(AObj: TCoreWebView2Settings; var Result: ICoreWebView2Settings); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2Settings_IsBuiltInErrorPageEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsBuiltInErrorPageEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CoreWebView2Settings_AreDefaultContextMenusEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreDefaultContextMenusEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CoreWebView2Settings_AreDefaultScriptDialogsEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreDefaultScriptDialogsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function CoreWebView2Settings_AreDevToolsEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreDevToolsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 function CoreWebView2Settings_IsScriptEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsScriptEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 function CoreWebView2Settings_IsStatusBarEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsStatusBarEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 function CoreWebView2Settings_IsWebMessageEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsWebMessageEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 function CoreWebView2Settings_IsZoomControlEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsZoomControlEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function CoreWebView2Settings_AreHostObjectsAllowed(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreHostObjectsAllowed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 function CoreWebView2Settings_UserAgent(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='UserAgent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CoreWebView2Settings_AreBrowserAcceleratorKeysEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreBrowserAcceleratorKeysEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CoreWebView2Settings_IsPasswordAutosaveEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsPasswordAutosaveEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CoreWebView2Settings_IsGeneralAutofillEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsGeneralAutofillEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function CoreWebView2Settings_IsPinchZoomEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsPinchZoomEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 function CoreWebView2Settings_IsSwipeNavigationEnabled(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSwipeNavigationEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function CoreWebView2Settings_HiddenPdfToolbarItems(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: TWVPDFToolbarItems): TWVPDFToolbarItems; extdecl;
 begin
+  {$define handleExceptionFuncName :='HiddenPdfToolbarItems'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //property
 function CoreWebView2Settings_IsReputationCheckingRequired(AIsSet: LongBool; AObj: TCoreWebView2Settings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsReputationCheckingRequired'}
   handleExceptionBegin
   if AIsSet then
   begin

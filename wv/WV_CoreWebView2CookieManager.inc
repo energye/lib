@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2CookieManager_Create(const aBaseIntf: ICoreWebView2CookieManager): TCoreWebView2CookieManager; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2CookieManager.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2CookieManager_Initialized(AObj: TCoreWebView2CookieManager): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2CookieManager_BaseIntf(AObj: TCoreWebView2CookieManager; var Result: ICoreWebView2CookieManager); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //function
 procedure CoreWebView2CookieManager_CreateCookie(AObj: TCoreWebView2CookieManager; const aName, aValue, aDomain, aPath: PChar; var Result: ICoreWebView2Cookie); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateCookie'}
   handleExceptionBegin
   Result := AObj.CreateCookie(aName, aValue, aDomain, aPath);
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //function
 procedure CoreWebView2CookieManager_CopyCookie(AObj: TCoreWebView2CookieManager; const aCookie: ICoreWebView2Cookie; var Result: ICoreWebView2Cookie); extdecl;
 begin
+  {$define handleExceptionFuncName :='CopyCookie'}
   handleExceptionBegin
   Result := AObj.CopyCookie(aCookie);
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //function
 function CoreWebView2CookieManager_GetCookies(AObj: TCoreWebView2CookieManager; const aURI: PChar; const aHandler: ICoreWebView2GetCookiesCompletedHandler): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCookies'}
   handleExceptionBegin
   Result := AObj.GetCookies(aURI, aHandler);
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //function
 function CoreWebView2CookieManager_AddOrUpdateCookie(AObj: TCoreWebView2CookieManager; const aCookie: ICoreWebView2Cookie): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddOrUpdateCookie'}
   handleExceptionBegin
   Result := AObj.AddOrUpdateCookie(aCookie);
   handleExceptionEnd
@@ -58,6 +65,7 @@ end;
 //function
 function CoreWebView2CookieManager_DeleteCookie(AObj: TCoreWebView2CookieManager; const aCookie: ICoreWebView2Cookie): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookie'}
   handleExceptionBegin
   Result := AObj.DeleteCookie(aCookie);
   handleExceptionEnd
@@ -66,6 +74,7 @@ end;
 //function
 function CoreWebView2CookieManager_DeleteCookies(AObj: TCoreWebView2CookieManager; const aName, aURI: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookies'}
   handleExceptionBegin
   Result := AObj.DeleteCookies(aName, aURI);
   handleExceptionEnd
@@ -74,6 +83,7 @@ end;
 //function
 function CoreWebView2CookieManager_DeleteCookiesWithDomainAndPath(AObj: TCoreWebView2CookieManager; const aName, aDomain, aPath: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookiesWithDomainAndPath'}
   handleExceptionBegin
   Result := AObj.DeleteCookiesWithDomainAndPath(aName, aDomain, aPath);
   handleExceptionEnd
@@ -82,6 +92,7 @@ end;
 //function
 function CoreWebView2CookieManager_DeleteAllCookies(AObj: TCoreWebView2CookieManager): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteAllCookies'}
   handleExceptionBegin
   Result := AObj.DeleteAllCookies();
   handleExceptionEnd

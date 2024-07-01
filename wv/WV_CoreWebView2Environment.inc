@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2Environment_Create(const aBaseIntf: ICoreWebView2Environment): TCoreWebView2Environment; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2Environment.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2Environment_Initialized(AObj: TCoreWebView2Environment): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2Environment_BaseIntf(AObj: TCoreWebView2Environment; var Result: ICoreWebView2Environment); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2Environment_BrowserVersionInfo(AObj: TCoreWebView2Environment): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserVersionInfo'}
   handleExceptionBegin
   Result := ToPChar(AObj.BrowserVersionInfo);
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function CoreWebView2Environment_SupportsCompositionController(AObj: TCoreWebView2Environment): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SupportsCompositionController'}
   handleExceptionBegin
   Result := AObj.SupportsCompositionController;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function CoreWebView2Environment_SupportsControllerOptions(AObj: TCoreWebView2Environment): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SupportsControllerOptions'}
   handleExceptionBegin
   Result := AObj.SupportsControllerOptions;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function CoreWebView2Environment_UserDataFolder(AObj: TCoreWebView2Environment): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='UserDataFolder'}
   handleExceptionBegin
   Result := ToPChar(AObj.UserDataFolder);
   handleExceptionEnd
@@ -58,6 +65,7 @@ end;
 //property
 procedure CoreWebView2Environment_ProcessInfos(AObj: TCoreWebView2Environment; var Result: ICoreWebView2ProcessInfoCollection); extdecl;
 begin
+  {$define handleExceptionFuncName :='ProcessInfos'}
   handleExceptionBegin
   Result := AObj.ProcessInfos;
   handleExceptionEnd
@@ -66,6 +74,7 @@ end;
 //property
 function CoreWebView2Environment_FailureReportFolderPath(AObj: TCoreWebView2Environment): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FailureReportFolderPath'}
   handleExceptionBegin
   Result := ToPChar(AObj.FailureReportFolderPath);
   handleExceptionEnd
@@ -74,6 +83,7 @@ end;
 //function
 function CoreWebView2Environment_AddAllLoaderEvents(AObj: TCoreWebView2Environment; const aLoaderComponent: TComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddAllLoaderEvents'}
   handleExceptionBegin
   Result := AObj.AddAllLoaderEvents(aLoaderComponent);
   handleExceptionEnd
@@ -82,6 +92,7 @@ end;
 //function
 function CoreWebView2Environment_AddAllBrowserEvents(AObj: TCoreWebView2Environment; const aBrowserComponent: TComponent): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddAllBrowserEvents'}
   handleExceptionBegin
   Result := AObj.AddAllBrowserEvents(aBrowserComponent);
   handleExceptionEnd
@@ -92,6 +103,7 @@ function CoreWebView2Environment_CreateCoreWebView2Controller(AObj: TCoreWebView
 var
   RetaResult: Integer;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2Controller'}
   handleExceptionBegin
   RetaResult := aResult;
   Result := AObj.CreateCoreWebView2Controller(aParentWindow, aBrowserEvents, RetaResult);
@@ -104,6 +116,7 @@ function CoreWebView2Environment_CreateWebResourceResponse(AObj: TCoreWebView2En
 var
   RetaResponse: ICoreWebView2WebResourceResponse;
 begin
+  {$define handleExceptionFuncName :='CreateWebResourceResponse'}
   handleExceptionBegin
   RetaResponse := aResponse;
   Result := AObj.CreateWebResourceResponse(aContent, aStatusCode, aReasonPhrase, aHeaders, RetaResponse);
@@ -116,6 +129,7 @@ function CoreWebView2Environment_CreateWebResourceRequest(AObj: TCoreWebView2Env
 var
   RetaRequest: ICoreWebView2WebResourceRequest;
 begin
+  {$define handleExceptionFuncName :='CreateWebResourceRequest'}
   handleExceptionBegin
   RetaRequest := aRequest;
   Result := AObj.CreateWebResourceRequest(aURI, aMethod, aPostData, aHeaders, RetaRequest);
@@ -128,6 +142,7 @@ function CoreWebView2Environment_CreateCoreWebView2CompositionController(AObj: T
 var
   RetaResult: Integer;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2CompositionController'}
   handleExceptionBegin
   RetaResult := aResult;
   Result := AObj.CreateCoreWebView2CompositionController(aParentWindow, aBrowserEvents, RetaResult);
@@ -140,6 +155,7 @@ function CoreWebView2Environment_CreateCoreWebView2PointerInfo(AObj: TCoreWebVie
 var
   RetaPointerInfo: ICoreWebView2PointerInfo;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2PointerInfo'}
   handleExceptionBegin
   RetaPointerInfo := aPointerInfo;
   Result := AObj.CreateCoreWebView2PointerInfo(RetaPointerInfo);
@@ -152,6 +168,7 @@ function CoreWebView2Environment_GetAutomationProviderForWindow(AObj: TCoreWebVi
 var
   RetaProvider: IUnknown;
 begin
+  {$define handleExceptionFuncName :='GetAutomationProviderForWindow'}
   handleExceptionBegin
   RetaProvider := aProvider;
   Result := AObj.GetAutomationProviderForWindow(aHandle, RetaProvider);
@@ -164,6 +181,7 @@ function CoreWebView2Environment_CreatePrintSettings(AObj: TCoreWebView2Environm
 var
   RetaPrintSettings: ICoreWebView2PrintSettings;
 begin
+  {$define handleExceptionFuncName :='CreatePrintSettings'}
   handleExceptionBegin
   RetaPrintSettings := aPrintSettings;
   Result := AObj.CreatePrintSettings(RetaPrintSettings);
@@ -176,6 +194,7 @@ function CoreWebView2Environment_CreateContextMenuItem(AObj: TCoreWebView2Enviro
 var
   RetaMenuItem: ICoreWebView2ContextMenuItem;
 begin
+  {$define handleExceptionFuncName :='CreateContextMenuItem'}
   handleExceptionBegin
   RetaMenuItem := aMenuItem;
   Result := AObj.CreateContextMenuItem(aLabel, aIconStream, aKind, RetaMenuItem);
@@ -189,6 +208,7 @@ var
   RetaOptions: ICoreWebView2ControllerOptions;
   RetaResult: Integer;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2ControllerOptions'}
   handleExceptionBegin
   RetaOptions := aOptions;
   RetaResult := aResult;
@@ -203,6 +223,7 @@ function CoreWebView2Environment_CreateCoreWebView2ControllerWithOptions(AObj: T
 var
   RetaResult: Integer;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2ControllerWithOptions'}
   handleExceptionBegin
   RetaResult := aResult;
   Result := AObj.CreateCoreWebView2ControllerWithOptions(aParentWindow, aOptions, aBrowserEvents, RetaResult);
@@ -215,6 +236,7 @@ function CoreWebView2Environment_CreateCoreWebView2CompositionControllerWithOpti
 var
   RetaResult: Integer;
 begin
+  {$define handleExceptionFuncName :='CreateCoreWebView2CompositionControllerWithOptions'}
   handleExceptionBegin
   RetaResult := aResult;
   Result := AObj.CreateCoreWebView2CompositionControllerWithOptions(aParentWindow, aOptions, aBrowserEvents, RetaResult);
@@ -227,6 +249,7 @@ function CoreWebView2Environment_CreateSharedBuffer(AObj: TCoreWebView2Environme
 var
   RetaSharedBuffer: ICoreWebView2SharedBuffer;
 begin
+  {$define handleExceptionFuncName :='CreateSharedBuffer'}
   handleExceptionBegin
   RetaSharedBuffer := aSharedBuffer;
   Result := AObj.CreateSharedBuffer(aSize, RetaSharedBuffer);
@@ -237,6 +260,7 @@ end;
 //function
 function CoreWebView2Environment_GetProcessExtendedInfos(AObj: TCoreWebView2Environment; const aBrowserEvents: IWVBrowserEvents): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetProcessExtendedInfos'}
   handleExceptionBegin
   Result := AObj.GetProcessExtendedInfos(aBrowserEvents);
   handleExceptionEnd

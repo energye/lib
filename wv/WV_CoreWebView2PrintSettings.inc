@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2PrintSettings_Create(const aBaseIntf: ICoreWebView2PrintSettings): TCoreWebView2PrintSettings; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2PrintSettings.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2PrintSettings_Initialized(AObj: TCoreWebView2PrintSettings): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_BaseIntf(AObj: TCoreWebView2PrintSettings; var Result: ICoreWebView2PrintSettings); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2PrintSettings_Orientation(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: TWVPrintOrientation): TWVPrintOrientation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Orientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_ScaleFactor(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ScaleFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_PageWidth(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_PageHeight(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='PageHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_MarginTop(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginTop'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_MarginBottom(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginBottom'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_MarginLeft(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginLeft'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 procedure CoreWebView2PrintSettings_MarginRight(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='MarginRight'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 function CoreWebView2PrintSettings_ShouldPrintBackgrounds(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShouldPrintBackgrounds'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 function CoreWebView2PrintSettings_ShouldPrintSelectionOnly(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShouldPrintSelectionOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CoreWebView2PrintSettings_ShouldPrintHeaderAndFooter(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShouldPrintHeaderAndFooter'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CoreWebView2PrintSettings_HeaderTitle(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='HeaderTitle'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CoreWebView2PrintSettings_FooterUri(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FooterUri'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function CoreWebView2PrintSettings_PageRanges(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PageRanges'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 function CoreWebView2PrintSettings_PagesPerSide(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PagesPerSide'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function CoreWebView2PrintSettings_Copies(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='Copies'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //property
 function CoreWebView2PrintSettings_Collation(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: TWVPrintCollation): TWVPrintCollation; extdecl;
 begin
+  {$define handleExceptionFuncName :='Collation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -230,6 +250,7 @@ end;
 //property
 function CoreWebView2PrintSettings_ColorMode(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: TWVPrintColorMode): TWVPrintColorMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColorMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +263,7 @@ end;
 //property
 function CoreWebView2PrintSettings_Duplex(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: TWVPrintDuplex): TWVPrintDuplex; extdecl;
 begin
+  {$define handleExceptionFuncName :='Duplex'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -254,6 +276,7 @@ end;
 //property
 function CoreWebView2PrintSettings_MediaSize(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: TWVPrintMediaSize): TWVPrintMediaSize; extdecl;
 begin
+  {$define handleExceptionFuncName :='MediaSize'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -266,6 +289,7 @@ end;
 //property
 function CoreWebView2PrintSettings_PrinterName(AIsSet: LongBool; AObj: TCoreWebView2PrintSettings; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrinterName'}
   handleExceptionBegin
   if AIsSet then
   begin

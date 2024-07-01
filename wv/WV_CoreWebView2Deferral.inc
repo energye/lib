@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2Deferral_Create(const aBaseIntf: ICoreWebView2Deferral): TCoreWebView2Deferral; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2Deferral.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2Deferral_Initialized(AObj: TCoreWebView2Deferral): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2Deferral_BaseIntf(AObj: TCoreWebView2Deferral; var Result: ICoreWebView2Deferral); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //function
 function CoreWebView2Deferral_Complete(AObj: TCoreWebView2Deferral): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Complete'}
   handleExceptionBegin
   Result := AObj.Complete();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2PointerInfo_Create(const aBaseIntf: ICoreWebView2PointerInfo): TCoreWebView2PointerInfo; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2PointerInfo.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2PointerInfo_Initialized(AObj: TCoreWebView2PointerInfo): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_BaseIntf(AObj: TCoreWebView2PointerInfo; var Result: ICoreWebView2PointerInfo); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PointerKind(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PointerKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PointerId(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PointerId'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 function CoreWebView2PointerInfo_FrameId(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='FrameId'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PointerFlags(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PointerFlags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -74,6 +81,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_PointerDeviceRect(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='PointerDeviceRect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -86,6 +94,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_DisplayRect(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='DisplayRect'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +107,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_PixelLocation(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='PixelLocation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +120,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_HimetricLocation(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='HimetricLocation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -122,6 +133,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_PixelLocationRaw(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='PixelLocationRaw'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -134,6 +146,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_HimetricLocationRaw(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='HimetricLocationRaw'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -146,6 +159,7 @@ end;
 //property
 function CoreWebView2PointerInfo_Time(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='Time'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -158,6 +172,7 @@ end;
 //property
 function CoreWebView2PointerInfo_HistoryCount(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='HistoryCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -170,6 +185,7 @@ end;
 //property
 function CoreWebView2PointerInfo_InputData(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='InputData'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -182,6 +198,7 @@ end;
 //property
 function CoreWebView2PointerInfo_KeyStates(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeyStates'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -194,6 +211,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_PerformanceCount(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: uint64; var Result: uint64); extdecl;
 begin
+  {$define handleExceptionFuncName :='PerformanceCount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -206,6 +224,7 @@ end;
 //property
 function CoreWebView2PointerInfo_ButtonChangeKind(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='ButtonChangeKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -218,6 +237,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenFlags(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenFlags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -230,6 +250,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenMask(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenMask'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -242,6 +263,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenPressure(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenPressure'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -254,6 +276,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenRotation(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenRotation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -266,6 +289,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenTiltX(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenTiltX'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -278,6 +302,7 @@ end;
 //property
 function CoreWebView2PointerInfo_PenTiltY(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='PenTiltY'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -290,6 +315,7 @@ end;
 //property
 function CoreWebView2PointerInfo_TouchFlags(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchFlags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -302,6 +328,7 @@ end;
 //property
 function CoreWebView2PointerInfo_TouchMask(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchMask'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -314,6 +341,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_TouchContact(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchContact'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -326,6 +354,7 @@ end;
 //property
 procedure CoreWebView2PointerInfo_TouchContactRaw(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchContactRaw'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -338,6 +367,7 @@ end;
 //property
 function CoreWebView2PointerInfo_TouchOrientation(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchOrientation'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -350,6 +380,7 @@ end;
 //property
 function CoreWebView2PointerInfo_TouchPressure(AIsSet: LongBool; AObj: TCoreWebView2PointerInfo; AValue: uint32): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchPressure'}
   handleExceptionBegin
   if AIsSet then
   begin

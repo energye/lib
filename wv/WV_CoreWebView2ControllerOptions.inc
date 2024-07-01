@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2ControllerOptions_Create(const aBaseIntf: ICoreWebView2ControllerOptions): TCoreWebView2ControllerOptions; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2ControllerOptions.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2ControllerOptions_Initialized(AObj: TCoreWebView2ControllerOptions): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2ControllerOptions_BaseIntf(AIsSet: LongBool; AObj: TCoreWebView2ControllerOptions; AValue: ICoreWebView2ControllerOptions; var Result: ICoreWebView2ControllerOptions); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CoreWebView2ControllerOptions_ProfileName(AIsSet: LongBool; AObj: TCoreWebView2ControllerOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfileName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function CoreWebView2ControllerOptions_IsInPrivateModeEnabled(AIsSet: LongBool; AObj: TCoreWebView2ControllerOptions; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsInPrivateModeEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //property
 function CoreWebView2ControllerOptions_ScriptLocale(AIsSet: LongBool; AObj: TCoreWebView2ControllerOptions; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScriptLocale'}
   handleExceptionBegin
   if AIsSet then
   begin

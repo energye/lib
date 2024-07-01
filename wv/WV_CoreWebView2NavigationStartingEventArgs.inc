@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2NavigationStartingEventArgs_Create(const aArgs: ICoreWebView2NavigationStartingEventArgs): TCoreWebView2NavigationStartingEventArgs; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2NavigationStartingEventArgs.Create(aArgs);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_Initialized(AObj: TCoreWebView2NavigationStartingEventArgs): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2NavigationStartingEventArgs_BaseIntf(AObj: TCoreWebView2NavigationStartingEventArgs; var Result: ICoreWebView2NavigationStartingEventArgs); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_URI(AObj: TCoreWebView2NavigationStartingEventArgs): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='URI'}
   handleExceptionBegin
   Result := ToPChar(AObj.URI);
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_IsUserInitiated(AObj: TCoreWebView2NavigationStartingEventArgs): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsUserInitiated'}
   handleExceptionBegin
   Result := AObj.IsUserInitiated;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_IsRedirected(AObj: TCoreWebView2NavigationStartingEventArgs): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsRedirected'}
   handleExceptionBegin
   Result := AObj.IsRedirected;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_Cancel(AIsSet: LongBool; AObj: TCoreWebView2NavigationStartingEventArgs; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Cancel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +69,7 @@ end;
 //property
 procedure CoreWebView2NavigationStartingEventArgs_NavigationID(AObj: TCoreWebView2NavigationStartingEventArgs; var Result: uint64); extdecl;
 begin
+  {$define handleExceptionFuncName :='NavigationID'}
   handleExceptionBegin
   Result := AObj.NavigationID;
   handleExceptionEnd
@@ -70,6 +78,7 @@ end;
 //property
 procedure CoreWebView2NavigationStartingEventArgs_RequestHeaders(AObj: TCoreWebView2NavigationStartingEventArgs; var Result: ICoreWebView2HttpRequestHeaders); extdecl;
 begin
+  {$define handleExceptionFuncName :='RequestHeaders'}
   handleExceptionBegin
   Result := AObj.RequestHeaders;
   handleExceptionEnd
@@ -78,6 +87,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_AdditionalAllowedFrameAncestors(AIsSet: LongBool; AObj: TCoreWebView2NavigationStartingEventArgs; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AdditionalAllowedFrameAncestors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +100,7 @@ end;
 //property
 function CoreWebView2NavigationStartingEventArgs_NavigationKind(AObj: TCoreWebView2NavigationStartingEventArgs): TWVNavigationKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='NavigationKind'}
   handleExceptionBegin
   Result := AObj.NavigationKind;
   handleExceptionEnd

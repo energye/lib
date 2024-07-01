@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2WebResourceRequestRef_Create(const aBaseIntf: ICoreWebView2WebResourceRequest): TCoreWebView2WebResourceRequestRef; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2WebResourceRequestRef.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2WebResourceRequestRef_Initialized(AObj: TCoreWebView2WebResourceRequestRef): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2WebResourceRequestRef_BaseIntf(AObj: TCoreWebView2WebResourceRequestRef; var Result: ICoreWebView2WebResourceRequest); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2WebResourceRequestRef_URI(AIsSet: LongBool; AObj: TCoreWebView2WebResourceRequestRef; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='URI'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -38,6 +42,7 @@ end;
 //property
 function CoreWebView2WebResourceRequestRef_Method(AIsSet: LongBool; AObj: TCoreWebView2WebResourceRequestRef; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Method'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -50,6 +55,7 @@ end;
 //property
 procedure CoreWebView2WebResourceRequestRef_Content(AIsSet: LongBool; AObj: TCoreWebView2WebResourceRequestRef; AValue: TStreamAdapter; var Result: IStream); extdecl;
 begin
+  {$define handleExceptionFuncName :='Content'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +68,7 @@ end;
 //property
 procedure CoreWebView2WebResourceRequestRef_Headers(AObj: TCoreWebView2WebResourceRequestRef; var Result: ICoreWebView2HttpRequestHeaders); extdecl;
 begin
+  {$define handleExceptionFuncName :='Headers'}
   handleExceptionBegin
   Result := AObj.Headers;
   handleExceptionEnd

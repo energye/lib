@@ -2,6 +2,7 @@
 //constructor
 function WVLoader_Create(AOwner: TComponent): TWVLoader; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TWVLoader.Create(AOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 procedure WVLoader_Environment(AObj: TWVLoader; var Result: ICoreWebView2Environment); extdecl;
 begin
+  {$define handleExceptionFuncName :='Environment'}
   handleExceptionBegin
   Result := AObj.Environment;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function WVLoader_Status(AObj: TWVLoader): TWV2LoaderStatus; extdecl;
 begin
+  {$define handleExceptionFuncName :='Status'}
   handleExceptionBegin
   Result := AObj.Status;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function WVLoader_AvailableBrowserVersion(AObj: TWVLoader): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AvailableBrowserVersion'}
   handleExceptionBegin
   Result := ToPChar(AObj.AvailableBrowserVersion);
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function WVLoader_ErrorMessage(AObj: TWVLoader): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ErrorMessage'}
   handleExceptionBegin
   Result := ToPChar(AObj.ErrorMessage);
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 procedure WVLoader_ErrorCode(AObj: TWVLoader; var Result: int64); extdecl;
 begin
+  {$define handleExceptionFuncName :='ErrorCode'}
   handleExceptionBegin
   Result := AObj.ErrorCode;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function WVLoader_SetCurrentDir(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetCurrentDir'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -62,6 +69,7 @@ end;
 //property
 function WVLoader_Initialized(AObj: TWVLoader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -70,6 +78,7 @@ end;
 //property
 function WVLoader_InitializationError(AObj: TWVLoader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='InitializationError'}
   handleExceptionBegin
   Result := AObj.InitializationError;
   handleExceptionEnd
@@ -78,6 +87,7 @@ end;
 //property
 function WVLoader_CheckFiles(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CheckFiles'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -90,6 +100,7 @@ end;
 //property
 function WVLoader_ShowMessageDlg(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowMessageDlg'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -102,6 +113,7 @@ end;
 //property
 function WVLoader_InitCOMLibrary(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='InitCOMLibrary'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -114,6 +126,7 @@ end;
 //property
 function WVLoader_CustomCommandLineSwitches(AObj: TWVLoader): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomCommandLineSwitches'}
   handleExceptionBegin
   Result := ToPChar(AObj.CustomCommandLineSwitches);
   handleExceptionEnd
@@ -122,6 +135,7 @@ end;
 //property
 function WVLoader_DeviceScaleFactor(AObj: TWVLoader): single; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeviceScaleFactor'}
   handleExceptionBegin
   Result := AObj.DeviceScaleFactor;
   handleExceptionEnd
@@ -130,6 +144,7 @@ end;
 //property
 function WVLoader_ReRaiseExceptions(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ReRaiseExceptions'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -142,6 +157,7 @@ end;
 //property
 function WVLoader_InstalledRuntimeVersion(AObj: TWVLoader): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='InstalledRuntimeVersion'}
   handleExceptionBegin
   Result := ToPChar(AObj.InstalledRuntimeVersion);
   handleExceptionEnd
@@ -150,6 +166,7 @@ end;
 //property
 function WVLoader_LoaderDllPath(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='LoaderDllPath'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +179,7 @@ end;
 //property
 function WVLoader_UseInternalLoader(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='UseInternalLoader'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +192,7 @@ end;
 //property
 function WVLoader_BrowserExecPath(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserExecPath'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +205,7 @@ end;
 //property
 function WVLoader_UserDataFolder(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='UserDataFolder'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +218,7 @@ end;
 //property
 function WVLoader_AdditionalBrowserArguments(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AdditionalBrowserArguments'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +231,7 @@ end;
 //property
 function WVLoader_Language(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Language'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +244,7 @@ end;
 //property
 function WVLoader_TargetCompatibleBrowserVersion(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TargetCompatibleBrowserVersion'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +257,7 @@ end;
 //property
 function WVLoader_AllowSingleSignOnUsingOSPrimaryAccount(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowSingleSignOnUsingOSPrimaryAccount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +270,7 @@ end;
 //property
 function WVLoader_ExclusiveUserDataFolderAccess(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExclusiveUserDataFolderAccess'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +283,7 @@ end;
 //property
 function WVLoader_CustomCrashReportingEnabled(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomCrashReportingEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +296,7 @@ end;
 //property
 function WVLoader_EnableTrackingPrevention(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableTrackingPrevention'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -282,6 +309,7 @@ end;
 //property
 function WVLoader_AreBrowserExtensionsEnabled(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreBrowserExtensionsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +322,7 @@ end;
 //property
 function WVLoader_EnableGPU(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableGPU'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -306,6 +335,7 @@ end;
 //property
 function WVLoader_EnableFeatures(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableFeatures'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -318,6 +348,7 @@ end;
 //property
 function WVLoader_DisableFeatures(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableFeatures'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -330,6 +361,7 @@ end;
 //property
 function WVLoader_EnableBlinkFeatures(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableBlinkFeatures'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -342,6 +374,7 @@ end;
 //property
 function WVLoader_DisableBlinkFeatures(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableBlinkFeatures'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -354,6 +387,7 @@ end;
 //property
 function WVLoader_BlinkSettings(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BlinkSettings'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -366,6 +400,7 @@ end;
 //property
 function WVLoader_ForceFieldTrials(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ForceFieldTrials'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -378,6 +413,7 @@ end;
 //property
 function WVLoader_ForceFieldTrialParams(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ForceFieldTrialParams'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -390,6 +426,7 @@ end;
 //property
 function WVLoader_SmartScreenProtectionEnabled(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SmartScreenProtectionEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -402,6 +439,7 @@ end;
 //property
 function WVLoader_AllowInsecureLocalhost(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowInsecureLocalhost'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -414,6 +452,7 @@ end;
 //property
 function WVLoader_DisableWebSecurity(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableWebSecurity'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -426,6 +465,7 @@ end;
 //property
 function WVLoader_TouchEvents(AIsSet: LongBool; AObj: TWVLoader; AValue: TWVState): TWVState; extdecl;
 begin
+  {$define handleExceptionFuncName :='TouchEvents'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -438,6 +478,7 @@ end;
 //property
 function WVLoader_HyperlinkAuditing(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='HyperlinkAuditing'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -450,6 +491,7 @@ end;
 //property
 function WVLoader_AutoplayPolicy(AIsSet: LongBool; AObj: TWVLoader; AValue: TWVAutoplayPolicy): TWVAutoplayPolicy; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoplayPolicy'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -462,6 +504,7 @@ end;
 //property
 function WVLoader_MuteAudio(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='MuteAudio'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -474,6 +517,7 @@ end;
 //property
 function WVLoader_KioskPrinting(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KioskPrinting'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -486,6 +530,7 @@ end;
 //property
 function WVLoader_ProxySettings(AObj: TWVLoader): TWVProxySettings; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProxySettings'}
   handleExceptionBegin
   Result := AObj.ProxySettings;
   handleExceptionEnd
@@ -494,6 +539,7 @@ end;
 //property
 function WVLoader_AllowFileAccessFromFiles(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowFileAccessFromFiles'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -506,6 +552,7 @@ end;
 //property
 function WVLoader_AllowRunningInsecureContent(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowRunningInsecureContent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -518,6 +565,7 @@ end;
 //property
 function WVLoader_DisableBackgroundNetworking(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableBackgroundNetworking'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -530,6 +578,7 @@ end;
 //property
 function WVLoader_ForcedDeviceScaleFactor(AIsSet: LongBool; AObj: TWVLoader; AValue: single): single; extdecl;
 begin
+  {$define handleExceptionFuncName :='ForcedDeviceScaleFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -542,6 +591,7 @@ end;
 //property
 function WVLoader_RemoteDebuggingPort(AIsSet: LongBool; AObj: TWVLoader; AValue: integer): integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoteDebuggingPort'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -554,6 +604,7 @@ end;
 //property
 function WVLoader_RemoteAllowOrigins(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoteAllowOrigins'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -566,6 +617,7 @@ end;
 //property
 function WVLoader_DebugLog(AIsSet: LongBool; AObj: TWVLoader; AValue: TWV2DebugLog): TWV2DebugLog; extdecl;
 begin
+  {$define handleExceptionFuncName :='DebugLog'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -578,6 +630,7 @@ end;
 //property
 function WVLoader_DebugLogLevel(AIsSet: LongBool; AObj: TWVLoader; AValue: TWV2DebugLogLevel): TWV2DebugLogLevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='DebugLogLevel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -590,6 +643,7 @@ end;
 //property
 function WVLoader_JavaScriptFlags(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='JavaScriptFlags'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -602,6 +656,7 @@ end;
 //property
 function WVLoader_DisableEdgePitchNotification(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisableEdgePitchNotification'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -614,6 +669,7 @@ end;
 //property
 function WVLoader_TreatInsecureOriginAsSecure(AIsSet: LongBool; AObj: TWVLoader; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TreatInsecureOriginAsSecure'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -626,6 +682,7 @@ end;
 //property
 function WVLoader_AutoAcceptCamAndMicCapture(AIsSet: LongBool; AObj: TWVLoader; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AutoAcceptCamAndMicCapture'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -638,6 +695,7 @@ end;
 //property
 function WVLoader_SupportsCompositionController(AObj: TWVLoader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SupportsCompositionController'}
   handleExceptionBegin
   Result := AObj.SupportsCompositionController;
   handleExceptionEnd
@@ -646,6 +704,7 @@ end;
 //property
 procedure WVLoader_ProcessInfos(AObj: TWVLoader; var Result: ICoreWebView2ProcessInfoCollection); extdecl;
 begin
+  {$define handleExceptionFuncName :='ProcessInfos'}
   handleExceptionBegin
   Result := AObj.ProcessInfos;
   handleExceptionEnd
@@ -654,6 +713,7 @@ end;
 //property
 function WVLoader_SupportsControllerOptions(AObj: TWVLoader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SupportsControllerOptions'}
   handleExceptionBegin
   Result := AObj.SupportsControllerOptions;
   handleExceptionEnd
@@ -662,6 +722,7 @@ end;
 //property
 function WVLoader_FailureReportFolderPath(AObj: TWVLoader): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FailureReportFolderPath'}
   handleExceptionBegin
   Result := ToPChar(AObj.FailureReportFolderPath);
   handleExceptionEnd
@@ -670,6 +731,7 @@ end;
 //function
 function WVLoader_StartWebView2(AObj: TWVLoader): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StartWebView2'}
   handleExceptionBegin
   Result := AObj.StartWebView2();
   handleExceptionEnd
@@ -680,6 +742,7 @@ function WVLoader_CompareVersions(AObj: TWVLoader; const aVersion1, aVersion2: P
 var
   RetaCompRslt: integer;
 begin
+  {$define handleExceptionFuncName :='CompareVersions'}
   handleExceptionBegin
   RetaCompRslt := aCompRslt;
   Result := AObj.CompareVersions(aVersion1, aVersion2, RetaCompRslt);
@@ -690,6 +753,7 @@ end;
 //procedure
 procedure WVLoader_UpdateDeviceScaleFactor(AObj: TWVLoader); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateDeviceScaleFactor'}
   handleExceptionBegin
   AObj.UpdateDeviceScaleFactor();
   handleExceptionEnd
@@ -698,6 +762,7 @@ end;
 //procedure
 procedure WVLoader_AppendErrorLog(AObj: TWVLoader; const aText: PChar); extdecl;
 begin
+  {$define handleExceptionFuncName :='AppendErrorLog'}
   handleExceptionBegin
   AObj.AppendErrorLog(aText);
   handleExceptionEnd

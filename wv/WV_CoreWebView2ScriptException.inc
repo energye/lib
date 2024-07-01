@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2ScriptException_Create(const aBaseIntf: ICoreWebView2ScriptException): TCoreWebView2ScriptException; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2ScriptException.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2ScriptException_Initialized(AObj: TCoreWebView2ScriptException): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2ScriptException_BaseIntf(AObj: TCoreWebView2ScriptException; var Result: ICoreWebView2ScriptException); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   Result := AObj.BaseIntf;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 function CoreWebView2ScriptException_LineNumber(AObj: TCoreWebView2ScriptException): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='LineNumber'}
   handleExceptionBegin
   Result := AObj.LineNumber;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 function CoreWebView2ScriptException_ColumnNumber(AObj: TCoreWebView2ScriptException): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='ColumnNumber'}
   handleExceptionBegin
   Result := AObj.ColumnNumber;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 function CoreWebView2ScriptException_Name(AObj: TCoreWebView2ScriptException): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Name'}
   handleExceptionBegin
   Result := ToPChar(AObj.Name);
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 function CoreWebView2ScriptException_Message(AObj: TCoreWebView2ScriptException): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Message'}
   handleExceptionBegin
   Result := ToPChar(AObj.Message_);
   handleExceptionEnd
@@ -58,6 +65,7 @@ end;
 //function
 function CoreWebView2ScriptException_ToJson(AObj: TCoreWebView2ScriptException): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToJson'}
   handleExceptionBegin
   Result := ToPChar(AObj.ToJson());
   handleExceptionEnd

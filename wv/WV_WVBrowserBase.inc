@@ -2,6 +2,7 @@
 //property
 function WVBrowserBase_Initialized(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2PrintSettings(AObj: TWVBrowserBase; var Result: TCoreWebView2PrintSettings); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2PrintSettings'}
   handleExceptionBegin
   Result := AObj.CoreWebView2PrintSettings;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2Settings(AObj: TWVBrowserBase; var Result: TCoreWebView2Settings); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2Settings'}
   handleExceptionBegin
   Result := AObj.CoreWebView2Settings;
   handleExceptionEnd
@@ -26,6 +29,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2Environment(AObj: TWVBrowserBase; var Result: TCoreWebView2Environment); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2Environment'}
   handleExceptionBegin
   Result := AObj.CoreWebView2Environment;
   handleExceptionEnd
@@ -34,6 +38,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2Controller(AObj: TWVBrowserBase; var Result: TCoreWebView2Controller); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2Controller'}
   handleExceptionBegin
   Result := AObj.CoreWebView2Controller;
   handleExceptionEnd
@@ -42,6 +47,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2CompositionController(AObj: TWVBrowserBase; var Result: TCoreWebView2CompositionController); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2CompositionController'}
   handleExceptionBegin
   Result := AObj.CoreWebView2CompositionController;
   handleExceptionEnd
@@ -50,6 +56,7 @@ end;
 //property
 procedure WVBrowserBase_CoreWebView2(AObj: TWVBrowserBase; var Result: TCoreWebView2); extdecl;
 begin
+  {$define handleExceptionFuncName :='CoreWebView2'}
   handleExceptionBegin
   Result := AObj.CoreWebView2;
   handleExceptionEnd
@@ -58,6 +65,7 @@ end;
 //property
 procedure WVBrowserBase_Profile(AObj: TWVBrowserBase; var Result: TCoreWebView2Profile); extdecl;
 begin
+  {$define handleExceptionFuncName :='Profile'}
   handleExceptionBegin
   Result := AObj.Profile;
   handleExceptionEnd
@@ -66,6 +74,7 @@ end;
 //property
 function WVBrowserBase_DefaultURL(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultURL'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -78,6 +87,7 @@ end;
 //property
 function WVBrowserBase_IsNavigating(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsNavigating'}
   handleExceptionBegin
   Result := AObj.IsNavigating;
   handleExceptionEnd
@@ -86,6 +96,7 @@ end;
 //property
 procedure WVBrowserBase_ZoomPct(AIsSet: LongBool; AObj: TWVBrowserBase; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomPct'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -98,6 +109,7 @@ end;
 //property
 function WVBrowserBase_ZoomStep(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: byte): byte; extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomStep'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -110,6 +122,7 @@ end;
 //property
 function WVBrowserBase_Widget0CompHWND(AObj: TWVBrowserBase): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Widget0CompHWND'}
   handleExceptionBegin
   Result := AObj.Widget0CompHWND;
   handleExceptionEnd
@@ -118,6 +131,7 @@ end;
 //property
 function WVBrowserBase_Widget1CompHWND(AObj: TWVBrowserBase): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='Widget1CompHWND'}
   handleExceptionBegin
   Result := AObj.Widget1CompHWND;
   handleExceptionEnd
@@ -126,6 +140,7 @@ end;
 //property
 function WVBrowserBase_RenderCompHWND(AObj: TWVBrowserBase): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='RenderCompHWND'}
   handleExceptionBegin
   Result := AObj.RenderCompHWND;
   handleExceptionEnd
@@ -134,6 +149,7 @@ end;
 //property
 function WVBrowserBase_D3DWindowCompHWND(AObj: TWVBrowserBase): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='D3DWindowCompHWND'}
   handleExceptionBegin
   Result := AObj.D3DWindowCompHWND;
   handleExceptionEnd
@@ -142,6 +158,7 @@ end;
 //property
 function WVBrowserBase_ScreenScale(AObj: TWVBrowserBase): single; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScreenScale'}
   handleExceptionBegin
   Result := AObj.ScreenScale;
   handleExceptionEnd
@@ -150,6 +167,7 @@ end;
 //property
 function WVBrowserBase_Offline(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Offline'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -162,6 +180,7 @@ end;
 //property
 function WVBrowserBase_IgnoreCertificateErrors(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IgnoreCertificateErrors'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -174,6 +193,7 @@ end;
 //property
 function WVBrowserBase_BrowserExecPath(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserExecPath'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -186,6 +206,7 @@ end;
 //property
 function WVBrowserBase_UserDataFolder(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='UserDataFolder'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -198,6 +219,7 @@ end;
 //property
 function WVBrowserBase_AdditionalBrowserArguments(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='AdditionalBrowserArguments'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -210,6 +232,7 @@ end;
 //property
 function WVBrowserBase_Language(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Language'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -222,6 +245,7 @@ end;
 //property
 function WVBrowserBase_TargetCompatibleBrowserVersion(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='TargetCompatibleBrowserVersion'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -234,6 +258,7 @@ end;
 //property
 function WVBrowserBase_AllowSingleSignOnUsingOSPrimaryAccount(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowSingleSignOnUsingOSPrimaryAccount'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -246,6 +271,7 @@ end;
 //property
 function WVBrowserBase_ExclusiveUserDataFolderAccess(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExclusiveUserDataFolderAccess'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -258,6 +284,7 @@ end;
 //property
 function WVBrowserBase_CustomCrashReportingEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CustomCrashReportingEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -270,6 +297,7 @@ end;
 //property
 function WVBrowserBase_EnableTrackingPrevention(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='EnableTrackingPrevention'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -282,6 +310,7 @@ end;
 //property
 function WVBrowserBase_AreBrowserExtensionsEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreBrowserExtensionsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -294,6 +323,7 @@ end;
 //property
 function WVBrowserBase_BrowserVersionInfo(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserVersionInfo'}
   handleExceptionBegin
   Result := ToPChar(AObj.BrowserVersionInfo);
   handleExceptionEnd
@@ -302,6 +332,7 @@ end;
 //property
 function WVBrowserBase_BrowserProcessID(AObj: TWVBrowserBase): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='BrowserProcessID'}
   handleExceptionBegin
   Result := AObj.BrowserProcessID;
   handleExceptionEnd
@@ -310,6 +341,7 @@ end;
 //property
 function WVBrowserBase_CanGoBack(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanGoBack'}
   handleExceptionBegin
   Result := AObj.CanGoBack;
   handleExceptionEnd
@@ -318,6 +350,7 @@ end;
 //property
 function WVBrowserBase_CanGoForward(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CanGoForward'}
   handleExceptionBegin
   Result := AObj.CanGoForward;
   handleExceptionEnd
@@ -326,6 +359,7 @@ end;
 //property
 function WVBrowserBase_ContainsFullScreenElement(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ContainsFullScreenElement'}
   handleExceptionBegin
   Result := AObj.ContainsFullScreenElement;
   handleExceptionEnd
@@ -334,6 +368,7 @@ end;
 //property
 function WVBrowserBase_DocumentTitle(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DocumentTitle'}
   handleExceptionBegin
   Result := ToPChar(AObj.DocumentTitle);
   handleExceptionEnd
@@ -342,6 +377,7 @@ end;
 //property
 function WVBrowserBase_Source(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Source'}
   handleExceptionBegin
   Result := ToPChar(AObj.Source);
   handleExceptionEnd
@@ -350,6 +386,7 @@ end;
 //property
 procedure WVBrowserBase_CookieManager(AObj: TWVBrowserBase; var Result: ICoreWebView2CookieManager); extdecl;
 begin
+  {$define handleExceptionFuncName :='CookieManager'}
   handleExceptionBegin
   Result := AObj.CookieManager;
   handleExceptionEnd
@@ -358,6 +395,7 @@ end;
 //property
 function WVBrowserBase_IsSuspended(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSuspended'}
   handleExceptionBegin
   Result := AObj.IsSuspended;
   handleExceptionEnd
@@ -366,6 +404,7 @@ end;
 //property
 function WVBrowserBase_IsDocumentPlayingAudio(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsDocumentPlayingAudio'}
   handleExceptionBegin
   Result := AObj.IsDocumentPlayingAudio;
   handleExceptionEnd
@@ -374,6 +413,7 @@ end;
 //property
 function WVBrowserBase_IsMuted(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsMuted'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -386,6 +426,7 @@ end;
 //property
 function WVBrowserBase_DefaultDownloadDialogCornerAlignment(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVDefaultDownloadDialogCornerAlignment): TWVDefaultDownloadDialogCornerAlignment; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultDownloadDialogCornerAlignment'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -398,6 +439,7 @@ end;
 //property
 procedure WVBrowserBase_DefaultDownloadDialogMargin(AIsSet: LongBool; AObj: TWVBrowserBase; var AValue: TPoint; var Result: TPoint); extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultDownloadDialogMargin'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -410,6 +452,7 @@ end;
 //property
 function WVBrowserBase_IsDefaultDownloadDialogOpen(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsDefaultDownloadDialogOpen'}
   handleExceptionBegin
   Result := AObj.IsDefaultDownloadDialogOpen;
   handleExceptionEnd
@@ -418,6 +461,7 @@ end;
 //property
 function WVBrowserBase_StatusBarText(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='StatusBarText'}
   handleExceptionBegin
   Result := ToPChar(AObj.StatusBarText);
   handleExceptionEnd
@@ -426,6 +470,7 @@ end;
 //property
 function WVBrowserBase_FaviconURI(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='FaviconURI'}
   handleExceptionBegin
   Result := ToPChar(AObj.FaviconURI);
   handleExceptionEnd
@@ -434,6 +479,7 @@ end;
 //property
 function WVBrowserBase_MemoryUsageTargetLevel(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVMemoryUsageTargetLevel): TWVMemoryUsageTargetLevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='MemoryUsageTargetLevel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -446,6 +492,7 @@ end;
 //property
 procedure WVBrowserBase_Bounds(AIsSet: LongBool; AObj: TWVBrowserBase; var AValue: TRect; var Result: TRect); extdecl;
 begin
+  {$define handleExceptionFuncName :='Bounds'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -458,6 +505,7 @@ end;
 //property
 function WVBrowserBase_IsVisible(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsVisible'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -470,6 +518,7 @@ end;
 //property
 function WVBrowserBase_ParentWindow(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: THandle): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ParentWindow'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -482,6 +531,7 @@ end;
 //property
 procedure WVBrowserBase_ZoomFactor(AIsSet: LongBool; AObj: TWVBrowserBase; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -494,6 +544,7 @@ end;
 //property
 function WVBrowserBase_DefaultBackgroundColor(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TColor): TColor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultBackgroundColor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -506,6 +557,7 @@ end;
 //property
 function WVBrowserBase_BoundsMode(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVBoundsMode): TWVBoundsMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='BoundsMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -518,6 +570,7 @@ end;
 //property
 procedure WVBrowserBase_RasterizationScale(AIsSet: LongBool; AObj: TWVBrowserBase; var AValue: double; var Result: double); extdecl;
 begin
+  {$define handleExceptionFuncName :='RasterizationScale'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -530,6 +583,7 @@ end;
 //property
 function WVBrowserBase_ShouldDetectMonitorScaleChanges(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShouldDetectMonitorScaleChanges'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -542,6 +596,7 @@ end;
 //property
 function WVBrowserBase_AllowExternalDrop(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AllowExternalDrop'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -554,6 +609,7 @@ end;
 //property
 function WVBrowserBase_DefaultContextMenusEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultContextMenusEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -566,6 +622,7 @@ end;
 //property
 function WVBrowserBase_DefaultScriptDialogsEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultScriptDialogsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -578,6 +635,7 @@ end;
 //property
 function WVBrowserBase_DevToolsEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DevToolsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -590,6 +648,7 @@ end;
 //property
 function WVBrowserBase_AreHostObjectsAllowed(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreHostObjectsAllowed'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -602,6 +661,7 @@ end;
 //property
 function WVBrowserBase_BuiltInErrorPageEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='BuiltInErrorPageEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -614,6 +674,7 @@ end;
 //property
 function WVBrowserBase_ScriptEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScriptEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -626,6 +687,7 @@ end;
 //property
 function WVBrowserBase_StatusBarEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='StatusBarEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -638,6 +700,7 @@ end;
 //property
 function WVBrowserBase_WebMessageEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='WebMessageEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -650,6 +713,7 @@ end;
 //property
 function WVBrowserBase_ZoomControlEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ZoomControlEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -662,6 +726,7 @@ end;
 //property
 function WVBrowserBase_UserAgent(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='UserAgent'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -674,6 +739,7 @@ end;
 //property
 function WVBrowserBase_AreBrowserAcceleratorKeysEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AreBrowserAcceleratorKeysEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -686,6 +752,7 @@ end;
 //property
 function WVBrowserBase_IsGeneralAutofillEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsGeneralAutofillEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -698,6 +765,7 @@ end;
 //property
 function WVBrowserBase_IsPasswordAutosaveEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsPasswordAutosaveEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -710,6 +778,7 @@ end;
 //property
 function WVBrowserBase_IsPinchZoomEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsPinchZoomEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -722,6 +791,7 @@ end;
 //property
 function WVBrowserBase_IsSwipeNavigationEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsSwipeNavigationEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -734,6 +804,7 @@ end;
 //property
 function WVBrowserBase_HiddenPdfToolbarItems(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVPDFToolbarItems): TWVPDFToolbarItems; extdecl;
 begin
+  {$define handleExceptionFuncName :='HiddenPdfToolbarItems'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -746,6 +817,7 @@ end;
 //property
 function WVBrowserBase_IsReputationCheckingRequired(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsReputationCheckingRequired'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -758,6 +830,7 @@ end;
 //property
 function WVBrowserBase_Cursor(AObj: TWVBrowserBase): HCURSOR; extdecl;
 begin
+  {$define handleExceptionFuncName :='Cursor'}
   handleExceptionBegin
   Result := AObj.Cursor;
   handleExceptionEnd
@@ -766,6 +839,7 @@ end;
 //property
 procedure WVBrowserBase_RootVisualTarget(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: IUnknown; var Result: IUnknown); extdecl;
 begin
+  {$define handleExceptionFuncName :='RootVisualTarget'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -778,6 +852,7 @@ end;
 //property
 function WVBrowserBase_SystemCursorID(AObj: TWVBrowserBase): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='SystemCursorID'}
   handleExceptionBegin
   Result := AObj.SystemCursorID;
   handleExceptionEnd
@@ -786,6 +861,7 @@ end;
 //property
 procedure WVBrowserBase_AutomationProvider(AObj: TWVBrowserBase; var Result: IUnknown); extdecl;
 begin
+  {$define handleExceptionFuncName :='AutomationProvider'}
   handleExceptionBegin
   Result := AObj.AutomationProvider;
   handleExceptionEnd
@@ -794,6 +870,7 @@ end;
 //property
 procedure WVBrowserBase_ProcessInfos(AObj: TWVBrowserBase; var Result: ICoreWebView2ProcessInfoCollection); extdecl;
 begin
+  {$define handleExceptionFuncName :='ProcessInfos'}
   handleExceptionBegin
   Result := AObj.ProcessInfos;
   handleExceptionEnd
@@ -802,6 +879,7 @@ end;
 //property
 function WVBrowserBase_ProfileName(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfileName'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -814,6 +892,7 @@ end;
 //property
 function WVBrowserBase_IsInPrivateModeEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='IsInPrivateModeEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -826,6 +905,7 @@ end;
 //property
 function WVBrowserBase_ScriptLocale(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ScriptLocale'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -838,6 +918,7 @@ end;
 //property
 function WVBrowserBase_ProfilePath(AObj: TWVBrowserBase): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfilePath'}
   handleExceptionBegin
   Result := ToPChar(AObj.ProfilePath);
   handleExceptionEnd
@@ -846,6 +927,7 @@ end;
 //property
 function WVBrowserBase_DefaultDownloadFolderPath(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: PChar): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DefaultDownloadFolderPath'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -858,6 +940,7 @@ end;
 //property
 function WVBrowserBase_PreferredColorScheme(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVPreferredColorScheme): TWVPreferredColorScheme; extdecl;
 begin
+  {$define handleExceptionFuncName :='PreferredColorScheme'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -870,6 +953,7 @@ end;
 //property
 function WVBrowserBase_PreferredTrackingPreventionLevel(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: TWVTrackingPreventionLevel): TWVTrackingPreventionLevel; extdecl;
 begin
+  {$define handleExceptionFuncName :='PreferredTrackingPreventionLevel'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -882,6 +966,7 @@ end;
 //property
 procedure WVBrowserBase_ProfileCookieManager(AObj: TWVBrowserBase; var Result: ICoreWebView2CookieManager); extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfileCookieManager'}
   handleExceptionBegin
   Result := AObj.ProfileCookieManager;
   handleExceptionEnd
@@ -890,6 +975,7 @@ end;
 //property
 function WVBrowserBase_ProfileIsPasswordAutosaveEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfileIsPasswordAutosaveEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -902,6 +988,7 @@ end;
 //property
 function WVBrowserBase_ProfileIsGeneralAutofillEnabled(AIsSet: LongBool; AObj: TWVBrowserBase; AValue: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ProfileIsGeneralAutofillEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -914,6 +1001,7 @@ end;
 //property
 function WVBrowserBase_FrameId(AObj: TWVBrowserBase): uint32; extdecl;
 begin
+  {$define handleExceptionFuncName :='FrameId'}
   handleExceptionBegin
   Result := AObj.FrameId;
   handleExceptionEnd
@@ -922,6 +1010,7 @@ end;
 //function
 function WVBrowserBase_CreateBrowser(AObj: TWVBrowserBase; aHandle: THandle; aUseDefaultEnvironment: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateBrowser'}
   handleExceptionBegin
   Result := AObj.CreateBrowser(aHandle, aUseDefaultEnvironment);
   handleExceptionEnd
@@ -930,6 +1019,7 @@ end;
 //function
 function WVBrowserBase_CreateBrowser1(AObj: TWVBrowserBase; aHandle: THandle; const aEnvironment: ICoreWebView2Environment): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateBrowser1'}
   handleExceptionBegin
   Result := AObj.CreateBrowser(aHandle, aEnvironment);
   handleExceptionEnd
@@ -938,6 +1028,7 @@ end;
 //function
 function WVBrowserBase_CreateWindowlessBrowser(AObj: TWVBrowserBase; aHandle: THandle; aUseDefaultEnvironment: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateWindowlessBrowser'}
   handleExceptionBegin
   Result := AObj.CreateWindowlessBrowser(aHandle, aUseDefaultEnvironment);
   handleExceptionEnd
@@ -946,6 +1037,7 @@ end;
 //function
 function WVBrowserBase_CreateWindowlessBrowser1(AObj: TWVBrowserBase; aHandle: THandle; const aEnvironment: ICoreWebView2Environment): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateWindowlessBrowser1'}
   handleExceptionBegin
   Result := AObj.CreateWindowlessBrowser(aHandle, aEnvironment);
   handleExceptionEnd
@@ -954,6 +1046,7 @@ end;
 //function
 function WVBrowserBase_GoBack(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GoBack'}
   handleExceptionBegin
   Result := AObj.GoBack();
   handleExceptionEnd
@@ -962,6 +1055,7 @@ end;
 //function
 function WVBrowserBase_GoForward(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GoForward'}
   handleExceptionBegin
   Result := AObj.GoForward();
   handleExceptionEnd
@@ -970,6 +1064,7 @@ end;
 //function
 function WVBrowserBase_Refresh(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Refresh'}
   handleExceptionBegin
   Result := AObj.Refresh();
   handleExceptionEnd
@@ -978,6 +1073,7 @@ end;
 //function
 function WVBrowserBase_RefreshIgnoreCache(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RefreshIgnoreCache'}
   handleExceptionBegin
   Result := AObj.RefreshIgnoreCache();
   handleExceptionEnd
@@ -986,6 +1082,7 @@ end;
 //function
 function WVBrowserBase_Stop(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Stop'}
   handleExceptionBegin
   Result := AObj.Stop();
   handleExceptionEnd
@@ -994,6 +1091,7 @@ end;
 //function
 function WVBrowserBase_Navigate(AObj: TWVBrowserBase; const aURI: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Navigate'}
   handleExceptionBegin
   Result := AObj.Navigate(aURI);
   handleExceptionEnd
@@ -1002,6 +1100,7 @@ end;
 //function
 function WVBrowserBase_NavigateToString(AObj: TWVBrowserBase; const aHTMLContent: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NavigateToString'}
   handleExceptionBegin
   Result := AObj.NavigateToString(aHTMLContent);
   handleExceptionEnd
@@ -1010,6 +1109,7 @@ end;
 //function
 function WVBrowserBase_NavigateWithWebResourceRequest(AObj: TWVBrowserBase; const aRequest: ICoreWebView2WebResourceRequest): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NavigateWithWebResourceRequest'}
   handleExceptionBegin
   Result := AObj.NavigateWithWebResourceRequest(aRequest);
   handleExceptionEnd
@@ -1018,6 +1118,7 @@ end;
 //function
 function WVBrowserBase_SubscribeToDevToolsProtocolEvent(AObj: TWVBrowserBase; const aEventName: PChar; aEventID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SubscribeToDevToolsProtocolEvent'}
   handleExceptionBegin
   Result := AObj.SubscribeToDevToolsProtocolEvent(aEventName, aEventID);
   handleExceptionEnd
@@ -1026,6 +1127,7 @@ end;
 //function
 function WVBrowserBase_CallDevToolsProtocolMethod(AObj: TWVBrowserBase; const aMethodName, aParametersAsJson: PChar; aExecutionID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CallDevToolsProtocolMethod'}
   handleExceptionBegin
   Result := AObj.CallDevToolsProtocolMethod(aMethodName, aParametersAsJson, aExecutionID);
   handleExceptionEnd
@@ -1034,6 +1136,7 @@ end;
 //function
 function WVBrowserBase_CallDevToolsProtocolMethodForSession(AObj: TWVBrowserBase; const aSessionId, aMethodName, aParametersAsJson: PChar; aExecutionID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CallDevToolsProtocolMethodForSession'}
   handleExceptionBegin
   Result := AObj.CallDevToolsProtocolMethodForSession(aSessionId, aMethodName, aParametersAsJson, aExecutionID);
   handleExceptionEnd
@@ -1042,6 +1145,7 @@ end;
 //function
 function WVBrowserBase_SetFocus(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFocus'}
   handleExceptionBegin
   Result := AObj.SetFocus();
   handleExceptionEnd
@@ -1050,6 +1154,7 @@ end;
 //function
 function WVBrowserBase_FocusNext(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusNext'}
   handleExceptionBegin
   Result := AObj.FocusNext();
   handleExceptionEnd
@@ -1058,6 +1163,7 @@ end;
 //function
 function WVBrowserBase_FocusPrevious(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='FocusPrevious'}
   handleExceptionBegin
   Result := AObj.FocusPrevious();
   handleExceptionEnd
@@ -1066,6 +1172,7 @@ end;
 //function
 function WVBrowserBase_ExecuteScriptWithResult(AObj: TWVBrowserBase; const aJavaScript: PChar; aExecutionID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteScriptWithResult'}
   handleExceptionBegin
   Result := AObj.ExecuteScriptWithResult(aJavaScript, aExecutionID);
   handleExceptionEnd
@@ -1074,6 +1181,7 @@ end;
 //function
 function WVBrowserBase_ExecuteScript(AObj: TWVBrowserBase; const aJavaScript: PChar; aExecutionID: integer): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ExecuteScript'}
   handleExceptionBegin
   Result := AObj.ExecuteScript(aJavaScript, aExecutionID);
   handleExceptionEnd
@@ -1082,6 +1190,7 @@ end;
 //function
 function WVBrowserBase_CapturePreview(AObj: TWVBrowserBase; aImageFormat: TWVCapturePreviewImageFormat; const aImageStream: TStreamAdapter): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CapturePreview'}
   handleExceptionBegin
   Result := AObj.CapturePreview(aImageFormat, aImageStream);
   handleExceptionEnd
@@ -1090,6 +1199,7 @@ end;
 //function
 function WVBrowserBase_NotifyParentWindowPositionChanged(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='NotifyParentWindowPositionChanged'}
   handleExceptionBegin
   Result := AObj.NotifyParentWindowPositionChanged();
   handleExceptionEnd
@@ -1098,6 +1208,7 @@ end;
 //function
 function WVBrowserBase_SetPermissionState(AObj: TWVBrowserBase; aPermissionKind: TWVPermissionKind; const aOrigin: PChar; aState: TWVPermissionState): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetPermissionState'}
   handleExceptionBegin
   Result := AObj.SetPermissionState(aPermissionKind, aOrigin, aState);
   handleExceptionEnd
@@ -1106,6 +1217,7 @@ end;
 //function
 function WVBrowserBase_GetNonDefaultPermissionSettings(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetNonDefaultPermissionSettings'}
   handleExceptionBegin
   Result := AObj.GetNonDefaultPermissionSettings();
   handleExceptionEnd
@@ -1114,6 +1226,7 @@ end;
 //function
 function WVBrowserBase_AddBrowserExtension(AObj: TWVBrowserBase; const extensionFolderPath: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddBrowserExtension'}
   handleExceptionBegin
   Result := AObj.AddBrowserExtension(extensionFolderPath);
   handleExceptionEnd
@@ -1122,6 +1235,7 @@ end;
 //function
 function WVBrowserBase_GetBrowserExtensions(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetBrowserExtensions'}
   handleExceptionBegin
   Result := AObj.GetBrowserExtensions();
   handleExceptionEnd
@@ -1130,6 +1244,7 @@ end;
 //function
 function WVBrowserBase_DeleteProfile(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteProfile'}
   handleExceptionBegin
   Result := AObj.DeleteProfile();
   handleExceptionEnd
@@ -1138,6 +1253,7 @@ end;
 //function
 function WVBrowserBase_TrySuspend(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='TrySuspend'}
   handleExceptionBegin
   Result := AObj.TrySuspend();
   handleExceptionEnd
@@ -1146,6 +1262,7 @@ end;
 //function
 function WVBrowserBase_Resume(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Resume'}
   handleExceptionBegin
   Result := AObj.Resume();
   handleExceptionEnd
@@ -1154,6 +1271,7 @@ end;
 //function
 function WVBrowserBase_SetVirtualHostNameToFolderMapping(AObj: TWVBrowserBase; const aHostName, aFolderPath: PChar; aAccessKind: TWVHostResourceAcccessKind): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetVirtualHostNameToFolderMapping'}
   handleExceptionBegin
   Result := AObj.SetVirtualHostNameToFolderMapping(aHostName, aFolderPath, aAccessKind);
   handleExceptionEnd
@@ -1162,6 +1280,7 @@ end;
 //function
 function WVBrowserBase_ClearVirtualHostNameToFolderMapping(AObj: TWVBrowserBase; const aHostName: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearVirtualHostNameToFolderMapping'}
   handleExceptionBegin
   Result := AObj.ClearVirtualHostNameToFolderMapping(aHostName);
   handleExceptionEnd
@@ -1170,6 +1289,7 @@ end;
 //function
 function WVBrowserBase_RetrieveHTML(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveHTML'}
   handleExceptionBegin
   Result := AObj.RetrieveHTML();
   handleExceptionEnd
@@ -1178,6 +1298,7 @@ end;
 //function
 function WVBrowserBase_RetrieveText(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveText'}
   handleExceptionBegin
   Result := AObj.RetrieveText();
   handleExceptionEnd
@@ -1186,6 +1307,7 @@ end;
 //function
 function WVBrowserBase_RetrieveMHTML(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RetrieveMHTML'}
   handleExceptionBegin
   Result := AObj.RetrieveMHTML();
   handleExceptionEnd
@@ -1194,6 +1316,7 @@ end;
 //function
 function WVBrowserBase_Print(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Print'}
   handleExceptionBegin
   Result := AObj.Print();
   handleExceptionEnd
@@ -1202,6 +1325,7 @@ end;
 //function
 function WVBrowserBase_ShowPrintUI(AObj: TWVBrowserBase; aUseSystemPrintDialog: LongBool): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ShowPrintUI'}
   handleExceptionBegin
   Result := AObj.ShowPrintUI(aUseSystemPrintDialog);
   handleExceptionEnd
@@ -1210,6 +1334,7 @@ end;
 //function
 function WVBrowserBase_PrintToPdf(AObj: TWVBrowserBase; const aResultFilePath: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintToPdf'}
   handleExceptionBegin
   Result := AObj.PrintToPdf(aResultFilePath);
   handleExceptionEnd
@@ -1218,6 +1343,7 @@ end;
 //function
 function WVBrowserBase_PrintToPdfStream(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PrintToPdfStream'}
   handleExceptionBegin
   Result := AObj.PrintToPdfStream();
   handleExceptionEnd
@@ -1226,6 +1352,7 @@ end;
 //function
 function WVBrowserBase_OpenDevToolsWindow(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OpenDevToolsWindow'}
   handleExceptionBegin
   Result := AObj.OpenDevToolsWindow();
   handleExceptionEnd
@@ -1234,6 +1361,7 @@ end;
 //function
 function WVBrowserBase_OpenTaskManagerWindow(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OpenTaskManagerWindow'}
   handleExceptionBegin
   Result := AObj.OpenTaskManagerWindow();
   handleExceptionEnd
@@ -1242,6 +1370,7 @@ end;
 //function
 function WVBrowserBase_PostWebMessageAsJson(AObj: TWVBrowserBase; const aWebMessageAsJson: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PostWebMessageAsJson'}
   handleExceptionBegin
   Result := AObj.PostWebMessageAsJson(aWebMessageAsJson);
   handleExceptionEnd
@@ -1250,6 +1379,7 @@ end;
 //function
 function WVBrowserBase_PostWebMessageAsString(AObj: TWVBrowserBase; const aWebMessageAsString: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PostWebMessageAsString'}
   handleExceptionBegin
   Result := AObj.PostWebMessageAsString(aWebMessageAsString);
   handleExceptionEnd
@@ -1258,6 +1388,7 @@ end;
 //function
 function WVBrowserBase_AddWebResourceRequestedFilter(AObj: TWVBrowserBase; const aURI: PChar; aResourceContext: TWVWebResourceContext): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddWebResourceRequestedFilter'}
   handleExceptionBegin
   Result := AObj.AddWebResourceRequestedFilter(aURI, aResourceContext);
   handleExceptionEnd
@@ -1266,6 +1397,7 @@ end;
 //function
 function WVBrowserBase_RemoveWebResourceRequestedFilter(AObj: TWVBrowserBase; const aURI: PChar; aResourceContext: TWVWebResourceContext): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveWebResourceRequestedFilter'}
   handleExceptionBegin
   Result := AObj.RemoveWebResourceRequestedFilter(aURI, aResourceContext);
   handleExceptionEnd
@@ -1274,6 +1406,7 @@ end;
 //function
 function WVBrowserBase_RemoveHostObjectFromScript(AObj: TWVBrowserBase; const aName: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveHostObjectFromScript'}
   handleExceptionBegin
   Result := AObj.RemoveHostObjectFromScript(aName);
   handleExceptionEnd
@@ -1282,6 +1415,7 @@ end;
 //function
 function WVBrowserBase_AddScriptToExecuteOnDocumentCreated(AObj: TWVBrowserBase; const JavaScript: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddScriptToExecuteOnDocumentCreated'}
   handleExceptionBegin
   Result := AObj.AddScriptToExecuteOnDocumentCreated(JavaScript);
   handleExceptionEnd
@@ -1290,6 +1424,7 @@ end;
 //function
 function WVBrowserBase_RemoveScriptToExecuteOnDocumentCreated(AObj: TWVBrowserBase; const aID: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='RemoveScriptToExecuteOnDocumentCreated'}
   handleExceptionBegin
   Result := AObj.RemoveScriptToExecuteOnDocumentCreated(aID);
   handleExceptionEnd
@@ -1298,6 +1433,7 @@ end;
 //function
 procedure WVBrowserBase_CreateCookie(AObj: TWVBrowserBase; const aName, aValue, aDomain, aPath: PChar; var Result: ICoreWebView2Cookie); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateCookie'}
   handleExceptionBegin
   Result := AObj.CreateCookie(aName, aValue, aDomain, aPath);
   handleExceptionEnd
@@ -1306,6 +1442,7 @@ end;
 //function
 procedure WVBrowserBase_CopyCookie(AObj: TWVBrowserBase; const aCookie: ICoreWebView2Cookie; var Result: ICoreWebView2Cookie); extdecl;
 begin
+  {$define handleExceptionFuncName :='CopyCookie'}
   handleExceptionBegin
   Result := AObj.CopyCookie(aCookie);
   handleExceptionEnd
@@ -1314,6 +1451,7 @@ end;
 //function
 function WVBrowserBase_GetCookies(AObj: TWVBrowserBase; const aURI: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetCookies'}
   handleExceptionBegin
   Result := AObj.GetCookies(aURI);
   handleExceptionEnd
@@ -1322,6 +1460,7 @@ end;
 //function
 function WVBrowserBase_AddOrUpdateCookie(AObj: TWVBrowserBase; const aCookie: ICoreWebView2Cookie): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='AddOrUpdateCookie'}
   handleExceptionBegin
   Result := AObj.AddOrUpdateCookie(aCookie);
   handleExceptionEnd
@@ -1330,6 +1469,7 @@ end;
 //function
 function WVBrowserBase_DeleteCookie(AObj: TWVBrowserBase; const aCookie: ICoreWebView2Cookie): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookie'}
   handleExceptionBegin
   Result := AObj.DeleteCookie(aCookie);
   handleExceptionEnd
@@ -1338,6 +1478,7 @@ end;
 //function
 function WVBrowserBase_DeleteCookies(AObj: TWVBrowserBase; const aName, aURI: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookies'}
   handleExceptionBegin
   Result := AObj.DeleteCookies(aName, aURI);
   handleExceptionEnd
@@ -1346,6 +1487,7 @@ end;
 //function
 function WVBrowserBase_DeleteCookiesWithDomainAndPath(AObj: TWVBrowserBase; const aName, aDomain, aPath: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteCookiesWithDomainAndPath'}
   handleExceptionBegin
   Result := AObj.DeleteCookiesWithDomainAndPath(aName, aDomain, aPath);
   handleExceptionEnd
@@ -1354,6 +1496,7 @@ end;
 //function
 function WVBrowserBase_DeleteAllCookies(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='DeleteAllCookies'}
   handleExceptionBegin
   Result := AObj.DeleteAllCookies();
   handleExceptionEnd
@@ -1362,6 +1505,7 @@ end;
 //function
 function WVBrowserBase_SetBoundsAndZoomFactor(AObj: TWVBrowserBase; var aBounds: TRect; var aZoomFactor: double): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SetBoundsAndZoomFactor'}
   handleExceptionBegin
   Result := AObj.SetBoundsAndZoomFactor(aBounds, aZoomFactor);
   handleExceptionEnd
@@ -1370,6 +1514,7 @@ end;
 //function
 function WVBrowserBase_OpenDefaultDownloadDialog(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='OpenDefaultDownloadDialog'}
   handleExceptionBegin
   Result := AObj.OpenDefaultDownloadDialog();
   handleExceptionEnd
@@ -1378,6 +1523,7 @@ end;
 //function
 function WVBrowserBase_CloseDefaultDownloadDialog(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='CloseDefaultDownloadDialog'}
   handleExceptionBegin
   Result := AObj.CloseDefaultDownloadDialog();
   handleExceptionEnd
@@ -1386,6 +1532,7 @@ end;
 //function
 function WVBrowserBase_SimulateEditingCommand(AObj: TWVBrowserBase; aEditingCommand: TWV2EditingCommand): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SimulateEditingCommand'}
   handleExceptionBegin
   Result := AObj.SimulateEditingCommand(aEditingCommand);
   handleExceptionEnd
@@ -1394,6 +1541,7 @@ end;
 //function
 function WVBrowserBase_SimulateKeyEvent(AObj: TWVBrowserBase; type_: TWV2KeyEventType; modifiers, windowsVirtualKeyCode, nativeVirtualKeyCode: integer; timestamp: integer; location: integer; autoRepeat: LongBool; isKeypad: LongBool; isSystemKey: LongBool; const text: PChar; const unmodifiedtext: PChar; const keyIdentifier: PChar; const code: PChar; const key: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SimulateKeyEvent'}
   handleExceptionBegin
   Result := AObj.SimulateKeyEvent(type_, modifiers, windowsVirtualKeyCode, nativeVirtualKeyCode, timestamp, location, autoRepeat, isKeypad, isSystemKey, text, unmodifiedtext, keyIdentifier, code, key);
   handleExceptionEnd
@@ -1402,6 +1550,7 @@ end;
 //function
 function WVBrowserBase_KeyboardShortcutSearch(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeyboardShortcutSearch'}
   handleExceptionBegin
   Result := AObj.KeyboardShortcutSearch();
   handleExceptionEnd
@@ -1410,6 +1559,7 @@ end;
 //function
 function WVBrowserBase_KeyboardShortcutRefreshIgnoreCache(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='KeyboardShortcutRefreshIgnoreCache'}
   handleExceptionBegin
   Result := AObj.KeyboardShortcutRefreshIgnoreCache();
   handleExceptionEnd
@@ -1418,6 +1568,7 @@ end;
 //function
 function WVBrowserBase_SendMouseInput(AObj: TWVBrowserBase; aEventKind: TWVMouseEventKind; aVirtualKeys: TWVMouseEventVirtualKeys; aMouseData: uint32; var aPoint: TPoint): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SendMouseInput'}
   handleExceptionBegin
   Result := AObj.SendMouseInput(aEventKind, aVirtualKeys, aMouseData, aPoint);
   handleExceptionEnd
@@ -1426,6 +1577,7 @@ end;
 //function
 function WVBrowserBase_SendPointerInput(AObj: TWVBrowserBase; aEventKind: TWVPointerEventKind; const aPointerInfo: ICoreWebView2PointerInfo): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='SendPointerInput'}
   handleExceptionBegin
   Result := AObj.SendPointerInput(aEventKind, aPointerInfo);
   handleExceptionEnd
@@ -1436,6 +1588,7 @@ function WVBrowserBase_DragEnter(AObj: TWVBrowserBase; const dataObject: IDataOb
 var
   RetOutEffect: LongWord;
 begin
+  {$define handleExceptionFuncName :='DragEnter'}
   handleExceptionBegin
   RetOutEffect := OutEffect;
   Result := AObj.DragEnter(dataObject, keyState, point, RetOutEffect);
@@ -1446,6 +1599,7 @@ end;
 //function
 function WVBrowserBase_DragLeave(AObj: TWVBrowserBase): Integer; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragLeave'}
   handleExceptionBegin
   Result := AObj.DragLeave();
   handleExceptionEnd
@@ -1456,6 +1610,7 @@ function WVBrowserBase_DragOver(AObj: TWVBrowserBase; keyState: LongWord; var po
 var
   RetOutEffect: LongWord;
 begin
+  {$define handleExceptionFuncName :='DragOver'}
   handleExceptionBegin
   RetOutEffect := OutEffect;
   Result := AObj.DragOver(keyState, point, RetOutEffect);
@@ -1468,6 +1623,7 @@ function WVBrowserBase_Drop(AObj: TWVBrowserBase; const dataObject: IDataObject;
 var
   RetOutEffect: LongWord;
 begin
+  {$define handleExceptionFuncName :='Drop'}
   handleExceptionBegin
   RetOutEffect := OutEffect;
   Result := AObj.Drop(dataObject, keyState, point, RetOutEffect);
@@ -1478,6 +1634,7 @@ end;
 //function
 function WVBrowserBase_ClearCache(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearCache'}
   handleExceptionBegin
   Result := AObj.ClearCache();
   handleExceptionEnd
@@ -1486,6 +1643,7 @@ end;
 //function
 function WVBrowserBase_ClearDataForOrigin(AObj: TWVBrowserBase; const aOrigin: PChar; aStorageTypes: TWVClearDataStorageTypes): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearDataForOrigin'}
   handleExceptionBegin
   Result := AObj.ClearDataForOrigin(aOrigin, aStorageTypes);
   handleExceptionEnd
@@ -1494,6 +1652,7 @@ end;
 //function
 function WVBrowserBase_ClearBrowsingData(AObj: TWVBrowserBase; dataKinds: TWVBrowsingDataKinds): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearBrowsingData'}
   handleExceptionBegin
   Result := AObj.ClearBrowsingData(dataKinds);
   handleExceptionEnd
@@ -1502,6 +1661,7 @@ end;
 //function
 function WVBrowserBase_ClearBrowsingDataInTimeRange(AObj: TWVBrowserBase; dataKinds: TWVBrowsingDataKinds; var startTime, endTime: TDateTime): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearBrowsingDataInTimeRange'}
   handleExceptionBegin
   Result := AObj.ClearBrowsingDataInTimeRange(dataKinds, startTime, endTime);
   handleExceptionEnd
@@ -1510,6 +1670,7 @@ end;
 //function
 function WVBrowserBase_ClearBrowsingDataAll(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearBrowsingDataAll'}
   handleExceptionBegin
   Result := AObj.ClearBrowsingDataAll();
   handleExceptionEnd
@@ -1518,6 +1679,7 @@ end;
 //function
 function WVBrowserBase_ClearServerCertificateErrorActions(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='ClearServerCertificateErrorActions'}
   handleExceptionBegin
   Result := AObj.ClearServerCertificateErrorActions();
   handleExceptionEnd
@@ -1526,6 +1688,7 @@ end;
 //function
 function WVBrowserBase_GetFavicon(AObj: TWVBrowserBase; aFormat: TWVFaviconImageFormat): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetFavicon'}
   handleExceptionBegin
   Result := AObj.GetFavicon(aFormat);
   handleExceptionEnd
@@ -1536,6 +1699,7 @@ function WVBrowserBase_CreateSharedBuffer(AObj: TWVBrowserBase; var aSize: int64
 var
   RetaSharedBuffer: ICoreWebView2SharedBuffer;
 begin
+  {$define handleExceptionFuncName :='CreateSharedBuffer'}
   handleExceptionBegin
   RetaSharedBuffer := aSharedBuffer;
   Result := AObj.CreateSharedBuffer(aSize, RetaSharedBuffer);
@@ -1546,6 +1710,7 @@ end;
 //function
 function WVBrowserBase_PostSharedBufferToScript(AObj: TWVBrowserBase; const aSharedBuffer: ICoreWebView2SharedBuffer; aAccess: TWVSharedBufferAccess; const aAdditionalDataAsJson: PChar): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='PostSharedBufferToScript'}
   handleExceptionBegin
   Result := AObj.PostSharedBufferToScript(aSharedBuffer, aAccess, aAdditionalDataAsJson);
   handleExceptionEnd
@@ -1554,6 +1719,7 @@ end;
 //function
 function WVBrowserBase_GetProcessExtendedInfos(AObj: TWVBrowserBase): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='GetProcessExtendedInfos'}
   handleExceptionBegin
   Result := AObj.GetProcessExtendedInfos();
   handleExceptionEnd
@@ -1562,6 +1728,7 @@ end;
 //procedure
 procedure WVBrowserBase_MoveFormTo(AObj: TWVBrowserBase; const x, y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='MoveFormTo'}
   handleExceptionBegin
   AObj.MoveFormTo(x, y);
   handleExceptionEnd
@@ -1570,6 +1737,7 @@ end;
 //procedure
 procedure WVBrowserBase_MoveFormBy(AObj: TWVBrowserBase; const x, y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='MoveFormBy'}
   handleExceptionBegin
   AObj.MoveFormBy(x, y);
   handleExceptionEnd
@@ -1578,6 +1746,7 @@ end;
 //procedure
 procedure WVBrowserBase_ResizeFormWidthTo(AObj: TWVBrowserBase; const x: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResizeFormWidthTo'}
   handleExceptionBegin
   AObj.ResizeFormWidthTo(x);
   handleExceptionEnd
@@ -1586,6 +1755,7 @@ end;
 //procedure
 procedure WVBrowserBase_ResizeFormHeightTo(AObj: TWVBrowserBase; const y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResizeFormHeightTo'}
   handleExceptionBegin
   AObj.ResizeFormHeightTo(y);
   handleExceptionEnd
@@ -1594,6 +1764,7 @@ end;
 //procedure
 procedure WVBrowserBase_SetFormLeftTo(AObj: TWVBrowserBase; const x: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFormLeftTo'}
   handleExceptionBegin
   AObj.SetFormLeftTo(x);
   handleExceptionEnd
@@ -1602,6 +1773,7 @@ end;
 //procedure
 procedure WVBrowserBase_SetFormTopTo(AObj: TWVBrowserBase; const y: Integer); extdecl;
 begin
+  {$define handleExceptionFuncName :='SetFormTopTo'}
   handleExceptionBegin
   AObj.SetFormTopTo(y);
   handleExceptionEnd
@@ -1610,6 +1782,7 @@ end;
 //procedure
 procedure WVBrowserBase_IncZoomStep(AObj: TWVBrowserBase); extdecl;
 begin
+  {$define handleExceptionFuncName :='IncZoomStep'}
   handleExceptionBegin
   AObj.IncZoomStep();
   handleExceptionEnd
@@ -1618,6 +1791,7 @@ end;
 //procedure
 procedure WVBrowserBase_DecZoomStep(AObj: TWVBrowserBase); extdecl;
 begin
+  {$define handleExceptionFuncName :='DecZoomStep'}
   handleExceptionBegin
   AObj.DecZoomStep();
   handleExceptionEnd
@@ -1626,6 +1800,7 @@ end;
 //procedure
 procedure WVBrowserBase_ResetZoom(AObj: TWVBrowserBase); extdecl;
 begin
+  {$define handleExceptionFuncName :='ResetZoom'}
   handleExceptionBegin
   AObj.ResetZoom();
   handleExceptionEnd
@@ -1634,6 +1809,7 @@ end;
 //procedure
 procedure WVBrowserBase_ToggleMuteState(AObj: TWVBrowserBase); extdecl;
 begin
+  {$define handleExceptionFuncName :='ToggleMuteState'}
   handleExceptionBegin
   AObj.ToggleMuteState();
   handleExceptionEnd

@@ -2,6 +2,7 @@
 //constructor
 function CoreWebView2ClientCertificate_Create(const aBaseIntf: ICoreWebView2ClientCertificate): TCoreWebView2ClientCertificate; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TCoreWebView2ClientCertificate.Create(aBaseIntf);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_Initialized(AObj: TCoreWebView2ClientCertificate): LongBool; extdecl;
 begin
+  {$define handleExceptionFuncName :='Initialized'}
   handleExceptionBegin
   Result := AObj.Initialized;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 procedure CoreWebView2ClientCertificate_BaseIntf(AIsSet: LongBool; AObj: TCoreWebView2ClientCertificate; AValue: ICoreWebView2ClientCertificate; var Result: ICoreWebView2ClientCertificate); extdecl;
 begin
+  {$define handleExceptionFuncName :='BaseIntf'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_Subject(AObj: TCoreWebView2ClientCertificate): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Subject'}
   handleExceptionBegin
   Result := ToPChar(AObj.Subject);
   handleExceptionEnd
@@ -38,6 +42,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_Issuer(AObj: TCoreWebView2ClientCertificate): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='Issuer'}
   handleExceptionBegin
   Result := ToPChar(AObj.Issuer);
   handleExceptionEnd
@@ -46,6 +51,7 @@ end;
 //property
 procedure CoreWebView2ClientCertificate_ValidFrom(AObj: TCoreWebView2ClientCertificate; var Result: TDateTime); extdecl;
 begin
+  {$define handleExceptionFuncName :='ValidFrom'}
   handleExceptionBegin
   Result := AObj.ValidFrom;
   handleExceptionEnd
@@ -54,6 +60,7 @@ end;
 //property
 procedure CoreWebView2ClientCertificate_ValidTo(AObj: TCoreWebView2ClientCertificate; var Result: TDateTime); extdecl;
 begin
+  {$define handleExceptionFuncName :='ValidTo'}
   handleExceptionBegin
   Result := AObj.ValidTo;
   handleExceptionEnd
@@ -62,6 +69,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_DerEncodedSerialNumber(AObj: TCoreWebView2ClientCertificate): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DerEncodedSerialNumber'}
   handleExceptionBegin
   Result := ToPChar(AObj.DerEncodedSerialNumber);
   handleExceptionEnd
@@ -70,6 +78,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_DisplayName(AObj: TCoreWebView2ClientCertificate): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='DisplayName'}
   handleExceptionBegin
   Result := ToPChar(AObj.DisplayName);
   handleExceptionEnd
@@ -78,6 +87,7 @@ end;
 //property
 procedure CoreWebView2ClientCertificate_PemEncodedIssuerCertificateChain(AObj: TCoreWebView2ClientCertificate; var Result: ICoreWebView2StringCollection); extdecl;
 begin
+  {$define handleExceptionFuncName :='PemEncodedIssuerCertificateChain'}
   handleExceptionBegin
   Result := AObj.PemEncodedIssuerCertificateChain;
   handleExceptionEnd
@@ -86,6 +96,7 @@ end;
 //property
 function CoreWebView2ClientCertificate_Kind(AObj: TCoreWebView2ClientCertificate): TWVClientCertificateKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='Kind'}
   handleExceptionBegin
   Result := AObj.Kind;
   handleExceptionEnd
@@ -94,6 +105,7 @@ end;
 //function
 function CoreWebView2ClientCertificate_ToPemEncoding(AObj: TCoreWebView2ClientCertificate): PChar; extdecl;
 begin
+  {$define handleExceptionFuncName :='ToPemEncoding'}
   handleExceptionBegin
   Result := ToPChar(AObj.ToPemEncoding());
   handleExceptionEnd

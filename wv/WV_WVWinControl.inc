@@ -2,6 +2,7 @@
 //constructor
 function WVWinControl_Create(TheOwner: TComponent): TWVWinControl; extdecl;
 begin
+  {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
   Result := TWVWinControl.Create(TheOwner);
   handleExceptionEnd
@@ -10,6 +11,7 @@ end;
 //property
 function WVWinControl_ChildWindowHandle(AObj: TWVWinControl): THandle; extdecl;
 begin
+  {$define handleExceptionFuncName :='ChildWindowHandle'}
   handleExceptionBegin
   Result := AObj.ChildWindowHandle;
   handleExceptionEnd
@@ -18,6 +20,7 @@ end;
 //property
 function WVWinControl_DragKind(AIsSet: LongBool; AObj: TWVWinControl; AValue: TDragKind): TDragKind; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragKind'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -30,6 +33,7 @@ end;
 //property
 function WVWinControl_DragCursor(AIsSet: LongBool; AObj: TWVWinControl; AValue: TCursor): TCursor; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragCursor'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -42,6 +46,7 @@ end;
 //property
 function WVWinControl_DragMode(AIsSet: LongBool; AObj: TWVWinControl; AValue: TDragMode): TDragMode; extdecl;
 begin
+  {$define handleExceptionFuncName :='DragMode'}
   handleExceptionBegin
   if AIsSet then
   begin
@@ -54,6 +59,7 @@ end;
 //procedure
 procedure WVWinControl_CreateHandle(AObj: TWVWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='CreateHandle'}
   handleExceptionBegin
   AObj.CreateHandle();
   handleExceptionEnd
@@ -62,6 +68,7 @@ end;
 //procedure
 procedure WVWinControl_InvalidateChildren(AObj: TWVWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='InvalidateChildren'}
   handleExceptionBegin
   AObj.InvalidateChildren();
   handleExceptionEnd
@@ -70,6 +77,7 @@ end;
 //procedure
 procedure WVWinControl_UpdateSize(AObj: TWVWinControl); extdecl;
 begin
+  {$define handleExceptionFuncName :='UpdateSize'}
   handleExceptionBegin
   AObj.UpdateSize();
   handleExceptionEnd
