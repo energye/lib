@@ -4,6 +4,24 @@
 // Licensed under Lazarus.modifiedLGPL
 //----------------------------------------
 
+function WVLoader_GetGlobalWebView2Loader(): TWVLoader; extdecl;
+begin
+  Result := nil;
+  if assigned(GlobalWebView2Loader) then
+    Result := GlobalWebView2Loader;
+end;
+
+procedure WVLoader_SetGlobalWebView2Loader(AObj: TWVLoader); extdecl;
+begin
+  if not assigned(GlobalWebView2Loader) then
+    GlobalWebView2Loader := AObj;
+end;
+
+procedure WVLoader_DestroyGlobalWebView2Loader(); extdecl;
+begin
+  DestroyGlobalWebView2Loader();
+end;
+
 procedure WVLoader_SetOnEnvironmentCreated(AEventData: Pointer); extdecl;
 begin
   OnEnvironmentCreated_DataPtr := AEventData;
@@ -40,8 +58,10 @@ begin
   GlobalWebView2Loader.OnProcessInfosChanged := WVLoader_OnProcessInfosChanged;
 end;
 
-
 exports
+  WVLoader_GetGlobalWebView2Loader,
+  WVLoader_SetGlobalWebView2Loader,
+  WVLoader_DestroyGlobalWebView2Loader,
   WVLoader_SetOnEnvironmentCreated,
   WVLoader_SetOnInitializationError,
   WVLoader_SetOnGetCustomSchemes,

@@ -83,8 +83,7 @@
 {$I ./wv/WV_WVBrowser.inc}
 {$I ./wv/WV_WVBrowserBase.inc}
 {$I ./wv/WV_WVLoader.inc}
-{$I ./wv/WV_WVLoader_Event.inc}
-{$I ./wv/WV_WVLoader_Proc.inc}
 {$I ./wv/WV_WVProxySettings.inc}
 {$I ./wv/WV_WVWinControl.inc}
 {$I ./wv/WV_WVWindowParent.inc}
+{$I ./wv/predef/WV_WVLoaderPredef.inc}

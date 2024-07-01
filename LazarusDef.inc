@@ -930,6 +930,7 @@ end;
 procedure DFreeAndNil(var AObj: Pointer); extdecl;
 begin
   FreeAndNil(AObj);
+  AObj := nil;
 end;
 
 procedure DToUnixTime(var ADateTime: TDateTime; var Result: TUnixDateTime); extdecl;
