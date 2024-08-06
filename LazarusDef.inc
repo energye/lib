@@ -71,8 +71,9 @@ function CreateWindowsAppHandle: HWND;
 var
   SysMenu: HMENU;
 begin
-  Result := CreateWindowEx(0, @ClsNameW, PChar(Application.Title), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, 0, 0, HInstance, nil);
+  //Result := CreateWindowEx(0, @ClsNameW, PChar(Application.Title), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, 0, 0, HInstance, nil);
   //Result := CreateWindowW(@ClsNameW, PWideChar(UTF8ToUTF16(Application.Title)), WS_POPUP or WS_CLIPSIBLINGS or WS_SYSMENU or WS_MINIMIZEBOX, 0, 0, 0, 0, 0, 0, HInstance, nil);
+  Result := CreateWindowW(@ClsNameW, PWideChar(UTF8ToUTF16(Application.Title)), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, 0, 0, HInstance, nil);
   if Result = 0 then
     Exit(0);
   AllocWindowInfo(Result);
