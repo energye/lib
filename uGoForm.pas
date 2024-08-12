@@ -39,10 +39,6 @@ type
     procedure WndProc(var TheMessage: TLMessage); override;
     procedure CreateParams(var Params: TCreateParams); override;
 
-    //procedure WMPaint(var Msg: TLMPaint); message LM_PAINT;
-    //procedure WMMove(var Message: TLMMove); message LM_MOVE;
-    //procedure WMSize(var Message: TLMSize); message LM_SIZE;
-    //procedure WMWindowPosChanged(var Message: TLMWindowPosChanged); message LM_WINDOWPOSCHANGED;
   public
     constructor Create(AOwner: TComponent); override;
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
@@ -57,9 +53,6 @@ type
     procedure GoActivate();
 
     procedure InheritedWndProc(var TheMessage: TLMessage);
-
-    // On Messages, 设置各类消息事件的函数api
-    procedure SetOnMessagesEvent(AType: Integer; AEvent: Pointer);
 
     // 自定义一些
     procedure EnabledMaximize(AValue: Boolean);
@@ -226,53 +219,6 @@ begin
   inherited CreateParams(Params);
   if Assigned(GRequestCallCreateParamsPtr) then
     GRequestCallCreateParamsPtr(FGoPtr, Self, Params);
-end;
-
-//procedure TGoForm.WMPaint(var Msg: TLMPaint);
-//begin
-//  inherited;
-//  if (FOnWMPaintPtr <> nil) then
-//  begin
-//    //TCEFEventCallback.SendEvent(FOnWMPaintPtr, [@Msg]); // TODO 转移到 LCL事件里
-//  end;
-//end;
-//
-//procedure TGoForm.WMMove(var Message: TLMMove);
-//begin
-//  inherited;
-//  if (FOnWMMovePtr <> nil) then
-//  begin
-//    //TCEFEventCallback.SendEvent(FOnWMMovePtr, [@Message]);
-//  end;
-//end;
-//
-//procedure TGoForm.WMSize(var Message: TLMSize);
-//begin
-//  inherited;
-//  if (FOnWMSizePtr <> nil) then
-//  begin
-//    //TCEFEventCallback.SendEvent(FOnWMSizePtr, [@Message]);
-//  end;
-//end;
-//
-//procedure TGoForm.WMWindowPosChanged(var Message: TLMWindowPosChanged);
-//begin
-//  inherited;
-//  if (FOnWMWindowPosChangedPtr <> nil) then
-//  begin
-//    //TCEFEventCallback.SendEvent(FOnWMWindowPosChangedPtr, [@Message]);
-//  end;
-//end;
-
-// On Messages, 设置各类消息事件的函数api
-procedure TGoForm.SetOnMessagesEvent(AType: Integer; AEvent: Pointer);
-begin
-  case AType of
-    1: FOnWMMovePtr := AEvent;
-    2: FOnWMSizePtr := AEvent;
-    3: FOnWMWindowPosChangedPtr := AEvent;
-    4: FOnWMPaintPtr := AEvent;
-  end;
 end;
 
 constructor TGoForm.CreateFromClassName(TheOwner: TComponent; const AClassName: string);

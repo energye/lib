@@ -159,14 +159,6 @@ begin
   handleExceptionEnd
 end;
 
-
-procedure Form_SetOnMessagesEvent(AObj: TGoForm; AType: Integer; AEvent: Pointer); extdecl;
-begin
-  handleExceptionBegin
-  AObj.SetOnMessagesEvent(AType, AEvent);
-  handleExceptionEnd
-end;
-
 // mouse
 function Mouse_Instance: TMouse; extdecl;
 begin
@@ -968,7 +960,6 @@ exports
   Form_Create2,
   Form_SetOnWndProc,
   Form_SetGoPtr,
-  Form_SetOnMessagesEvent,
 
   // TMouse
   Mouse_Instance,
