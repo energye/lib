@@ -360,16 +360,16 @@
         <CursorPos Y="77"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="uGoForm.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="36"/>
-        <CursorPos X="29" Y="63"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="173"/>
+        <CursorPos X="34" Y="185"/>
         <UsageCount Value="222"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="uMiniWebview.pas"/>
@@ -382,10 +382,11 @@
       <Unit3>
         <Filename Value="uExceptionHandle.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="57" Y="28"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="35" Y="7"/>
         <UsageCount Value="222"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="uGauge.pas"/>
@@ -493,34 +494,39 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="4"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="128"/>
-        <CursorPos X="11" Y="155"/>
+        <CursorPos X="6" Y="156"/>
         <UsageCount Value="101"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
         <Filename Value="ImportLCL.inc"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="284"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="268"/>
         <CursorPos X="38" Y="321"/>
         <UsageCount Value="108"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
         <Filename Value="ExtDecl.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="7"/>
-        <CursorPos X="33" Y="26"/>
+        <CursorPos X="43" Y="7"/>
         <UsageCount Value="103"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
         <Filename Value="ImportCEF.inc"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="38" Y="174"/>
         <UsageCount Value="101"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
         <Filename Value="cef\CEF_Events_Declaration.inc"/>
@@ -540,17 +546,18 @@
       </Unit23>
       <Unit24>
         <Filename Value="ImportWV.inc"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="27"/>
-        <CursorPos X="42" Y="30"/>
+        <CursorPos X="55" Y="31"/>
         <UsageCount Value="118"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
         <Filename Value="WVComponentUnits.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="81"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit25>
       <Unit26>
         <Filename Value="uCEF_CustomEvents.pas"/>
@@ -614,7 +621,6 @@
         <TopLine Value="947"/>
         <CursorPos Y="5315"/>
         <UsageCount Value="26"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
         <Filename Value="uLCL_RecordStruct.pas"/>
@@ -629,6 +635,7 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="27" Y="11"/>
         <UsageCount Value="31"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
       <Unit36>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFInterfaces.pas"/>
@@ -636,6 +643,7 @@
         <TopLine Value="2947"/>
         <CursorPos X="3" Y="2967"/>
         <UsageCount Value="29"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
         <Filename Value="cef\CEF_ProcessMessage.inc"/>
@@ -643,6 +651,7 @@
         <TopLine Value="26"/>
         <CursorPos X="21" Y="27"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit37>
       <Unit38>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFv8Value.pas"/>
@@ -650,6 +659,7 @@
         <TopLine Value="212"/>
         <CursorPos X="10" Y="244"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit38>
       <Unit39>
         <Filename Value="cef\predef\CEF_V8ValuePredef.inc"/>
@@ -657,6 +667,7 @@
         <TopLine Value="22"/>
         <CursorPos X="2" Y="33"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit39>
       <Unit40>
         <Filename Value="cef\CEF_BaseScopedWrapperRef.inc"/>
@@ -696,7 +707,8 @@
         <Filename Value="cef\CEF_Application.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="7" Y="7"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit45>
       <Unit46>
         <Filename Value="lcl\LCL_Control.inc"/>
@@ -704,11 +716,13 @@
         <TopLine Value="360"/>
         <CursorPos X="63" Y="379"/>
         <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit46>
       <Unit47>
         <Filename Value="cef\CEF_WindowParent.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit47>
       <Unit48>
         <Filename Value="cef\CEF_SchemeHandlerFactory.inc"/>
@@ -735,11 +749,11 @@
       </Unit50>
       <Unit51>
         <Filename Value="wv\WV_WVBrowserBase.inc"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2345"/>
         <CursorPos X="41" Y="2382"/>
         <UsageCount Value="41"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
         <Filename Value="wv\WV_WVLoader_Proc.inc"/>
@@ -758,11 +772,11 @@
       </Unit53>
       <Unit54>
         <Filename Value="uWV_EventCallback.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="671"/>
         <CursorPos X="85" Y="727"/>
         <UsageCount Value="57"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit54>
       <Unit55>
         <Filename Value="wv\WV_CoreWebView2.inc"/>
@@ -770,6 +784,7 @@
         <TopLine Value="421"/>
         <CursorPos X="58" Y="451"/>
         <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVCoreWebView2.pas"/>
@@ -777,6 +792,7 @@
         <TopLine Value="1939"/>
         <CursorPos X="59" Y="1955"/>
         <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit56>
       <Unit57>
         <Filename Value="D:\lazarus\fpc\3.2.2\source\rtl\inc\systemh.inc"/>
@@ -784,6 +800,7 @@
         <TopLine Value="452"/>
         <CursorPos X="37" Y="470"/>
         <UsageCount Value="1"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit57>
       <Unit58>
         <Filename Value="wv\WV_CoreWebView2DownloadOperation.inc"/>
@@ -791,11 +808,13 @@
         <TopLine Value="53"/>
         <CursorPos X="11" Y="74"/>
         <UsageCount Value="19"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit58>
       <Unit59>
         <Filename Value="cef\CEF_ApplicationCore.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="7"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit59>
       <Unit60>
         <Filename Value="..\..\liblcl\src\3rd-party\CEF4Delphi\source\uCEFApplicationCore.pas"/>
@@ -851,11 +870,11 @@
       </Unit66>
       <Unit67>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowserBase.pas"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="3972"/>
         <CursorPos X="39" Y="3989"/>
         <UsageCount Value="41"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
         <Filename Value="wv\WV_WVBrowser.inc"/>
@@ -865,28 +884,26 @@
       </Unit68>
       <Unit69>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowser.pas"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="43"/>
-        <CursorPos X="37" Y="67"/>
+        <CursorPos X="41" Y="47"/>
         <UsageCount Value="41"/>
-        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit69>
       <Unit70>
         <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="580"/>
         <CursorPos X="15" Y="644"/>
         <UsageCount Value="36"/>
-        <Loaded Value="True"/>
       </Unit70>
       <Unit71>
         <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2220"/>
         <CursorPos X="16" Y="2243"/>
         <UsageCount Value="36"/>
-        <Loaded Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="E:\lazarus3-2\lcl\include\customform.inc"/>
@@ -896,17 +913,16 @@
       <Unit73>
         <Filename Value="E:\lazarus3-2\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2272"/>
         <CursorPos X="27" Y="2300"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit73>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="10" HistoryIndex="9">
       <Position1>
         <Filename Value="LazarusDef.inc"/>
         <Caret Line="101" Column="32" TopLine="70"/>
@@ -928,104 +944,25 @@
         <Caret Line="105" Column="17" TopLine="71"/>
       </Position5>
       <Position6>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="1607" Column="25" TopLine="1577"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="104" Column="23" TopLine="71"/>
       </Position6>
       <Position7>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="1469" Column="63" TopLine="1437"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="104" Column="17" TopLine="71"/>
       </Position7>
       <Position8>
-        <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
-        <Caret Line="23" Column="23"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="169" TopLine="148"/>
       </Position8>
       <Position9>
-        <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
-        <Caret Line="2217" Column="26" TopLine="2184"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="160" Column="5" TopLine="139"/>
       </Position9>
       <Position10>
         <Filename Value="LazarusDef.inc"/>
-        <Caret Line="104" Column="23" TopLine="71"/>
-      </Position10>
-      <Position11>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="1607" Column="25" TopLine="1581"/>
-      </Position11>
-      <Position12>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="1469" Column="63" TopLine="1441"/>
-      </Position12>
-      <Position13>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="1607" Column="25" TopLine="2371"/>
-      </Position13>
-      <Position14>
-        <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
-      </Position14>
-      <Position15>
-        <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
-        <Caret Line="2217" Column="26" TopLine="2190"/>
-      </Position15>
-      <Position16>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="221" Column="33" TopLine="175"/>
-      </Position16>
-      <Position17>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="94" Column="11" TopLine="63"/>
-      </Position17>
-      <Position18>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="904" Column="14" TopLine="879"/>
-      </Position18>
-      <Position19>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="221" Column="34" TopLine="174"/>
-      </Position19>
-      <Position20>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="265" Column="7" TopLine="235"/>
-      </Position20>
-      <Position21>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="104" Column="17" TopLine="71"/>
-      </Position21>
-      <Position22>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="68" TopLine="36"/>
-      </Position22>
-      <Position23>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="79" Column="97" TopLine="35"/>
-      </Position23>
-      <Position24>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="83" Column="56" TopLine="37"/>
-      </Position24>
-      <Position25>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="240" Column="5" TopLine="199"/>
-      </Position25>
-      <Position26>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="169" TopLine="148"/>
-      </Position26>
-      <Position27>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="160" Column="5" TopLine="139"/>
-      </Position27>
-      <Position28>
-        <Filename Value="LazarusDef.inc"/>
         <Caret Line="962" Column="17" TopLine="935"/>
-      </Position28>
-      <Position29>
-        <Filename Value="uGoForm.pas"/>
-        <Caret Line="42" Column="9" TopLine="23"/>
-      </Position29>
-      <Position30>
-        <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
-        <Caret Line="644" Column="15" TopLine="616"/>
-      </Position30>
+      </Position10>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
