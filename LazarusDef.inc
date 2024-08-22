@@ -924,6 +924,10 @@ end;
 procedure DFreeAndNil(var AObj: Pointer); extdecl;
 begin
   FreeAndNil(AObj);
+end;
+
+procedure DSetNil(var AObj: Pointer); extdecl;
+begin
   AObj := nil;
 end;
 
@@ -1147,6 +1151,7 @@ exports
   DFindDragTarget,
 
   DFreeAndNil,
+  DSetNil,
 
   DToUnixTime,
   DUnixToTime
