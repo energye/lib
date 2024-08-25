@@ -312,6 +312,7 @@
 {$I ./lcl/LCL_XButton.inc}
 {$I ./lcl/predef/COM_StreamAdapter.inc}
 {$I ./lcl/predef/COM_Types.inc}
+{$I ./lcl/predef/COM_Unknown.inc}
 {$I ./lcl/predef/InterfacedObject.inc}
 {$I ./lcl/predef/LCL_LazIntfImagePredef.inc}
 {$I ./lcl/predef/LCL_RawImageDescriptionPredef.inc}
