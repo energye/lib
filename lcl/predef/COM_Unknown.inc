@@ -1,7 +1,7 @@
 // IUnknown
 function Unknown_AddRef(var AObj: IUnknown): Integer ; extdecl;
 begin
-  {$define handleExceptionFuncName :='COMUnknown.AddRef'}
+  {$define handleExceptionFuncName :='AddRef'}
   handleExceptionBegin
   Result := Integer(AObj._AddRef);
   handleExceptionEnd
@@ -9,7 +9,7 @@ end;
 
 function Unknown_Release(var AObj: IUnknown): Integer ; extdecl;
 begin
-  {$define handleExceptionFuncName :='COMUnknown.Release'}
+  {$define handleExceptionFuncName :='Release'}
   handleExceptionBegin
   Result := Integer(AObj._Release);
   handleExceptionEnd
