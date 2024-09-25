@@ -31,7 +31,7 @@ uses
   WSLCLClasses, GroupedEdit, CustApp, RichMemo, CustomTimer,
   FPCanvas, FPImage, FPReadJPEG, IntfGraphics, DividerBevel,
   LDockTree, Laz_AVL_Tree, laz.VirtualTrees, LazarusPackageIntf,
-  Classes, SysUtils, LCLVersion,
+  Classes, SysUtils, LCLVersion, OpenGLContext,
 {$IFDEF LCLCocoa}
   uMacOSPatchs,
 {$ENDIF}

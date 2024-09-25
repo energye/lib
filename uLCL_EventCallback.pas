@@ -405,6 +405,8 @@ type
     procedure OnTVTMeasureTextEvent(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; const CellText: String; var Extent: Integer);
     procedure OnTVTDrawTextEvent(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; const CellText: String; const CellRect: TRect; var DefaultDraw: Boolean);
 
+    // open gl
+    procedure OnTOpenGlCtrlMakeCurrentEvent(Sender: TObject; var Allow: boolean);
   end;
 
 // 公共发送事件函数
@@ -2061,6 +2063,12 @@ var
 begin
   NodePtr := VirtualNodeToGo(Node^);
   SendEvent([Sender, TargetCanvas, @NodePtr, Column, ToPChar(CellText), @CellRect, @DefaultDraw]);
+end;
+
+// open gl
+procedure TLCLEvent.OnTOpenGlCtrlMakeCurrentEvent(Sender: TObject; var Allow: boolean);
+begin
+  SendEvent([Sender, @Allow]);
 end;
 
 end.

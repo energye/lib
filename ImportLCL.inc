@@ -91,6 +91,7 @@
 {$I ./lcl/LCL_CustomMaskEdit.inc}
 {$I ./lcl/LCL_CustomMemo.inc}
 {$I ./lcl/LCL_CustomMemoryStream.inc}
+{$I ./lcl/LCL_CustomOpenGLControl.inc}
 {$I ./lcl/LCL_CustomPage.inc}
 {$I ./lcl/LCL_CustomPanel.inc}
 {$I ./lcl/LCL_CustomPrintDialog.inc}
@@ -219,6 +220,7 @@
 {$I ./lcl/LCL_Mouse.inc}
 {$I ./lcl/LCL_Object.inc}
 {$I ./lcl/LCL_OpenDialog.inc}
+{$I ./lcl/LCL_OpenGLControl.inc}
 {$I ./lcl/LCL_OpenPictureDialog.inc}
 {$I ./lcl/LCL_OwnedCollection.inc}
 {$I ./lcl/LCL_PageControl.inc}
