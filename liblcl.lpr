@@ -48,14 +48,21 @@ uses
   uLCL_RecordStruct, uLCL_SortMethods,
   //LCL 事件回调
   uLCL_EventCallback,
-  // CEF unit's
-  {$I CEFComponentUnits.inc}
+
+// CEF unit's
+{$I CEFComponentUnits.inc}
+
 {$IFDEF WINDOWS}
   // WebView2 unit's
  ,{$I WVComponentUnits.inc}
-{$ELSE}
+{$ENDIF}
+
+{$IFDEF Darwin}
+  // Webkit unit's
+{$ENDIF}
+
+{$IFDEF Linux}
   // Webkit2 unit's
-  //,uMiniWebview
  ,{$I WKComponentUnits.inc}
 {$ENDIF}
 ;
@@ -76,11 +83,17 @@ uses
 // CEF
 {$I ImportCEF.inc}
 
-{$IFDEF WINDOWS}
 // Webview2 API
+{$IFDEF WINDOWS}
 {$I ImportWV.inc}
-{$ELSE}
-  // Webkit2
+{$ENDIF}
+
+// Webkit
+{$IFDEF LCLCocoa}
+{$ENDIF}
+
+// Webkit2
+{$IFDEF Linux}
 {$I ImportWK.inc}
 {$ENDIF}
 
