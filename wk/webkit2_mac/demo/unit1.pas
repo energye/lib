@@ -9,9 +9,13 @@ uses
   uWkWebview, uWkWebviewParent;
 
 type
-  TForm1 = class(TForm)
-  private
 
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    procedure FormCreate(Sender: TObject);
+  private
+    FWebView: TWkWebview;
   public
 
   end;
@@ -22,6 +26,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  FWebView := TWkWebview.Create(self, Width, Height);
+end;
 
 end.
 

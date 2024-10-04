@@ -19,7 +19,7 @@ interface
 {$linkframework WebKit}
 
 uses
-  DefinedClassesAppKit, DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes;
+  DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes;
 
 
 {$define INTERFACE}

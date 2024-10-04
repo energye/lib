@@ -16,7 +16,6 @@ type
 
   TWkWebviewParent = class(TCustomControl)
   private
-    //FWebview: Webview;
     FDelegateProtocol: WKWebViewConfiguration;
   end;
 
