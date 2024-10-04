@@ -15,7 +15,7 @@ type
 
   TWkWebviewParent = class(TCustomControl)
   private
-    FDelegateProtocol: WKWebViewConfiguration;
+
     //NSStringUTF8
   end;
 
