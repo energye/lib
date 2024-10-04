@@ -7,14 +7,17 @@ interface
 
 uses
   Classes, SysUtils, Controls,
-  MacOSAll, CocoaAll, WebKit, CocoaUtils, CocoaPrivate,
+  MacOSAll, CocoaAll, uWebKit, CocoaUtils, CocoaPrivate,
   CocoaWSCommon;
 
 
 type
 
+
   TWkWebviewParent = class(TCustomControl)
   private
+    //FWebview: Webview;
+    FDelegateProtocol: WKWebViewConfiguration;
   end;
 
 implementation
