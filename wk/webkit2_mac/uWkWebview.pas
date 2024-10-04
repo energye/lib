@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils,
-  uWebKit, CGGeometry;
+  CocoaAll, CocoaUtils, uWebKit, CGGeometry;
 
 type
 
@@ -26,6 +26,7 @@ constructor TWkWebview.Create(AOwner: TComponent; Width, Height: Integer);
 var
   frame: CGRect;
   config: WKWebViewConfiguration;
+  LReq: NSURLRequest;
 begin
   inherited Create(AOwner);
 
@@ -40,15 +41,16 @@ begin
   FWebview := WKWebView.alloc.initWithFrame_configuration(frame, config);
   FWebview.autorelease();
 
-
+  LReq := NSURLRequest.requestWithURL(NSURL.URLWithString(NSStringUTF8('https://www.baidu.com')));
+  FWebview.loadRequest(LReq);
 end;
 
 destructor TWkWebview.Destroy;
 begin
-  if FWebview <> nil then
-  begin
-    FWebview.release;
-  end;
+  //if FWebview <> nil then
+  //begin
+  //  FWebview.release;
+  //end;
   inherited Destroy;
 end;
 

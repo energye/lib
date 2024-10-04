@@ -7,8 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Controls,
-  MacOSAll, CocoaAll, uWebKit, CocoaUtils, CocoaPrivate,
-  CocoaWSCommon;
+  uWebKit;
 
 
 type
@@ -17,6 +16,7 @@ type
   TWkWebviewParent = class(TCustomControl)
   private
     FDelegateProtocol: WKWebViewConfiguration;
+    //NSStringUTF8
   end;
 
 implementation
