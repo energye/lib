@@ -398,7 +398,7 @@ end;
 {$ENDIF}
 
 // 事件回调 WK
-{$IFnDEF WINDOWS}
+{$IFDEF Linux}
 procedure SetWKEventCallback(APtr: Pointer); extdecl;
 begin
   GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
@@ -1028,7 +1028,7 @@ exports
   {$ENDIF}
 
   // 事件回调 WK
-  {$IFnDEF WINDOWS}
+  {$IFDEF Linux}
   // 设置 WK 事件回调
   SetWKEventCallback,
   // 设置 WK 事件移除回调
