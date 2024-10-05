@@ -12,7 +12,7 @@ uses
 type
 
 
-  TWkWebviewParent = class(TCustomPanel)
+  TWkWebviewParent = class(TCustomControl)
   private
     FWebview: TWkWebview;
   private

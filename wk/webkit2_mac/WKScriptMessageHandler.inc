@@ -10,8 +10,8 @@ type
 {$ifdef PROTOCOLS}
 
 type
-  WKScriptMessageHandlerProtocol = objcprotocol external name 'WKScriptMessageHandler' (NSObjectProtocol)
-  required
+  WKScriptMessageHandlerProtocol = objcclass(NSObject)//objcprotocol external name 'WKScriptMessageHandler' (NSObjectProtocol)
+  public
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage); message 'userContentController:didReceiveScriptMessage:';
   end;
 {$endif}

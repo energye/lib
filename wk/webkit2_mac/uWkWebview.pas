@@ -2,7 +2,6 @@ unit uWkWebview;
 
 {$mode ObjFPC}{$H+}
 {$modeswitch objectivec1}
-{$modeswitch objectivec2}
 
 
 interface
@@ -31,19 +30,19 @@ type
   end;
 
   // WKNavigationDelegateProtocol
-  WKNavigationDelegate = objcclass(NSObject)
-  //WKNavigationDelegate = objcclass(NSObject, WKNavigationDelegateProtocol)
-  public
-    procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
-    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
-    procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didStartProvisionalNavigation:';
-    procedure webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didReceiveServerRedirectForProvisionalNavigation:';
-    procedure webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailProvisionalNavigation:withError:';
-    procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didCommitNavigation:';
-    procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didFinishNavigation:';
-    procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailNavigation:withError:';
-    procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock); message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
-  end;
+  //WKNavigationDelegate = objcclass(NSObject)
+  ////WKNavigationDelegate = objcclass(NSObject, WKNavigationDelegateProtocol)
+  //public
+  //  procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
+  //  procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
+  //  procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didStartProvisionalNavigation:';
+  //  procedure webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didReceiveServerRedirectForProvisionalNavigation:';
+  //  procedure webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailProvisionalNavigation:withError:';
+  //  procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didCommitNavigation:';
+  //  procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didFinishNavigation:';
+  //  procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailNavigation:withError:';
+  //  procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock); message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
+  //end;
 
   TWkWebview = class(TComponent)
   private
@@ -83,50 +82,50 @@ begin
 end;
 
 // WKNavigationDelegate
-procedure WKNavigationDelegate.webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
-begin
-  //WriteLn('didStartProvisionalNavigation');
-end;
-
-procedure WKNavigationDelegate.webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-begin
-
-end;
-
-procedure WKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock);
-begin
-
-end;
+//procedure WKNavigationDelegate.webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+//begin
+//  //WriteLn('didStartProvisionalNavigation');
+//end;
+//
+//procedure WKNavigationDelegate.webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+//begin
+//
+//end;
+//
+//procedure WKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock);
+//begin
+//
+//end;
 
 
 constructor TWkWebview.Create(AOwner: TComponent);
@@ -139,9 +138,9 @@ var
   frame: CGRect;
   config: WKWebViewConfiguration;
   userContentController: WKUserContentController;
-  scriptMessageHandler: WKScriptMessageHandler;
+  scriptMessageHandler: WKScriptMessageHandlerProtocol;
   //UIDelgate: WKUIDelegate;
-  navigationDelegate: WKNavigationDelegate;
+  navigationDelegate: WKNavigationDelegateProtocol;
 begin
   inherited Create(AOwner);
 
@@ -149,8 +148,8 @@ begin
 
   // 问题，代理协议类不是这样用
   userContentController := WKUserContentController.alloc.init;
-  scriptMessageHandler := WKScriptMessageHandler.alloc.init;
-  userContentController.addScriptMessageHandler_name(WKScriptMessageHandlerProtocol(scriptMessageHandler), NSStringUtf8('energy'));
+  scriptMessageHandler := WKScriptMessageHandlerProtocol.alloc.init;
+  userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
   config.setUserContentController(userContentController);
 
   config.autorelease();
@@ -165,8 +164,8 @@ begin
 
   //UIDelgate := WKUIDelegate.alloc.init;
   //FWebview.setUIDelegate(WKUIDelegateProtocol(UIDelgate));
-  navigationDelegate := WKNavigationDelegate.alloc.init;
-  //FWebview.setNavigationDelegate(WKNavigationDelegateProtocol(navigationDelegate));
+  //navigationDelegate := WKNavigationDelegateProtocol.alloc.init;
+  //FWebview.setNavigationDelegate(navigationDelegate);
 end;
 
 destructor TWkWebview.Destroy;

@@ -1,11 +1,13 @@
 unit Unit1;
 
 {$mode objfpc}{$H+}
+{$modeswitch objectivec1}
 
 interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  uWebKit,
   uWkWebview, uWkWebviewParent;
 
 type
@@ -19,6 +21,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    FNavigationDelegate: WKNavigationDelegateProtocol;
     FWebView: TWkWebview;
     FWebViewParent: TWkWebviewParent;
   public
@@ -35,6 +38,8 @@ implementation
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  navigationDelegate: WKNavigationDelegateProtocol;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -47,6 +52,9 @@ begin
 
   FWebView := TWkWebview.Create(self, Width, Height - 50);
   FWebViewParent.SetWebview(FWebView);
+
+  FNavigationDelegate := WKNavigationDelegateProtocol.alloc.init;
+  FWebview.WebView.setNavigationDelegate(FNavigationDelegate);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);

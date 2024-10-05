@@ -19,7 +19,7 @@ interface
 {$linkframework WebKit}
 
 uses
-  DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes;
+  DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes, CocoaUtils;
 
 
 {$define INTERFACE}
@@ -50,5 +50,59 @@ type
 
 
 implementation
+
+// WKScriptMessageHandler
+procedure WKScriptMessageHandlerProtocol.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
+var
+  body: string;
+begin
+  body := NSStringToString(NSString(message_.body));
+end;
+
+//procedure WKNavigationDelegateProtocol.webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock);// message 'webView:decidePolicyForNavigationAction:decisionHandler:';
+//begin
+//
+//end;
+
+//procedure WKNavigationDelegateProtocol.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock);// message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
+//begin
+//
+//end;
+
+procedure WKNavigationDelegateProtocol.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);// message 'webView:didStartProvisionalNavigation:';
+begin
+
+end;
+
+procedure WKNavigationDelegateProtocol.webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); //message 'webView:didReceiveServerRedirectForProvisionalNavigation:';
+begin
+
+end;
+
+procedure WKNavigationDelegateProtocol.webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); //message 'webView:didFailProvisionalNavigation:withError:';
+begin
+
+end;
+
+procedure WKNavigationDelegateProtocol.webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);// message 'webView:didCommitNavigation:';
+begin
+
+end;
+
+procedure WKNavigationDelegateProtocol.webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation); //message 'webView:didFinishNavigation:';
+begin
+
+end;
+
+procedure WKNavigationDelegateProtocol.webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);// message 'webView:didFailNavigation:withError:';
+begin
+
+end;
+
+//procedure WKNavigationDelegateProtocol.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock);// message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
+//begin
+//
+//end;
+
 
 end.
