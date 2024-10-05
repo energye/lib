@@ -7,8 +7,8 @@
       <Unit>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos Y="25"/>
-        <UsageCount Value="56"/>
+        <CursorPos X="14" Y="24"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -18,31 +18,31 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="2"/>
-        <CursorPos X="5" Y="52"/>
-        <UsageCount Value="56"/>
+        <TopLine Value="12"/>
+        <CursorPos Y="47"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../uWkWebview.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="42"/>
-        <CursorPos X="4" Y="61"/>
-        <UsageCount Value="56"/>
+        <TopLine Value="51"/>
+        <CursorPos X="23" Y="72"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../uwkwebviewparent.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uWkWebviewParent"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="41"/>
-        <CursorPos Y="80"/>
-        <UsageCount Value="56"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="15"/>
+        <CursorPos Y="31"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -50,66 +50,67 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="198"/>
         <CursorPos X="28" Y="224"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/WKWebView.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="8"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../../uMiniWebview.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="15"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/DefinedClassesWebKit.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos X="3" Y="135"/>
-        <UsageCount Value="7"/>
+        <CursorPos X="3" Y="155"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/Sources.inc"/>
-        <EditorIndex Value="10"/>
-        <CursorPos X="28" Y="8"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="120"/>
+        <CursorPos X="12" Y="155"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/WebKit.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/WebView.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="15" Y="4"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/UndefinedTypes.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKNavigation.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <CursorPos X="3" Y="13"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/WKUserScript.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="9"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../uWebKit.pas"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="33" Y="22"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="3" Y="31"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -117,212 +118,218 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="211"/>
         <CursorPos X="30" Y="237"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../Sources.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="38" Y="17"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKWebViewConfiguration.inc"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="76" Y="32"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKFoundation.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="13"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKBackForwardListItem.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="57"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKError.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKFrameInfo.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKNavigationAction.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="15" Y="5"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKNavigationDelegate.inc"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="31" Y="31"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="5" Y="33"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKNavigationResponse.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="7" Y="15"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKPreferences.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="36"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKProcessPool.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="13"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../WKScriptMessage.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <CursorPos X="18" Y="18"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../WKScriptMessageHandler.inc"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <EditorIndex Value="11"/>
+        <CursorPos X="11" Y="14"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKUIDelegate.inc"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="23" Y="13"/>
-        <UsageCount Value="26"/>
+        <CursorPos X="67" Y="13"/>
+        <UsageCount Value="29"/>
       </Unit>
       <Unit>
         <Filename Value="../WKUserContentController.inc"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="13"/>
-        <UsageCount Value="7"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="97" Y="18"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKUserScript.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="48"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../WKWebView.inc"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="71" Y="30"/>
-        <UsageCount Value="27"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="15" Y="22"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKWindowFeatures.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/objcbase.pp"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="55"/>
-        <CursorPos X="3" Y="85"/>
+        <TopLine Value="21"/>
+        <CursorPos X="32" Y="223"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../WKBackForwardList.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/CocoaAll.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="196"/>
         <CursorPos X="14" Y="200"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/univint/src/CGBase.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="22"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/univint/src/CGGeometry.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="22"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/UndefinedTypes.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="7" Y="106"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/univint/src/MacTypes.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="14" Y="32"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/DefinedClassesAppKit.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../types.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="9"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../WKTypes.inc"/>
-        <EditorIndex Value="9"/>
-        <CursorPos X="36" Y="7"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="20" Y="13"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/InlineFunctions.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="21"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/objcnf.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="3" Y="67"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSRange.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="6"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSURLRequest.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="39"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../../Lazarus/lcl/interfaces/cocoa/cocoautils.pas"/>
         <UnitName Value="CocoaUtils"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="36"/>
+        <TopLine Value="37"/>
         <CursorPos X="10" Y="65"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/appkit/NSView.inc"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="124"/>
-        <CursorPos X="3" Y="140"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="720"/>
+        <CursorPos X="9" Y="140"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../../Lazarus/lcl/graphics.pp"/>
@@ -330,14 +337,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="267"/>
         <CursorPos X="3" Y="295"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../../Lazarus/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="893"/>
         <CursorPos Y="923"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../../Lazarus/components/lazutils/lazmethodlist.pas"/>
@@ -345,144 +352,187 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="288"/>
         <CursorPos Y="339"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSURL.inc"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="30"/>
-        <CursorPos X="8" Y="47"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="35"/>
+        <CursorPos X="123" Y="64"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSObject.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="3" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uDefinedWebKitClasses.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="13"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/DefinedClassesFoundation.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="197"/>
+        <CursorPos X="3" Y="226"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../../Lazarus/lcl/interfaces/cocoa/cocoaint.pas"/>
+        <UnitName Value="CocoaInt"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="718"/>
+        <CursorPos Y="738"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSObject.inc"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="5" Y="37"/>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSString.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="73"/>
+        <CursorPos X="11" Y="102"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1861"/>
+        <CursorPos X="3" Y="1889"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../../Lazarus/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1958"/>
+        <CursorPos X="3" Y="1987"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="47" Column="57" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="../WKTypes.inc"/>
-        <Caret Line="7" Column="36"/>
+        <Caret Line="85" Column="87" TopLine="48"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="47" Column="26" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="72" Column="39" TopLine="35"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="94" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="78" Column="23" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="62" Column="16" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="96" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="98" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="42"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="15" Column="40"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="82" Column="34" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="49"/>
+        <Caret Line="35" Column="45" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="63" TopLine="13"/>
+        <Caret Line="84" Column="24" TopLine="76"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="65" TopLine="13"/>
+        <Caret Line="34" Column="47" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="63" Column="21" TopLine="13"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="44" Column="4"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="80" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="81" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="82" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <Caret Line="83" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="69" Column="11" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="58" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="21" Column="23" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="68" Column="8" TopLine="22"/>
+        <Caret Line="85" Column="32" TopLine="57"/>
       </Position>
       <Position>
         <Filename Value="../WKWebView.inc"/>
-        <Caret Line="30" Column="71"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSURL.inc"/>
-        <Caret Line="47" Column="3" TopLine="25"/>
+        <Caret Line="22" Column="15"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="72" Column="8" TopLine="41"/>
+        <Caret Line="166" Column="5" TopLine="139"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="60" Column="54" TopLine="31"/>
+        <Caret Line="37" Column="171" TopLine="19"/>
       </Position>
       <Position>
         <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="21" Column="47" TopLine="43"/>
+        <Caret Line="35" Column="74" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="37" Column="7" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="85" Column="57" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="37" Column="171" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="36" Column="9" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="94" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="97" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../../Lazarus/lcl/interfaces/cocoa/cocoaint.pas"/>
+        <Caret Line="738" Column="17" TopLine="709"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="168" Column="82" TopLine="116"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="95" Column="24" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="139" Column="34" TopLine="120"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="39" Column="38" TopLine="9"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="44" Column="24" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="168" Column="62" TopLine="136"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="160" Column="26" TopLine="135"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="136" Column="51" TopLine="123"/>
+      </Position>
+      <Position>
+        <Filename Value="../WKWebView.inc"/>
+        <Caret Line="22" Column="15"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="136" Column="51" TopLine="123"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="97" Column="5" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="39" Column="15" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="153" Column="5" TopLine="117"/>
+      </Position>
+      <Position>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="24" Column="14"/>
       </Position>
     </JumpHistory>
     <RunParams>
