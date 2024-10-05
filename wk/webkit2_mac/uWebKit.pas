@@ -19,6 +19,7 @@ interface
 {$linkframework WebKit}
 
 uses
+  Forms,
   DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes, CocoaUtils;
 
 
@@ -54,21 +55,14 @@ implementation
 // WKScriptMessageHandler
 procedure WKScriptMessageHandlerProtocol.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
 var
-  body: string;
+  name, body: string;
 begin
   body := NSStringToString(NSString(message_.body));
+  name := NSStringToString(message_.name);
+  Application.MessageBox(PChar(body), PChar('ReceiveScriptMessage: ' + name));
 end;
 
-//procedure WKNavigationDelegateProtocol.webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock);// message 'webView:decidePolicyForNavigationAction:decisionHandler:';
-//begin
-//
-//end;
-
-//procedure WKNavigationDelegateProtocol.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock);// message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
-//begin
-//
-//end;
-
+// WKNavigationDelegateProtocol
 procedure WKNavigationDelegateProtocol.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);// message 'webView:didStartProvisionalNavigation:';
 begin
 
@@ -98,11 +92,6 @@ procedure WKNavigationDelegateProtocol.webView_didFailNavigation_withError (webV
 begin
 
 end;
-
-//procedure WKNavigationDelegateProtocol.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock);// message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
-//begin
-//
-//end;
 
 
 end.

@@ -28,6 +28,7 @@ const
 {$ifdef PROTOCOLS}
 
 type
+  // 问题：回调函数-参数有 OpaqueCBlock 类型报错，没搞明白咋回事！！！
   WKNavigationDelegateProtocol = objcclass(NSObject)// objcprotocol external name 'WKNavigationDelegate' (NSObjectProtocol)
   public
     //procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
@@ -41,10 +42,6 @@ type
     //procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock); message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
   end;
 
-
-  //WKNavigationDelegate = objcclass(NSObject, WKNavigationDelegateProtocol)
-  //public
-  //end;
 {$endif}
 
 {$endif}
