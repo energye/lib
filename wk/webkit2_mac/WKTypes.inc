@@ -116,8 +116,10 @@ type
   end;
 
   // WebKit.framework WKNavigationDelegate.h
-  WKNavigationDelegateProtocol = objcclass(NSObject)// objcprotocol external name 'WKNavigationDelegate' (NSObjectProtocol)
+  WKNavigationDelegateProtocol = objcclass(NSObject)
   public
+  //WKNavigationDelegateProtocol = objcprotocol external name 'WKNavigationDelegate' (NSObjectProtocol)
+  //optional
     //procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
     //procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
     procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didStartProvisionalNavigation:';
@@ -166,8 +168,10 @@ type
   end;
 
   // WebKit.framework WKScriptMessageHandler.h
-  WKScriptMessageHandlerProtocol = objcclass(NSObject) //objcprotocol external name 'WKScriptMessageHandler' (NSObjectProtocol)
+  WKScriptMessageHandlerProtocol = objcclass(NSObject)
   public
+  //WKScriptMessageHandlerProtocol = objcprotocol external name 'WKScriptMessageHandler' (NSObjectProtocol)
+  //optional
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage); message 'userContentController:didReceiveScriptMessage:';
   end;
 
