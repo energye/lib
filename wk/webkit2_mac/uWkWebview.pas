@@ -9,7 +9,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils, uDefinedWebKitClasses,
+  CocoaAll, CocoaUtils,
   uWebKit, CGGeometry;
 
 type

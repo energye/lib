@@ -38,8 +38,6 @@ implementation
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
-var
-  navigationDelegate: WKNavigationDelegateProtocol;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;

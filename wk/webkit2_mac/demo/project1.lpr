@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, uWkWebview, uWkWebviewParent;
+  Forms, unit1;
 
 {$R *.res}
 

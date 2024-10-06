@@ -17,7 +17,6 @@ type
     FWebview: TWkWebview;
   private
     procedure UpdateBounds();
-    procedure CreateWnd(); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -69,29 +68,24 @@ begin
   Canvas.FillRect(ClientRect);
 end;
 
-procedure TWkWebviewParent.CreateWnd();
+procedure TWkWebviewParent.SetWebview(AWebview: TWkWebview);
 var
   view: NSView;
   AutoPool: NSAutoreleasePool;
 begin
-  inherited CreateWnd();
-  if Assigned(FWebview) then
-  begin
-    AutoPool := NSAutoreleasePool.alloc.init;
-    try
-      view := NSView(self.Handle);//.lclContentView; //GetNSObjectView(NSObject(Handle));
-      view.addSubview(FWebview.WebView);
-    finally
-      AutoPool.Release;
-    end;
-  end;
-end;
-
-procedure TWkWebviewParent.SetWebview(AWebview: TWkWebview);
-begin
   if (FWebview = nil) and Assigned(AWebview) then
   begin
     FWebview := AWebview;
+    if Assigned(FWebview) then
+    begin
+      AutoPool := NSAutoreleasePool.alloc.init;
+      try
+        view := NSView(self.Handle);//.lclContentView; //GetNSObjectView(NSObject(Handle));
+        view.addSubview(FWebview.WebView);
+      finally
+        AutoPool.Release;
+      end;
+    end;
   end;
 end;
 
