@@ -15,13 +15,11 @@ type
   TWkWebviewParent = class(TCustomControl)
   private
     FWebview: TWkWebview;
-  private
-    procedure UpdateBounds();
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   public
-    procedure Paint(); override;
+    procedure UpdateBounds();
     procedure Resize(); override;
     procedure SetWebview(AWebview: TWkWebview);
   end;
@@ -31,8 +29,8 @@ implementation
 constructor TWkWebviewParent.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Width := 300;
-  Height := 200;
+  Width := 100;
+  Height := 100;
   Visible := True;
 end;
 
@@ -61,13 +59,6 @@ begin
   UpdateBounds;
 end;
 
-procedure TWkWebviewParent.Paint;
-begin
-  inherited Paint;
-  Canvas.Brush.Color := clWhite;
-  Canvas.FillRect(ClientRect);
-end;
-
 procedure TWkWebviewParent.SetWebview(AWebview: TWkWebview);
 var
   view: NSView;
@@ -80,7 +71,7 @@ begin
     begin
       AutoPool := NSAutoreleasePool.alloc.init;
       try
-        view := NSView(self.Handle);//.lclContentView; //GetNSObjectView(NSObject(Handle));
+        view := NSView(self.Handle);
         view.addSubview(FWebview.WebView);
       finally
         AutoPool.Release;

@@ -18,10 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="35"/>
-        <CursorPos X="17" Y="54"/>
+        <TopLine Value="17"/>
+        <CursorPos X="6" Y="59"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,8 +29,8 @@
         <Filename Value="../uWkWebview.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="14"/>
-        <CursorPos Y="30"/>
+        <TopLine Value="32"/>
+        <CursorPos X="35" Y="44"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit>
@@ -39,9 +38,10 @@
         <Filename Value="../uwkwebviewparent.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uWkWebviewParent"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="56"/>
-        <CursorPos X="15" Y="86"/>
+        <TopLine Value="18"/>
+        <CursorPos X="19" Y="34"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit>
@@ -73,7 +73,7 @@
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/webkit/Sources.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="120"/>
         <CursorPos X="12" Y="155"/>
         <UsageCount Value="32"/>
@@ -109,7 +109,7 @@
       </Unit>
       <Unit>
         <Filename Value="../uWebKit.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="31"/>
         <CursorPos X="20" Y="42"/>
         <UsageCount Value="32"/>
@@ -194,17 +194,15 @@
       </Unit>
       <Unit>
         <Filename Value="../WKScriptMessageHandler.inc"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="30" Y="9"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="13"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKUIDelegate.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="18"/>
         <UsageCount Value="29"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../WKUserContentController.inc"/>
@@ -220,7 +218,7 @@
       </Unit>
       <Unit>
         <Filename Value="../WKWebView.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="42" Y="19"/>
         <UsageCount Value="29"/>
         <Loaded Value="True"/>
@@ -286,7 +284,7 @@
       </Unit>
       <Unit>
         <Filename Value="../WKTypes.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="20" Y="13"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
@@ -419,7 +417,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="../uWkWebview.pas"/>
         <Caret Line="169" Column="53" TopLine="116"/>
@@ -531,6 +529,14 @@
       <Position>
         <Filename Value="../uwkwebviewparent.pas"/>
         <Caret Line="86" Column="15" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="45" Column="23" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="../uwkwebviewparent.pas"/>
+        <Caret Line="71" Column="34" TopLine="56"/>
       </Position>
     </JumpHistory>
     <RunParams>
