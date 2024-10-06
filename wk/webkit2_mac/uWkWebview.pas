@@ -47,13 +47,12 @@ begin
   inherited Create(AOwner);
 
   config := WKWebViewConfiguration.alloc.init;
+  config.autorelease();
 
   userContentController := WKUserContentController.alloc.init;
   scriptMessageHandler := WKScriptMessageHandlerProtocol.alloc.init;
   userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
   config.setUserContentController(userContentController);
-
-  config.autorelease();
 
   frame.origin.x := 0;
   frame.origin.y := 0;
@@ -62,7 +61,6 @@ begin
 
   FWebview := WKWebView.alloc.initWithFrame_configuration(frame, config);
   FWebview.autorelease();
-
 end;
 
 destructor TWkWebview.Destroy;
