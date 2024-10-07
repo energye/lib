@@ -19,7 +19,7 @@ object Form1: TForm1
     OnClick = GoURLClick
   end
   object Process: TLabel
-    Left = 544
+    Left = 552
     Height = 16
     Top = 10
     Width = 19
@@ -27,13 +27,13 @@ object Form1: TForm1
     Caption = ' - -'
   end
   object Addr: TEdit
-    Left = 96
+    Left = 100
     Height = 22
-    Top = 4
+    Top = 7
     Width = 392
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 1
-    Text = 'https://www.google.com'
+    Text = 'https://github.com'
   end
   object Back: TButton
     Left = 0
