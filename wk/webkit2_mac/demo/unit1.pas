@@ -9,7 +9,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegateProtocol, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL;
+  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL;
 
 type
 
@@ -22,7 +22,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FNavigationDelegate: NSWKNavigationDelegateProtocol;
+    FNavigationDelegate: NSWKNavigationDelegate;
     FWebView: IWkWebview;
     FWebViewParent: TWkWebviewParent;
   public
@@ -53,7 +53,7 @@ begin
   FWebView.CreateBrowser(Width, Height - 50);
   FWebViewParent.SetWebview(FWebView);
 
-  FNavigationDelegate := NSWKNavigationDelegateProtocol.alloc.init;
+  FNavigationDelegate := NSWKNavigationDelegate.alloc.init;
   FWebview.Data().setNavigationDelegate(FNavigationDelegate);
 end;
 
