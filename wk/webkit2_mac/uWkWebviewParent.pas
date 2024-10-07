@@ -7,21 +7,21 @@ interface
 
 uses
   Classes, SysUtils, Controls, ExtCtrls, Graphics,
-  CocoaAll, uWkWebview;
+  CocoaAll, uWkInterface, uWkWebview;
 
 type
 
 
   TWkWebviewParent = class(TCustomControl)
   private
-    FWebview: TWkWebview;
+    FWebview: IWkWebview;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   public
     procedure UpdateBounds();
     procedure Resize(); override;
-    procedure SetWebview(AWebview: TWkWebview);
+    procedure SetWebview(AWebview: IWkWebview);
   end;
 
 implementation
@@ -59,7 +59,7 @@ begin
   UpdateBounds;
 end;
 
-procedure TWkWebviewParent.SetWebview(AWebview: TWkWebview);
+procedure TWkWebviewParent.SetWebview(AWebview: IWkWebview);
 var
   view: NSView;
   AutoPool: NSAutoreleasePool;

@@ -6,7 +6,7 @@ unit uWkInterface;
 interface
 
 uses
-  Classes, uWebKit;
+  Classes, CocoaAll, uWebKit;
 
 type
   IWKUserScript = interface;
@@ -72,6 +72,37 @@ type
   IWKScriptMessageHandler = interface
     ['{CA5E93CB-6734-B968-565A-729497C74563}']
     function Data(): WKScriptMessageHandlerProtocol;
+  end;
+
+  IWKUIDelegate = interface
+    ['{CA5E93CB-6734-B968-565A-729497B48123}']
+    function Data(): WKUIDelegateProtocol;
+  end;
+
+  IWkWebview = interface
+    ['{CA5E93CB-6734-B968-565A-729497B49467}']
+    function Data(): WKWebView;
+    procedure CreateBrowser(Width, Height: integer);
+    procedure LoadHTML(AHtml, ABaseURL: string);
+    procedure LoadURL(AURL: string);
+  end;
+
+  INSURL = interface
+    ['{CA5E93CB-6734-B968-565A-729497B49467}']
+    function Data(): NSURL;
+    function AbsoluteString: string;
+    function RelativeString: string;
+    function BaseURL: INSURL;
+    function AbsoluteURL: INSURL;
+    function Scheme: string;
+    function Host: string;
+    function Port: Integer;
+    function User: string;
+    function Password: string;
+    function Path: string;
+    function Fragment: string;
+    function ParameterString: string;
+    function Query: string;
   end;
 
 implementation

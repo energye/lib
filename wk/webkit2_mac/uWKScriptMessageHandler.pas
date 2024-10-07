@@ -13,7 +13,7 @@ uses
 type
 
   NSWKScriptMessageHandler = objcclass(NSObject, WKScriptMessageHandlerProtocol)
-  public
+  private
     FData: Pointer;
   public
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
@@ -22,13 +22,13 @@ type
   TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
   private
     FData: NSWKScriptMessageHandler;
+  protected
+    function Data(): WKScriptMessageHandlerProtocol;
   private
     FOnProcessMessage: TWkProcessMessageEvent;
   public
     constructor Create; overload;
     destructor Destroy; override;
-  public
-    function Data(): WKScriptMessageHandlerProtocol;
   protected
     procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
   published

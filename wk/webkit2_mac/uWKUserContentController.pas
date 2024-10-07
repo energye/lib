@@ -15,12 +15,12 @@ type
   TWKUserContentController = class(TInterfacedObject, IWKUserContentController)
   private
     FData: WKUserContentController;
+  protected
+    function Data(): WKUserContentController;
   public
     constructor Create; overload;
     constructor Create(AData: WKUserContentController);
     destructor Destroy; override;
-  public
-    function Data(): WKUserContentController;
   public
     function UserScripts: TStrings;
     procedure AddUserScript (userScript: IWKUserScript);

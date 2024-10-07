@@ -16,12 +16,12 @@ type
   TWKUserScript = class(TInterfacedObject, IWKUserScript)
   private
     FData: WKUserScript;
+  protected
+    function Data(): WKUserScript;
   public
     constructor Create; overload;
     constructor Create(AData: WKUserScript);
     destructor Destroy; override;
-  public
-    function Data(): WKUserScript;
   public
     function Source: string;
     function InjectionTime: int64;

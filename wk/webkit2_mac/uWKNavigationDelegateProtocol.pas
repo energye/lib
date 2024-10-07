@@ -27,11 +27,11 @@ type
   TWKNavigationDelegateProtocol = class(TInterfacedObject)
   private
     FData: NSWKNavigationDelegateProtocol;
+  protected
+    function Data(): WKNavigationDelegateProtocol;
   public
     constructor Create; overload;
     destructor Destroy; override;
-  public
-    function Data(): WKNavigationDelegateProtocol;
   public
     procedure StartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure ReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);

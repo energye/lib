@@ -8,25 +8,25 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils,
-  uWebKit;
+  uWebKit, uWkInterface;
 
 type
 
   NSWKUIDelegate = objcclass(NSObject, WKUIDelegateProtocol)
-  public
+  private
     FData: Pointer;
   public
     function webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
   end;
 
-  TWKUIDelegate = class(TInterfacedObject)
+  TWKUIDelegate = class(TInterfacedObject, IWKUIDelegate)
   private
     FData: NSWKUIDelegate;
+  protected
+    function Data(): WKUIDelegateProtocol;
   public
     constructor Create; overload;
     destructor Destroy; override;
-  public
-    function Data(): NSWKUIDelegate;
   public
   end;
 
@@ -36,7 +36,7 @@ implementation
 
 function NSWKUIDelegate.webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
 begin
-
+  Result := webView;
 end;
 
 constructor TWKUIDelegate.Create;
@@ -56,7 +56,7 @@ begin
   inherited Destroy;
 end;
 
-function TWKUIDelegate.Data(): NSWKUIDelegate;
+function TWKUIDelegate.Data(): WKUIDelegateProtocol;
 begin
   Result := FData;
 end;

@@ -15,10 +15,10 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IWkWebviewDelegateEvent)
+  TWkWebview = class(TComponent, IWkWebview)
   private
     FData: WKWebView;
-  public
+  protected
     function Data(): WKWebView;
   public
     constructor Create(AOwner: TComponent); override;
@@ -35,11 +35,13 @@ type
     function UIDelegate: TWKUIDelegate;
     function BackForwardList: WKBackForwardList;
     function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): TWkWebview;
-    function InitWithCoder (coder: NSCoder): TWkWebview;
     function GoToBackForwardListItem (item: WKBackForwardListItem): WKNavigation;
     function Title: string;
     function URL: NSURL;
     function IsLoading: LongBool;
+    // 根据接收到的总字节数，此值的范围为0.0到1.0，包括主文档及其所有潜在的子资源。
+    // 导航加载完成后，估计进度值保持在1.0，直到新的导航开始，此时估计进度值重置为0.0。
+    // WKWebView类符合此属性的键值观察（KVO）标准。
     function EstimatedProgress: double;
     function HasOnlySecureContent: LongBool;
     function CanGoBack: LongBool;
@@ -213,13 +215,13 @@ begin
   end;
 end;
 
-function TWkWebview.InitWithCoder (coder: NSCoder): TWkWebview;
-begin
-  if Assigned(FData) then
-  begin
-
-  end;
-end;
+//function TWkWebview.InitWithCoder (coder: NSCoder): TWkWebview;
+//begin
+//  if Assigned(FData) then
+//  begin
+//
+//  end;
+//end;
 
 function TWkWebview.GoToBackForwardListItem (item: WKBackForwardListItem): WKNavigation;
 begin

@@ -14,25 +14,19 @@ type
   TWKWebViewConfiguration = class(TInterfacedObject, IWKWebViewConfiguration)
   private
     FData: WKWebViewConfiguration;
+  protected
+    function Data(): WKWebViewConfiguration;
   public
     constructor Create; overload;
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
   public
-    function Data(): WKWebViewConfiguration;
-  public
-    //procedure setProcessPool(newValue: WKProcessPool);
-    //function processPool: WKProcessPool;
     procedure SetPreferences(newValue: IWKPreferences);
     function Preferences: IWKPreferences;
     procedure SetUserContentController(newValue: IWKUserContentController);
     function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
-    // Adopted protocols
-    //function copyWithZone (zone: NSZonePtr): id;
-  published
-    //property OnReceiveScriptMessage;
   end;
 
 

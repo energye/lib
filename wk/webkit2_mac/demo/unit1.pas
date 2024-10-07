@@ -7,9 +7,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  uWebKit,
+  uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegateProtocol, uWKUserContentController, uWKUserScript;
+  uWKNavigationDelegateProtocol, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL;
 
 type
 
@@ -23,7 +23,7 @@ type
     procedure FormShow(Sender: TObject);
   private
     FNavigationDelegate: NSWKNavigationDelegateProtocol;
-    FWebView: TWkWebview;
+    FWebView: IWkWebview;
     FWebViewParent: TWkWebviewParent;
   public
 

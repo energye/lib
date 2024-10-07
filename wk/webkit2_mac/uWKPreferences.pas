@@ -15,12 +15,12 @@ type
   TWKPreferences = class(TInterfacedObject, IWKPreferences)
   private
     FData: WKPreferences;
+  protected
+    function Data(): WKPreferences;
   public
     constructor Create; overload;
     constructor Create(AData: WKPreferences);
     destructor Destroy; override;
-  public
-    function Data(): WKPreferences;
   public
     procedure SetMinimumFontSize(newValue: double);
     function MinimumFontSize: double;
