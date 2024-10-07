@@ -9,7 +9,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegateProtocol;
+  uWKNavigationDelegateProtocol, uWKUserContentController, uWKUserScript;
 
 type
 

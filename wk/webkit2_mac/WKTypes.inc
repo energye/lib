@@ -165,16 +165,12 @@ type
   end;
 
   // WebKit.framework WKScriptMessageHandler.h
-  //WKScriptMessageHandlerProtocol = objcclass(NSObject)
-  //public
   WKScriptMessageHandlerProtocol = objcprotocol external name 'WKScriptMessageHandler' (NSObjectProtocol)
   optional
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage); message 'userContentController:didReceiveScriptMessage:';
   end;
 
   // WebKit.framework WKUIDelegate.h
-  //WKUIDelegateProtocol = objcclass(NSObject)
-  //public
   WKUIDelegateProtocol = objcprotocol external name 'WKUIDelegate' (NSObjectProtocol)
   optional
     function webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView; message 'webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:';

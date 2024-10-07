@@ -7,12 +7,11 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
-  uWebKit;
+  uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
 
 type
 
-  TWKWebViewConfiguration = class(TInterfacedObject)
+  TWKWebViewConfiguration = class(TInterfacedObject, IWKWebViewConfiguration)
   private
     FData: WKWebViewConfiguration;
   public
@@ -23,10 +22,10 @@ type
   public
     //procedure setProcessPool(newValue: WKProcessPool);
     //function processPool: WKProcessPool;
-    procedure SetPreferences(newValue: WKPreferences);
-    function Preferences: WKPreferences;
-    procedure SetUserContentController(newValue: WKUserContentController);
-    function UserContentController: WKUserContentController;
+    procedure SetPreferences(newValue: IWKPreferences);
+    function Preferences: IWKPreferences;
+    procedure SetUserContentController(newValue: IWKUserContentController);
+    function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
     // Adopted protocols
@@ -58,34 +57,55 @@ begin
   Result := FData;
 end;
 
-procedure TWKWebViewConfiguration.SetPreferences(newValue: WKPreferences);
+procedure TWKWebViewConfiguration.SetPreferences(newValue: IWKPreferences);
 begin
-
+  if Assigned(FData) then
+  begin
+    FData.setPreferences(newValue.Data());
+  end;
 end;
 
-function TWKWebViewConfiguration.Preferences: WKPreferences;
+function TWKWebViewConfiguration.Preferences: IWKPreferences;
 begin
-
+  Result := nil;
+  if Assigned(FData) then
+  begin
+    Result := TWKPreferences.Create(FData.preferences);
+  end;
 end;
 
-procedure TWKWebViewConfiguration.SetUserContentController(newValue: WKUserContentController);
+procedure TWKWebViewConfiguration.SetUserContentController(newValue: IWKUserContentController);
 begin
-
+  if Assigned(FData) then
+  begin
+    FData.setUserContentController(newValue.Data());
+  end;
 end;
 
-function TWKWebViewConfiguration.UserContentController: WKUserContentController;
+function TWKWebViewConfiguration.UserContentController: IWKUserContentController;
 begin
-
+  Result := nil;
+  if Assigned(FData) then
+  begin
+    Result := TWKUserContentController.Create(FData.userContentController);
+  end;
 end;
 
 procedure TWKWebViewConfiguration.SetSuppressesIncrementalRendering(newValue: LongBool);
 begin
-
+  if Assigned(FData) then
+  begin
+    FData.setSuppressesIncrementalRendering(ObjcBool(newValue));
+  end;
 end;
 
 function TWKWebViewConfiguration.SuppressesIncrementalRendering: LongBool;
 begin
-
+  Result := false;
+  if Assigned(FData) then
+  begin
+    Result := LongBool(FData.suppressesIncrementalRendering);
+  end;
 end;
 
 end.
