@@ -16,11 +16,11 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Addr: TComboBox;
     GoURL: TButton;
     Back: TButton;
     Forwad: TButton;
     Stop: TButton;
-    Addr: TEdit;
     Process: TLabel;
     procedure GoURLClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
