@@ -11,6 +11,9 @@ uses
 type
   IWKUserScript = interface;
   IWKScriptMessageHandler = interface;
+  INSURLRequest = interface;
+  IWKNavigationDelegate = interface;
+  INSURL = interface;
 
   IWkBase = interface
     ['{CA5E93CB-EC40-B968-990B-729497C8927A}']
@@ -85,6 +88,31 @@ type
     procedure CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
+    function Configuration: IWKWebViewConfiguration;
+    function LoadRequest (request: INSURLRequest): WKNavigation;
+    procedure SetNavigationDelegate(newValue: IWKNavigationDelegate);
+    procedure SetUIDelegate(newValue: IWKUIDelegate);
+    function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
+    function Title: string;
+    function URL: INSURL;
+    function IsLoading: LongBool;
+    function EstimatedProgress: double;
+    function HasOnlySecureContent: LongBool;
+    function CanGoBack: LongBool;
+    function CanGoForward: LongBool;
+    function GoBack: WKNavigation;
+    function GoForward: WKNavigation;
+    function Reload: WKNavigation;
+    function ReloadFromOrigin: WKNavigation;
+    procedure StopLoading;
+    procedure EvaluateJavaScriptCompletionHandler (javaScriptString: string; completionHandler: OpaqueCBlock);
+    procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
+    function AllowsBackForwardNavigationGestures: LongBool;
+    procedure SetAllowsMagnification(newValue: LongBool);
+    function AllowsMagnification: LongBool;
+    procedure SetMagnification(newValue: double);
+    function Magnification: double;
+    procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
   end;
 
   INSURL = interface
@@ -125,6 +153,15 @@ type
     procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
   end;
 
+  IWKNavigationDelegateEvent = interface
+    ['{CA5E93CB-6A34-B968-565E-729895474921}']
+    procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFailProvisionalNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+  end;
 
 implementation
 

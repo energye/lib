@@ -31,6 +31,8 @@ type
     FWebViewParent: TWkWebviewParent;
   public
     procedure OnProcessMessage(Sender: TObject; AName, AData: string);
+    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
+    procedure OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
   end;
 
 var
@@ -48,6 +50,7 @@ var
   TempConfig: TWKWebViewConfiguration;
   TempUserContentController: TWKUserContentController;
   TempScriptMessageHandler: TWKScriptMessageHandler;
+  TempNavigationDelegate: TWKNavigationDelegate;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -71,19 +74,31 @@ begin
   TempConfig := TWKWebViewConfiguration.Create;
   TempConfig.SetUserContentController(TempUserContentController);
 
+  TempNavigationDelegate := TWKNavigationDelegate.Create;
+  TempNavigationDelegate.OnStartProvisionalNavigation := @OnStartProvisionalNavigation;
+  TempNavigationDelegate.OnFinishNavigation := @OnFinishNavigation;
 
   FWebView := TWkWebview.Create();
   FWebView.CreateBrowser(TempFrame, TempConfig);
+  FWebView.SetNavigationDelegate(TempNavigationDelegate);
 
   FWebViewParent.SetWebview(FWebView);
 
-  FNavigationDelegate := NSWKNavigationDelegate.alloc.init;
-  FWebview.Data().setNavigationDelegate(FNavigationDelegate);
 end;
 
 procedure TForm1.OnProcessMessage(Sender: TObject; AName, AData: string);
 begin
   Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
+end;
+
+procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
+begin
+  Process.Caption := 'start';
+end;
+
+procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
+begin
+  Process.Caption := 'finish';
 end;
 
 procedure TForm1.GoURLClick(Sender: TObject);

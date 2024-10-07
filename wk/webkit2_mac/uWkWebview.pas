@@ -10,8 +10,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWKScriptMessageHandler,
-  uWKNavigationDelegate, uWKUIDelegate, uWKWebViewConfiguration, uNSURL;
+  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL;
 
 type
 
@@ -32,7 +31,7 @@ type
     function LoadRequest (request: INSURLRequest): WKNavigation;
     procedure SetNavigationDelegate(newValue: IWKNavigationDelegate);
     procedure SetUIDelegate(newValue: IWKUIDelegate);
-    function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): TWkWebview;
+    function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
     function Title: string;
     function URL: INSURL;
     function IsLoading: LongBool;
@@ -178,7 +177,7 @@ begin
   end;
 end;
 
-function TWkWebview.InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): TWkWebview;
+function TWkWebview.InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
 var
   TempFrame: CGRect;
   TempWebView: WKWebView;
