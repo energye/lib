@@ -11,33 +11,30 @@ uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKScriptMessageHandler,
-  uWKNavigationDelegateProtocol, uWKUIDelegate, uWKWebViewConfiguration;
+  uWKNavigationDelegate, uWKUIDelegate, uWKWebViewConfiguration, uNSURL;
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview)
+  TWkWebview = class(TInterfacedObject, IWkWebview)
   private
     FData: WKWebView;
   protected
     function Data(): WKWebView;
   public
-    constructor Create(AOwner: TComponent); override;
+    constructor Create(); overload;
+    constructor Create(AData: WKWebView);
     destructor Destroy; override;
   public
     procedure CreateBrowser(Width, Height: integer);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
-    function LoadRequest (request: NSURLRequest): WKNavigation;
-    procedure SetNavigationDelegate(newValue: TWKNavigationDelegateProtocol);
-    function NavigationDelegate: TWKNavigationDelegateProtocol;
-    procedure SetUIDelegate(newValue: TWKUIDelegate);
-    function UIDelegate: TWKUIDelegate;
-    function BackForwardList: WKBackForwardList;
+    function LoadRequest (request: INSURLRequest): WKNavigation;
+    procedure SetNavigationDelegate(newValue: IWKNavigationDelegate);
+    procedure SetUIDelegate(newValue: IWKUIDelegate);
     function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): TWkWebview;
-    function GoToBackForwardListItem (item: WKBackForwardListItem): WKNavigation;
     function Title: string;
-    function URL: NSURL;
+    function URL: INSURL;
     function IsLoading: LongBool;
     // 根据接收到的总字节数，此值的范围为0.0到1.0，包括主文档及其所有潜在的子资源。
     // 导航加载完成后，估计进度值保持在1.0，直到新的导航开始，此时估计进度值重置为0.0。
@@ -64,10 +61,16 @@ type
 
 implementation
 
-constructor TWkWebview.Create(AOwner: TComponent);
+constructor TWkWebview.Create();
 begin
+  inherited Create();
   FData := nil;
-  inherited Create(AOwner);
+end;
+
+constructor TWkWebview.Create(AData: WKWebView);
+begin
+  inherited Create();
+  FData := AData;
 end;
 
 destructor TWkWebview.Destroy;
@@ -159,95 +162,72 @@ begin
   end;
 end;
 
-function TWkWebview.LoadRequest (request: NSURLRequest): WKNavigation;
+function TWkWebview.LoadRequest (request: INSURLRequest): WKNavigation;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
-
+    Result := FData.loadRequest(request.Data());
   end;
 end;
 
-procedure TWkWebview.SetNavigationDelegate(newValue: TWKNavigationDelegateProtocol);
+procedure TWkWebview.SetNavigationDelegate(newValue: IWKNavigationDelegate);
 begin
   if Assigned(FData) then
   begin
-
+    FData.setNavigationDelegate(newValue.Data());
   end;
 end;
 
-function TWkWebview.NavigationDelegate: TWKNavigationDelegateProtocol;
+procedure TWkWebview.SetUIDelegate(newValue: IWKUIDelegate);
 begin
   if Assigned(FData) then
   begin
-
-  end;
-end;
-
-procedure TWkWebview.SetUIDelegate(newValue: TWKUIDelegate);
-begin
-  if Assigned(FData) then
-  begin
-
-  end;
-end;
-
-function TWkWebview.UIDelegate: TWKUIDelegate;
-begin
-  if Assigned(FData) then
-  begin
-
-  end;
-end;
-
-function TWkWebview.BackForwardList: WKBackForwardList;
-begin
-  if Assigned(FData) then
-  begin
-
+    FData.setUIDelegate(newValue.Data());
   end;
 end;
 
 function TWkWebview.InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): TWkWebview;
+var
+  TempFrame: CGRect;
+  TempWebView: WKWebView;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
-
-  end;
-end;
-
-//function TWkWebview.InitWithCoder (coder: NSCoder): TWkWebview;
-//begin
-//  if Assigned(FData) then
-//  begin
-//
-//  end;
-//end;
-
-function TWkWebview.GoToBackForwardListItem (item: WKBackForwardListItem): WKNavigation;
-begin
-  if Assigned(FData) then
-  begin
-
+    TempFrame.origin.x := frame.Left;
+    TempFrame.origin.y := frame.Top;
+    TempFrame.size.Width := frame.Width;
+    TempFrame.size.Height := frame.Height;
+    TempWebView := FData.initWithFrame_configuration(TempFrame, configuration_.Data());
+    Result := TWkWebview.Create(TempWebView);
   end;
 end;
 
 function TWkWebview.Title: string;
 begin
-end;
-
-function TWkWebview.URL: NSURL;
-begin
+  Result := '';
   if Assigned(FData) then
   begin
+    Result := NSStringToString(FData.title);
+  end;
+end;
 
+function TWkWebview.URL: INSURL;
+begin
+  Result := nil;
+  if Assigned(FData) then
+  begin
+    Result := TNSURL.Create(FData.URL);
   end;
 end;
 
 function TWkWebview.IsLoading: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.isLoading);
   end;
 end;
 

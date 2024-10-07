@@ -115,6 +115,11 @@ type
     function AllowsCellularAccess: LongBool;
   end;
 
+  IWKNavigationDelegate = interface
+    ['{CA5E93CB-6A34-B968-565E-729497753890}']
+    function Data(): WKNavigationDelegateProtocol;
+  end;
+
 implementation
 
 end.

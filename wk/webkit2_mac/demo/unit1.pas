@@ -49,7 +49,7 @@ begin
   FWebViewParent.Width := Width;
   FWebViewParent.Anchors := [akTop, akLeft, akRight, akBottom];
 
-  FWebView := TWkWebview.Create(self);
+  FWebView := TWkWebview.Create();
   FWebView.CreateBrowser(Width, Height - 50);
   FWebViewParent.SetWebview(FWebView);
 

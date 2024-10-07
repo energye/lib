@@ -23,9 +23,9 @@ type
     constructor Create(AData: NSURLRequest);
     destructor Destroy; override;
   public
-    class function RequestWithURL (URL: INSURL): TNSURLRequest;
+    class function RequestWithURL (URL: INSURL): INSURLRequest;
     class function SupportsSecureCoding: LongBool;
-    class function RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
+    class function RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): INSURLRequest;
     function URL: INSURL;
     function CachePolicy: NSURLRequestCachePolicy;
     function TimeoutInterval: double;
@@ -63,7 +63,7 @@ begin
   Result := FData;
 end;
 
-class function TNSURLRequest.RequestWithURL (URL: INSURL): TNSURLRequest;
+class function TNSURLRequest.RequestWithURL (URL: INSURL): INSURLRequest;
 var
   TempRequest: NSURLRequest;
 begin
@@ -80,7 +80,7 @@ begin
   Result := LongBool(NSURLRequest.supportsSecureCoding);
 end;
 
-class function TNSURLRequest.RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
+class function TNSURLRequest.RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): INSURLRequest;
 var
   TempRequest: NSURLRequest;
 begin
