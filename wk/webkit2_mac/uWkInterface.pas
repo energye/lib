@@ -10,17 +10,18 @@ uses
 
 type
   IWKUserScript = interface;
+  IWKScriptMessageHandler = interface;
 
   IWkBase = interface
     ['{CA5E93CB-EC40-B968-990B-729497C8927A}']
   end;
 
   IWkWebviewDelegateEvent = interface
-    ['{CA5E93CB-EC40-B968-990B-729497C8927A}']
+    ['{CA5E93CB-EC40-B968-990B-729497C8B869}']
   end;
 
   IWkSchemeRequestDelegateEvent = interface
-    ['{CA5E93CB-EC40-B968-990A-729497C8927D}']
+    ['{CA5E93CB-EC40-B968-990A-729497CD6537}']
   end;
 
   IWKPreferences = interface
@@ -39,12 +40,12 @@ type
   end;
 
   IWKUserContentController = interface
-    ['{CA5E93CB-EC40-B968-565A-729497C8927D}']
+    ['{CA5E93CB-EC40-B968-565A-729497CG9757}']
     function Data(): WKUserContentController;
     function UserScripts: TStrings;
     procedure AddUserScript (userScript: IWKUserScript);
     procedure RemoveAllUserScripts;
-    procedure AddScriptMessageHandlerName (scriptMessageHandler: WKScriptMessageHandlerProtocol; name: string);
+    procedure AddScriptMessageHandlerName (scriptMessageHandler: IWKScriptMessageHandler; name: string);
     procedure RemoveScriptMessageHandlerForName (name: string);
   end;
 
@@ -66,6 +67,11 @@ type
     function InjectionTime: int64;
     function IsForMainFrameOnly: LongBool;
     function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
+  end;
+
+  IWKScriptMessageHandler = interface
+    ['{CA5E93CB-6734-B968-565A-729497C74563}']
+    function Data(): WKScriptMessageHandlerProtocol;
   end;
 
 implementation

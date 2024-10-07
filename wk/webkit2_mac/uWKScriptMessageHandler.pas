@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils,
-  uWebKit;
+  uWebKit, uWkInterface, uWKUserContentController;
 
 type
 
@@ -19,16 +19,16 @@ type
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
 
-  TWKScriptMessageHandler = class(TInterfacedObject)
+  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
   private
     FData: NSWKScriptMessageHandler;
   public
     constructor Create; overload;
     destructor Destroy; override;
   public
-    function Data(): NSWKScriptMessageHandler;
+    function Data(): WKScriptMessageHandlerProtocol;
   public
-    procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+    procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
   published
     //property OnReceiveScriptMessage;
   end;
@@ -38,12 +38,11 @@ implementation
 
 
 procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
-var
-  name, body: string;
 begin
-  body := NSStringToString(NSString(message_.body));
-  name := NSStringToString(message_.name);
-  Application.MessageBox(PChar(body), PChar('ReceiveScriptMessage: ' + name));
+  if Assigned(FData) then
+  begin
+    TWKScriptMessageHandler(FData).doReceiveScriptMessage(TWKUserContentController.Create(userContentController), message_);
+  end;
 end;
 
 constructor TWKScriptMessageHandler.Create;
@@ -63,12 +62,12 @@ begin
   inherited Destroy;
 end;
 
-function TWKScriptMessageHandler.Data(): NSWKScriptMessageHandler;
+function TWKScriptMessageHandler.Data(): WKScriptMessageHandlerProtocol;
 begin
   Result := FData;
 end;
 
-procedure TWKScriptMessageHandler.doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+procedure TWKScriptMessageHandler.doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
 var
   name, body: string;
 begin

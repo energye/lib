@@ -25,7 +25,7 @@ type
     function UserScripts: TStrings;
     procedure AddUserScript (userScript: IWKUserScript);
     procedure RemoveAllUserScripts;
-    procedure AddScriptMessageHandlerName (scriptMessageHandler: WKScriptMessageHandlerProtocol; name: string);
+    procedure AddScriptMessageHandlerName (scriptMessageHandler: IWKScriptMessageHandler; name: string);
     procedure RemoveScriptMessageHandlerForName (name: string);
   end;
 
@@ -105,11 +105,11 @@ begin
   end;
 end;
 
-procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHandler: WKScriptMessageHandlerProtocol; name: string);
+procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHandler: IWKScriptMessageHandler; name: string);
 begin
   if Assigned(FData) then
   begin
-    FData.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8(name));
+    FData.addScriptMessageHandler_name(scriptMessageHandler.Data(), NSStringUtf8(name));
   end;
 end;
 
