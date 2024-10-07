@@ -233,6 +233,7 @@ end;
 
 function TWkWebview.EstimatedProgress: double;
 begin
+  Result := 0.0;
   if Assigned(FData) then
   begin
 
@@ -241,6 +242,7 @@ end;
 
 function TWkWebview.HasOnlySecureContent: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
 
@@ -249,6 +251,7 @@ end;
 
 function TWkWebview.CanGoBack: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
 
@@ -257,6 +260,7 @@ end;
 
 function TWkWebview.CanGoForward: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
 
@@ -265,6 +269,7 @@ end;
 
 function TWkWebview.GoBack: WKNavigation;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
 
@@ -273,6 +278,7 @@ end;
 
 function TWkWebview.GoForward: WKNavigation;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
 
@@ -281,6 +287,7 @@ end;
 
 function TWkWebview.Reload: WKNavigation;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
 
@@ -289,6 +296,7 @@ end;
 
 function TWkWebview.ReloadFromOrigin: WKNavigation;
 begin
+  Result := nil;
   if Assigned(FData) then
   begin
 
@@ -321,6 +329,7 @@ end;
 
 function TWkWebview.AllowsBackForwardNavigationGestures: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
 
@@ -337,6 +346,7 @@ end;
 
 function TWkWebview.AllowsMagnification: LongBool;
 begin
+  Result := false;
   if Assigned(FData) then
   begin
 
@@ -353,6 +363,7 @@ end;
 
 function TWkWebview.Magnification: double;
 begin
+  Result := 0.0;
   if Assigned(FData) then
   begin
 
