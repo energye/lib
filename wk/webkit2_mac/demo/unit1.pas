@@ -8,7 +8,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit,
-  uWkWebview, uWkWebviewParent, uWKScriptMessageHandler;
+  uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
+  uWKNavigationDelegateProtocol;
 
 type
 
@@ -21,7 +22,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FNavigationDelegate: WKNavigationDelegateProtocol;
+    FNavigationDelegate: NSWKNavigationDelegateProtocol;
     FWebView: TWkWebview;
     FWebViewParent: TWkWebviewParent;
   public
@@ -52,7 +53,7 @@ begin
   FWebView.CreateBrowser(Width, Height - 50);
   FWebViewParent.SetWebview(FWebView);
 
-  FNavigationDelegate := WKNavigationDelegateProtocol.alloc.init;
+  FNavigationDelegate := NSWKNavigationDelegateProtocol.alloc.init;
   FWebview.WebView.setNavigationDelegate(FNavigationDelegate);
 end;
 

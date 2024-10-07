@@ -14,9 +14,9 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IWkSchemeRequestDelegateEvent)
+  TWkWebview = class(TComponent, IWkWebviewDelegateEvent)
   private
-    FWebview: WKWebView;
+    FData: WKWebView;
   private
     FOnProcessMessage: TWkProcessMessageEvent;
   public
@@ -27,7 +27,7 @@ type
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
   public
-    property WebView: WKWebView read FWebView;
+    property WebView: WKWebView read FData;
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
   end;
 
@@ -36,7 +36,7 @@ implementation
 
 constructor TWkWebview.Create(AOwner: TComponent);
 begin
-  FWebview := nil;
+  FData := nil;
   inherited Create(AOwner);
 end;
 
@@ -61,8 +61,8 @@ begin
   userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
   config.setUserContentController(userContentController);
 
-  FWebview := WKWebView.alloc.initWithFrame_configuration(frame, config);
-  FWebview.autorelease();
+  FData := WKWebView.alloc.initWithFrame_configuration(frame, config);
+  FData.autorelease();
 end;
 
 destructor TWkWebview.Destroy;
@@ -79,17 +79,17 @@ var
   AutoPool: NSAutoreleasePool;
   baseURL: NSURL;
 begin
-  if Assigned(FWebview) then
+  if Assigned(FData) then
   begin
     AutoPool := NSAutoreleasePool.alloc.init;
     try
       if ABaseURL <> '' then
       begin
         baseURL := NSURL.URLWithString(NSStringUtf8(ABaseURL));
-        FWebview.loadHTMLString_baseURL(NSStringUtf8(AHtml), baseURL);
+        FData.loadHTMLString_baseURL(NSStringUtf8(AHtml), baseURL);
       end
       else
-        FWebview.loadHTMLString_baseURL(NSStringUtf8(AHtml), nil);
+        FData.loadHTMLString_baseURL(NSStringUtf8(AHtml), nil);
     finally
       AutoPool.Release;
     end;
@@ -101,12 +101,12 @@ var
   URLReq: NSURLRequest;
   AutoPool: NSAutoreleasePool;
 begin
-  if Assigned(FWebview) then
+  if Assigned(FData) then
   begin
     AutoPool := NSAutoreleasePool.alloc.init;
     try
       URLReq := NSURLRequest.requestWithURL(NSURL.URLWithString(NSStringUTF8(AURL)));
-      FWebview.loadRequest(URLReq);
+      FData.loadRequest(URLReq);
     finally
       AutoPool.Release;
     end;

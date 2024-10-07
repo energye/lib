@@ -21,20 +21,21 @@ type
 
   TWKScriptMessageHandler = class(TInterfacedObject)
   private
-    FScriptMessageHandler: NSWKScriptMessageHandler;
+    FData: NSWKScriptMessageHandler;
   public
     constructor Create; overload;
     destructor Destroy; override;
   public
-    procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+    function Data(): NSWKScriptMessageHandler;
   public
-    function ScriptMessageHandler(): NSWKScriptMessageHandler;
+    procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
   published
     //property OnReceiveScriptMessage;
   end;
 
 
 implementation
+
 
 procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
 var
@@ -47,24 +48,24 @@ end;
 
 constructor TWKScriptMessageHandler.Create;
 begin
-  FScriptMessageHandler := NSWKScriptMessageHandler.alloc.init;
-  FScriptMessageHandler.FData := self;
+  FData := NSWKScriptMessageHandler.alloc.init;
+  FData.FData := self;
 end;
 
 destructor TWKScriptMessageHandler.Destroy;
 begin
-  if Assigned(FScriptMessageHandler) then
+  if Assigned(FData) then
   begin
-    FScriptMessageHandler.FData := nil;
-    FScriptMessageHandler.release;
-    FScriptMessageHandler := nil;
+    FData.FData := nil;
+    FData.release;
+    FData := nil;
   end;
   inherited Destroy;
 end;
 
-function TWKScriptMessageHandler.ScriptMessageHandler(): NSWKScriptMessageHandler;
+function TWKScriptMessageHandler.Data(): NSWKScriptMessageHandler;
 begin
-  Result := FScriptMessageHandler;
+  Result := FData;
 end;
 
 procedure TWKScriptMessageHandler.doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
