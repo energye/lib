@@ -91,16 +91,16 @@ procedure TWkWebview.CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfigurati
 var
   TempFrame: CGRect;
 begin
-  TempFrame.origin.x := CGFloat(AFrame.Left);
-  TempFrame.origin.y := CGFloat(AFrame.Top);
-  TempFrame.size.Width := CGFloat(AFrame.Width);
-  TempFrame.size.Height := CGFloat(AFrame.Height);
-
   if AConfig <> nil then
-    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, AConfig.Data())
-  else
-    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, nil);
-  FData.autorelease();
+  begin
+    TempFrame.origin.x := CGFloat(AFrame.Left);
+    TempFrame.origin.y := CGFloat(AFrame.Top);
+    TempFrame.size.Width := CGFloat(AFrame.Width);
+    TempFrame.size.Height := CGFloat(AFrame.Height);
+
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, AConfig.Data());
+    FData.autorelease();
+  end;
 end;
 
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);
