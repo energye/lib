@@ -13,7 +13,7 @@ uses
 type
 
 
-  TNSURLRequest = class(TInterfacedObject)
+  TNSURLRequest = class(TInterfacedObject, INSURLRequest)
   private
     FData: NSURLRequest;
   protected

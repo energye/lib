@@ -105,6 +105,16 @@ type
     function Query: string;
   end;
 
+  INSURLRequest = interface
+    ['{CA5E93CB-6734-B968-565E-729497B48365}']
+    function Data(): NSURLRequest;function URL: INSURL;
+    function CachePolicy: NSURLRequestCachePolicy;
+    function TimeoutInterval: double;
+    function MainDocumentURL: INSURL;
+    function NetworkServiceType: NSURLRequestNetworkServiceType;
+    function AllowsCellularAccess: LongBool;
+  end;
+
 implementation
 
 end.
