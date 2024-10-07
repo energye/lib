@@ -9,55 +9,57 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils,
-  uWebKit, CGGeometry;
+  CocoaAll, CocoaUtils, CGGeometry,
+  uWebKit, uWkInterface, uWkWebviewEvents, uWKScriptMessageHandler;
 
 type
 
-  TWkWebview = class(TComponent)
+  TWkWebview = class(TComponent, IWkSchemeRequestDelegateEvent)
   private
     FWebview: WKWebView;
+  private
+    FOnProcessMessage: TWkProcessMessageEvent;
   public
     constructor Create(AOwner: TComponent); override;
-    constructor Create(AOwner: TComponent; Width, Height: integer);
     destructor Destroy; override;
   public
+    procedure CreateBrowser(Width, Height: integer);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
   public
     property WebView: WKWebView read FWebView;
+    property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
   end;
+
 
 implementation
 
-
-
 constructor TWkWebview.Create(AOwner: TComponent);
 begin
-  Create(AOwner, 100, 100);
+  FWebview := nil;
+  inherited Create(AOwner);
 end;
 
-constructor TWkWebview.Create(AOwner: TComponent; Width, Height: integer);
+procedure TWkWebview.CreateBrowser(Width, Height: integer);
 var
   frame: CGRect;
   config: WKWebViewConfiguration;
   userContentController: WKUserContentController;
-  scriptMessageHandler: WKScriptMessageHandlerProtocol;
+  scriptMessageHandler: NSWKScriptMessageHandler;
 begin
-  inherited Create(AOwner);
 
   config := WKWebViewConfiguration.alloc.init;
   config.autorelease();
-
-  userContentController := WKUserContentController.alloc.init;
-  scriptMessageHandler := WKScriptMessageHandlerProtocol.alloc.init;
-  userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
-  config.setUserContentController(userContentController);
 
   frame.origin.x := 0;
   frame.origin.y := 0;
   frame.size.Width := Width;
   frame.size.Height := Height;
+
+  userContentController := WKUserContentController.alloc.init;
+  scriptMessageHandler := NSWKScriptMessageHandler.alloc.init;
+  userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
+  config.setUserContentController(userContentController);
 
   FWebview := WKWebView.alloc.initWithFrame_configuration(frame, config);
   FWebview.autorelease();

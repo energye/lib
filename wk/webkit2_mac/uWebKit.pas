@@ -52,16 +52,6 @@ type
 
 implementation
 
-// WKScriptMessageHandler
-procedure WKScriptMessageHandlerProtocol.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
-var
-  name, body: string;
-begin
-  body := NSStringToString(NSString(message_.body));
-  name := NSStringToString(message_.name);
-  Application.MessageBox(PChar(body), PChar('ReceiveScriptMessage: ' + name));
-end;
-
 // WKNavigationDelegateProtocol
 procedure WKNavigationDelegateProtocol.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);// message 'webView:didStartProvisionalNavigation:';
 begin
@@ -93,5 +83,9 @@ begin
 
 end;
 
+function TWKUIDelegate.webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
+begin
+
+end;
 
 end.

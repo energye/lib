@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit,
-  uWkWebview, uWkWebviewParent;
+  uWkWebview, uWkWebviewParent, uWKScriptMessageHandler;
 
 type
 
@@ -48,7 +48,8 @@ begin
   FWebViewParent.Width := Width;
   FWebViewParent.Anchors := [akTop, akLeft, akRight, akBottom];
 
-  FWebView := TWkWebview.Create(self, Width, Height - 50);
+  FWebView := TWkWebview.Create(self);
+  FWebView.CreateBrowser(Width, Height - 50);
   FWebViewParent.SetWebview(FWebView);
 
   FNavigationDelegate := WKNavigationDelegateProtocol.alloc.init;
