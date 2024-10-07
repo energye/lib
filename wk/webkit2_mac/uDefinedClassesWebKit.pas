@@ -8,7 +8,7 @@ interface
 
 type
   WKURLSchemeHandlerProtocol = objcprotocol external name 'WKURLSchemeHandler';
-  WKURLSchemeTask = objcprotocol external;
+  WKURLSchemeTask = objcclass external;
 
 implementation
 end.
