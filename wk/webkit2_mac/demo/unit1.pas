@@ -54,7 +54,7 @@ begin
   FWebViewParent.SetWebview(FWebView);
 
   FNavigationDelegate := NSWKNavigationDelegateProtocol.alloc.init;
-  FWebview.WebView.setNavigationDelegate(FNavigationDelegate);
+  FWebview.Data().setNavigationDelegate(FNavigationDelegate);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);

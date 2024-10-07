@@ -16,6 +16,7 @@ type
     FData: WKWebViewConfiguration;
   public
     constructor Create; overload;
+    constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
   public
     function Data(): WKWebViewConfiguration;
@@ -39,7 +40,14 @@ implementation
 
 constructor TWKWebViewConfiguration.Create;
 begin
+  inherited Create;
   FData := WKWebViewConfiguration.alloc.init;
+end;
+
+constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
+begin
+  inherited Create;
+  FData := AData;
 end;
 
 destructor TWKWebViewConfiguration.Destroy;

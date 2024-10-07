@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils,
-  uWebKit, uWkInterface, uWKUserContentController;
+  uWebKit, uWkInterface, uWkWebviewEvents, uWKUserContentController;
 
 type
 
@@ -22,15 +22,17 @@ type
   TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
   private
     FData: NSWKScriptMessageHandler;
+  private
+    FOnProcessMessage: TWkProcessMessageEvent;
   public
     constructor Create; overload;
     destructor Destroy; override;
   public
     function Data(): WKScriptMessageHandlerProtocol;
-  public
+  protected
     procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
   published
-    //property OnReceiveScriptMessage;
+    property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
   end;
 
 
@@ -41,7 +43,8 @@ procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage
 begin
   if Assigned(FData) then
   begin
-    TWKScriptMessageHandler(FData).doReceiveScriptMessage(TWKUserContentController.Create(userContentController), message_);
+    // TWKUserContentController.Create(userContentController)
+    TWKScriptMessageHandler(FData).doReceiveScriptMessage(nil, message_);
   end;
 end;
 
@@ -74,6 +77,10 @@ begin
   body := NSStringToString(NSString(message_.body));
   name := NSStringToString(message_.name);
   Application.MessageBox(PChar(body), PChar('ReceiveScriptMessage: ' + name));
+  if Assigned(FOnProcessMessage) then
+  begin
+    FOnProcessMessage(self, name, body)
+  end;
 end;
 
 

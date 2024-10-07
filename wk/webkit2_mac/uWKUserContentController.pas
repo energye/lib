@@ -62,7 +62,7 @@ function TWKUserContentController.UserScripts: TStrings;
 var
   ResultData: TStringList;
   TempUserScripts: NSArray;
-  I, TempCount: Integer;
+  Idx, TempCount: Integer;
   TempData: id;
 begin
   ResultData := nil;
@@ -74,10 +74,9 @@ begin
       if Assigned(TempUserScripts) then
       begin
         TempCount := Integer(TempUserScripts.count);
-        I := 0;
-        for I := 0 to TempCount - 1 do
+        for Idx := 0 to TempCount - 1 do
         begin
-          TempData := TempUserScripts.objectAtIndex(NSUInteger(I));
+          TempData := TempUserScripts.objectAtIndex(NSUInteger(Idx));
           ResultData.Add(NSStringToString(TempData));
         end;
         TempUserScripts.release;

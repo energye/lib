@@ -31,7 +31,7 @@ type
     constructor Create; overload;
     destructor Destroy; override;
   public
-    function Data(): NSWKNavigationDelegateProtocol;
+    function Data(): WKNavigationDelegateProtocol;
   public
     procedure StartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure ReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
@@ -91,7 +91,7 @@ begin
   inherited Destroy;
 end;
 
-function TWKNavigationDelegateProtocol.Data(): NSWKNavigationDelegateProtocol;
+function TWKNavigationDelegateProtocol.Data(): WKNavigationDelegateProtocol;
 begin
   Result := FData;
 end;

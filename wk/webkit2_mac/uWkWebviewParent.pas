@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Controls, ExtCtrls, Graphics,
-  CocoaAll, uWebKit, uWkWebview;
+  CocoaAll, uWkWebview;
 
 type
 
@@ -49,7 +49,7 @@ begin
     LR.origin.y := 0;
     LR.size.Width := Width;
     LR.size.Height := Height;
-    FWebview.WebView.setFrame(LR);
+    FWebview.Data().setFrame(LR);
   end;
 end;
 
@@ -72,7 +72,7 @@ begin
       AutoPool := NSAutoreleasePool.alloc.init;
       try
         view := NSView(self.Handle);
-        view.addSubview(FWebview.WebView);
+        view.addSubview(FWebview.Data());
       finally
         AutoPool.Release;
       end;
