@@ -9,7 +9,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils, CGGeometry,
+  CocoaAll, CocoaUtils, CGGeometry, CGBase,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKScriptMessageHandler,
   uWKNavigationDelegate, uWKUIDelegate, uWKWebViewConfiguration, uNSURL;
 
@@ -236,7 +236,7 @@ begin
   Result := 0.0;
   if Assigned(FData) then
   begin
-
+    Result := FData.estimatedProgress;
   end;
 end;
 
@@ -245,7 +245,7 @@ begin
   Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.hasOnlySecureContent);
   end;
 end;
 
@@ -254,7 +254,7 @@ begin
   Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.canGoBack);
   end;
 end;
 
@@ -263,7 +263,7 @@ begin
   Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.canGoForward);
   end;
 end;
 
@@ -272,7 +272,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-
+    Result := FData.goBack;
   end;
 end;
 
@@ -281,7 +281,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-
+    Result := FData.goForward;
   end;
 end;
 
@@ -290,7 +290,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-
+    Result := FData.reload;
   end;
 end;
 
@@ -299,7 +299,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-
+    Result := FData.reloadFromOrigin;
   end;
 end;
 
@@ -307,7 +307,7 @@ procedure TWkWebview.StopLoading;
 begin
   if Assigned(FData) then
   begin
-
+    FData.stopLoading;
   end;
 end;
 
@@ -315,7 +315,7 @@ procedure TWkWebview.EvaluateJavaScriptCompletionHandler (javaScriptString: stri
 begin
   if Assigned(FData) then
   begin
-
+    FData.evaluateJavaScript_completionHandler(NSStringUtf8(javaScriptString), completionHandler);
   end;
 end;
 
@@ -323,7 +323,7 @@ procedure TWkWebview.SetAllowsBackForwardNavigationGestures(newValue: LongBool);
 begin
   if Assigned(FData) then
   begin
-
+    FData.setAllowsBackForwardNavigationGestures(ObjCBOOL(newValue));
   end;
 end;
 
@@ -332,7 +332,7 @@ begin
   Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.allowsBackForwardNavigationGestures);
   end;
 end;
 
@@ -340,7 +340,7 @@ procedure TWkWebview.SetAllowsMagnification(newValue: LongBool);
 begin
   if Assigned(FData) then
   begin
-
+    FData.setAllowsMagnification(ObjCBOOL(newValue));
   end;
 end;
 
@@ -349,7 +349,7 @@ begin
   Result := false;
   if Assigned(FData) then
   begin
-
+    Result := LongBool(FData.allowsMagnification);
   end;
 end;
 
@@ -357,7 +357,7 @@ procedure TWkWebview.SetMagnification(newValue: double);
 begin
   if Assigned(FData) then
   begin
-
+    FData.setMagnification(CGFloat(newValue));
   end;
 end;
 
@@ -366,15 +366,19 @@ begin
   Result := 0.0;
   if Assigned(FData) then
   begin
-
+    Result := double(FData.magnification);
   end;
 end;
 
 procedure TWkWebview.SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
+var
+  TempPoint: CGPoint;
 begin
   if Assigned(FData) then
   begin
-
+    TempPoint.x := CGFloat(point.X);
+    TempPoint.y := CGFloat(point.Y);
+    FData.setMagnification_centeredAtPoint(CGFloat(magnification_), TempPoint);
   end;
 end;
 
