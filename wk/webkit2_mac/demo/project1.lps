@@ -288,8 +288,8 @@
       <Unit>
         <Filename Value="../WKTypes.inc"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="150"/>
-        <CursorPos X="60" Y="170"/>
+        <TopLine Value="241"/>
+        <CursorPos X="18" Y="159"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
@@ -323,8 +323,8 @@
         <Filename Value="../../../../../../Lazarus/lcl/interfaces/cocoa/cocoautils.pas"/>
         <UnitName Value="CocoaUtils"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="50"/>
-        <CursorPos X="22" Y="65"/>
+        <TopLine Value="10"/>
+        <CursorPos X="51" Y="30"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
@@ -445,10 +445,9 @@
       </Unit>
       <Unit>
         <Filename Value="../uWKScriptMessageHandler.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="42"/>
-        <CursorPos X="65" Y="65"/>
+        <CursorPos X="23" Y="51"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit>
@@ -461,9 +460,10 @@
       </Unit>
       <Unit>
         <Filename Value="../uWkInterface.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="43"/>
-        <CursorPos X="3" Y="72"/>
+        <TopLine Value="25"/>
+        <CursorPos X="44" Y="43"/>
         <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
@@ -510,7 +510,7 @@
         <Filename Value="../uWKUserContentController.pas"/>
         <EditorIndex Value="3"/>
         <TopLine Value="7"/>
-        <CursorPos X="27" Y="15"/>
+        <CursorPos X="98" Y="28"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
@@ -530,18 +530,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="../uWKUserContentController.pas"/>
-        <Caret Line="66" Column="16" TopLine="59"/>
-      </Position>
-      <Position>
-        <Filename Value="../../../../../../Lazarus/lcl/interfaces/cocoa/cocoautils.pas"/>
-        <Caret Line="68" Column="26" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWKUserContentController.pas"/>
-        <Caret Line="112" Column="65" TopLine="75"/>
-      </Position>
       <Position>
         <Filename Value="../uWKUserContentController.pas"/>
         <Caret Line="92" Column="60" TopLine="82"/>
@@ -649,6 +637,18 @@
       <Position>
         <Filename Value="../uWKScriptMessageHandler.pas"/>
         <Caret Line="24" Column="31" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKUserContentController.pas"/>
+        <Caret Line="22" Column="9" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="../WKTypes.inc"/>
+        <Caret Line="159" Column="18" TopLine="241"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkInterface.pas"/>
+        <Caret Line="43" Column="45" TopLine="25"/>
       </Position>
     </JumpHistory>
     <RunParams>

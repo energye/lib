@@ -40,7 +40,7 @@ type
   end;
 
   IWKUserContentController = interface
-    ['{CA5E93CB-EC40-B968-565A-729497CG9757}']
+    ['{CA5E93CB-EC40-B968-456A-729497C89865}']
     function Data(): WKUserContentController;
     function UserScripts: TStrings;
     procedure AddUserScript (userScript: IWKUserScript);
