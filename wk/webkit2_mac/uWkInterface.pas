@@ -40,6 +40,10 @@ type
     function JavaEnabled: LongBool;
     procedure SetPlugInsEnabled(newValue: LongBool);
     function PlugInsEnabled: LongBool;
+    procedure SetTabFocusesLinks(newValue: LongBool);
+    procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
+    procedure SetTextInteractionEnabled(newValue: LongBool);// 11.3
+    procedure SetElementFullscreenEnabled(newValue: LongBool);// 12.3
   end;
 
   IWKUserContentController = interface
@@ -61,6 +65,8 @@ type
     function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
+    function ApplicationNameForUserAgent: string;
+    procedure SetApplicationNameForUserAgent(newValue: string);
   end;
 
   IWKUserScript = interface

@@ -20,8 +20,7 @@ interface
 
 uses
   Forms,
-  DefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes, CocoaUtils;
-
+  DefinedClassesWebKit, uDefinedClassesWebKit, CocoaAll, CGBase, CGGeometry, MacTypes, CocoaUtils;
 
 {$define INTERFACE}
 {$define CGFLOAT_DEFINED}

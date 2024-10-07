@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
+  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
 
 type
 
@@ -27,6 +27,8 @@ type
     function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
+    function ApplicationNameForUserAgent: string;
+    procedure SetApplicationNameForUserAgent(newValue: string);
   end;
 
 
@@ -109,6 +111,23 @@ begin
   if Assigned(FData) then
   begin
     Result := LongBool(FData.suppressesIncrementalRendering);
+  end;
+end;
+
+function TWKWebViewConfiguration.ApplicationNameForUserAgent: string;
+begin
+  Result := '';
+  if Assigned(FData) then
+  begin
+    Result := NSStringToString(FData.applicationNameForUserAgent);
+  end;
+end;
+
+procedure TWKWebViewConfiguration.SetApplicationNameForUserAgent(newValue: string);
+begin
+  if Assigned(FData) then
+  begin
+    FData.setApplicationNameForUserAgent(NSStringUtf8(newValue));
   end;
 end;
 

@@ -32,6 +32,10 @@ type
     function JavaEnabled: LongBool;
     procedure SetPlugInsEnabled(newValue: LongBool);
     function PlugInsEnabled: LongBool;
+    procedure SetTabFocusesLinks(newValue: LongBool);
+    procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
+    procedure SetTextInteractionEnabled(newValue: LongBool);// 11.3
+    procedure SetElementFullscreenEnabled(newValue: LongBool);// 12.3
   end;
 
 
@@ -79,6 +83,11 @@ begin
   begin
     Result := double(FData.minimumFontSize());
   end;
+end;
+
+procedure TWKPreferences.SetTabFocusesLinks(newValue: LongBool);
+begin
+    FData.setTabFocusesLinks(ObjCBOOL(newValue));
 end;
 
 procedure TWKPreferences.SetJavaScriptEnabled(newValue: LongBool);
@@ -148,5 +157,30 @@ begin
     Result := LongBool(FData.plugInsEnabled);
   end;
 end;
+
+procedure TWKPreferences.SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
+begin
+  if Assigned(FData) then
+  begin
+    FData.setFraudulentWebsiteWarningEnabled(ObjCBOOL(newValue));
+  end;
+end;
+
+procedure TWKPreferences.SetTextInteractionEnabled(newValue: LongBool);// 11.3
+begin
+  if Assigned(FData) then
+  begin
+    FData.setTextInteractionEnabled(ObjCBOOL(newValue));
+  end;
+end;
+
+procedure TWKPreferences.SetElementFullscreenEnabled(newValue: LongBool);// 12.3
+begin
+  if Assigned(FData) then
+  begin
+    FData.setElementFullscreenEnabled(ObjCBOOL(newValue));
+  end;
+end;
+
 
 end.

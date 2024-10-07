@@ -51,6 +51,7 @@ var
   TempUserContentController: TWKUserContentController;
   TempScriptMessageHandler: TWKScriptMessageHandler;
   TempNavigationDelegate: TWKNavigationDelegate;
+  TempPreference: IWKPreferences;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -73,6 +74,17 @@ begin
 
   TempConfig := TWKWebViewConfiguration.Create;
   TempConfig.SetUserContentController(TempUserContentController);
+  //TempConfig.Preferences.te;
+
+  TempConfig.SetSuppressesIncrementalRendering(true);
+  TempConfig.SetApplicationNameForUserAgent('energy.cn');
+
+
+  TempPreference := TempConfig.Preferences;
+  TempPreference.SetTabFocusesLinks(true);
+  TempPreference.SetFraudulentWebsiteWarningEnabled(true);
+  //TempPreference.SetTextInteractionEnabled(true);
+  //TempPreference.SetElementFullscreenEnabled(true);
 
   TempNavigationDelegate := TWKNavigationDelegate.Create;
   TempNavigationDelegate.OnStartProvisionalNavigation := @OnStartProvisionalNavigation;

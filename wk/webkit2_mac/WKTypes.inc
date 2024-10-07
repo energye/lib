@@ -151,6 +151,10 @@ type
     function javaEnabled: ObjCBOOL; message 'javaEnabled';
     procedure setPlugInsEnabled(newValue: ObjCBOOL); message 'setPlugInsEnabled:';
     function plugInsEnabled: ObjCBOOL; message 'plugInsEnabled';
+    procedure setTabFocusesLinks(newValue: ObjCBOOL); message 'setTabFocusesLinks:';
+    procedure setFraudulentWebsiteWarningEnabled(newValue: ObjCBOOL); message 'setFraudulentWebsiteWarningEnabled:';
+    procedure setTextInteractionEnabled(newValue: ObjCBOOL); message 'setTextInteractionEnabled:'; // 11.3
+    procedure setElementFullscreenEnabled(newValue: ObjCBOOL); message 'setElementFullscreenEnabled:'; // 12.3
   end;
 
   // WebKit.framework WKProcessPool.h
@@ -200,6 +204,23 @@ type
     function initWithSource_injectionTime_forMainFrameOnly (source_: NSString; injectionTime_: WKUserScriptInjectionTime; forMainFrameOnly: ObjCBOOL): instancetype; message 'initWithSource:injectionTime:forMainFrameOnly:';
     // Adopted protocols
     function copyWithZone (zone: NSZonePtr): id; message 'copyWithZone:';
+  end;
+
+    // WebKit.framework WKURLSchemeTask.h
+  WKURLSchemeTask = objcclass external (NSObject)
+  public
+    function request(): NSURLRequest; message 'request';
+    procedure didReceiveResponse (response: NSURLResponse); message 'didReceiveResponse:';
+    procedure didReceiveData (data: NSData); message 'didReceiveData:';
+    procedure didFinish (); message 'didFinish';
+    procedure didFailWithError (error: NSError); message 'didFailWithError:';
+  end;
+
+  // WebKit.framework WKURLScheme.h
+  WKURLSchemeHandlerProtocol = objcprotocol external name 'WKURLSchemeHandler' (NSObjectProtocol)
+  optional
+    procedure webView_startURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask); message 'webView:startURLSchemeTask:';
+    procedure webView_stopURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask); message 'webView:stopURLSchemeTask:';
   end;
 
   // WebKit.framework WKWebView.h
@@ -257,6 +278,10 @@ type
     function userContentController: WKUserContentController; message 'userContentController';
     procedure setSuppressesIncrementalRendering(newValue: ObjCBOOL); message 'setSuppressesIncrementalRendering:';
     function suppressesIncrementalRendering: ObjCBOOL; message 'suppressesIncrementalRendering';
+    function applicationNameForUserAgent: NSString; message 'applicationNameForUserAgent';
+    procedure setApplicationNameForUserAgent(newValue: NSString); message 'setApplicationNameForUserAgent:';
+    procedure setURLSchemeHandlerForURLScheme(urlSchemeHandler: id; urlScheme: NSString); message 'setURLSchemeHandler:forURLScheme:';
+
     // Adopted protocols
     function copyWithZone (zone: NSZonePtr): id; message 'copyWithZone:';
   end;

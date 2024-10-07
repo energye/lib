@@ -60,6 +60,7 @@ object Form1: TForm1
     Items.Strings = (
       'file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html'
       'https://energye.github.io'
+      'https://www.baidu.com'
     )
     TabOrder = 4
     Text = 'https://energye.github.io/'
