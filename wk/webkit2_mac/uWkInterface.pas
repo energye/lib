@@ -82,7 +82,7 @@ type
   IWkWebview = interface
     ['{CA5E93CB-6734-B968-565A-729497B49467}']
     function Data(): WKWebView;
-    procedure CreateBrowser(Width, Height: integer);
+    procedure CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
   end;
@@ -119,6 +119,12 @@ type
     ['{CA5E93CB-6A34-B968-565E-729497753890}']
     function Data(): WKNavigationDelegateProtocol;
   end;
+
+  IReceiveScriptMessageEvent = interface
+    ['{CA5E93CB-6A34-B968-565E-729497774925}']
+    procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
+  end;
+
 
 implementation
 

@@ -16,9 +16,13 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Label1: TLabel;
-    procedure Button1Click(Sender: TObject);
+    GoURL: TButton;
+    Back: TButton;
+    Forwad: TButton;
+    Stop: TButton;
+    Addr: TEdit;
+    Process: TLabel;
+    procedure GoURLClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -26,7 +30,7 @@ type
     FWebView: IWkWebview;
     FWebViewParent: TWkWebviewParent;
   public
-
+    procedure OnProcessMessage(Sender: TObject; AName, AData: string);
   end;
 
 var
@@ -39,6 +43,11 @@ implementation
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  TempFrame: TRect;
+  TempConfig: TWKWebViewConfiguration;
+  TempUserContentController: TWKUserContentController;
+  TempScriptMessageHandler: TWKScriptMessageHandler;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -49,18 +58,39 @@ begin
   FWebViewParent.Width := Width;
   FWebViewParent.Anchors := [akTop, akLeft, akRight, akBottom];
 
+  TempFrame.Width := Width;
+  TempFrame.Height := Height - 50;
+
+  TempUserContentController := TWKUserContentController.Create;
+
+  TempScriptMessageHandler := TWKScriptMessageHandler.Create;
+  TempScriptMessageHandler.OnProcessMessage := @OnProcessMessage;
+
+  TempUserContentController.AddScriptMessageHandlerName(TempScriptMessageHandler, 'energy');
+
+  TempConfig := TWKWebViewConfiguration.Create;
+  TempConfig.SetUserContentController(TempUserContentController);
+
+
   FWebView := TWkWebview.Create();
-  FWebView.CreateBrowser(Width, Height - 50);
+  FWebView.CreateBrowser(TempFrame, TempConfig);
+
   FWebViewParent.SetWebview(FWebView);
 
   FNavigationDelegate := NSWKNavigationDelegate.alloc.init;
   FWebview.Data().setNavigationDelegate(FNavigationDelegate);
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.OnProcessMessage(Sender: TObject; AName, AData: string);
+begin
+  Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
+end;
+
+procedure TForm1.GoURLClick(Sender: TObject);
 begin
   //FWebView.LoadURL('http://www.baidu.com');
-  FWebView.LoadURL('file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html');
+  FWebView.LoadURL(Addr.Text);
+  //FWebView.LoadURL('file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html');
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

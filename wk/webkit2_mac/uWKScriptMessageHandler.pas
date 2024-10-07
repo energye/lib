@@ -19,7 +19,7 @@ type
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
 
-  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
+  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler, IReceiveScriptMessageEvent)
   private
     FData: NSWKScriptMessageHandler;
   protected
@@ -43,25 +43,21 @@ procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage
 begin
   if Assigned(FData) then
   begin
-    // TWKUserContentController.Create(userContentController)
     TWKScriptMessageHandler(FData).doReceiveScriptMessage(nil, message_);
   end;
 end;
 
 constructor TWKScriptMessageHandler.Create;
 begin
+  inherited Create;
+  FOnProcessMessage := nil;
   FData := NSWKScriptMessageHandler.alloc.init;
   FData.FData := self;
+  FData.autorelease;
 end;
 
 destructor TWKScriptMessageHandler.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    FData.FData := nil;
-    FData.release;
-    FData := nil;
-  end;
   inherited Destroy;
 end;
 
@@ -74,12 +70,11 @@ procedure TWKScriptMessageHandler.doReceiveScriptMessage(userContentController: 
 var
   name, body: string;
 begin
-  body := NSStringToString(NSString(message_.body));
-  name := NSStringToString(message_.name);
-  Application.MessageBox(PChar(body), PChar('ReceiveScriptMessage: ' + name));
   if Assigned(FOnProcessMessage) then
   begin
-    FOnProcessMessage(self, name, body)
+    body := NSStringToString(NSString(message_.body));
+    name := NSStringToString(message_.name);
+    FOnProcessMessage(self, name, body);
   end;
 end;
 

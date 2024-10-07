@@ -43,16 +43,17 @@ constructor TWKUIDelegate.Create;
 begin
   FData := NSWKUIDelegate.alloc.init;
   FData.FData := self;
+  FData.autorelease;
 end;
 
 destructor TWKUIDelegate.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    FData.FData := nil;
-    FData.release;
-    FData := nil;
-  end;
+  //if Assigned(FData) then
+  //begin
+  //  FData.FData := nil;
+  //  FData.release;
+  //  FData := nil;
+  //end;
   inherited Destroy;
 end;
 

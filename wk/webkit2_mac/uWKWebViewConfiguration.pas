@@ -36,21 +36,23 @@ constructor TWKWebViewConfiguration.Create;
 begin
   inherited Create;
   FData := WKWebViewConfiguration.alloc.init;
+  FData.autorelease;
 end;
 
 constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
 begin
   inherited Create;
   FData := AData;
+  FData.autorelease;
 end;
 
 destructor TWKWebViewConfiguration.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    FData.release;
-    FData := nil;
-  end;
+  //if Assigned(FData) then
+  //begin
+  //  FData.release;
+  //  FData := nil;
+  //end;
   inherited Destroy;
 end;
 

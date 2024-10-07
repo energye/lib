@@ -25,7 +25,7 @@ type
     constructor Create(AData: WKWebView);
     destructor Destroy; override;
   public
-    procedure CreateBrowser(Width, Height: integer);
+    procedure CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
@@ -88,28 +88,19 @@ begin
   Result := FData;
 end;
 
-procedure TWkWebview.CreateBrowser(Width, Height: integer);
+procedure TWkWebview.CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
 var
-  frame: CGRect;
-  config: WKWebViewConfiguration;
-  userContentController: WKUserContentController;
-  scriptMessageHandler: NSWKScriptMessageHandler;
+  TempFrame: CGRect;
 begin
+  TempFrame.origin.x := CGFloat(AFrame.Left);
+  TempFrame.origin.y := CGFloat(AFrame.Top);
+  TempFrame.size.Width := CGFloat(AFrame.Width);
+  TempFrame.size.Height := CGFloat(AFrame.Height);
 
-  config := WKWebViewConfiguration.alloc.init;
-  config.autorelease();
-
-  frame.origin.x := 0;
-  frame.origin.y := 0;
-  frame.size.Width := Width;
-  frame.size.Height := Height;
-
-  userContentController := WKUserContentController.alloc.init;
-  scriptMessageHandler := NSWKScriptMessageHandler.alloc.init;
-  userContentController.addScriptMessageHandler_name(scriptMessageHandler, NSStringUtf8('energy'));
-  config.setUserContentController(userContentController);
-
-  FData := WKWebView.alloc.initWithFrame_configuration(frame, config);
+  if AConfig <> nil then
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, AConfig.Data())
+  else
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, nil);
   FData.autorelease();
 end;
 

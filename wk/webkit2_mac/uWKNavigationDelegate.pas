@@ -79,16 +79,17 @@ begin
   inherited Create;
   FData := NSWKNavigationDelegate.alloc.init;
   FData.FData := self;
+  FData.autorelease;
 end;
 
 destructor TWKNavigationDelegate.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    FData.FData := nil;
-    FData.release;
-    FData := nil;
-  end;
+  //if Assigned(FData) then
+  //begin
+  //  FData.FData := nil;
+  //  FData.release;
+  //  FData := nil;
+  //end;
   inherited Destroy;
 end;
 

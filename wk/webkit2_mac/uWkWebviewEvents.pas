@@ -12,6 +12,7 @@ type
 
     TWkProcessMessageEvent = procedure(Sender: TObject; name, data: string) of object;
 
+
 implementation
 
 end.

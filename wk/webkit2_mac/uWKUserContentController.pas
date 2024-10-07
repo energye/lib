@@ -36,20 +36,22 @@ implementation
 constructor TWKUserContentController.Create;
 begin
   FData := WKUserContentController.alloc.init;
+  FData.autorelease;
 end;
 
 constructor TWKUserContentController.Create(AData: WKUserContentController);
 begin
   FData := AData;
+  FData.autorelease;
 end;
 
 destructor TWKUserContentController.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    FData.release;
-    FData := nil;
-  end;
+  //if Assigned(FData) then
+  //begin
+  //  FData.release;
+  //  FData := nil;
+  //end;
   inherited Destroy;
 end;
 
