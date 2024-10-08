@@ -39,50 +39,44 @@ implementation
 
 procedure NSWKNavigationDelegate.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doStartProvisionalNavigation(webView, navigation);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doStartProvisionalNavigation(webView, navigation);
 end;
 
 procedure NSWKNavigationDelegate.webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doReceiveServerRedirectForProvisionalNavigation(webView, navigation);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doReceiveServerRedirectForProvisionalNavigation(webView, navigation);
 end;
 
 procedure NSWKNavigationDelegate.webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doFailProvisionalNavigationWithError(webView, navigation, error);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doFailProvisionalNavigationWithError(webView, navigation, error);
 end;
 
 procedure NSWKNavigationDelegate.webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doCommitNavigation(webView, navigation);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doCommitNavigation(webView, navigation);
 end;
 
 procedure NSWKNavigationDelegate.webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doFinishNavigation(webView, navigation);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doFinishNavigation(webView, navigation);
 end;
 
 procedure NSWKNavigationDelegate.webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
 begin
-  if Assigned(FData) then
-  begin
-    IWKNavigationDelegateEvent(FData).doFailNavigationWithError(webView, navigation, error);
-  end;
+  if FData = nil then
+    exit;
+  IWKNavigationDelegateEvent(FData).doFailNavigationWithError(webView, navigation, error);
 end;
 
 constructor TWKNavigationDelegate.Create(event: IWKNavigationDelegateEvent);

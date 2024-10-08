@@ -39,6 +39,8 @@ type
     procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
     procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
     procedure OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
+    procedure OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+    procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
   end;
 
 var
@@ -60,6 +62,8 @@ begin
   FWebView.OnProcessMessage := @OnProcessMessage;
   FWebView.OnStartProvisionalNavigation := @OnStartProvisionalNavigation;
   FWebView.OnFinishNavigation := @OnFinishNavigation;
+  FWebView.OnStartURLSchemeTask := @OnStartURLSchemeTask;
+  FWebView.OnStopURLSchemeTask := @OnStopURLSchemeTask;
 
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -120,6 +124,14 @@ end;
 procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
 begin
   Process.Caption := 'finish';
+end;
+
+procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+begin
+end;
+
+procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+begin
 end;
 
 procedure TForm1.GoURLClick(Sender: TObject);

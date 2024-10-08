@@ -35,10 +35,9 @@ implementation
 
 procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
 begin
-  if Assigned(FData) then
-  begin
-    IReceiveScriptMessageEvent(FData).doReceiveScriptMessage(userContentController, message_);
-  end;
+  if FData = nil then
+    exit;
+  IReceiveScriptMessageEvent(FData).doReceiveScriptMessage(userContentController, message_);
 end;
 
 constructor TWKScriptMessageHandler.Create(event: IReceiveScriptMessageEvent);

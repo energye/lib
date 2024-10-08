@@ -35,11 +35,15 @@ implementation
 
 procedure NSWKURLSchemeHandler.webView_startURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
 begin
+  if FData = nil then
+    exit;
   IWKURLSchemeHandlerEvent(FData).doStartURLSchemeTask(webView, urlSchemeTask);
 end;
 
 procedure NSWKURLSchemeHandler.webView_stopURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
 begin
+  if FData = nil then
+    exit;
   IWKURLSchemeHandlerEvent(FData).doStopURLSchemeTask(webView, urlSchemeTask);
 end;
 
