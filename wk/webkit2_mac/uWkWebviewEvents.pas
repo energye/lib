@@ -20,6 +20,10 @@ type
     TWkFinishNavigation = procedure(webView: IWKWebView; navigation: WKNavigation) of object;
     TWkFailNavigationWithError = procedure(webView: IWKWebView; navigation: WKNavigation; error: string) of object;
 
+    //WKURLSchemeHandlerProtocol
+    TWKStartURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
+    TWKStopURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
+
 implementation
 
 end.

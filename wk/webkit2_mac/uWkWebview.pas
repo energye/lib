@@ -10,11 +10,12 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL;
+  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
+  uWKURLSchemeTask;
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent)
+  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent)
   private
     FData: WKWebView;
   protected
@@ -31,6 +32,8 @@ type
     FOnCommitNavigation: TWkCommitNavigation;
     FOnFinishNavigation: TWkFinishNavigation;
     FOnFailNavigationWithError: TWkFailNavigationWithError;
+    FOnStartURLSchemeTask: TWKStartURLSchemeTask;
+    FOnStopURLSchemeTask: TWKStopURLSchemeTask;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -73,6 +76,8 @@ type
     procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
@@ -81,6 +86,8 @@ type
     property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
     property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
+    property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
+    property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
   end;
 
 
@@ -167,6 +174,22 @@ begin
   if Assigned(FOnFailNavigationWithError) then
   begin
     FOnFailNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
+  end;
+end;
+
+procedure TWkWebview.doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+begin
+  if Assigned(FOnStartURLSchemeTask) then
+  begin
+    FOnStartURLSchemeTask(self, TWKURLSchemeTask.Create(urlSchemeTask));
+  end;
+end;
+
+procedure TWkWebview.doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+begin
+  if Assigned(FOnStopURLSchemeTask) then
+  begin
+    FOnStopURLSchemeTask(self, TWKURLSchemeTask.Create(urlSchemeTask));
   end;
 end;
 

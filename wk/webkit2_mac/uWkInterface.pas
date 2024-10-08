@@ -16,6 +16,7 @@ type
   INSURL = interface;
   IWKURLSchemeHandler = interface;
   IWKUserContentController = interface;
+  IWKURLSchemeTask = interface;
 
 
 type
@@ -35,8 +36,10 @@ type
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
   end;
 
-  IWkSchemeRequestDelegateEvent = interface
-    ['{CA5E93CB-EC40-B968-990A-729497CD6537}']
+  IWKURLSchemeHandlerEvent = interface
+    ['{CA5E93CB-EC40-B968-334A-729497CD7678}']
+    procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
   end;
 
   IWKPreferences = interface
@@ -153,12 +156,18 @@ type
 
   INSURLRequest = interface
     ['{CA5E93CB-6734-B968-565E-729497B48365}']
-    function Data(): NSURLRequest;function URL: INSURL;
+    function Data(): NSURLRequest;
+    function URL: INSURL;
     function CachePolicy: NSURLRequestCachePolicy;
     function TimeoutInterval: double;
     function MainDocumentURL: INSURL;
     function NetworkServiceType: NSURLRequestNetworkServiceType;
     function AllowsCellularAccess: LongBool;
+  end;
+
+  INSURLResponse = interface
+    ['{CA5E93CB-6734-B968-565A-729497B47788}']
+    function Data(): NSURLResponse;
   end;
 
   IWKNavigationDelegate = interface
@@ -169,6 +178,11 @@ type
   IWKURLSchemeHandler = interface
     ['{CA5E93CB-6A34-B968-565E-7294D7753556}']
     function Data(): WKURLSchemeHandlerProtocol;
+  end;
+
+  IWKURLSchemeTask = interface
+    ['{CA5E93CB-6A34-B968-565E-7294D7745672}']
+    function Data(): WKURLSchemeTask;
   end;
 
 implementation

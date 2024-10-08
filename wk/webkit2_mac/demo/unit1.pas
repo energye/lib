@@ -9,7 +9,8 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL, uWKURLSchemeHandler;
+  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest,
+  uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask;
 
 type
 
@@ -81,7 +82,7 @@ begin
   FConfig := TWKWebViewConfiguration.Create;
   FConfig.SetUserContentController(FUserContentController);
 
-  FURLSchemeHandler := TWKURLSchemeHandler.Create;
+  FURLSchemeHandler := TWKURLSchemeHandler.Create(FWebView);
 
   FConfig.SetSuppressesIncrementalRendering(true);
   FConfig.SetApplicationNameForUserAgent('energy.cn');
