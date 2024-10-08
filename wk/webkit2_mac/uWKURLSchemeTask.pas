@@ -77,7 +77,6 @@ begin
   if Assigned(FData) then
   begin
     TempData := NSData.dataWithBytes_length(ADataBytes, NSUInteger(ALength));
-    TempData.autorelease;
     FData.didReceiveData(TempData);
   end;
 end;

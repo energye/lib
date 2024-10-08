@@ -7,9 +7,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  CocoaAll, uWebKit, uWkInterface,
+  CocoaAll, CocoaUtils, uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest,
+  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURLResponse,
   uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask;
 
 type
@@ -129,8 +129,12 @@ end;
 procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
 var
   request: INSURLRequest;
+  response: INSURLResponse;
   tempNSURL: INSURL;
   tempUrl, tempHost, tempPath: string;
+  tempResponseHtml: string;
+  tempData: NSData;
+  tempResponse: NSURLResponse;
 begin
   request := urlSchemeTask.Request();
   tempNSURL := request.URL;
@@ -139,10 +143,21 @@ begin
   tempPath := tempNSURL.Path;
   WriteLn(tempUrl, tempHost, tempPath);
 
+  tempResponseHtml := '<html><body><h1>Hello, World!</h1></body></html>';
+
+  //tempData := NSData.dataWithBytes_length(PChar(tempResponseHtml), Length(tempResponseHtml));
+  tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200, NSStringUtf8('HTTP/1.1'), nil);
+
+  urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
+
+  urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), Length(tempResponseHtml));
+  urlSchemeTask.Finish();
+  //;
 end;
 
 procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
 begin
+  WriteLn();
 end;
 
 procedure TForm1.GoURLClick(Sender: TObject);

@@ -8,7 +8,7 @@
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="5" Y="5"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="163"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,19 +20,18 @@
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="121"/>
-        <CursorPos Y="140"/>
-        <UsageCount Value="162"/>
+        <TopLine Value="126"/>
+        <CursorPos X="36" Y="153"/>
+        <UsageCount Value="163"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../uWkWebview.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="166"/>
-        <CursorPos Y="186"/>
-        <UsageCount Value="162"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="23" Y="12"/>
+        <UsageCount Value="163"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -42,7 +41,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="11" Y="17"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="163"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/WebKit.pas"/>
@@ -61,7 +60,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="142"/>
         <CursorPos X="18" Y="16"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="79"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -369,10 +368,10 @@
       </Unit>
       <Unit>
         <Filename Value="../uWkInterface.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="121"/>
         <CursorPos X="3" Y="139"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -445,7 +444,7 @@
       </Unit>
       <Unit>
         <Filename Value="../uNSURLRequest.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="27"/>
         <CursorPos X="7" Y="57"/>
         <UsageCount Value="11"/>
@@ -459,11 +458,10 @@
       </Unit>
       <Unit>
         <Filename Value="../uNSURL.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="8" Y="59"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSValue.inc"/>
@@ -491,7 +489,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="3" Y="79"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/typshrdh.inc"/>
@@ -516,17 +514,16 @@
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSData.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="81"/>
+        <TopLine Value="83"/>
         <CursorPos X="20" Y="99"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../uWKURLSchemeHandler.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="45"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/rtl-generics/src/generics.collections.pas"/>
@@ -545,18 +542,19 @@
       </Unit>
       <Unit>
         <Filename Value="../uWKURLSchemeTask.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="31"/>
-        <CursorPos X="6" Y="42"/>
-        <UsageCount Value="12"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="59"/>
+        <CursorPos X="4" Y="74"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSURLResponse.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="7"/>
-        <CursorPos X="3" Y="13"/>
+        <CursorPos X="61" Y="36"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/cocoaint/src/foundation/NSStream.inc"/>
@@ -567,121 +565,21 @@
       </Unit>
       <Unit>
         <Filename Value="../uNSURLResponse.pas"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="14"/>
+        <CursorPos Y="40"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/systemh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <CursorPos Y="36"/>
+        <TopLine Value="416"/>
+        <CursorPos X="29" Y="432"/>
         <UsageCount Value="10"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="137" Column="4" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="184" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="135" Column="6" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="138" Column="14" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURLRequest.pas"/>
-        <Caret Line="102" Column="7" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURL.pas"/>
-        <Caret Line="58" Column="19" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="137" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="138" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="139" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="184" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWkWebview.pas"/>
-        <Caret Line="186" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWKURLSchemeHandler.pas"/>
-        <Caret Line="45" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="127" Column="5" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURLRequest.pas"/>
-        <Caret Line="102" Column="18" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURL.pas"/>
-        <Caret Line="14" Column="3" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="136" Column="20" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="138" Column="3" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="133" Column="15" TopLine="116"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="136" Column="12" TopLine="116"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURL.pas"/>
-        <Caret Line="14" Column="3" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="10" Column="13"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="132" Column="14" TopLine="116"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURL.pas"/>
-        <Caret Line="59" Column="8" TopLine="31"/>
-      </Position>
-      <Position>
-        <Filename Value="../uNSURL.pas"/>
-        <Caret Line="60" Column="22" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="136" Column="28" TopLine="116"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="138" TopLine="121"/>
-      </Position>
-      <Position>
-        <Filename Value="../uWKURLSchemeTask.pas"/>
-        <Caret Line="61" TopLine="43"/>
-      </Position>
       <Position>
         <Filename Value="../uNSURLRequest.pas"/>
         <Caret Line="57" Column="7" TopLine="27"/>
@@ -693,6 +591,114 @@
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Line="133" Column="15" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="65" Column="59"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="142" Column="17" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="143" Column="95" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="../uNSURLResponse.pas"/>
+        <Caret Line="37" Column="20"/>
+      </Position>
+      <Position>
+        <Filename Value="../uNSURLResponse.pas"/>
+        <Caret Line="46" Column="7" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="141" Column="30" TopLine="126"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="10" Column="25" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="145" Column="5" TopLine="127"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="135" Column="19" TopLine="127"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="143" Column="37" TopLine="127"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="145" Column="11" TopLine="127"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="146" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="149" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="151" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="../uNSURLResponse.pas"/>
+        <Caret Line="39" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="../uNSURLResponse.pas"/>
+        <Caret Line="40" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="151" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="152" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="76" Column="6" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="67" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="69" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="71" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="77" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="79" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="80" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWKURLSchemeTask.pas"/>
+        <Caret Line="86" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="146" Column="19" TopLine="126"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -748,15 +754,22 @@
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
-        <Source Value="../uWKURLSchemeHandler.pas"/>
-        <Line Value="45"/>
+        <Source Value="../uWKURLSchemeTask.pas"/>
+        <Line Value="67"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
-        <Source Value="unit1.pas"/>
-        <Line Value="140"/>
+        <Source Value="../uWKURLSchemeTask.pas"/>
+        <Line Value="77"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../uWKURLSchemeTask.pas"/>
+        <Line Value="86"/>
       </Item>
     </BreakPoints>
   </Debugging>
