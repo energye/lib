@@ -126,7 +126,7 @@ procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigatio
 begin
   if Assigned(FOnStartProvisionalNavigation) then
   begin
-    FOnStartProvisionalNavigation(nil, navigation);
+    FOnStartProvisionalNavigation(self, navigation);
   end;
 end;
 
@@ -134,7 +134,7 @@ procedure TWkWebview.doReceiveServerRedirectForProvisionalNavigation (webView: W
 begin
   if Assigned(FOnReceiveServerRedirectForProvisionalNavigation) then
   begin
-    FOnReceiveServerRedirectForProvisionalNavigation(nil, navigation);
+    FOnReceiveServerRedirectForProvisionalNavigation(self, navigation);
   end;
 end;
 
@@ -142,7 +142,7 @@ procedure TWkWebview.doFailProvisionalNavigationWithError (webView: WKWebView; n
 begin
   if Assigned(FOnFailProvisionalNavigationWithError) then
   begin
-    FOnFailProvisionalNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
+    FOnFailProvisionalNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -150,7 +150,7 @@ procedure TWkWebview.doCommitNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnCommitNavigation) then
   begin
-    FOnCommitNavigation(nil, navigation);
+    FOnCommitNavigation(self, navigation);
   end;
 end;
 
@@ -158,7 +158,7 @@ procedure TWkWebview.doFinishNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnFinishNavigation) then
   begin
-    FOnFinishNavigation(nil, navigation);
+    FOnFinishNavigation(self, navigation);
   end;
 end;
 
@@ -166,7 +166,7 @@ procedure TWkWebview.doFailNavigationWithError (webView: WKWebView; navigation: 
 begin
   if Assigned(FOnFailNavigationWithError) then
   begin
-    FOnFailNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
+    FOnFailNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
