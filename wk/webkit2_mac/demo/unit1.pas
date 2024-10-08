@@ -96,8 +96,10 @@ begin
   FPreference := FConfig.Preferences;
   FPreference.SetTabFocusesLinks(true);
   FPreference.SetFraudulentWebsiteWarningEnabled(true);
+
   //FPreference.SetTextInteractionEnabled(true);
   //FPreference.SetElementFullscreenEnabled(true);
+
 
   TempNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
   //FNavigationDelegate := TempNavigationDelegate;
@@ -107,6 +109,11 @@ begin
   FWebView.SetNavigationDelegate(TempNavigationDelegate);
 
   FWebViewParent.SetWebview(FWebView);
+
+  //FPreference.Data().setValue_forKey(ObjCBOOL(true), NSStringUtf8('developerExtrasEnabled'));
+
+  // [webView.configuration.preferences setValue:@YES forKey:@"developerExtrasEnabled"];
+  FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSStr('developerExtrasEnabled'));
 
 
 end;

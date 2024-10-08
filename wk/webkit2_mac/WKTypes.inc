@@ -155,6 +155,7 @@ type
     procedure setFraudulentWebsiteWarningEnabled(newValue: ObjCBOOL); message 'setFraudulentWebsiteWarningEnabled:';
     procedure setTextInteractionEnabled(newValue: ObjCBOOL); message 'setTextInteractionEnabled:'; // 11.3
     procedure setElementFullscreenEnabled(newValue: ObjCBOOL); message 'setElementFullscreenEnabled:'; // 12.3
+    procedure setValue_forKey (value: ObjCBOOL; key: NSString); message 'setValue:forKey:';
   end;
 
   // WebKit.framework WKProcessPool.h

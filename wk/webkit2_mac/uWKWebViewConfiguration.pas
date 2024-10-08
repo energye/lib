@@ -65,9 +65,9 @@ begin
   //  FData.release;
   //  FData := nil;
   //end;
-  FPreferences := nil;
-  FUserContentController := nil;
-  FURLSchemeHandler := nil;
+  //FPreferences := nil;
+  //FUserContentController := nil;
+  //FURLSchemeHandler := nil;
   inherited Destroy;
 end;
 
