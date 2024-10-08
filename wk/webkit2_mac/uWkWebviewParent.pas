@@ -32,6 +32,7 @@ begin
   Width := 100;
   Height := 100;
   Visible := True;
+  FWebview := nil;
 end;
 
 destructor TWkWebviewParent.Destroy;
@@ -64,18 +65,15 @@ var
   view: NSView;
   AutoPool: NSAutoreleasePool;
 begin
-  if (FWebview = nil) and Assigned(AWebview) then
+  if (FWebview = nil) and Assigned(AWebview) and Assigned(AWebview.Data()) then
   begin
     FWebview := AWebview;
-    if Assigned(FWebview) then
-    begin
-      AutoPool := NSAutoreleasePool.alloc.init;
-      try
-        view := NSView(self.Handle);
-        view.addSubview(FWebview.Data());
-      finally
-        AutoPool.Release;
-      end;
+    AutoPool := NSAutoreleasePool.alloc.init;
+    try
+      view := NSView(self.Handle);
+      view.addSubview(FWebview.Data());
+    finally
+      AutoPool.Release;
     end;
   end;
 end;
