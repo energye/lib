@@ -78,7 +78,7 @@ begin
   begin
     body := NSStringToString(NSString(message_.body));
     name := NSStringToString(message_.name);
-    FOnProcessMessage(self, name, body);
+    FOnProcessMessage(userContentController, name, body);
   end;
 end;
 

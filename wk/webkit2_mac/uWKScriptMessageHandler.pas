@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWKUserContentController;
+  uWebKit, uWkInterface;
 
 type
 
@@ -19,20 +19,14 @@ type
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
 
-  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler, IReceiveScriptMessageEvent)
+  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
   private
     FData: NSWKScriptMessageHandler;
   protected
     function Data(): WKScriptMessageHandlerProtocol;
-  private
-    FOnProcessMessage: TWkProcessMessageEvent;
   public
-    constructor Create; overload;
+    constructor Create(event: IReceiveScriptMessageEvent);
     destructor Destroy; override;
-  protected
-    procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
-  published
-    property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
   end;
 
 
@@ -43,20 +37,25 @@ procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage
 begin
   if Assigned(FData) then
   begin
-    TWKScriptMessageHandler(FData).doReceiveScriptMessage(nil, message_);
+    IReceiveScriptMessageEvent(FData).doReceiveScriptMessage(userContentController, message_);
   end;
 end;
 
-constructor TWKScriptMessageHandler.Create;
+constructor TWKScriptMessageHandler.Create(event: IReceiveScriptMessageEvent);
 begin
   inherited Create;
-  FOnProcessMessage := nil;
   FData := NSWKScriptMessageHandler.alloc.init;
-  FData.FData := self;
+  FData.FData := event;
 end;
 
 destructor TWKScriptMessageHandler.Destroy;
 begin
+  if FData <> nil then
+  begin
+    FData.release;
+    FData.FData := nil;
+    FData := nil;
+  end;
   inherited Destroy;
 end;
 
@@ -64,18 +63,5 @@ function TWKScriptMessageHandler.Data(): WKScriptMessageHandlerProtocol;
 begin
   Result := FData;
 end;
-
-procedure TWKScriptMessageHandler.doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
-var
-  name, body: string;
-begin
-  if Assigned(FOnProcessMessage) then
-  begin
-    body := NSStringToString(NSString(message_.body));
-    name := NSStringToString(message_.name);
-    FOnProcessMessage(self, name, body);
-  end;
-end;
-
 
 end.

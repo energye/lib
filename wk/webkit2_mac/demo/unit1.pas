@@ -26,7 +26,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FWebView: IWkWebview;
+    FWebView: TWkWebview;
     FWebViewParent: TWkWebviewParent;
     FConfig: IWKWebViewConfiguration;
     FUserContentController: IWKUserContentController;
@@ -35,7 +35,7 @@ type
     FPreference: IWKPreferences;
     FURLSchemeHandler: TWKURLSchemeHandler;
   public
-    procedure OnProcessMessage(Sender: TObject; AName, AData: string);
+    procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
     procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
     procedure OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
   end;
@@ -55,6 +55,9 @@ var
   TempNavigationDelegate: TWKNavigationDelegate;
   TempScriptMessageHandler: TWKScriptMessageHandler;
 begin
+  FWebView := TWkWebview.Create(self);
+  FWebView.OnProcessMessage := @OnProcessMessage;
+
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
   //FWebViewParent.Align := AlClient;
@@ -69,9 +72,7 @@ begin
 
   FUserContentController := TWKUserContentController.Create;
 
-  TempScriptMessageHandler := TWKScriptMessageHandler.Create;
-  TempScriptMessageHandler.OnProcessMessage := @OnProcessMessage;
-  //FScriptMessageHandler := TempScriptMessageHandler;
+  TempScriptMessageHandler := TWKScriptMessageHandler.Create(FWebView);
 
   FUserContentController.AddScriptMessageHandlerName(TempScriptMessageHandler, 'energy');
 
@@ -96,7 +97,6 @@ begin
   TempNavigationDelegate.OnFinishNavigation := @OnFinishNavigation;
   //FNavigationDelegate := TempNavigationDelegate;
 
-  FWebView := TWkWebview.Create();
   FWebView.InitWithFrameConfiguration(TempFrame, FConfig);
 
   FWebView.SetNavigationDelegate(TempNavigationDelegate);
@@ -106,7 +106,7 @@ begin
 
 end;
 
-procedure TForm1.OnProcessMessage(Sender: TObject; AName, AData: string);
+procedure TForm1.OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
 begin
   Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
 end;

@@ -38,6 +38,7 @@ type
     FOnFailNavigationWithError: TWkFailNavigationWithError;
   public
     constructor Create; overload;
+    constructor Create(event: IWKNavigationDelegateEvent);
     destructor Destroy; override;
   protected
     procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
@@ -62,7 +63,7 @@ procedure NSWKNavigationDelegate.webView_didStartProvisionalNavigation (webView:
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doStartProvisionalNavigation(webView, navigation);
+    IWKNavigationDelegateEvent(FData).doStartProvisionalNavigation(webView, navigation);
   end;
 end;
 
@@ -70,7 +71,7 @@ procedure NSWKNavigationDelegate.webView_didReceiveServerRedirectForProvisionalN
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doReceiveServerRedirectForProvisionalNavigation(webView, navigation);
+    IWKNavigationDelegateEvent(FData).doReceiveServerRedirectForProvisionalNavigation(webView, navigation);
   end;
 end;
 
@@ -78,7 +79,7 @@ procedure NSWKNavigationDelegate.webView_didFailProvisionalNavigation_withError 
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doFailProvisionalNavigationWithError(webView, navigation, error);
+    IWKNavigationDelegateEvent(FData).doFailProvisionalNavigationWithError(webView, navigation, error);
   end;
 end;
 
@@ -86,7 +87,7 @@ procedure NSWKNavigationDelegate.webView_didCommitNavigation (webView: WKWebView
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doCommitNavigation(webView, navigation);
+    IWKNavigationDelegateEvent(FData).doCommitNavigation(webView, navigation);
   end;
 end;
 
@@ -94,7 +95,7 @@ procedure NSWKNavigationDelegate.webView_didFinishNavigation (webView: WKWebView
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doFinishNavigation(webView, navigation);
+    IWKNavigationDelegateEvent(FData).doFinishNavigation(webView, navigation);
   end;
 end;
 
@@ -102,13 +103,17 @@ procedure NSWKNavigationDelegate.webView_didFailNavigation_withError (webView: W
 begin
   if Assigned(FData) then
   begin
-    TWKNavigationDelegate(FData).doFailNavigationWithError(webView, navigation, error);
+    IWKNavigationDelegateEvent(FData).doFailNavigationWithError(webView, navigation, error);
   end;
 end;
 
 constructor TWKNavigationDelegate.Create;
 begin
-  inherited Create;
+  Create(self);
+end;
+
+constructor TWKNavigationDelegate.Create(event: IWKNavigationDelegateEvent);
+begin
   FOnStartProvisionalNavigation := nil;
   FOnReceiveServerRedirectForProvisionalNavigation := nil;
   FOnFailProvisionalNavigationWithError := nil;
@@ -116,18 +121,23 @@ begin
   FOnFinishNavigation := nil;
   FOnFailNavigationWithError := nil;
   FData := NSWKNavigationDelegate.alloc.init;
-  FData.FData := self;
-  //FData.autorelease;
+  FData.FData := event;
 end;
 
 destructor TWKNavigationDelegate.Destroy;
 begin
-  //if Assigned(FData) then
-  //begin
-  //  FData.FData := nil;
-  //  FData.release;
-  //  FData := nil;
-  //end;
+  FOnStartProvisionalNavigation := nil;
+  FOnReceiveServerRedirectForProvisionalNavigation := nil;
+  FOnFailProvisionalNavigationWithError := nil;
+  FOnCommitNavigation := nil;
+  FOnFinishNavigation := nil;
+  FOnFailNavigationWithError := nil;
+  if FData <> nil then
+  begin
+    FData.release;
+    FData.FData := nil;
+    FData := nil;
+  end;
   inherited Destroy;
 end;
 
@@ -140,7 +150,7 @@ procedure TWKNavigationDelegate.doStartProvisionalNavigation (webView: WKWebView
 begin
   if Assigned(FOnStartProvisionalNavigation) then
   begin
-    FOnStartProvisionalNavigation(TWkWebview.Create(webView), navigation);
+    FOnStartProvisionalNavigation(nil, navigation);
   end;
 end;
 
@@ -148,7 +158,7 @@ procedure TWKNavigationDelegate.doReceiveServerRedirectForProvisionalNavigation 
 begin
   if Assigned(FOnReceiveServerRedirectForProvisionalNavigation) then
   begin
-    FOnReceiveServerRedirectForProvisionalNavigation(TWkWebview.Create(webView), navigation);
+    FOnReceiveServerRedirectForProvisionalNavigation(nil, navigation);
   end;
 end;
 
@@ -156,7 +166,7 @@ procedure TWKNavigationDelegate.doFailProvisionalNavigationWithError (webView: W
 begin
   if Assigned(FOnFailProvisionalNavigationWithError) then
   begin
-    FOnFailProvisionalNavigationWithError(TWkWebview.Create(webView), navigation, NSStringToString(error.localizedDescription));
+    FOnFailProvisionalNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -164,7 +174,7 @@ procedure TWKNavigationDelegate.doCommitNavigation (webView: WKWebView; navigati
 begin
   if Assigned(FOnCommitNavigation) then
   begin
-    FOnCommitNavigation(TWkWebview.Create(webView), navigation);
+    FOnCommitNavigation(nil, navigation);
   end;
 end;
 
@@ -172,7 +182,7 @@ procedure TWKNavigationDelegate.doFinishNavigation (webView: WKWebView; navigati
 begin
   if Assigned(FOnFinishNavigation) then
   begin
-    FOnFinishNavigation(TWkWebview.Create(webView), navigation);
+    FOnFinishNavigation(nil, navigation);
   end;
 end;
 
@@ -180,7 +190,7 @@ procedure TWKNavigationDelegate.doFailNavigationWithError (webView: WKWebView; n
 begin
   if Assigned(FOnFailNavigationWithError) then
   begin
-    FOnFailNavigationWithError(TWkWebview.Create(webView), navigation, NSStringToString(error.localizedDescription));
+    FOnFailNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 

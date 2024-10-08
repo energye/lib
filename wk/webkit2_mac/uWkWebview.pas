@@ -14,7 +14,7 @@ uses
 
 type
 
-  TWkWebview = class(TInterfacedObject, IWkWebview)
+  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent)
   private
     FData: WKWebView;
   protected
@@ -23,9 +23,10 @@ type
     FConfiguration: IWKWebViewConfiguration;
     FNavigationDelegate: IWKNavigationDelegate;
     FUIDelegate: IWKUIDelegate;
+  private
+    FOnProcessMessage: TWkProcessMessageEvent;
   public
-    constructor Create(); overload;
-    constructor Create(AData: WKWebView);
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   public
     procedure LoadHTML(AHtml, ABaseURL: string);
@@ -58,24 +59,22 @@ type
     procedure SetMagnification(newValue: double);
     function Magnification: double;
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
+  protected
+    procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+  published
+    property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
   end;
 
 
 implementation
 
-constructor TWkWebview.Create();
+constructor TWkWebview.Create(AOwner: TComponent);
 begin
-  inherited Create();
+  inherited Create(AOwner);
   FData := nil;
   FConfiguration := nil;
   FNavigationDelegate := nil;
   FUIDelegate := nil;
-end;
-
-constructor TWkWebview.Create(AData: WKWebView);
-begin
-  Create();
-  FData := AData;
 end;
 
 destructor TWkWebview.Destroy;
@@ -90,6 +89,18 @@ end;
 function TWkWebview.Data(): WKWebView;
 begin
   Result := FData;
+end;
+
+procedure TWkWebview.doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+var
+  tempName, tempBody: string;
+begin
+  if Assigned(FOnProcessMessage) then
+  begin
+    tempName := NSStringToString(message_.name);
+    tempBody := NSStringToString(NSString(message_.body));
+    FOnProcessMessage(nil, tempName, tempBody);
+  end;
 end;
 
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);

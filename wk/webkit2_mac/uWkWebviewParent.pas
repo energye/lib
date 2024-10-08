@@ -37,6 +37,7 @@ end;
 
 destructor TWkWebviewParent.Destroy;
 begin
+  FWebview := nil;
   inherited Destroy;
 end;
 
