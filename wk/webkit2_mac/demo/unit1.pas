@@ -135,6 +135,9 @@ var
   tempResponseHtml: string;
   tempData: NSData;
   tempResponse: NSURLResponse;
+  tempBytes: TBytes;
+  tempDataBytesPtr: Pointer;
+  tempDataBytesLength: Integer;
 begin
   request := urlSchemeTask.Request();
   tempNSURL := request.URL;
@@ -144,15 +147,23 @@ begin
   WriteLn(tempUrl, tempHost, tempPath);
 
   tempResponseHtml := '<html><body><h1>Hello, World!</h1></body></html>';
+  tempBytes := TEncoding.UTF8.GetBytes(tempResponseHtml);
+  tempDataBytesLength := Length(tempBytes);
+  tempDataBytesPtr := @tempBytes[0];
+  tempData := NSData.dataWithBytes_length(tempDataBytesPtr, tempDataBytesLength);
 
-  //tempData := NSData.dataWithBytes_length(PChar(tempResponseHtml), Length(tempResponseHtml));
-  tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200, NSStringUtf8('HTTP/1.1'), nil);
+  //NSDictionary
 
-  urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
+  tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200,
+     NSStringUtf8('HTTP/1.1'), request.Data().allHTTPHeaderFields);
 
-  urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), Length(tempResponseHtml));
-  urlSchemeTask.Finish();
-  //;
+  urlSchemeTask.Data().didReceiveResponse(tempResponse);
+  urlSchemeTask.Data().didReceiveData(tempData);
+  urlSchemeTask.Data().didFinish();
+
+  //urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
+  //urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), Length(tempResponseHtml));
+  //urlSchemeTask.Finish();
 end;
 
 procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
