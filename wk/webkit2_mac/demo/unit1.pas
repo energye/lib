@@ -57,6 +57,8 @@ var
 begin
   FWebView := TWkWebview.Create(self);
   FWebView.OnProcessMessage := @OnProcessMessage;
+  FWebView.OnStartProvisionalNavigation := @OnStartProvisionalNavigation;
+  FWebView.OnFinishNavigation := @OnFinishNavigation;
 
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -92,9 +94,7 @@ begin
   //FPreference.SetTextInteractionEnabled(true);
   //FPreference.SetElementFullscreenEnabled(true);
 
-  TempNavigationDelegate := TWKNavigationDelegate.Create;
-  TempNavigationDelegate.OnStartProvisionalNavigation := @OnStartProvisionalNavigation;
-  TempNavigationDelegate.OnFinishNavigation := @OnFinishNavigation;
+  TempNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
   //FNavigationDelegate := TempNavigationDelegate;
 
   FWebView.InitWithFrameConfiguration(TempFrame, FConfig);

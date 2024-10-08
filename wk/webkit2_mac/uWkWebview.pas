@@ -14,7 +14,7 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent)
+  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent)
   private
     FData: WKWebView;
   protected
@@ -25,6 +25,12 @@ type
     FUIDelegate: IWKUIDelegate;
   private
     FOnProcessMessage: TWkProcessMessageEvent;
+    FOnStartProvisionalNavigation: TWkStartProvisionalNavigation;
+    FOnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation;
+    FOnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError;
+    FOnCommitNavigation: TWkCommitNavigation;
+    FOnFinishNavigation: TWkFinishNavigation;
+    FOnFailNavigationWithError: TWkFailNavigationWithError;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -61,8 +67,20 @@ type
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
   protected
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+    procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFailProvisionalNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
+    procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
+    property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
+    property OnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation read FOnReceiveServerRedirectForProvisionalNavigation write FOnReceiveServerRedirectForProvisionalNavigation;
+    property OnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError read FOnFailProvisionalNavigationWithError write FOnFailProvisionalNavigationWithError;
+    property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
+    property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
+    property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
   end;
 
 
@@ -100,6 +118,55 @@ begin
     tempName := NSStringToString(message_.name);
     tempBody := NSStringToString(NSString(message_.body));
     FOnProcessMessage(nil, tempName, tempBody);
+  end;
+end;
+
+
+procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+begin
+  if Assigned(FOnStartProvisionalNavigation) then
+  begin
+    FOnStartProvisionalNavigation(nil, navigation);
+  end;
+end;
+
+procedure TWkWebview.doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+begin
+  if Assigned(FOnReceiveServerRedirectForProvisionalNavigation) then
+  begin
+    FOnReceiveServerRedirectForProvisionalNavigation(nil, navigation);
+  end;
+end;
+
+procedure TWkWebview.doFailProvisionalNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+begin
+  if Assigned(FOnFailProvisionalNavigationWithError) then
+  begin
+    FOnFailProvisionalNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
+  end;
+end;
+
+procedure TWkWebview.doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
+begin
+  if Assigned(FOnCommitNavigation) then
+  begin
+    FOnCommitNavigation(nil, navigation);
+  end;
+end;
+
+procedure TWkWebview.doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
+begin
+  if Assigned(FOnFinishNavigation) then
+  begin
+    FOnFinishNavigation(nil, navigation);
+  end;
+end;
+
+procedure TWkWebview.doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+begin
+  if Assigned(FOnFailNavigationWithError) then
+  begin
+    FOnFailNavigationWithError(nil, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
