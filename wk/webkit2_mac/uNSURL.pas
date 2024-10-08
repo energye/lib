@@ -1,7 +1,7 @@
 unit uNSURL;
 
 {$mode ObjFPC}{$H+}
-{$modeswitch objectivec1}
+{$modeswitch objectivec2}
 
 interface
 

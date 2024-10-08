@@ -1,5 +1,5 @@
 {$mode delphi}
-{$modeswitch objectivec1}
+{$modeswitch objectivec2}
 {$modeswitch cvar}
 {$packrecords c}
 

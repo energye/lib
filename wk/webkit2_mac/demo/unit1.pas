@@ -1,7 +1,7 @@
 unit Unit1;
 
 {$mode objfpc}{$H+}
-{$modeswitch objectivec1}
+{$modeswitch objectivec2}
 
 interface
 
@@ -9,7 +9,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
-  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL;
+  uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURL, uWKURLSchemeHandler;
 
 type
 
@@ -52,6 +52,7 @@ var
   TempScriptMessageHandler: TWKScriptMessageHandler;
   TempNavigationDelegate: TWKNavigationDelegate;
   TempPreference: IWKPreferences;
+  TempURLSchemeHandler: TWKURLSchemeHandler;
 begin
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -74,10 +75,12 @@ begin
 
   TempConfig := TWKWebViewConfiguration.Create;
   TempConfig.SetUserContentController(TempUserContentController);
-  //TempConfig.Preferences.te;
+
+  TempURLSchemeHandler := TWKURLSchemeHandler.Create;
 
   TempConfig.SetSuppressesIncrementalRendering(true);
   TempConfig.SetApplicationNameForUserAgent('energy.cn');
+  TempConfig.SetURLSchemeHandlerForURLScheme(TempURLSchemeHandler, 'energy');
 
 
   TempPreference := TempConfig.Preferences;

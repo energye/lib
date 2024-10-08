@@ -280,7 +280,7 @@ type
     function suppressesIncrementalRendering: ObjCBOOL; message 'suppressesIncrementalRendering';
     function applicationNameForUserAgent: NSString; message 'applicationNameForUserAgent';
     procedure setApplicationNameForUserAgent(newValue: NSString); message 'setApplicationNameForUserAgent:';
-    procedure setURLSchemeHandlerForURLScheme(urlSchemeHandler: id; urlScheme: NSString); message 'setURLSchemeHandler:forURLScheme:';
+    procedure setURLSchemeHandlerForURLScheme(urlSchemeHandler: WKURLSchemeHandlerProtocol; urlScheme: NSString); message 'setURLSchemeHandler:forURLScheme:';
 
     // Adopted protocols
     function copyWithZone (zone: NSZonePtr): id; message 'copyWithZone:';

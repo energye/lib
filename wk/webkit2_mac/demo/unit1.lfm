@@ -59,6 +59,7 @@ object Form1: TForm1
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 19
     Items.Strings = (
+      'energy://test.com'
       'file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html'
       'https://energye.github.io'
       'https://www.baidu.com'

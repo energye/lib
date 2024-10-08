@@ -1,13 +1,14 @@
 unit uWKWebViewConfiguration;
 
 {$mode ObjFPC}{$H+}
-{$modeswitch objectivec1}
+{$modeswitch objectivec2}
 
 interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
+  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController,
+  uWKURLSchemeHandler;
 
 type
 
@@ -29,6 +30,8 @@ type
     function SuppressesIncrementalRendering: LongBool;
     function ApplicationNameForUserAgent: string;
     procedure SetApplicationNameForUserAgent(newValue: string);
+    procedure SetURLSchemeHandlerForURLScheme(urlSchemeHandler: IWKURLSchemeHandler; urlScheme: string);
+
   end;
 
 
@@ -128,6 +131,14 @@ begin
   if Assigned(FData) then
   begin
     FData.setApplicationNameForUserAgent(NSStringUtf8(newValue));
+  end;
+end;
+
+procedure TWKWebViewConfiguration.SetURLSchemeHandlerForURLScheme(urlSchemeHandler: IWKURLSchemeHandler; urlScheme: string);
+begin
+  if Assigned(FData) then
+  begin
+    FData.setURLSchemeHandlerForURLScheme (urlSchemeHandler.Data(), NSStringUtf8(urlScheme));
   end;
 end;
 

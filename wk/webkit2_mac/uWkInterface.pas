@@ -15,18 +15,6 @@ type
   IWKNavigationDelegate = interface;
   INSURL = interface;
 
-  IWkBase = interface
-    ['{CA5E93CB-EC40-B968-990B-729497C8927A}']
-  end;
-
-  IWkWebviewDelegateEvent = interface
-    ['{CA5E93CB-EC40-B968-990B-729497C8B869}']
-  end;
-
-  IWkSchemeRequestDelegateEvent = interface
-    ['{CA5E93CB-EC40-B968-990A-729497CD6537}']
-  end;
-
   IWKPreferences = interface
     ['{CA5E93CB-EC40-B968-456A-729497C8927D}']
     function Data(): WKPreferences;
@@ -154,19 +142,9 @@ type
     function Data(): WKNavigationDelegateProtocol;
   end;
 
-  IReceiveScriptMessageEvent = interface
-    ['{CA5E93CB-6A34-B968-565E-729497774925}']
-    procedure doReceiveScriptMessage(userContentController: IWKUserContentController; message_: WKScriptMessage);
-  end;
-
-  IWKNavigationDelegateEvent = interface
-    ['{CA5E93CB-6A34-B968-565E-729895474921}']
-    procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
-    procedure doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
-    procedure doFailProvisionalNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-    procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
-    procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
-    procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+  IWKURLSchemeHandler = interface
+    ['{CA5E93CB-6A34-B968-565E-7294D7753556}']
+    function Data(): WKURLSchemeHandlerProtocol;
   end;
 
 implementation
