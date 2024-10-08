@@ -49,14 +49,14 @@ end;
 
 constructor TNSURL.Create(AData: NSURL);
 begin
+  inherited Create;
   FData := AData;
 end;
 
 destructor TNSURL.Destroy;
 begin
-  if Assigned(FData) then
+  if FData <> nil then
   begin
-    FData.release;
     FData := nil;
   end;
   inherited Destroy;

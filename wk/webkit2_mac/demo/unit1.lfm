@@ -58,6 +58,7 @@ object Form1: TForm1
     Width = 369
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 19
+    ItemIndex = 0
     Items.Strings = (
       'energy://test.com'
       'file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html'
@@ -65,6 +66,6 @@ object Form1: TForm1
       'https://www.baidu.com'
     )
     TabOrder = 4
-    Text = 'https://energye.github.io/'
+    Text = 'energy://test.com'
   end
 end

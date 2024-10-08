@@ -183,6 +183,11 @@ type
   IWKURLSchemeTask = interface
     ['{CA5E93CB-6A34-B968-565E-7294D7745672}']
     function Data(): WKURLSchemeTask;
+    function Request(): INSURLRequest;
+    procedure ReceiveResponse (response: INSURLResponse);
+    procedure ReceiveData(ADataBytes: Pointer; ALength: Integer {NSData});
+    procedure Finish ();
+    procedure FailWithError (error: string {NSError});
   end;
 
 implementation

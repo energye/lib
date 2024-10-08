@@ -40,11 +40,13 @@ implementation
 
 constructor TNSURLRequest.Create;
 begin
+  inherited Create;
   FData := NSURLRequest.alloc.init;
 end;
 
 constructor TNSURLRequest.Create(AData: NSURLRequest);
 begin
+  inherited Create;
   FData := AData;
 end;
 
@@ -52,7 +54,7 @@ destructor TNSURLRequest.Destroy;
 begin
   if Assigned(FData) then
   begin
-    FData.release;
+    //FData.release;
     FData := nil;
   end;
   inherited Destroy;

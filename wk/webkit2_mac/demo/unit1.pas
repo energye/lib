@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  uWebKit, uWkInterface,
+  CocoaAll, uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
   uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest,
   uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask;
@@ -127,7 +127,18 @@ begin
 end;
 
 procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+var
+  request: INSURLRequest;
+  tempNSURL: INSURL;
+  tempUrl, tempHost, tempPath: string;
 begin
+  request := urlSchemeTask.Request();
+  tempNSURL := request.URL;
+  tempUrl := tempNSURL.AbsoluteString;
+  tempHost := tempNSURL.Host;
+  tempPath := tempNSURL.Path;
+  WriteLn(tempUrl, tempHost, tempPath);
+
 end;
 
 procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);

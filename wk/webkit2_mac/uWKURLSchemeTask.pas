@@ -25,7 +25,7 @@ type
     procedure ReceiveResponse (response: INSURLResponse);
     procedure ReceiveData(ADataBytes: Pointer; ALength: Integer {NSData});
     procedure Finish ();
-    procedure FailWithError (error: NSError);
+    procedure FailWithError (error: string {NSError});
   end;
 
 
@@ -42,7 +42,7 @@ destructor TWKURLSchemeTask.Destroy;
 begin
   if FData <> nil then
   begin
-    FData.release;
+    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
@@ -56,26 +56,45 @@ end;
 function TWKURLSchemeTask.Request(): INSURLRequest;
 begin
   Result := nil;
+  if Assigned(FData) then
+  begin
+    Result := TNSURLRequest.Create(FData.request());
+  end;
 end;
 
 procedure TWKURLSchemeTask.ReceiveResponse (response: INSURLResponse);
 begin
-
+  if Assigned(FData) then
+  begin
+    FData.didReceiveResponse(response.Data());
+  end;
 end;
 
 procedure TWKURLSchemeTask.ReceiveData (ADataBytes: Pointer; ALength: Integer {NSData});
+var
+  TempData: NSData;
 begin
-
+  if Assigned(FData) then
+  begin
+    TempData := NSData.dataWithBytes_length(ADataBytes, NSUInteger(ALength));
+    TempData.autorelease;
+    FData.didReceiveData(TempData);
+  end;
 end;
 
 procedure TWKURLSchemeTask.Finish ();
 begin
-
+  if Assigned(FData) then
+  begin
+    FData.didFinish();
+  end;
 end;
 
-procedure TWKURLSchemeTask.FailWithError (error: NSError);
+procedure TWKURLSchemeTask.FailWithError (error: string {NSError});
 begin
-
+  if Assigned(FData) then
+  begin
+  end;
 end;
 
 
