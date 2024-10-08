@@ -19,19 +19,22 @@ type
     FData: WKWebView;
   protected
     function Data(): WKWebView;
+  private
+    FConfiguration: IWKWebViewConfiguration;
+    FNavigationDelegate: IWKNavigationDelegate;
+    FUIDelegate: IWKUIDelegate;
   public
     constructor Create(); overload;
     constructor Create(AData: WKWebView);
     destructor Destroy; override;
   public
-    procedure CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
     function LoadRequest (request: INSURLRequest): WKNavigation;
-    procedure SetNavigationDelegate(newValue: IWKNavigationDelegate);
-    procedure SetUIDelegate(newValue: IWKUIDelegate);
-    function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
+    procedure SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
+    procedure SetUIDelegate(uiDelegate: IWKUIDelegate);
+    procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
     function Title: string;
     function URL: INSURL;
     function IsLoading: LongBool;
@@ -64,43 +67,29 @@ constructor TWkWebview.Create();
 begin
   inherited Create();
   FData := nil;
+  FConfiguration := nil;
+  FNavigationDelegate := nil;
+  FUIDelegate := nil;
 end;
 
 constructor TWkWebview.Create(AData: WKWebView);
 begin
-  inherited Create();
+  Create();
   FData := AData;
 end;
 
 destructor TWkWebview.Destroy;
 begin
-  //if FData <> nil then
-  //begin
-  //  FData.release;
-  //  FData := nil;
-  //end;
+  FData := nil;
+  FConfiguration := nil;
+  FNavigationDelegate := nil;
+  FUIDelegate := nil;
   inherited Destroy;
 end;
 
 function TWkWebview.Data(): WKWebView;
 begin
   Result := FData;
-end;
-
-procedure TWkWebview.CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
-var
-  TempFrame: CGRect;
-begin
-  if AConfig <> nil then
-  begin
-    TempFrame.origin.x := CGFloat(AFrame.Left);
-    TempFrame.origin.y := CGFloat(AFrame.Top);
-    TempFrame.size.Width := CGFloat(AFrame.Width);
-    TempFrame.size.Height := CGFloat(AFrame.Height);
-
-    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, AConfig.Data());
-    FData.autorelease();
-  end;
 end;
 
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);
@@ -146,13 +135,18 @@ end;
 function TWkWebview.Configuration: IWKWebViewConfiguration;
 begin
   Result := nil;
+  if FConfiguration <> nil then
+  begin
+    Result := FConfiguration;
+    exit;
+  end;
   if Assigned(FData) then
   begin
     Result := TWKWebViewConfiguration.Create(FData.configuration);
   end;
 end;
 
-function TWkWebview.LoadRequest (request: INSURLRequest): WKNavigation;
+function TWkWebview.LoadRequest(request: INSURLRequest): WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
@@ -161,36 +155,38 @@ begin
   end;
 end;
 
-procedure TWkWebview.SetNavigationDelegate(newValue: IWKNavigationDelegate);
+procedure TWkWebview.SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
 begin
   if Assigned(FData) then
   begin
-    FData.setNavigationDelegate(newValue.Data());
+    FNavigationDelegate := navigationDelegate;
+    FData.setNavigationDelegate(FNavigationDelegate.Data());
   end;
 end;
 
-procedure TWkWebview.SetUIDelegate(newValue: IWKUIDelegate);
+procedure TWkWebview.SetUIDelegate(uiDelegate: IWKUIDelegate);
 begin
   if Assigned(FData) then
   begin
-    FData.setUIDelegate(newValue.Data());
+    FUIDelegate := uiDelegate;
+    FData.setUIDelegate(FUIDelegate.Data());
   end;
 end;
 
-function TWkWebview.InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
+procedure TWkWebview.InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
 var
   TempFrame: CGRect;
-  TempWebView: WKWebView;
 begin
-  Result := nil;
-  if Assigned(FData) then
+  if (FData = nil) and Assigned(AConfiguration) then
   begin
-    TempFrame.origin.x := frame.Left;
-    TempFrame.origin.y := frame.Top;
-    TempFrame.size.Width := frame.Width;
-    TempFrame.size.Height := frame.Height;
-    TempWebView := FData.initWithFrame_configuration(TempFrame, configuration_.Data());
-    Result := TWkWebview.Create(TempWebView);
+    FConfiguration := AConfiguration;
+
+    TempFrame.origin.x := CGFloat(AFrame.Left);
+    TempFrame.origin.y := CGFloat(AFrame.Top);
+    TempFrame.size.Width := CGFloat(AFrame.Width);
+    TempFrame.size.Height := CGFloat(AFrame.Height);
+
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, FConfiguration.Data());
   end;
 end;
 

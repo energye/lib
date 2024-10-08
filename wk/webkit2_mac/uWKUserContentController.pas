@@ -12,11 +12,29 @@ uses
 
 type
 
+  TRefMessageHandle = record
+    Name: string;
+    Handler: IWKScriptMessageHandler;
+  end;
+
+  // 维护消息处理引用类，因为它是一个集合，所以用数组来引用维护
+  TRefMessageHandles = class
+  private
+    FHandles: array of TRefMessageHandle;
+  public
+    constructor Create; overload;
+    destructor Destroy; override;
+    procedure Add(Name: string; Handler: IWKScriptMessageHandler);
+    procedure Remove(Name: string);
+  end;
+
   TWKUserContentController = class(TInterfacedObject, IWKUserContentController)
   private
     FData: WKUserContentController;
   protected
     function Data(): WKUserContentController;
+  private
+    FRefMessageHandles: TRefMessageHandles; // 引用类
   public
     constructor Create; overload;
     constructor Create(AData: WKUserContentController);
@@ -32,17 +50,62 @@ type
 
 implementation
 
+constructor TRefMessageHandles.Create;
+begin
+  inherited Create;
+  SetLength(FHandles, 0);
+end;
+
+destructor TRefMessageHandles.Destroy;
+begin
+  SetLength(FHandles, 0);
+  FHandles := nil;
+end;
+
+procedure TRefMessageHandles.Add(Name: string; Handler: IWKScriptMessageHandler);
+var
+  len: Integer;
+  TempMessageHandle: TRefMessageHandle;
+begin
+  len := Length(FHandles);
+  SetLength(FHandles, len + 1);
+  TempMessageHandle.Name := Name;
+  TempMessageHandle.Handler := Handler;
+  FHandles[len] := TempMessageHandle;
+end;
+
+procedure TRefMessageHandles.Remove(Name: string);
+var
+  idx, deleteIndex: Integer;
+  TempMessageHandle: TRefMessageHandle;
+begin
+  for idx := 0 to Length(FHandles) -1 do
+  begin
+    TempMessageHandle := FHandles[idx];
+    if TempMessageHandle.Name = Name then
+    begin
+      deleteIndex := idx;
+      break;
+    end;
+  end;
+  for idx := deleteIndex to Length(FHandles) - 2 do
+  begin
+    FHandles[idx] := FHandles[idx + 1]
+  end;
+  SetLength(FHandles, Length(FHandles) - 1);
+end;
 
 constructor TWKUserContentController.Create;
 begin
+  inherited Create;
+  FRefMessageHandles := TRefMessageHandles.Create;
   FData := WKUserContentController.alloc.init;
-  FData.autorelease;
 end;
 
 constructor TWKUserContentController.Create(AData: WKUserContentController);
 begin
+  inherited Create;
   FData := AData;
-  FData.autorelease;
 end;
 
 destructor TWKUserContentController.Destroy;
@@ -52,6 +115,7 @@ begin
   //  FData.release;
   //  FData := nil;
   //end;
+  FRefMessageHandles := nil;
   inherited Destroy;
 end;
 
@@ -110,6 +174,7 @@ procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHan
 begin
   if Assigned(FData) then
   begin
+    FRefMessageHandles.Add(name, scriptMessageHandler);
     FData.addScriptMessageHandler_name(scriptMessageHandler.Data(), NSStringUtf8(name));
   end;
 end;
@@ -118,6 +183,7 @@ procedure TWKUserContentController.RemoveScriptMessageHandlerForName (name: stri
 begin
   if Assigned(FData) then
   begin
+    FRefMessageHandles.Remove(name);
     FData.removeScriptMessageHandlerForName(NSStringUtf8(name));
   end;
 end;

@@ -4,13 +4,12 @@ object Form1: TForm1
   Top = 250
   Width = 600
   Caption = 'Form1'
-  ClientHeight = 450
-  ClientWidth = 600
+  ClientHeight = 435
+  ClientWidth = 585
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.2.0.0'
   object GoURL: TButton
-    Left = 496
+    Left = 481
     Height = 25
     Top = 5
     Width = 43
@@ -20,7 +19,7 @@ object Form1: TForm1
     OnClick = GoURLClick
   end
   object Process: TLabel
-    Left = 552
+    Left = 544
     Height = 16
     Top = 10
     Width = 19
@@ -55,7 +54,7 @@ object Form1: TForm1
     Left = 104
     Height = 20
     Top = 6
-    Width = 384
+    Width = 369
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 19
     Items.Strings = (

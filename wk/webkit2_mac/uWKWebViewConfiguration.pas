@@ -17,14 +17,18 @@ type
     FData: WKWebViewConfiguration;
   protected
     function Data(): WKWebViewConfiguration;
+  private
+    FPreferences: IWKPreferences;
+    FUserContentController: IWKUserContentController;
+    FURLSchemeHandler: IWKURLSchemeHandler;
   public
     constructor Create; overload;
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
   public
-    procedure SetPreferences(newValue: IWKPreferences);
+    procedure SetPreferences(preferences: IWKPreferences);
     function Preferences: IWKPreferences;
-    procedure SetUserContentController(newValue: IWKUserContentController);
+    procedure SetUserContentController(userContentController: IWKUserContentController);
     function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
@@ -42,6 +46,9 @@ begin
   inherited Create;
   FData := WKWebViewConfiguration.alloc.init;
   FData.autorelease;
+  FPreferences := nil;
+  FUserContentController := nil;
+  FURLSchemeHandler := nil;
 end;
 
 constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
@@ -58,6 +65,9 @@ begin
   //  FData.release;
   //  FData := nil;
   //end;
+  FPreferences := nil;
+  FUserContentController := nil;
+  FURLSchemeHandler := nil;
   inherited Destroy;
 end;
 
@@ -66,34 +76,46 @@ begin
   Result := FData;
 end;
 
-procedure TWKWebViewConfiguration.SetPreferences(newValue: IWKPreferences);
+procedure TWKWebViewConfiguration.SetPreferences(preferences: IWKPreferences);
 begin
   if Assigned(FData) then
   begin
-    FData.setPreferences(newValue.Data());
+    FPreferences := preferences;
+    FData.setPreferences(preferences.Data());
   end;
 end;
 
 function TWKWebViewConfiguration.Preferences: IWKPreferences;
 begin
   Result := nil;
+  if FPreferences <> nil then
+  begin
+    Result := FPreferences;
+    exit;
+  end;
   if Assigned(FData) then
   begin
     Result := TWKPreferences.Create(FData.preferences);
   end;
 end;
 
-procedure TWKWebViewConfiguration.SetUserContentController(newValue: IWKUserContentController);
+procedure TWKWebViewConfiguration.SetUserContentController(userContentController: IWKUserContentController);
 begin
   if Assigned(FData) then
   begin
-    FData.setUserContentController(newValue.Data());
+    FUserContentController := userContentController;
+    FData.setUserContentController(userContentController.Data());
   end;
 end;
 
 function TWKWebViewConfiguration.UserContentController: IWKUserContentController;
 begin
   Result := nil;
+  if FUserContentController <> nil then
+  begin
+    Result := FUserContentController;
+    exit;
+  end;
   if Assigned(FData) then
   begin
     Result := TWKUserContentController.Create(FData.userContentController);
@@ -138,6 +160,7 @@ procedure TWKWebViewConfiguration.SetURLSchemeHandlerForURLScheme(urlSchemeHandl
 begin
   if Assigned(FData) then
   begin
+    FUrlSchemeHandler := urlSchemeHandler;
     FData.setURLSchemeHandlerForURLScheme (urlSchemeHandler.Data(), NSStringUtf8(urlScheme));
   end;
 end;

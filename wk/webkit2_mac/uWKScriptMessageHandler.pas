@@ -53,7 +53,6 @@ begin
   FOnProcessMessage := nil;
   FData := NSWKScriptMessageHandler.alloc.init;
   FData.FData := self;
-  FData.autorelease;
 end;
 
 destructor TWKScriptMessageHandler.Destroy;

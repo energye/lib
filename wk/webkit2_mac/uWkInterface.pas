@@ -14,6 +14,7 @@ type
   INSURLRequest = interface;
   IWKNavigationDelegate = interface;
   INSURL = interface;
+  IWKURLSchemeHandler = interface;
 
   IWKPreferences = interface
     ['{CA5E93CB-EC40-B968-456A-729497C8927D}']
@@ -47,14 +48,15 @@ type
   IWKWebViewConfiguration = interface
     ['{CA5E93CB-6734-B968-565A-729497C81234}']
     function Data(): WKWebViewConfiguration;
-    procedure SetPreferences(newValue: IWKPreferences);
+    procedure SetPreferences(preferences: IWKPreferences);
     function Preferences: IWKPreferences;
-    procedure SetUserContentController(newValue: IWKUserContentController);
+    procedure SetUserContentController(userContentController: IWKUserContentController);
     function UserContentController: IWKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
     function ApplicationNameForUserAgent: string;
     procedure SetApplicationNameForUserAgent(newValue: string);
+    procedure SetURLSchemeHandlerForURLScheme(urlSchemeHandler: IWKURLSchemeHandler; urlScheme: string);
   end;
 
   IWKUserScript = interface
@@ -79,14 +81,13 @@ type
   IWkWebview = interface
     ['{CA5E93CB-6734-B968-565A-729497B49467}']
     function Data(): WKWebView;
-    procedure CreateBrowser(AFrame: TRect; AConfig: IWKWebViewConfiguration);
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
     function LoadRequest (request: INSURLRequest): WKNavigation;
-    procedure SetNavigationDelegate(newValue: IWKNavigationDelegate);
-    procedure SetUIDelegate(newValue: IWKUIDelegate);
-    function InitWithFrameConfiguration (frame: TRect; configuration_: IWKWebViewConfiguration): IWkWebview;
+    procedure SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
+    procedure SetUIDelegate(uiDelegate: IWKUIDelegate);
+    procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
     function Title: string;
     function URL: INSURL;
     function IsLoading: LongBool;

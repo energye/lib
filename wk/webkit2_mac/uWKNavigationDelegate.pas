@@ -12,7 +12,7 @@ uses
 
 type
 
-  NSWKNavigationDelegate = objcclass(NSObject, WKNavigationDelegateProtocol)
+  NSWKNavigationDelegate = objcclass(NSViewController, WKNavigationDelegateProtocol)
   private
     FData: Pointer;
   public
@@ -117,7 +117,7 @@ begin
   FOnFailNavigationWithError := nil;
   FData := NSWKNavigationDelegate.alloc.init;
   FData.FData := self;
-  FData.autorelease;
+  //FData.autorelease;
 end;
 
 destructor TWKNavigationDelegate.Destroy;
