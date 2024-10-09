@@ -104,8 +104,8 @@ begin
   FPreference.SetTabFocusesLinks(true);
   FPreference.SetFraudulentWebsiteWarningEnabled(true);
 
-  //FPreference.SetTextInteractionEnabled(true);
-  //FPreference.SetElementFullscreenEnabled(true);
+  //FPreference.SetTextInteractionEnabled(true);// 11.3
+  //FPreference.SetElementFullscreenEnabled(true);// 12.3
 
 
   FNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
@@ -144,7 +144,7 @@ var
   tempUrl, tempHost, tempPath: string;
   tempHtml: string;
   tempDataBytesLength: Integer;
-  tempResponse: NSURLResponse;
+  tempResponse: NSHTTPURLResponse;
   tempHTTPHeader: NSDictionary;
 begin
   request := urlSchemeTask.Request();
@@ -165,9 +165,9 @@ begin
   //    NSStringUtf8('HTTP/1.1'), tempHTTPHeader);
 
   // 响应对象必须包含所请求资源的 MIME 类型
-  tempResponse := NSURLResponse.alloc.initWithURL_MIMEType_expectedContentLength_textEncodingName(tempNSURL.Data(), StrToNSString('text/html'),
+  tempResponse := NSHTTPURLResponse.alloc.initWithURL_MIMEType_expectedContentLength_textEncodingName(tempNSURL.Data(), StrToNSString('text/html'),
       tempDataBytesLength, StrToNSString('utf8'));
-
+  tempResponse.localizedStringForStatusCode(200);
 
   urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
   urlSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);

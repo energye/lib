@@ -23,6 +23,17 @@ type
     constructor Create(AData: NSURLResponse);
     destructor Destroy; override;
   public
+    //function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: INSURL; MIMEType: string; length: Integer; name: String): INSURLResponse;
+    //function URL: INSURL;
+    //function MIMEType: string;
+    //function ExpectedContentLength: int64;
+    //function TextEncodingName: string;
+    //function SuggestedFilename: string;
+    //function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFields: NSDictionary): INSURLResponse;
+    //function StatusCode: Integer;
+    //function AllHeaderFields: NSDictionary;
+    // statusCode: https://www.ietf.org/rfc/rfc2616.txt
+    //class function LocalizedStringForStatusCode (statusCode_: Integer): string;
   end;
 
 
