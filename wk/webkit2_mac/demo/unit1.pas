@@ -33,6 +33,7 @@ type
     FUserContentController: IWKUserContentController;
     FScriptMessageHandler: IWKScriptMessageHandler;
     FNavigationDelegate: IWKNavigationDelegate;
+    FUIDelegate: IWKUIDelegate;
     FPreference: IWKPreferences;
     FURLSchemeHandler: TWKURLSchemeHandler;
   public
@@ -109,10 +110,12 @@ begin
 
 
   FNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
+  FUIDelegate := TWKUIDelegate.Create;
 
   FWebView.InitWithFrameConfiguration(TempFrame, FConfig);
 
   FWebView.SetNavigationDelegate(FNavigationDelegate);
+  FWebView.SetUIDelegate(FUIDelegate);
 
   FWebViewParent.SetWebview(FWebView);
 
