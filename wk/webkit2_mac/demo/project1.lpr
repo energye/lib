@@ -24,3 +24,8 @@ begin
   Application.Run;
 end.
 
+
+{
+ 开发者工具
+ 自定义scheme不显示页面
+}

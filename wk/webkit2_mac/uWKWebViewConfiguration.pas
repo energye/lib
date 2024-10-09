@@ -45,7 +45,7 @@ constructor TWKWebViewConfiguration.Create;
 begin
   inherited Create;
   FData := WKWebViewConfiguration.alloc.init;
-  FData.autorelease;
+  //FData.autorelease;
   FPreferences := nil;
   FUserContentController := nil;
   FURLSchemeHandler := nil;
@@ -55,16 +55,15 @@ constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
 begin
   inherited Create;
   FData := AData;
-  FData.autorelease;
+  //FData.autorelease;
 end;
 
 destructor TWKWebViewConfiguration.Destroy;
 begin
-  //if Assigned(FData) then
-  //begin
-  //  FData.release;
-  //  FData := nil;
-  //end;
+  if Assigned(FData) then
+  begin
+    FData := nil;
+  end;
   //FPreferences := nil;
   //FUserContentController := nil;
   //FURLSchemeHandler := nil;

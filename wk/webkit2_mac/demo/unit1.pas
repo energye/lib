@@ -113,7 +113,7 @@ begin
   //FPreference.Data().setValue_forKey(ObjCBOOL(true), NSStringUtf8('developerExtrasEnabled'));
 
   // [webView.configuration.preferences setValue:@YES forKey:@"developerExtrasEnabled"];
-  FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSStr('developerExtrasEnabled'));
+  //FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSStr('developerExtrasEnabled'));
 
 
 end;
@@ -145,6 +145,7 @@ var
   tempBytes: TBytes;
   tempDataBytesPtr: Pointer;
   tempDataBytesLength: Integer;
+  tempHTTPHeader: NSDictionary;
 begin
   request := urlSchemeTask.Request();
   tempNSURL := request.URL;
@@ -153,16 +154,23 @@ begin
   tempPath := tempNSURL.Path;
   WriteLn(tempUrl, tempHost, tempPath);
 
-  tempResponseHtml := '<html><body><h1>Hello, World!</h1></body></html>';
+  tempResponseHtml := '<html><body><h1>Hello, World!中文中文中文中文中文</h1></body></html>';
   tempBytes := TEncoding.UTF8.GetBytes(tempResponseHtml);
   tempDataBytesLength := Length(tempBytes);
-  tempDataBytesPtr := @tempBytes[0];
+  tempDataBytesPtr := PChar(tempResponseHtml);// @tempBytes[0];
   tempData := NSData.dataWithBytes_length(tempDataBytesPtr, tempDataBytesLength);
 
   //NSDictionary
+  tempHTTPHeader := request.Data().allHTTPHeaderFields;
 
-  tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200,
-     NSStringUtf8('HTTP/1.1'), request.Data().allHTTPHeaderFields);
+
+  //tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200,
+  //    NSStringUtf8('HTTP/1.1'), tempHTTPHeader);
+
+  // 响应对象必须包含所请求资源的 MIME 类型
+  tempResponse := NSURLResponse.alloc.initWithURL_MIMEType_expectedContentLength_textEncodingName(tempNSURL.Data(), StrToNSString('text/html'),
+      tempDataBytesLength, StrToNSString('utf8'));
+
 
   urlSchemeTask.Data().didReceiveResponse(tempResponse);
   urlSchemeTask.Data().didReceiveData(tempData);
@@ -189,7 +197,8 @@ procedure TForm1.FormShow(Sender: TObject);
 begin
   //FWebView.LoadURL('https://energye.github.io');
   //FWebView.LoadURL('http://www.baidu.com');
-  FWebView.LoadURL('file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html');
+  FWebView.LoadURL('energy://test.com');
+  //FWebView.LoadURL('file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html');
   //FWebView.LoadHTML('<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="content-type" content="text/html;charset=utf-8"><title>从字符串加载HTML</title></head><body><p>这是一个从字符串加载的HTML。</p></body></html>', '')
 end;
 
