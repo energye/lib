@@ -186,8 +186,14 @@ begin
   if Assigned(FData) then
   begin
     TempHeaders := FData.allHTTPHeaderFields;
+    if TempHeaders = nil then
+      exit;
     TempJSONData := NSJSONSerialization.dataWithJSONObject_options_error(TempHeaders, 0, nil);
+    if TempJSONData = nil then
+      exit;
     TempJSONString := NSString.alloc.initWithData_encoding(TempJSONData, NSUTF8StringEncoding);
+    if TempJSONString = nil then
+      exit;
     Result := NSStringToString(TempJSONString);
   end;
 end;
@@ -241,7 +247,11 @@ begin
   if Assigned(FMutableData) then
   begin
     TempHeaderJSONData := NSData.dataWithBytes_length(PChar(headerFieldsJSONString), NSUInteger(Length(headerFieldsJSONString)));
+    if TempHeaderJSONData = nil then
+      exit;
     TempHeaderFields := NSJSONSerialization.JSONObjectWithData_options_error(TempHeaderJSONData, NSJSONReadingMutableContainers, nil);
+    if TempHeaderFields = nil then
+      exit;
     FMutableData.setAllHTTPHeaderFields(TempHeaderFields);
   end;
 end;

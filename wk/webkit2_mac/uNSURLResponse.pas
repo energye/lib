@@ -29,7 +29,6 @@ type
     function ExpectedContentLength: int64;
     function TextEncodingName: string;
     function SuggestedFilename: string;
-    // headerFields json 格式, {key: []value, ...}
     function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): INSURLResponse;
     function StatusCode: Integer;
     function AllHeaderFields: string;
@@ -74,6 +73,8 @@ begin
   if Assigned(FData) then
   begin
     TempResponse := FData.initWithURL_MIMEType_expectedContentLength_textEncodingName(URL.Data(), StrToNSString(MIMEType), NSInteger(length), StrToNSString(name));
+    if TempResponse = nil then
+      exit;
     Result := TNSURLResponse.Create(TempResponse);
   end;
 end;
@@ -137,8 +138,14 @@ begin
   if Assigned(FData) then
   begin
     TempHeaderJSONData := NSData.dataWithBytes_length(PChar(headerFieldsJSONString), NSUInteger(Length(headerFieldsJSONString)));
+    if TempHeaderJSONData = nil then
+      exit;
     TempHeaderFields := NSJSONSerialization.JSONObjectWithData_options_error(TempHeaderJSONData, NSJSONReadingMutableContainers, nil);
+    if TempHeaderFields = nil then
+      exit;
     TempResponse := FData.initWithURL_statusCode_HTTPVersion_headerFields(url_.Data(), NSInteger(statusCode), StrToNSString(HTTPVersion), TempHeaderFields);
+    if TempResponse = nil then
+      exit;
     Result := TNSURLResponse.Create(TempResponse);
   end;
 end;

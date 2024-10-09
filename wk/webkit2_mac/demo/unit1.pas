@@ -158,14 +158,12 @@ begin
 
   //NSDictionary
   tempHTTPHeader := request.AllHTTPHeaderFields;
-
-
-  //tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200,
-  //    NSStringUtf8('HTTP/1.1'), tempHTTPHeader);
+  //tempHTTPHeader := '{"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}';
 
   // 响应对象必须包含所请求资源的 MIME 类型
   response := TNSURLResponse.Create;
   response.InitWithURLMIMETypeExpectedContentLengthTextEncodingName(tempNSURL, 'text/html', tempDataBytesLength, 'utf-8');
+  //response.InitWithURLStatusCodeHTTPVersionHeaderFields(tempNSURL, 200, 'HTTP/1.1', tempHTTPHeader);//???
   //response.localizedStringForStatusCode(200);
 
   urlSchemeTask.ReceiveResponse(response);
