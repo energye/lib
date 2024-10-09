@@ -36,6 +36,7 @@ type
     FPreference: IWKPreferences;
     FURLSchemeHandler: TWKURLSchemeHandler;
   public
+    constructor Create; overload;
     procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
     procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
     procedure OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
@@ -43,20 +44,26 @@ type
     procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
   end;
 
+procedure CreateGlobal();
 var
   Form1: TForm1;
 
 implementation
 
 {$R *.lfm}
+procedure CreateGlobal();
+begin
+end;
+
+constructor TForm1.Create;
+begin
+end;
 
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
   TempFrame: TRect;
-  TempNavigationDelegate: TWKNavigationDelegate;
-  TempScriptMessageHandler: TWKScriptMessageHandler;
 begin
   FWebView := TWkWebview.Create(self);
   FWebView.OnProcessMessage := @OnProcessMessage;
@@ -79,9 +86,9 @@ begin
 
   FUserContentController := TWKUserContentController.Create;
 
-  TempScriptMessageHandler := TWKScriptMessageHandler.Create(FWebView);
+  FScriptMessageHandler := TWKScriptMessageHandler.Create(FWebView);
 
-  FUserContentController.AddScriptMessageHandlerName(TempScriptMessageHandler, 'energy');
+  FUserContentController.AddScriptMessageHandlerName(FScriptMessageHandler, 'energy');
 
   FConfig := TWKWebViewConfiguration.Create;
   FConfig.SetUserContentController(FUserContentController);
@@ -101,20 +108,16 @@ begin
   //FPreference.SetElementFullscreenEnabled(true);
 
 
-  TempNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
-  //FNavigationDelegate := TempNavigationDelegate;
+  FNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
 
   FWebView.InitWithFrameConfiguration(TempFrame, FConfig);
 
-  FWebView.SetNavigationDelegate(TempNavigationDelegate);
+  FWebView.SetNavigationDelegate(FNavigationDelegate);
 
   FWebViewParent.SetWebview(FWebView);
 
-  //FPreference.Data().setValue_forKey(ObjCBOOL(true), NSStringUtf8('developerExtrasEnabled'));
-
   // [webView.configuration.preferences setValue:@YES forKey:@"developerExtrasEnabled"];
-  //FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSStr('developerExtrasEnabled'));
-
+  //FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSString('developerExtrasEnabled'));
 
 end;
 

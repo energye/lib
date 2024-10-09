@@ -18,6 +18,7 @@ begin
   //RequireDerivedFormResource:=True;
   //IsMultiThread := True;
   //Application.Scaled:=True;
+  CreateGlobal();
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
