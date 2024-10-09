@@ -139,7 +139,7 @@ var
   response: INSURLResponse;
   tempNSURL: INSURL;
   tempUrl, tempHost, tempPath: string;
-  tempResponseHtml: string;
+  tempHtml: string;
   tempDataBytesLength: Integer;
   tempResponse: NSURLResponse;
   tempHTTPHeader: NSDictionary;
@@ -151,8 +151,8 @@ begin
   tempPath := tempNSURL.Path;
   WriteLn(tempUrl, tempHost, tempPath);
 
-  tempResponseHtml := '<html><body><h1>Hello, World!中文中文中文中文中文</h1><h2>自定义 scheme: energy<h2></body></html>';
-  tempDataBytesLength := Length(tempResponseHtml);
+  tempHtml := '<html><body><h1>Hello, World!中文中文中文中文中文</h1><h2>自定义 scheme: energy<h2></body></html>';
+  tempDataBytesLength := Length(tempHtml);
 
   //NSDictionary
   tempHTTPHeader := request.Data().allHTTPHeaderFields;
@@ -167,7 +167,7 @@ begin
 
 
   urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
-  urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), tempDataBytesLength);
+  urlSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);
   urlSchemeTask.Finish();
 end;
 
