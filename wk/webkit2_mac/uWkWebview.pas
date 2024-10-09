@@ -60,7 +60,7 @@ type
     function Reload: WKNavigation;
     function ReloadFromOrigin: WKNavigation;
     procedure StopLoading;
-    procedure EvaluateJavaScriptCompletionHandler (javaScriptString: string; completionHandler: OpaqueCBlock);
+    procedure EvaluateJavaScript(javaScriptString: string);
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
     function AllowsBackForwardNavigationGestures: LongBool;
     procedure SetAllowsMagnification(newValue: LongBool);
@@ -398,11 +398,11 @@ begin
   end;
 end;
 
-procedure TWkWebview.EvaluateJavaScriptCompletionHandler (javaScriptString: string; completionHandler: OpaqueCBlock);
+procedure TWkWebview.EvaluateJavaScript(javaScriptString: string);
 begin
   if Assigned(FData) then
   begin
-    FData.evaluateJavaScript_completionHandler(NSStringUtf8(javaScriptString), completionHandler);
+    FData.evaluateJavaScript_completionHandler(NSStringUtf8(javaScriptString), nil);
   end;
 end;
 

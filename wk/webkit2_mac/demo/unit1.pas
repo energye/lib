@@ -124,6 +124,7 @@ end;
 procedure TForm1.OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
 begin
   Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
+  FWebView.EvaluateJavaScript('alert(1)');
 end;
 
 procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);

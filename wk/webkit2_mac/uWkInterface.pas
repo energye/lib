@@ -126,7 +126,7 @@ type
     function Reload: WKNavigation;
     function ReloadFromOrigin: WKNavigation;
     procedure StopLoading;
-    procedure EvaluateJavaScriptCompletionHandler (javaScriptString: string; completionHandler: OpaqueCBlock);
+    procedure EvaluateJavaScript(javaScriptString: string);
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
     function AllowsBackForwardNavigationGestures: LongBool;
     procedure SetAllowsMagnification(newValue: LongBool);
