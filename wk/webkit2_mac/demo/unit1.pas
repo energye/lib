@@ -140,11 +140,8 @@ var
   tempNSURL: INSURL;
   tempUrl, tempHost, tempPath: string;
   tempResponseHtml: string;
-  tempData: NSData;
-  tempResponse: NSURLResponse;
-  tempBytes: TBytes;
-  tempDataBytesPtr: Pointer;
   tempDataBytesLength: Integer;
+  tempResponse: NSURLResponse;
   tempHTTPHeader: NSDictionary;
 begin
   request := urlSchemeTask.Request();
@@ -154,11 +151,8 @@ begin
   tempPath := tempNSURL.Path;
   WriteLn(tempUrl, tempHost, tempPath);
 
-  tempResponseHtml := '<html><body><h1>Hello, World!中文中文中文中文中文</h1></body></html>';
-  tempBytes := TEncoding.UTF8.GetBytes(tempResponseHtml);
-  tempDataBytesLength := Length(tempBytes);
-  tempDataBytesPtr := PChar(tempResponseHtml);// @tempBytes[0];
-  tempData := NSData.dataWithBytes_length(tempDataBytesPtr, tempDataBytesLength);
+  tempResponseHtml := '<html><body><h1>Hello, World!中文中文中文中文中文</h1><h2>自定义 scheme: energy<h2></body></html>';
+  tempDataBytesLength := Length(tempResponseHtml);
 
   //NSDictionary
   tempHTTPHeader := request.Data().allHTTPHeaderFields;
@@ -172,13 +166,9 @@ begin
       tempDataBytesLength, StrToNSString('utf8'));
 
 
-  urlSchemeTask.Data().didReceiveResponse(tempResponse);
-  urlSchemeTask.Data().didReceiveData(tempData);
-  urlSchemeTask.Data().didFinish();
-
-  //urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
-  //urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), Length(tempResponseHtml));
-  //urlSchemeTask.Finish();
+  urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
+  urlSchemeTask.ReceiveData(Pointer(tempResponseHtml), tempDataBytesLength);
+  urlSchemeTask.Finish();
 end;
 
 procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
