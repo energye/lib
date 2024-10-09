@@ -163,11 +163,33 @@ type
     function MainDocumentURL: INSURL;
     function NetworkServiceType: NSURLRequestNetworkServiceType;
     function AllowsCellularAccess: LongBool;
+    function HTTPMethod: string;
+    function AllHTTPHeaderFields: string;
+    function ValueForHTTPHeaderField (aField: string): string;
+  end;
+
+  INSMutableURLRequest = interface(INSURLRequest)
+    ['{CA5E93CB-6A3B-B968-565E-729497B44369}']
+    function MutableData(): NSMutableURLRequest;
+    procedure SetHTTPMethod(aMethod: string);
+    procedure SetAllHTTPHeaderFields(headerFieldsJSONString: string);
+    procedure SetValueForHTTPHeaderField (aValue: string; aField: string);
+    procedure AddValueForHTTPHeaderField (aValue: string; aField: string);
   end;
 
   INSURLResponse = interface
     ['{CA5E93CB-6734-B968-565A-729497B47788}']
-    function Data(): NSURLResponse;
+    function Data(): NSHTTPURLResponse;
+    function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: INSURL; MIMEType: string; length: Integer; name: String): INSURLResponse;
+    function URL: INSURL;
+    function MIMEType: string;
+    function ExpectedContentLength: int64;
+    function TextEncodingName: string;
+    function SuggestedFilename: string;
+    // headerFields json 格式, {key: []value, ...}
+    function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): INSURLResponse;
+    function StatusCode: Integer;
+    function AllHeaderFields: string;
   end;
 
   IWKNavigationDelegate = interface

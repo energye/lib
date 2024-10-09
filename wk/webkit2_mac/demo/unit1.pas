@@ -144,8 +144,7 @@ var
   tempUrl, tempHost, tempPath: string;
   tempHtml: string;
   tempDataBytesLength: Integer;
-  tempResponse: NSHTTPURLResponse;
-  tempHTTPHeader: NSDictionary;
+  tempHTTPHeader: string;
 begin
   request := urlSchemeTask.Request();
   tempNSURL := request.URL;
@@ -158,18 +157,18 @@ begin
   tempDataBytesLength := Length(tempHtml);
 
   //NSDictionary
-  tempHTTPHeader := request.Data().allHTTPHeaderFields;
+  tempHTTPHeader := request.AllHTTPHeaderFields;
 
 
   //tempResponse := NSHTTPURLResponse.alloc.initWithURL_statusCode_HTTPVersion_headerFields(tempNSURL.Data(), 200,
   //    NSStringUtf8('HTTP/1.1'), tempHTTPHeader);
 
   // 响应对象必须包含所请求资源的 MIME 类型
-  tempResponse := NSHTTPURLResponse.alloc.initWithURL_MIMEType_expectedContentLength_textEncodingName(tempNSURL.Data(), StrToNSString('text/html'),
-      tempDataBytesLength, StrToNSString('utf8'));
-  tempResponse.localizedStringForStatusCode(200);
+  response := TNSURLResponse.Create;
+  response.InitWithURLMIMETypeExpectedContentLengthTextEncodingName(tempNSURL, 'text/html', tempDataBytesLength, 'utf-8');
+  //response.localizedStringForStatusCode(200);
 
-  urlSchemeTask.ReceiveResponse(TNSURLResponse.Create(tempResponse));
+  urlSchemeTask.ReceiveResponse(response);
   urlSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);
   urlSchemeTask.Finish();
 end;
