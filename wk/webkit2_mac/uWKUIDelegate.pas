@@ -29,7 +29,7 @@ type
   protected
     function Data(): WKUIDelegateProtocol;
   public
-    constructor Create; overload;
+    constructor Create(event: IWKUIDelegateEvent);
     destructor Destroy; override;
   public
   end;
@@ -61,10 +61,10 @@ begin
   completionHandler();
 end;
 
-constructor TWKUIDelegate.Create;
+constructor TWKUIDelegate.Create(event: IWKUIDelegateEvent);
 begin
   FData := NSWKUIDelegate.alloc.init;
-  FData.FData := self;
+  FData.FData := event;
 end;
 
 destructor TWKUIDelegate.Destroy;

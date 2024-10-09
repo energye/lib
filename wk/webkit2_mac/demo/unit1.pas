@@ -110,7 +110,7 @@ begin
 
 
   FNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
-  FUIDelegate := TWKUIDelegate.Create;
+  FUIDelegate := TWKUIDelegate.Create(FWebView);
 
   FWebView.InitWithFrameConfiguration(TempFrame, FConfig);
 

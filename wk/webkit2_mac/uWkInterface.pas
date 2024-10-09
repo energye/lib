@@ -19,8 +19,8 @@ type
   IWKURLSchemeTask = interface;
 
 
+// class events interface
 type
-
   IReceiveScriptMessageEvent = interface
     ['{CA5E93CB-6A34-B968-565E-729497774925}']
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
@@ -41,6 +41,17 @@ type
     procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
     procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
   end;
+
+  IWKUIDelegateEvent = interface
+    ['{CA5E93CB-EC78-B968-334A-729495930A21}']
+    //function doCreateWebViewWithConfigurationForNavigationActionWindowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
+    //procedure doRunJavaScriptAlertPanelWithMessageInitiatedByFrameCompletionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
+    //procedure doRunJavaScriptConfirmPanelWithMessageInitiatedByFrameCompletionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
+    //procedure doRunJavaScriptTextInputPanelWithPromptDefaultTextInitiatedByFrameCompletionHandler (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
+  end;
+
+// class interface
+type
 
   IWKPreferences = interface
     ['{CA5E93CB-EC40-B968-456A-729497C8927D}']

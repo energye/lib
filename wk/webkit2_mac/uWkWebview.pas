@@ -15,7 +15,7 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent)
+  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent)
   private
     FData: WKWebView;
   protected
