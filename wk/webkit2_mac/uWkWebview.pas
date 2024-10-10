@@ -34,6 +34,9 @@ type
     FOnFailNavigationWithError: TWkFailNavigationWithError;
     FOnStartURLSchemeTask: TWKStartURLSchemeTask;
     FOnStopURLSchemeTask: TWKStopURLSchemeTask;
+    FOnRunJavaScriptAlert: TWKRunJavaScriptAlert;
+    FOnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion;
+    FOnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -78,6 +81,9 @@ type
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
     procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
     procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    procedure doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
+    function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
+    function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
@@ -88,6 +94,9 @@ type
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
     property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
+    property OnRunJavaScriptAlert: TWKRunJavaScriptAlert read FOnRunJavaScriptAlert write FOnRunJavaScriptAlert;
+    property OnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion read FOnRunJavaScriptConfirmCompletion write FOnRunJavaScriptConfirmCompletion;
+    property OnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion read FOnRunJavaScriptTextInputCompletion write FOnRunJavaScriptTextInputCompletion;
   end;
 
 
@@ -191,6 +200,20 @@ begin
   begin
     FOnStopURLSchemeTask(self, TWKURLSchemeTask.Create(urlSchemeTask));
   end;
+end;
+
+procedure TWkWebview.doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
+begin
+end;
+
+function TWkWebview.doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
+begin
+  Result := False;
+end;
+
+function TWkWebview.doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
+begin
+  Result := 'test';
 end;
 
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);

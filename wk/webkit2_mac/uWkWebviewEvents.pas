@@ -24,6 +24,11 @@ type
     TWKStartURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
     TWKStopURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
 
+    // WKUIDelegateProtocol
+    TWKRunJavaScriptAlert = procedure(webView: IWKWebView; message_: string; frame: WKFrameInfo) of object;
+    TWKRunJavaScriptConfirmCompletion = function(webView: IWKWebView; message_: string; frame: WKFrameInfo): Boolean of object;
+    TWKRunJavaScriptTextInputCompletion = function(webView: IWKWebView; prompt: string; defaultText: string; frame: WKFrameInfo): string of object;
+
 implementation
 
 end.

@@ -6,8 +6,19 @@
   </title>
 </head>
 <script type="text/javascript">
+  function msg(msg) {
+    document.getElementById("msg").innerText = msg;
+  }
   function JSAlert() {
     alert("JS-Alert");
+  }
+  function JSConfirm() {
+    var r = confirm('JS-confirm');
+    msg(r);
+  }
+  function JSPrompt() {
+    var r = prompt('JS-prompt', 'default-text');
+    msg(r);
   }
 
   function runScript() {
@@ -23,8 +34,12 @@
 <body>
 <a href="https://gitee.com/energye/energy">https://gitee.com/energye/energy</a>
 <button onclick="JSAlert();">JSAlert</button><br /><br />
+<button onclick="JSConfirm();">JSConfirm</button><br /><br />
 <button onclick="runScript();">runScript</button><br /><br />
+<button onclick="JSPrompt();">JSPrompt</button><br /><br />
 <button onclick="scriptMessage();">scriptMessage</button><br /><br />
 <input value="test">
+<br>
+<div id="msg" style="border: 1px; width: 100%;"></div>
 </body>
 </html>

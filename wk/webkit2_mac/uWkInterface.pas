@@ -45,9 +45,9 @@ type
   IWKUIDelegateEvent = interface
     ['{CA5E93CB-EC78-B968-334A-729495930A21}']
     //function doCreateWebViewWithConfigurationForNavigationActionWindowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
-    //procedure doRunJavaScriptAlertPanelWithMessageInitiatedByFrameCompletionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
-    //procedure doRunJavaScriptConfirmPanelWithMessageInitiatedByFrameCompletionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
-    //procedure doRunJavaScriptTextInputPanelWithPromptDefaultTextInitiatedByFrameCompletionHandler (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
+    procedure doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
+    function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
+    function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
   end;
 
 // class interface
