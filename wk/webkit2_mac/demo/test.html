@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>
+    测试
+  </title>
+</head>
+<script type="text/javascript">
+  function JSAlert() {
+    alert("JS-Alert");
+  }
+
+  function runScript() {
+    //window.external.JSExternal("runScript", "alert('hello!')")
+  }
+
+  function scriptMessage() {
+    window.webkit.messageHandlers.processMessage.postMessage("testmessage");
+  }
+
+</script>
+
+<body>
+<a href="https://gitee.com/energye/energy">https://gitee.com/energye/energy</a>
+<button onclick="JSAlert();">JSAlert</button><br /><br />
+<button onclick="runScript();">runScript</button><br /><br />
+<button onclick="scriptMessage();">scriptMessage</button><br /><br />
+<input value="test">
+</body>
+</html>

@@ -1,8 +1,8 @@
 {$mode delphi}
 {$modeswitch objectivec2}
 {$modeswitch cvar}
-{$packrecords c}
 {$modeswitch cblocks} // 引入定义 XxxxCallback = reference to procedure; cdecl; cblock;
+{$packrecords c}
 
 {$macro on}
 

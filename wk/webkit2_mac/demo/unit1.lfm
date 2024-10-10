@@ -61,7 +61,8 @@ object Form1: TForm1
     ItemIndex = 0
     Items.Strings = (
       'energy://test.com'
-      'file:///Users/yanghy/app/github.com/energye/golcl/samples/miniwebview/test.html'
+      'file:///Users/yanghy/app/github.com/workspace/lib/wk/webkit2/index.html'
+      'file:///Users/yanghy/app/github.com/workspace/lib/wk/webkit2_mac/demo/test.html'
       'https://energye.github.io'
       'https://www.baidu.com'
     )

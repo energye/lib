@@ -7,8 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController,
-  uWKURLSchemeHandler;
+  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
 
 type
 

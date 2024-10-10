@@ -46,8 +46,17 @@ end;
 
 procedure NSWKUIDelegate.webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString;
   frame: WKFrameInfo; completionHandler: WKUIDelegateWebViewCallback);
+
+var
+  handler: Boolean;
+  procedure Calculate;
+  begin
+    completionHandler();
+    handler := True;
+  end;
+
 begin
-  completionHandler();
+  Calculate();
 end;
 
 procedure NSWKUIDelegate.webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString;
