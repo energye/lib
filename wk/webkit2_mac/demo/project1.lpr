@@ -27,6 +27,12 @@ end.
 
 
 {
- 开发者工具
- 自定义scheme不显示页面 - 解决：未添加 MIME 类型
+ 关于 class Destroy 函数，Objective-C release 正常
+
+ 开发者工具 - X
+ 自定义scheme不显示页面 - OK：原因，未添加 MIME 类型
+ WKNavigationAction - X
+ WKWindowFeatures - X
+ WKFrameInfo - X
+ WKNavigation - X
 }

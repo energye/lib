@@ -57,7 +57,7 @@ destructor TWKPreferences.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
+    FData.release;
     FData := nil;
   end;
   inherited Destroy;
