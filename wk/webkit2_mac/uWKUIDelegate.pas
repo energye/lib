@@ -21,6 +21,7 @@ type
     procedure webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptAlertCallback);
     procedure webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptConfirmCallback);
     procedure webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptTextInputCallback);
+    procedure webViewDidClose(webView: WKWebView);
   end;
 
   TWKUIDelegate = class(TInterfacedObject, IWKUIDelegate)
@@ -41,11 +42,11 @@ implementation
 function NSWKUIDelegate.webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView;
   configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
 begin
+  Result := nil;
   if FData <> nil then
   begin
-
+    Result := IWKUIDelegateEvent(FData).doCreateWebView(webView, configuration, navigationAction, windowFeatures);
   end;
-  Result := webView;
 end;
 
 procedure NSWKUIDelegate.webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString;
@@ -81,6 +82,14 @@ begin
     TempResult := IWKUIDelegateEvent(FData).doRunJavaScriptTextInputCompletion(webView, prompt, defaultText, frame);
   end;
   completionHandler(NSStringUtf8(TempResult));
+end;
+
+procedure NSWKUIDelegate.webViewDidClose(webView: WKWebView);
+begin
+  if FData <> nil then
+  begin
+    IWKUIDelegateEvent(FData).doWebViewDidClose(webView);
+  end;
 end;
 
 constructor TWKUIDelegate.Create(event: IWKUIDelegateEvent);

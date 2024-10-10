@@ -20,6 +20,7 @@ type
     FData: WKWebView;
   protected
     function Data(): WKWebView;
+    procedure FieldEmpty();
   private
     FConfiguration: IWKWebViewConfiguration;
     FNavigationDelegate: IWKNavigationDelegate;
@@ -34,9 +35,11 @@ type
     FOnFailNavigationWithError: TWkFailNavigationWithError;
     FOnStartURLSchemeTask: TWKStartURLSchemeTask;
     FOnStopURLSchemeTask: TWKStopURLSchemeTask;
+    FOnCreateWebView: TWKCreateWebView;
     FOnRunJavaScriptAlert: TWKRunJavaScriptAlert;
     FOnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion;
     FOnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion;
+    FOnWebViewDidClose: TWKWebViewDidClose;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -81,9 +84,11 @@ type
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
     procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
     procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    function doCreateWebView (webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
     procedure doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
     function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
     function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
+    procedure doWebViewDidClose(webView: WKWebView);
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
@@ -94,9 +99,11 @@ type
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
     property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
+    property OnCreateWebView: TWKCreateWebView read FOnCreateWebView write FOnCreateWebView;
     property OnRunJavaScriptAlert: TWKRunJavaScriptAlert read FOnRunJavaScriptAlert write FOnRunJavaScriptAlert;
     property OnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion read FOnRunJavaScriptConfirmCompletion write FOnRunJavaScriptConfirmCompletion;
     property OnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion read FOnRunJavaScriptTextInputCompletion write FOnRunJavaScriptTextInputCompletion;
+    property OnWebViewDidClose: TWKWebViewDidClose read FOnWebViewDidClose write FOnWebViewDidClose;
   end;
 
 
@@ -104,20 +111,36 @@ implementation
 
 constructor TWkWebview.Create(AOwner: TComponent);
 begin
+  FieldEmpty();
   inherited Create(AOwner);
-  FData := nil;
-  FConfiguration := nil;
-  FNavigationDelegate := nil;
-  FUIDelegate := nil;
 end;
 
 destructor TWkWebview.Destroy;
+begin
+  FieldEmpty();
+  inherited Destroy;
+end;
+
+procedure TWkWebview.FieldEmpty();
 begin
   FData := nil;
   FConfiguration := nil;
   FNavigationDelegate := nil;
   FUIDelegate := nil;
-  inherited Destroy;
+  FOnProcessMessage := nil;
+  FOnStartProvisionalNavigation := nil;
+  FOnReceiveServerRedirectForProvisionalNavigation := nil;
+  FOnFailProvisionalNavigationWithError := nil;
+  FOnCommitNavigation := nil;
+  FOnFinishNavigation := nil;
+  FOnFailNavigationWithError := nil;
+  FOnStartURLSchemeTask := nil;
+  FOnStopURLSchemeTask := nil;
+  FOnCreateWebView := nil;
+  FOnRunJavaScriptAlert := nil;
+  FOnRunJavaScriptConfirmCompletion := nil;
+  FOnRunJavaScriptTextInputCompletion := nil;
+  FOnWebViewDidClose := nil;
 end;
 
 function TWkWebview.Data(): WKWebView;
@@ -202,18 +225,53 @@ begin
   end;
 end;
 
+function TWkWebview.doCreateWebView (webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
+var
+  TempConfig: TWKWebViewConfiguration;
+  TempResultWebview: IWKWebView;
+begin
+  Result := nil;
+  if Assigned(FOnCreateWebView) then
+  begin
+    TempConfig := TWKWebViewConfiguration.Create(configuration_);
+    TempResultWebview := FOnCreateWebView(self, TempConfig, navigationAction, windowFeatures);
+    if TempResultWebview <> nil then
+      Result := TempResultWebview.Data();
+  end;
+end;
+
 procedure TWkWebview.doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
 begin
+  if Assigned(FOnRunJavaScriptAlert) then
+  begin
+    FOnRunJavaScriptAlert(self, NSStringToString(message_), frame);
+  end;
 end;
 
 function TWkWebview.doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
 begin
   Result := False;
+  if Assigned(FOnRunJavaScriptConfirmCompletion) then
+  begin
+    FOnRunJavaScriptConfirmCompletion(self, NSStringToString(message_), frame);
+  end;
 end;
 
 function TWkWebview.doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
 begin
-  Result := 'test';
+  Result := '';
+  if Assigned(FOnRunJavaScriptTextInputCompletion) then
+  begin
+    Result := FOnRunJavaScriptTextInputCompletion(self, NSStringToString(prompt), NSStringToString(defaultText), frame);
+  end;
+end;
+
+procedure TWkWebview.doWebViewDidClose(webView: WKWebView);
+begin
+  if Assigned(FOnWebViewDidClose) then
+  begin
+    FOnWebViewDidClose(self);
+  end;
 end;
 
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);

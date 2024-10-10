@@ -44,10 +44,11 @@ type
 
   IWKUIDelegateEvent = interface
     ['{CA5E93CB-EC78-B968-334A-729495930A21}']
-    //function doCreateWebViewWithConfigurationForNavigationActionWindowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
+    function doCreateWebView(webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
     procedure doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
     function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
     function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
+    procedure doWebViewDidClose(webView: WKWebView);
   end;
 
 // class interface

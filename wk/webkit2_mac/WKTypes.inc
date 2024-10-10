@@ -189,6 +189,7 @@ type
     procedure webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptAlertCallback); message 'webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:';
     procedure webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptConfirmCallback); message 'webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:';
     procedure webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptTextInputCallback); message 'webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:';
+    procedure webViewDidClose(webView: WKWebView); message 'webViewDidClose:';
   end;
 
   // WebKit.framework WKUserContentController.h

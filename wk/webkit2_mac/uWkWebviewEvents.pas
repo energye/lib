@@ -25,9 +25,11 @@ type
     TWKStopURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
 
     // WKUIDelegateProtocol
+    TWKCreateWebView = function(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): IWKWebView of object;
     TWKRunJavaScriptAlert = procedure(webView: IWKWebView; message_: string; frame: WKFrameInfo) of object;
     TWKRunJavaScriptConfirmCompletion = function(webView: IWKWebView; message_: string; frame: WKFrameInfo): Boolean of object;
     TWKRunJavaScriptTextInputCompletion = function(webView: IWKWebView; prompt: string; defaultText: string; frame: WKFrameInfo): string of object;
+    TWKWebViewDidClose = procedure(webView: IWKWebView) of object;
 
 implementation
 
