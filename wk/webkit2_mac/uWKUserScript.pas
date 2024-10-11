@@ -26,7 +26,7 @@ type
     function Source: string;
     function InjectionTime: int64;
     function IsForMainFrameOnly: LongBool;
-    function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
+    class function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
   end;
 
 
@@ -85,16 +85,16 @@ begin
   end;
 end;
 
-function TWKUserScript.InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
+class function TWKUserScript.InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
 var
   TempUserScript: WKUserScript;
 begin
   Result := nil;
-  if Assigned(FData) then
+  TempUserScript := WKUserScript.alloc;
+  if Assigned(TempUserScript) then
   begin
-    TempUserScript := FData.initWithSource_injectionTime_forMainFrameOnly(NSStringUtf8(ASource), WKUserScriptInjectionTime(AInjectionTime), ObjCBOOL(AForMainFrameOnly));
-    if Assigned(TempUserScript) then
-      Result := TWKUserScript.Create(TempUserScript);
+    TempUserScript := TempUserScript.initWithSource_injectionTime_forMainFrameOnly(NSStringUtf8(ASource), WKUserScriptInjectionTime(AInjectionTime), ObjCBOOL(AForMainFrameOnly));
+    Result := Create(TempUserScript);
   end;
 end;
 

@@ -103,7 +103,6 @@ type
     function Source: string;
     function InjectionTime: int64;
     function IsForMainFrameOnly: LongBool;
-    function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
   end;
 
   IWKScriptMessageHandler = interface
