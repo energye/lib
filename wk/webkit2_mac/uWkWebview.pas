@@ -11,7 +11,7 @@ uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
-  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures;
+  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation;
 
 type
 
@@ -47,7 +47,7 @@ type
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
-    function LoadRequest (request: INSURLRequest): WKNavigation;
+    function LoadRequest (request: INSURLRequest): IWKNavigation;
     procedure SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
     procedure SetUIDelegate(uiDelegate: IWKUIDelegate);
     procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
@@ -61,10 +61,10 @@ type
     function HasOnlySecureContent: LongBool;
     function CanGoBack: LongBool;
     function CanGoForward: LongBool;
-    function GoBack: WKNavigation;
-    function GoForward: WKNavigation;
-    function Reload: WKNavigation;
-    function ReloadFromOrigin: WKNavigation;
+    function GoBack: IWKNavigation;
+    function GoForward: IWKNavigation;
+    function Reload: IWKNavigation;
+    function ReloadFromOrigin: IWKNavigation;
     procedure StopLoading;
     procedure EvaluateJavaScript(javaScriptString: string);
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
@@ -167,7 +167,7 @@ procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigatio
 begin
   if Assigned(FOnStartProvisionalNavigation) then
   begin
-    FOnStartProvisionalNavigation(self, navigation);
+    FOnStartProvisionalNavigation(self, TWKNavigation.Create(navigation));
   end;
 end;
 
@@ -175,7 +175,7 @@ procedure TWkWebview.doReceiveServerRedirectForProvisionalNavigation (webView: W
 begin
   if Assigned(FOnReceiveServerRedirectForProvisionalNavigation) then
   begin
-    FOnReceiveServerRedirectForProvisionalNavigation(self, navigation);
+    FOnReceiveServerRedirectForProvisionalNavigation(self, TWKNavigation.Create(navigation));
   end;
 end;
 
@@ -183,7 +183,7 @@ procedure TWkWebview.doFailProvisionalNavigationWithError (webView: WKWebView; n
 begin
   if Assigned(FOnFailProvisionalNavigationWithError) then
   begin
-    FOnFailProvisionalNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
+    FOnFailProvisionalNavigationWithError(self, TWKNavigation.Create(navigation), NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -191,7 +191,7 @@ procedure TWkWebview.doCommitNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnCommitNavigation) then
   begin
-    FOnCommitNavigation(self, navigation);
+    FOnCommitNavigation(self, TWKNavigation.Create(navigation));
   end;
 end;
 
@@ -199,7 +199,7 @@ procedure TWkWebview.doFinishNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnFinishNavigation) then
   begin
-    FOnFinishNavigation(self, navigation);
+    FOnFinishNavigation(self, TWKNavigation.Create(navigation));
   end;
 end;
 
@@ -207,7 +207,7 @@ procedure TWkWebview.doFailNavigationWithError (webView: WKWebView; navigation: 
 begin
   if Assigned(FOnFailNavigationWithError) then
   begin
-    FOnFailNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
+    FOnFailNavigationWithError(self, TWKNavigation.Create(navigation), NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -344,12 +344,12 @@ begin
   end;
 end;
 
-function TWkWebview.LoadRequest(request: INSURLRequest): WKNavigation;
+function TWkWebview.LoadRequest(request: INSURLRequest): IWKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := FData.loadRequest(request.Data());
+    Result := TWKNavigation.Create(FData.loadRequest(request.Data()));
   end;
 end;
 
@@ -451,39 +451,39 @@ begin
   end;
 end;
 
-function TWkWebview.GoBack: WKNavigation;
+function TWkWebview.GoBack: IWKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := FData.goBack;
+    Result := TWKNavigation.Create(FData.goBack);
   end;
 end;
 
-function TWkWebview.GoForward: WKNavigation;
+function TWkWebview.GoForward: IWKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := FData.goForward;
+    Result := TWKNavigation.Create(FData.goForward);
   end;
 end;
 
-function TWkWebview.Reload: WKNavigation;
+function TWkWebview.Reload: IWKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := FData.reload;
+    Result := TWKNavigation.Create(FData.reload);
   end;
 end;
 
-function TWkWebview.ReloadFromOrigin: WKNavigation;
+function TWkWebview.ReloadFromOrigin: IWKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := FData.reloadFromOrigin;
+    Result := TWKNavigation.Create(FData.reloadFromOrigin);
   end;
 end;
 

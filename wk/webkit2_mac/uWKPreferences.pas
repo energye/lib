@@ -34,9 +34,9 @@ type
     function PlugInsEnabled: LongBool;
     procedure SetTabFocusesLinks(newValue: LongBool);
     procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
-    procedure SetTextInteractionEnabled(newValue: LongBool);// 11.3
-    procedure SetElementFullscreenEnabled(newValue: LongBool);// 12.3
-    procedure SetValueForKey(value: LongBool; key: string); inline;
+    procedure SetTextInteractionEnabled(newValue: LongBool); // 11.3
+    procedure SetElementFullscreenEnabled(newValue: LongBool); // 12.3
+    procedure SetValueForKey(value: LongBool; key: string);
   end;
 
 
@@ -183,7 +183,7 @@ begin
   end;
 end;
 
-procedure TWKPreferences.SetValueForKey(value: LongBool; key: string); inline;
+procedure TWKPreferences.SetValueForKey(value: LongBool; key: string);
 begin
   if Assigned(FData) then
   begin

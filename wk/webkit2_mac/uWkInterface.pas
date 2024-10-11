@@ -17,6 +17,7 @@ type
   IWKURLSchemeHandler = interface;
   IWKUserContentController = interface;
   IWKURLSchemeTask = interface;
+  IWKNavigation = interface;
 
 
 // class events interface
@@ -122,7 +123,7 @@ type
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
     function Configuration: IWKWebViewConfiguration;
-    function LoadRequest (request: INSURLRequest): WKNavigation;
+    function LoadRequest (request: INSURLRequest): IWKNavigation;
     procedure SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
     procedure SetUIDelegate(uiDelegate: IWKUIDelegate);
     procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
@@ -133,10 +134,10 @@ type
     function HasOnlySecureContent: LongBool;
     function CanGoBack: LongBool;
     function CanGoForward: LongBool;
-    function GoBack: WKNavigation;
-    function GoForward: WKNavigation;
-    function Reload: WKNavigation;
-    function ReloadFromOrigin: WKNavigation;
+    function GoBack: IWKNavigation;
+    function GoForward: IWKNavigation;
+    function Reload: IWKNavigation;
+    function ReloadFromOrigin: IWKNavigation;
     procedure StopLoading;
     procedure EvaluateJavaScript(javaScriptString: string);
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);

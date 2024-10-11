@@ -40,10 +40,11 @@ type
   public
     constructor Create; overload;
     procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
-    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
-    procedure OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
+    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: IWKNavigation);
+    procedure OnFinishNavigation(webView: IWKWebView; navigation: IWKNavigation);
     procedure OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
     procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+    function OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction; windowFeatures: IWKWindowFeatures): IWKWebView;
   end;
 
 procedure CreateGlobal();
@@ -73,6 +74,7 @@ begin
   FWebView.OnFinishNavigation := @OnFinishNavigation;
   FWebView.OnStartURLSchemeTask := @OnStartURLSchemeTask;
   FWebView.OnStopURLSchemeTask := @OnStopURLSchemeTask;
+  FWebView.OnCreateWebView := @OnCreateWebView;
 
   FWebViewParent := TWkWebviewParent.Create(self);
   FWebViewParent.Parent := self;
@@ -134,12 +136,12 @@ begin
   FWebView.EvaluateJavaScript('alert(1)');
 end;
 
-procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: WKNavigation);
+procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: IWKNavigation);
 begin
   Process.Caption := 'start';
 end;
 
-procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: WKNavigation);
+procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: IWKNavigation);
 begin
   Process.Caption := 'finish';
 end;
@@ -182,6 +184,11 @@ end;
 procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
 begin
   WriteLn();
+end;
+
+function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction; windowFeatures: IWKWindowFeatures): IWKWebView;
+begin
+  Result := nil;
 end;
 
 procedure TForm1.GoURLClick(Sender: TObject);
