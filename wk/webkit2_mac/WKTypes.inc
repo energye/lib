@@ -37,6 +37,10 @@ type
   WKNavigationTypePtr = ^WKNavigationType;
 
 type
+  NSEventModifierFlags = NSUInteger;
+  NSEventModifierFlagsPtr = ^NSEventModifierFlags;
+
+type
   WKNavigationActionPolicy = NSInteger;
   WKNavigationActionPolicyPtr = ^WKNavigationActionPolicy;
 

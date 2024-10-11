@@ -223,6 +223,37 @@ type
     procedure FailWithError (error: string {NSError});
   end;
 
+  IWKFrameInfo = interface
+    ['{CA5E93CB-6A34-B778-362E-7294D7715725}']
+    function Data(): WKFrameInfo;
+    function IsMainFrame: Boolean;
+    function Request: INSURLRequest;
+  end;
+
+  IWKNavigationAction = interface
+    ['{CA5E93CB-6A34-B778-362E-7294D7744489}']
+    function Data(): WKNavigationAction;
+    function SourceFrame: IWKFrameInfo;
+    function TargetFrame: IWKFrameInfo;
+    function NavigationType: WKNavigationType;
+    function Request: INSURLRequest;
+    function ModifierFlags: NSEventModifierFlags;
+    function ButtonNumber: Integer;
+  end;
+
+  IWKWindowFeatures = interface
+    ['{CA5E93CB-6A34-B778-362E-7294D77A2B31}']
+    function Data(): WKWindowFeatures;
+    function MenuBarVisibility: Boolean;
+    function StatusBarVisibility: Boolean;
+    function ToolbarsVisibility: Boolean;
+    function AllowsResizing: Boolean;
+    function X: Integer;
+    function Y: Integer;
+    function Width: Integer;
+    function Height: Integer;
+  end;
+
 implementation
 
 end.

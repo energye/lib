@@ -10,7 +10,7 @@ uses
   CocoaAll, CocoaUtils, uWebKit, uWkInterface,
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
   uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURLResponse,
-  uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask;
+  uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures;
 
 type
 
