@@ -186,9 +186,27 @@ begin
   WriteLn();
 end;
 
-function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction; windowFeatures: IWKWindowFeatures): IWKWebView;
+function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction;
+  windowFeatures: IWKWindowFeatures): IWKWebView;
+var
+  TempSourceFrame: IWKFrameInfo;
+  TempTargetFrame: IWKFrameInfo;
+  TempSourceRequest: INSURLRequest;
+  TempTargetRequest: INSURLRequest;
+  TempSourceURL: string;
+  TempTargetURL: string;
 begin
   Result := nil;
+  TempSourceFrame := navigationAction.SourceFrame;
+  TempTargetFrame := navigationAction.TargetFrame;
+  TempSourceRequest := TempSourceFrame.Request;
+  TempTargetRequest := TempTargetFrame.Request;
+  if TempSourceRequest <> nil then
+    TempSourceURL := TempSourceRequest.URL.AbsoluteString;
+  if TempTargetRequest <> nil then
+    TempTargetURL := TempTargetRequest.URL.AbsoluteString;
+  WriteLn(TempSourceURL);
+  WriteLn(TempTargetURL);
 end;
 
 procedure TForm1.GoURLClick(Sender: TObject);

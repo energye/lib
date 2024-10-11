@@ -7,8 +7,12 @@ unit uDefinedClassesWebKit;
 interface
 
 type
-  WKURLSchemeHandlerProtocol = objcprotocol external name 'WKURLSchemeHandler';
   WKURLSchemeTask = objcclass external;
+  WKDownload = objcclass external;
+  WKWebpagePreferences = objcclass external;
+  WKURLSchemeHandlerProtocol = objcprotocol external name 'WKURLSchemeHandler';
+  NSProgressReportingProtocol = objcprotocol external name 'NSProgressReporting';
+  WKDownloadDelegateProtocol = objcprotocol external name 'WKDownloadDelegate';
 
 implementation
 end.

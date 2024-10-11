@@ -16,12 +16,20 @@ type
   private
     FData: Pointer;
   public
+    procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: WKNavigationDelegateWebViewCallback);
+    procedure webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; preferences: WKWebpagePreferences; decisionHandler: WKNavigationDelegateWebViewCallback);
+    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: WKNavigationDelegateWebViewCallback);
     procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
     procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: WKNavigationDelegateWebViewCallback);
+    procedure webViewWebContentProcessDidTerminate (webView: WKWebView);
+    procedure webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge; decisionHandler: WKNavigationDelegateWebViewCallback);
+    procedure webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
+    procedure webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
 
   TWKNavigationDelegate = class(TInterfacedObject, IWKNavigationDelegate)
@@ -36,6 +44,21 @@ type
 
 
 implementation
+
+procedure NSWKNavigationDelegate.webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: WKNavigationDelegateWebViewCallback);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; preferences: WKWebpagePreferences; decisionHandler: WKNavigationDelegateWebViewCallback);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: WKNavigationDelegateWebViewCallback);
+begin
+
+end;
 
 procedure NSWKNavigationDelegate.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
@@ -77,6 +100,31 @@ begin
   if FData = nil then
     exit;
   IWKNavigationDelegateEvent(FData).doFailNavigationWithError(webView, navigation, error);
+end;
+
+procedure NSWKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: WKNavigationDelegateWebViewCallback);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webViewWebContentProcessDidTerminate (webView: WKWebView);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge; decisionHandler: WKNavigationDelegateWebViewCallback);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
+begin
+
+end;
+
+procedure NSWKNavigationDelegate.webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
+begin
+
 end;
 
 constructor TWKNavigationDelegate.Create(event: IWKNavigationDelegateEvent);

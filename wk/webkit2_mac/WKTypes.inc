@@ -15,10 +15,12 @@ const
 const
   WKNavigationActionPolicyCancel = 0;
   WKNavigationActionPolicyAllow = 1;
+  WKNavigationActionPolicyDownload = 2 { available in macos 11.3, ios 14.5 };
 
 const
   WKNavigationResponsePolicyCancel = 0;
   WKNavigationResponsePolicyAllow = 1;
+  WKNavigationResponsePolicyDownload = 2 { available in macos 11.3, ios 14.5 };
 
 const
   WKUserScriptInjectionTimeAtDocumentStart = 0;
@@ -32,6 +34,10 @@ const
   WKContentModeRecommended = 0;
   WKContentModeMobile = 1;
   WKContentModeDesktop = 2;
+
+const
+  WKDownloadRedirectPolicyCancel = 0;
+  WKDownloadRedirectPolicyAllow = 1;
 
 type
   WKErrorCode = NSInteger;
@@ -61,14 +67,18 @@ type
   WKSelectionGranularity = NSInteger;
   WKSelectionGranularityPtr = ^WKSelectionGranularity;
 
-
 type
   WKContentMode = NSInteger;
   WKContentModePtr = ^WKContentMode;
 
 type
+  WKDownloadRedirectPolicy = NSInteger;
+  WKDownloadRedirectPolicyPtr = ^WKDownloadRedirectPolicy;
+
+type
   WKBackForwardListItemPtr = ^WKBackForwardListItem;
   WKBackForwardListPtr = ^WKBackForwardList;
+  WKDownloadPtr = ^WKDownload;
   WKFrameInfoPtr = ^WKFrameInfo;
   WKNavigationPtr = ^WKNavigation;
   WKNavigationActionPtr = ^WKNavigationAction;
@@ -81,8 +91,10 @@ type
   WKUIDelegateProtocolPtr = ^WKUIDelegateProtocol;
   WKUserContentControllerPtr = ^WKUserContentController;
   WKWebViewPtr = ^WKWebView;
+  WKWebpagePreferencesPtr = ^WKWebpagePreferences;
   WKWebViewConfigurationPtr = ^WKWebViewConfiguration;
   WKWindowFeaturesPtr = ^WKWindowFeatures;
+  WKDownloadDelegateProtocolPtr = ^WKDownloadDelegateProtocol;
 
 type
   WKUIDelegateJavaScriptAlertCallback = reference to procedure; cdecl; cblock;
@@ -90,6 +102,20 @@ type
   WKUIDelegateJavaScriptTextInputCallback = reference to procedure(Result_: NSString); cdecl; cblock;
 
 type
+  WKDownloadCancelCallback = reference to procedure (resumeData: NSData); cdecl; cblock;
+
+type
+  WKDownloadDelegateDownloadCallback = reference to procedure (destination: NSURL); cblock; cdecl;
+
+type
+  WKNavigationDelegateWebViewCallback = reference to procedure (param1: WKNavigationActionPolicy); cdecl; cblock;
+
+type
+
+  NSProgressReportingProtocol = objcprotocol external name 'NSProgressReporting' (NSObjectProtocol)
+    function progress: NSProgress; message 'progress';
+  end;
+
   // WebKit.framework WKBackForwardList.h
   WKBackForwardList = objcclass external (NSObject)
   public
@@ -107,6 +133,27 @@ type
     function URL: NSURL; message 'URL';
     function title: NSString; message 'title';
     function initialURL: NSURL; message 'initialURL';
+  end;
+
+  WKDownloadDelegateProtocol = objcprotocol external name 'WKDownloadDelegate' (NSObjectProtocol)
+  required
+    procedure download_decideDestinationUsingResponse_suggestedFilename_completionHandler (download: WKDownload; response: NSURLResponse; suggestedFilename: NSString; completionHandler: WKDownloadDelegateDownloadCallback); message 'download:decideDestinationUsingResponse:suggestedFilename:completionHandler:';
+  optional
+    procedure download_willPerformHTTPRedirection_newRequest_decisionHandler (download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest; decisionHandler: WKDownloadDelegateDownloadCallback); message 'download:willPerformHTTPRedirection:newRequest:decisionHandler:';
+    procedure download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge; completionHandler: WKDownloadDelegateDownloadCallback); message 'download:didReceiveAuthenticationChallenge:completionHandler:';
+    procedure downloadDidFinish (download: WKDownload); message 'downloadDidFinish:';
+    procedure download_didFailWithError_resumeData (download: WKDownload; error: NSError; resumeData: NSData); message 'download:didFailWithError:resumeData:';
+  end;
+
+  WKDownload = objcclass external (NSObject, NSProgressReportingProtocol)
+  public
+    function originalRequest: NSURLRequest; message 'originalRequest';
+    function webView: WKWebView; message 'webView';
+    procedure setDelegate(newValue: WKDownloadDelegateProtocol); message 'setDelegate:';
+    function delegate: WKDownloadDelegateProtocol; message 'delegate';
+    procedure cancel (completionHandler: WKDownloadCancelCallback); message 'cancel:';
+    { Adopted protocols }
+    function progress: NSProgress; message 'progress';
   end;
 
   // WebKit.framework WKFrameInfo.h
@@ -136,18 +183,31 @@ type
     function buttonNumber: NSInteger; message 'buttonNumber';
   end;
 
+  WKWebpagePreferences = objcclass external (NSObject)
+  public
+    procedure setPreferredContentMode(newValue: WKContentMode); message 'setPreferredContentMode:'; { available in ios 13.0 }
+    function preferredContentMode: WKContentMode; message 'preferredContentMode'; { available in ios 13.0 }
+    procedure setAllowsContentJavaScript(newValue: objcbool); message 'setAllowsContentJavaScript:'; { available in macos 11.0, ios 14.0 }
+    function allowsContentJavaScript: objcbool; message 'allowsContentJavaScript'; { available in macos 11.0, ios 14.0 }
+  end;
+
   // WebKit.framework WKNavigationDelegate.h
   WKNavigationDelegateProtocol = objcprotocol external name 'WKNavigationDelegate' (NSObjectProtocol)
   optional
-    procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
-    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: OpaqueCBlock); message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
+    procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: WKNavigationDelegateWebViewCallback); message 'webView:decidePolicyForNavigationAction:decisionHandler:';
+    procedure webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; preferences: WKWebpagePreferences; decisionHandler: WKNavigationDelegateWebViewCallback); message 'webView:decidePolicyForNavigationAction:preferences:decisionHandler:'; { available in macos 10.15, ios 13.0 }
+    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: WKNavigationDelegateWebViewCallback); message 'webView:decidePolicyForNavigationResponse:decisionHandler:';
     procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didStartProvisionalNavigation:';
     procedure webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didReceiveServerRedirectForProvisionalNavigation:';
     procedure webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailProvisionalNavigation:withError:';
     procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didCommitNavigation:';
     procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation); message 'webView:didFinishNavigation:';
     procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError); message 'webView:didFailNavigation:withError:';
-    procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: OpaqueCBlock); message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
+    procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: WKNavigationDelegateWebViewCallback); message 'webView:didReceiveAuthenticationChallenge:completionHandler:';
+    procedure webViewWebContentProcessDidTerminate (webView: WKWebView); message 'webViewWebContentProcessDidTerminate:'; { available in macos 10.11, ios 9.0 }
+    procedure webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge; decisionHandler: WKNavigationDelegateWebViewCallback); message 'webView:authenticationChallenge:shouldAllowDeprecatedTLS:'; { available in macos 11.0, ios 14.0 }
+    procedure webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload); message 'webView:navigationAction:didBecomeDownload:'; { available in macos 11.3, ios 14.5 }
+    procedure webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload); message 'webView:navigationResponse:didBecomeDownload:'; { available in macos 11.3, ios 14.5 }
   end;
 
   // WebKit.framework WKNavigationResponse.h
