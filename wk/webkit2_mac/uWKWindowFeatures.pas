@@ -19,7 +19,6 @@ type
   protected
     function Data(): WKWindowFeatures;
   public
-    constructor Create; overload;
     constructor Create(AData: WKWindowFeatures);
     destructor Destroy; override;
   public
@@ -37,14 +36,10 @@ type
 implementation
 
 
-constructor TWKWindowFeatures.Create;
-begin
-  FData := WKWindowFeatures.alloc.init;
-end;
-
 constructor TWKWindowFeatures.Create(AData: WKWindowFeatures);
 begin
   FData := AData;
+  inherited Create;
 end;
 
 destructor TWKWindowFeatures.Destroy;

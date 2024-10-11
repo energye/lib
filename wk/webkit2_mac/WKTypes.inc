@@ -28,6 +28,11 @@ const
   WKSelectionGranularityDynamic = 0;
   WKSelectionGranularityCharacter = 1;
 
+const
+  WKContentModeRecommended = 0;
+  WKContentModeMobile = 1;
+  WKContentModeDesktop = 2;
+
 type
   WKErrorCode = NSInteger;
   WKErrorCodePtr = ^WKErrorCode;
@@ -55,6 +60,11 @@ type
 type
   WKSelectionGranularity = NSInteger;
   WKSelectionGranularityPtr = ^WKSelectionGranularity;
+
+
+type
+  WKContentMode = NSInteger;
+  WKContentModePtr = ^WKContentMode;
 
 type
   WKBackForwardListItemPtr = ^WKBackForwardListItem;
@@ -112,6 +122,7 @@ type
   // WKNavigation对象唯一标识网页的加载请求。当您要求web视图加载内容或导航到页面时，web视图会返回一个标识您的请求的WKNavigation对象。
   // 随着加载操作的进行，web视图会向其导航委托的各种方法报告该操作的进度，并向它们传递匹配的WKNavigation对象。
   WKNavigation = objcclass external (NSObject)
+    function effectiveContentMode: WKContentMode; message 'effectiveContentMode';
   end;
 
   // WebKit.framework WKNavigationAction.h

@@ -11,7 +11,7 @@ uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
-  uWKURLSchemeTask;
+  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures;
 
 type
 
@@ -229,40 +229,53 @@ function TWkWebview.doCreateWebView (webView: WKWebView; configuration_: WKWebVi
 var
   TempConfig: TWKWebViewConfiguration;
   TempResultWebview: IWKWebView;
+  TempNavigationAction: TWKNavigationAction;
+  TempWindowFeatures: TWKWindowFeatures;
 begin
   Result := nil;
   if Assigned(FOnCreateWebView) then
   begin
     TempConfig := TWKWebViewConfiguration.Create(configuration_);
-    TempResultWebview := FOnCreateWebView(self, TempConfig, navigationAction, windowFeatures);
+    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
+    TempWindowFeatures := TWKWindowFeatures.Create(windowFeatures);
+    TempResultWebview := FOnCreateWebView(self, TempConfig, TempNavigationAction, TempWindowFeatures);
     if TempResultWebview <> nil then
       Result := TempResultWebview.Data();
   end;
 end;
 
 procedure TWkWebview.doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
+var
+  TempFrameInfo: TWKFrameInfo;
 begin
   if Assigned(FOnRunJavaScriptAlert) then
   begin
-    FOnRunJavaScriptAlert(self, NSStringToString(message_), frame);
+    TempFrameInfo := TWKFrameInfo.Create(frame);
+    FOnRunJavaScriptAlert(self, NSStringToString(message_), TempFrameInfo);
   end;
 end;
 
 function TWkWebview.doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
+var
+  TempFrameInfo: TWKFrameInfo;
 begin
   Result := False;
   if Assigned(FOnRunJavaScriptConfirmCompletion) then
   begin
-    FOnRunJavaScriptConfirmCompletion(self, NSStringToString(message_), frame);
+    TempFrameInfo := TWKFrameInfo.Create(frame);
+    FOnRunJavaScriptConfirmCompletion(self, NSStringToString(message_), TempFrameInfo);
   end;
 end;
 
 function TWkWebview.doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
+var
+  TempFrameInfo: TWKFrameInfo;
 begin
   Result := '';
   if Assigned(FOnRunJavaScriptTextInputCompletion) then
   begin
-    Result := FOnRunJavaScriptTextInputCompletion(self, NSStringToString(prompt), NSStringToString(defaultText), frame);
+    TempFrameInfo := TWKFrameInfo.Create(frame);
+    Result := FOnRunJavaScriptTextInputCompletion(self, NSStringToString(prompt), NSStringToString(defaultText), TempFrameInfo);
   end;
 end;
 

@@ -19,7 +19,6 @@ type
   protected
     function Data(): WKFrameInfo;
   public
-    constructor Create; overload;
     constructor Create(AData: WKFrameInfo);
     destructor Destroy; override;
   public
@@ -30,15 +29,10 @@ type
 
 implementation
 
-
-constructor TWKFrameInfo.Create;
-begin
-  FData := WKFrameInfo.alloc.init;
-end;
-
 constructor TWKFrameInfo.Create(AData: WKFrameInfo);
 begin
   FData := AData;
+  inherited Create;
 end;
 
 destructor TWKFrameInfo.Destroy;

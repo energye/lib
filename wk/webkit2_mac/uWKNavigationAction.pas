@@ -19,7 +19,6 @@ type
   protected
     function Data(): WKNavigationAction;
   public
-    constructor Create; overload;
     constructor Create(AData: WKNavigationAction);
     destructor Destroy; override;
   public
@@ -35,14 +34,10 @@ type
 implementation
 
 
-constructor TWKNavigationAction.Create;
-begin
-  FData := WKNavigationAction.alloc.init;
-end;
-
 constructor TWKNavigationAction.Create(AData: WKNavigationAction);
 begin
   FData := AData;
+  inherited Create;
 end;
 
 destructor TWKNavigationAction.Destroy;

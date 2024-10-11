@@ -254,6 +254,12 @@ type
     function Height: Integer;
   end;
 
+  IWKNavigation = interface
+    ['{CA5E93CB-6A34-B778-362E-7294D7779468}']
+    function Data(): WKNavigation;
+    function EffectiveContentMode: WKContentMode;
+  end;
+
 implementation
 
 end.
