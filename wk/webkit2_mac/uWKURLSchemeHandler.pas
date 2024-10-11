@@ -59,7 +59,7 @@ destructor TWKURLSchemeHandler.Destroy;
 begin
   if FData <> nil then
   begin
-    FData.release;
+    //FData.release;
     FData.FData := nil;
     FData := nil;
   end;

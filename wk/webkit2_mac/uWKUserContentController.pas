@@ -72,7 +72,7 @@ begin
   end;
   if FData <> nil then
   begin
-    FData.release;
+    //FData.release;
     FData := nil;
   end;
   inherited Destroy;

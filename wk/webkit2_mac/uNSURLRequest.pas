@@ -73,7 +73,7 @@ destructor TNSURLRequest.Destroy;
 begin
   if Assigned(FData) then
   begin
-    // FData.release; // 不能释放
+    // FData.release;
     FData := nil;
   end;
   inherited Destroy;

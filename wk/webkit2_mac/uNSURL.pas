@@ -57,7 +57,6 @@ destructor TNSURL.Destroy;
 begin
   if FData <> nil then
   begin
-    FData.release;
     FData := nil;
   end;
   inherited Destroy;

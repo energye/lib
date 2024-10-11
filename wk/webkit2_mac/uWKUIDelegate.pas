@@ -102,7 +102,7 @@ destructor TWKUIDelegate.Destroy;
 begin
   if Assigned(FData) then
   begin
-    FData.release;
+    //FData.release;
     FData.FData := nil;
     FData := nil;
   end;
