@@ -36,7 +36,7 @@ type
     FNavigationDelegate: IWKNavigationDelegate;
     FUIDelegate: IWKUIDelegate;
     FPreference: IWKPreferences;
-    FURLSchemeHandler: TWKURLSchemeHandler;
+    FURLSchemeHandler: IWKURLSchemeHandler;
   public
     constructor Create; overload;
     procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);

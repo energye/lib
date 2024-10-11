@@ -148,6 +148,8 @@ begin
   Result := FData;
 end;
 
+// event do
+
 procedure TWkWebview.doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
 var
   tempName, tempBody: string;
@@ -287,6 +289,8 @@ begin
   end;
 end;
 
+// 功能方法
+
 procedure TWkWebview.LoadHTML(AHtml, ABaseURL: string);
 var
   AutoPool: NSAutoreleasePool;
@@ -330,14 +334,13 @@ end;
 function TWkWebview.Configuration: IWKWebViewConfiguration;
 begin
   Result := nil;
-  if FConfiguration <> nil then
-  begin
-    Result := FConfiguration;
-    exit;
-  end;
   if Assigned(FData) then
   begin
-    Result := TWKWebViewConfiguration.Create(FData.configuration);
+    if FConfiguration = nil then
+    begin
+      FConfiguration := TWKWebViewConfiguration.Create(FData.configuration);
+    end;
+    Result := FConfiguration;
   end;
 end;
 

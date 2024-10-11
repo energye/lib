@@ -16,6 +16,7 @@ type
     FData: WKWebViewConfiguration;
   protected
     function Data(): WKWebViewConfiguration;
+    procedure FieldEmpty();
   private
     FPreferences: IWKPreferences;
     FUserContentController: IWKUserContentController;
@@ -44,15 +45,14 @@ constructor TWKWebViewConfiguration.Create;
 begin
   inherited Create;
   FData := WKWebViewConfiguration.alloc.init;
-  FPreferences := nil;
-  FUserContentController := nil;
-  FURLSchemeHandler := nil;
+  FieldEmpty();
 end;
 
 constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
 begin
   inherited Create;
   FData := AData;
+  FieldEmpty();
 end;
 
 destructor TWKWebViewConfiguration.Destroy;
@@ -62,7 +62,15 @@ begin
     FData.release;
     FData := nil;
   end;
+  FieldEmpty();
   inherited Destroy;
+end;
+
+procedure TWKWebViewConfiguration.FieldEmpty();
+begin
+  FPreferences := nil;
+  FUserContentController := nil;
+  FURLSchemeHandler := nil;
 end;
 
 function TWKWebViewConfiguration.Data(): WKWebViewConfiguration;
@@ -82,14 +90,13 @@ end;
 function TWKWebViewConfiguration.Preferences: IWKPreferences;
 begin
   Result := nil;
-  if FPreferences <> nil then
-  begin
-    Result := FPreferences;
-    exit;
-  end;
   if Assigned(FData) then
   begin
-    Result := TWKPreferences.Create(FData.preferences);
+    if FPreferences = nil then
+    begin
+      FPreferences := TWKPreferences.Create(FData.preferences);
+    end;
+    Result := FPreferences;
   end;
 end;
 
@@ -105,14 +112,13 @@ end;
 function TWKWebViewConfiguration.UserContentController: IWKUserContentController;
 begin
   Result := nil;
-  if FUserContentController <> nil then
-  begin
-    Result := FUserContentController;
-    exit;
-  end;
   if Assigned(FData) then
   begin
-    Result := TWKUserContentController.Create(FData.userContentController);
+    if FUserContentController = nil then
+    begin
+      FUserContentController := TWKUserContentController.Create(FData.userContentController);
+    end;
+    Result := FUserContentController;
   end;
 end;
 
