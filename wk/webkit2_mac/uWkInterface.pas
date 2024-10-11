@@ -71,6 +71,7 @@ type
     procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
     procedure SetTextInteractionEnabled(newValue: LongBool);// 11.3
     procedure SetElementFullscreenEnabled(newValue: LongBool);// 12.3
+    procedure SetValueForKey(value: LongBool; key: string);
   end;
 
   IWKUserContentController = interface

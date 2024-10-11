@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CGBase,
+  CGBase, CocoaUtils,
   uWebKit, uWkInterface;
 
 type
@@ -36,6 +36,7 @@ type
     procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
     procedure SetTextInteractionEnabled(newValue: LongBool);// 11.3
     procedure SetElementFullscreenEnabled(newValue: LongBool);// 12.3
+    procedure SetValueForKey(value: LongBool; key: string); inline;
   end;
 
 
@@ -182,5 +183,12 @@ begin
   end;
 end;
 
+procedure TWKPreferences.SetValueForKey(value: LongBool; key: string); inline;
+begin
+  if Assigned(FData) then
+  begin
+    FData.setValue_forKey(ObjCBOOL(value), StrToNSString(key));
+  end;
+end;
 
 end.

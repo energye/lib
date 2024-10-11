@@ -102,9 +102,12 @@ begin
   FConfig.SetURLSchemeHandlerForURLScheme(FURLSchemeHandler, 'energy');
 
 
-  FPreference := FConfig.Preferences;
+  FPreference := TWKPreferences.Create();// FConfig.Preferences;
+  FConfig.SetPreferences(FPreference);
+
   FPreference.SetTabFocusesLinks(true);
   FPreference.SetFraudulentWebsiteWarningEnabled(true);
+  //FPreference.SetValueForKey(true, 'developerExtrasEnabled');
 
   //FPreference.SetTextInteractionEnabled(true);// 11.3
   //FPreference.SetElementFullscreenEnabled(true);// 12.3
