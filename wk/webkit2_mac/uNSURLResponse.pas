@@ -15,12 +15,12 @@ type
 
   TNSURLResponse = class(TInterfacedObject, INSURLResponse)
   private
-    FData: NSHTTPURLResponse;
+    FData: NSURLResponse;
   protected
-    function Data(): NSHTTPURLResponse;
+    function Data(): NSURLResponse;
   public
     constructor Create; overload;
-    constructor Create(AData: NSHTTPURLResponse);
+    constructor Create(AData: NSURLResponse);
     destructor Destroy; override;
   public
     function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: INSURL; MIMEType: string; length: Integer; name: String): INSURLResponse;
@@ -29,6 +29,14 @@ type
     function ExpectedContentLength: int64;
     function TextEncodingName: string;
     function SuggestedFilename: string;
+  end;
+
+  TNSHTTPURLResponse = class(TNSURLResponse, INSHTTPURLResponse)
+  public
+    constructor Create; overload;
+    constructor Create(AData: NSHTTPURLResponse);
+    destructor Destroy; override;
+  public
     function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): INSURLResponse;
     function StatusCode: Integer;
     function AllHeaderFields: string;
@@ -36,18 +44,19 @@ type
     class function LocalizedStringForStatusCode (statusCode_: Integer): string;
   end;
 
-
 implementation
 
 
 constructor TNSURLResponse.Create;
 begin
-  FData := NSHTTPURLResponse.alloc;
+  FData := NSURLResponse.alloc;
+  inherited Create;
 end;
 
-constructor TNSURLResponse.Create(AData: NSHTTPURLResponse);
+constructor TNSURLResponse.Create(AData: NSURLResponse);
 begin
   FData := AData;
+  inherited Create;
 end;
 
 destructor TNSURLResponse.Destroy;
@@ -60,14 +69,14 @@ begin
   inherited Destroy;
 end;
 
-function TNSURLResponse.Data(): NSHTTPURLResponse;
+function TNSURLResponse.Data(): NSURLResponse;
 begin
   Result := FData;
 end;
 
 function TNSURLResponse.InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: INSURL; MIMEType: string; length: Integer; name: String): INSURLResponse;
 var
-  TempResponse: NSHTTPURLResponse;
+  TempResponse: NSURLResponse;
 begin
   Result := nil;
   if Assigned(FData) then
@@ -124,8 +133,26 @@ begin
   end;
 end;
 
+
+constructor TNSHTTPURLResponse.Create;
+begin
+  FData := NSHTTPURLResponse.alloc;
+  inherited Create;
+end;
+
+constructor TNSHTTPURLResponse.Create(AData: NSHTTPURLResponse);
+begin
+  FData := AData;
+  inherited Create;
+end;
+
+destructor TNSHTTPURLResponse.Destroy;
+begin
+  inherited Destroy;
+end;
+
 // headerFields json 格式, {key: []value, ...}
-function TNSURLResponse.InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): INSURLResponse;
+function TNSHTTPURLResponse.InitWithURLStatusCodeHTTPVersionHeaderFields (url_: INSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): INSURLResponse;
 var
   TempResponse: NSHTTPURLResponse;
   TempHeaderJSONData: NSData;
@@ -143,23 +170,23 @@ begin
     TempHeaderFields := NSJSONSerialization.JSONObjectWithData_options_error(TempHeaderJSONData, NSJSONReadingMutableContainers, nil);
     if TempHeaderFields = nil then
       exit;
-    TempResponse := FData.initWithURL_statusCode_HTTPVersion_headerFields(url_.Data(), NSInteger(statusCode), StrToNSString(HTTPVersion), TempHeaderFields);
+    TempResponse := NSHTTPURLResponse(FData).initWithURL_statusCode_HTTPVersion_headerFields(url_.Data(), NSInteger(statusCode), StrToNSString(HTTPVersion), TempHeaderFields);
     if TempResponse = nil then
       exit;
-    Result := TNSURLResponse.Create(TempResponse);
+    Result := TNSHTTPURLResponse.Create(TempResponse);
   end;
 end;
 
-function TNSURLResponse.StatusCode: Integer;
+function TNSHTTPURLResponse.StatusCode: Integer;
 begin
   Result := 0;
   if Assigned(FData) then
   begin
-    Result := Integer(FData.statusCode);
+    Result := Integer(NSHTTPURLResponse(FData).statusCode);
   end;
 end;
 
-function TNSURLResponse.AllHeaderFields: string;
+function TNSHTTPURLResponse.AllHeaderFields: string;
 var
   TempHeaders: NSDictionary;
   TempJSONData: NSData;
@@ -168,7 +195,7 @@ begin
   Result := '{}';
   if Assigned(FData) then
   begin
-    TempHeaders := FData.allHeaderFields;
+    TempHeaders := NSHTTPURLResponse(FData).allHeaderFields;
     TempJSONData := NSJSONSerialization.dataWithJSONObject_options_error(TempHeaders, 0, nil);
     TempJSONString := NSString.alloc.initWithData_encoding(TempJSONData, NSUTF8StringEncoding);
     Result := NSStringToString(TempJSONString);
@@ -176,7 +203,7 @@ begin
 end;
 
  // statusCode: https://www.ietf.org/rfc/rfc2616.txt
-class function TNSURLResponse.LocalizedStringForStatusCode (statusCode_: Integer): string;
+class function TNSHTTPURLResponse.LocalizedStringForStatusCode (statusCode_: Integer): string;
 var
   Temp: NSString;
 begin

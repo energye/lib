@@ -77,24 +77,32 @@ implementation
 
 procedure NSWKNavigationDelegate.webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView;
   navigationAction: WKNavigationAction; preferences: WKWebpagePreferences; decisionHandler: WKDecidePolicyNavigationActionPreferences);
+var
+  TempActionPolicy: WKNavigationActionPolicy;
+  TempPreferences: WKWebpagePreferences;
 begin
+  // default
+  TempActionPolicy := WKNavigationActionPolicyAllow;
+  TempPreferences := preferences;
   if FData <> nil then
   begin
-
+    IWKNavigationDelegateEvent(FData).doDecidePolicyForNavigationActionPreferences(webView, navigationAction, TempActionPolicy, TempPreferences);
   end;
-  // default
-  decisionHandler(WKNavigationActionPolicyAllow, preferences);
+  decisionHandler(TempActionPolicy, TempPreferences);
 end;
 
 procedure NSWKNavigationDelegate.webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse;
   decisionHandler: WKDecidePolicyNavigationResponse);
+var
+  TempResponsePolicy: WKNavigationResponsePolicy;
 begin
+  // default
+  TempResponsePolicy := WKNavigationResponsePolicyAllow;
   if FData <> nil then
   begin
-
+    IWKNavigationDelegateEvent(FData).doDecidePolicyForNavigationResponse(webView, navigationResponse, TempResponsePolicy);
   end;
-  // default
-  decisionHandler(WKNavigationResponsePolicyAllow);
+  decisionHandler(TempResponsePolicy);
 end;
 
 procedure NSWKNavigationDelegate.webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
@@ -141,39 +149,56 @@ end;
 
 procedure NSWKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
   completionHandler: WKReceiveAuthenticationChallenge);
+var
+  TempDisposition: NSURLSessionAuthChallengeDisposition;
+  TempCredential: NSURLCredential;
 begin
+  // default
+  TempDisposition := NSURLSessionAuthChallengePerformDefaultHandling;
+  TempCredential := nil;
   if FData <> nil then
   begin
-
+    IWKNavigationDelegateEvent(FData).doReceiveAuthenticationChallenge(webView, challenge, TempDisposition, TempCredential);
   end;
-  // default
-  completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+  completionHandler(TempDisposition, TempCredential);
 end;
 
 procedure NSWKNavigationDelegate.webViewWebContentProcessDidTerminate (webView: WKWebView);
 begin
-
+  if FData <> nil then
+  begin
+    IWKNavigationDelegateEvent(FData).doWebContentProcessDidTerminate(webView);
+  end;
 end;
 
 procedure NSWKNavigationDelegate.webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
   decisionHandler: WKAuthenticationChallenge);
+var
+  TempDecision: Boolean;
 begin
+  TempDecision := True;
   if FData <> nil then
   begin
-
+    TempDecision := IWKNavigationDelegateEvent(FData).doAuthenticationChallengeShouldAllowDeprecatedTLS(webView, challenge);
   end;
-  decisionHandler(ObjcBool(true));
+  decisionHandler(ObjcBool(TempDecision));
 end;
 
 procedure NSWKNavigationDelegate.webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
 begin
-
+  if FData <> nil then
+  begin
+    IWKNavigationDelegateEvent(FData).doNavigationActionDidBecomeDownload(webView, navigationAction, download);
+  end;
 end;
 
 procedure NSWKNavigationDelegate.webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse;
   download: WKDownload);
 begin
-
+  if FData <> nil then
+  begin
+    IWKNavigationDelegateEvent(FData).doNavigationResponseDidBecomeDownload(webView, navigationResponse, download);
+  end;
 end;
 
 constructor TWKNavigationDelegate.Create(event: IWKNavigationDelegateEvent);

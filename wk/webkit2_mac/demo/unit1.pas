@@ -11,7 +11,7 @@ uses
   uWkWebview, uWkWebviewParent, uWKScriptMessageHandler, uWKWebViewConfiguration, uWKUIDelegate, uWKPreferences,
   uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURLResponse,
   uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures,
-  uWKNavigation;
+  uWKNavigation, uWKWebpagePreferences, uWKNavigationResponse;
 
 type
 

@@ -97,9 +97,9 @@ type
   WKDownloadDelegateProtocolPtr = ^WKDownloadDelegateProtocol;
 
 type
-  WKUIDelegateJavaScriptAlertCallback = reference to procedure; cdecl; cblock;
-  WKUIDelegateJavaScriptConfirmCallback = reference to procedure(Success: ObjcBool); cdecl; cblock;
-  WKUIDelegateJavaScriptTextInputCallback = reference to procedure(Result_: NSString); cdecl; cblock;
+  WKUIDelegateJavaScriptAlertCallback =       reference to procedure; cdecl; cblock;
+  WKUIDelegateJavaScriptConfirmCallback =     reference to procedure(Success: ObjcBool); cdecl; cblock;
+  WKUIDelegateJavaScriptTextInputCallback =   reference to procedure(Result_: NSString); cdecl; cblock;
 
 type
   WKDownloadCancelCallback = reference to procedure (resumeData: NSData); cdecl; cblock;
@@ -108,11 +108,11 @@ type
   WKDownloadDelegateDownloadCallback = reference to procedure (destination: NSURL); cblock; cdecl;
 
 type
-  WKDecidePolicyNavigationAction = reference to procedure (actionPolicy: WKNavigationActionPolicy); cdecl; cblock;
-  WKDecidePolicyNavigationActionPreferences = reference to procedure (actionPolicy: WKNavigationActionPolicy; preferences: WKWebpagePreferences); cdecl; cblock;
-  WKDecidePolicyNavigationResponse = reference to procedure (responsePolicy: WKNavigationResponsePolicy); cdecl; cblock;
-  WKReceiveAuthenticationChallenge = reference to procedure (disposition: NSURLSessionAuthChallengeDisposition; credential: NSURLCredential); cdecl; cblock;
-  WKAuthenticationChallenge = reference to procedure (decision: ObjcBool); cdecl; cblock;
+  WKDecidePolicyNavigationAction =               reference to procedure (actionPolicy: WKNavigationActionPolicy); cdecl; cblock;
+  WKDecidePolicyNavigationActionPreferences =    reference to procedure (actionPolicy: WKNavigationActionPolicy; preferences: WKWebpagePreferences); cdecl; cblock;
+  WKDecidePolicyNavigationResponse =             reference to procedure (responsePolicy: WKNavigationResponsePolicy); cdecl; cblock;
+  WKReceiveAuthenticationChallenge =             reference to procedure (disposition: NSURLSessionAuthChallengeDisposition; credential: NSURLCredential); cdecl; cblock;
+  WKAuthenticationChallenge =                    reference to procedure (decision: ObjcBool); cdecl; cblock;
 
 type
 

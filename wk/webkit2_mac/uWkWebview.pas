@@ -75,15 +75,28 @@ type
     function Magnification: double;
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
   protected
+    // WKScriptMessageHandlerProtocol
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
+    // WKNavigationDelegateProtocol
+    procedure doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction; var actionPolicy: WKNavigationActionPolicy;
+      var preferences: WKWebpagePreferences);
+    procedure doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
     procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFailProvisionalNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
     procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    procedure doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
+      var credential: NSURLCredential);
+    procedure doWebContentProcessDidTerminate (webView: WKWebView);
+    function doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+    procedure doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
+    procedure doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
+    // WKURLSchemeHandlerProtocol
     procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
     procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    // WKUIDelegateProtocol
     function doCreateWebView (webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
     procedure doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
     function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
@@ -162,6 +175,19 @@ begin
   end;
 end;
 
+procedure TWkWebview.doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction;
+  var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
+begin
+  if Assigned(FOnProcessMessage) then
+  begin
+
+  end;
+end;
+
+procedure TWkWebview.doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
+begin
+
+end;
 
 procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
 begin
@@ -209,6 +235,32 @@ begin
   begin
     FOnFailNavigationWithError(self, TWKNavigation.Create(navigation), NSStringToString(error.localizedDescription));
   end;
+end;
+
+procedure TWkWebview.doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge;
+  var disposition: NSURLSessionAuthChallengeDisposition; var credential: NSURLCredential);
+begin
+
+end;
+
+procedure TWkWebview.doWebContentProcessDidTerminate (webView: WKWebView);
+begin
+
+end;
+
+function TWkWebview.doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+begin
+  Result := true;
+end;
+
+procedure TWkWebview.doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
+begin
+
+end;
+
+procedure TWkWebview.doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
+begin
+
 end;
 
 procedure TWkWebview.doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);

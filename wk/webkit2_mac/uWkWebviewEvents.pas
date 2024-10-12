@@ -13,14 +13,23 @@ type
     TWkProcessMessageEvent = procedure(sender: IWKUserContentController; name, data: string) of object;
 
     // WKNavigationDelegateProtocol
+    TWKDecidePolicyForNavigationActionPreferences = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; var actionPolicy: WKNavigationActionPolicy;
+      var preferences: IWKWebpagePreferences);
+    TWKDecidePolicyForNavigationResponse = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
     TWkStartProvisionalNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkReceiveServerRedirectForProvisionalNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFailProvisionalNavigationWithError = procedure(webView: IWKWebView; navigation: IWKNavigation; error: string) of object;
     TWkCommitNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFinishNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFailNavigationWithError = procedure(webView: IWKWebView; navigation: IWKNavigation; error: string) of object;
+    TWkReceiveAuthenticationChallenge = procedure(webView: IWKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
+      var credential: NSURLCredential);
+    TWkWebContentProcessDidTerminate = procedure(webView: IWKWebView);
+    TWkAuthenticationChallengeShouldAllowDeprecatedTLS = function(webView: IWKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+    TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: WKDownload);
+    TWkNavigationResponseDidBecomeDownload = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; download: WKDownload);
 
-    //WKURLSchemeHandlerProtocol
+    // WKURLSchemeHandlerProtocol
     TWKStartURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
     TWKStopURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
 
