@@ -40,6 +40,9 @@ type
     TWKRunJavaScriptTextInputCompletion = function(webView: IWKWebView; prompt: string; defaultText: string; frame: IWKFrameInfo): string of object;
     TWKWebViewDidClose = procedure(webView: IWKWebView) of object;
 
+    // WKDownload
+    TWKDownloadCancelCompletionHandler = procedure(webView: IWKWebView; aData: Pointer; aLength: Integer) of object;
+
 implementation
 
 end.

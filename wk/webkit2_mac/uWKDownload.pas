@@ -9,7 +9,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils,
-  uWebKit, uWkInterface, uNSURLRequest;
+  uWebKit, uWkInterface, uNSURLRequest, uWKDownloadDelegateProtocol;
 
 type
 
@@ -26,9 +26,7 @@ type
     destructor Destroy; override;
   public
     function OriginalRequest: INSURLRequest;
-    function WebView: IWKWebView;
-    procedure SetDelegate(downloadDelegate: WKDownloadDelegateProtocol);
-    function Delegate: WKDownloadDelegateProtocol;
+    procedure SetDelegate(downloadDelegate: IWKDownloadDelegate);
     procedure Cancel ();
   end;
 
@@ -67,29 +65,11 @@ begin
   end;
 end;
 
-function TWKDownload.WebView: IWKWebView;
-begin
-  Result := FWebView;
-  //if Assigned(FData) then
-  //begin
-  //  Result := FData.webView;
-  //end;
-end;
-
-procedure TWKDownload.SetDelegate(downloadDelegate: WKDownloadDelegateProtocol);
+procedure TWKDownload.SetDelegate(downloadDelegate: IWKDownloadDelegate);
 begin
   if Assigned(FData) then
   begin
-    FData.setDelegate(downloadDelegate);
-  end;
-end;
-
-function TWKDownload.Delegate: WKDownloadDelegateProtocol;
-begin
-  Result := nil;
-  if Assigned(FData) then
-  begin
-    Result := FData.delegate;
+    FData.setDelegate(downloadDelegate.Data);
   end;
 end;
 
@@ -97,7 +77,7 @@ procedure TWKDownload.doCancelCompletionHandler(resumeData: NSData);
 begin
   if Assigned(FWebView) then
   begin
-    (FWebView as IWKDownloadEvent).doCancelCompletionHandler(FData, resumeData.bytes, Integer(resumeData.length));
+    (FWebView as IWKDownloadEvent).doDownloadCancelCompletionHandler(FData, resumeData.bytes, Integer(resumeData.length));
   end;
 end;
 

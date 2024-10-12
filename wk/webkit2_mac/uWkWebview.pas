@@ -26,20 +26,26 @@ type
     FNavigationDelegate: IWKNavigationDelegate;
     FUIDelegate: IWKUIDelegate;
   private
+    // WKScriptMessageHandlerProtocol
     FOnProcessMessage: TWkProcessMessageEvent;
+    // WKNavigationDelegateProtocol
     FOnStartProvisionalNavigation: TWkStartProvisionalNavigation;
     FOnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation;
     FOnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError;
     FOnCommitNavigation: TWkCommitNavigation;
     FOnFinishNavigation: TWkFinishNavigation;
     FOnFailNavigationWithError: TWkFailNavigationWithError;
+    // WKURLSchemeHandlerProtocol
     FOnStartURLSchemeTask: TWKStartURLSchemeTask;
     FOnStopURLSchemeTask: TWKStopURLSchemeTask;
+    // WKUIDelegateProtocol
     FOnCreateWebView: TWKCreateWebView;
     FOnRunJavaScriptAlert: TWKRunJavaScriptAlert;
     FOnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion;
     FOnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion;
     FOnWebViewDidClose: TWKWebViewDidClose;
+    // WKDownload
+    FOnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -103,7 +109,15 @@ type
     function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
     procedure doWebViewDidClose(webView: WKWebView);
     // WKDownload
-    procedure doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+    procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
+      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
+      decisionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
+      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadFinish (download: WKDownload);
+    procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
@@ -345,10 +359,39 @@ end;
 
 
 // WKDownload
-procedure TWkWebview.doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+procedure TWkWebview.doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
 begin
 
 end;
+
+procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
+  completionHandler: WKDownloadDelegateDownloadCallback);
+begin
+
+end;
+
+procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
+  decisionHandler: WKDownloadDelegateDownloadCallback);
+begin
+
+end;
+
+procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
+  completionHandler: WKDownloadDelegateDownloadCallback);
+begin
+
+end;
+
+procedure TWkWebview.doDownloadFinish (download: WKDownload);
+begin
+
+end;
+
+procedure TWkWebview.doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
+begin
+
+end;
+
 
 // 功能方法
 

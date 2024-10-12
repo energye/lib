@@ -19,6 +19,7 @@ type
   IWKURLSchemeTask = interface;
   IWKNavigation = interface;
   IWKDownload = interface;
+  IWKDownloadDelegate = interface;
   IWKWebView = interface;
 
 
@@ -67,7 +68,15 @@ type
 
   IWKDownloadEvent = interface
     ['{CA5E93CB-EC78-B968-334A-729495975831}']
-    procedure doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+    procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
+      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
+      decisionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
+      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadFinish (download: WKDownload);
+    procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   end;
 
 // class interface
@@ -301,13 +310,16 @@ type
     function CanShowMIMEType: LongBool;
   end;
 
+  IWKDownloadDelegate = interface
+    ['{CA5E93CB-6A34-8946-362E-CD94D5834367}']
+    function Data(): WKDownloadDelegateProtocol;
+  end;
+
   IWKDownload = interface
     ['{CA5E93CB-6A34-BAB8-362E-CD94D5838976}']
     function Data(): WKDownload;
     function OriginalRequest: INSURLRequest;
-    function WebView: IWKWebView;
-    procedure SetDelegate(downloadDelegate: WKDownloadDelegateProtocol);
-    function Delegate: WKDownloadDelegateProtocol;
+    procedure SetDelegate(downloadDelegate: IWKDownloadDelegate);
     procedure Cancel ();
   end;
 
