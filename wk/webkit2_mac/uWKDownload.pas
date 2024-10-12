@@ -17,12 +17,12 @@ type
   TWKDownload = class(TInterfacedObject, IWKDownload)
   private
     FData: WKDownload;
-    FWebView: IWKWebView;
+    FWebViewDelegate: IWKDownloadEvent;
   protected
     function Data(): WKDownload;
     procedure doCancelCompletionHandler(resumeData: NSData);
   public
-    constructor Create(AData: WKDownload; AWebView: IWKWebView);
+    constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadEvent);
     destructor Destroy; override;
   public
     function OriginalRequest: INSURLRequest;
@@ -33,11 +33,11 @@ type
 
 implementation
 
-constructor TWKDownload.Create(AData: WKDownload; AWebView: IWKWebView);
+constructor TWKDownload.Create(AData: WKDownload; AWebViewDelegate: IWKDownloadEvent);
 begin
   inherited Create;
   FData := AData;
-  FWebView := AWebView;
+  FWebViewDelegate := AWebViewDelegate;
 end;
 
 destructor TWKDownload.Destroy;
@@ -47,7 +47,7 @@ begin
     //FData.release;
     FData := nil;
   end;
-  FWebView := nil;
+  FWebViewDelegate := nil;
   inherited Destroy;
 end;
 
@@ -75,9 +75,9 @@ end;
 
 procedure TWKDownload.doCancelCompletionHandler(resumeData: NSData);
 begin
-  if Assigned(FWebView) then
+  if Assigned(FData) and Assigned(FWebViewDelegate) then
   begin
-    (FWebView as IWKDownloadEvent).doDownloadCancelCompletionHandler(FData, resumeData.bytes, Integer(resumeData.length));
+    FWebViewDelegate.doDownloadCancelCompletionHandler(FData, resumeData.bytes, Integer(resumeData.length));
   end;
 end;
 
