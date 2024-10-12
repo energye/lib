@@ -18,6 +18,8 @@ type
   IWKUserContentController = interface;
   IWKURLSchemeTask = interface;
   IWKNavigation = interface;
+  IWKDownload = interface;
+  IWKWebView = interface;
 
 
 // class events interface
@@ -61,6 +63,11 @@ type
     function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
     function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
     procedure doWebViewDidClose(webView: WKWebView);
+  end;
+
+  IWKDownloadEvent = interface
+    ['{CA5E93CB-EC78-B968-334A-729495975831}']
+    procedure doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
   end;
 
 // class interface
@@ -289,6 +296,19 @@ type
   IWKNavigationResponse = interface
     ['{CA5E93CB-6A34-BAB8-362E-CD94D5839210}']
     function Data(): WKNavigationResponse;
+    function IsForMainFrame: LongBool;
+    function Response: INSURLResponse;
+    function CanShowMIMEType: LongBool;
+  end;
+
+  IWKDownload = interface
+    ['{CA5E93CB-6A34-BAB8-362E-CD94D5838976}']
+    function Data(): WKDownload;
+    function OriginalRequest: INSURLRequest;
+    function WebView: IWKWebView;
+    procedure SetDelegate(downloadDelegate: WKDownloadDelegateProtocol);
+    function Delegate: WKDownloadDelegateProtocol;
+    procedure Cancel ();
   end;
 
 implementation

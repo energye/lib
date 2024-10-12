@@ -26,8 +26,8 @@ type
       var credential: NSURLCredential);
     TWkWebContentProcessDidTerminate = procedure(webView: IWKWebView);
     TWkAuthenticationChallengeShouldAllowDeprecatedTLS = function(webView: IWKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
-    TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: WKDownload);
-    TWkNavigationResponseDidBecomeDownload = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; download: WKDownload);
+    TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: IWKDownload);
+    TWkNavigationResponseDidBecomeDownload = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; download: IWKDownload);
 
     // WKURLSchemeHandlerProtocol
     TWKStartURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;

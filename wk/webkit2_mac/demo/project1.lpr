@@ -37,4 +37,6 @@ end.
  WKNavigation - OK
  NSURLAuthenticationChallenge - X
  WKDownload - X
+ WKDownloadDelegateProtocol - X
+ NSURLAuthenticationChallenge - X
 }

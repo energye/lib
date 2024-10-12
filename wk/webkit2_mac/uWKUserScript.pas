@@ -35,11 +35,13 @@ implementation
 
 constructor TWKUserScript.Create;
 begin
+  inherited Create;
   FData := WKUserScript.alloc.init;
 end;
 
 constructor TWKUserScript.Create(AData: WKUserScript);
 begin
+  inherited Create;
   FData := AData;
 end;
 

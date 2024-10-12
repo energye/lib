@@ -15,7 +15,7 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent)
+  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent, IWKDownloadEvent)
   private
     FData: WKWebView;
   protected
@@ -102,6 +102,8 @@ type
     function doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
     function doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
     procedure doWebViewDidClose(webView: WKWebView);
+    // WKDownload
+    procedure doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
   published
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
@@ -339,6 +341,13 @@ begin
   begin
     FOnWebViewDidClose(self);
   end;
+end;
+
+
+// WKDownload
+procedure TWkWebview.doCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+begin
+
 end;
 
 // 功能方法
