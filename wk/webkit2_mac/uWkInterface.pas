@@ -69,12 +69,9 @@ type
   IWKDownloadEvent = interface
     ['{CA5E93CB-EC78-B968-334A-729495975831}']
     procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
-    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
-      completionHandler: WKDownloadDelegateDownloadCallback);
-    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
-      decisionHandler: WKDownloadDelegateDownloadCallback);
-    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
-      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
+    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
+    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   end;

@@ -110,12 +110,9 @@ type
     procedure doWebViewDidClose(webView: WKWebView);
     // WKDownload
     procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
-    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
-      completionHandler: WKDownloadDelegateDownloadCallback);
-    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
-      decisionHandler: WKDownloadDelegateDownloadCallback);
-    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
-      completionHandler: WKDownloadDelegateDownloadCallback);
+    procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
+    procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
+    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   published
@@ -364,20 +361,17 @@ begin
 
 end;
 
-procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
-  completionHandler: WKDownloadDelegateDownloadCallback);
+procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
 begin
 
 end;
 
-procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
-  decisionHandler: WKDownloadDelegateDownloadCallback);
+procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
 begin
 
 end;
 
-procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge;
-  completionHandler: WKDownloadDelegateDownloadCallback);
+procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
 begin
 
 end;
