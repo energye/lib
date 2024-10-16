@@ -29,12 +29,19 @@ type
     // WKScriptMessageHandlerProtocol
     FOnProcessMessage: TWkProcessMessageEvent;
     // WKNavigationDelegateProtocol
+    FOnDecidePolicyForNavigationActionPreferences: TWKDecidePolicyForNavigationActionPreferences;
+    FOnDecidePolicyForNavigationResponse: TWKDecidePolicyForNavigationResponse;
     FOnStartProvisionalNavigation: TWkStartProvisionalNavigation;
     FOnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation;
     FOnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError;
     FOnCommitNavigation: TWkCommitNavigation;
     FOnFinishNavigation: TWkFinishNavigation;
     FOnFailNavigationWithError: TWkFailNavigationWithError;
+    FOnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge;
+    FOnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate;
+    FOnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS;
+    FOnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload;
+    FOnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
     FOnStartURLSchemeTask: TWKStartURLSchemeTask;
     FOnStopURLSchemeTask: TWKStopURLSchemeTask;
@@ -46,6 +53,11 @@ type
     FOnWebViewDidClose: TWKWebViewDidClose;
     // WKDownload
     FOnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler;
+    FOnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename;
+    FOnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest;
+    FOnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge;
+    FOnDownloadFinish: TWKDownloadFinish;
+    FOnDownloadFailWithError: TWKDownloadFailWithError;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -119,12 +131,19 @@ type
     // WKScriptMessageHandlerProtocol
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     // WKNavigationDelegateProtocol
+    property OnDecidePolicyForNavigationActionPreferences: TWKDecidePolicyForNavigationActionPreferences read FOnDecidePolicyForNavigationActionPreferences write FOnDecidePolicyForNavigationActionPreferences;
+    property OnDecidePolicyForNavigationResponse: TWKDecidePolicyForNavigationResponse read FOnDecidePolicyForNavigationResponse write FOnDecidePolicyForNavigationResponse;
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
     property OnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation read FOnReceiveServerRedirectForProvisionalNavigation write FOnReceiveServerRedirectForProvisionalNavigation;
     property OnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError read FOnFailProvisionalNavigationWithError write FOnFailProvisionalNavigationWithError;
     property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
     property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
+    property OnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge read FOnReceiveAuthenticationChallenge write FOnReceiveAuthenticationChallenge;
+    property OnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate read FOnWebContentProcessDidTerminate write FOnWebContentProcessDidTerminate;
+    property OnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS read FOnAuthenticationChallengeShouldAllowDeprecatedTLS write FOnAuthenticationChallengeShouldAllowDeprecatedTLS;
+    property OnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload read FOnNavigationActionDidBecomeDownload write FOnNavigationActionDidBecomeDownload;
+    property OnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload read FOnNavigationResponseDidBecomeDownload write FOnNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
     property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
@@ -135,6 +154,12 @@ type
     property OnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion read FOnRunJavaScriptTextInputCompletion write FOnRunJavaScriptTextInputCompletion;
     property OnWebViewDidClose: TWKWebViewDidClose read FOnWebViewDidClose write FOnWebViewDidClose;
     // WKDownload
+    property OnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler read FOnDownloadCancelCompletionHandler write FOnDownloadCancelCompletionHandler;
+    property OnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename read FOnDownloadDecideDestinationUsingResponseSuggestedFilename write FOnDownloadDecideDestinationUsingResponseSuggestedFilename;
+    property OnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest read FOnDownloadWillPerformHTTPRedirectionNewRequest write FOnDownloadWillPerformHTTPRedirectionNewRequest;
+    property OnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge read FOnDownloadReceiveAuthenticationChallenge write FOnDownloadReceiveAuthenticationChallenge;
+    property OnDownloadFinish: TWKDownloadFinish read FOnDownloadFinish write FOnDownloadFinish;
+    property OnDownloadFailWithError: TWKDownloadFailWithError read FOnDownloadFailWithError write FOnDownloadFailWithError;
   end;
 
 

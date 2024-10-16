@@ -14,8 +14,8 @@ type
 
     // WKNavigationDelegateProtocol
     TWKDecidePolicyForNavigationActionPreferences = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; var actionPolicy: WKNavigationActionPolicy;
-      var preferences: IWKWebpagePreferences);
-    TWKDecidePolicyForNavigationResponse = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
+      var preferences: IWKWebpagePreferences) of object;
+    TWKDecidePolicyForNavigationResponse = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy) of object;
     TWkStartProvisionalNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkReceiveServerRedirectForProvisionalNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFailProvisionalNavigationWithError = procedure(webView: IWKWebView; navigation: IWKNavigation; error: string) of object;
@@ -23,11 +23,11 @@ type
     TWkFinishNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFailNavigationWithError = procedure(webView: IWKWebView; navigation: IWKNavigation; error: string) of object;
     TWkReceiveAuthenticationChallenge = procedure(webView: IWKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
-      var credential: INSURLCredential);
-    TWkWebContentProcessDidTerminate = procedure(webView: IWKWebView);
-    TWkAuthenticationChallengeShouldAllowDeprecatedTLS = function(webView: IWKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
-    TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: IWKDownload);
-    TWkNavigationResponseDidBecomeDownload = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; download: IWKDownload);
+      var credential: INSURLCredential) of object;
+    TWkWebContentProcessDidTerminate = procedure(webView: IWKWebView) of object;
+    TWkAuthenticationChallengeShouldAllowDeprecatedTLS = function(webView: IWKWebView; challenge: NSURLAuthenticationChallenge): Boolean of object;
+    TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: IWKDownload) of object;
+    TWkNavigationResponseDidBecomeDownload = procedure(webView: IWKWebView; navigationResponse: IWKNavigationResponse; download: IWKDownload) of object;
 
     // WKURLSchemeHandlerProtocol
     TWKStartURLSchemeTask = procedure(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask) of object;
@@ -41,8 +41,12 @@ type
     TWKWebViewDidClose = procedure(webView: IWKWebView) of object;
 
     // WKDownload
-    TWKDownloadCancelCompletionHandler = procedure(webView: IWKWebView; aData: Pointer; aLength: Integer) of object;
-
+    TWKDownloadCancelCompletionHandler = procedure(webView: IWKWebView; aData: Pointer; aLength: Integer {NSData}) of object;
+    TWKDownloadDecideDestinationUsingResponseSuggestedFilename = procedure(download: IWKDownload; response: INSURLResponse; suggestedFilename: string) of object;
+    TWKDownloadWillPerformHTTPRedirectionNewRequest = procedure(download: IWKDownload; response: INSHTTPURLResponse; request: INSURLRequest) of object;
+    TWKDownloadReceiveAuthenticationChallenge = procedure(download: IWKDownload; challenge: NSURLAuthenticationChallenge) of object;
+    TWKDownloadFinish = procedure(download: IWKDownload) of object;
+    TWKDownloadFailWithError = procedure(download: IWKDownload; error: string; aData: Pointer; aLength: Integer {NSData}) of object;
 implementation
 
 end.

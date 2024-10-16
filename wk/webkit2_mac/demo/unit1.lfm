@@ -3,7 +3,7 @@ object Form1: TForm1
   Height = 450
   Top = 250
   Width = 600
-  Caption = 'Form1'
+  Caption = 'WebKit'
   ClientHeight = 450
   ClientWidth = 600
   OnCreate = FormCreate
