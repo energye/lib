@@ -23,7 +23,7 @@ type
     TWkFinishNavigation = procedure(webView: IWKWebView; navigation: IWKNavigation) of object;
     TWkFailNavigationWithError = procedure(webView: IWKWebView; navigation: IWKNavigation; error: string) of object;
     TWkReceiveAuthenticationChallenge = procedure(webView: IWKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
-      var credential: NSURLCredential);
+      var credential: INSURLCredential);
     TWkWebContentProcessDidTerminate = procedure(webView: IWKWebView);
     TWkAuthenticationChallengeShouldAllowDeprecatedTLS = function(webView: IWKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
     TWkNavigationActionDidBecomeDownload = procedure(webView: IWKWebView; navigationAction: IWKNavigationAction; download: IWKDownload);

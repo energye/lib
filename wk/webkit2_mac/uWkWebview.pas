@@ -116,20 +116,25 @@ type
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   published
+    // WKScriptMessageHandlerProtocol
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
+    // WKNavigationDelegateProtocol
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
     property OnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation read FOnReceiveServerRedirectForProvisionalNavigation write FOnReceiveServerRedirectForProvisionalNavigation;
     property OnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError read FOnFailProvisionalNavigationWithError write FOnFailProvisionalNavigationWithError;
     property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
     property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
+    // WKURLSchemeHandlerProtocol
     property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
+    // WKUIDelegateProtocol
     property OnCreateWebView: TWKCreateWebView read FOnCreateWebView write FOnCreateWebView;
     property OnRunJavaScriptAlert: TWKRunJavaScriptAlert read FOnRunJavaScriptAlert write FOnRunJavaScriptAlert;
     property OnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion read FOnRunJavaScriptConfirmCompletion write FOnRunJavaScriptConfirmCompletion;
     property OnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion read FOnRunJavaScriptTextInputCompletion write FOnRunJavaScriptTextInputCompletion;
     property OnWebViewDidClose: TWKWebViewDidClose read FOnWebViewDidClose write FOnWebViewDidClose;
+    // WKDownload
   end;
 
 

@@ -9,11 +9,12 @@ uses
   Classes, CocoaAll, uWebKit;
 
 type
+  INSURL = interface;
+  INSURLCredential = interface;
   IWKUserScript = interface;
   IWKScriptMessageHandler = interface;
   INSURLRequest = interface;
   IWKNavigationDelegate = interface;
-  INSURL = interface;
   IWKURLSchemeHandler = interface;
   IWKUserContentController = interface;
   IWKURLSchemeTask = interface;
@@ -318,6 +319,12 @@ type
     function OriginalRequest: INSURLRequest;
     procedure SetDelegate(downloadDelegate: IWKDownloadDelegate);
     procedure Cancel ();
+  end;
+
+  INSURLCredential = interface
+    ['{CA5E93CA-6A34-BAB8-362E-CD94D5839987}']
+    function Data(): NSURLCredential;
+    function Persistence: NSURLCredentialPersistence;
   end;
 
 implementation
