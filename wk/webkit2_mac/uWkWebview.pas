@@ -12,7 +12,7 @@ uses
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
   uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation,
-  uWKNavigationResponse, uWKDownload, uNSURLResponse;
+  uWKNavigationResponse, uWKDownload, uNSURLResponse, uNSURLRequest;
 
 type
 
@@ -450,6 +450,7 @@ var
   TempSuggestedFilename: string;
 begin
   TempDownload := nil;
+  TempResponse := nil;
   if Assigned(FOnDownloadDecideDestinationUsingResponseSuggestedFilename) then
   begin
     TempDownload := TWKDownload.Create(download, nil);
@@ -460,10 +461,20 @@ begin
 end;
 
 procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
+var
+  TempDownload: IWKDownload;
+  TempResponse: INSHTTPURLResponse;
+  TempRequest: INSURLRequest;
 begin
+  TempDownload := nil;
+  TempResponse := nil;
+  TempRequest := nil;
   if Assigned(FOnDownloadWillPerformHTTPRedirectionNewRequest) then
   begin
-
+    TempDownload := TWKDownload.Create(download, nil);
+    TempResponse := TNSHTTPURLResponse.Create(response);
+    TempRequest := TNSURLRequest.Create(request);
+    FOnDownloadWillPerformHTTPRedirectionNewRequest(self, TempDownload, TempResponse, TempRequest);
   end;
 end;
 
@@ -473,18 +484,33 @@ end;
 //end;
 
 procedure TWkWebview.doDownloadFinish (download: WKDownload);
+var
+  TempDownload: IWKDownload;
 begin
+  TempDownload := nil;
   if Assigned(FOnDownloadFinish) then
   begin
-
+    TempDownload := TWKDownload.Create(download, nil);
+    FOnDownloadFinish(self, TempDownload);
   end;
 end;
 
 procedure TWkWebview.doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
+var
+  TempDownload: IWKDownload;
+  TempError: string;
+  TempData: Pointer;
+  TempDataLength: Integer;
 begin
+  TempDownload := nil;
+  TempData := nil;
   if Assigned(FOnDownloadFailWithError) then
   begin
-
+    TempDownload := TWKDownload.Create(download, nil);
+    TempError := NSStringToString(error.localizedDescription);
+    TempData := resumeData.bytes;
+    TempDataLength := Integer(resumeData.length);
+    FOnDownloadFailWithError(self, TempDownload, TempError, TempData, TempDataLength);
   end;
 end;
 
