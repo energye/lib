@@ -11,7 +11,8 @@ uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
   uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
-  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation;
+  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation,
+  uWKNavigationResponse, uWKDownload, uNSURLResponse;
 
 type
 
@@ -218,16 +219,31 @@ end;
 
 procedure TWkWebview.doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction;
   var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
+var
+  TempNavigationAction: IWKNavigationAction;
+  TempPreferences: IWKWebpagePreferences;
 begin
-  if Assigned(FOnProcessMessage) then
+  TempNavigationAction := nil;
+  TempPreferences := nil;
+  if Assigned(FOnDecidePolicyForNavigationActionPreferences) then
   begin
-
+    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
+    FOnDecidePolicyForNavigationActionPreferences(self, TempNavigationAction, actionPolicy, TempPreferences);
+    if TempPreferences <> nil then
+      preferences := TempPreferences.Data();
   end;
 end;
 
 procedure TWkWebview.doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
+var
+  TempNavigationResponse: IWKNavigationResponse;
 begin
-
+  TempNavigationResponse := nil;
+  if Assigned(FOnDecidePolicyForNavigationResponse) then
+  begin
+    TempNavigationResponse := TWKNavigationResponse.Create(navigationResponse);
+    FOnDecidePolicyForNavigationResponse(self, TempNavigationResponse, responsePolicy);
+  end;
 end;
 
 procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
@@ -286,7 +302,10 @@ end;
 
 procedure TWkWebview.doWebContentProcessDidTerminate (webView: WKWebView);
 begin
-
+  if Assigned(FOnWebContentProcessDidTerminate) then
+  begin
+    FOnWebContentProcessDidTerminate(self);
+  end;
 end;
 
 //function TWkWebview.doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
@@ -295,28 +314,56 @@ end;
 //end;
 
 procedure TWkWebview.doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
+var
+  TempNavigationAction: IWKNavigationAction;
+  TempDownload: IWKDownload;
 begin
-
+  TempNavigationAction := nil;
+  TempDownload := nil;
+  if Assigned(FOnNavigationActionDidBecomeDownload) then
+  begin
+    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
+    TempDownload := TWKDownload.Create(download, nil);
+    FOnNavigationActionDidBecomeDownload(self, TempNavigationAction, TempDownload);
+  end;
 end;
 
 procedure TWkWebview.doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
+var
+  TempNavigationResponse: IWKNavigationResponse;
+  TempDownload: IWKDownload;
 begin
-
+  TempNavigationResponse := nil;
+  TempDownload := nil;
+  if Assigned(FOnNavigationResponseDidBecomeDownload) then
+  begin
+    TempNavigationResponse := TWKNavigationResponse.Create(navigationResponse);
+    TempDownload := TWKDownload.Create(download, nil);
+    FOnNavigationResponseDidBecomeDownload(self, TempNavigationResponse, TempDownload);
+  end;
 end;
 
 procedure TWkWebview.doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+var
+  TempUrlSchemeTask: IWKURLSchemeTask;
 begin
+  TempUrlSchemeTask := nil;
   if Assigned(FOnStartURLSchemeTask) then
   begin
-    FOnStartURLSchemeTask(self, TWKURLSchemeTask.Create(urlSchemeTask));
+    TempUrlSchemeTask := TWKURLSchemeTask.Create(urlSchemeTask);
+    FOnStartURLSchemeTask(self, TempUrlSchemeTask);
   end;
 end;
 
 procedure TWkWebview.doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+var
+  TempUrlSchemeTask: IWKURLSchemeTask;
 begin
+  TempUrlSchemeTask := nil;
   if Assigned(FOnStopURLSchemeTask) then
   begin
-    FOnStopURLSchemeTask(self, TWKURLSchemeTask.Create(urlSchemeTask));
+    TempUrlSchemeTask := TWKURLSchemeTask.Create(urlSchemeTask);
+    FOnStopURLSchemeTask(self, TempUrlSchemeTask);
   end;
 end;
 
@@ -385,18 +432,39 @@ end;
 
 // WKDownload
 procedure TWkWebview.doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
+var
+  TempDownload: IWKDownload;
 begin
-
+  TempDownload := nil;
+  if Assigned(FOnDownloadCancelCompletionHandler) then
+  begin
+    TempDownload := TWKDownload.Create(download, nil);
+    FOnDownloadCancelCompletionHandler(self, TempDownload, aData, aLength);
+  end;
 end;
 
 procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
+var
+  TempDownload: IWKDownload;
+  TempResponse: INSURLResponse;
+  TempSuggestedFilename: string;
 begin
-
+  TempDownload := nil;
+  if Assigned(FOnDownloadDecideDestinationUsingResponseSuggestedFilename) then
+  begin
+    TempDownload := TWKDownload.Create(download, nil);
+    TempResponse := TNSURLResponse.Create(response);
+    TempSuggestedFilename := NSStringToString(suggestedFilename);
+    FOnDownloadDecideDestinationUsingResponseSuggestedFilename(self, TempDownload, TempResponse, TempSuggestedFilename);
+  end;
 end;
 
 procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
 begin
+  if Assigned(FOnDownloadWillPerformHTTPRedirectionNewRequest) then
+  begin
 
+  end;
 end;
 
 //procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
@@ -406,12 +474,18 @@ end;
 
 procedure TWkWebview.doDownloadFinish (download: WKDownload);
 begin
+  if Assigned(FOnDownloadFinish) then
+  begin
 
+  end;
 end;
 
 procedure TWkWebview.doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
 begin
+  if Assigned(FOnDownloadFailWithError) then
+  begin
 
+  end;
 end;
 
 

@@ -40,12 +40,12 @@ type
     TWKWebViewDidClose = procedure(webView: IWKWebView) of object;
 
     // WKDownload
-    TWKDownloadCancelCompletionHandler = procedure(webView: IWKWebView; aData: Pointer; aLength: Integer {NSData}) of object;
-    TWKDownloadDecideDestinationUsingResponseSuggestedFilename = procedure(download: IWKDownload; response: INSURLResponse; suggestedFilename: string) of object;
-    TWKDownloadWillPerformHTTPRedirectionNewRequest = procedure(download: IWKDownload; response: INSHTTPURLResponse; request: INSURLRequest) of object;
-    //TWKDownloadReceiveAuthenticationChallenge = procedure(download: IWKDownload; challenge: NSURLAuthenticationChallenge) of object;
-    TWKDownloadFinish = procedure(download: IWKDownload) of object;
-    TWKDownloadFailWithError = procedure(download: IWKDownload; error: string; aData: Pointer; aLength: Integer {NSData}) of object;
+    TWKDownloadCancelCompletionHandler = procedure(webView: IWKWebView; download: IWKDownload; aData: Pointer; aLength: Integer {NSData}) of object;
+    TWKDownloadDecideDestinationUsingResponseSuggestedFilename = procedure(webView: IWKWebView; download: IWKDownload; response: INSURLResponse; suggestedFilename: string) of object;
+    TWKDownloadWillPerformHTTPRedirectionNewRequest = procedure(webView: IWKWebView; download: IWKDownload; response: INSHTTPURLResponse; request: INSURLRequest) of object;
+    //TWKDownloadReceiveAuthenticationChallenge = procedure(webView: IWKWebView; download: IWKDownload; challenge: NSURLAuthenticationChallenge) of object;
+    TWKDownloadFinish = procedure(webView: IWKWebView; download: IWKDownload) of object;
+    TWKDownloadFailWithError = procedure(webView: IWKWebView; download: IWKDownload; error: string; aData: Pointer; aLength: Integer {NSData}) of object;
 implementation
 
 end.
