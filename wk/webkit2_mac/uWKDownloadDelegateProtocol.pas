@@ -16,12 +16,9 @@ type
   private
     FData: Pointer;
   public
-    procedure download_decideDestinationUsingResponse_suggestedFilename_completionHandler (download: WKDownload; response: NSURLResponse; suggestedFilename: NSString;
-      completionHandler: WKDownloadDecideDestinationUsingResponseSuggestedFilename);
-    procedure download_willPerformHTTPRedirection_newRequest_decisionHandler (download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest;
-      decisionHandler: WKDownloadWillPerformHTTPRedirectionNewRequest);
-    procedure download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge;
-      completionHandler: WKReceiveAuthenticationChallenge);
+    procedure download_decideDestinationUsingResponse_suggestedFilename_completionHandler (download: WKDownload; response: NSURLResponse; suggestedFilename: NSString; completionHandler: WKDownloadDecideDestinationUsingResponseSuggestedFilename);
+    procedure download_willPerformHTTPRedirection_newRequest_decisionHandler (download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest; decisionHandler: WKDownloadWillPerformHTTPRedirectionNewRequest);
+    //procedure download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge; completionHandler: WKReceiveAuthenticationChallenge);
     procedure downloadDidFinish (download: WKDownload);
     procedure download_didFailWithError_resumeData (download: WKDownload; error: NSError; resumeData: NSData);
   end;
@@ -60,19 +57,19 @@ begin
   decisionHandler(WKDownloadRedirectPolicyAllow);
 end;
 
-procedure NSWKDownloadDelegateProtocol.download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge;
-  completionHandler: WKReceiveAuthenticationChallenge);
-begin
-  if FData <> nil then
-  begin
-    IWKDownloadEvent(FData).doDownloadReceiveAuthenticationChallenge(download, challenge);
-  end;
-  //NSURLSessionAuthChallengeUseCredential // 使用指定的凭证，可能是 .nil
-  //NSURLSessionAuthChallengePerformDefaultHandling //对质询使用默认处理方式，就好像没有实现这个委托方法一样。提供的 credential 参数将被忽略。
-  //NSURLSessionAuthChallengeCancelAuthenticationChallenge //取消整个请求。提供的 credential 参数将被忽略。
-  //NSURLSessionAuthChallengeRejectProtectionSpace // 拒绝此质询，并使用下一个身份验证保护空间再次调用 authentication delegate 方法。提供的 credential 参数将被忽略。
-  completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
-end;
+//procedure NSWKDownloadDelegateProtocol.download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge;
+//  completionHandler: WKReceiveAuthenticationChallenge);
+//begin
+//  if FData <> nil then
+//  begin
+//    IWKDownloadEvent(FData).doDownloadReceiveAuthenticationChallenge(download, challenge);
+//  end;
+//  //NSURLSessionAuthChallengeUseCredential // 使用指定的凭证，可能是 .nil
+//  //NSURLSessionAuthChallengePerformDefaultHandling //对质询使用默认处理方式，就好像没有实现这个委托方法一样。提供的 credential 参数将被忽略。
+//  //NSURLSessionAuthChallengeCancelAuthenticationChallenge //取消整个请求。提供的 credential 参数将被忽略。
+//  //NSURLSessionAuthChallengeRejectProtectionSpace // 拒绝此质询，并使用下一个身份验证保护空间再次调用 authentication delegate 方法。提供的 credential 参数将被忽略。
+//  completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+//end;
 
 procedure NSWKDownloadDelegateProtocol.downloadDidFinish (download: WKDownload);
 begin

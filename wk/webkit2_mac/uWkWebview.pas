@@ -37,9 +37,9 @@ type
     FOnCommitNavigation: TWkCommitNavigation;
     FOnFinishNavigation: TWkFinishNavigation;
     FOnFailNavigationWithError: TWkFailNavigationWithError;
-    FOnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge;
+    //FOnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge;
     FOnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate;
-    FOnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS;
+    //FOnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS;
     FOnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload;
     FOnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
@@ -55,7 +55,7 @@ type
     FOnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler;
     FOnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename;
     FOnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest;
-    FOnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge;
+    //FOnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge;
     FOnDownloadFinish: TWKDownloadFinish;
     FOnDownloadFailWithError: TWKDownloadFailWithError;
   public
@@ -96,8 +96,7 @@ type
     // WKScriptMessageHandlerProtocol
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
     // WKNavigationDelegateProtocol
-    procedure doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction; var actionPolicy: WKNavigationActionPolicy;
-      var preferences: WKWebpagePreferences);
+    procedure doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction; var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
     procedure doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
     procedure doStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
@@ -105,10 +104,9 @@ type
     procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-    procedure doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
-      var credential: NSURLCredential);
+    //procedure doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition; var credential: NSURLCredential);
     procedure doWebContentProcessDidTerminate (webView: WKWebView);
-    function doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+    //function doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
     procedure doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
     procedure doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
     // WKURLSchemeHandlerProtocol
@@ -124,7 +122,7 @@ type
     procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
     procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
     procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
-    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
+    //procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   published
@@ -139,9 +137,9 @@ type
     property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
     property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
-    property OnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge read FOnReceiveAuthenticationChallenge write FOnReceiveAuthenticationChallenge;
+    //property OnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge read FOnReceiveAuthenticationChallenge write FOnReceiveAuthenticationChallenge;
     property OnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate read FOnWebContentProcessDidTerminate write FOnWebContentProcessDidTerminate;
-    property OnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS read FOnAuthenticationChallengeShouldAllowDeprecatedTLS write FOnAuthenticationChallengeShouldAllowDeprecatedTLS;
+    //property OnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS read FOnAuthenticationChallengeShouldAllowDeprecatedTLS write FOnAuthenticationChallengeShouldAllowDeprecatedTLS;
     property OnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload read FOnNavigationActionDidBecomeDownload write FOnNavigationActionDidBecomeDownload;
     property OnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload read FOnNavigationResponseDidBecomeDownload write FOnNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
@@ -157,7 +155,7 @@ type
     property OnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler read FOnDownloadCancelCompletionHandler write FOnDownloadCancelCompletionHandler;
     property OnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename read FOnDownloadDecideDestinationUsingResponseSuggestedFilename write FOnDownloadDecideDestinationUsingResponseSuggestedFilename;
     property OnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest read FOnDownloadWillPerformHTTPRedirectionNewRequest write FOnDownloadWillPerformHTTPRedirectionNewRequest;
-    property OnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge read FOnDownloadReceiveAuthenticationChallenge write FOnDownloadReceiveAuthenticationChallenge;
+    //property OnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge read FOnDownloadReceiveAuthenticationChallenge write FOnDownloadReceiveAuthenticationChallenge;
     property OnDownloadFinish: TWKDownloadFinish read FOnDownloadFinish write FOnDownloadFinish;
     property OnDownloadFailWithError: TWKDownloadFailWithError read FOnDownloadFailWithError write FOnDownloadFailWithError;
   end;
@@ -280,21 +278,21 @@ begin
   end;
 end;
 
-procedure TWkWebview.doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge;
-  var disposition: NSURLSessionAuthChallengeDisposition; var credential: NSURLCredential);
-begin
-
-end;
+//procedure TWkWebview.doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge;
+//  var disposition: NSURLSessionAuthChallengeDisposition; var credential: NSURLCredential);
+//begin
+//
+//end;
 
 procedure TWkWebview.doWebContentProcessDidTerminate (webView: WKWebView);
 begin
 
 end;
 
-function TWkWebview.doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
-begin
-  Result := true;
-end;
+//function TWkWebview.doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+//begin
+//  Result := true;
+//end;
 
 procedure TWkWebview.doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
 begin
@@ -401,10 +399,10 @@ begin
 
 end;
 
-procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
-begin
-
-end;
+//procedure TWkWebview.doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
+//begin
+//
+//end;
 
 procedure TWkWebview.doDownloadFinish (download: WKDownload);
 begin

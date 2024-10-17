@@ -12,7 +12,7 @@ uses
   uWKNavigationDelegate, uWKUserContentController, uWKUserScript, uNSURLRequest, uNSURLResponse,
   uNSURL, uWKURLSchemeHandler, uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures,
   uWKNavigation, uWKWebpagePreferences, uWKNavigationResponse, uWKDownload, uWKDownloadDelegateProtocol,
-  uNSURLCredential;
+  uNSURLCredential, uNSURLAuthenticationChallenge;
 
 type
 

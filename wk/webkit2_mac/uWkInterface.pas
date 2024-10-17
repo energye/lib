@@ -42,10 +42,9 @@ type
     procedure doCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure doFailNavigationWithError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-    procedure doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition;
-      var credential: NSURLCredential);
+    //procedure doReceiveAuthenticationChallenge(webView: WKWebView; challenge: NSURLAuthenticationChallenge; var disposition: NSURLSessionAuthChallengeDisposition; var credential: NSURLCredential);
     procedure doWebContentProcessDidTerminate (webView: WKWebView);
-    function doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
+    //function doAuthenticationChallengeShouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge): Boolean;
     procedure doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
     procedure doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
@@ -72,7 +71,7 @@ type
     procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
     procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
     procedure doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
-    procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
+    //procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   end;
@@ -325,6 +324,11 @@ type
     ['{CA5E93CA-6A34-BAB8-362E-CD94D5839987}']
     function Data(): NSURLCredential;
     function Persistence: NSURLCredentialPersistence;
+  end;
+
+  INSURLAuthenticationChallenge = interface
+    ['{CA5E93CA-6A34-BAB8-362E-CD94D5834802}']
+    function Data(): NSURLAuthenticationChallenge;
   end;
 
 implementation
