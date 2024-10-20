@@ -81,7 +81,6 @@ end;
 //property
 function CustomOpenGLControl_RedBits(AIsSet: LongBool; AObj: TCustomOpenGLControl; AValue: uint32): uint32; extdecl;
 begin
-  {$IFDEF HasRGBBits}
   {$define handleExceptionFuncName :='RedBits'}
   handleExceptionBegin
   if AIsSet then
@@ -90,13 +89,11 @@ begin
   end else
     Result := AObj.RedBits;
   handleExceptionEnd
-  {$ENDIF}
 end;
 
 //property
 function CustomOpenGLControl_GreenBits(AIsSet: LongBool; AObj: TCustomOpenGLControl; AValue: uint32): uint32; extdecl;
 begin
-  {$IFDEF HasRGBBits}
   {$define handleExceptionFuncName :='GreenBits'}
   handleExceptionBegin
   if AIsSet then
@@ -105,13 +102,11 @@ begin
   end else
     Result := AObj.GreenBits;
   handleExceptionEnd
-  {$ENDIF}
 end;
 
 //property
 function CustomOpenGLControl_BlueBits(AIsSet: LongBool; AObj: TCustomOpenGLControl; AValue: uint32): uint32; extdecl;
 begin
-  {$IFDEF HasRGBBits}
   {$define handleExceptionFuncName :='BlueBits'}
   handleExceptionBegin
   if AIsSet then
@@ -120,7 +115,6 @@ begin
   end else
     Result := AObj.BlueBits;
   handleExceptionEnd
-  {$ENDIF}
 end;
 
 //property

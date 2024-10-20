@@ -204,6 +204,7 @@ type
     procedure OnTLVAdvancedCustomDrawItemEvent(Sender: TCustomListView; Item: TListItem; State: TCustomDrawState; Stage: TCustomDrawStage; var DefaultDraw: Boolean);
     procedure OnTLVAdvancedCustomDrawSubItemEvent(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; Stage: TCustomDrawStage; var DefaultDraw: Boolean);
     procedure OnTLVChangeEvent(Sender: TObject; AItem: TListItem; Change: TItemChange);
+    procedure OnTLVChangingEvent(Sender: TObject; Item: TListItem; Change: TItemChange; var AllowChange: Boolean);
     procedure OnTLVColumnClickEvent(Sender: TObject; Column: TListColumn);
     procedure OnTLVCompareEvent(Sender: TObject; Item1, Item2: TListItem; Data: Integer; var Compare: Integer);
     procedure OnTLVCustomDrawEvent(Sender: TCustomListView; const ARect: TRect; var DefaultDraw: Boolean);
@@ -982,6 +983,11 @@ end;
 procedure TLCLEvent.OnTLVChangeEvent(Sender: TObject; AItem: TListItem; Change: TItemChange);
 begin
   SendEvent([Sender, AItem, Ord(Change)]);
+end;
+
+procedure TLCLEvent.OnTLVChangingEvent(Sender: TObject; Item: TListItem; Change: TItemChange; var AllowChange: Boolean);
+begin
+  SendEvent([Sender, Item, Ord(Change), @AllowChange]);
 end;
 
 procedure TLCLEvent.OnTLVColumnClickEvent(Sender: TObject; Column: TListColumn);
