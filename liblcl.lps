@@ -356,8 +356,9 @@
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="44"/>
-        <CursorPos X="15" Y="60"/>
+        <CursorPos X="22" Y="50"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -869,12 +870,10 @@
       </Unit76>
       <Unit77>
         <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="216"/>
         <CursorPos X="5" Y="225"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit77>
       <Unit78>
         <Filename Value="uCEF_TypesConvert.pas"/>
@@ -896,7 +895,7 @@
       </Unit80>
       <Unit81>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="188"/>
         <CursorPos X="20" Y="254"/>
         <UsageCount Value="12"/>
@@ -910,13 +909,13 @@
       </Unit82>
       <Unit83>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WKWebView.inc"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit83>
       <Unit84>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\Sources.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="120"/>
         <CursorPos X="32" Y="171"/>
         <UsageCount Value="12"/>
@@ -929,7 +928,7 @@
       </Unit85>
       <Unit86>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebView.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="32"/>
         <CursorPos X="61" Y="56"/>
         <UsageCount Value="12"/>
@@ -943,7 +942,7 @@
         <UsageCount Value="10"/>
       </Unit87>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="52" Column="5" TopLine="31"/>
@@ -981,60 +980,32 @@
         <Caret Line="60" Column="15" TopLine="46"/>
       </Position9>
       <Position10>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="7" Column="10"/>
+        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
+        <Caret Line="230" Column="27" TopLine="208"/>
       </Position10>
       <Position11>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="15" Column="72"/>
+        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
+        <Caret Line="220" Column="5" TopLine="208"/>
       </Position11>
       <Position12>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
-        <Caret Line="230" Column="27" TopLine="208"/>
+        <Caret Line="254" Column="20" TopLine="208"/>
       </Position12>
       <Position13>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="40" Column="18"/>
+        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\Sources.inc"/>
       </Position13>
       <Position14>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
-        <Caret Line="220" Column="5" TopLine="208"/>
-      </Position14>
-      <Position15>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
-        <Caret Line="254" Column="20" TopLine="208"/>
-      </Position15>
-      <Position16>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\Sources.inc"/>
-      </Position16>
-      <Position17>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\Sources.inc"/>
         <Caret Line="19" Column="18"/>
-      </Position17>
-      <Position18>
+      </Position14>
+      <Position15>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebView.inc"/>
         <Caret Line="31" Column="10" TopLine="11"/>
-      </Position18>
-      <Position19>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="266" Column="44"/>
-      </Position19>
-      <Position20>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="252" Column="42" TopLine="223"/>
-      </Position20>
-      <Position21>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="50" Column="34" TopLine="21"/>
-      </Position21>
-      <Position22>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <Caret Line="132" Column="21" TopLine="82"/>
-      </Position22>
-      <Position23>
+      </Position15>
+      <Position16>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebView.inc"/>
         <Caret Line="32" Column="30" TopLine="11"/>
-      </Position23>
+      </Position16>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

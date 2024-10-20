@@ -1,0 +1,52 @@
+unit uNSURLAuthenticationChallenge;
+
+{$mode ObjFPC}{$H+}
+{$modeswitch objectivec2}
+{$modeswitch cblocks}
+
+interface
+
+uses
+  Classes, SysUtils, Forms,
+  CocoaAll, CocoaUtils,
+  uWebKit, uWkInterface;
+
+type
+
+
+  TNSURLAuthenticationChallenge = class(TInterfacedObject, INSURLAuthenticationChallenge)
+  private
+    FData: NSURLAuthenticationChallenge;
+  protected
+    function Data(): NSURLAuthenticationChallenge;
+  public
+    constructor Create(AData: NSURLAuthenticationChallenge);
+    destructor Destroy; override;
+  public
+  end;
+
+
+implementation
+
+constructor TNSURLAuthenticationChallenge.Create(AData: NSURLAuthenticationChallenge);
+begin
+  inherited Create;
+  FData := AData;
+end;
+
+destructor TNSURLAuthenticationChallenge.Destroy;
+begin
+  if Assigned(FData) then
+  begin
+    //FData.release;
+    FData := nil;
+  end;
+  inherited Destroy;
+end;
+
+function TNSURLAuthenticationChallenge.Data(): NSURLAuthenticationChallenge;
+begin
+  Result := FData;
+end;
+
+end.

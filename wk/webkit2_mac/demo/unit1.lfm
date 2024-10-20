@@ -3,12 +3,12 @@ object Form1: TForm1
   Height = 450
   Top = 250
   Width = 600
-  Caption = 'Form1'
+  Caption = 'WebKit'
   ClientHeight = 450
   ClientWidth = 600
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.7.0.0'
   object GoURL: TButton
     Left = 481
     Height = 25

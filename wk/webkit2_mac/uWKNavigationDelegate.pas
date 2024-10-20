@@ -44,11 +44,9 @@ type
     procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
     procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
-    procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
-      completionHandler: WKReceiveAuthenticationChallenge);
+    //procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: WKReceiveAuthenticationChallenge);
     procedure webViewWebContentProcessDidTerminate (webView: WKWebView);
-    procedure webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
-      decisionHandler: WKAuthenticationChallenge);
+    //procedure webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge; decisionHandler: WKAuthenticationChallenge);
     // 告知代理导航操作已变为下载。实施此方法以开始跟踪下载进度。
     procedure webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
     // 告知代理导航响应已变为下载。实施此方法以开始跟踪下载进度。
@@ -147,21 +145,21 @@ begin
   IWKNavigationDelegateEvent(FData).doFailNavigationWithError(webView, navigation, error);
 end;
 
-procedure NSWKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
-  completionHandler: WKReceiveAuthenticationChallenge);
-var
-  TempDisposition: NSURLSessionAuthChallengeDisposition;
-  TempCredential: NSURLCredential;
-begin
-  // default
-  TempDisposition := NSURLSessionAuthChallengePerformDefaultHandling;
-  TempCredential := nil;
-  if FData <> nil then
-  begin
-    IWKNavigationDelegateEvent(FData).doReceiveAuthenticationChallenge(webView, challenge, TempDisposition, TempCredential);
-  end;
-  completionHandler(TempDisposition, TempCredential);
-end;
+//procedure NSWKNavigationDelegate.webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
+//  completionHandler: WKReceiveAuthenticationChallenge);
+//var
+//  TempDisposition: NSURLSessionAuthChallengeDisposition;
+//  TempCredential: NSURLCredential;
+//begin
+//  // default
+//  TempDisposition := NSURLSessionAuthChallengePerformDefaultHandling;
+//  TempCredential := nil;
+//  if FData <> nil then
+//  begin
+//    IWKNavigationDelegateEvent(FData).doReceiveAuthenticationChallenge(webView, challenge, TempDisposition, TempCredential);
+//  end;
+//  completionHandler(TempDisposition, TempCredential);
+//end;
 
 procedure NSWKNavigationDelegate.webViewWebContentProcessDidTerminate (webView: WKWebView);
 begin
@@ -171,18 +169,18 @@ begin
   end;
 end;
 
-procedure NSWKNavigationDelegate.webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
-  decisionHandler: WKAuthenticationChallenge);
-var
-  TempDecision: Boolean;
-begin
-  TempDecision := True;
-  if FData <> nil then
-  begin
-    TempDecision := IWKNavigationDelegateEvent(FData).doAuthenticationChallengeShouldAllowDeprecatedTLS(webView, challenge);
-  end;
-  decisionHandler(ObjcBool(TempDecision));
-end;
+//procedure NSWKNavigationDelegate.webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge;
+//  decisionHandler: WKAuthenticationChallenge);
+//var
+//  TempDecision: Boolean;
+//begin
+//  TempDecision := True;
+//  if FData <> nil then
+//  begin
+//    TempDecision := IWKNavigationDelegateEvent(FData).doAuthenticationChallengeShouldAllowDeprecatedTLS(webView, challenge);
+//  end;
+//  decisionHandler(ObjcBool(TempDecision));
+//end;
 
 procedure NSWKNavigationDelegate.webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
 begin
