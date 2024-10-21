@@ -322,3 +322,4 @@
 {$I ./lcl/predef/LCL_VirtualNodePredef.inc}
 {$I ./lcl/predef/LCL_VirtualTreeColumnsPredef.inc}
 {$I ./lcl/predef/LCL_WinAPIPredef.inc}
+{$I ./lcl/predef/LCL_String.inc}
