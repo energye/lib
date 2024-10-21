@@ -318,8 +318,8 @@
 {$I ./lcl/predef/InterfacedObject.inc}
 {$I ./lcl/predef/LCL_LazIntfImagePredef.inc}
 {$I ./lcl/predef/LCL_RawImageDescriptionPredef.inc}
+{$I ./lcl/predef/LCL_String.inc}
 {$I ./lcl/predef/LCL_VTImageInfoPredef.inc}
 {$I ./lcl/predef/LCL_VirtualNodePredef.inc}
 {$I ./lcl/predef/LCL_VirtualTreeColumnsPredef.inc}
 {$I ./lcl/predef/LCL_WinAPIPredef.inc}
-{$I ./lcl/predef/LCL_String.inc}

@@ -1,3 +1,4 @@
+
 //constructor
 function CustomOpenGLControl_Create(TheOwner: TComponent): TCustomOpenGLControl; extdecl;
 begin
