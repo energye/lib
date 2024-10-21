@@ -353,7 +353,7 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="101">
+    <Units Count="105">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -501,7 +501,7 @@
       </Unit18>
       <Unit19>
         <Filename Value="ImportLCL.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="257"/>
         <CursorPos X="18" Y="325"/>
         <UsageCount Value="108"/>
@@ -935,9 +935,11 @@
       </Unit74>
       <Unit75>
         <Filename Value="uCEF_TypesConvert.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="511"/>
-        <UsageCount Value="8"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="46"/>
+        <CursorPos X="43" Y="80"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit75>
       <Unit76>
@@ -1058,14 +1060,14 @@
       </Unit91>
       <Unit92>
         <Filename Value="lcl\predef\LCL_String.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="11" Y="28"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit92>
       <Unit93>
         <Filename Value="uString.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="3" Y="16"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
@@ -1117,18 +1119,49 @@
       </Unit99>
       <Unit100>
         <Filename Value="cef\CEF_Value.inc"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit100>
+      <Unit101>
+        <Filename Value="cef\CEF_PDFPrintOptions.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="281"/>
+        <CursorPos X="8" Y="321"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit101>
+      <Unit102>
+        <Filename Value="cef\CEF_RequestContext.inc"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="15"/>
+        <CursorPos X="45" Y="15"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit102>
+      <Unit103>
+        <Filename Value="3rd-party\CEF4Delphi\source\uCEFRequestContext.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="246"/>
+        <CursorPos X="22" Y="279"/>
+        <UsageCount Value="10"/>
+      </Unit103>
+      <Unit104>
+        <Filename Value="3rd-party\CEF4Delphi\source\uCEFTypes.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3592"/>
+        <CursorPos X="3" Y="3626"/>
+        <UsageCount Value="10"/>
+      </Unit104>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="37" Column="9" TopLine="29"/>
@@ -1199,8 +1232,36 @@
       </Position17>
       <Position18>
         <Filename Value="ImportCEF.inc"/>
-        <Caret Line="22" Column="32" TopLine="121"/>
+        <Caret Line="22" Column="32" TopLine="88"/>
       </Position18>
+      <Position19>
+        <Filename Value="cef\CEF_RequestContext.inc"/>
+        <Caret Line="20" Column="44"/>
+      </Position19>
+      <Position20>
+        <Filename Value="cef\CEF_RequestContext.inc"/>
+        <Caret Line="19" Column="52"/>
+      </Position20>
+      <Position21>
+        <Filename Value="cef\CEF_PDFPrintOptions.inc"/>
+        <Caret Line="285" Column="25" TopLine="274"/>
+      </Position21>
+      <Position22>
+        <Filename Value="uCEF_TypesConvert.pas"/>
+        <Caret Line="82" Column="3" TopLine="48"/>
+      </Position22>
+      <Position23>
+        <Filename Value="cef\CEF_PDFPrintOptions.inc"/>
+        <Caret Line="319" Column="20" TopLine="281"/>
+      </Position23>
+      <Position24>
+        <Filename Value="cef\CEF_RequestContext.inc"/>
+        <Caret Line="15" Column="45"/>
+      </Position24>
+      <Position25>
+        <Filename Value="cef\CEF_PDFPrintOptions.inc"/>
+        <Caret Line="319" Column="55" TopLine="281"/>
+      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

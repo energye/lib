@@ -267,13 +267,13 @@ begin
 end;
 
 //procedure
-procedure CefBrowserHost_PrintToPdf(AObj: ICefBrowserHost; const path: PChar; settings: TEngPdfPrintSettingsPtr; const callback: ICefPdfPrintCallback); extdecl;
+procedure CefBrowserHost_PrintToPdf(AObj: ICefBrowserHost; const path: PChar; settings: PEngPdfPrintSettingsPtr; const callback: ICefPdfPrintCallback); extdecl;
 var
   Insettings: TCefPdfPrintSettings;
 begin
   {$define handleExceptionFuncName :='PrintToPdf'}
   handleExceptionBegin
-  Insettings := EngPdfPrintSettingsToPas(settings);
+  Insettings := EngPdfPrintSettingsToPas(settings^);
   AObj.PrintToPdf(path, @Insettings, callback);
   handleExceptionEnd
 end;
@@ -297,15 +297,15 @@ begin
 end;
 
 //procedure
-procedure CefBrowserHost_ShowDevTools(AObj: ICefBrowserHost; const windowInfo: TEngWindowInfoPtr; const client: ICefClient; const settings: TEngBrowserSettingsPtr; inspectElementAt: PCefPoint); extdecl;
+procedure CefBrowserHost_ShowDevTools(AObj: ICefBrowserHost; const windowInfo: PEngWindowInfoPtr; const client: ICefClient; const settings: PEngBrowserSettingsPtr; inspectElementAt: PCefPoint); extdecl;
 var
   InwindowInfo: TCefWindowInfo;
   Insettings: TCefBrowserSettings;
 begin
   {$define handleExceptionFuncName :='ShowDevTools'}
   handleExceptionBegin
-  InwindowInfo := EngWindowInfoToPas(windowInfo);
-  Insettings := EngBrowserSettingsToPas(settings);
+  InwindowInfo := EngWindowInfoToPas(windowInfo^);
+  Insettings := EngBrowserSettingsToPas(settings^);
   AObj.ShowDevTools(@InwindowInfo, client, @Insettings, inspectElementAt);
   handleExceptionEnd
 end;

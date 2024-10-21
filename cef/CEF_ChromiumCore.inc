@@ -1728,13 +1728,13 @@ begin
 end;
 
 //procedure
-procedure ChromiumCore_ShowDevTools(AObj: TChromiumCore; var inspectElementAt: TPoint; aWindowInfo: TEngWindowInfoPtr); extdecl;
+procedure ChromiumCore_ShowDevTools(AObj: TChromiumCore; var inspectElementAt: TPoint; aWindowInfo: PEngWindowInfoPtr); extdecl;
 var
   InaWindowInfo: TCefWindowInfo;
 begin
   {$define handleExceptionFuncName :='ShowDevTools'}
   handleExceptionBegin
-  InaWindowInfo := EngWindowInfoToPas(aWindowInfo);
+  InaWindowInfo := EngWindowInfoToPas(aWindowInfo^);
   AObj.ShowDevTools(inspectElementAt, @InaWindowInfo);
   handleExceptionEnd
 end;

@@ -27,13 +27,13 @@ begin
 end;
 
 //function
-function CEFBrowserViewComponent_CreateBrowserView(AObj: TCEFBrowserViewComponent; const client: ICefClient; const url: PChar; const settings: TEngBrowserSettingsPtr; const extrainfo: ICefDictionaryValue; const requestcontext: ICefRequestContext): LongBool; extdecl;
+function CEFBrowserViewComponent_CreateBrowserView(AObj: TCEFBrowserViewComponent; const client: ICefClient; const url: PChar; const settings: PEngBrowserSettingsPtr; const extrainfo: ICefDictionaryValue; const requestcontext: ICefRequestContext): LongBool; extdecl;
 var
   Insettings: TCefBrowserSettings;
 begin
   {$define handleExceptionFuncName :='CreateBrowserView'}
   handleExceptionBegin
-  Insettings := EngBrowserSettingsToPas(settings);
+  Insettings := EngBrowserSettingsToPas(settings^);
   Result := AObj.CreateBrowserView(client, url, Insettings, extrainfo, requestcontext);
   handleExceptionEnd
 end;
