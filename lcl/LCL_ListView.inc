@@ -398,6 +398,14 @@ begin
 end;
 
 //property event
+procedure ListView_SetOnChanging(AObj: TListView; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTLVChangingEvent}
+  {$DEFINE EventName := OnChanging}
+  EventMethodCode
+end;
+
+//property event
 procedure ListView_SetOnColumnClick(AObj: TListView; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := OnTLVColumnClickEvent}
@@ -720,6 +728,7 @@ exports
   ListView_SetOnAdvancedCustomDrawItem,
   ListView_SetOnAdvancedCustomDrawSubItem,
   ListView_SetOnChange,
+  ListView_SetOnChanging,
   ListView_SetOnColumnClick,
   ListView_SetOnCompare,
   ListView_SetOnContextPopup,

@@ -635,6 +635,15 @@ begin
 end;
 
 //procedure
+procedure CustomForm_GetFormImage1(AObj: TCustomForm; ABitmap: TCustomBitmap); extdecl;
+begin
+  {$define handleExceptionFuncName :='GetFormImage1'}
+  handleExceptionBegin
+  AObj.GetFormImage(ABitmap);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure CustomForm_IntfHelp(AObj: TCustomForm; AComponent: TComponent); extdecl;
 begin
   {$define handleExceptionFuncName :='IntfHelp'}
@@ -852,6 +861,7 @@ exports
   CustomForm_DestroyWnd,
   CustomForm_EnsureVisible,
   CustomForm_FocusControl,
+  CustomForm_GetFormImage1,
   CustomForm_IntfHelp,
   CustomForm_MakeFullyVisible,
   CustomForm_Release,
