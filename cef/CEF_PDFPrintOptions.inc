@@ -315,7 +315,6 @@ var
 begin
   {$define handleExceptionFuncName :='CopyToSettings'}
   handleExceptionBegin
-  InaSettings := EngPdfPrintSettingsToPas(aSettings^);
   AObj.CopyToSettings(InaSettings);
   RetaSettings := EngPdfPrintSettingsToGo(InaSettings);
   aSettings := @RetaSettings;
