@@ -77,6 +77,9 @@ uses
 {$I CustomWidgetInterfaces.inc}
 {$I LazarusDef.inc}
 
+// LibLCL 宏定义
+{$I liblcl.inc}
+
 // LCL
 {$I ImportLCL.inc}
 
