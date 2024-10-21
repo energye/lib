@@ -17,13 +17,13 @@ begin
 end;
 
 //function
-function ChromiumCore_SetCookie(AObj: TChromiumCore; const url: PChar; aSetImmediately: LongBool; aID: integer; const cookie: TCookiePtr): LongBool; extdecl;
+function ChromiumCore_SetCookie(AObj: TChromiumCore; const url: PChar; aSetImmediately: LongBool; aID: integer; const cookie: PCookiePtr): LongBool; extdecl;
 var
   InCookie: TCookie;
 begin
   {$define handleExceptionFuncName :='SetCookie'}
   handleExceptionBegin
-  InCookie := CookieToPas(cookie);
+  InCookie := CookieToPas(cookie^);
   Result := AObj.SetCookie(url, InCookie.name, InCookie.value, InCookie.domain, InCookie.path, InCookie.secure, InCookie.httponly, InCookie.has_expires, InCookie.creation,
     InCookie.last_access, InCookie.expires, InCookie.same_site, InCookie.priority, aSetImmediately, aID);
   handleExceptionEnd
