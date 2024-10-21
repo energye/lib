@@ -51,11 +51,11 @@ begin
 end;
 
 //function
-function CefStringMultimap_GetKey(AObj: ICefStringMultimap; index: NativeUInt): PChar; extdecl;
+procedure CefStringMultimap_GetKey(AObj: ICefStringMultimap; index: NativeUInt; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetKey'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetKey(index));
+  RetValue.SetValue(AObj.GetKey(index));
   handleExceptionEnd
 end;
 
