@@ -12,9 +12,12 @@ begin
 end;
 
 //function
-procedure CefRequestContext_New(const settings: PCefRequestContextSettings; const handler: ICefRequestContextHandler; var Result: ICefRequestContext); extdecl;
+procedure CefRequestContext_New(const settings: TEngRequestContextSettingsPtr; const handler: ICefRequestContextHandler; var Result: ICefRequestContext); extdecl;
+var
+  Insettings: TCefRequestContextSettings;
 begin
-  Result := TCefRequestContextRef.New(settings, handler);
+  Insettings := EngRequestContextSettingsToPas(settings);
+  Result := TCefRequestContextRef.New(@Insettings, handler);
 end;
 
 //function

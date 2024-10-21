@@ -6,9 +6,12 @@ begin
 end;
 
 //function
-procedure CefBrowserView_CreateBrowserView(const client: ICefClient; const url: PChar; const settings: TCefBrowserSettings; const extrainfo: ICefDictionaryValue; const requestcontext: ICefRequestContext; const delegate: ICefBrowserViewDelegate; var Result: ICefBrowserView); extdecl;
+procedure CefBrowserView_CreateBrowserView(const client: ICefClient; const url: PChar; const settings: TEngBrowserSettingsPtr; const extrainfo: ICefDictionaryValue; const requestcontext: ICefRequestContext; const delegate: ICefBrowserViewDelegate; var Result: ICefBrowserView); extdecl;
+var
+  Insettings: TCefBrowserSettings;
 begin
-  Result := TCefBrowserViewRef.CreateBrowserView(client, url, settings, extrainfo, requestcontext, delegate);
+  Insettings := EngBrowserSettingsToPas(settings);
+  Result := TCefBrowserViewRef.CreateBrowserView(client, url, Insettings, extrainfo, requestcontext, delegate);
 end;
 
 //function

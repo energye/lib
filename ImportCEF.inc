@@ -199,6 +199,7 @@
 {$I ./cef/predef/CEF_BufferPanelPredef.inc}
 {$I ./cef/predef/CEF_ChromiumCorePredef.inc}
 {$I ./cef/predef/CEF_DisplayPredef.inc}
+{$I ./cef/predef/CEF_MiscFunctions.inc}
 {$I ./cef/predef/CEF_PostDataPredef.inc}
 {$I ./cef/predef/CEF_PrintSettingsPredef.inc}
 {$I ./cef/predef/CEF_RequestPredef.inc}
@@ -206,4 +207,3 @@
 {$I ./cef/predef/CEF_V8ValuePredef.inc}
 {$I ./cef/predef/CEF_WorkSchedulerPredef.inc}
 {$I ./cef/predef/CEF_X509CertificatePredef.inc}
-{$I ./cef/predef/CEF_MiscFunctions.inc}

@@ -33,11 +33,11 @@ begin
 end;
 
 //function
-function CefFrame_GetName(AObj: ICefFrame): PChar; extdecl;
+procedure CefFrame_GetName(AObj: ICefFrame; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetName'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetName());
+  RetValue.SetValue(AObj.GetName());
   handleExceptionEnd
 end;
 
@@ -60,11 +60,11 @@ begin
 end;
 
 //function
-function CefFrame_GetUrl(AObj: ICefFrame): PChar; extdecl;
+procedure CefFrame_GetUrl(AObj: ICefFrame; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetUrl'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetUrl());
+  RetValue.SetValue(AObj.GetUrl());
   handleExceptionEnd
 end;
 

@@ -102,11 +102,11 @@ begin
 end;
 
 //function
-function CefValue_GetString(AObj: ICefValue): PChar; extdecl;
+procedure CefValue_GetString(AObj: ICefValue; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetString'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetString());
+  RetValue.SetValue(AObj.GetString());
   handleExceptionEnd
 end;
 

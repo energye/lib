@@ -42,20 +42,20 @@ begin
 end;
 
 //function
-function CefStringMap_GetKey(AObj: ICefStringMap; index: NativeUInt): PChar; extdecl;
+procedure CefStringMap_GetKey(AObj: ICefStringMap; index: NativeUInt; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetKey'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetKey(index));
+  RetValue.SetValue(AObj.GetKey(index));
   handleExceptionEnd
 end;
 
 //function
-function CefStringMap_GetValue(AObj: ICefStringMap; index: NativeUInt): PChar; extdecl;
+procedure CefStringMap_GetValue(AObj: ICefStringMap; index: NativeUInt; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetValue'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetValue(index));
+  RetValue.SetValue(AObj.GetValue(index));
   handleExceptionEnd
 end;
 

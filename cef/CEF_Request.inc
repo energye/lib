@@ -21,20 +21,20 @@ begin
 end;
 
 //function
-function CefRequest_GetUrl(AObj: ICefRequest): PChar; extdecl;
+procedure CefRequest_GetUrl(AObj: ICefRequest; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetUrl'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetUrl());
+  RetValue.SetValue(AObj.GetUrl());
   handleExceptionEnd
 end;
 
 //function
-function CefRequest_GetMethod(AObj: ICefRequest): PChar; extdecl;
+procedure CefRequest_GetMethod(AObj: ICefRequest; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetMethod'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetMethod());
+  RetValue.SetValue(AObj.GetMethod());
   handleExceptionEnd
 end;
 
@@ -48,11 +48,11 @@ begin
 end;
 
 //function
-function CefRequest_GetReferrerUrl(AObj: ICefRequest): PChar; extdecl;
+procedure CefRequest_GetReferrerUrl(AObj: ICefRequest; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetReferrerUrl'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetReferrerUrl());
+  RetValue.SetValue(AObj.GetReferrerUrl());
   handleExceptionEnd
 end;
 
@@ -66,11 +66,11 @@ begin
 end;
 
 //function
-function CefRequest_GetHeaderByName(AObj: ICefRequest; const name: PChar): PChar; extdecl;
+procedure CefRequest_GetHeaderByName(AObj: ICefRequest; const name: PChar; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetHeaderByName'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetHeaderByName(name));
+  RetValue.SetValue(AObj.GetHeaderByName(name));
   handleExceptionEnd
 end;
 
@@ -84,11 +84,11 @@ begin
 end;
 
 //function
-function CefRequest_GetFirstPartyForCookies(AObj: ICefRequest): PChar; extdecl;
+procedure CefRequest_GetFirstPartyForCookies(AObj: ICefRequest; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetFirstPartyForCookies'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetFirstPartyForCookies());
+  RetValue.SetValue(AObj.GetFirstPartyForCookies());
   handleExceptionEnd
 end;
 

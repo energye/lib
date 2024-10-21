@@ -264,11 +264,11 @@ begin
 end;
 
 //function
-function CefV8Value_GetStringValue(AObj: ICefV8Value): PChar; extdecl;
+procedure CefV8Value_GetStringValue(AObj: ICefV8Value; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetStringValue'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetStringValue());
+  RetValue.SetValue(AObj.GetStringValue());
   handleExceptionEnd
 end;
 
@@ -480,11 +480,11 @@ begin
 end;
 
 //function
-function CefV8Value_GetFunctionName(AObj: ICefV8Value): PChar; extdecl;
+procedure CefV8Value_GetFunctionName(AObj: ICefV8Value; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetFunctionName'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetFunctionName());
+  RetValue.SetValue(AObj.GetFunctionName());
   handleExceptionEnd
 end;
 

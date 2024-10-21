@@ -308,15 +308,15 @@ begin
 end;
 
 //procedure
-procedure PDFPrintOptions_CopyToSettings(AObj: TPDFPrintOptions; var aSettings: TCefPdfPrintSettings); extdecl;
+procedure PDFPrintOptions_CopyToSettings(AObj: TPDFPrintOptions; var aSettings: TEngPdfPrintSettingsPtr); extdecl;
 var
-  RetaSettings: TCefPdfPrintSettings;
+  InaSettings: TCefPdfPrintSettings;
 begin
   {$define handleExceptionFuncName :='CopyToSettings'}
   handleExceptionBegin
-  RetaSettings := aSettings;
-  AObj.CopyToSettings(RetaSettings);
-  aSettings := RetaSettings;
+  InaSettings := EngPdfPrintSettingsToPas(aSettings);
+  AObj.CopyToSettings(InaSettings);
+  aSettings := EngPdfPrintSettingsToGo(InaSettings);
   handleExceptionEnd
 end;
 

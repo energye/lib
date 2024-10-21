@@ -147,11 +147,11 @@ begin
 end;
 
 //function
-function CefListValue_GetString(AObj: ICefListValue; index: NativeUInt): PChar; extdecl;
+procedure CefListValue_GetString(AObj: ICefListValue; index: NativeUInt; const RetValue: TString); extdecl;
 begin
   {$define handleExceptionFuncName :='GetString'}
   handleExceptionBegin
-  Result := ToPChar(AObj.GetString(index));
+  RetValue.SetValue(AObj.GetString(index));
   handleExceptionEnd
 end;
 
