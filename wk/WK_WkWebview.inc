@@ -329,7 +329,7 @@ end;
 
 procedure WkWebview_AsSchemeRequestDelegateEvent(AObj: TWkWebview; out Result: IWkSchemeRequestDelegateEvent); extdecl;
 begin
-  Result := AObj as IWkSchemeRequestDelegateEvent;
+  Result := AObj.AsSchemeRequestDelegateEvent();
 end;
 
 exports

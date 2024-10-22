@@ -99,6 +99,7 @@ type
     function GetSettings(): TWkSettings;
     procedure SetSettings(aSetting: TWkSettings);
     procedure FreeWebview();
+    function AsSchemeRequestDelegateEvent(): IWkSchemeRequestDelegateEvent;
   published
     // 当web_view中的加载操作改变时触发
     // 当发出新的加载请求时，WEBKIT_LOAD_STARTED发出信号，当加载成功完成或由于错误而完成时，WEBKIT_LOAD_FINISHED发出信号
@@ -732,6 +733,11 @@ begin
     FWebView := nil;
   end;
   Free();
+end;
+
+function TWkWebview.AsSchemeRequestDelegateEvent(): IWkSchemeRequestDelegateEvent;
+begin
+  Result := self as IWkSchemeRequestDelegateEvent;
 end;
 
 end.
