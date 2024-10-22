@@ -17,8 +17,8 @@ uses
 
 begin
   //RequireDerivedFormResource := True;
-  Application.Title:='demo-webkit2';
-  Application.Scaled:=True;
+  Application.Title := 'demo-webkit2';
+  Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
   Application.Run;
