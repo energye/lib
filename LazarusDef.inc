@@ -398,15 +398,15 @@ end;
 {$ENDIF}
 
 // 事件回调 WK
-{$IFDEF Linux}
+{$IFDEF LCLGTK3}
 procedure SetWKEventCallback(APtr: Pointer); extdecl;
 begin
-  //GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
+  GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
 end;
 
 procedure SetWKRemoveEventCallback(APtr: Pointer); extdecl;
 begin
-  //GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
+  GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
 end;
 {$ENDIF}
 
@@ -1027,8 +1027,8 @@ exports
   SetWVRemoveEventCallback,
   {$ENDIF}
 
-  // 事件回调 WK
-  {$IFDEF Linux}
+  // 事件回调 Linux GTK3
+  {$IFDEF LCLGTK3}
   // 设置 WK 事件回调
   SetWKEventCallback,
   // 设置 WK 事件移除回调

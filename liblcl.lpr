@@ -52,18 +52,18 @@ uses
 // CEF unit's
 {$I CEFComponentUnits.inc}
 
+// Webview2 Windows units
 {$IFDEF WINDOWS}
-  // WebView2 unit's
  ,{$I WVComponentUnits.inc}
 {$ENDIF}
 
-{$IFDEF Darwin}
-  // Webkit unit's
+// Webkit2 MacOS units
+{$IFDEF LCLCocoa}
 {$ENDIF}
 
-{$IFDEF Linux}
-  // Webkit2 unit's
- //,{$I WKComponentUnits.inc}
+// Webkit2 Linux GTK3 units
+{$IFDEF LCLGTK3}
+,{$I WKComponentUnits.inc}
 {$ENDIF}
 ;
 
@@ -86,18 +86,18 @@ uses
 // CEF
 {$I ImportCEF.inc}
 
-// Webview2 API
+// Webview2 Windows
 {$IFDEF WINDOWS}
 {$I ImportWV.inc}
 {$ENDIF}
 
-// Webkit
+// Webkit2 MacOS
 {$IFDEF LCLCocoa}
 {$ENDIF}
 
-// Webkit2
-{$IFDEF Linux}
-//{$I ImportWK.inc}
+// Webkit2 Linux GTK3
+{$IFDEF LCLGTK3}
+{$I ImportWK.inc}
 {$ENDIF}
 
 begin
