@@ -20,7 +20,11 @@ uses
   SysUtils,
   uTools,
   uWkTypes, uLibWebkit, uWkInterfaces,
-  uWkJSValue;
+  uWkContextMenu, uWkContextMenuItem, uWkCookieManager,
+  uWkFunctions, uWkHeaders, uWkInputStream, uWkJSValue,
+  uWkNavigationAction, uWkPolicyDecision, uWkSettings, uWkURIRequest,
+  uWkURIResponse, uWkURISchemeRequest, uWkWebContext, uWkWebsitePolicies,
+  uWkWebViewParent, uWkWebview, uWkWebviewEvents;
 
 type
   // 基础事件回调函数
@@ -246,7 +250,7 @@ end;
 
 procedure TWKEvent.WkWebview_OnURISchemeRequest(Sender: TObject; const uriSchemeRequest: IWkURISchemeRequest);
 begin
-  SendEvent([Sender, uriSchemeRequest]);
+  SendEvent([Sender, uriSchemeRequest as TWkURISchemeRequest]);
 end;
 
 procedure TWKEvent.WkWebview_OnProcessMessage(Sender: TObject; const jsValue: TWkJSValue; processId: TWkProcessId);
@@ -276,7 +280,7 @@ end;
 
 procedure TWKEvent.WkWebview_OnGetCookiesFinish(Sender: TObject; cookieList: IWkCookieList; error: string);
 begin
-  SendEvent([Sender, cookieList, ToPChar(error)]);
+  SendEvent([Sender, cookieList as TWkCookieList, ToPChar(error)]);
 end;
 
 procedure TWKEvent.WkWebview_OnDeleteCookieFinish(Sender: TObject; aResult: boolean; error: string);
@@ -286,7 +290,7 @@ end;
 
 function TWKEvent.WkWebview_OnDecidePolicy(Sender: TObject; decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
 begin
-  SendEvent([Sender, decision, type_, @Result]);
+  SendEvent([Sender, decision as TWkPolicyDecision, type_, @Result]);
 end;
 
 procedure TWKEvent.WkWebview_OnWebProcessTerminated(Sender: TObject; reason: WebKitWebProcessTerminationReason);
@@ -296,7 +300,7 @@ end;
 
 function TWKEvent.WkWebview_OnContextMenu(Sender: TObject; contextMenu: IWkContextMenu; defaultAction: WkAction): boolean;
 begin
-  SendEvent([Sender, contextMenu, defaultAction, @Result]);
+  SendEvent([Sender, contextMenu as TWkContextMenu, defaultAction, @Result]);
 end;
 
 procedure TWKEvent.WkWebview_OnContextMenuCommand(Sender: TObject; menuID: integer);

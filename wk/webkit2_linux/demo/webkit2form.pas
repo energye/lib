@@ -109,7 +109,7 @@ begin
   WriteLn('OnURISchemeRequestEvent Method: ', uriSchemeRequest.Method(), ' Uri: ', uriSchemeRequest.Uri(), ' Path: ', uriSchemeRequest.Path(), ' Scheme: ', uriSchemeRequest.Scheme());
 
   contents := PChar(ReadHtmlFile('index.html'));
-  contentsStream := TWkInputStream.Create(PChar(contents), strlen(contents));
+  contentsStream := TWkInputStream.New(PChar(contents), strlen(contents));
   uriSchemeRequest.Finish(contentsStream, strlen(contents), 'text/html');
 
   headers := uriSchemeRequest.Headers();
