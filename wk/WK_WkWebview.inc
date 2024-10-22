@@ -327,6 +327,10 @@ begin
   WKEventMethodCode
 end;
 
+procedure WkWebview_AsSchemeRequestDelegateEvent(AObj: TWkWebview; out Result: IWkSchemeRequestDelegateEvent); extdecl;
+begin
+  Result := AObj as IWkSchemeRequestDelegateEvent;
+end;
 
 exports
   WkWebview_Create,
@@ -369,4 +373,5 @@ exports
   WkWebview_SetOnWebProcessTerminated,
   WkWebview_SetOnContextMenu,
   WkWebview_SetOnContextMenuCommand,
-  WkWebview_SetOnContextMenuDismissed;
+  WkWebview_SetOnContextMenuDismissed,
+  WkWebview_AsSchemeRequestDelegateEvent;
