@@ -63,7 +63,7 @@ uses
 
 {$IFDEF Linux}
   // Webkit2 unit's
- ,{$I WKComponentUnits.inc}
+ //,{$I WKComponentUnits.inc}
 {$ENDIF}
 ;
 
@@ -97,7 +97,7 @@ uses
 
 // Webkit2
 {$IFDEF Linux}
-{$I ImportWK.inc}
+//{$I ImportWK.inc}
 {$ENDIF}
 
 begin

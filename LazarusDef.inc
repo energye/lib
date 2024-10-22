@@ -401,12 +401,12 @@ end;
 {$IFDEF Linux}
 procedure SetWKEventCallback(APtr: Pointer); extdecl;
 begin
-  GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
+  //GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
 end;
 
 procedure SetWKRemoveEventCallback(APtr: Pointer); extdecl;
 begin
-  GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
+  //GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
 end;
 {$ENDIF}
 
