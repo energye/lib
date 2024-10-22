@@ -8,10 +8,10 @@ begin
 end;
 
 //constructor
-function WkInputStream_Create1(const aBuf: Pointer; var aStreamLength: int64): TWkInputStream; extdecl;
+function WkInputStream_New(const aBuf: Pointer; var aStreamLength: int64) : TWkInputStream ; extdecl;
 begin
   handleExceptionBegin
-  Result := TWkInputStream.Create(aBuf, aStreamLength);
+  Result := TWkInputStream.New(aBuf, aStreamLength);
   handleExceptionEnd
 end;
 
@@ -49,7 +49,7 @@ end;
 
 exports
   WkInputStream_Create,
-  WkInputStream_Create1,
+  WkInputStream_New,
   WkInputStream_Data,
   WkInputStream_Read,
   WkInputStream_Close;

@@ -64,15 +64,15 @@ begin
 end;
 
 //function
-procedure WkURISchemeRequest_Body(AObj: TWkURISchemeRequest; var Result: IWkInputStream); extdecl;
+procedure WkURISchemeRequest_Body(AObj: TWkURISchemeRequest; var Result: TWkInputStream); extdecl;
 begin
   handleExceptionBegin
-  Result := AObj.Body();
+  Result := AObj.Body() as TWkInputStream;
   handleExceptionEnd
 end;
 
 //procedure
-procedure WkURISchemeRequest_Finish(AObj: TWkURISchemeRequest; stream: IWkInputStream; var streamlength: int64; contenttype: PChar); extdecl;
+procedure WkURISchemeRequest_Finish(AObj: TWkURISchemeRequest; stream: TWkInputStream; var streamlength: int64; contenttype: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.Finish(stream, streamlength, contenttype);
