@@ -327,9 +327,14 @@ begin
   WKEventMethodCode
 end;
 
-procedure WkWebview_AsSchemeRequestDelegateEvent(AObj: TWkWebview; out Result: IWkSchemeRequestDelegateEvent); extdecl;
+procedure WkWebview_AsCookieManagerDelegate(AObj: TWkWebview; out Result: IWkCookieManagerDelegateEvent); extdecl;
 begin
-  Result := AObj.AsSchemeRequestDelegateEvent();
+  Result := AObj.AsCookieManagerDelegate();
+end;
+
+procedure WkWebview_AsSchemeRequestDelegate(AObj: TWkWebview; out Result: IWkSchemeRequestDelegateEvent); extdecl;
+begin
+  Result := AObj.AsSchemeRequestDelegate();
 end;
 
 exports
@@ -374,4 +379,5 @@ exports
   WkWebview_SetOnContextMenu,
   WkWebview_SetOnContextMenuCommand,
   WkWebview_SetOnContextMenuDismissed,
-  WkWebview_AsSchemeRequestDelegateEvent;
+  WkWebview_AsCookieManagerDelegate,
+  WkWebview_AsSchemeRequestDelegate;
