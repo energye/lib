@@ -18,11 +18,11 @@ type
     FClosed: boolean;
   public
     constructor Create(aInputStream: PInputStream);
-    constructor Create(const aBuf: Pointer; aStreamLength: int64);
     destructor Destroy; override;
     function Data(): PInputStream;
     procedure Read(const buf: Pointer; bufSize: integer; var readCount: integer; var errorMsg: string);
     procedure Close();
+    class function New(const aBuf: Pointer; aStreamLength: int64): TWkInputStream;
   end;
 
 implementation
@@ -32,9 +32,9 @@ begin
   FInputStream := aInputStream;
 end;
 
-constructor TWkInputStream.Create(const aBuf: Pointer; aStreamLength: gssize);
+class function TWkInputStream.New(const aBuf: Pointer; aStreamLength: int64): TWkInputStream;
 begin
-  FInputStream := g_memory_input_stream_new_from_data(aBuf, gssize(aStreamLength), TGDestroyNotify(@g_free));
+  Result := Create(g_memory_input_stream_new_from_data(aBuf, gssize(aStreamLength), TGDestroyNotify(@g_free)));
 end;
 
 destructor TWkInputStream.Destroy;
