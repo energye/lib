@@ -8,7 +8,9 @@
 {$I ./wk/WK_WkInputStream.inc}
 {$I ./wk/WK_WkJSValue.inc}
 {$I ./wk/WK_WkNavigationAction.inc}
+{$I ./wk/WK_WkNavigationPolicyDecision.inc}
 {$I ./wk/WK_WkPolicyDecision.inc}
+{$I ./wk/WK_WkResponsePolicyDecision.inc}
 {$I ./wk/WK_WkSettings.inc}
 {$I ./wk/WK_WkURIRequest.inc}
 {$I ./wk/WK_WkURIResponse.inc}
