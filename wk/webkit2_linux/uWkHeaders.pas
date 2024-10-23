@@ -17,6 +17,7 @@ type
   public
     constructor Create(aMessageHeaders: PSoupMessageHeaders);
     destructor Destroy; override;
+    function Data(): PSoupMessageHeaders;
     function List(): TStrings;
     procedure Append(aName: string; aValue: string);
     procedure Clear();
@@ -38,6 +39,11 @@ destructor TWkHeaders.Destroy;
 begin
   inherited Destroy;
   FMessageHeaders := nil;
+end;
+
+function TWkHeaders.Data(): PSoupMessageHeaders;
+begin
+  Result := FMessageHeaders;
 end;
 
 procedure SoupMessageHeadersForeach(Name: Pgchar; Value: Pgchar; user_data: gpointer); cdecl;

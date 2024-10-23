@@ -18,6 +18,7 @@ type
   public
     constructor Create(aWebContext: WebKitWebContext);
     destructor Destroy; override;
+    function Data(): WebKitWebContext;
     procedure RegisterURIScheme(aScheme: string; aDelegate: IWkSchemeRequestDelegateEvent);
     procedure SetCacheModel(cache_model: WebKitCacheModel);
     procedure DownloadURI(uri: string);
@@ -53,6 +54,11 @@ begin
   begin
     webkit_web_context_register_uri_scheme(FWebContext, Pgchar(aScheme), TGCALLBACK(@doAPIURISchemeRequest), aDelegate, nil);
   end;
+end;
+
+function TWkWebContext.Data(): WebKitWebContext;
+begin
+  Result := FWebContext;
 end;
 
 procedure TWkWebContext.SetCacheModel(cache_model: WebKitCacheModel);

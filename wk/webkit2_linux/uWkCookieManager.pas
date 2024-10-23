@@ -40,6 +40,7 @@ type
   public
     constructor Create(aCookie: PSoupCookie);
     destructor Destroy; override;
+    function Data(): PSoupCookie;
   protected
     function GetDomain(): string;
     procedure SetDomain(aValue: string);
@@ -63,7 +64,6 @@ type
     property HttpOnly: boolean read GetHttpOnly write SetHttpOnly;
     property Secure: boolean read GetSecure write SetSecure;
     property Expires: PSoupDate read GetExpires write SetExpires;
-    function Data(): PSoupCookie;
     procedure SetMaxAge(aValue: longint);
     class function NewCookie(aName, aValue, aDomain, aPath: string; aMaxAge: longint): TWkCookie;
   end;
@@ -74,6 +74,7 @@ type
   public
     constructor Create(aList: PList);
     destructor Destroy; override;
+    function Data(): PList;
     function Length(): integer;
     function GetCookie(index: integer): PSoupCookie;
   end;
@@ -87,6 +88,7 @@ type
   public
     constructor Create(aCookieManager: WebKitCookieManager);
     destructor Destroy; override;
+    function Data(): WebKitCookieManager;
     procedure SetPersistentStorage(filename: string; storage: WebKitCookiePersistentStorage);
     procedure SetAcceptPolicy(policy: WebKitCookieAcceptPolicy);
 
@@ -216,6 +218,11 @@ begin
   FCookieManager := nil;
 end;
 
+function TWkCookieManager.Data(): WebKitCookieManager;
+begin
+  Result := FCookieManager;
+end;
+
 procedure TWkCookieManager.SetPersistentStorage(filename: string; storage: WebKitCookiePersistentStorage);
 begin
   if Assigned(FCookieManager) then
@@ -327,6 +334,11 @@ begin
     soup_cookie_free(FCookie);
     FCookie := nil;
   end;
+end;
+
+function TWkCookie.Data(): PSoupCookie;
+begin
+  Result := FCookie;
 end;
 
 function TWkCookie.GetDomain(): string;
@@ -456,11 +468,6 @@ begin
   end;
 end;
 
-function TWkCookie.Data(): PSoupCookie;
-begin
-  Result := FCookie;
-end;
-
 { TWkCookieList }
 
 constructor TWkCookieList.Create(aList: PList);
@@ -477,6 +484,11 @@ begin
     FList^.Free(FList);
     FList := nil;
   end;
+end;
+
+function TWkCookieList.Data(): PList;
+begin
+  Result := FList
 end;
 
 function TWkCookieList.Length(): integer;

@@ -6,8 +6,8 @@
 
 // Webkit2 单元
 
-uLibWebkit, uWkContextMenu, uWkContextMenuItem, uWkCookieManager,
-uWkFunctions, uWkHeaders, uWkInputStream, uWkInterfaces, uWkJSValue,
+uLibWebkit, uWkInterfaces, uWkFunctions, uWkContextMenu, uWkContextMenuItem,
+uWkHeaders, uWkInputStream, uWkJSValue, uWkCookieManager,
 uWkNavigationAction, uWkPolicyDecision, uWkSettings, uWkURIRequest,
 uWkURIResponse, uWkURISchemeRequest, uWkWebContext, uWkWebsitePolicies,
 uWkWebViewParent, uWkWebview, uWkTypes, uWkWebviewEvents,

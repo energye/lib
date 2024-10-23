@@ -19,6 +19,7 @@ type
   public
     constructor Create(aURIRequest: WebKitURIRequest);
     destructor Destroy; override;
+    function Data(): WebKitURIRequest;
     function Method(): string;
     function Headers(): PSoupMessageHeaders;
     property URI: string read GetUri write SetUri;
@@ -37,6 +38,11 @@ destructor TWkURIRequest.Destroy;
 begin
   inherited Destroy;
   FURIRequest := nil;
+end;
+
+function TWkURIRequest.Data(): WebKitURIRequest;
+begin
+    Result := FURIRequest;
 end;
 
 function TWkURIRequest.GetUri(): string;

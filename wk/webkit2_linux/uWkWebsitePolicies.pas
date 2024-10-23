@@ -18,8 +18,8 @@ type
     constructor Create();
     constructor Create(first_policy_name: string);
     destructor Destroy; override;
-    function GetAutoplayPolicy(): WebKitAutoplayPolicy;
     function Data(): WebKitWebsitePolicies;
+    function GetAutoplayPolicy(): WebKitAutoplayPolicy;
   end;
 
 implementation
@@ -41,6 +41,11 @@ begin
   FWebsitePolicies := nil;
 end;
 
+function TWkWebsitePolicies.Data(): WebKitWebsitePolicies;
+begin
+    Result := FWebsitePolicies;
+end;
+
 function TWkWebsitePolicies.GetAutoplayPolicy(): WebKitAutoplayPolicy;
 begin
   Result := WEBKIT_AUTOPLAY_ALLOW;
@@ -48,11 +53,6 @@ begin
   begin
     Result := webkit_website_policies_get_autoplay_policy(FWebsitePolicies);
   end;
-end;
-
-function TWkWebsitePolicies.Data(): WebKitWebsitePolicies;
-begin
-    Result := FWebsitePolicies;
 end;
 
 end.

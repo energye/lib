@@ -16,6 +16,7 @@ type
   public
     constructor Create(aNavigationAction: WebKitNavigationAction);
     destructor Destroy; override;
+    function Data(): WebKitNavigationAction;
     function GetRequest(): WebKitURIRequest;
   end;
 
@@ -34,6 +35,11 @@ destructor TWkNavigationAction.Destroy;
 begin
   inherited Destroy;
   FNavigationAction := nil;
+end;
+
+function TWkNavigationAction.Data(): WebKitNavigationAction;
+begin
+  Result := FNavigationAction;
 end;
 
 function TWkNavigationAction.GetRequest(): WebKitURIRequest;

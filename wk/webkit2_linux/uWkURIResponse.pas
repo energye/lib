@@ -17,6 +17,7 @@ type
   public
     constructor Create(aURIResponse: WebKitURIResponse);
     destructor Destroy; override;
+    function Data(): WebKitURIResponse;
     function Headers(): PSoupMessageHeaders;
     function GetStatusCode(): integer;
     function GetContentLength(): uint64;
@@ -38,6 +39,11 @@ destructor TWkURIResponse.Destroy;
 begin
   inherited Destroy;
   FURIResponse := nil;
+end;
+
+function TWkURIResponse.Data(): WebKitURIResponse;
+begin
+  Result := FURIResponse;
 end;
 
 function TWkURIResponse.GetUri(): string;
