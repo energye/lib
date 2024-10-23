@@ -19,12 +19,7 @@ uses
   Classes,
   SysUtils,
   uTools,
-  uWkTypes, uLibWebkit, uWkInterfaces,
-  uWkContextMenu, uWkContextMenuItem, uWkCookieManager,
-  uWkFunctions, uWkHeaders, uWkInputStream, uWkJSValue,
-  uWkNavigationAction, uWkPolicyDecision, uWkSettings, uWkURIRequest,
-  uWkURIResponse, uWkURISchemeRequest, uWkWebContext, uWkWebsitePolicies,
-  uWkWebViewParent, uWkWebview, uWkWebviewEvents;
+  uWkTypes, uLibWebkit, uWkJSValue;
 
 type
   // 基础事件回调函数
