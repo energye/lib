@@ -29,31 +29,6 @@ begin
   Result := PtInRegion(RGN, X, Y);
 end;
 
-procedure WinAPI_SetDraggableRegions(draggable_region: HRGN; regionsCount: NativeUInt; const regions: TCefDraggableRegionArray); extdecl;
-{$ifdef MSWINDOWS}
-var
-  region: HRGN;
-  idx, count: Integer;
-  dragRegion: TCefDraggableRegion;
-{$endif}
-begin
-  {$ifdef MSWINDOWS}
-  //region = ::CreateRectRgn(it->bounds.x, it->bounds.y, it->bounds.x + it->bounds.width, it->bounds.y + it->bounds.height);
-  SetRectRgn(draggable_region, 0, 0, 0, 0);
-  count := Integer(regionsCount);
-  for idx := 0 to count do
-  begin
-    dragRegion := regions[idx];
-    region := CreateRectRgn(dragRegion.bounds.x, dragRegion.bounds.y, dragRegion.bounds.x + dragRegion.bounds.width, dragRegion.bounds.y + dragRegion.bounds.height);
-    if dragRegion.draggable = 1 then
-      CombineRgn(draggable_region, draggable_region, region, RGN_OR)
-    else
-      CombineRgn(draggable_region, draggable_region, region, RGN_DIFF);
-    DeleteObject(region);
-  end;
-  {$endif}
-end;
-
 function WinAPI_ScreenToClient(hWnd : HWND; var P : TPoint): Longint; extdecl;
 begin
   Result := ScreenToClient(hWnd, p);
@@ -1008,7 +983,6 @@ exports
   WinAPI_SetRectRgn,
   WinAPI_DeleteObject,
   WinAPI_CombineRgn,
-  WinAPI_SetDraggableRegions,
   WinAPI_PtInRegion,
   WinAPI_ScreenToClient,
   WinAPI_ClientToScreen,
