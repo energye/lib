@@ -12,12 +12,13 @@ uses
 
 type
 
-  TWkCookieDate = class(TInterfacedObject, IWkCookieDate)
+  TWkCookieDate = class
   private
     FDate: PSoupDate;
   public
     constructor Create(aDate: PSoupDate);
     destructor Destroy; override;
+    function Data(): PSoupDate;
     function Year(): longint;
     function Month(): longint;
     function Day(): longint;
@@ -28,21 +29,12 @@ type
     function Offset(): longint;
     function ToStringTime(format: TSoupDateFormat = SOUP_DATE_HTTP): string;
     function ToLongTime(): int64;
-    class function NewCustomCookieDate(aYear, aMonth, aDay, aHour, aMinute, aSecond: longint): IWkCookieDate;
-    class function NewCookieDate(): IWkCookieDate;
-  end;
-
-  TWkCookieList = class(TInterfacedObject, IWkCookieList)
-  private
-    FList: PList;
   public
-    constructor Create(aList: PList);
-    destructor Destroy; override;
-    function Length(): integer;
-    function GetCookie(index: integer): IWkCookie;
+    class function NewCustomCookieDate(aYear, aMonth, aDay, aHour, aMinute, aSecond: longint): TWkCookieDate;
+    class function NewCookieDate(): TWkCookieDate;
   end;
 
-  TWkCookie = class(TInterfacedObject, IWkCookie)
+  TWkCookie = class
   private
     FCookie: PSoupCookie;
   public
@@ -51,8 +43,8 @@ type
   protected
     function GetDomain(): string;
     procedure SetDomain(aValue: string);
-    function GetExpires(): IWkCookieDate;
-    procedure SetExpires(aValue: IWkCookieDate);
+    function GetExpires(): PSoupDate;
+    procedure SetExpires(aValue: PSoupDate);
     function GetHttpOnly(): boolean;
     procedure SetHttpOnly(aValue: boolean);
     function GetName(): string;
@@ -70,10 +62,20 @@ type
     property Path: string read GetPath write SetPath;
     property HttpOnly: boolean read GetHttpOnly write SetHttpOnly;
     property Secure: boolean read GetSecure write SetSecure;
-    property Expires: IWkCookieDate read GetExpires write SetExpires;
+    property Expires: PSoupDate read GetExpires write SetExpires;
     function Data(): PSoupCookie;
     procedure SetMaxAge(aValue: longint);
-    class function NewCookie(aName, aValue, aDomain, aPath: string; aMaxAge: longint): IWkCookie;
+    class function NewCookie(aName, aValue, aDomain, aPath: string; aMaxAge: longint): TWkCookie;
+  end;
+
+  TWkCookieList = class
+  private
+    FList: PList;
+  public
+    constructor Create(aList: PList);
+    destructor Destroy; override;
+    function Length(): integer;
+    function GetCookie(index: integer): PSoupCookie;
   end;
 
   TWkCookieManager = class
@@ -84,11 +86,8 @@ type
     property DelegateEvent: IWkCookieManagerDelegateEvent read FDelegateEvent;
   public
     constructor Create(aCookieManager: WebKitCookieManager);
-    constructor Create(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent);
     destructor Destroy; override;
-
     procedure SetPersistentStorage(filename: string; storage: WebKitCookiePersistentStorage);
-
     procedure SetAcceptPolicy(policy: WebKitCookieAcceptPolicy);
 
     // 异步获取cookie_manager的cookie接受策略。
@@ -100,7 +99,7 @@ type
     // 异步地将SoupCookie添加到底层存储。
     // 当操作完成时，回调将被调用。然后可以调用webkit_cookie_manager_add_cookie_finish()来获取操作的结果。
     // https://webkitgtk.org/reference/webkit2gtk/stable/method.CookieManager.add_cookie.html
-    procedure AddCookie(const cookie: IWkCookie);
+    procedure AddCookie(const cookie: PSoupCookie);
 
     // 从cookie_manager异步获取SoupCookie的列表。
     // 从与uri关联的cookie_manager异步获取SoupCookie的列表，该列表必须是HTTP或HTTPS URL。
@@ -111,7 +110,7 @@ type
     // 从当前会话中异步删除SoupCookie。
     // 当操作完成时，回调将被调用。然后可以调用webkit_cookie_manager_delete_cookie_finish()来获取操作的结果。
     // https://webkitgtk.org/reference/webkit2gtk/stable/method.CookieManager.delete_cookie.html
-    procedure DeleteCookie(cookie: IWkCookie);
+    procedure DeleteCookie(cookie: PSoupCookie);
 
     // 删除给定域的cookie_manager的所有cookie。
     // https://webkitgtk.org/reference/webkit2gtk/stable/method.CookieManager.delete_cookies_for_domain.html
@@ -119,6 +118,8 @@ type
 
     // https://webkitgtk.org/reference/webkit2gtk/stable/method.CookieManager.delete_all_cookies.html
     procedure DeleteAllCookies();
+  public
+    class function NewDelegate(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent): TWkCookieManager;
   end;
 
 implementation
@@ -162,8 +163,7 @@ end;
 procedure doAPIGetCookiesFinish(source_object: PGObject; res: PAsyncResult; user_data: gpointer); cdecl;
 var
   aErr: PGError;
-  aResult: PGList;
-  aCookieList: TWkCookieList;
+  aResult: PList;
 begin
   aErr := nil;
   aResult := webkit_cookie_manager_get_cookies_finish(WebKitCookieManager(source_object), res, @aErr);
@@ -174,8 +174,7 @@ begin
   end
   else
   begin
-    aCookieList := TWkCookieList.Create(aResult);
-    TWkCookieManager(user_data).DelegateEvent.doGetCookiesFinish(aCookieList, '');
+    TWkCookieManager(user_data).DelegateEvent.doGetCookiesFinish(aResult, '');
     //aResult^.Free(aResult);
     //aResult^.free_full(aResult, TGDestroyNotify(@g_free));
     aResult := nil;
@@ -211,16 +210,6 @@ begin
     FCookieManager := aCookieManager;
 end;
 
-constructor TWkCookieManager.Create(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent);
-begin
-  FDelegateEvent := nil;
-  FCookieManager := nil;
-  if Assigned(aCookieManager) then
-    FCookieManager := aCookieManager;
-  if Assigned(aDelegateEvent) then
-    FDelegateEvent := aDelegateEvent;
-end;
-
 destructor TWkCookieManager.Destroy;
 begin
   inherited Destroy;
@@ -248,20 +237,20 @@ begin
   if Assigned(FCookieManager) then
   begin
     if Assigned(FDelegateEvent) then
-      webkit_cookie_manager_get_accept_policy(FCookieManager, nil, TGCALLBACK(@doAPIGetAcceptPolicyFinish), self)
+      webkit_cookie_manager_get_accept_policy(FCookieManager, nil, TAsyncReadyCallback(@doAPIGetAcceptPolicyFinish), self)
     else
       webkit_cookie_manager_get_accept_policy(FCookieManager, nil, nil, self);
   end;
 end;
 
-procedure TWkCookieManager.AddCookie(const cookie: IWkCookie);
+procedure TWkCookieManager.AddCookie(const cookie: PSoupCookie);
 begin
   if Assigned(FCookieManager) and Assigned(cookie) then
   begin
     if Assigned(FDelegateEvent) then
-      webkit_cookie_manager_add_cookie(FCookieManager, cookie.Data(), nil, TGCALLBACK(@doAPIAddCookieFinish), self)
+      webkit_cookie_manager_add_cookie(FCookieManager, cookie, nil, TAsyncReadyCallback(@doAPIAddCookieFinish), self)
     else
-      webkit_cookie_manager_add_cookie(FCookieManager, cookie.Data(), nil, nil, self);
+      webkit_cookie_manager_add_cookie(FCookieManager, cookie, nil, nil, self);
   end;
 end;
 
@@ -276,14 +265,14 @@ begin
   end;
 end;
 
-procedure TWkCookieManager.DeleteCookie(cookie: IWkCookie);
+procedure TWkCookieManager.DeleteCookie(cookie: PSoupCookie);
 begin
   if Assigned(FCookieManager) then
   begin
     if Assigned(FDelegateEvent) then
-      webkit_cookie_manager_delete_cookie(FCookieManager, (cookie as TWkCookie).FCookie, nil, TGCALLBACK(@doAPIDeleteCookieFinish), self)
+      webkit_cookie_manager_delete_cookie(FCookieManager, cookie, nil, TAsyncReadyCallback(@doAPIDeleteCookieFinish), self)
     else
-      webkit_cookie_manager_delete_cookie(FCookieManager, (cookie as TWkCookie).FCookie, nil, nil, self);
+      webkit_cookie_manager_delete_cookie(FCookieManager, cookie, nil, nil, self);
   end;
 end;
 
@@ -303,6 +292,19 @@ begin
   end;
 end;
 
+class function TWkCookieManager.NewDelegate(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent): TWkCookieManager;
+var
+  TempCookieManager: TWkCookieManager;
+begin
+  TempCookieManager := nil;
+  if Assigned(aCookieManager) then
+  begin
+    TempCookieManager := Create(aCookieManager);
+    TempCookieManager.FDelegateEvent := aDelegateEvent;
+  end;
+  Result := TempCookieManager;
+end;
+
 { TWkCookie }
 
 constructor TWkCookie.Create(aCookie: PSoupCookie);
@@ -312,9 +314,9 @@ begin
   FCookie := aCookie;
 end;
 
-class function TWkCookie.NewCookie(aName, aValue, aDomain, aPath: string; aMaxAge: longint): IWkCookie;
+class function TWkCookie.NewCookie(aName, aValue, aDomain, aPath: string; aMaxAge: longint): TWkCookie;
 begin
-  Result := Create(soup_cookie_new(Pgchar(aName), Pgchar(aValue), Pgchar(aDomain), Pgchar(aPath), aMaxAge)) as IWkCookie;
+  Result := Create(soup_cookie_new(Pgchar(aName), Pgchar(aValue), Pgchar(aDomain), Pgchar(aPath), aMaxAge));
 end;
 
 destructor TWkCookie.Destroy;
@@ -344,27 +346,20 @@ begin
   end;
 end;
 
-function TWkCookie.GetExpires(): IWkCookieDate;
-var
-  aDate: PSoupDate;
+function TWkCookie.GetExpires(): PSoupDate;
 begin
   Result := nil;
   if Assigned(FCookie) then
   begin
-    aDate := soup_cookie_get_expires(FCookie);
-    Result := TWkCookieDate.Create(aDate);
-    aDate := nil;
+    Result := soup_cookie_get_expires(FCookie);
   end;
 end;
 
-procedure TWkCookie.SetExpires(aValue: IWkCookieDate);
-var
-  aCookieDate: TWkCookieDate;
+procedure TWkCookie.SetExpires(aValue: PSoupDate);
 begin
   if Assigned(FCookie) then
   begin
-    aCookieDate := aValue as TWkCookieDate;
-    soup_cookie_set_expires(FCookie, aCookieDate.FDate);
+    soup_cookie_set_expires(FCookie, aValue);
   end;
 end;
 
@@ -493,15 +488,12 @@ begin
   end;
 end;
 
-function TWkCookieList.GetCookie(index: integer): IWkCookie;
-var
-  aCookie: TWkCookie;
+function TWkCookieList.GetCookie(index: integer): PSoupCookie;
 begin
   Result := nil;
   if Assigned(FList) then
   begin
-    aCookie := TWkCookie.Create(PSoupCookie(FList^.nth_data(FList, index)));
-    Result := aCookie;
+    Result := PSoupCookie(FList^.nth_data(FList, index));
   end;
 end;
 
@@ -514,12 +506,12 @@ begin
     FDate := aDate;
 end;
 
-class function TWkCookieDate.NewCustomCookieDate(aYear, aMonth, aDay, aHour, aMinute, aSecond: longint): IWkCookieDate;
+class function TWkCookieDate.NewCustomCookieDate(aYear, aMonth, aDay, aHour, aMinute, aSecond: longint): TWkCookieDate;
 begin
-  Result := Create(soup_date_new(aYear, aMonth, aDay, aHour, aMinute, aSecond)) as IWkCookieDate;
+  Result := Create(soup_date_new(aYear, aMonth, aDay, aHour, aMinute, aSecond));
 end;
 
-class function TWkCookieDate.NewCookieDate(): IWkCookieDate;
+class function TWkCookieDate.NewCookieDate(): TWkCookieDate;
 var
   CurrentDateTime: TDateTime;
   aYear, aMonth, aDay, aHour, aMinute, aSecond, aMilliSecond: word;
@@ -538,6 +530,11 @@ begin
     //soup_date_free(FDate); // 好像不能调用 free ？
     FDate := nil;
   end;
+end;
+
+function TWkCookieDate.Data(): PSoupDate;
+begin
+  Result := FDate;
 end;
 
 function TWkCookieDate.Year(): longint;

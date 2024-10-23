@@ -30,13 +30,13 @@ type
     constructor Create(aResult: WebKitJavascriptResult; aIsException: boolean; exception: string);
     constructor Create(aResult: WebKitJavascriptResult);
     destructor Destroy; override;
-  public
-    property ValueType: JSType read GetValueType;
     function StringValue(): string;
     function NumberValue(): double;
     function IntegerValue(): integer;
     function BooleanValue(): boolean;
     function ExceptionMessage(): string;
+  public
+    property ValueType: JSType read GetValueType;
   end;
 
 implementation

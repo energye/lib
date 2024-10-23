@@ -28,7 +28,7 @@ type
     FCookieManager: TWkCookieManager;
     FDargXRoot, FDargYRoot: longint;
     FDargTime, FDargMouseButton: longword;
-    FContextMenuItemAction: WkAction;
+    FContextMenuItemAction: PWkAction;
     FContextMenuItemActionID: gulong;
   private
     FOnLoadChange: TWkLoadChangeEvent;
@@ -57,17 +57,17 @@ type
     procedure doExecuteScriptFinished(jsValue: TWkJSValue);
     procedure doGetAcceptPolicyFinish(policy: WebKitCookieAcceptPolicy; error: string);
     procedure doAddCookieFinish(aResult: boolean; error: string);
-    procedure doGetCookiesFinish(cookieList: IWkCookieList; error: string);
+    procedure doGetCookiesFinish(cookieList: PList; error: string);
     procedure doDeleteCookieFinish(aResult: boolean; error: string);
     procedure doLoadChange(loadEvent: WebKitLoadEvent);
     function doLoadFailed(loadEvent: WebKitLoadEvent; failingUri: string; error: string): boolean;
-    procedure doURISchemeRequest(uriSchemeRequest: IWkURISchemeRequest);
+    procedure doURISchemeRequest(uriSchemeRequest: WebKitURISchemeRequest);
     procedure doProcessMessage(const jsValue: TWkJSValue; processId: TWkProcessId);
     function doMousePress(event: PWkButtonEvent): boolean;
     function doMouseRelease(event: PWkButtonEvent): boolean;
-    function doDecidePolicy(decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+    function doDecidePolicy(decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
     procedure doWebProcessTerminated(reason: WebKitWebProcessTerminationReason);
-    function doContextMenu(contextMenu: TWkContextMenu): boolean;
+    function doContextMenu(contextMenu: WebKitContextMenu): boolean;
     procedure doContextMenuCommand(menuID: integer);
     procedure doContextMenuDismissed();
   public
@@ -205,15 +205,12 @@ begin
 end;
 
 function doAPIDecidePolicy(web_view: WebKitWebView; decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType; user_data: gpointer): gboolean; cdecl;
-var
-  aDecision: IWkPolicyDecision;
 begin
-  if (type_ = WEBKIT_POLICY_DECISION_TYPE_NEW_WINDOW_ACTION) or (type_ = WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION) then
-    aDecision := TWkNavigationPolicyDecision.Create(decision)
-  else
-    aDecision := TWkResponsePolicyDecision.Create(decision);
-  Result := gboolean(TWkWebview(user_data).doDecidePolicy(aDecision, type_));
-  aDecision := nil;
+  //if (type_ = WEBKIT_POLICY_DECISION_TYPE_NEW_WINDOW_ACTION) or (type_ = WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION) then
+  //  aDecision := TWkNavigationPolicyDecision.Create(decision)
+  //else
+  //  aDecision := TWkResponsePolicyDecision.Create(decision);
+  Result := gboolean(TWkWebview(user_data).doDecidePolicy(decision, type_));
 end;
 
 procedure doAPIWebProcessTerminated(web_view: WebKitWebView; reason: WebKitWebProcessTerminationReason; user_data: gpointer); cdecl;
@@ -297,7 +294,7 @@ end;
 
 function doAPIContextMenu(web_view: WebKitWebView; context_menu: WebKitContextMenu; event: PGdkEvent; hit_test_result: WebKitHitTestResult; user_data: gpointer): gboolean; cdecl;
 begin
-  Result := TWkWebview(user_data).doContextMenu(TWkContextMenu.Create(context_menu));
+  Result := TWkWebview(user_data).doContextMenu(context_menu);
 end;
 
 procedure doAPIContextMenuDismissed(web_view: WebKitWebView; user_data: gpointer); cdecl;
@@ -429,7 +426,7 @@ begin
     Result := FOnMouseRelease(self, event);
 end;
 
-function TWkWebview.doDecidePolicy(decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+function TWkWebview.doDecidePolicy(decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
 begin
   Result := False;
   if Assigned(FOnDecidePolicy) then
@@ -442,7 +439,7 @@ begin
     FOnWebProcessTerminated(self, reason);
 end;
 
-function TWkWebview.doContextMenu(contextMenu: TWkContextMenu): boolean;
+function TWkWebview.doContextMenu(contextMenu: WebKitContextMenu): boolean;
 begin
   Result := False;
   if Assigned(FOnContextMenu) then
@@ -467,7 +464,7 @@ begin
     FOnProcessMessage(self, jsValue, processId);
 end;
 
-procedure TWkWebview.doURISchemeRequest(uriSchemeRequest: IWkURISchemeRequest);
+procedure TWkWebview.doURISchemeRequest(uriSchemeRequest: WebKitURISchemeRequest);
 begin
   if Assigned(FOnURISchemeRequest) then
     FOnURISchemeRequest(self, uriSchemeRequest);
@@ -510,7 +507,7 @@ begin
     FOnDeleteCookieFinish(self, aResult, error);
 end;
 
-procedure TWkWebview.doGetCookiesFinish(cookieList: IWkCookieList; error: string);
+procedure TWkWebview.doGetCookiesFinish(cookieList: PList; error: string);
 begin
   if Assigned(FOnGetCookiesFinish) then
     FOnGetCookiesFinish(self, cookieList, error);
@@ -690,7 +687,7 @@ function TWkWebview.CookieManager(): TWkCookieManager;
 begin
   if FCookieManager = nil then
   begin
-    FCookieManager := TWkCookieManager.Create(webkit_web_context_get_cookie_manager(webkit_web_context_get_default()), self);
+    FCookieManager := TWkCookieManager.NewDelegate(webkit_web_context_get_cookie_manager(webkit_web_context_get_default()), self);
   end;
   Result := FCookieManager;
 end;

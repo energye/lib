@@ -6,19 +6,17 @@ unit uWkNavigationAction;
 interface
 
 uses
-  SysUtils,
-  uWkInterfaces, uLibWebkit, uWkURIRequest;
+  SysUtils, uLibWebkit;
 
 type
 
-  TWkNavigationAction = class(TInterfacedObject, IWkNavigationAction)
+  TWkNavigationAction = class
   protected
     FNavigationAction: WebKitNavigationAction;
-    FURIRequest: TWkURIRequest;
   public
     constructor Create(aNavigationAction: WebKitNavigationAction);
     destructor Destroy; override;
-    function GetRequest(): IWkURIRequest;
+    function GetRequest(): WebKitURIRequest;
   end;
 
 
@@ -30,21 +28,19 @@ begin
   if not Assigned(aNavigationAction) then
     raise Exception.Create('NavigationAction Create Failed instance is nil');
   FNavigationAction := aNavigationAction;
-  FURIRequest := nil;
 end;
 
 destructor TWkNavigationAction.Destroy;
 begin
   inherited Destroy;
   FNavigationAction := nil;
-  FURIRequest := nil;
 end;
 
-function TWkNavigationAction.GetRequest(): IWkURIRequest;
+function TWkNavigationAction.GetRequest(): WebKitURIRequest;
 begin
-  if Assigned(FNavigationAction) and not Assigned(FURIRequest) then
-    FURIRequest := TWkURIRequest.Create(webkit_navigation_action_get_request(FNavigationAction));
-  Result := FURIRequest;
+  Result := nil;
+  if Assigned(FNavigationAction) then
+    Result := webkit_navigation_action_get_request(FNavigationAction);
 end;
 
 end.

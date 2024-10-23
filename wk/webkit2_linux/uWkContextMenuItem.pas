@@ -6,12 +6,11 @@ unit uWkContextMenuItem;
 interface
 
 uses
-  LazGLib2, LazGio2,
-  uWkInterfaces, uLibWebKit;
+  LazGLib2, uLibWebKit;
 
 type
 
-  TWkContextMenuItem = class(TInterfacedObject, IWkContextMenuItem)
+  TWkContextMenuItem = class
   protected
     FContextMenuItem: WebKitContextMenuItem;
   public
@@ -19,16 +18,16 @@ type
     destructor Destroy; override;
     function Data(): WebKitContextMenuItem;
     function GetSubmenu(): WebKitContextMenu;
-    procedure SetSubmenu(submenu: IWkContextMenu);
-    function GetAction(): WkAction;
+    procedure SetSubmenu(submenu: WebKitContextMenu);
+    function GetAction(): PWkAction;
     function GetStockAction(): WebKitContextMenuAction;
     function IsSeparator(): boolean;
   public
-    class function NewFromAction(action: WkAction; aLabel: string; commandId: Integer): IWkContextMenuItem;
-    class function NewFromStockAction(action: WebKitContextMenuAction): IWkContextMenuItem;
-    class function NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: string): IWkContextMenuItem;
-    class function NewWithSubmenu(aLabel: string; submenu: WebKitContextMenu): IWkContextMenuItem;
-    class function NewSeparator(): IWkContextMenuItem;
+    class function NewFromAction(action: PWkAction; aLabel: string; commandId: Integer): TWkContextMenuItem;
+    class function NewFromStockAction(action: WebKitContextMenuAction): TWkContextMenuItem;
+    class function NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: string): TWkContextMenuItem;
+    class function NewWithSubmenu(aLabel: string; submenu: WebKitContextMenu): TWkContextMenuItem;
+    class function NewSeparator(): TWkContextMenuItem;
   end;
 
 implementation
@@ -49,33 +48,33 @@ begin
   Result := FContextMenuItem;
 end;
 
-class function TWkContextMenuItem.NewFromAction(action: WkAction; aLabel: string; commandId: Integer): IWkContextMenuItem;
+class function TWkContextMenuItem.NewFromAction(action: PWkAction; aLabel: string; commandId: Integer): TWkContextMenuItem;
 var
   aCommandId: PGVariant;
 begin
   aCommandId := TGVariant.new_int32(commandId);
-  Result := Create(webkit_context_menu_item_new_from_gaction(action, Pgchar(aLabel), aCommandId)) as IWkContextMenuItem;
+  Result := Create(webkit_context_menu_item_new_from_gaction(action, Pgchar(aLabel), aCommandId));
   aCommandId := nil;
 end;
 
-class function TWkContextMenuItem.NewFromStockAction(action: WebKitContextMenuAction): IWkContextMenuItem;
+class function TWkContextMenuItem.NewFromStockAction(action: WebKitContextMenuAction): TWkContextMenuItem;
 begin
-  Result := Create(webkit_context_menu_item_new_from_stock_action(action)) as IWkContextMenuItem;
+  Result := Create(webkit_context_menu_item_new_from_stock_action(action));
 end;
 
-class function TWkContextMenuItem.NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: string): IWkContextMenuItem;
+class function TWkContextMenuItem.NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: string): TWkContextMenuItem;
 begin
-  Result := Create(webkit_context_menu_item_new_from_stock_action_with_label(action, Pgchar(aLabel))) as IWkContextMenuItem;
+  Result := Create(webkit_context_menu_item_new_from_stock_action_with_label(action, Pgchar(aLabel)));
 end;
 
-class function TWkContextMenuItem.NewWithSubmenu(aLabel: string; submenu: WebKitContextMenu): IWkContextMenuItem;
+class function TWkContextMenuItem.NewWithSubmenu(aLabel: string; submenu: WebKitContextMenu): TWkContextMenuItem;
 begin
-  Result := Create(webkit_context_menu_item_new_with_submenu(Pgchar(aLabel), submenu)) as IWkContextMenuItem;
+  Result := Create(webkit_context_menu_item_new_with_submenu(Pgchar(aLabel), submenu));
 end;
 
-class function TWkContextMenuItem.NewSeparator(): IWkContextMenuItem;
+class function TWkContextMenuItem.NewSeparator(): TWkContextMenuItem;
 begin
-  Result := Create(webkit_context_menu_item_new_separator()) as IWkContextMenuItem;
+  Result := Create(webkit_context_menu_item_new_separator());
 end;
 
 function TWkContextMenuItem.GetSubmenu(): WebKitContextMenu;
@@ -85,13 +84,13 @@ begin
     Result := webkit_context_menu_item_get_submenu(FContextMenuItem);
 end;
 
-procedure TWkContextMenuItem.SetSubmenu(submenu: IWkContextMenu);
+procedure TWkContextMenuItem.SetSubmenu(submenu: WebKitContextMenu);
 begin
   if Assigned(FContextMenuItem) then
-    webkit_context_menu_item_set_submenu(FContextMenuItem, submenu.Data());
+    webkit_context_menu_item_set_submenu(FContextMenuItem, submenu);
 end;
 
-function TWkContextMenuItem.GetAction(): WkAction;
+function TWkContextMenuItem.GetAction(): PWkAction;
 begin
   Result := nil;
   if Assigned(FContextMenuItem) then

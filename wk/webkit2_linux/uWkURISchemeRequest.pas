@@ -7,16 +7,13 @@ interface
 
 uses
   LazGLib2,
-  uWkInterfaces, uLibWebKit, uWkHeaders,
-  uWkInputStream;
+  uLibWebKit;
 
 type
 
-  TWkURISchemeRequest = class(TInterfacedObject, IWkURISchemeRequest)
+  TWkURISchemeRequest = class
   private
     FURISchemeRequest: WebKitURISchemeRequest;
-    FHeaders: TWkHeaders;
-    FInputStream: TWkInputStream;
   public
     constructor Create(URISchemeRequest: WebKitURISchemeRequest);
     destructor Destroy; override;
@@ -27,9 +24,9 @@ type
     function Path(): string;
     function WebView(): WebKitWebView;
     function Method(): string;
-    function Headers(): IWkHeaders;
-    function Body(): IWkInputStream;
-    procedure Finish(stream: IWkInputStream; stream_length: int64; content_type: string);
+    function Headers(): PSoupMessageHeaders;
+    function Body(): PInputStream;
+    procedure Finish(stream: PInputStream; stream_length: int64; content_type: string);
     procedure FinishWithResponse(response: WebKitURISchemeResponse);
     procedure FinishError(code: integer; errorMessage: string);
   end;
@@ -39,18 +36,12 @@ implementation
 constructor TWkURISchemeRequest.Create(URISchemeRequest: WebKitURISchemeRequest);
 begin
   FURISchemeRequest := URISchemeRequest;
-  FHeaders := nil;
-  FInputStream := nil;
 end;
 
 destructor TWkURISchemeRequest.Destroy;
 begin
   inherited Destroy;
   FURISchemeRequest := nil;
-  //if Assigned(FHeaders) then
-  //  FHeaders.Free;
-  FHeaders := nil;
-  FInputStream := nil;
 end;
 
 function TWkURISchemeRequest.Data(): WebKitURISchemeRequest;
@@ -103,25 +94,25 @@ begin
   end;
 end;
 
-function TWkURISchemeRequest.Headers(): IWkHeaders;
+function TWkURISchemeRequest.Headers(): PSoupMessageHeaders;
 begin
-  if Assigned(FURISchemeRequest) and not Assigned(FHeaders) then
-    FHeaders := TWkHeaders.Create(webkit_uri_scheme_request_get_http_headers(FURISchemeRequest));
-  Result := FHeaders;
+  Result := nil;
+  if Assigned(FURISchemeRequest)  then
+    Result := webkit_uri_scheme_request_get_http_headers(FURISchemeRequest);
 end;
 
-function TWkURISchemeRequest.Body(): IWkInputStream;
+function TWkURISchemeRequest.Body(): PInputStream;
 begin
-  if Assigned(FURISchemeRequest) and not Assigned(FInputStream) then
-    FInputStream := TWkInputStream.Create(webkit_uri_scheme_request_get_http_body(FURISchemeRequest));
-  Result := FInputStream;
+  Result := nil;
+  if Assigned(FURISchemeRequest) then
+    Result := webkit_uri_scheme_request_get_http_body(FURISchemeRequest);
 end;
 
-procedure TWkURISchemeRequest.Finish(stream: IWkInputStream; stream_length: int64; content_type: string);
+procedure TWkURISchemeRequest.Finish(stream: PInputStream; stream_length: int64; content_type: string);
 begin
   if Assigned(FURISchemeRequest) then
   begin
-    webkit_uri_scheme_request_finish(FURISchemeRequest, stream.Data(), gint64(stream_length), Pgchar(content_type));
+    webkit_uri_scheme_request_finish(FURISchemeRequest, stream, gint64(stream_length), Pgchar(content_type));
   end;
 end;
 

@@ -21,10 +21,13 @@ type
   PSoupMessageHeadersIter = gpointer;
   PSoupCookie = gpointer;
   PSoupDate = gpointer;
+
   PCancellable = PGCancellable;
   PInputStream = PGInputStream;
+
   PList = PGList;
   PAsyncResult = PGAsyncResult;
+
   WebKitWebView = PGtkWidget;
   WebKitUserContentManager = gpointer;
   WebKitJavascriptResult = gpointer;
@@ -54,10 +57,10 @@ type
   JSStringRef = gpointer;
   JSObjectRef = gpointer;
   JSContextRef = gpointer;
-  WkAction = PGSimpleAction;
-  WkURISchemeRequestCallback = TGCallback; // procedure(request: WebKitURISchemeRequest; data: gpointer); cdecl;
-  GAsyncReadyCallback = TGCallback; // procedure(source_object: PGObject; res: PGAsyncResult; user_data: gpointer); cdecl;
-  GDestroyNotify = TGCallback; // procedure(data: gpointer);
+  PWkAction = PGSimpleAction;
+  TWkURISchemeRequestCallback = TGCallback; // procedure(request: WebKitURISchemeRequest; data: gpointer); cdecl;
+  TAsyncReadyCallback = TGCallback; // procedure(source_object: PGObject; res: PGAsyncResult; user_data: gpointer); cdecl;
+  TDestroyNotify = TGDestroyNotify; // procedure(data: gpointer);
 
   TScrolledWindow = {$IFDEF LCLGtk2}PGtkWidget{$ENDIF} {$IFDEF LCLGtk3}PGtkScrolledWindow{$ENDIF};
 
@@ -286,9 +289,9 @@ var
   webkit_web_view_get_settings                    : function (webview: WebKitWebView): WebKitSettings; cdecl;
   webkit_web_view_set_settings                    : procedure(webview: WebKitWebView; settings: WebKitSettings); cdecl;
   webkit_web_view_try_close                       : procedure(webview: WebKitWebView); cdecl;
-  webkit_web_view_run_javascript                  : procedure(webview: WebKitWebView; script: Pgchar; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_web_view_run_javascript                  : procedure(webview: WebKitWebView; script: Pgchar; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_web_view_run_javascript_finish           : function(webview: WebKitWebView; result: PAsyncResult; error: PGError): WebKitJavascriptResult; cdecl;
-  webkit_web_view_evaluate_javascript             : procedure(webview: WebKitWebView; script: Pgchar; length: gssize; world_name, source_uri: Pgchar; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_web_view_evaluate_javascript             : procedure(webview: WebKitWebView; script: Pgchar; length: gssize; world_name, source_uri: Pgchar; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_web_view_evaluate_javascript_finish      : function(webview: WebKitWebView; result: PAsyncResult; error: PGError): WebKitJavascriptResult; cdecl;
   webkit_web_view_get_inspector                   : function(settings: WebKitSettings): WebKitWebInspector; cdecl;
   webkit_web_view_terminate_web_process           : procedure(webview: WebKitWebView); cdecl;
@@ -300,7 +303,7 @@ var
 
   webkit_web_context_get_default               : function(): WebKitWebContext; cdecl;
   webkit_web_context_new                       : function(): WebKitWebContext; cdecl;
-  webkit_web_context_register_uri_scheme       : procedure(context: WebKitWebContext; scheme: Pgchar; callback: WkURISchemeRequestCallback; user_data: gpointer; user_data_destroy_func: GDestroyNotify); cdecl;
+  webkit_web_context_register_uri_scheme       : procedure(context: WebKitWebContext; scheme: Pgchar; callback: TWkURISchemeRequestCallback; user_data: gpointer; user_data_destroy_func: TDestroyNotify); cdecl;
   webkit_web_context_set_cache_model           : procedure(webview: WebKitWebView; cache_model : WebKitCacheModel); cdecl;
   webkit_web_context_download_uri              : procedure(context: WebKitWebContext; uri : Pgchar); cdecl;
   webkit_web_context_get_cookie_manager        : function(context: WebKitWebContext): WebKitCookieManager; cdecl;
@@ -410,13 +413,13 @@ var
   // CookieManager
   webkit_cookie_manager_set_persistent_storage    : procedure(cookie_manager: WebKitCookieManager; filename: Pgchar; storage: WebKitCookiePersistentStorage); cdecl;
   webkit_cookie_manager_set_accept_policy         : procedure(cookie_manager: WebKitCookieManager; policy: WebKitCookieAcceptPolicy); cdecl;
-  webkit_cookie_manager_get_accept_policy         : procedure(cookie_manager: WebKitCookieManager; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_cookie_manager_get_accept_policy         : procedure(cookie_manager: WebKitCookieManager; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_cookie_manager_get_accept_policy_finish  : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): WebKitCookieAcceptPolicy; cdecl;
-  webkit_cookie_manager_add_cookie                : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_cookie_manager_add_cookie                : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_cookie_manager_add_cookie_finish         : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): gboolean; cdecl;
-  webkit_cookie_manager_get_cookies               : procedure(cookie_manager: WebKitCookieManager; uri: Pgchar; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_cookie_manager_get_cookies               : procedure(cookie_manager: WebKitCookieManager; uri: Pgchar; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_cookie_manager_get_cookies_finish        : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): PGList; cdecl;
-  webkit_cookie_manager_delete_cookie             : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: GAsyncReadyCallback; user_data: gpointer); cdecl;
+  webkit_cookie_manager_delete_cookie             : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
   webkit_cookie_manager_delete_cookie_finish      : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): gboolean; cdecl;
   webkit_cookie_manager_delete_cookies_for_domain : procedure(cookie_manager: WebKitCookieManager; domain: Pgchar); cdecl;
   webkit_cookie_manager_delete_all_cookies        : procedure(cookie_manager: WebKitCookieManager); cdecl;

@@ -56,7 +56,7 @@ begin
 end;
 
 //function
-procedure WkURISchemeRequest_Headers(AObj: TWkURISchemeRequest; var Result: IWkHeaders); extdecl;
+procedure WkURISchemeRequest_Headers(AObj: TWkURISchemeRequest; var Result: PSoupMessageHeaders); extdecl;
 begin
   handleExceptionBegin
   Result := AObj.Headers();

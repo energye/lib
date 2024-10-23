@@ -11,7 +11,7 @@ uses
 
 type
 
-  TWkWebsitePolicies = class(TInterfacedObject, IWkWebsitePolicies)
+  TWkWebsitePolicies = class
   private
     FWebsitePolicies: WebKitWebsitePolicies;
   public

@@ -6,12 +6,11 @@ unit uWkPolicyDecision;
 interface
 
 uses
-  SysUtils,
-  uWkInterfaces, uLibWebkit, uWkNavigationAction, uWkURIRequest, uWkURIResponse;
+  SysUtils, uLibWebkit;
 
 type
 
-  TWkPolicyDecision = class(TInterfacedObject, IWkPolicyDecision)
+  TWkPolicyDecision = class
   protected
     FDecision: WebKitPolicyDecision;
   public
@@ -19,25 +18,30 @@ type
     destructor Destroy; override;
     function Data(): WebKitPolicyDecision;
     procedure Use();
-    procedure UseWithPolicies(policies: IWkWebsitePolicies);
+    procedure UseWithPolicies(policies: WebKitWebsitePolicies);
     procedure Ignore();
     procedure Download();
   end;
 
 
-  TWkNavigationPolicyDecision = class(TWkPolicyDecision, IWkNavigationPolicyDecision)
+  TWkNavigationPolicyDecision = class
+  protected
+    FDecision: WebKitNavigationPolicyDecision;
   public
     constructor Create(aDecision: WebKitNavigationPolicyDecision);
     destructor Destroy; override;
-    function GetNavigationAction(): IWkNavigationAction;
+    function GetNavigationAction(): WebKitNavigationAction;
   end;
 
 
-  TWkResponsePolicyDecision = class(TWkPolicyDecision, IWkResponsePolicyDecision)
+  TWkResponsePolicyDecision = class
+  protected
+    FDecision: WebKitResponsePolicyDecision;
+  public
     constructor Create(aDecision: WebKitResponsePolicyDecision);
     destructor Destroy; override;
-    function GetRequest(): IWkURIRequest;
-    function GetResponse(): IWkURIResponse;
+    function GetRequest(): WebKitURIRequest;
+    function GetResponse(): WebKitURIResponse;
   end;
 
 implementation
@@ -68,11 +72,11 @@ begin
   end;
 end;
 
-procedure TWkPolicyDecision.UseWithPolicies(policies: IWkWebsitePolicies);
+procedure TWkPolicyDecision.UseWithPolicies(policies: WebKitWebsitePolicies);
 begin
   if Assigned(FDecision) then
   begin
-    webkit_policy_decision_use_with_policies(FDecision, policies.Data());
+    webkit_policy_decision_use_with_policies(FDecision, policies);
   end;
 end;
 
@@ -95,27 +99,28 @@ end;
 
 constructor TWkNavigationPolicyDecision.Create(aDecision: WebKitNavigationPolicyDecision);
 begin
-  inherited Create(aDecision);
+  FDecision := aDecision;
 end;
 
 destructor TWkNavigationPolicyDecision.Destroy;
 begin
   inherited Destroy;
+  FDecision := nil;
 end;
 
-function TWkNavigationPolicyDecision.GetNavigationAction(): IWkNavigationAction;
+function TWkNavigationPolicyDecision.GetNavigationAction(): WebKitNavigationAction;
 begin
   Result := nil;
   if Assigned(FDecision) then
   begin
-    Result := TWkNavigationAction.Create(webkit_navigation_policy_decision_get_navigation_action(FDecision));
+    Result := webkit_navigation_policy_decision_get_navigation_action(FDecision);
   end;
 end;
 
 
 constructor TWkResponsePolicyDecision.Create(aDecision: WebKitResponsePolicyDecision);
 begin
-  inherited Create(aDecision);
+  FDecision := aDecision;
 end;
 
 destructor TWkResponsePolicyDecision.Destroy;
@@ -123,21 +128,21 @@ begin
   inherited Destroy;
 end;
 
-function TWkResponsePolicyDecision.GetRequest(): IWkURIRequest;
+function TWkResponsePolicyDecision.GetRequest(): WebKitURIRequest;
 begin
   Result := nil;
   if Assigned(FDecision) then
   begin
-    Result := TWkURIRequest.Create(webkit_response_policy_decision_get_request(FDecision));
+    Result := webkit_response_policy_decision_get_request(FDecision);
   end;
 end;
 
-function TWkResponsePolicyDecision.GetResponse(): IWkURIResponse;
+function TWkResponsePolicyDecision.GetResponse(): WebKitURIResponse;
 begin
   Result := nil;
   if Assigned(FDecision) then
   begin
-    Result := TWkURIResponse.Create(webkit_response_policy_decision_get_response(FDecision)) as IWkURIResponse;
+    Result := webkit_response_policy_decision_get_response(FDecision);
   end;
 end;
 

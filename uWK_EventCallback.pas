@@ -73,17 +73,17 @@ type
     procedure WkWebview_OnLoadChange(Sender: TObject; loadEvent: WebKitLoadEvent);
     procedure WkWebview_OnExecuteScriptFinished(Sender: TObject; const jsValue: TWkJSValue);
     function WkWebview_OnLoadFailed(Sender: TObject; loadEvent: WebKitLoadEvent; failingUri: string; error: string): boolean;
-    procedure WkWebview_OnURISchemeRequest(Sender: TObject; const uriSchemeRequest: IWkURISchemeRequest);
+    procedure WkWebview_OnURISchemeRequest(Sender: TObject; const uriSchemeRequest: WebKitURISchemeRequest);
     procedure WkWebview_OnProcessMessage(Sender: TObject; const jsValue: TWkJSValue; processId: TWkProcessId);
     function WkWebview_OnMousePress(Sender: TObject; event: PWkButtonEvent): boolean;
     function WkWebview_OnMouseRelease(Sender: TObject; event: PWkButtonEvent): boolean;
     procedure WkWebview_OnGetAcceptPolicyFinish(Sender: TObject; policy: WebKitCookieAcceptPolicy; error: string);
     procedure WkWebview_OnAddCookieFinish(Sender: TObject; aResult: boolean; error: string);
-    procedure WkWebview_OnGetCookiesFinish(Sender: TObject; cookieList: IWkCookieList; error: string);
+    procedure WkWebview_OnGetCookiesFinish(Sender: TObject; cookieList: PList; error: string);
     procedure WkWebview_OnDeleteCookieFinish(Sender: TObject; aResult: boolean; error: string);
-    function WkWebview_OnDecidePolicy(Sender: TObject; decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+    function WkWebview_OnDecidePolicy(Sender: TObject; decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
     procedure WkWebview_OnWebProcessTerminated(Sender: TObject; reason: WebKitWebProcessTerminationReason);
-    function WkWebview_OnContextMenu(Sender: TObject; contextMenu: IWkContextMenu; defaultAction: WkAction): boolean;
+    function WkWebview_OnContextMenu(Sender: TObject; contextMenu: WebKitContextMenu; defaultAction: PWkAction): boolean;
     procedure WkWebview_OnContextMenuCommand(Sender: TObject; menuID: integer);
     procedure WkWebview_OnContextMenuDismissed(Sender: TObject);
   end;
@@ -248,9 +248,9 @@ begin
   SendEvent([Sender, loadEvent, ToPChar(failingUri), ToPChar(error), @Result]);
 end;
 
-procedure TWKEvent.WkWebview_OnURISchemeRequest(Sender: TObject; const uriSchemeRequest: IWkURISchemeRequest);
+procedure TWKEvent.WkWebview_OnURISchemeRequest(Sender: TObject; const uriSchemeRequest: WebKitURISchemeRequest);
 begin
-  SendEvent([Sender, uriSchemeRequest as TWkURISchemeRequest]);
+  SendEvent([Sender, uriSchemeRequest]);
 end;
 
 procedure TWKEvent.WkWebview_OnProcessMessage(Sender: TObject; const jsValue: TWkJSValue; processId: TWkProcessId);
@@ -278,9 +278,9 @@ begin
   SendEvent([Sender, aResult, ToPChar(error)]);
 end;
 
-procedure TWKEvent.WkWebview_OnGetCookiesFinish(Sender: TObject; cookieList: IWkCookieList; error: string);
+procedure TWKEvent.WkWebview_OnGetCookiesFinish(Sender: TObject; cookieList: PList; error: string);
 begin
-  SendEvent([Sender, cookieList as TWkCookieList, ToPChar(error)]);
+  SendEvent([Sender, cookieList, ToPChar(error)]);
 end;
 
 procedure TWKEvent.WkWebview_OnDeleteCookieFinish(Sender: TObject; aResult: boolean; error: string);
@@ -288,9 +288,9 @@ begin
   SendEvent([Sender, aResult, ToPChar(error)]);
 end;
 
-function TWKEvent.WkWebview_OnDecidePolicy(Sender: TObject; decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+function TWKEvent.WkWebview_OnDecidePolicy(Sender: TObject; decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
 begin
-  SendEvent([Sender, decision as TWkPolicyDecision, type_, @Result]);
+  SendEvent([Sender, decision, type_, @Result]);
 end;
 
 procedure TWKEvent.WkWebview_OnWebProcessTerminated(Sender: TObject; reason: WebKitWebProcessTerminationReason);
@@ -298,9 +298,9 @@ begin
   SendEvent([Sender, reason]);
 end;
 
-function TWKEvent.WkWebview_OnContextMenu(Sender: TObject; contextMenu: IWkContextMenu; defaultAction: WkAction): boolean;
+function TWKEvent.WkWebview_OnContextMenu(Sender: TObject; contextMenu: WebKitContextMenu; defaultAction: PWkAction): boolean;
 begin
-  SendEvent([Sender, contextMenu as TWkContextMenu, defaultAction, @Result]);
+  SendEvent([Sender, contextMenu, defaultAction, @Result]);
 end;
 
 procedure TWKEvent.WkWebview_OnContextMenuCommand(Sender: TObject; menuID: integer);

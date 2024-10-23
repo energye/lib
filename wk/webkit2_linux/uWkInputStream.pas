@@ -8,11 +8,11 @@ interface
 uses
   Classes, SysUtils,
   LazGLib2, LazGio2,
-  uLibWebkit, uWkInterfaces;
+  uLibWebkit;
 
 type
 
-  TWkInputStream = class(TInterfacedObject, IWkInputStream)
+  TWkInputStream = class
   private
     FInputStream: PInputStream;
     FClosed: boolean;
@@ -22,6 +22,7 @@ type
     function Data(): PInputStream;
     procedure Read(const buf: Pointer; bufSize: integer; var readCount: integer; var errorMsg: string);
     procedure Close();
+  public
     class function New(const aBuf: Pointer; aStreamLength: int64): TWkInputStream;
   end;
 
@@ -34,7 +35,7 @@ end;
 
 class function TWkInputStream.New(const aBuf: Pointer; aStreamLength: int64): TWkInputStream;
 begin
-  Result := Create(g_memory_input_stream_new_from_data(aBuf, gssize(aStreamLength), TGDestroyNotify(@g_free)));
+  Result := Create(g_memory_input_stream_new_from_data(aBuf, gssize(aStreamLength), TDestroyNotify(@g_free)));
 end;
 
 destructor TWkInputStream.Destroy;

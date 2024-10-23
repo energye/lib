@@ -19,8 +19,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="203"/>
-        <CursorPos X="13" Y="219"/>
+        <TopLine Value="95"/>
+        <CursorPos X="61" Y="115"/>
         <UsageCount Value="211"/>
         <Loaded Value="True"/>
       </Unit>
@@ -30,7 +30,7 @@
         <UnitName Value="uWkWebContext"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="19"/>
-        <UsageCount Value="155"/>
+        <UsageCount Value="176"/>
       </Unit>
       <Unit>
         <Filename Value="uwkinputstream.pas"/>
@@ -38,7 +38,7 @@
         <UnitName Value="uWkInputStream"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="140"/>
       </Unit>
       <Unit>
         <Filename Value="uwkevents.pas"/>
@@ -46,118 +46,118 @@
         <UnitName Value="uWkEvents"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="15"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="139"/>
       </Unit>
       <Unit>
         <Filename Value="uWkHeaders.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="uWkURISchemeRequest.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos X="28" Y="108"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="uWkWebview.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="220"/>
         <CursorPos X="32" Y="255"/>
-        <UsageCount Value="211"/>
+        <UsageCount Value="209"/>
       </Unit>
       <Unit>
         <Filename Value="uWkWebViewParent.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="41" Y="17"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="uWkFunctions.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="7"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="uLibWebkit.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="8" Y="26"/>
-        <UsageCount Value="211"/>
+        <UsageCount Value="209"/>
       </Unit>
       <Unit>
         <Filename Value="uwkcookiemanager.pas"/>
         <UnitName Value="uWkCookieManager"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="8"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="189"/>
       </Unit>
       <Unit>
         <Filename Value="uwkinterfaces.pas"/>
         <UnitName Value="uWkInterfaces"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="6"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="184"/>
       </Unit>
       <Unit>
         <Filename Value="uwkpolicydecision.pas"/>
         <UnitName Value="uWkPolicyDecision"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="183"/>
       </Unit>
       <Unit>
         <Filename Value="uwkwebsitepolicies.pas"/>
         <UnitName Value="uWkWebsitePolicies"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="13" Y="3"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="183"/>
       </Unit>
       <Unit>
         <Filename Value="uwksettings.pas"/>
         <UnitName Value="uWkSettings"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="9"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="137"/>
       </Unit>
       <Unit>
         <Filename Value="uwknavigationaction.pas"/>
         <UnitName Value="uWkNavigationAction"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25"/>
-        <UsageCount Value="129"/>
+        <UsageCount Value="127"/>
       </Unit>
       <Unit>
         <Filename Value="uwkurirequest.pas"/>
         <UnitName Value="uWkURIRequest"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="19"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="125"/>
       </Unit>
       <Unit>
         <Filename Value="uwkuriresponse.pas"/>
         <UnitName Value="uWkURIResponse"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="125"/>
       </Unit>
       <Unit>
         <Filename Value="uwkcontextmenu.pas"/>
         <UnitName Value="uWkContextMenu"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="89"/>
       </Unit>
       <Unit>
         <Filename Value="uwkcontextmenuitem.pas"/>
         <UnitName Value="uWkContextMenuItem"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="76"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazsoup2_4.pas"/>
@@ -165,7 +165,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1169"/>
         <CursorPos X="7" Y="1169"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="107"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazglib2.pas"/>
@@ -173,14 +173,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2162"/>
         <CursorPos X="9" Y="2183"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="uWkCookieManager.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="465"/>
         <CursorPos X="8" Y="480"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="76"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgio2.pas"/>
@@ -188,41 +188,41 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1219"/>
         <CursorPos X="27" Y="1226"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="20"/>
       </Unit>
       <Unit>
         <Filename Value="uWkInterfaces.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="38" Y="102"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="102"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgobject2.pas"/>
         <UnitName Value="LazGObject2"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="2"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="uWkNavigationAction.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="9"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="uWkURIRequest.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="35" Y="16"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="uWkURIResponse.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="8"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgtk3.pas"/>
@@ -230,86 +230,100 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2751"/>
         <CursorPos Y="2770"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="uWkContextMenu.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="43" Y="13"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="39"/>
       </Unit>
       <Unit>
         <Filename Value="uWkContextMenuItem.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="15"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="uchildform.pas"/>
         <UnitName Value="uChildForm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="51"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="uWkJSValue.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="55" Y="30"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="uChildForm.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="13"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="demo/udemo.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="12"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="uWkWebContext.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="27" Y="40"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="17"/>
       </Unit>
       <Unit>
         <Filename Value="uWkInputStream.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="17"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/inc/objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="194"/>
         <CursorPos X="21" Y="215"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="uWkEvents.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="uWkWebviewEvents.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="12"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="uWkTypes.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="21"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkInputStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="9" Y="19"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkInterfaces.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="103"/>
+        <CursorPos X="3" Y="115"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="11">
+    <JumpHistory HistoryIndex="17">
       <Position>
         <Filename Value="webkit2form.pas"/>
         <Caret Line="254" Column="48" TopLine="224"/>
@@ -357,6 +371,30 @@
       <Position>
         <Filename Value="webkit2.lpr"/>
         <Caret Line="6" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="208" Column="70" TopLine="203"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="396" Column="48" TopLine="385"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="384" Column="47" TopLine="380"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="109" Column="44" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="113" Column="37" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="115" Column="41" TopLine="103"/>
       </Position>
     </JumpHistory>
     <RunParams>

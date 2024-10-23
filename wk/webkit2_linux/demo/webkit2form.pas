@@ -112,7 +112,7 @@ begin
   contentsStream := TWkInputStream.New(PChar(contents), strlen(contents));
   uriSchemeRequest.Finish(contentsStream, strlen(contents), 'text/html');
 
-  headers := uriSchemeRequest.Headers();
+  headers := TWkHeaders.Create(uriSchemeRequest.Headers());
   headers.Append('test', 'test');
   headerList := headers.List();
   if headerList <> nil then

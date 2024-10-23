@@ -6,33 +6,29 @@ unit uWkContextMenu;
 interface
 
 uses
-  uWkInterfaces, uLibWebKit, uWkContextMenuItem;
+  uLibWebKit;
 
 type
 
-  TWkContextMenu = class(TInterfacedObject, IWkContextMenu)
+  TWkContextMenu = class
   protected
     FContextMenu: WebKitContextMenu;
   public
-    constructor Create();
     constructor Create(aContextMenu: WebKitContextMenu);
     destructor Destroy; override;
     function Data(): WebKitContextMenu;
-    procedure Prepend(item: IWkContextMenuItem);
-    procedure Append(item: IWkContextMenuItem);
-    procedure Insert(item: IWkContextMenuItem; position: integer);
+    procedure Prepend(item: WebKitContextMenuItem);
+    procedure Append(item: WebKitContextMenuItem);
+    procedure Insert(item: WebKitContextMenuItem; position: integer);
     function GetItemsLength(): integer;
-    function GetItemAtPosition(position: integer): IWkContextMenuItem;
-    procedure Remove(item: IWkContextMenuItem);
+    function GetItemAtPosition(position: integer): WebKitContextMenuItem;
+    procedure Remove(item: WebKitContextMenuItem);
     procedure RemoveAll();
+  public
+    class function New(): TWkContextMenu;
   end;
 
 implementation
-
-constructor TWkContextMenu.Create();
-begin
-  FContextMenu := webkit_context_menu_new();
-end;
 
 constructor TWkContextMenu.Create(aContextMenu: WebKitContextMenu);
 begin
@@ -50,22 +46,22 @@ begin
   Result := FContextMenu;
 end;
 
-procedure TWkContextMenu.Prepend(item: IWkContextMenuItem);
+procedure TWkContextMenu.Prepend(item: WebKitContextMenuItem);
 begin
   if Assigned(FContextMenu) then
-    webkit_context_menu_prepend(FContextMenu, item.Data());
+    webkit_context_menu_prepend(FContextMenu, item);
 end;
 
-procedure TWkContextMenu.Append(item: IWkContextMenuItem);
+procedure TWkContextMenu.Append(item: WebKitContextMenuItem);
 begin
   if Assigned(FContextMenu) then
-    webkit_context_menu_append(FContextMenu, item.Data());
+    webkit_context_menu_append(FContextMenu, item);
 end;
 
-procedure TWkContextMenu.Insert(item: IWkContextMenuItem; position: integer);
+procedure TWkContextMenu.Insert(item: WebKitContextMenuItem; position: integer);
 begin
   if Assigned(FContextMenu) then
-    webkit_context_menu_insert(FContextMenu, item.Data(), position);
+    webkit_context_menu_insert(FContextMenu, item, position);
 end;
 
 function TWkContextMenu.GetItemsLength(): integer;
@@ -75,23 +71,28 @@ begin
     Result := integer(webkit_context_menu_get_n_items(FContextMenu));
 end;
 
-function TWkContextMenu.GetItemAtPosition(position: integer): IWkContextMenuItem;
+function TWkContextMenu.GetItemAtPosition(position: integer): WebKitContextMenuItem;
 begin
   Result := nil;
   if Assigned(FContextMenu) and (position >= 0) and (position < GetItemsLength())  then
-    Result := TWkContextMenuItem.Create(webkit_context_menu_get_item_at_position(FContextMenu, position)) as IWkContextMenuItem;
+    Result := webkit_context_menu_get_item_at_position(FContextMenu, position);
 end;
 
-procedure TWkContextMenu.Remove(item: IWkContextMenuItem);
+procedure TWkContextMenu.Remove(item: WebKitContextMenuItem);
 begin
   if Assigned(FContextMenu) then
-    webkit_context_menu_remove(FContextMenu, item.Data());
+    webkit_context_menu_remove(FContextMenu, item);
 end;
 
 procedure TWkContextMenu.RemoveAll();
 begin
   if Assigned(FContextMenu) then
     webkit_context_menu_remove_all(FContextMenu);
+end;
+
+class function TWkContextMenu.New(): TWkContextMenu;
+begin
+  Result := Create(webkit_context_menu_new());
 end;
 
 end.

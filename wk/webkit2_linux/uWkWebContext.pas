@@ -8,22 +8,22 @@ interface
 uses
   Classes,
   LazGLib2, LazGObject2,
-  uWkInterfaces, uLibWebKit, uWkCookieManager, uWkURISchemeRequest;
+  uWkInterfaces, uLibWebKit;
 
 type
 
   TWkWebContext = class
   private
     FWebContext: WebKitWebContext;
-  protected
   public
     constructor Create(aWebContext: WebKitWebContext);
     destructor Destroy; override;
     procedure RegisterURIScheme(aScheme: string; aDelegate: IWkSchemeRequestDelegateEvent);
     procedure SetCacheModel(cache_model: WebKitCacheModel);
     procedure DownloadURI(uri: string);
-    function GetCookieManager(): TWkCookieManager;
     procedure SetWetPreferredLanguages(languages: TStrings);
+    function GetCookieManager(): WebKitCookieManager;
+  public
     class function Default(): TWkWebContext;
     class function New(): TWkWebContext;
   end;
@@ -32,12 +32,8 @@ implementation
 
 
 procedure doAPIURISchemeRequest(request: WebKitURISchemeRequest; user_data: gpointer); cdecl;
-var
-  URISchemeRequest: TWkURISchemeRequest;
 begin
-  URISchemeRequest := TWkURISchemeRequest.Create(request);
-  IWkSchemeRequestDelegateEvent(user_data).doURISchemeRequest(URISchemeRequest);
-  URISchemeRequest := nil;
+  IWkSchemeRequestDelegateEvent(user_data).doURISchemeRequest(request);
 end;
 
 constructor TWkWebContext.Create(aWebContext: WebKitWebContext);
@@ -75,12 +71,12 @@ begin
   end;
 end;
 
-function TWkWebContext.GetCookieManager(): TWkCookieManager;
+function TWkWebContext.GetCookieManager(): WebKitCookieManager;
 begin
   Result := nil;
   if Assigned(FWebContext) then
   begin
-    Result := TWkCookieManager.Create(webkit_web_context_get_cookie_manager(FWebContext));
+    Result := webkit_web_context_get_cookie_manager(FWebContext);
   end;
 end;
 

@@ -6,24 +6,24 @@ unit uWkURIResponse;
 interface
 
 uses
-  uWkInterfaces, uLibWebkit, uWkHeaders;
+  uLibWebkit;
 
 type
 
-  TWkURIResponse = class(TInterfacedObject, IWkURIResponse)
+  TWkURIResponse = class
   protected
     FURIResponse: WebKitURIResponse;
-    FHeaders: TWkHeaders;
     function GetUri(): string;
   public
     constructor Create(aURIResponse: WebKitURIResponse);
     destructor Destroy; override;
-    property URI: string read GetUri;
-    function Headers(): IWkHeaders;
+    function Headers(): PSoupMessageHeaders;
     function GetStatusCode(): integer;
     function GetContentLength(): uint64;
     function GetMimeType(): string;
     function GetSuggestedFilename(): string;
+  public
+    property URI: string read GetUri;
   end;
 
 implementation
@@ -32,14 +32,12 @@ constructor TWkURIResponse.Create(aURIResponse: WebKitURIResponse);
 begin
   inherited Create;
   FURIResponse := aURIResponse;
-  FHeaders := nil;
 end;
 
 destructor TWkURIResponse.Destroy;
 begin
   inherited Destroy;
   FURIResponse := nil;
-  FHeaders := nil;
 end;
 
 function TWkURIResponse.GetUri(): string;
@@ -49,11 +47,11 @@ begin
     Result := string(webkit_uri_response_get_uri(FURIResponse));
 end;
 
-function TWkURIResponse.Headers(): IWkHeaders;
+function TWkURIResponse.Headers(): PSoupMessageHeaders;
 begin
-  if Assigned(FURIResponse) and not Assigned(FHeaders) then
-    FHeaders := TWkHeaders.Create(webkit_uri_response_get_http_headers(FURIResponse));
-  Result := FHeaders;
+  Result := nil;
+  if Assigned(FURIResponse) then
+    Result := webkit_uri_response_get_http_headers(FURIResponse);
 end;
 
 function TWkURIResponse.GetStatusCode(): integer;

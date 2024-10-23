@@ -7,23 +7,23 @@ interface
 
 uses
   LazGLib2,
-  uWkInterfaces, uLibWebkit, uWkHeaders;
+  uLibWebkit;
 
 type
 
-  TWkURIRequest = class(TInterfacedObject, IWkURIRequest)
+  TWkURIRequest = class
   protected
     FURIRequest: WebKitURIRequest;
-    FHeaders: TWkHeaders;
     function GetUri(): string;
     procedure SetUri(uri: string);
   public
     constructor Create(aURIRequest: WebKitURIRequest);
     destructor Destroy; override;
     function Method(): string;
-    function Headers(): IWkHeaders;
-    class function NewURIRequest(uri: string): IWkURIRequest;
+    function Headers(): PSoupMessageHeaders;
     property URI: string read GetUri write SetUri;
+  public
+    class function NewURIRequest(aUri: string): TWkURIRequest;
   end;
 
 implementation
@@ -31,14 +31,12 @@ implementation
 constructor TWkURIRequest.Create(aURIRequest: WebKitURIRequest);
 begin
   FURIRequest := aURIRequest;
-  FHeaders := nil;
 end;
 
 destructor TWkURIRequest.Destroy;
 begin
   inherited Destroy;
   FURIRequest := nil;
-  FHeaders := nil;
 end;
 
 function TWkURIRequest.GetUri(): string;
@@ -61,16 +59,16 @@ begin
     Result := string(webkit_uri_request_get_http_method(FURIRequest));
 end;
 
-function TWkURIRequest.Headers(): IWkHeaders;
+function TWkURIRequest.Headers(): PSoupMessageHeaders;
 begin
-  if Assigned(FURIRequest) and not Assigned(FHeaders) then
-    FHeaders := TWkHeaders.Create(webkit_uri_request_get_http_headers(FURIRequest));
-  Result := FHeaders;
+  Result := nil;
+  if Assigned(FURIRequest) then
+    Result := webkit_uri_request_get_http_headers(FURIRequest);
 end;
 
-class function TWkURIRequest.NewURIRequest(uri: string): IWkURIRequest;
+class function TWkURIRequest.NewURIRequest(aUri: string): TWkURIRequest;
 begin
-  Result := Create(webkit_uri_request_new(Pgchar(uri))) as IWkURIRequest;
+  Result := Create(webkit_uri_request_new(Pgchar(aUri)));
 end;
 
 

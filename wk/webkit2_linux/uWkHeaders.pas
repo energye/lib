@@ -7,23 +7,23 @@ interface
 
 uses
   Classes,
-  LazGLib2,
-  uWkInterfaces, uLibWebKit;
+  LazGLib2, uLibWebKit;
 
 type
 
-  TWkHeaders = class(TInterfacedObject, IWkHeaders)
+  TWkHeaders = class
   protected
     FMessageHeaders: PSoupMessageHeaders;
   public
     constructor Create(aMessageHeaders: PSoupMessageHeaders);
-    constructor Create(type_: TSoupMessageHeadersType);
     destructor Destroy; override;
     function List(): TStrings;
     procedure Append(aName: string; aValue: string);
     procedure Clear();
     procedure Remove(aName: string);
     procedure Replace(aName: string; aValue: string);
+  public
+    class function NewMessageHeadersType(type_: TSoupMessageHeadersType): TWkHeaders;
   end;
 
 
@@ -32,11 +32,6 @@ implementation
 constructor TWkHeaders.Create(aMessageHeaders: PSoupMessageHeaders);
 begin
   FMessageHeaders := aMessageHeaders;
-end;
-
-constructor TWkHeaders.Create(type_: TSoupMessageHeadersType);
-begin
-  FMessageHeaders := soup_message_headers_new(type_);
 end;
 
 destructor TWkHeaders.Destroy;
@@ -85,6 +80,11 @@ procedure TWkHeaders.Replace(aName: string; aValue: string);
 begin
   if Assigned(FMessageHeaders) then
     soup_message_headers_replace(FMessageHeaders, Pgchar(aName), Pgchar(aValue));
+end;
+
+class function TWkHeaders.NewMessageHeadersType(type_: TSoupMessageHeadersType): TWkHeaders;
+begin
+  Result := Create(soup_message_headers_new(type_));
 end;
 
 end.
