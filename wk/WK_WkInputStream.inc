@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//constructor
-function WkInputStream_New(const aBuf: Pointer; var aStreamLength: int64) : TWkInputStream ; extdecl;
+//function
+function WkInputStream_New(const aBuf: Pointer; var aStreamLength: int64): TWkInputStream; extdecl;
 begin
-  handleExceptionBegin
   Result := TWkInputStream.New(aBuf, aStreamLength);
-  handleExceptionEnd
 end;
 
 //function

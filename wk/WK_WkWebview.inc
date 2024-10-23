@@ -48,7 +48,7 @@ begin
 end;
 
 //function
-procedure WkWebview_CookieManager(AObj: TWkWebview; var Result: TWkCookieManager); extdecl;
+function WkWebview_CookieManager(AObj: TWkWebview): TWkCookieManager; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.CookieManager();
@@ -56,10 +56,26 @@ begin
 end;
 
 //function
-procedure WkWebview_GetSettings(AObj: TWkWebview; var Result: TWkSettings); extdecl;
+function WkWebview_GetSettings(AObj: TWkWebview): TWkSettings; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetSettings();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsCookieManagerDelegate(AObj: TWkWebview; var Result: IWkCookieManagerDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsCookieManagerDelegate();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsSchemeRequestDelegate(AObj: TWkWebview; var Result: IWkSchemeRequestDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsSchemeRequestDelegate();
   handleExceptionEnd
 end;
 
@@ -327,15 +343,6 @@ begin
   WKEventMethodCode
 end;
 
-procedure WkWebview_AsCookieManagerDelegate(AObj: TWkWebview; out Result: IWkCookieManagerDelegateEvent); extdecl;
-begin
-  Result := AObj.AsCookieManagerDelegate();
-end;
-
-procedure WkWebview_AsSchemeRequestDelegate(AObj: TWkWebview; out Result: IWkSchemeRequestDelegateEvent); extdecl;
-begin
-  Result := AObj.AsSchemeRequestDelegate();
-end;
 
 exports
   WkWebview_Create,
@@ -346,6 +353,8 @@ exports
   WkWebview_GetTitle,
   WkWebview_CookieManager,
   WkWebview_GetSettings,
+  WkWebview_AsCookieManagerDelegate,
+  WkWebview_AsSchemeRequestDelegate,
   WkWebview_CreateBrowser,
   WkWebview_GoBack,
   WkWebview_GoForward,
@@ -378,6 +387,4 @@ exports
   WkWebview_SetOnWebProcessTerminated,
   WkWebview_SetOnContextMenu,
   WkWebview_SetOnContextMenuCommand,
-  WkWebview_SetOnContextMenuDismissed,
-  WkWebview_AsCookieManagerDelegate,
-  WkWebview_AsSchemeRequestDelegate;
+  WkWebview_SetOnContextMenuDismissed;

@@ -8,9 +8,9 @@ begin
 end;
 
 //function
-procedure WkURIRequest_NewURIRequest(uri: PChar; var Result: IWkURIRequest); extdecl;
+function WkURIRequest_NewURIRequest(aUri: PChar): TWkURIRequest; extdecl;
 begin
-  Result := TWkURIRequest.NewURIRequest(uri);
+  Result := TWkURIRequest.NewURIRequest(aUri);
 end;
 
 //property
@@ -34,7 +34,7 @@ begin
 end;
 
 //function
-procedure WkURIRequest_Headers(AObj: TWkURIRequest; var Result: IWkHeaders); extdecl;
+function WkURIRequest_Headers(AObj: TWkURIRequest): PSoupMessageHeaders; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.Headers();

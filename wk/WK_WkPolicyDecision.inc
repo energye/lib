@@ -24,7 +24,7 @@ begin
 end;
 
 //procedure
-procedure WkPolicyDecision_UseWithPolicies(AObj: TWkPolicyDecision; policies: IWkWebsitePolicies); extdecl;
+procedure WkPolicyDecision_UseWithPolicies(AObj: TWkPolicyDecision; policies: WebKitWebsitePolicies); extdecl;
 begin
   handleExceptionBegin
   AObj.UseWithPolicies(policies);

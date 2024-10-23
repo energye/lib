@@ -8,31 +8,31 @@ begin
 end;
 
 //function
-procedure WkContextMenuItem_NewFromAction(action: WkAction; aLabel: PChar; commandId: Integer; var Result: IWkContextMenuItem); extdecl;
+function WkContextMenuItem_NewFromAction(action: PWkAction; aLabel: PChar; commandId: Integer): TWkContextMenuItem; extdecl;
 begin
   Result := TWkContextMenuItem.NewFromAction(action, aLabel, commandId);
 end;
 
 //function
-procedure WkContextMenuItem_NewFromStockAction(action: WebKitContextMenuAction; var Result: IWkContextMenuItem); extdecl;
+function WkContextMenuItem_NewFromStockAction(action: WebKitContextMenuAction): TWkContextMenuItem; extdecl;
 begin
   Result := TWkContextMenuItem.NewFromStockAction(action);
 end;
 
 //function
-procedure WkContextMenuItem_NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: PChar; var Result: IWkContextMenuItem); extdecl;
+function WkContextMenuItem_NewFromStockActionWithLabel(action: WebKitContextMenuAction; aLabel: PChar): TWkContextMenuItem; extdecl;
 begin
   Result := TWkContextMenuItem.NewFromStockActionWithLabel(action, aLabel);
 end;
 
 //function
-procedure WkContextMenuItem_NewWithSubmenu(aLabel: PChar; submenu: WebKitContextMenu; var Result: IWkContextMenuItem); extdecl;
+function WkContextMenuItem_NewWithSubmenu(aLabel: PChar; submenu: WebKitContextMenu): TWkContextMenuItem; extdecl;
 begin
   Result := TWkContextMenuItem.NewWithSubmenu(aLabel, submenu);
 end;
 
 //function
-procedure WkContextMenuItem_NewSeparator(var Result: IWkContextMenuItem); extdecl;
+function WkContextMenuItem_NewSeparator(): TWkContextMenuItem; extdecl;
 begin
   Result := TWkContextMenuItem.NewSeparator();
 end;
@@ -54,7 +54,7 @@ begin
 end;
 
 //function
-function WkContextMenuItem_GetAction(AObj: TWkContextMenuItem): WkAction; extdecl;
+function WkContextMenuItem_GetAction(AObj: TWkContextMenuItem): PWkAction; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetAction();
@@ -78,7 +78,7 @@ begin
 end;
 
 //procedure
-procedure WkContextMenuItem_SetSubmenu(AObj: TWkContextMenuItem; submenu: IWkContextMenu); extdecl;
+procedure WkContextMenuItem_SetSubmenu(AObj: TWkContextMenuItem; submenu: WebKitContextMenu); extdecl;
 begin
   handleExceptionBegin
   AObj.SetSubmenu(submenu);

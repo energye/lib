@@ -56,7 +56,7 @@ begin
 end;
 
 //function
-procedure WkURISchemeRequest_Headers(AObj: TWkURISchemeRequest; var Result: PSoupMessageHeaders); extdecl;
+function WkURISchemeRequest_Headers(AObj: TWkURISchemeRequest): PSoupMessageHeaders; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.Headers();
@@ -64,15 +64,15 @@ begin
 end;
 
 //function
-procedure WkURISchemeRequest_Body(AObj: TWkURISchemeRequest; var Result: TWkInputStream); extdecl;
+function WkURISchemeRequest_Body(AObj: TWkURISchemeRequest): PInputStream; extdecl;
 begin
   handleExceptionBegin
-  Result := AObj.Body() as TWkInputStream;
+  Result := AObj.Body();
   handleExceptionEnd
 end;
 
 //procedure
-procedure WkURISchemeRequest_Finish(AObj: TWkURISchemeRequest; stream: TWkInputStream; var streamlength: int64; contenttype: PChar); extdecl;
+procedure WkURISchemeRequest_Finish(AObj: TWkURISchemeRequest; stream: PInputStream; var streamlength: int64; contenttype: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.Finish(stream, streamlength, contenttype);

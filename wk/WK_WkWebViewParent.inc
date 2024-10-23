@@ -20,7 +20,7 @@ begin
 end;
 
 //property
-procedure WkWebViewParent_WebView(AIsSet: LongBool; AObj: TWkWebViewParent; AValue: TWkWebview; var Result: TWkWebview); extdecl;
+function WkWebViewParent_WebView(AIsSet: LongBool; AObj: TWkWebViewParent; AValue: TWkWebview): TWkWebview; extdecl;
 begin
   handleExceptionBegin
   if AIsSet then

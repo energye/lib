@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//constructor
-function WkCookieManager_Create1(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent): TWkCookieManager; extdecl;
+//function
+function WkCookieManager_NewDelegate(aCookieManager: WebKitCookieManager; aDelegateEvent: IWkCookieManagerDelegateEvent): TWkCookieManager; extdecl;
 begin
-  handleExceptionBegin
-  Result := TWkCookieManager.Create(aCookieManager, aDelegateEvent);
-  handleExceptionEnd
+  Result := TWkCookieManager.NewDelegate(aCookieManager, aDelegateEvent);
 end;
 
 //procedure
@@ -40,7 +38,7 @@ begin
 end;
 
 //procedure
-procedure WkCookieManager_AddCookie(AObj: TWkCookieManager; const cookie: IWkCookie); extdecl;
+procedure WkCookieManager_AddCookie(AObj: TWkCookieManager; const cookie: PSoupCookie); extdecl;
 begin
   handleExceptionBegin
   AObj.AddCookie(cookie);
@@ -56,7 +54,7 @@ begin
 end;
 
 //procedure
-procedure WkCookieManager_DeleteCookie(AObj: TWkCookieManager; cookie: IWkCookie); extdecl;
+procedure WkCookieManager_DeleteCookie(AObj: TWkCookieManager; cookie: PSoupCookie); extdecl;
 begin
   handleExceptionBegin
   AObj.DeleteCookie(cookie);
@@ -82,7 +80,7 @@ end;
 
 exports
   WkCookieManager_Create,
-  WkCookieManager_Create1,
+  WkCookieManager_NewDelegate,
   WkCookieManager_SetPersistentStorage,
   WkCookieManager_SetAcceptPolicy,
   WkCookieManager_GetAcceptPolicy,

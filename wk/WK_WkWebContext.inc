@@ -8,19 +8,19 @@ begin
 end;
 
 //function
-procedure WkWebContext_Default(var Result: TWkWebContext); extdecl;
+function WkWebContext_Default(): TWkWebContext; extdecl;
 begin
   Result := TWkWebContext.Default();
 end;
 
 //function
-procedure WkWebContext_New(var Result: TWkWebContext); extdecl;
+function WkWebContext_New(): TWkWebContext; extdecl;
 begin
   Result := TWkWebContext.New();
 end;
 
 //function
-procedure WkWebContext_GetCookieManager(AObj: TWkWebContext; var Result: TWkCookieManager); extdecl;
+function WkWebContext_GetCookieManager(AObj: TWkWebContext): WebKitCookieManager; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetCookieManager();

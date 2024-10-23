@@ -16,7 +16,7 @@ begin
 end;
 
 //function
-procedure WkCookieList_GetCookie(AObj: TWkCookieList; index: integer; var Result: IWkCookie); extdecl;
+function WkCookieList_GetCookie(AObj: TWkCookieList; index: integer): PSoupCookie; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetCookie(index);

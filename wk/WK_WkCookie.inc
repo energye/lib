@@ -8,7 +8,7 @@ begin
 end;
 
 //function
-procedure WkCookie_NewCookie(aName,  aValue,  aDomain,  aPath: PChar; aMaxAge: LongInt; var Result: IWkCookie); extdecl;
+function WkCookie_NewCookie(aName,  aValue,  aDomain,  aPath: PChar; aMaxAge: LongInt): TWkCookie; extdecl;
 begin
   Result := TWkCookie.NewCookie(aName,  aValue,  aDomain,  aPath, aMaxAge);
 end;
@@ -86,7 +86,7 @@ begin
 end;
 
 //property
-procedure WkCookie_Expires(AIsSet: LongBool; AObj: TWkCookie; AValue: IWkCookieDate; var Result: IWkCookieDate); extdecl;
+function WkCookie_Expires(AIsSet: LongBool; AObj: TWkCookie; AValue: PSoupDate): PSoupDate; extdecl;
 begin
   handleExceptionBegin
   if AIsSet then

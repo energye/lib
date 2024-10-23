@@ -97,7 +97,7 @@ uses
 
 // Webkit2 Linux GTK3
 {$IFDEF LCLGTK3}
-{$I ImportWK.inc}
+{$I ImportWKLinux.inc}
 {$ENDIF}
 
 begin

@@ -8,15 +8,23 @@ begin
 end;
 
 //function
-procedure WkCookieDate_NewCustomCookieDate(aYear,  aMonth,  aDay,  aHour,  aMinute,  aSecond: LongInt; var Result: IWkCookieDate); extdecl;
+function WkCookieDate_NewCustomCookieDate(aYear,  aMonth,  aDay,  aHour,  aMinute,  aSecond: LongInt): TWkCookieDate; extdecl;
 begin
   Result := TWkCookieDate.NewCustomCookieDate(aYear,  aMonth,  aDay,  aHour,  aMinute,  aSecond);
 end;
 
 //function
-procedure WkCookieDate_NewCookieDate(var Result: IWkCookieDate); extdecl;
+function WkCookieDate_NewCookieDate(): TWkCookieDate; extdecl;
 begin
   Result := TWkCookieDate.NewCookieDate();
+end;
+
+//function
+function WkCookieDate_Data(AObj: TWkCookieDate): PSoupDate; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
 end;
 
 //function
@@ -104,6 +112,7 @@ exports
   WkCookieDate_Create,
   WkCookieDate_NewCustomCookieDate,
   WkCookieDate_NewCookieDate,
+  WkCookieDate_Data,
   WkCookieDate_Year,
   WkCookieDate_Month,
   WkCookieDate_Day,

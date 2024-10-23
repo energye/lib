@@ -7,12 +7,10 @@ begin
   handleExceptionEnd
 end;
 
-//constructor
-function WkHeaders_Create1(type_: TSoupMessageHeadersType): TWkHeaders; extdecl;
+//function
+function WkHeaders_NewMessageHeadersType(type_: TSoupMessageHeadersType): TWkHeaders; extdecl;
 begin
-  handleExceptionBegin
-  Result := TWkHeaders.Create(type_);
-  handleExceptionEnd
+  Result := TWkHeaders.NewMessageHeadersType(type_);
 end;
 
 //function
@@ -58,7 +56,7 @@ end;
 
 exports
   WkHeaders_Create,
-  WkHeaders_Create1,
+  WkHeaders_NewMessageHeadersType,
   WkHeaders_List,
   WkHeaders_Append,
   WkHeaders_Clear,

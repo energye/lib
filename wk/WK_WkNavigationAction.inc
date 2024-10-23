@@ -8,7 +8,7 @@ begin
 end;
 
 //function
-procedure WkNavigationAction_GetRequest(AObj: TWkNavigationAction; var Result: IWkURIRequest); extdecl;
+function WkNavigationAction_GetRequest(AObj: TWkNavigationAction): WebKitURIRequest; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetRequest();

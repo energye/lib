@@ -16,7 +16,7 @@ begin
 end;
 
 //function
-procedure WkURIResponse_Headers(AObj: TWkURIResponse; var Result: IWkHeaders); extdecl;
+function WkURIResponse_Headers(AObj: TWkURIResponse): PSoupMessageHeaders; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.Headers();

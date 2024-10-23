@@ -1,18 +1,16 @@
 
 //constructor
-function WkContextMenu_Create(): TWkContextMenu; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWkContextMenu.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WkContextMenu_Create1(aContextMenu: WebKitContextMenu): TWkContextMenu; extdecl;
+function WkContextMenu_Create(aContextMenu: WebKitContextMenu): TWkContextMenu; extdecl;
 begin
   handleExceptionBegin
   Result := TWkContextMenu.Create(aContextMenu);
   handleExceptionEnd
+end;
+
+//function
+function WkContextMenu_New(): TWkContextMenu; extdecl;
+begin
+  Result := TWkContextMenu.New();
 end;
 
 //function
@@ -32,7 +30,7 @@ begin
 end;
 
 //function
-procedure WkContextMenu_GetItemAtPosition(AObj: TWkContextMenu; position: integer; var Result: IWkContextMenuItem); extdecl;
+function WkContextMenu_GetItemAtPosition(AObj: TWkContextMenu; position: integer): WebKitContextMenuItem; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.GetItemAtPosition(position);
@@ -40,7 +38,7 @@ begin
 end;
 
 //procedure
-procedure WkContextMenu_Prepend(AObj: TWkContextMenu; item: IWkContextMenuItem); extdecl;
+procedure WkContextMenu_Prepend(AObj: TWkContextMenu; item: WebKitContextMenuItem); extdecl;
 begin
   handleExceptionBegin
   AObj.Prepend(item);
@@ -48,7 +46,7 @@ begin
 end;
 
 //procedure
-procedure WkContextMenu_Append(AObj: TWkContextMenu; item: IWkContextMenuItem); extdecl;
+procedure WkContextMenu_Append(AObj: TWkContextMenu; item: WebKitContextMenuItem); extdecl;
 begin
   handleExceptionBegin
   AObj.Append(item);
@@ -56,7 +54,7 @@ begin
 end;
 
 //procedure
-procedure WkContextMenu_Insert(AObj: TWkContextMenu; item: IWkContextMenuItem; position: integer); extdecl;
+procedure WkContextMenu_Insert(AObj: TWkContextMenu; item: WebKitContextMenuItem; position: integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Insert(item, position);
@@ -64,7 +62,7 @@ begin
 end;
 
 //procedure
-procedure WkContextMenu_Remove(AObj: TWkContextMenu; item: IWkContextMenuItem); extdecl;
+procedure WkContextMenu_Remove(AObj: TWkContextMenu; item: WebKitContextMenuItem); extdecl;
 begin
   handleExceptionBegin
   AObj.Remove(item);
@@ -82,7 +80,7 @@ end;
 
 exports
   WkContextMenu_Create,
-  WkContextMenu_Create1,
+  WkContextMenu_New,
   WkContextMenu_Data,
   WkContextMenu_GetItemsLength,
   WkContextMenu_GetItemAtPosition,
