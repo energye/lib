@@ -10,7 +10,7 @@ uses
   uWkInterfaces, uLibWebkit, uWkFunctions, uWkTypes,
   uWkWebViewParent, uWkWebview, uWkInputStream,
   uWkJSValue, uWkURISchemeRequest, uWkHeaders, uWkCookieManager, uWkPolicyDecision,
-  uWkContextMenu, uWkContextMenuItem, uWkWebContext,
+  uWkContextMenu, uWkContextMenuItem, uWkWebContext, uWkURIRequest, uWkNavigationAction,
   uChildForm;
 
 type
@@ -45,15 +45,15 @@ type
     procedure ShowDevToolsMenuClick(Sender: TObject);
     procedure OnExecuteScriptFinished(Sender: TObject; const jsValue: TWkJSValue);
     procedure OnProcessMessageEvent(Sender: TObject; const jsValue: TWkJSValue; processId: TWkProcessId);
-    procedure OnURISchemeRequestEvent(Sender: TObject; const uriSchemeRequest: IWkURISchemeRequest);
+    procedure OnURISchemeRequestEvent(Sender: TObject; const uriSchemeRequest: WebKitURISchemeRequest);
     procedure OnLoadChangeEvent(Sender: TObject; loadEvent: WebKitLoadEvent);
     procedure OnGetAcceptPolicyFinishEvent(Sender: TObject; policy: WebKitCookieAcceptPolicy; error: string);
     procedure OnAddCookieFinishEvent(Sender: TObject; aResult: boolean; error: string);
-    procedure OnGetCookiesFinishEvent(Sender: TObject; cookieList: IWkCookieList; error: string);
+    procedure OnGetCookiesFinishEvent(Sender: TObject; cookieList: PList; error: string);
     procedure OnDeleteCookieFinishEvent(Sender: TObject; aResult: boolean; error: string);
-    function OnDecidePolicyEvent(Sender: TObject; decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+    function OnDecidePolicyEvent(Sender: TObject; decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
     procedure OnWebProcessTerminatedEvent(Sender: TObject; reason: WebKitWebProcessTerminationReason);
-    function OnContextMenuEvent(Sender: TObject; contextMenu: IWkContextMenu; defaultAction: WkAction): boolean;
+    function OnContextMenuEvent(Sender: TObject; contextMenu: WebKitContextMenu; defaultAction: PWkAction): boolean;
     procedure OnContextMenuCommandEvent(Sender: TObject; menuID: integer);
     procedure ExecuteJS(Data: PtrInt);
     procedure CloseWebkit(Data: PtrInt);
@@ -97,24 +97,26 @@ begin
   end;
 end;
 
-procedure TForm1.OnURISchemeRequestEvent(Sender: TObject; const uriSchemeRequest: IWkURISchemeRequest);
+procedure TForm1.OnURISchemeRequestEvent(Sender: TObject; const uriSchemeRequest: WebKitURISchemeRequest);
 var
   contents: PChar;
   contentsStream: TWkInputStream;
-  headers: IWkHeaders;
+  TempHeaders: TWkHeaders;
   headerList: TStrings;
   idx: integer;
   headName, headValue: string;
+  TempURISchemeRequest: TWkURISchemeRequest;
 begin
-  WriteLn('OnURISchemeRequestEvent Method: ', uriSchemeRequest.Method(), ' Uri: ', uriSchemeRequest.Uri(), ' Path: ', uriSchemeRequest.Path(), ' Scheme: ', uriSchemeRequest.Scheme());
+  TempURISchemeRequest := TWkURISchemeRequest.Create(uriSchemeRequest);
+  WriteLn('OnURISchemeRequestEvent Method: ', TempURISchemeRequest.Method(), ' Uri: ', TempURISchemeRequest.Uri(), ' Path: ', TempURISchemeRequest.Path(), ' Scheme: ', TempURISchemeRequest.Scheme());
 
   contents := PChar(ReadHtmlFile('index.html'));
   contentsStream := TWkInputStream.New(PChar(contents), strlen(contents));
-  uriSchemeRequest.Finish(contentsStream, strlen(contents), 'text/html');
+  TempURISchemeRequest.Finish(contentsStream.Data(), strlen(contents), 'text/html');
 
-  headers := TWkHeaders.Create(uriSchemeRequest.Headers());
-  headers.Append('test', 'test');
-  headerList := headers.List();
+  TempHeaders := TWkHeaders.Create(TempURISchemeRequest.Headers());
+  TempHeaders.Append('test', 'test');
+  headerList := TempHeaders.List();
   if headerList <> nil then
   begin
     for idx := 0 to headerList.Count - 1 do
@@ -153,19 +155,21 @@ begin
   WriteLn('OnDeleteCookieFinishEvent result: ', aResult, ' error: ', error);
 end;
 
-procedure TForm1.OnGetCookiesFinishEvent(Sender: TObject; cookieList: IWkCookieList; error: string);
+procedure TForm1.OnGetCookiesFinishEvent(Sender: TObject; cookieList: PList; error: string);
 var
   idx: integer;
-  aCookie: IWkCookie;
-  aCookieDate: IWkCookieDate;
+  aCookie: TWkCookie;
+  aCookieDate: TWkCookieDate;
   aCookieManage: TWkCookieManager;
+  TempCookieList: TWkCookieList;
 begin
-  WriteLn('OnGetCookiesFinishEvent cookie-length: ', cookieList.Length(), ' error: ', error);
+  TempCookieList := TWkCookieList.Create(cookieList);
+  WriteLn('OnGetCookiesFinishEvent cookie-length: ', TempCookieList.Length(), ' error: ', error);
   aCookieManage := FWebview.CookieManager();
-  for idx := 0 to cookieList.Length() - 1 do
+  for idx := 0 to TempCookieList.Length() - 1 do
   begin
-    aCookie := cookieList.GetCookie(idx);
-    aCookieDate := aCookie.Expires;
+    aCookie := TWkCookie.Create(TempCookieList.GetCookie(idx));
+    aCookieDate := TWkCookieDate.Create(aCookie.Expires);
     if aCookie.Name = 'webkit2-custom-cookie-key' then
     begin
       aCookieManage.DeleteCookie(aCookie);
@@ -175,13 +179,13 @@ begin
   end;
 end;
 
-function TForm1.OnDecidePolicyEvent(Sender: TObject; decision: IWkPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
+function TForm1.OnDecidePolicyEvent(Sender: TObject; decision: WebKitPolicyDecision; type_: WebKitPolicyDecisionType): boolean;
 var
-  aNavigationAction: IWkNavigationAction;
+  aNavigationAction: TWkNavigationAction;
   aNavigationPolicyDecision: TWkNavigationPolicyDecision;
   aResponsePolicyDecision: TWkResponsePolicyDecision;
-  aURIRequest: IWkURIRequest;
-  headers: IWkHeaders;
+  aURIRequest: TWkURIRequest;
+  headers: TWkHeaders;
   headerList: TStrings;
   idx: integer;
   headName, headValue: string;
@@ -190,9 +194,9 @@ begin
   WriteLn('OnDecidePolicyEvent type: ', type_);
   if (type_ = WEBKIT_POLICY_DECISION_TYPE_NEW_WINDOW_ACTION) or (type_ = WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION) then
   begin
-    aNavigationPolicyDecision := decision as TWkNavigationPolicyDecision;
-    aNavigationAction := aNavigationPolicyDecision.GetNavigationAction();
-    aURIRequest := aNavigationAction.GetRequest();
+    aNavigationPolicyDecision := TWkNavigationPolicyDecision.Create(decision);
+    aNavigationAction := TWkNavigationAction.Create(aNavigationPolicyDecision.GetNavigationAction());
+    aURIRequest := TWkURIRequest.Create(aNavigationAction.GetRequest());
     WriteLn('    URL: ', aURIRequest.URI, ' Method: ', aURIRequest.Method());
     // new window
     if (FChildTForm1 <> nil) and (type_ = WEBKIT_POLICY_DECISION_TYPE_NEW_WINDOW_ACTION) then
@@ -205,12 +209,12 @@ begin
   end
   else
   begin
-    aResponsePolicyDecision := decision as TWkResponsePolicyDecision;
-    aURIRequest := aResponsePolicyDecision.GetRequest();
+    aResponsePolicyDecision := TWkResponsePolicyDecision.Create(decision);
+    aURIRequest := TWkURIRequest.Create(aResponsePolicyDecision.GetRequest());
     WriteLn('    URL: ', aURIRequest.URI, ' Method: ', aURIRequest.Method());
   end;
   // 头信息
-  headers := aURIRequest.Headers();
+  headers := TWkHeaders.Create(aURIRequest.Headers());
   headerList := headers.List();
   if headerList <> nil then
   begin
@@ -233,28 +237,30 @@ begin
   end;
 end;
 
-function TForm1.OnContextMenuEvent(Sender: TObject; contextMenu: IWkContextMenu; defaultAction: WkAction): boolean;
+function TForm1.OnContextMenuEvent(Sender: TObject; contextMenu: WebKitContextMenu; defaultAction: PWkAction): boolean;
 var
-  aTestMenuItem: IWkContextMenuItem;
-  subTestMenuItem: IWkContextMenuItem;
+  aTestMenuItem: TWkContextMenuItem;
+  subTestMenuItem: TWkContextMenuItem;
   aSubMenu: TWkContextMenu;
+  TempcontextMenu: TWkContextMenu;
 begin
+  TempcontextMenu := TWkContextMenu.Create(contextMenu);
   //contextMenu.RemoveAll();
-  contextMenu.Append(TWkContextMenuItem.NewSeparator());
+  TempcontextMenu.Append(TWkContextMenuItem.NewSeparator().Data());
 
   aTestMenuItem := TWkContextMenuItem.NewFromAction(defaultAction, '关闭', 10001);
-  contextMenu.Append(aTestMenuItem);
+  TempcontextMenu.Append(aTestMenuItem.Data());
 
   aTestMenuItem := TWkContextMenuItem.NewFromAction(defaultAction, '测试', 0);
-  contextMenu.Append(aTestMenuItem);
+  TempcontextMenu.Append(aTestMenuItem.Data());
 
-  aSubMenu := TWkContextMenu.Create();
+  aSubMenu := TWkContextMenu.New();
   subTestMenuItem := TWkContextMenuItem.NewFromAction(defaultAction, 'Sub测试1', 10003);
-  aSubMenu.Append(subTestMenuItem);
+  aSubMenu.Append(subTestMenuItem.Data());
   subTestMenuItem := TWkContextMenuItem.NewFromAction(defaultAction, 'Sub测试2', 10004);
-  aSubMenu.Append(subTestMenuItem);
+  aSubMenu.Append(subTestMenuItem.Data());
 
-  aTestMenuItem.SetSubmenu(aSubMenu);
+  aTestMenuItem.SetSubmenu(aSubMenu.Data());
 
   WriteLn('OnContextMenuEvent');
   Result := False;
@@ -316,7 +322,7 @@ end;
 procedure TForm1.CookieBtnClick(Sender: TObject);
 var
   aCookieManage: TWkCookieManager;
-  aCookie: IWkCookie;
+  aCookie: TWkCookie;
 begin
   aCookieManage := FWebView.CookieManager();
   aCookieManage.GetAcceptPolicy();
