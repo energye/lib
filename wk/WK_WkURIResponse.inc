@@ -16,6 +16,14 @@ begin
 end;
 
 //function
+function WkURIResponse_Data(AObj: TWkURIResponse): WebKitURIResponse; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 function WkURIResponse_Headers(AObj: TWkURIResponse): PSoupMessageHeaders; extdecl;
 begin
   handleExceptionBegin
@@ -59,6 +67,7 @@ end;
 exports
   WkURIResponse_Create,
   WkURIResponse_URI,
+  WkURIResponse_Data,
   WkURIResponse_Headers,
   WkURIResponse_GetStatusCode,
   WkURIResponse_GetContentLength,

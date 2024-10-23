@@ -26,6 +26,14 @@ begin
 end;
 
 //function
+function WkURIRequest_Data(AObj: TWkURIRequest): WebKitURIRequest; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 function WkURIRequest_Method(AObj: TWkURIRequest): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -46,5 +54,6 @@ exports
   WkURIRequest_Create,
   WkURIRequest_NewURIRequest,
   WkURIRequest_URI,
+  WkURIRequest_Data,
   WkURIRequest_Method,
   WkURIRequest_Headers;

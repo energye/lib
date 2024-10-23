@@ -14,6 +14,14 @@ begin
 end;
 
 //function
+function WkHeaders_Data(AObj: TWkHeaders): PSoupMessageHeaders; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 procedure WkHeaders_List(AObj: TWkHeaders; var Result: TStrings); extdecl;
 begin
   handleExceptionBegin
@@ -57,6 +65,7 @@ end;
 exports
   WkHeaders_Create,
   WkHeaders_NewMessageHeadersType,
+  WkHeaders_Data,
   WkHeaders_List,
   WkHeaders_Append,
   WkHeaders_Clear,

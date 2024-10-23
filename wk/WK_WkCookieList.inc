@@ -8,6 +8,14 @@ begin
 end;
 
 //function
+function WkCookieList_Data(AObj: TWkCookieList): PList; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 function WkCookieList_Length(AObj: TWkCookieList): integer; extdecl;
 begin
   handleExceptionBegin
@@ -26,5 +34,6 @@ end;
 
 exports
   WkCookieList_Create,
+  WkCookieList_Data,
   WkCookieList_Length,
   WkCookieList_GetCookie;

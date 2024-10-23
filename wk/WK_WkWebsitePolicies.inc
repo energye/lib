@@ -16,14 +16,6 @@ begin
 end;
 
 //function
-function WkWebsitePolicies_GetAutoplayPolicy(AObj: TWkWebsitePolicies): WebKitAutoplayPolicy; extdecl;
-begin
-  handleExceptionBegin
-  Result := AObj.GetAutoplayPolicy();
-  handleExceptionEnd
-end;
-
-//function
 function WkWebsitePolicies_Data(AObj: TWkWebsitePolicies): WebKitWebsitePolicies; extdecl;
 begin
   handleExceptionBegin
@@ -31,9 +23,17 @@ begin
   handleExceptionEnd
 end;
 
+//function
+function WkWebsitePolicies_GetAutoplayPolicy(AObj: TWkWebsitePolicies): WebKitAutoplayPolicy; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.GetAutoplayPolicy();
+  handleExceptionEnd
+end;
+
 
 exports
   WkWebsitePolicies_Create,
   WkWebsitePolicies_Create1,
-  WkWebsitePolicies_GetAutoplayPolicy,
-  WkWebsitePolicies_Data;
+  WkWebsitePolicies_Data,
+  WkWebsitePolicies_GetAutoplayPolicy;

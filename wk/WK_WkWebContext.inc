@@ -20,6 +20,14 @@ begin
 end;
 
 //function
+function WkWebContext_Data(AObj: TWkWebContext): WebKitWebContext; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 function WkWebContext_GetCookieManager(AObj: TWkWebContext): WebKitCookieManager; extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +72,7 @@ exports
   WkWebContext_Create,
   WkWebContext_Default,
   WkWebContext_New,
+  WkWebContext_Data,
   WkWebContext_GetCookieManager,
   WkWebContext_RegisterURIScheme,
   WkWebContext_SetCacheModel,

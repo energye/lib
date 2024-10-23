@@ -13,6 +13,14 @@ begin
   Result := TWkCookieManager.NewDelegate(aCookieManager, aDelegateEvent);
 end;
 
+//function
+function WkCookieManager_Data(AObj: TWkCookieManager): WebKitCookieManager; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
 //procedure
 procedure WkCookieManager_SetPersistentStorage(AObj: TWkCookieManager; filename: PChar; storage: WebKitCookiePersistentStorage); extdecl;
 begin
@@ -81,6 +89,7 @@ end;
 exports
   WkCookieManager_Create,
   WkCookieManager_NewDelegate,
+  WkCookieManager_Data,
   WkCookieManager_SetPersistentStorage,
   WkCookieManager_SetAcceptPolicy,
   WkCookieManager_GetAcceptPolicy,

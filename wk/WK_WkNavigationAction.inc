@@ -8,6 +8,14 @@ begin
 end;
 
 //function
+function WkNavigationAction_Data(AObj: TWkNavigationAction): WebKitNavigationAction; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Data();
+  handleExceptionEnd
+end;
+
+//function
 function WkNavigationAction_GetRequest(AObj: TWkNavigationAction): WebKitURIRequest; extdecl;
 begin
   handleExceptionBegin
@@ -18,4 +26,5 @@ end;
 
 exports
   WkNavigationAction_Create,
+  WkNavigationAction_Data,
   WkNavigationAction_GetRequest;
