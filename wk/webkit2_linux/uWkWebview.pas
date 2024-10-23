@@ -14,9 +14,8 @@ uses
   LazGtk3, LazGObject2, LazGLib2, LazGio2, LazGdk3, gtk3widgets,
   {$ENDIF}
   dynlibs,
-  uWkInterfaces, uWkWebviewEvents, uLibWebkit, uWkTypes,
-  uWkPolicyDecision, uWkJSValue, uWkCookieManager,
-  uWkSettings, uWkContextMenu;
+  uWkInterfaces, uWkWebviewEvents, uLibWebkit, uWkTypes, uWkJSValue, uWkCookieManager,
+  uWkSettings;
 
 type
 
@@ -538,7 +537,7 @@ begin
   if FContentManager = nil then
     NewUserContentManager();
   g_signal_connect_data(FContentManager, Pgchar('script-message-received::' + aName), TGCALLBACK(@doAPIProcessMessage), self, nil, G_CONNECT_DEFAULT);
-  if boolean(webkit_user_content_manager_register_script_message_handler(FContentManager, Pgchar(aName))) then
+  if not boolean(webkit_user_content_manager_register_script_message_handler(FContentManager, Pgchar(aName))) then
     WriteLn('WebView Create RegisterScriptMessageHandler Failed Name: ', aName);
 end;
 
