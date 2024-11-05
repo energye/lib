@@ -52,21 +52,28 @@ uses
 // CEF unit's
 {$I UnitsCEF.inc}
 
-// Webview2 Windows units
+// Webview2 Windows unit's
 {$IFDEF WINDOWS}
  ,{$I UnitsWV2.inc}
 {$ENDIF}
 
-// Webkit2 MacOS units
+// Webkit2 MacOS unit's
 {$IFDEF LCLCocoa}
 ,{$I UnitsWK2MacOS.inc}
 {$ENDIF}
 
-// Webkit2 Linux GTK3 units
+// Webkit2 Linux GTK3 unit's
 {$IFDEF LCLGTK3}
 ,{$I UnitsWK2Linux.inc}
 {$ENDIF}
+
+// Webkit Linux GTK2 unit's
+{$IFDEF LCLGTK2}
+
+{$ENDIF}
 ;
+
+// ========================= //
 
 {$IFDEF WINDOWS}
   {$R *.res}
