@@ -50,20 +50,21 @@ uses
   uLCL_EventCallback,
 
 // CEF unit's
-{$I CEFComponentUnits.inc}
+{$I UnitsCEF.inc}
 
 // Webview2 Windows units
 {$IFDEF WINDOWS}
- ,{$I WVComponentUnits.inc}
+ ,{$I UnitsWV2.inc}
 {$ENDIF}
 
 // Webkit2 MacOS units
 {$IFDEF LCLCocoa}
+,{$I UnitsWK2MacOS.inc}
 {$ENDIF}
 
 // Webkit2 Linux GTK3 units
 {$IFDEF LCLGTK3}
-,{$I WKComponentUnits.inc}
+,{$I UnitsWK2Linux.inc}
 {$ENDIF}
 ;
 
