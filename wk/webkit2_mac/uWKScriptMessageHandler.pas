@@ -25,7 +25,7 @@ type
   public
     constructor Create(event: IReceiveScriptMessageEvent);
     destructor Destroy; override;
-    function Data(): NSWKScriptMessageHandler;
+    function Data(): WKScriptMessageHandlerProtocol;
   end;
 
 
@@ -57,7 +57,7 @@ begin
   inherited Destroy;
 end;
 
-function TWKScriptMessageHandler.Data(): NSWKScriptMessageHandler;
+function TWKScriptMessageHandler.Data(): WKScriptMessageHandlerProtocol;
 begin
   Result := FData;
 end;
