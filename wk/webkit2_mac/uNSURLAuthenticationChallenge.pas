@@ -21,7 +21,6 @@ type
     constructor Create(AData: NSURLAuthenticationChallenge);
     destructor Destroy; override;
     function Data(): NSURLAuthenticationChallenge;
-  public
   end;
 
 
