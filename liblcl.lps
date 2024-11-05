@@ -1145,16 +1145,14 @@
       </Unit120>
       <Unit121>
         <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="14"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit121>
       <Unit122>
         <Filename Value="wk\webkit2_mac\uWkInterface.pas"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="4"/>
+        <TopLine Value="63"/>
         <CursorPos X="5" Y="11"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
@@ -1188,16 +1186,18 @@
       </Unit127>
       <Unit128>
         <Filename Value="wk\webkit2_mac\uWkWebview.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="121" Y="19"/>
+        <TopLine Value="165"/>
+        <CursorPos X="22" Y="184"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit128>
       <Unit129>
         <Filename Value="wk\webkit2_mac\uWkWebviewEvents.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="16"/>
-        <CursorPos X="38" Y="14"/>
+        <CursorPos X="3" Y="9"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit129>
@@ -1246,7 +1246,7 @@
         <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
-        <CursorPos X="41" Y="28"/>
+        <CursorPos X="3" Y="26"/>
         <UsageCount Value="11"/>
       </Unit136>
       <Unit137>
@@ -1308,7 +1308,7 @@
         <UsageCount Value="10"/>
       </Unit145>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="15" HistoryIndex="14">
       <Position1>
         <Filename Value="wk\webkit2_mac\uWkWebview.pas"/>
         <Caret Line="18"/>
@@ -1358,25 +1358,17 @@
         <Caret Line="10" Column="17"/>
       </Position12>
       <Position13>
-        <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
-        <Caret Line="68" Column="48" TopLine="4"/>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="10" Column="17"/>
       </Position13>
       <Position14>
-        <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
-        <Caret Line="72" Column="42" TopLine="53"/>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="10" Column="17"/>
       </Position14>
       <Position15>
-        <Filename Value="UnitsWK2MacOS.inc"/>
-        <Caret Line="10" Column="17"/>
-      </Position15>
-      <Position16>
-        <Filename Value="UnitsWK2MacOS.inc"/>
-        <Caret Line="10" Column="17"/>
-      </Position16>
-      <Position17>
         <Filename Value="wk\webkit2_mac\uWkWebviewEvents.pas"/>
         <Caret Line="11" Column="46"/>
-      </Position17>
+      </Position15>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

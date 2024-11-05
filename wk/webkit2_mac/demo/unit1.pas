@@ -31,21 +31,21 @@ type
   private
     FWebView: TWkWebview;
     FWebViewParent: TWkWebviewParent;
-    FConfig: IWKWebViewConfiguration;
-    FUserContentController: IWKUserContentController;
-    FScriptMessageHandler: IWKScriptMessageHandler;
-    FNavigationDelegate: IWKNavigationDelegate;
-    FUIDelegate: IWKUIDelegate;
-    FPreference: IWKPreferences;
-    FURLSchemeHandler: IWKURLSchemeHandler;
+    FConfig: TWKWebViewConfiguration;
+    FUserContentController: TWKUserContentController;
+    FScriptMessageHandler: TWKScriptMessageHandler;
+    FNavigationDelegate: TWKNavigationDelegate;
+    FUIDelegate: TWKUIDelegate;
+    FPreference: TWKPreferences;
+    FURLSchemeHandler: TWKURLSchemeHandler;
   public
     constructor Create; overload;
-    procedure OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
-    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: IWKNavigation);
-    procedure OnFinishNavigation(webView: IWKWebView; navigation: IWKNavigation);
-    procedure OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
-    procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
-    function OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction; windowFeatures: IWKWindowFeatures): IWKWebView;
+    procedure OnProcessMessage(Sender: TWKUserContentController; AName, AData: string);
+    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: TWKNavigation);
+    procedure OnFinishNavigation(webView: IWKWebView; navigation: TWKNavigation);
+    procedure OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
+    procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
+    function OnCreateWebView(webView: IWKWebView; configuration_: TWKWebViewConfiguration; navigationAction: TWKNavigationAction; windowFeatures: TWKWindowFeatures): IWKWebView;
   end;
 
 procedure CreateGlobal();
@@ -96,17 +96,17 @@ begin
   FUserContentController.AddScriptMessageHandlerName(FScriptMessageHandler, 'processMessage');
 
   FConfig := TWKWebViewConfiguration.Create;
-  FConfig.SetUserContentController(FUserContentController);
+  FConfig.SetUserContentController(FUserContentController.Data());
 
   FURLSchemeHandler := TWKURLSchemeHandler.Create(FWebView);
 
   FConfig.SetSuppressesIncrementalRendering(true);
   FConfig.SetApplicationNameForUserAgent('energy.cn');
-  FConfig.SetURLSchemeHandlerForURLScheme(FURLSchemeHandler, 'energy');
+  FConfig.SetURLSchemeHandlerForURLScheme(FURLSchemeHandler.Data(), 'energy');
 
 
   FPreference := TWKPreferences.Create();// FConfig.Preferences;
-  FConfig.SetPreferences(FPreference);
+  FConfig.SetPreferences(FPreference.Data());
 
   FPreference.SetTabFocusesLinks(true);
   FPreference.SetFraudulentWebsiteWarningEnabled(true);
@@ -119,10 +119,10 @@ begin
   FNavigationDelegate := TWKNavigationDelegate.Create(FWebView);
   FUIDelegate := TWKUIDelegate.Create(FWebView);
 
-  FWebView.InitWithFrameConfiguration(TempFrame, FConfig);
+  FWebView.InitWithFrameConfiguration(TempFrame, FConfig.Data());
 
-  FWebView.SetNavigationDelegate(FNavigationDelegate);
-  FWebView.SetUIDelegate(FUIDelegate);
+  FWebView.SetNavigationDelegate(FNavigationDelegate.Data());
+  FWebView.SetUIDelegate(FUIDelegate.Data());
 
   FWebViewParent.SetWebview(FWebView);
 
@@ -131,34 +131,34 @@ begin
 
 end;
 
-procedure TForm1.OnProcessMessage(Sender: IWKUserContentController; AName, AData: string);
+procedure TForm1.OnProcessMessage(Sender: TWKUserContentController; AName, AData: string);
 begin
   Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
   FWebView.EvaluateJavaScript('alert(1)');
 end;
 
-procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: IWKNavigation);
+procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: TWKNavigation);
 begin
   Process.Caption := 'start';
 end;
 
-procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: IWKNavigation);
+procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: TWKNavigation);
 begin
   Process.Caption := 'finish';
 end;
 
-procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
 var
-  request: INSURLRequest;
-  response: INSURLResponse;
-  tempNSURL: INSURL;
+  request: TNSURLRequest;
+  response: TNSURLResponse;
+  tempNSURL: TNSURL;
   tempUrl, tempHost, tempPath: string;
   tempHtml: string;
   tempDataBytesLength: Integer;
   tempHTTPHeader: string;
 begin
-  request := urlSchemeTask.Request();
-  tempNSURL := request.URL;
+  request := TNSURLRequest.Create(urlSchemeTask.Request());
+  tempNSURL := TNSURL.Create(request.URL);
   tempUrl := tempNSURL.AbsoluteString;
   tempHost := tempNSURL.Host;
   tempPath := tempNSURL.Path;
@@ -173,39 +173,39 @@ begin
 
   // 响应对象必须包含所请求资源的 MIME 类型
   response := TNSURLResponse.Create;
-  response.InitWithURLMIMETypeExpectedContentLengthTextEncodingName(tempNSURL, 'text/html', tempDataBytesLength, 'utf-8');
+  response.InitWithURLMIMETypeExpectedContentLengthTextEncodingName(tempNSURL.Data(), 'text/html', tempDataBytesLength, 'utf-8');
   //response.InitWithURLStatusCodeHTTPVersionHeaderFields(tempNSURL, 200, 'HTTP/1.1', tempHTTPHeader);//???
   //response.localizedStringForStatusCode(200);
 
-  urlSchemeTask.ReceiveResponse(response);
+  urlSchemeTask.ReceiveResponse(response.Data());
   urlSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);
   urlSchemeTask.Finish();
 end;
 
-procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: IWKURLSchemeTask);
+procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
 begin
   WriteLn();
 end;
 
-function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: IWKWebViewConfiguration; navigationAction: IWKNavigationAction;
-  windowFeatures: IWKWindowFeatures): IWKWebView;
+function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: TWKWebViewConfiguration; navigationAction: TWKNavigationAction;
+  windowFeatures: TWKWindowFeatures): IWKWebView;
 var
-  TempSourceFrame: IWKFrameInfo;
-  TempTargetFrame: IWKFrameInfo;
-  TempSourceRequest: INSURLRequest;
-  TempTargetRequest: INSURLRequest;
+  TempSourceFrame: TWKFrameInfo;
+  TempTargetFrame: TWKFrameInfo;
+  TempSourceRequest: TNSURLRequest;
+  TempTargetRequest: TNSURLRequest;
   TempSourceURL: string;
   TempTargetURL: string;
 begin
   Result := nil;
-  TempSourceFrame := navigationAction.SourceFrame;
-  TempTargetFrame := navigationAction.TargetFrame;
-  TempSourceRequest := TempSourceFrame.Request;
-  TempTargetRequest := TempTargetFrame.Request;
+  TempSourceFrame := TWKFrameInfo.Create(navigationAction.SourceFrame);
+  TempTargetFrame := TWKFrameInfo.Create(navigationAction.TargetFrame);
+  TempSourceRequest := TNSURLRequest.Create(TempSourceFrame.Request);
+  TempTargetRequest := TNSURLRequest.Create(TempTargetFrame.Request);
   if TempSourceRequest <> nil then
-    TempSourceURL := TempSourceRequest.URL.AbsoluteString;
+    TempSourceURL := TNSURL.Create(TempSourceRequest.URL).AbsoluteString;
   if TempTargetRequest <> nil then
-    TempTargetURL := TempTargetRequest.URL.AbsoluteString;
+    TempTargetURL := TNSURL.Create(TempTargetRequest.URL).AbsoluteString;
   WriteLn(TempSourceURL);
   WriteLn(TempTargetURL);
 end;
