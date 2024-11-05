@@ -7,25 +7,24 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
-  uWebKit, uWkInterface, uNSURLRequest, uWKFrameInfo;
+  CocoaAll,
+  uWebKit;
 
 type
 
 
-  TWKNavigationAction = class(TInterfacedObject, IWKNavigationAction)
+  TWKNavigationAction = class
   private
     FData: WKNavigationAction;
-  protected
-    function Data(): WKNavigationAction;
   public
     constructor Create(AData: WKNavigationAction);
     destructor Destroy; override;
+    function Data(): WKNavigationAction;
   public
-    function SourceFrame: IWKFrameInfo;
-    function TargetFrame: IWKFrameInfo;
+    function SourceFrame: WKFrameInfo;
+    function TargetFrame: WKFrameInfo;
     function NavigationType: WKNavigationType;
-    function Request: INSURLRequest;
+    function Request: NSURLRequest;
     function ModifierFlags: NSEventModifierFlags;
     function ButtonNumber: Integer;
   end;
@@ -55,21 +54,21 @@ begin
   Result := FData;
 end;
 
-function TWKNavigationAction.SourceFrame: IWKFrameInfo;
+function TWKNavigationAction.SourceFrame: WKFrameInfo;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKFrameInfo.Create(FData.sourceFrame);
+    Result := FData.sourceFrame;
   end;
 end;
 
-function TWKNavigationAction.TargetFrame: IWKFrameInfo;
+function TWKNavigationAction.TargetFrame: WKFrameInfo;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKFrameInfo.Create(FData.targetFrame);
+    Result := FData.targetFrame;
   end;
 end;
 
@@ -82,12 +81,12 @@ begin
   end;
 end;
 
-function TWKNavigationAction.Request: INSURLRequest;
+function TWKNavigationAction.Request: NSURLRequest;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURLRequest.Create(FData.request);
+    Result := FData.request;
   end;
 end;
 

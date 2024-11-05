@@ -7,20 +7,19 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils,
-  uWebKit, uWkInterface;
+  CocoaAll,
+  uWebKit;
 
 type
 
 
-  TWKWindowFeatures = class(TInterfacedObject, IWKWindowFeatures)
+  TWKWindowFeatures = class
   private
     FData: WKWindowFeatures;
-  protected
-    function Data(): WKWindowFeatures;
   public
     constructor Create(AData: WKWindowFeatures);
     destructor Destroy; override;
+    function Data(): WKWindowFeatures;
   public
     function MenuBarVisibility: Boolean;
     function StatusBarVisibility: Boolean;

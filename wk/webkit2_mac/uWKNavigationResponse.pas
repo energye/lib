@@ -7,24 +7,23 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
-  uWebKit, uWkInterface, uNSURLResponse;
+  CocoaAll,
+  uWebKit;
 
 type
 
 
-  TWKNavigationResponse = class(TInterfacedObject, IWKNavigationResponse)
+  TWKNavigationResponse = class
   private
     FData: WKNavigationResponse;
-  protected
-    function Data(): WKNavigationResponse;
   public
     constructor Create; overload;
     constructor Create(AData: WKNavigationResponse);
     destructor Destroy; override;
+    function Data(): WKNavigationResponse;
   public
     function IsForMainFrame: LongBool;
-    function Response: INSURLResponse;
+    function Response: NSURLResponse;
     function CanShowMIMEType: LongBool;
   end;
 
@@ -66,12 +65,12 @@ begin
   end;
 end;
 
-function TWKNavigationResponse.Response: INSURLResponse;
+function TWKNavigationResponse.Response: NSURLResponse;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURLResponse.Create(FData.response);
+    Result := FData.response;
   end;
 end;
 

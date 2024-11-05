@@ -23,14 +23,13 @@ type
     procedure download_didFailWithError_resumeData (download: WKDownload; error: NSError; resumeData: NSData);
   end;
 
-  TWKDownloadDelegate = class(TInterfacedObject, IWKDownloadDelegate)
+  TWKDownloadDelegate = class
   private
     FData: NSWKDownloadDelegateProtocol;
-  protected
-    function Data(): WKDownloadDelegateProtocol;
   public
     constructor Create(event: IWKDownloadEvent);
     destructor Destroy; override;
+    function Data(): WKDownloadDelegateProtocol;
   end;
 
 

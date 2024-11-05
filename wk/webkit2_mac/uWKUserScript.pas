@@ -13,20 +13,19 @@ uses
 type
 
 
-  TWKUserScript = class(TInterfacedObject, IWKUserScript)
+  TWKUserScript = class
   private
     FData: WKUserScript;
-  protected
-    function Data(): WKUserScript;
   public
     constructor Create; overload;
     constructor Create(AData: WKUserScript);
     destructor Destroy; override;
+    function Data(): WKUserScript;
   public
     function Source: string;
     function InjectionTime: int64;
     function IsForMainFrameOnly: LongBool;
-    class function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
+    class function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): TWKUserScript;
   end;
 
 
@@ -87,7 +86,7 @@ begin
   end;
 end;
 
-class function TWKUserScript.InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): IWKUserScript;
+class function TWKUserScript.InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): TWKUserScript;
 var
   TempUserScript: WKUserScript;
 begin

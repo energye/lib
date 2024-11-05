@@ -13,14 +13,13 @@ uses
 type
 
 
-  TWKNavigation = class(TInterfacedObject, IWKNavigation)
+  TWKNavigation = class
   private
     FData: WKNavigation;
-  protected
-    function Data(): WKNavigation;
   public
     constructor Create(AData: WKNavigation);
     destructor Destroy; override;
+    function Data(): WKNavigation;
   public
     function EffectiveContentMode: WKContentMode;
   end;

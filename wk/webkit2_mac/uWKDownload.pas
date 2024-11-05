@@ -8,25 +8,25 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils,
-  uWebKit, uWkInterface, uNSURLRequest, uWKDownloadDelegateProtocol;
+  CocoaAll,
+  uWebKit, uWkInterface, uWKDownloadDelegateProtocol;
 
 type
 
 
-  TWKDownload = class(TInterfacedObject, IWKDownload)
+  TWKDownload = class
   private
     FData: WKDownload;
     FWebViewDelegate: IWKDownloadEvent;
   protected
-    function Data(): WKDownload;
     procedure doCancelCompletionHandler(resumeData: NSData);
   public
     constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadEvent);
     destructor Destroy; override;
+    function Data(): WKDownload;
   public
-    function OriginalRequest: INSURLRequest;
-    procedure SetDelegate(downloadDelegate: IWKDownloadDelegate);
+    function OriginalRequest: NSURLRequest;
+    procedure SetDelegate(downloadDelegate: TWKDownloadDelegate);
     procedure Cancel ();
   end;
 
@@ -56,16 +56,16 @@ begin
   Result := FData;
 end;
 
-function TWKDownload.OriginalRequest: INSURLRequest;
+function TWKDownload.OriginalRequest: NSURLRequest;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURLRequest.Create(FData.OriginalRequest);
+    Result := FData.OriginalRequest;
   end;
 end;
 
-procedure TWKDownload.SetDelegate(downloadDelegate: IWKDownloadDelegate);
+procedure TWKDownload.SetDelegate(downloadDelegate: TWKDownloadDelegate);
 begin
   if Assigned(FData) then
   begin

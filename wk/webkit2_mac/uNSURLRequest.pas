@@ -7,29 +7,27 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
-  CocoaAll, uWebKit, uWkInterface, uNSURL;
+  CocoaUtils, CocoaAll;
 
 type
 
 
-  TNSURLRequest = class(TInterfacedObject, INSURLRequest)
+  TNSURLRequest = class
   private
     FData: NSURLRequest;
-  protected
-    function Data(): NSURLRequest;
   public
     constructor Create; overload;
     constructor Create(AData: NSURLRequest);
     destructor Destroy; override;
+    function Data(): NSURLRequest;
   public
-    class function RequestWithURL (URL: INSURL): INSURLRequest;
+    class function RequestWithURL (URL: NSURL): TNSURLRequest;
     class function SupportsSecureCoding: LongBool;
-    class function RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): INSURLRequest;
-    function URL: INSURL;
+    class function RequestWithURLCachePolicyTimeoutInterval (URL: NSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
+    function URL: NSURL;
     function CachePolicy: NSURLRequestCachePolicy;
     function TimeoutInterval: double;
-    function MainDocumentURL: INSURL;
+    function MainDocumentURL: NSURL;
     function NetworkServiceType: NSURLRequestNetworkServiceType;
     function AllowsCellularAccess: LongBool;
     function HTTPMethod: string;
@@ -37,7 +35,7 @@ type
     function ValueForHTTPHeaderField (aField: string): string;
   end;
 
-  TNSMutableURLRequest = class(TNSURLRequest, INSMutableURLRequest)
+  TNSMutableURLRequest = class
   private
     FMutableData: NSMutableURLRequest;
   protected
@@ -84,12 +82,12 @@ begin
   Result := FData;
 end;
 
-class function TNSURLRequest.RequestWithURL (URL: INSURL): INSURLRequest;
+class function TNSURLRequest.RequestWithURL (URL: NSURL): TNSURLRequest;
 var
   TempRequest: NSURLRequest;
 begin
   Result := nil;
-  TempRequest := NSURLRequest.requestWithURL(URL.Data());
+  TempRequest := NSURLRequest.requestWithURL(URL);
   if Assigned(TempRequest) then
   begin
     Result := Create(TempRequest);
@@ -101,24 +99,24 @@ begin
   Result := LongBool(NSURLRequest.supportsSecureCoding);
 end;
 
-class function TNSURLRequest.RequestWithURLCachePolicyTimeoutInterval (URL: INSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): INSURLRequest;
+class function TNSURLRequest.RequestWithURLCachePolicyTimeoutInterval (URL: NSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
 var
   TempRequest: NSURLRequest;
 begin
   Result := nil;
-  TempRequest := NSURLRequest.requestWithURL_cachePolicy_timeoutInterval (URL.Data(), cachePolicy, timeoutInterval);
+  TempRequest := NSURLRequest.requestWithURL_cachePolicy_timeoutInterval (URL, cachePolicy, timeoutInterval);
   if Assigned(TempRequest) then
   begin
     Result := Create(TempRequest);
   end;
 end;
 
-function TNSURLRequest.URL: INSURL;
+function TNSURLRequest.URL: NSURL;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURL.Create(FData.URL);
+    Result := FData.URL;
   end;
 end;
 
@@ -140,12 +138,12 @@ begin
   end;
 end;
 
-function TNSURLRequest.MainDocumentURL: INSURL;
+function TNSURLRequest.MainDocumentURL: NSURL;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURL.Create(FData.mainDocumentURL);
+    Result := FData.mainDocumentURL;
   end;
 end;
 
@@ -210,14 +208,14 @@ end;
 
 constructor TNSMutableURLRequest.Create;
 begin
+  inherited Create();
   FMutableData := NSMutableURLRequest.alloc.init;
-  inherited Create(FMutableData);
 end;
 
 constructor TNSMutableURLRequest.Create(AData: NSMutableURLRequest);
 begin
+  inherited Create();
   FMutableData := AData;
-  inherited Create(FMutableData);
 end;
 
 destructor TNSMutableURLRequest.Destroy;

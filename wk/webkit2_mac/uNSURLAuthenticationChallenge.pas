@@ -14,14 +14,13 @@ uses
 type
 
 
-  TNSURLAuthenticationChallenge = class(TInterfacedObject, INSURLAuthenticationChallenge)
+  TNSURLAuthenticationChallenge = class
   private
     FData: NSURLAuthenticationChallenge;
-  protected
-    function Data(): NSURLAuthenticationChallenge;
   public
     constructor Create(AData: NSURLAuthenticationChallenge);
     destructor Destroy; override;
+    function Data(): NSURLAuthenticationChallenge;
   public
   end;
 

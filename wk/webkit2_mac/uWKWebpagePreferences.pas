@@ -7,21 +7,20 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
+  CocoaAll,
   uWebKit, uWkInterface;
 
 type
 
 
-  TWKWebpagePreferences = class(TInterfacedObject, IWKWebpagePreferences)
+  TWKWebpagePreferences = class
   private
     FData: WKWebpagePreferences;
-  protected
-    function Data(): WKWebpagePreferences;
   public
     constructor Create; overload;
     constructor Create(AData: WKWebpagePreferences);
     destructor Destroy; override;
+    function Data(): WKWebpagePreferences;
   public
     procedure SetPreferredContentMode(aValue: WKContentMode);
     function PreferredContentMode: WKContentMode;

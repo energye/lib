@@ -12,15 +12,14 @@ uses
 
 type
 
-  TWKPreferences = class(TInterfacedObject, IWKPreferences)
+  TWKPreferences = class
   private
     FData: WKPreferences;
-  protected
-    function Data(): WKPreferences;
   public
     constructor Create; overload;
     constructor Create(AData: WKPreferences);
     destructor Destroy; override;
+    function Data(): WKPreferences;
   public
     procedure SetMinimumFontSize(newValue: double);
     function MinimumFontSize: double;

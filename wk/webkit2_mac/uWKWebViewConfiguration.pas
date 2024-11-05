@@ -7,34 +7,34 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils, uWebKit, uWkInterface, uWKPreferences, uWKUserContentController;
+  CocoaUtils, uWebKit;
 
 type
 
-  TWKWebViewConfiguration = class(TInterfacedObject, IWKWebViewConfiguration)
+  TWKWebViewConfiguration = class
   private
     FData: WKWebViewConfiguration;
   protected
-    function Data(): WKWebViewConfiguration;
     procedure FieldEmpty();
   private
-    FPreferences: IWKPreferences;
-    FUserContentController: IWKUserContentController;
-    FURLSchemeHandler: IWKURLSchemeHandler;
+    FPreferences: WKPreferences;
+    FUserContentController: WKUserContentController;
+    FURLSchemeHandler: WKURLSchemeHandler;
   public
     constructor Create; overload;
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
+    function Data(): WKWebViewConfiguration;
   public
-    procedure SetPreferences(preferences: IWKPreferences);
-    function Preferences: IWKPreferences;
-    procedure SetUserContentController(userContentController: IWKUserContentController);
-    function UserContentController: IWKUserContentController;
+    procedure SetPreferences(preferences: WKPreferences);
+    function Preferences: WKPreferences;
+    procedure SetUserContentController(userContentController: WKUserContentController);
+    function UserContentController: WKUserContentController;
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
     function SuppressesIncrementalRendering: LongBool;
     function ApplicationNameForUserAgent: string;
     procedure SetApplicationNameForUserAgent(newValue: string);
-    procedure SetURLSchemeHandlerForURLScheme(urlSchemeHandler: IWKURLSchemeHandler; urlScheme: string);
+    procedure SetURLSchemeHandlerForURLScheme(urlSchemeHandler: WKURLSchemeHandler; urlScheme: string);
 
   end;
 
@@ -78,45 +78,45 @@ begin
   Result := FData;
 end;
 
-procedure TWKWebViewConfiguration.SetPreferences(preferences: IWKPreferences);
+procedure TWKWebViewConfiguration.SetPreferences(preferences: WKPreferences);
 begin
   if Assigned(FData) then
   begin
     FPreferences := preferences;
-    FData.setPreferences(preferences.Data());
+    FData.setPreferences(preferences);
   end;
 end;
 
-function TWKWebViewConfiguration.Preferences: IWKPreferences;
+function TWKWebViewConfiguration.Preferences: WKPreferences;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
     if FPreferences = nil then
     begin
-      FPreferences := TWKPreferences.Create(FData.preferences);
+      FPreferences := FData.preferences;
     end;
     Result := FPreferences;
   end;
 end;
 
-procedure TWKWebViewConfiguration.SetUserContentController(userContentController: IWKUserContentController);
+procedure TWKWebViewConfiguration.SetUserContentController(userContentController: WKUserContentController);
 begin
   if Assigned(FData) then
   begin
     FUserContentController := userContentController;
-    FData.setUserContentController(userContentController.Data());
+    FData.setUserContentController(userContentController);
   end;
 end;
 
-function TWKWebViewConfiguration.UserContentController: IWKUserContentController;
+function TWKWebViewConfiguration.UserContentController: WKUserContentController;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
     if FUserContentController = nil then
     begin
-      FUserContentController := TWKUserContentController.Create(FData.userContentController);
+      FUserContentController := FData.userContentController;
     end;
     Result := FUserContentController;
   end;
@@ -156,12 +156,12 @@ begin
   end;
 end;
 
-procedure TWKWebViewConfiguration.SetURLSchemeHandlerForURLScheme(urlSchemeHandler: IWKURLSchemeHandler; urlScheme: string);
+procedure TWKWebViewConfiguration.SetURLSchemeHandlerForURLScheme(urlSchemeHandler: WKURLSchemeHandler; urlScheme: string);
 begin
   if Assigned(FData) then
   begin
     FUrlSchemeHandler := urlSchemeHandler;
-    FData.setURLSchemeHandlerForURLScheme (urlSchemeHandler.Data(), NSStringUtf8(urlScheme));
+    FData.setURLSchemeHandlerForURLScheme (urlSchemeHandler, NSStringUtf8(urlScheme));
   end;
 end;
 

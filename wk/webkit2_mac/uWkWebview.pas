@@ -10,9 +10,9 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration, uNSURL,
+  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration,
   uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation,
-  uWKNavigationResponse, uWKDownload, uNSURLResponse, uNSURLRequest;
+  uWKNavigationResponse, uWKWebpagePreferences, uWKDownload, uNSURLResponse, uNSURLRequest;
 
 type
 
@@ -20,12 +20,11 @@ type
   private
     FData: WKWebView;
   protected
-    function Data(): WKWebView;
     procedure FieldEmpty();
   private
-    FConfiguration: IWKWebViewConfiguration;
-    FNavigationDelegate: IWKNavigationDelegate;
-    FUIDelegate: IWKUIDelegate;
+    FConfiguration: WKWebViewConfiguration;
+    FNavigationDelegate: WKNavigationDelegate;
+    FUIDelegate: WKUIDelegate;
   private
     // WKScriptMessageHandlerProtocol
     FOnProcessMessage: TWkProcessMessageEvent;
@@ -62,16 +61,17 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    function Data(): WKWebView;
   public
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
-    function Configuration: IWKWebViewConfiguration;
-    function LoadRequest (request: INSURLRequest): IWKNavigation;
-    procedure SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
-    procedure SetUIDelegate(uiDelegate: IWKUIDelegate);
-    procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
+    function Configuration: WKWebViewConfiguration;
+    function LoadRequest (request: NSURLRequest): WKNavigation;
+    procedure SetNavigationDelegate(navigationDelegate: WKNavigationDelegate);
+    procedure SetUIDelegate(uiDelegate: WKUIDelegate);
+    procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: WKWebViewConfiguration);
     function Title: string;
-    function URL: INSURL;
+    function URL: NSURL;
     function IsLoading: LongBool;
     // 根据接收到的总字节数，此值的范围为0.0到1.0，包括主文档及其所有潜在的子资源。
     // 导航加载完成后，估计进度值保持在1.0，直到新的导航开始，此时估计进度值重置为0.0。
@@ -80,10 +80,10 @@ type
     function HasOnlySecureContent: LongBool;
     function CanGoBack: LongBool;
     function CanGoForward: LongBool;
-    function GoBack: IWKNavigation;
-    function GoForward: IWKNavigation;
-    function Reload: IWKNavigation;
-    function ReloadFromOrigin: IWKNavigation;
+    function GoBack: WKNavigation;
+    function GoForward: WKNavigation;
+    function Reload: WKNavigation;
+    function ReloadFromOrigin: WKNavigation;
     procedure StopLoading;
     procedure EvaluateJavaScript(javaScriptString: string);
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
@@ -220,8 +220,8 @@ end;
 procedure TWkWebview.doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction;
   var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
 var
-  TempNavigationAction: IWKNavigationAction;
-  TempPreferences: IWKWebpagePreferences;
+  TempNavigationAction: TWKNavigationAction;
+  TempPreferences: TWKWebpagePreferences;
 begin
   TempNavigationAction := nil;
   TempPreferences := nil;
@@ -236,7 +236,7 @@ end;
 
 procedure TWkWebview.doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
 var
-  TempNavigationResponse: IWKNavigationResponse;
+  TempNavigationResponse: TWKNavigationResponse;
 begin
   TempNavigationResponse := nil;
   if Assigned(FOnDecidePolicyForNavigationResponse) then
@@ -315,8 +315,8 @@ end;
 
 procedure TWkWebview.doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
 var
-  TempNavigationAction: IWKNavigationAction;
-  TempDownload: IWKDownload;
+  TempNavigationAction: TWKNavigationAction;
+  TempDownload: TWKDownload;
 begin
   TempNavigationAction := nil;
   TempDownload := nil;
@@ -330,8 +330,8 @@ end;
 
 procedure TWkWebview.doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
 var
-  TempNavigationResponse: IWKNavigationResponse;
-  TempDownload: IWKDownload;
+  TempNavigationResponse: TWKNavigationResponse;
+  TempDownload: TWKDownload;
 begin
   TempNavigationResponse := nil;
   TempDownload := nil;
@@ -345,7 +345,7 @@ end;
 
 procedure TWkWebview.doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
 var
-  TempUrlSchemeTask: IWKURLSchemeTask;
+  TempUrlSchemeTask: TWKURLSchemeTask;
 begin
   TempUrlSchemeTask := nil;
   if Assigned(FOnStartURLSchemeTask) then
@@ -357,7 +357,7 @@ end;
 
 procedure TWkWebview.doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
 var
-  TempUrlSchemeTask: IWKURLSchemeTask;
+  TempUrlSchemeTask: TWKURLSchemeTask;
 begin
   TempUrlSchemeTask := nil;
   if Assigned(FOnStopURLSchemeTask) then
@@ -370,9 +370,9 @@ end;
 function TWkWebview.doCreateWebView (webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
 var
   TempConfig: TWKWebViewConfiguration;
-  TempResultWebview: IWKWebView;
   TempNavigationAction: TWKNavigationAction;
   TempWindowFeatures: TWKWindowFeatures;
+  TempResultWebview: IWKWebView;
 begin
   Result := nil;
   if Assigned(FOnCreateWebView) then
@@ -433,7 +433,7 @@ end;
 // WKDownload
 procedure TWkWebview.doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
 var
-  TempDownload: IWKDownload;
+  TempDownload: TWKDownload;
 begin
   TempDownload := nil;
   if Assigned(FOnDownloadCancelCompletionHandler) then
@@ -445,8 +445,8 @@ end;
 
 procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
 var
-  TempDownload: IWKDownload;
-  TempResponse: INSURLResponse;
+  TempDownload: TWKDownload;
+  TempResponse: TNSURLResponse;
   TempSuggestedFilename: string;
 begin
   TempDownload := nil;
@@ -462,9 +462,9 @@ end;
 
 procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
 var
-  TempDownload: IWKDownload;
-  TempResponse: INSHTTPURLResponse;
-  TempRequest: INSURLRequest;
+  TempDownload: TWKDownload;
+  TempResponse: TNSHTTPURLResponse;
+  TempRequest: TNSURLRequest;
 begin
   TempDownload := nil;
   TempResponse := nil;
@@ -485,7 +485,7 @@ end;
 
 procedure TWkWebview.doDownloadFinish (download: WKDownload);
 var
-  TempDownload: IWKDownload;
+  TempDownload: TWKDownload;
 begin
   TempDownload := nil;
   if Assigned(FOnDownloadFinish) then
@@ -497,7 +497,7 @@ end;
 
 procedure TWkWebview.doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
 var
-  TempDownload: IWKDownload;
+  TempDownload: TWKDownload;
   TempError: string;
   TempData: Pointer;
   TempDataLength: Integer;
@@ -557,47 +557,47 @@ begin
 end;
 
 
-function TWkWebview.Configuration: IWKWebViewConfiguration;
+function TWkWebview.Configuration: WKWebViewConfiguration;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
     if FConfiguration = nil then
     begin
-      FConfiguration := TWKWebViewConfiguration.Create(FData.configuration);
+      FConfiguration := FData.configuration;
     end;
     Result := FConfiguration;
   end;
 end;
 
-function TWkWebview.LoadRequest(request: INSURLRequest): IWKNavigation;
+function TWkWebview.LoadRequest(request: NSURLRequest): WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKNavigation.Create(FData.loadRequest(request.Data()));
+    Result := FData.loadRequest(request);
   end;
 end;
 
-procedure TWkWebview.SetNavigationDelegate(navigationDelegate: IWKNavigationDelegate);
+procedure TWkWebview.SetNavigationDelegate(navigationDelegate: WKNavigationDelegate);
 begin
   if Assigned(FData) then
   begin
     FNavigationDelegate := navigationDelegate;
-    FData.setNavigationDelegate(FNavigationDelegate.Data());
+    FData.setNavigationDelegate(FNavigationDelegate);
   end;
 end;
 
-procedure TWkWebview.SetUIDelegate(uiDelegate: IWKUIDelegate);
+procedure TWkWebview.SetUIDelegate(uiDelegate: WKUIDelegate);
 begin
   if Assigned(FData) then
   begin
     FUIDelegate := uiDelegate;
-    FData.setUIDelegate(FUIDelegate.Data());
+    FData.setUIDelegate(FUIDelegate);
   end;
 end;
 
-procedure TWkWebview.InitWithFrameConfiguration (AFrame: TRect; AConfiguration: IWKWebViewConfiguration);
+procedure TWkWebview.InitWithFrameConfiguration (AFrame: TRect; AConfiguration: WKWebViewConfiguration);
 var
   TempFrame: CGRect;
 begin
@@ -610,7 +610,7 @@ begin
     TempFrame.size.Width := CGFloat(AFrame.Width);
     TempFrame.size.Height := CGFloat(AFrame.Height);
 
-    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, FConfiguration.Data());
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, FConfiguration);
   end;
 end;
 
@@ -623,12 +623,12 @@ begin
   end;
 end;
 
-function TWkWebview.URL: INSURL;
+function TWkWebview.URL: NSURL;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURL.Create(FData.URL);
+    Result := FData.URL;
   end;
 end;
 
@@ -677,39 +677,39 @@ begin
   end;
 end;
 
-function TWkWebview.GoBack: IWKNavigation;
+function TWkWebview.GoBack: WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKNavigation.Create(FData.goBack);
+    Result := FData.goBack;
   end;
 end;
 
-function TWkWebview.GoForward: IWKNavigation;
+function TWkWebview.GoForward: WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKNavigation.Create(FData.goForward);
+    Result := FData.goForward;
   end;
 end;
 
-function TWkWebview.Reload: IWKNavigation;
+function TWkWebview.Reload: WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKNavigation.Create(FData.reload);
+    Result := FData.reload;
   end;
 end;
 
-function TWkWebview.ReloadFromOrigin: IWKNavigation;
+function TWkWebview.ReloadFromOrigin: WKNavigation;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TWKNavigation.Create(FData.reloadFromOrigin);
+    Result := FData.reloadFromOrigin;
   end;
 end;
 

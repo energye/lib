@@ -19,14 +19,13 @@ type
     procedure webView_stopURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
   end;
 
-  TWKURLSchemeHandler = class(TInterfacedObject, IWKURLSchemeHandler)
+  TWKURLSchemeHandler = class
   private
     FData: NSWKURLSchemeHandler;
-  protected
-    function Data(): WKURLSchemeHandlerProtocol;
   public
     constructor Create(event: IWKURLSchemeHandlerEvent);
     destructor Destroy; override;
+    function Data(): WKURLSchemeHandlerProtocol;
   end;
 
 

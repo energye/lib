@@ -8,13 +8,13 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils, CocoaAll,
-  uWebKit, uWkInterface;
+  uWebKit, uWkInterface, uWKScriptMessageHandler;
 
 type
 
   TRefMessageHandle = record
     Name: string;
-    Handler: IWKScriptMessageHandler;
+    Handler: TWKScriptMessageHandler;
   end;
 
   // 维护消息处理引用类，因为它是一个集合，所以用数组来引用维护
@@ -24,26 +24,25 @@ type
   public
     constructor Create; overload;
     destructor Destroy; override;
-    procedure Add(Name: string; Handler: IWKScriptMessageHandler);
+    procedure Add(Name: string; Handler: TWKScriptMessageHandler);
     procedure Remove(Name: string);
   end;
 
-  TWKUserContentController = class(TInterfacedObject, IWKUserContentController)
+  TWKUserContentController = class
   private
     FData: WKUserContentController;
-  protected
-    function Data(): WKUserContentController;
   private
     FRefMessageHandles: TRefMessageHandles; // 引用类
   public
     constructor Create; overload;
     constructor Create(AData: WKUserContentController);
     destructor Destroy; override;
+    function Data(): WKUserContentController;
   public
     function UserScripts: TStrings;
-    procedure AddUserScript (userScript: IWKUserScript);
+    procedure AddUserScript (userScript: WKUserScript);
     procedure RemoveAllUserScripts;
-    procedure AddScriptMessageHandlerName (scriptMessageHandler: IWKScriptMessageHandler; name: string);
+    procedure AddScriptMessageHandlerName (scriptMessageHandler: TWKScriptMessageHandler; name: string);
     procedure RemoveScriptMessageHandlerForName (name: string);
   end;
 
@@ -113,11 +112,11 @@ begin
   Result := ResultData;
 end;
 
-procedure TWKUserContentController.AddUserScript (userScript: IWKUserScript);
+procedure TWKUserContentController.AddUserScript (userScript: WKUserScript);
 begin
   if Assigned(FData) then
   begin
-    FData.addUserScript(userScript.Data());
+    FData.addUserScript(userScript);
   end;
 end;
 
@@ -129,7 +128,7 @@ begin
   end;
 end;
 
-procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHandler: IWKScriptMessageHandler; name: string);
+procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHandler: TWKScriptMessageHandler; name: string);
 begin
   if Assigned(FData) then
   begin
@@ -159,7 +158,7 @@ begin
   FHandles := nil;
 end;
 
-procedure TRefMessageHandles.Add(Name: string; Handler: IWKScriptMessageHandler);
+procedure TRefMessageHandles.Add(Name: string; Handler: TWKScriptMessageHandler);
 var
   len: Integer;
   TempMessageHandle: TRefMessageHandle;

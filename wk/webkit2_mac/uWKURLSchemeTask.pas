@@ -7,22 +7,21 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils, CocoaAll,
-  uWebKit, uWkInterface, uWkWebviewEvents, uNSURLRequest, uNSURLResponse;
+  CocoaAll,
+  uWebKit;
 
 type
 
-  TWKURLSchemeTask = class(TInterfacedObject, IWKURLSchemeTask)
+  TWKURLSchemeTask = class
   private
     FData: WKURLSchemeTask;
-  protected
-    function Data(): WKURLSchemeTask;
   public
     constructor Create(AData: WKURLSchemeTask);
     destructor Destroy; override;
+    function Data(): WKURLSchemeTask;
   public
-    function Request(): INSURLRequest;
-    procedure ReceiveResponse (response: INSURLResponse);
+    function Request(): NSURLRequest;
+    procedure ReceiveResponse (response: NSURLResponse);
     procedure ReceiveData(ADataBytes: Pointer; ALength: Integer {NSData});
     procedure Finish ();
     procedure FailWithError (error: string {NSError});
@@ -53,20 +52,20 @@ begin
   Result := FData;
 end;
 
-function TWKURLSchemeTask.Request(): INSURLRequest;
+function TWKURLSchemeTask.Request(): NSURLRequest;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURLRequest.Create(FData.request());
+    Result := FData.request();
   end;
 end;
 
-procedure TWKURLSchemeTask.ReceiveResponse (response: INSURLResponse);
+procedure TWKURLSchemeTask.ReceiveResponse (response: NSURLResponse);
 begin
   if Assigned(FData) then
   begin
-    FData.didReceiveResponse(response.Data());
+    FData.didReceiveResponse(response);
   end;
 end;
 

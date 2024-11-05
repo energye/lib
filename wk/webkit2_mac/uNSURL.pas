@@ -7,26 +7,25 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils, uWebKit, uWkInterface;
+  CocoaAll, CocoaUtils;
 
 type
 
-  TNSURL = class(TInterfacedObject, INSURL)
+  TNSURL = class
   private
     FData: NSURL;
-  protected
-    function Data(): NSURL;
   public
     constructor Create; overload;
     constructor Create(AData: NSURL);
     destructor Destroy; override;
+    function Data(): NSURL;
   public
-    class function URLWithString (URLString: string): INSURL;
-    class function URLWithStringRelativeToURL (URLString: string; baseURL: TNSURL): INSURL;
+    class function URLWithString (URLString: string): TNSURL;
+    class function URLWithStringRelativeToURL (URLString: string; baseURL: NSURL): TNSURL;
     function AbsoluteString: string;
     function RelativeString: string;
-    function BaseURL: INSURL;
-    function AbsoluteURL: INSURL;
+    function BaseURL: TNSURL;
+    function AbsoluteURL: TNSURL;
     function Scheme: string;
     function Host: string;
     function Port: Integer;
@@ -67,7 +66,7 @@ begin
   Result := FData;
 end;
 
-class function TNSURL.URLWithString (URLString: string): INSURL;
+class function TNSURL.URLWithString (URLString: string): TNSURL;
 var
   TempNSURL: NSURL;
 begin
@@ -77,13 +76,13 @@ begin
     Result := Create(TempNSURL);
 end;
 
-class function TNSURL.URLWithStringRelativeToURL (URLString: string; baseURL: TNSURL): INSURL;
+class function TNSURL.URLWithStringRelativeToURL (URLString: string; baseURL: NSURL): TNSURL;
 var
   TempNSURL: NSURL;
 begin
   Result := nil;
   if Assigned(baseURL) then
-    TempNSURL := NSURL.URLWithString_relativeToURL(NSStringUtf8(URLString), baseURL.FData)
+    TempNSURL := NSURL.URLWithString_relativeToURL(NSStringUtf8(URLString), baseURL)
   else
   begin
     TempNSURL := NSURL.URLWithString_relativeToURL(NSStringUtf8(URLString), nil)
@@ -119,7 +118,7 @@ begin
   end;
 end;
 
-function TNSURL.BaseURL: INSURL;
+function TNSURL.BaseURL: TNSURL;
 begin
   Result := nil;
   if Assigned(FData) then
@@ -128,7 +127,7 @@ begin
   end;
 end;
 
-function TNSURL.AbsoluteURL: INSURL;
+function TNSURL.AbsoluteURL: TNSURL;
 begin
   Result := nil;
   if Assigned(FData) then

@@ -7,23 +7,22 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils,
-  uWebKit, uWkInterface, uNSURLRequest;
+  CocoaAll,
+  uWebKit;
 
 type
 
 
-  TWKFrameInfo = class(TInterfacedObject, IWKFrameInfo)
+  TWKFrameInfo = class
   private
     FData: WKFrameInfo;
-  protected
-    function Data(): WKFrameInfo;
   public
     constructor Create(AData: WKFrameInfo);
     destructor Destroy; override;
+    function Data(): WKFrameInfo;
   public
     function IsMainFrame: Boolean;
-    function Request: INSURLRequest;
+    function Request: NSURLRequest;
   end;
 
 
@@ -59,12 +58,12 @@ begin
   end;
 end;
 
-function TWKFrameInfo.Request: INSURLRequest;
+function TWKFrameInfo.Request: NSURLRequest;
 begin
   Result := nil;
   if Assigned(FData) then
   begin
-    Result := TNSURLRequest.Create(FData.request);
+    Result := FData.request;
   end;
 end;
 

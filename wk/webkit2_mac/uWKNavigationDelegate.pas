@@ -53,14 +53,13 @@ type
     procedure webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
 
-  TWKNavigationDelegate = class(TInterfacedObject, IWKNavigationDelegate)
+  TWKNavigationDelegate = class
   private
     FData: NSWKNavigationDelegate;
-  protected
-    function Data(): WKNavigationDelegateProtocol;
   public
     constructor Create(event: IWKNavigationDelegateEvent);
     destructor Destroy; override;
+    function Data(): WKNavigationDelegateProtocol;
   end;
 
 

@@ -24,14 +24,13 @@ type
     procedure webViewDidClose(webView: WKWebView);
   end;
 
-  TWKUIDelegate = class(TInterfacedObject, IWKUIDelegate)
+  TWKUIDelegate = class
   private
     FData: NSWKUIDelegate;
-  protected
-    function Data(): WKUIDelegateProtocol;
   public
     constructor Create(event: IWKUIDelegateEvent);
     destructor Destroy; override;
+    function Data(): WKUIDelegateProtocol;
   public
   end;
 

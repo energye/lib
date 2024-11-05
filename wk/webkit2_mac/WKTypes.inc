@@ -76,6 +76,11 @@ type
   WKDownloadRedirectPolicyPtr = ^WKDownloadRedirectPolicy;
 
 type
+  WKNavigationDelegate = WKNavigationDelegateProtocol;
+  WKUIDelegate = WKUIDelegateProtocol;
+  WKURLSchemeHandler = WKURLSchemeHandlerProtocol;
+
+type
   WKBackForwardListItemPtr = ^WKBackForwardListItem;
   WKBackForwardListPtr = ^WKBackForwardList;
   WKDownloadPtr = ^WKDownload;

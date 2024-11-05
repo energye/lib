@@ -19,14 +19,13 @@ type
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
 
-  TWKScriptMessageHandler = class(TInterfacedObject, IWKScriptMessageHandler)
+  TWKScriptMessageHandler = class
   private
     FData: NSWKScriptMessageHandler;
-  protected
-    function Data(): WKScriptMessageHandlerProtocol;
   public
     constructor Create(event: IReceiveScriptMessageEvent);
     destructor Destroy; override;
+    function Data(): WKScriptMessageHandlerProtocol;
   end;
 
 

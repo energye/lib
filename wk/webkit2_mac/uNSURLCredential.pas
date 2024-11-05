@@ -14,14 +14,13 @@ uses
 type
 
 
-  TNSURLCredential = class(TInterfacedObject, INSURLCredential)
+  TNSURLCredential = class
   private
     FData: NSURLCredential;
-  protected
-    function Data(): NSURLCredential;
   public
     constructor Create(AData: NSURLCredential);
     destructor Destroy; override;
+    function Data(): NSURLCredential;
   public
     function Persistence: NSURLCredentialPersistence;
   end;
