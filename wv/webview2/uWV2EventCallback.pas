@@ -6,7 +6,7 @@
 //
 //----------------------------------------
 
-unit uWV_EventCallback;
+unit uWV2EventCallback;
 
 {$mode objfpc}{$H+}
 
@@ -30,7 +30,7 @@ uses
   Messages,
   ActiveX,
   uTools,
-  uWVTypes, uWVTypeLibrary, uWV_RecordStruct;
+  uWVTypes, uWVTypeLibrary, uWV2RecordStruct;
 
 type
   // 基础事件回调函数

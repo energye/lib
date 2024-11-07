@@ -4,7 +4,7 @@
 // Licensed under Lazarus.modifiedLGPL
 //----------------------------------------
 
-unit uWV_Loader;
+unit uWV2Loader;
 
 {$mode objfpc}{$H+}
 {$Z4+}
@@ -20,7 +20,7 @@ uses
   SysUtils, Controls,
   uWVTypes, uWVTypeLibrary,
   uTools,
-  uWV_EventCallback, uWV_RecordStruct;
+  uWV2EventCallback, uWV2RecordStruct;
 
 
 // Loader events

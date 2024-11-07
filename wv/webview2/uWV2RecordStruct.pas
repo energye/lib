@@ -4,7 +4,7 @@
 // Licensed under Lazarus.modifiedLGPL
 //----------------------------------------
 
-unit uWV_RecordStruct;
+unit uWV2RecordStruct;
 
 {$mode objfpc}{$H+}
 {$Z4+}

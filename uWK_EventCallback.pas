@@ -6,7 +6,7 @@
 //
 //----------------------------------------
 
-unit uWK_EventCallback;
+unit uWKEventCallback;
 
 {$mode objfpc}{$H+}
 {$Z4+}

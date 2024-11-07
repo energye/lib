@@ -38,6 +38,6 @@ uWVCoreWebView2BrowserExtension, uWVCoreWebView2ProcessExtendedInfo,
 uWVCoreWebView2ExecuteScriptResult, uWVCoreWebView2ScriptException,
 uWVCoreWebView2ControllerOptions,
 // 自定义单元
-uWV_EventCallback,
-uWV_Loader, uWV_RecordStruct
+uWV2EventCallback,
+uWV2Loader, uWV2RecordStruct
 
