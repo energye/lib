@@ -1,18 +1,16 @@
 
 //constructor
-function NSHTTPURLResponse_Create(): TNSHTTPURLResponse; extdecl;
-begin
-  handleExceptionBegin
-  Result := TNSHTTPURLResponse.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function NSHTTPURLResponse_Create1(aData: NSHTTPURLResponse): TNSHTTPURLResponse; extdecl;
+function NSHTTPURLResponse_Create(aData: NSHTTPURLResponse): TNSHTTPURLResponse; extdecl;
 begin
   handleExceptionBegin
   Result := TNSHTTPURLResponse.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function NSHTTPURLResponse_New(): TNSHTTPURLResponse; extdecl;
+begin
+  Result := TNSHTTPURLResponse.New();
 end;
 
 //function
@@ -48,7 +46,7 @@ end;
 
 exports
   NSHTTPURLResponse_Create,
-  NSHTTPURLResponse_Create1,
+  NSHTTPURLResponse_New,
   NSHTTPURLResponse_LocalizedStringForStatusCode,
   NSHTTPURLResponse_InitWithURLStatusCodeHTTPVersionHeaderFields,
   NSHTTPURLResponse_StatusCode,

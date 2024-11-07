@@ -1,18 +1,16 @@
 
 //constructor
-function WKNavigationResponse_Create(): TWKNavigationResponse; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWKNavigationResponse.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WKNavigationResponse_Create1(aData: WKNavigationResponse): TWKNavigationResponse; extdecl;
+function WKNavigationResponse_Create(aData: WKNavigationResponse): TWKNavigationResponse; extdecl;
 begin
   handleExceptionBegin
   Result := TWKNavigationResponse.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function WKNavigationResponse_New(): TWKNavigationResponse; extdecl;
+begin
+  Result := TWKNavigationResponse.New();
 end;
 
 //function
@@ -50,7 +48,7 @@ end;
 
 exports
   WKNavigationResponse_Create,
-  WKNavigationResponse_Create1,
+  WKNavigationResponse_New,
   WKNavigationResponse_Data,
   WKNavigationResponse_IsForMainFrame,
   WKNavigationResponse_Response,

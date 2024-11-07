@@ -1,18 +1,16 @@
 
 //constructor
-function WKUserScript_Create(): TWKUserScript; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWKUserScript.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WKUserScript_Create1(aData: WKUserScript): TWKUserScript; extdecl;
+function WKUserScript_Create(aData: WKUserScript): TWKUserScript; extdecl;
 begin
   handleExceptionBegin
   Result := TWKUserScript.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function WKUserScript_New(): TWKUserScript; extdecl;
+begin
+  Result := TWKUserScript.New();
 end;
 
 //function
@@ -56,7 +54,7 @@ end;
 
 exports
   WKUserScript_Create,
-  WKUserScript_Create1,
+  WKUserScript_New,
   WKUserScript_InitWithSourceInjectionTimeForMainFrameOnly,
   WKUserScript_Data,
   WKUserScript_Source,

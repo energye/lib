@@ -1,18 +1,16 @@
 
 //constructor
-function WKUserContentController_Create(): TWKUserContentController; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWKUserContentController.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WKUserContentController_Create1(aData: WKUserContentController): TWKUserContentController; extdecl;
+function WKUserContentController_Create(aData: WKUserContentController): TWKUserContentController; extdecl;
 begin
   handleExceptionBegin
   Result := TWKUserContentController.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function WKUserContentController_New(): TWKUserContentController; extdecl;
+begin
+  Result := TWKUserContentController.New();
 end;
 
 //function
@@ -66,7 +64,7 @@ end;
 
 exports
   WKUserContentController_Create,
-  WKUserContentController_Create1,
+  WKUserContentController_New,
   WKUserContentController_Data,
   WKUserContentController_UserScripts,
   WKUserContentController_AddUserScript,

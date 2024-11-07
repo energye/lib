@@ -1,18 +1,16 @@
 
 //constructor
-function WKWebpagePreferences_Create(): TWKWebpagePreferences; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWKWebpagePreferences.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WKWebpagePreferences_Create1(aData: WKWebpagePreferences): TWKWebpagePreferences; extdecl;
+function WKWebpagePreferences_Create(aData: WKWebpagePreferences): TWKWebpagePreferences; extdecl;
 begin
   handleExceptionBegin
   Result := TWKWebpagePreferences.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function WKWebpagePreferences_New(): TWKWebpagePreferences; extdecl;
+begin
+  Result := TWKWebpagePreferences.New();
 end;
 
 //function
@@ -58,7 +56,7 @@ end;
 
 exports
   WKWebpagePreferences_Create,
-  WKWebpagePreferences_Create1,
+  WKWebpagePreferences_New,
   WKWebpagePreferences_Data,
   WKWebpagePreferences_PreferredContentMode,
   WKWebpagePreferences_AllowsContentJavaScript,

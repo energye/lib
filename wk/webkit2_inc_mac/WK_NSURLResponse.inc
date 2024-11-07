@@ -1,18 +1,16 @@
 
 //constructor
-function NSURLResponse_Create(): TNSURLResponse; extdecl;
-begin
-  handleExceptionBegin
-  Result := TNSURLResponse.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function NSURLResponse_Create1(aData: NSURLResponse): TNSURLResponse; extdecl;
+function NSURLResponse_Create(aData: NSURLResponse): TNSURLResponse; extdecl;
 begin
   handleExceptionBegin
   Result := TNSURLResponse.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function NSURLResponse_New(): TNSURLResponse; extdecl;
+begin
+  Result := TNSURLResponse.New();
 end;
 
 //function
@@ -74,7 +72,7 @@ end;
 
 exports
   NSURLResponse_Create,
-  NSURLResponse_Create1,
+  NSURLResponse_New,
   NSURLResponse_Data,
   NSURLResponse_InitWithURLMIMETypeExpectedContentLengthTextEncodingName,
   NSURLResponse_URL,

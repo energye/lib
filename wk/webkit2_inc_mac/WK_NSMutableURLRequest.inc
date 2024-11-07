@@ -1,18 +1,16 @@
 
 //constructor
-function NSMutableURLRequest_Create(): TNSMutableURLRequest; extdecl;
-begin
-  handleExceptionBegin
-  Result := TNSMutableURLRequest.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function NSMutableURLRequest_Create1(aData: NSMutableURLRequest): TNSMutableURLRequest; extdecl;
+function NSMutableURLRequest_Create(aData: NSMutableURLRequest): TNSMutableURLRequest; extdecl;
 begin
   handleExceptionBegin
   Result := TNSMutableURLRequest.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function NSMutableURLRequest_New(): TNSMutableURLRequest; extdecl;
+begin
+  Result := TNSMutableURLRequest.New();
 end;
 
 //procedure
@@ -50,7 +48,7 @@ end;
 
 exports
   NSMutableURLRequest_Create,
-  NSMutableURLRequest_Create1,
+  NSMutableURLRequest_New,
   NSMutableURLRequest_SetHTTPMethod,
   NSMutableURLRequest_SetAllHTTPHeaderFields,
   NSMutableURLRequest_SetValueForHTTPHeaderField,

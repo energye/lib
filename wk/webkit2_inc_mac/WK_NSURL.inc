@@ -1,18 +1,16 @@
 
 //constructor
-function NSURL_Create(): TNSURL; extdecl;
-begin
-  handleExceptionBegin
-  Result := TNSURL.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function NSURL_Create1(aData: NSURL): TNSURL; extdecl;
+function NSURL_Create(aData: NSURL): TNSURL; extdecl;
 begin
   handleExceptionBegin
   Result := TNSURL.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function NSURL_New(): TNSURL; extdecl;
+begin
+  Result := TNSURL.New();
 end;
 
 //function
@@ -142,7 +140,7 @@ end;
 
 exports
   NSURL_Create,
-  NSURL_Create1,
+  NSURL_New,
   NSURL_URLWithString,
   NSURL_URLWithStringRelativeToURL,
   NSURL_Data,

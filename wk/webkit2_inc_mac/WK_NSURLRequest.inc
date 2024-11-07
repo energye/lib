@@ -1,18 +1,16 @@
 
 //constructor
-function NSURLRequest_Create(): TNSURLRequest; extdecl;
-begin
-  handleExceptionBegin
-  Result := TNSURLRequest.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function NSURLRequest_Create1(aData: NSURLRequest): TNSURLRequest; extdecl;
+function NSURLRequest_Create(aData: NSURLRequest): TNSURLRequest; extdecl;
 begin
   handleExceptionBegin
   Result := TNSURLRequest.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function NSURLRequest_New(): TNSURLRequest; extdecl;
+begin
+  Result := TNSURLRequest.New();
 end;
 
 //function
@@ -116,7 +114,7 @@ end;
 
 exports
   NSURLRequest_Create,
-  NSURLRequest_Create1,
+  NSURLRequest_New,
   NSURLRequest_RequestWithURL,
   NSURLRequest_SupportsSecureCoding,
   NSURLRequest_RequestWithURLCachePolicyTimeoutInterval,

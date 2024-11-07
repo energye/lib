@@ -1,18 +1,16 @@
 
 //constructor
-function WKPreferences_Create(): TWKPreferences; extdecl;
-begin
-  handleExceptionBegin
-  Result := TWKPreferences.Create();
-  handleExceptionEnd
-end;
-
-//constructor
-function WKPreferences_Create1(aData: WKPreferences): TWKPreferences; extdecl;
+function WKPreferences_Create(aData: WKPreferences): TWKPreferences; extdecl;
 begin
   handleExceptionBegin
   Result := TWKPreferences.Create(aData);
   handleExceptionEnd
+end;
+
+//function
+function WKPreferences_New(): TWKPreferences; extdecl;
+begin
+  Result := TWKPreferences.New();
 end;
 
 //function
@@ -130,7 +128,7 @@ end;
 
 exports
   WKPreferences_Create,
-  WKPreferences_Create1,
+  WKPreferences_New,
   WKPreferences_Data,
   WKPreferences_MinimumFontSize,
   WKPreferences_JavaScriptEnabled,
