@@ -11,4 +11,4 @@ uWkHeaders, uWkInputStream, uWkJSValue, uWkCookieManager,
 uWkNavigationAction, uWkPolicyDecision, uWkSettings, uWkURIRequest,
 uWkURIResponse, uWkURISchemeRequest, uWkWebContext, uWkWebsitePolicies,
 uWkWebViewParent, uWkWebview, uWkTypes, uWkWebviewEvents,
-uWK_EventCallback
+uWKEventCallback
