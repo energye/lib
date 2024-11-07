@@ -15,11 +15,11 @@ type
   private
     FData: NSURL;
   public
-    constructor Create; overload;
     constructor Create(AData: NSURL);
     destructor Destroy; override;
     function Data(): NSURL;
   public
+    class function New(): TNSURL;
     class function URLWithString (URLString: string): TNSURL;
     class function URLWithStringRelativeToURL (URLString: string; baseURL: NSURL): TNSURL;
     function AbsoluteString: string;
@@ -40,12 +40,6 @@ type
 
 implementation
 
-constructor TNSURL.Create;
-begin
-  inherited Create;
-  FData := NSURL.alloc.init;
-end;
-
 constructor TNSURL.Create(AData: NSURL);
 begin
   inherited Create;
@@ -64,6 +58,11 @@ end;
 function TNSURL.Data(): NSURL;
 begin
   Result := FData;
+end;
+
+class function TNSURL.New(): TNSURL;
+begin
+  Result := Create(NSURL.alloc.init);
 end;
 
 class function TNSURL.URLWithString (URLString: string): TNSURL;

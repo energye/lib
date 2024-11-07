@@ -21,11 +21,11 @@ type
     FUserContentController: WKUserContentController;
     FURLSchemeHandler: WKURLSchemeHandler;
   public
-    constructor Create; overload;
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
     function Data(): WKWebViewConfiguration;
   public
+    class function New(): TWKWebViewConfiguration;
     procedure SetPreferences(preferences: WKPreferences);
     function Preferences: WKPreferences;
     procedure SetUserContentController(userContentController: WKUserContentController);
@@ -40,13 +40,6 @@ type
 
 
 implementation
-
-constructor TWKWebViewConfiguration.Create;
-begin
-  inherited Create;
-  FData := WKWebViewConfiguration.alloc.init;
-  FieldEmpty();
-end;
 
 constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
 begin
@@ -66,6 +59,11 @@ begin
   inherited Destroy;
 end;
 
+class function TWKWebViewConfiguration.New(): TWKWebViewConfiguration;
+begin
+  Result := Create(WKWebViewConfiguration.alloc.init);
+end;
+
 procedure TWKWebViewConfiguration.FieldEmpty();
 begin
   FPreferences := nil;
@@ -77,6 +75,7 @@ function TWKWebViewConfiguration.Data(): WKWebViewConfiguration;
 begin
   Result := FData;
 end;
+
 
 procedure TWKWebViewConfiguration.SetPreferences(preferences: WKPreferences);
 begin

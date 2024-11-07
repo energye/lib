@@ -36,11 +36,7 @@ end;
 
 destructor TWKFrameInfo.Destroy;
 begin
-  if Assigned(FData) then
-  begin
-    //FData.release;
-    FData := nil;
-  end;
+  FData := nil;
   inherited Destroy;
 end;
 

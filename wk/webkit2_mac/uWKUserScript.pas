@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils,
-  uWebKit, uWkInterface;
+  uWebKit;
 
 type
 
@@ -17,11 +17,11 @@ type
   private
     FData: WKUserScript;
   public
-    constructor Create; overload;
     constructor Create(AData: WKUserScript);
     destructor Destroy; override;
     function Data(): WKUserScript;
   public
+    class function New(): TWKUserScript;
     function Source: string;
     function InjectionTime: int64;
     function IsForMainFrameOnly: LongBool;
@@ -31,12 +31,6 @@ type
 
 implementation
 
-
-constructor TWKUserScript.Create;
-begin
-  inherited Create;
-  FData := WKUserScript.alloc.init;
-end;
 
 constructor TWKUserScript.Create(AData: WKUserScript);
 begin
@@ -52,6 +46,11 @@ begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+class function TWKUserScript.New(): TWKUserScript;
+begin
+  Result := Create(WKUserScript.alloc.init);
 end;
 
 function TWKUserScript.Data(): WKUserScript;

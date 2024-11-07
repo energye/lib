@@ -7,8 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll,
-  uWebKit, uWkInterface;
+  uWebKit;
 
 type
 
@@ -17,11 +16,11 @@ type
   private
     FData: WKWebpagePreferences;
   public
-    constructor Create; overload;
     constructor Create(AData: WKWebpagePreferences);
     destructor Destroy; override;
     function Data(): WKWebpagePreferences;
   public
+    class function New(): TWKWebpagePreferences;
     procedure SetPreferredContentMode(aValue: WKContentMode);
     function PreferredContentMode: WKContentMode;
     procedure SetAllowsContentJavaScript(aValue: LongBool);
@@ -30,12 +29,6 @@ type
 
 
 implementation
-
-
-constructor TWKWebpagePreferences.Create;
-begin
-  FData := WKWebpagePreferences.alloc.init;
-end;
 
 constructor TWKWebpagePreferences.Create(AData: WKWebpagePreferences);
 begin
@@ -50,6 +43,11 @@ begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+class function TWKWebpagePreferences.New(): TWKWebpagePreferences;
+begin
+  Result := Create(WKWebpagePreferences.alloc.init);
 end;
 
 function TWKWebpagePreferences.Data(): WKWebpagePreferences;

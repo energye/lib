@@ -7,8 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils,
-  uWebKit, uWkInterface;
+  uWebKit;
 
 type
 

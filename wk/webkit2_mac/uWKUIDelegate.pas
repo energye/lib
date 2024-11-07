@@ -63,6 +63,7 @@ procedure NSWKUIDelegate.webView_runJavaScriptConfirmPanelWithMessage_initiatedB
 var
   TempSuccess: Boolean;
 begin
+  TempSuccess := False;
   if FData <> nil then
   begin
     TempSuccess := IWKUIDelegateEvent(FData).doRunJavaScriptConfirmCompletion(webView, message_, frame);

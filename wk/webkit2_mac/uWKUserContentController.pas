@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaUtils, CocoaAll,
-  uWebKit, uWkInterface, uWKScriptMessageHandler;
+  uWebKit, uWKScriptMessageHandler;
 
 type
 
@@ -31,14 +31,12 @@ type
   TWKUserContentController = class
   private
     FData: WKUserContentController;
-  private
-    FRefMessageHandles: TRefMessageHandles; // 引用类
   public
-    constructor Create; overload;
     constructor Create(AData: WKUserContentController);
     destructor Destroy; override;
     function Data(): WKUserContentController;
   public
+    class function New(): TWKUserContentController;
     function UserScripts: TStrings;
     procedure AddUserScript (userScript: WKUserScript);
     procedure RemoveAllUserScripts;
@@ -49,32 +47,25 @@ type
 
 implementation
 
-constructor TWKUserContentController.Create;
-begin
-  inherited Create;
-  FRefMessageHandles := TRefMessageHandles.Create;
-  FData := WKUserContentController.alloc.init;
-end;
-
 constructor TWKUserContentController.Create(AData: WKUserContentController);
 begin
-  inherited Create;
   FData := AData;
+  inherited Create;
 end;
 
 destructor TWKUserContentController.Destroy;
 begin
-  if FRefMessageHandles <> nil then
-  begin
-    FRefMessageHandles.Free;
-    FRefMessageHandles := nil;
-  end;
   if FData <> nil then
   begin
     //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+class function TWKUserContentController.New(): TWKUserContentController;
+begin
+  Result := Create(WKUserContentController.alloc.init);
 end;
 
 function TWKUserContentController.Data(): WKUserContentController;
@@ -112,7 +103,7 @@ begin
   Result := ResultData;
 end;
 
-procedure TWKUserContentController.AddUserScript (userScript: WKUserScript);
+procedure TWKUserContentController.AddUserScript(userScript: WKUserScript);
 begin
   if Assigned(FData) then
   begin
@@ -132,7 +123,6 @@ procedure TWKUserContentController.AddScriptMessageHandlerName (scriptMessageHan
 begin
   if Assigned(FData) then
   begin
-    FRefMessageHandles.Add(name, scriptMessageHandler);
     FData.addScriptMessageHandler_name(scriptMessageHandler.Data(), NSStringUtf8(name));
   end;
 end;
@@ -141,7 +131,6 @@ procedure TWKUserContentController.RemoveScriptMessageHandlerForName (name: stri
 begin
   if Assigned(FData) then
   begin
-    FRefMessageHandles.Remove(name);
     FData.removeScriptMessageHandlerForName(NSStringUtf8(name));
   end;
 end;

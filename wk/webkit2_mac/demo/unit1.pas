@@ -89,13 +89,13 @@ begin
   TempFrame.Width := Width;
   TempFrame.Height := Height - 50;
 
-  FUserContentController := TWKUserContentController.Create;
+  FUserContentController := TWKUserContentController.New;
 
   FScriptMessageHandler := TWKScriptMessageHandler.Create(FWebView);
 
   FUserContentController.AddScriptMessageHandlerName(FScriptMessageHandler, 'processMessage');
 
-  FConfig := TWKWebViewConfiguration.Create;
+  FConfig := TWKWebViewConfiguration.New;
   FConfig.SetUserContentController(FUserContentController.Data());
 
   FURLSchemeHandler := TWKURLSchemeHandler.Create(FWebView);
@@ -105,7 +105,7 @@ begin
   FConfig.SetURLSchemeHandlerForURLScheme(FURLSchemeHandler.Data(), 'energy');
 
 
-  FPreference := TWKPreferences.Create();// FConfig.Preferences;
+  FPreference := TWKPreferences.New();// FConfig.Preferences;
   FConfig.SetPreferences(FPreference.Data());
 
   FPreference.SetTabFocusesLinks(true);
@@ -172,7 +172,7 @@ begin
   //tempHTTPHeader := '{"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}';
 
   // 响应对象必须包含所请求资源的 MIME 类型
-  response := TNSURLResponse.Create;
+  response := TNSURLResponse.New;
   response.InitWithURLMIMETypeExpectedContentLengthTextEncodingName(tempNSURL.Data(), 'text/html', tempDataBytesLength, 'utf-8');
   //response.InitWithURLStatusCodeHTTPVersionHeaderFields(tempNSURL, 200, 'HTTP/1.1', tempHTTPHeader);//???
   //response.localizedStringForStatusCode(200);

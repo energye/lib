@@ -8,8 +8,8 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaUtils, CocoaAll,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWkWebview;
+  CocoaAll,
+  uWebKit, uWkInterface;
 
 type
   // 接受或拒绝导航更改以及跟踪导航请求进度的方法。

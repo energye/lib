@@ -17,11 +17,11 @@ type
   private
     FData: NSURLResponse;
   public
-    constructor Create; overload;
     constructor Create(AData: NSURLResponse);
     destructor Destroy; override;
     function Data(): NSURLResponse;
   public
+    class function New(): TNSURLResponse;
     function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: NSURL; MIMEType: string; length: Integer; name: String): TNSURLResponse;
     function URL: NSURL;
     function MIMEType: string;
@@ -32,10 +32,10 @@ type
 
   TNSHTTPURLResponse = class(TNSURLResponse)
   public
-    constructor Create; overload;
     constructor Create(AData: NSHTTPURLResponse);
     destructor Destroy; override;
   public
+    class function New(): TNSHTTPURLResponse;
     function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: NSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): TNSHTTPURLResponse;
     function StatusCode: Integer;
     function AllHeaderFields: string;
@@ -45,17 +45,9 @@ type
 
 implementation
 
-
-constructor TNSURLResponse.Create;
-begin
-  FData := NSURLResponse.alloc;
-  inherited Create;
-end;
-
 constructor TNSURLResponse.Create(AData: NSURLResponse);
 begin
   FData := AData;
-  inherited Create;
 end;
 
 destructor TNSURLResponse.Destroy;
@@ -71,6 +63,11 @@ end;
 function TNSURLResponse.Data(): NSURLResponse;
 begin
   Result := FData;
+end;
+
+class function TNSURLResponse.New(): TNSURLResponse;
+begin
+  Result := Create(NSURLResponse.alloc);
 end;
 
 function TNSURLResponse.InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: NSURL; MIMEType: string; length: Integer; name: String): TNSURLResponse;
@@ -133,22 +130,19 @@ begin
   end;
 end;
 
-
-constructor TNSHTTPURLResponse.Create;
-begin
-  FData := NSHTTPURLResponse.alloc;
-  inherited Create;
-end;
-
 constructor TNSHTTPURLResponse.Create(AData: NSHTTPURLResponse);
 begin
   FData := AData;
-  inherited Create;
 end;
 
 destructor TNSHTTPURLResponse.Destroy;
 begin
   inherited Destroy;
+end;
+
+class function TNSHTTPURLResponse.New(): TNSHTTPURLResponse;
+begin
+  Result := Create(NSHTTPURLResponse.alloc);
 end;
 
 // headerFields json 格式, {key: []value, ...}

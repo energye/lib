@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Controls, ExtCtrls, Graphics,
-  CocoaAll, uWkInterface, uWkWebview;
+  CocoaAll, uWkInterface;
 
 type
 

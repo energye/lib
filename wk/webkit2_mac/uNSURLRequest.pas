@@ -16,12 +16,12 @@ type
   private
     FData: NSURLRequest;
   public
-    constructor Create; overload;
     constructor Create(AData: NSURLRequest);
     destructor Destroy; override;
     function Data(): NSURLRequest;
   public
-    class function RequestWithURL (URL: NSURL): TNSURLRequest;
+    class function New(): TNSURLRequest;
+    class function RequestWithURL(URL: NSURL): TNSURLRequest;
     class function SupportsSecureCoding: LongBool;
     class function RequestWithURLCachePolicyTimeoutInterval (URL: NSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
     function URL: NSURL;
@@ -41,10 +41,10 @@ type
   protected
     function MutableData(): NSMutableURLRequest;
   public
-    constructor Create; overload;
     constructor Create(AData: NSMutableURLRequest);
     destructor Destroy; override;
   public
+    class function New(): TNSMutableURLRequest;
     procedure SetHTTPMethod(aMethod: string);
     procedure SetAllHTTPHeaderFields(headerFieldsJSONString: string);
     procedure SetValueForHTTPHeaderField (aValue: string; aField: string);
@@ -53,13 +53,6 @@ type
 
 
 implementation
-
-
-constructor TNSURLRequest.Create;
-begin
-  inherited Create;
-  FData := NSURLRequest.alloc.init;
-end;
 
 constructor TNSURLRequest.Create(AData: NSURLRequest);
 begin
@@ -80,6 +73,11 @@ end;
 function TNSURLRequest.Data(): NSURLRequest;
 begin
   Result := FData;
+end;
+
+class function TNSURLRequest.New(): TNSURLRequest;
+begin
+  Result := Create(NSURLRequest.alloc.init);
 end;
 
 class function TNSURLRequest.RequestWithURL (URL: NSURL): TNSURLRequest;
@@ -206,12 +204,6 @@ begin
 end;
 
 
-constructor TNSMutableURLRequest.Create;
-begin
-  inherited Create();
-  FMutableData := NSMutableURLRequest.alloc.init;
-end;
-
 constructor TNSMutableURLRequest.Create(AData: NSMutableURLRequest);
 begin
   inherited Create();
@@ -222,6 +214,11 @@ destructor TNSMutableURLRequest.Destroy;
 begin
   FMutableData := nil;
   inherited Destroy;
+end;
+
+class function TNSMutableURLRequest.New(): TNSMutableURLRequest;
+begin
+  Result := Create(NSMutableURLRequest.alloc.init);
 end;
 
 function TNSMutableURLRequest.MutableData(): NSMutableURLRequest;

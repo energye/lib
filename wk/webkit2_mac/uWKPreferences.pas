@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   CGBase, CocoaUtils,
-  uWebKit, uWkInterface;
+  uWebKit;
 
 type
 
@@ -16,11 +16,11 @@ type
   private
     FData: WKPreferences;
   public
-    constructor Create; overload;
     constructor Create(AData: WKPreferences);
     destructor Destroy; override;
     function Data(): WKPreferences;
   public
+    class function New(): TWKPreferences;
     procedure SetMinimumFontSize(newValue: double);
     function MinimumFontSize: double;
     procedure SetJavaScriptEnabled(newValue: LongBool);
@@ -41,16 +41,10 @@ type
 
 implementation
 
-constructor TWKPreferences.Create;
-begin
-  inherited Create();
-  FData := WKPreferences.alloc.init;
-end;
-
 constructor TWKPreferences.Create(AData: WKPreferences);
 begin
-  inherited Create();
   FData := AData;
+  inherited Create();
 end;
 
 destructor TWKPreferences.Destroy;
@@ -61,6 +55,11 @@ begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+class function TWKPreferences.New(): TWKPreferences;
+begin
+  Result := Create(WKPreferences.alloc.init);
 end;
 
 function TWKPreferences.Data(): WKPreferences;

@@ -17,11 +17,11 @@ type
   private
     FData: WKNavigationResponse;
   public
-    constructor Create; overload;
     constructor Create(AData: WKNavigationResponse);
     destructor Destroy; override;
     function Data(): WKNavigationResponse;
   public
+    class function New(): TWKNavigationResponse;
     function IsForMainFrame: LongBool;
     function Response: NSURLResponse;
     function CanShowMIMEType: LongBool;
@@ -30,11 +30,6 @@ type
 
 implementation
 
-
-constructor TWKNavigationResponse.Create;
-begin
-  FData := WKNavigationResponse.alloc.init;
-end;
 
 constructor TWKNavigationResponse.Create(AData: WKNavigationResponse);
 begin
@@ -49,6 +44,11 @@ begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+class function TWKNavigationResponse.New(): TWKNavigationResponse;
+begin
+  Result := Create(WKNavigationResponse.alloc.init);
 end;
 
 function TWKNavigationResponse.Data(): WKNavigationResponse;
