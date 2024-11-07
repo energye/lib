@@ -1,4 +1,4 @@
-// OpenGLContext begin
+// ==== OpenGLContext begin ==== //
 {$IFDEF LCLGTK}
   {$IFDEF Linux}
     {$DEFINE UseGtkGLX}
@@ -63,4 +63,14 @@
 {$IFNDEF OpenGLTargetDefined}
   {$ERROR this LCL widgetset/OS is not yet supported}
 {$ENDIF}
-// OpenGLContext end
+// ==== OpenGLContext end ==== //
+
+// ==== Build begin ==== //
+{$IFDEF WINDOWS}
+  {$DEFINE UseWebview2}
+{$ENDIF}
+
+{$IF defined(LCLGTK3) or defined(LCLCocoa)}
+  {$DEFINE UseWebkit2}
+{$ENDIF}
+// ==== Build end ==== //

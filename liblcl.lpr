@@ -49,6 +49,8 @@ uses
   //LCL 事件回调
   uLCL_EventCallback,
 
+// ============ xxx.unit ============= //
+
 // CEF unit's
 {$I UnitsCEF.inc}
 
@@ -73,20 +75,20 @@ uses
 {$ENDIF}
 ;
 
-// ========================= //
+// ============ xxx.inc ============= //
 
 {$IFDEF WINDOWS}
   {$R *.res}
   {$SetPEFlags IMAGE_FILE_LARGE_ADDRESS_AWARE}
 {$ENDIF}
 
+// lib lcl 宏定义
+{$I liblcl.inc}
+
 {$I ExtDecl.inc}
 
 {$I CustomWidgetInterfaces.inc}
 {$I LazarusDef.inc}
-
-// LibLCL 宏定义
-{$I liblcl.inc}
 
 // LCL
 {$I ImportLCL.inc}
@@ -101,11 +103,12 @@ uses
 
 // Webkit2 MacOS
 {$IFDEF LCLCocoa}
+{$I ImportWK2Mac.inc}
 {$ENDIF}
 
 // Webkit2 Linux GTK3
 {$IFDEF LCLGTK3}
-{$I ImportWKLinux.inc}
+{$I ImportWK2Linux.inc}
 {$ENDIF}
 
 begin

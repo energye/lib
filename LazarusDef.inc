@@ -385,7 +385,7 @@ begin
 end;
 
 // 事件回调 WV
-{$IFDEF WINDOWS}
+{$IFDEF UseWebview2}
 procedure SetWVEventCallback(APtr: Pointer); extdecl;
 begin
   GWVEventCallbackPtr := TWVEventCallbackPtr(APtr);
@@ -398,7 +398,7 @@ end;
 {$ENDIF}
 
 // 事件回调 WK
-{$IFDEF LCLGTK3}
+{$IFDEF UseWebkit2}
 procedure SetWKEventCallback(APtr: Pointer); extdecl;
 begin
   GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
@@ -969,7 +969,6 @@ exports
   Mouse_Instance,
   Screen_Instance,
 
-//{$IFNDEF WINDOWS}
   DSendMessage,
   DPostMessage,
   DIsIconic,
@@ -981,7 +980,6 @@ exports
   DSetForegroundWindow,
   DRegisterClipboardFormat,
   DWindowFromPoint,
-//{$ENDIF}
 
 {$IFDEF LINUX}
   GdkWindow_GetXId,
@@ -1020,15 +1018,16 @@ exports
   // 设置 CEF 事件移除回调
   SetCEFRemoveEventCallback,
 
-  {$IFDEF WINDOWS}
+  // 事件回调 Webview2
+  {$IFDEF UseWebview2}
   // 设置 WV 事件回调
   SetWVEventCallback,
   // 设置 WV 事件移除回调
   SetWVRemoveEventCallback,
   {$ENDIF}
 
-  // 事件回调 Linux GTK3
-  {$IFDEF LCLGTK3}
+  // 事件回调 Webkit2
+  {$IFDEF UseWebkit2}
   // 设置 WK 事件回调
   SetWKEventCallback,
   // 设置 WK 事件移除回调

@@ -6,9 +6,11 @@
 
 // Webkit2 单元
 
-uWebKit, uWkInterface, uWkWebviewEvents, uNSURL, uNSURLAuthenticationChallenge, uNSURLCredential,
+CocoaAll, uWebKit, uWkInterface, uWkWebviewEvents, uNSURL, uNSURLAuthenticationChallenge, uNSURLCredential,
 uNSURLRequest, uNSURLResponse, uWKDownload, uWKDownloadDelegateProtocol, uWKFrameInfo, uWKNavigation,
 uWKNavigationAction, uWKNavigationDelegate, uWKNavigationResponse, uWKPreferences, uWKScriptMessageHandler,
 uWKUIDelegate, uWKURLSchemeHandler, uWKURLSchemeTask, uWKUserContentController, uWKUserScript,
-uWKWebpagePreferences, uWkWebview, uWKWebViewConfiguration, uWkWebviewParent, uWKWindowFeatures
+uWKWebpagePreferences, uWkWebview, uWKWebViewConfiguration, uWkWebviewParent, uWKWindowFeatures,
+uWKEventCallback
+
 
