@@ -1,4 +1,12 @@
 
+//constructor
+function WKWebViewConfiguration_Create(aData: WKWebViewConfiguration): TWKWebViewConfiguration; extdecl;
+begin
+  handleExceptionBegin
+  Result := TWKWebViewConfiguration.Create(aData);
+  handleExceptionEnd
+end;
+
 //function
 function WKWebViewConfiguration_New(): TWKWebViewConfiguration; extdecl;
 begin
@@ -87,6 +95,7 @@ end;
 
 
 exports
+  WKWebViewConfiguration_Create,
   WKWebViewConfiguration_New,
   WKWebViewConfiguration_Data,
   WKWebViewConfiguration_Preferences,

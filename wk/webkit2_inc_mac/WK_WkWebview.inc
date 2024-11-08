@@ -1,4 +1,12 @@
 
+//constructor
+function WkWebview_Create(aOwner: TComponent): TWkWebview; extdecl;
+begin
+  handleExceptionBegin
+  Result := TWkWebview.Create(aOwner);
+  handleExceptionEnd
+end;
+
 //function
 function WkWebview_Data(AObj: TWkWebview): WkWebview; extdecl;
 begin
@@ -417,6 +425,7 @@ end;
 
 
 exports
+  WkWebview_Create,
   WkWebview_Data,
   WkWebview_Configuration,
   WkWebview_LoadRequest,
