@@ -255,42 +255,42 @@ end;
 // WKNavigationDelegateProtocol
 procedure TWKEvent.WkWebview_OnDecidePolicyForNavigationActionPreferences(sender: TObject; navigationAction: WKNavigationAction; var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigationAction, @actionPolicy, @preferences]);
 end;
 
 procedure TWKEvent.WkWebview_OnDecidePolicyForNavigationResponse(sender: TObject; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigationResponse, @responsePolicy]);
 end;
 
 procedure TWKEvent.WkWebview_OnStartProvisionalNavigation(sender: TObject; navigation: WKNavigation);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation]);
 end;
 
 procedure TWKEvent.WkWebview_OnReceiveServerRedirectForProvisionalNavigation(sender: TObject; navigation: WKNavigation);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation]);
 end;
 
 procedure TWKEvent.WkWebview_OnFailProvisionalNavigationWithError(sender: TObject; navigation: WKNavigation; error: string);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation, ToPChar(error)]);
 end;
 
 procedure TWKEvent.WkWebview_OnCommitNavigation(sender: TObject; navigation: WKNavigation);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation]);
 end;
 
 procedure TWKEvent.WkWebview_OnFinishNavigation(sender: TObject; navigation: WKNavigation);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation]);
 end;
 
 procedure TWKEvent.WkWebview_OnFailNavigationWithError(sender: TObject; navigation: WKNavigation; error: string);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigation, ToPChar(error)]);
 end;
 
 procedure TWKEvent.WkWebview_OnWebContentProcessDidTerminate(sender: TObject);
@@ -300,46 +300,50 @@ end;
 
 procedure TWKEvent.WkWebview_OnNavigationActionDidBecomeDownload(sender: TObject; navigationAction: WKNavigationAction; download: WKDownload);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigationAction, download]);
 end;
 
 procedure TWKEvent.WkWebview_OnNavigationResponseDidBecomeDownload(sender: TObject; navigationResponse: WKNavigationResponse; download: WKDownload);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, navigationResponse, download]);
 end;
 
 
 // WKURLSchemeHandlerProtocol
 procedure TWKEvent.WkWebview_OnStartURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, urlSchemeTask]);
 end;
 
 procedure TWKEvent.WkWebview_OnStopURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, urlSchemeTask]);
 end;
 
 
 // WKUIDelegateProtocol
 function TWKEvent.WkWebview_OnCreateWebView(sender: TObject; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
 begin
-  SendEvent([sender]);
+  SendEvent([sender, configuration_, navigationAction, windowFeatures, @Result]);
 end;
 
 procedure TWKEvent.WkWebview_OnRunJavaScriptAlert(sender: TObject; message_: string; frame: WKFrameInfo);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, ToPChar(message_), frame]);
 end;
 
 function TWKEvent.WkWebview_OnRunJavaScriptConfirmCompletion(sender: TObject; message_: string; frame: WKFrameInfo): Boolean;
 begin
-  SendEvent([sender]);
+  SendEvent([sender, ToPChar(message_), frame, @Result]);
 end;
 
 function TWKEvent.WkWebview_OnRunJavaScriptTextInputCompletion(sender: TObject; prompt: string; defaultText: string; frame: WKFrameInfo): string;
+var
+  Ret: PChar;
 begin
-  SendEvent([sender]);
+  Ret := PChar('');
+  SendEvent([sender, ToPChar(prompt), ToPChar(defaultText), frame, @Ret]);
+  Result := string(Ret);
 end;
 
 procedure TWKEvent.WkWebview_OnWebViewDidClose(sender: TObject);
@@ -351,27 +355,27 @@ end;
 // WKDownload
 procedure TWKEvent.WkWebview_OnDownloadCancelCompletionHandler(sender: TObject; download: WKDownload; aData: Pointer; aLength: Integer {NSData});
 begin
-  SendEvent([sender]);
+  SendEvent([sender, download, aData, aLength]);
 end;
 
 procedure TWKEvent.WkWebview_OnDownloadDecideDestinationUsingResponseSuggestedFilename(sender: TObject; download: WKDownload; response: NSURLResponse; suggestedFilename: string);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, download, response, ToPChar(suggestedFilename)]);
 end;
 
 procedure TWKEvent.WkWebview_OnDownloadWillPerformHTTPRedirectionNewRequest(sender: TObject; download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, download, response, request]);
 end;
 
 procedure TWKEvent.WkWebview_OnDownloadFinish(sender: TObject; download: WKDownload);
 begin
-  SendEvent([sender]);
+  SendEvent([sender, download]);
 end;
 
 procedure TWKEvent.WkWebview_OnDownloadFailWithError(sender: TObject; download: WKDownload; error: string; aData: Pointer; aLength: Integer {NSData});
 begin
-  SendEvent([sender]);
+  SendEvent([sender, download, ToPChar(error), aData, aLength]);
 end;
 
 
