@@ -143,6 +143,46 @@ begin
   handleExceptionEnd
 end;
 
+//function
+procedure WkWebview_AsReceiveScriptMessageDelegate(AObj: TWkWebview; var Result: IReceiveScriptMessageDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsReceiveScriptMessageDelegate();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsWKNavigationDelegate(AObj: TWkWebview; var Result: IWKNavigationDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsWKNavigationDelegate();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsWKURLSchemeHandlerDelegate(AObj: TWkWebview; var Result: IWKURLSchemeHandlerDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsWKURLSchemeHandlerDelegate();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsWKUIDelegate(AObj: TWkWebview; var Result: IWKUIDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsWKUIDelegate();
+  handleExceptionEnd
+end;
+
+//function
+procedure WkWebview_AsWKDownloadDelegate(AObj: TWkWebview; var Result: IWKDownloadDelegateEvent); extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.AsWKDownloadDelegate();
+  handleExceptionEnd
+end;
+
 //procedure
 procedure WkWebview_LoadHTML(AObj: TWkWebview; aHtml,  aBaseURL: PChar); extdecl;
 begin
@@ -443,6 +483,11 @@ exports
   WkWebview_AllowsBackForwardNavigationGestures,
   WkWebview_AllowsMagnification,
   WkWebview_Magnification,
+  WkWebview_AsReceiveScriptMessageDelegate,
+  WkWebview_AsWKNavigationDelegate,
+  WkWebview_AsWKURLSchemeHandlerDelegate,
+  WkWebview_AsWKUIDelegate,
+  WkWebview_AsWKDownloadDelegate,
   WkWebview_LoadHTML,
   WkWebview_LoadURL,
   WkWebview_SetNavigationDelegate,
