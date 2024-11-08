@@ -13,7 +13,6 @@ uses
 
 type
 
-
   TWKDownload = class
   private
     FData: WKDownload;
@@ -28,6 +27,7 @@ type
     function OriginalRequest: NSURLRequest;
     procedure SetDelegate(downloadDelegate: TWKDownloadDelegate);
     procedure Cancel ();
+    function Progress: NSProgress;
   end;
 
 
@@ -86,6 +86,15 @@ begin
   if Assigned(FData) then
   begin
     FData.cancel(@doCancelCompletionHandler);
+  end;
+end;
+
+function TWKDownload.Progress: NSProgress;
+begin
+  Result := nil;
+  if Assigned(FData) then
+  begin
+    Result := FData.progress;
   end;
 end;
 
