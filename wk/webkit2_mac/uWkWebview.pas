@@ -16,7 +16,7 @@ type
 
   TWkWebview = class(TComponent, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent, IWKDownloadEvent)
   private
-    FData: WKWebView;
+    FData: WkWebview;
   protected
     procedure FieldEmpty();
   private
@@ -59,7 +59,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    function Data(): WKWebView;
+    function Data(): WkWebview;
   public
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
@@ -196,7 +196,7 @@ begin
   FOnWebViewDidClose := nil;
 end;
 
-function TWkWebview.Data(): WKWebView;
+function TWkWebview.Data(): WkWebview;
 begin
   Result := FData;
 end;

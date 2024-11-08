@@ -19,7 +19,7 @@ uses
   Classes,
   SysUtils,
   CocoaAll, uWebkit,
-  uTools;
+  uString, uTools;
 
 type
   // 基础事件回调函数
@@ -339,11 +339,12 @@ end;
 
 function TWKEvent.WkWebview_OnRunJavaScriptTextInputCompletion(sender: TObject; prompt: string; defaultText: string; frame: WKFrameInfo): string;
 var
-  Ret: PChar;
+  RetValue: TString;
 begin
-  Ret := PChar('');
-  SendEvent([sender, ToPChar(prompt), ToPChar(defaultText), frame, @Ret]);
-  Result := string(Ret);
+  RetValue := TString.Create;;
+  SendEvent([sender, ToPChar(prompt), ToPChar(defaultText), frame, RetValue]);
+  Result := RetValue.GetValue();
+  RetValue.Free;
 end;
 
 procedure TWKEvent.WkWebview_OnWebViewDidClose(sender: TObject);
