@@ -40,12 +40,12 @@ type
     FURLSchemeHandler: TWKURLSchemeHandler;
   public
     constructor Create; overload;
-    procedure OnProcessMessage(Sender: TWKUserContentController; AName, AData: string);
-    procedure OnStartProvisionalNavigation(webView: IWKWebView; navigation: TWKNavigation);
-    procedure OnFinishNavigation(webView: IWKWebView; navigation: TWKNavigation);
-    procedure OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
-    procedure OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
-    function OnCreateWebView(webView: IWKWebView; configuration_: TWKWebViewConfiguration; navigationAction: TWKNavigationAction; windowFeatures: TWKWindowFeatures): IWKWebView;
+    procedure OnProcessMessage(sender: TObject; userContentController: WKUserContentController; AName, AData: string);
+    procedure OnStartProvisionalNavigation(sender: TObject; navigation: WKNavigation);
+    procedure OnFinishNavigation(sender: TObject; navigation: WKNavigation);
+    procedure OnStartURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
+    procedure OnStopURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
+    function OnCreateWebView(sender: TObject; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
   end;
 
 procedure CreateGlobal();
@@ -124,31 +124,32 @@ begin
   FWebView.SetNavigationDelegate(FNavigationDelegate.Data());
   FWebView.SetUIDelegate(FUIDelegate.Data());
 
-  FWebViewParent.SetWebview(FWebView);
+  FWebViewParent.SetWebview(FWebView.Data());
 
   // [webView.configuration.preferences setValue:@YES forKey:@"developerExtrasEnabled"];
   //FPreference.Data().setValue_forKey(ObjCBOOL(true), StrToNSString('developerExtrasEnabled'));
 
 end;
 
-procedure TForm1.OnProcessMessage(Sender: TWKUserContentController; AName, AData: string);
+procedure TForm1.OnProcessMessage(sender: TObject; userContentController: WKUserContentController; AName, AData: string);
 begin
   Application.MessageBox(PChar(AData), PChar('ReceiveScriptMessage: ' + AName));
   FWebView.EvaluateJavaScript('alert(1)');
 end;
 
-procedure TForm1.OnStartProvisionalNavigation(webView: IWKWebView; navigation: TWKNavigation);
+procedure TForm1.OnStartProvisionalNavigation(sender: TObject; navigation: WKNavigation);
 begin
   Process.Caption := 'start';
 end;
 
-procedure TForm1.OnFinishNavigation(webView: IWKWebView; navigation: TWKNavigation);
+procedure TForm1.OnFinishNavigation(sender: TObject; navigation: WKNavigation);
 begin
   Process.Caption := 'finish';
 end;
 
-procedure TForm1.OnStartURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
+procedure TForm1.OnStartURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
 var
+  TempURLSchemeTask: TWKURLSchemeTask;
   request: TNSURLRequest;
   response: TNSURLResponse;
   tempNSURL: TNSURL;
@@ -157,7 +158,8 @@ var
   tempDataBytesLength: Integer;
   tempHTTPHeader: string;
 begin
-  request := TNSURLRequest.Create(urlSchemeTask.Request());
+  TempURLSchemeTask := TWKURLSchemeTask.Create(urlSchemeTask);
+  request := TNSURLRequest.Create(TempURLSchemeTask.Request());
   tempNSURL := TNSURL.Create(request.URL);
   tempUrl := tempNSURL.AbsoluteString;
   tempHost := tempNSURL.Host;
@@ -177,18 +179,19 @@ begin
   //response.InitWithURLStatusCodeHTTPVersionHeaderFields(tempNSURL, 200, 'HTTP/1.1', tempHTTPHeader);//???
   //response.localizedStringForStatusCode(200);
 
-  urlSchemeTask.ReceiveResponse(response.Data());
-  urlSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);
-  urlSchemeTask.Finish();
+  TempURLSchemeTask.ReceiveResponse(response.Data());
+  TempURLSchemeTask.ReceiveData(Pointer(tempHtml), tempDataBytesLength);
+  TempURLSchemeTask.Finish();
+  TempURLSchemeTask.Free;
 end;
 
-procedure TForm1.OnStopURLSchemeTask(webView: IWKWebView; urlSchemeTask: TWKURLSchemeTask);
+procedure TForm1.OnStopURLSchemeTask(sender: TObject; urlSchemeTask: WKURLSchemeTask);
 begin
   WriteLn();
 end;
 
-function TForm1.OnCreateWebView(webView: IWKWebView; configuration_: TWKWebViewConfiguration; navigationAction: TWKNavigationAction;
-  windowFeatures: TWKWindowFeatures): IWKWebView;
+function TForm1.OnCreateWebView(sender: TObject; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction;
+  windowFeatures: WKWindowFeatures): WKWebView;
 var
   TempSourceFrame: TWKFrameInfo;
   TempTargetFrame: TWKFrameInfo;
@@ -220,7 +223,7 @@ procedure TForm1.FormShow(Sender: TObject);
 begin
   //FWebView.LoadURL('https://energye.github.io');
   //FWebView.LoadURL('http://www.baidu.com');
-  FWebView.LoadURL('energy://test.com');
+  FWebView.LoadURL('https://devui.design/components/zh-cn/button/demo#button-loading');
   //FWebView.LoadHTML('<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="content-type" content="text/html;charset=utf-8"><title>从字符串加载HTML</title></head><body><p>这是一个从字符串加载的HTML。</p></body></html>', '')
 end;
 

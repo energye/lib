@@ -10,13 +10,11 @@ interface
 uses
   Classes, SysUtils, Forms,
   CocoaAll, CocoaUtils, CGGeometry, CGBase,
-  uWebKit, uWkInterface, uWkWebviewEvents, uWKWebViewConfiguration,
-  uWKURLSchemeTask, uWKNavigationAction, uWKFrameInfo, uWKWindowFeatures, uWKNavigation,
-  uWKNavigationResponse, uWKWebpagePreferences, uWKDownload, uNSURLResponse, uNSURLRequest;
+  uWebKit, uWkInterface, uWkWebviewEvents;
 
 type
 
-  TWkWebview = class(TComponent, IWkWebview, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent, IWKDownloadEvent)
+  TWkWebview = class(TComponent, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent, IWKDownloadEvent)
   private
     FData: WKWebView;
   protected
@@ -213,36 +211,29 @@ begin
   begin
     tempName := NSStringToString(message_.name);
     tempBody := NSStringToString(NSString(message_.body));
-    FOnProcessMessage(nil, tempName, tempBody);
+    FOnProcessMessage(self, userContentController, tempName, tempBody);
   end;
 end;
 
 procedure TWkWebview.doDecidePolicyForNavigationActionPreferences(webView: WKWebView; navigationAction: WKNavigationAction;
   var actionPolicy: WKNavigationActionPolicy; var preferences: WKWebpagePreferences);
 var
-  TempNavigationAction: TWKNavigationAction;
-  TempPreferences: TWKWebpagePreferences;
+  TempPreferences: WKWebpagePreferences;
 begin
-  TempNavigationAction := nil;
   TempPreferences := nil;
   if Assigned(FOnDecidePolicyForNavigationActionPreferences) then
   begin
-    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
-    FOnDecidePolicyForNavigationActionPreferences(self, TempNavigationAction, actionPolicy, TempPreferences);
+    FOnDecidePolicyForNavigationActionPreferences(self, navigationAction, actionPolicy, TempPreferences);
     if TempPreferences <> nil then
-      preferences := TempPreferences.Data();
+      preferences := TempPreferences;
   end;
 end;
 
 procedure TWkWebview.doDecidePolicyForNavigationResponse(webView: WKWebView; navigationResponse: WKNavigationResponse; var responsePolicy: WKNavigationResponsePolicy);
-var
-  TempNavigationResponse: TWKNavigationResponse;
 begin
-  TempNavigationResponse := nil;
   if Assigned(FOnDecidePolicyForNavigationResponse) then
   begin
-    TempNavigationResponse := TWKNavigationResponse.Create(navigationResponse);
-    FOnDecidePolicyForNavigationResponse(self, TempNavigationResponse, responsePolicy);
+    FOnDecidePolicyForNavigationResponse(self, navigationResponse, responsePolicy);
   end;
 end;
 
@@ -250,7 +241,7 @@ procedure TWkWebview.doStartProvisionalNavigation (webView: WKWebView; navigatio
 begin
   if Assigned(FOnStartProvisionalNavigation) then
   begin
-    FOnStartProvisionalNavigation(self, TWKNavigation.Create(navigation));
+    FOnStartProvisionalNavigation(self, navigation);
   end;
 end;
 
@@ -258,7 +249,7 @@ procedure TWkWebview.doReceiveServerRedirectForProvisionalNavigation (webView: W
 begin
   if Assigned(FOnReceiveServerRedirectForProvisionalNavigation) then
   begin
-    FOnReceiveServerRedirectForProvisionalNavigation(self, TWKNavigation.Create(navigation));
+    FOnReceiveServerRedirectForProvisionalNavigation(self, navigation);
   end;
 end;
 
@@ -266,7 +257,7 @@ procedure TWkWebview.doFailProvisionalNavigationWithError (webView: WKWebView; n
 begin
   if Assigned(FOnFailProvisionalNavigationWithError) then
   begin
-    FOnFailProvisionalNavigationWithError(self, TWKNavigation.Create(navigation), NSStringToString(error.localizedDescription));
+    FOnFailProvisionalNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -274,7 +265,7 @@ procedure TWkWebview.doCommitNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnCommitNavigation) then
   begin
-    FOnCommitNavigation(self, TWKNavigation.Create(navigation));
+    FOnCommitNavigation(self, navigation);
   end;
 end;
 
@@ -282,7 +273,7 @@ procedure TWkWebview.doFinishNavigation (webView: WKWebView; navigation: WKNavig
 begin
   if Assigned(FOnFinishNavigation) then
   begin
-    FOnFinishNavigation(self, TWKNavigation.Create(navigation));
+    FOnFinishNavigation(self, navigation);
   end;
 end;
 
@@ -290,7 +281,7 @@ procedure TWkWebview.doFailNavigationWithError (webView: WKWebView; navigation: 
 begin
   if Assigned(FOnFailNavigationWithError) then
   begin
-    FOnFailNavigationWithError(self, TWKNavigation.Create(navigation), NSStringToString(error.localizedDescription));
+    FOnFailNavigationWithError(self, navigation, NSStringToString(error.localizedDescription));
   end;
 end;
 
@@ -314,110 +305,69 @@ end;
 //end;
 
 procedure TWkWebview.doNavigationActionDidBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
-var
-  TempNavigationAction: TWKNavigationAction;
-  TempDownload: TWKDownload;
 begin
-  TempNavigationAction := nil;
-  TempDownload := nil;
   if Assigned(FOnNavigationActionDidBecomeDownload) then
   begin
-    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
-    TempDownload := TWKDownload.Create(download, nil);
-    FOnNavigationActionDidBecomeDownload(self, TempNavigationAction, TempDownload);
+    FOnNavigationActionDidBecomeDownload(self, navigationAction, download);
   end;
 end;
 
 procedure TWkWebview.doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
-var
-  TempNavigationResponse: TWKNavigationResponse;
-  TempDownload: TWKDownload;
 begin
-  TempNavigationResponse := nil;
-  TempDownload := nil;
   if Assigned(FOnNavigationResponseDidBecomeDownload) then
   begin
-    TempNavigationResponse := TWKNavigationResponse.Create(navigationResponse);
-    TempDownload := TWKDownload.Create(download, nil);
-    FOnNavigationResponseDidBecomeDownload(self, TempNavigationResponse, TempDownload);
+    FOnNavigationResponseDidBecomeDownload(self, navigationResponse, download);
   end;
 end;
 
 procedure TWkWebview.doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
-var
-  TempUrlSchemeTask: TWKURLSchemeTask;
 begin
-  TempUrlSchemeTask := nil;
   if Assigned(FOnStartURLSchemeTask) then
   begin
-    TempUrlSchemeTask := TWKURLSchemeTask.Create(urlSchemeTask);
-    FOnStartURLSchemeTask(self, TempUrlSchemeTask);
+    FOnStartURLSchemeTask(self, urlSchemeTask);
   end;
 end;
 
 procedure TWkWebview.doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
-var
-  TempUrlSchemeTask: TWKURLSchemeTask;
 begin
-  TempUrlSchemeTask := nil;
   if Assigned(FOnStopURLSchemeTask) then
   begin
-    TempUrlSchemeTask := TWKURLSchemeTask.Create(urlSchemeTask);
-    FOnStopURLSchemeTask(self, TempUrlSchemeTask);
+    FOnStopURLSchemeTask(self, urlSchemeTask);
   end;
 end;
 
 function TWkWebview.doCreateWebView (webView: WKWebView; configuration_: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
-var
-  TempConfig: TWKWebViewConfiguration;
-  TempNavigationAction: TWKNavigationAction;
-  TempWindowFeatures: TWKWindowFeatures;
-  TempResultWebview: IWKWebView;
 begin
   Result := nil;
   if Assigned(FOnCreateWebView) then
   begin
-    TempConfig := TWKWebViewConfiguration.Create(configuration_);
-    TempNavigationAction := TWKNavigationAction.Create(navigationAction);
-    TempWindowFeatures := TWKWindowFeatures.Create(windowFeatures);
-    TempResultWebview := FOnCreateWebView(self, TempConfig, TempNavigationAction, TempWindowFeatures);
-    if TempResultWebview <> nil then
-      Result := TempResultWebview.Data();
+    Result := FOnCreateWebView(self, configuration_, navigationAction, windowFeatures);
   end;
 end;
 
 procedure TWkWebview.doRunJavaScriptAlert (webView: WKWebView; message_: NSString; frame: WKFrameInfo);
-var
-  TempFrameInfo: TWKFrameInfo;
 begin
   if Assigned(FOnRunJavaScriptAlert) then
   begin
-    TempFrameInfo := TWKFrameInfo.Create(frame);
-    FOnRunJavaScriptAlert(self, NSStringToString(message_), TempFrameInfo);
+    FOnRunJavaScriptAlert(self, NSStringToString(message_), frame);
   end;
 end;
 
 function TWkWebview.doRunJavaScriptConfirmCompletion (webView: WKWebView; message_: NSString; frame: WKFrameInfo): Boolean;
-var
-  TempFrameInfo: TWKFrameInfo;
 begin
   Result := False;
   if Assigned(FOnRunJavaScriptConfirmCompletion) then
   begin
-    TempFrameInfo := TWKFrameInfo.Create(frame);
-    FOnRunJavaScriptConfirmCompletion(self, NSStringToString(message_), TempFrameInfo);
+    Result := FOnRunJavaScriptConfirmCompletion(self, NSStringToString(message_), frame);
   end;
 end;
 
 function TWkWebview.doRunJavaScriptTextInputCompletion (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo): string;
-var
-  TempFrameInfo: TWKFrameInfo;
 begin
   Result := '';
   if Assigned(FOnRunJavaScriptTextInputCompletion) then
   begin
-    TempFrameInfo := TWKFrameInfo.Create(frame);
-    Result := FOnRunJavaScriptTextInputCompletion(self, NSStringToString(prompt), NSStringToString(defaultText), TempFrameInfo);
+    Result := FOnRunJavaScriptTextInputCompletion(self, NSStringToString(prompt), NSStringToString(defaultText), frame);
   end;
 end;
 
@@ -432,49 +382,26 @@ end;
 
 // WKDownload
 procedure TWkWebview.doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
-var
-  TempDownload: TWKDownload;
 begin
-  TempDownload := nil;
   if Assigned(FOnDownloadCancelCompletionHandler) then
   begin
-    TempDownload := TWKDownload.Create(download, nil);
-    FOnDownloadCancelCompletionHandler(self, TempDownload, aData, aLength);
+    FOnDownloadCancelCompletionHandler(self, download, aData, aLength);
   end;
 end;
 
 procedure TWkWebview.doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);
-var
-  TempDownload: TWKDownload;
-  TempResponse: TNSURLResponse;
-  TempSuggestedFilename: string;
 begin
-  TempDownload := nil;
-  TempResponse := nil;
   if Assigned(FOnDownloadDecideDestinationUsingResponseSuggestedFilename) then
   begin
-    TempDownload := TWKDownload.Create(download, nil);
-    TempResponse := TNSURLResponse.Create(response);
-    TempSuggestedFilename := NSStringToString(suggestedFilename);
-    FOnDownloadDecideDestinationUsingResponseSuggestedFilename(self, TempDownload, TempResponse, TempSuggestedFilename);
+    FOnDownloadDecideDestinationUsingResponseSuggestedFilename(self, download, response, NSStringToString(suggestedFilename));
   end;
 end;
 
 procedure TWkWebview.doDownloadWillPerformHTTPRedirectionNewRequest(download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest);
-var
-  TempDownload: TWKDownload;
-  TempResponse: TNSHTTPURLResponse;
-  TempRequest: TNSURLRequest;
 begin
-  TempDownload := nil;
-  TempResponse := nil;
-  TempRequest := nil;
   if Assigned(FOnDownloadWillPerformHTTPRedirectionNewRequest) then
   begin
-    TempDownload := TWKDownload.Create(download, nil);
-    TempResponse := TNSHTTPURLResponse.Create(response);
-    TempRequest := TNSURLRequest.Create(request);
-    FOnDownloadWillPerformHTTPRedirectionNewRequest(self, TempDownload, TempResponse, TempRequest);
+    FOnDownloadWillPerformHTTPRedirectionNewRequest(self, download, response, request);
   end;
 end;
 
@@ -484,33 +411,26 @@ end;
 //end;
 
 procedure TWkWebview.doDownloadFinish (download: WKDownload);
-var
-  TempDownload: TWKDownload;
 begin
-  TempDownload := nil;
   if Assigned(FOnDownloadFinish) then
   begin
-    TempDownload := TWKDownload.Create(download, nil);
-    FOnDownloadFinish(self, TempDownload);
+    FOnDownloadFinish(self, download);
   end;
 end;
 
 procedure TWkWebview.doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
 var
-  TempDownload: TWKDownload;
   TempError: string;
   TempData: Pointer;
   TempDataLength: Integer;
 begin
-  TempDownload := nil;
   TempData := nil;
   if Assigned(FOnDownloadFailWithError) then
   begin
-    TempDownload := TWKDownload.Create(download, nil);
     TempError := NSStringToString(error.localizedDescription);
     TempData := resumeData.bytes;
     TempDataLength := Integer(resumeData.length);
-    FOnDownloadFailWithError(self, TempDownload, TempError, TempData, TempDataLength);
+    FOnDownloadFailWithError(self, download, TempError, TempData, TempDataLength);
   end;
 end;
 

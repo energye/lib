@@ -24,7 +24,7 @@ begin
 end;
 
 //procedure
-procedure WkWebviewParent_SetWebview(AObj: TWkWebviewParent; aWebview: IWkWebview); extdecl;
+procedure WkWebviewParent_SetWebview(AObj: TWkWebviewParent; aWebview: WkWebview); extdecl;
 begin
   handleExceptionBegin
   AObj.SetWebview(aWebview);

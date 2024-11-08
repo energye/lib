@@ -8,9 +8,6 @@ interface
 uses
   Classes, CocoaAll, uWebKit;
 
-type
-  IWKWebView = interface;
-
 
 // class events interface
 type
@@ -62,41 +59,6 @@ type
     //procedure doDownloadReceiveAuthenticationChallenge(download: WKDownload; challenge: NSURLAuthenticationChallenge);
     procedure doDownloadFinish (download: WKDownload);
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
-  end;
-
-// class interface
-type
-
-  IWkWebview = interface
-    ['{CA5E93CB-6734-B968-565A-729497B49467}']
-    function Data(): WKWebView;
-    procedure LoadHTML(AHtml, ABaseURL: string);
-    procedure LoadURL(AURL: string);
-    function Configuration: WKWebViewConfiguration;
-    function LoadRequest (request: NSURLRequest): WKNavigation;
-    procedure SetNavigationDelegate(navigationDelegate: WKNavigationDelegate);
-    procedure SetUIDelegate(uiDelegate: WKUIDelegate);
-    procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: WKWebViewConfiguration);
-    function Title: string;
-    function URL: NSURL;
-    function IsLoading: LongBool;
-    function EstimatedProgress: double;
-    function HasOnlySecureContent: LongBool;
-    function CanGoBack: LongBool;
-    function CanGoForward: LongBool;
-    function GoBack: WKNavigation;
-    function GoForward: WKNavigation;
-    function Reload: WKNavigation;
-    function ReloadFromOrigin: WKNavigation;
-    procedure StopLoading;
-    procedure EvaluateJavaScript(javaScriptString: string);
-    procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
-    function AllowsBackForwardNavigationGestures: LongBool;
-    procedure SetAllowsMagnification(newValue: LongBool);
-    function AllowsMagnification: LongBool;
-    procedure SetMagnification(newValue: double);
-    function Magnification: double;
-    procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
   end;
 
 
