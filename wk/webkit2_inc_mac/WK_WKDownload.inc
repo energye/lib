@@ -1,6 +1,6 @@
 
 //constructor
-function WKDownload_Create(aData: WKDownload; aWebViewDelegate: IWKDownloadEvent): TWKDownload; extdecl;
+function WKDownload_Create(aData: WKDownload; aWebViewDelegate: IWKDownloadDelegateEvent): TWKDownload; extdecl;
 begin
   handleExceptionBegin
   Result := TWKDownload.Create(aData, aWebViewDelegate);

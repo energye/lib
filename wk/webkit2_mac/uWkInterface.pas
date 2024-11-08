@@ -11,7 +11,7 @@ uses
 
 // class events interface
 type
-  IReceiveScriptMessageEvent = interface
+  IReceiveScriptMessageDelegateEvent = interface
     ['{CA5E93CB-6A34-B968-565E-729497774925}']
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
@@ -34,7 +34,7 @@ type
     procedure doNavigationResponseDidBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
 
-  IWKURLSchemeHandlerEvent = interface
+  IWKURLSchemeHandlerDelegateEvent = interface
     ['{CA5E93CB-EC40-B968-334A-729497CD7678}']
     procedure doStartURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
     procedure doStopURLSchemeTask(webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
@@ -51,7 +51,7 @@ type
     procedure doWebViewDidClose(webView: WKWebView);
   end;
 
-  IWKDownloadEvent = interface
+  IWKDownloadDelegateEvent = interface
     ['{CA5E93CB-EC78-B968-334A-729495975831}']
     procedure doDownloadCancelCompletionHandler(download: WKDownload; aData: Pointer; aLength: Integer);
     procedure doDownloadDecideDestinationUsingResponseSuggestedFilename(download: WKDownload; response: NSURLResponse; suggestedFilename: NSString);

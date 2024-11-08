@@ -14,7 +14,7 @@ uses
 
 type
 
-  TWkWebview = class(TComponent, IReceiveScriptMessageEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerEvent, IWKUIDelegateEvent, IWKDownloadEvent)
+  TWkWebview = class(TComponent, IReceiveScriptMessageDelegateEvent, IWKNavigationDelegateEvent, IWKURLSchemeHandlerDelegateEvent, IWKUIDelegateEvent, IWKDownloadDelegateEvent)
   private
     FData: WkWebview;
   protected
@@ -91,6 +91,11 @@ type
     procedure SetMagnification(newValue: double);
     function Magnification: double;
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
+    function AsReceiveScriptMessageDelegate(): IReceiveScriptMessageDelegateEvent;
+    function AsWKNavigationDelegate(): IWKNavigationDelegateEvent;
+    function AsWKURLSchemeHandlerDelegate(): IWKURLSchemeHandlerDelegateEvent;
+    function AsWKUIDelegate(): IWKUIDelegateEvent;
+    function AsWKDownloadDelegate(): IWKDownloadDelegateEvent;
   protected
     // WKScriptMessageHandlerProtocol
     procedure doReceiveScriptMessage(userContentController: WKUserContentController; message_: WKScriptMessage);
@@ -710,6 +715,31 @@ begin
     TempPoint.y := CGFloat(point.Y);
     FData.setMagnification_centeredAtPoint(CGFloat(magnification_), TempPoint);
   end;
+end;
+
+function TWkWebview.AsReceiveScriptMessageDelegate(): IReceiveScriptMessageDelegateEvent;
+begin
+  Result := self as IReceiveScriptMessageDelegateEvent;
+end;
+
+function TWkWebview.AsWKNavigationDelegate(): IWKNavigationDelegateEvent;
+begin
+  Result := self as IWKNavigationDelegateEvent;
+end;
+
+function TWkWebview.AsWKURLSchemeHandlerDelegate(): IWKURLSchemeHandlerDelegateEvent;
+begin
+  Result := self as IWKURLSchemeHandlerDelegateEvent;
+end;
+
+function TWkWebview.AsWKUIDelegate(): IWKUIDelegateEvent;
+begin
+  Result := self as IWKUIDelegateEvent;
+end;
+
+function TWkWebview.AsWKDownloadDelegate(): IWKDownloadDelegateEvent;
+begin
+  Result := self as IWKDownloadDelegateEvent;
 end;
 
 

@@ -22,7 +22,7 @@ type
   private
     FData: NSWKScriptMessageHandler;
   public
-    constructor Create(event: IReceiveScriptMessageEvent);
+    constructor Create(event: IReceiveScriptMessageDelegateEvent);
     destructor Destroy; override;
     function Data(): WKScriptMessageHandlerProtocol;
   end;
@@ -35,10 +35,10 @@ procedure NSWKScriptMessageHandler.userContentController_didReceiveScriptMessage
 begin
   if FData = nil then
     exit;
-  IReceiveScriptMessageEvent(FData).doReceiveScriptMessage(userContentController, message_);
+  IReceiveScriptMessageDelegateEvent(FData).doReceiveScriptMessage(userContentController, message_);
 end;
 
-constructor TWKScriptMessageHandler.Create(event: IReceiveScriptMessageEvent);
+constructor TWKScriptMessageHandler.Create(event: IReceiveScriptMessageDelegateEvent);
 begin
   inherited Create;
   FData := NSWKScriptMessageHandler.alloc.init;

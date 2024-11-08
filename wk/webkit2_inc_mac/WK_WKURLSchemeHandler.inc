@@ -1,6 +1,6 @@
 
 //constructor
-function WKURLSchemeHandler_Create(event: IWKURLSchemeHandlerEvent): TWKURLSchemeHandler; extdecl;
+function WKURLSchemeHandler_Create(event: IWKURLSchemeHandlerDelegateEvent): TWKURLSchemeHandler; extdecl;
 begin
   handleExceptionBegin
   Result := TWKURLSchemeHandler.Create(event);

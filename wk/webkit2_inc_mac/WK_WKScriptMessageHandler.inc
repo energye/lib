@@ -1,6 +1,6 @@
 
 //constructor
-function WKScriptMessageHandler_Create(event: IReceiveScriptMessageEvent): TWKScriptMessageHandler; extdecl;
+function WKScriptMessageHandler_Create(event: IReceiveScriptMessageDelegateEvent): TWKScriptMessageHandler; extdecl;
 begin
   handleExceptionBegin
   Result := TWKScriptMessageHandler.Create(event);

@@ -27,7 +27,7 @@ type
   private
     FData: NSWKDownloadDelegateProtocol;
   public
-    constructor Create(event: IWKDownloadEvent);
+    constructor Create(event: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownloadDelegateProtocol;
   end;
@@ -41,7 +41,7 @@ procedure NSWKDownloadDelegateProtocol.download_decideDestinationUsingResponse_s
 begin
   if FData <> nil then
   begin
-    IWKDownloadEvent(FData).doDownloadDecideDestinationUsingResponseSuggestedFilename(download, response, suggestedFilename);
+    IWKDownloadDelegateEvent(FData).doDownloadDecideDestinationUsingResponseSuggestedFilename(download, response, suggestedFilename);
   end;
   completionHandler(response.URL);
 end;
@@ -51,7 +51,7 @@ procedure NSWKDownloadDelegateProtocol.download_willPerformHTTPRedirection_newRe
 begin
   if FData <> nil then
   begin
-    IWKDownloadEvent(FData).doDownloadWillPerformHTTPRedirectionNewRequest(download, response, request);
+    IWKDownloadDelegateEvent(FData).doDownloadWillPerformHTTPRedirectionNewRequest(download, response, request);
   end;
   decisionHandler(WKDownloadRedirectPolicyAllow);
 end;
@@ -61,7 +61,7 @@ end;
 //begin
 //  if FData <> nil then
 //  begin
-//    IWKDownloadEvent(FData).doDownloadReceiveAuthenticationChallenge(download, challenge);
+//    IWKDownloadDelegateEvent(FData).doDownloadReceiveAuthenticationChallenge(download, challenge);
 //  end;
 //  //NSURLSessionAuthChallengeUseCredential // 使用指定的凭证，可能是 .nil
 //  //NSURLSessionAuthChallengePerformDefaultHandling //对质询使用默认处理方式，就好像没有实现这个委托方法一样。提供的 credential 参数将被忽略。
@@ -74,7 +74,7 @@ procedure NSWKDownloadDelegateProtocol.downloadDidFinish (download: WKDownload);
 begin
   if FData <> nil then
   begin
-    IWKDownloadEvent(FData).doDownloadFinish(download);
+    IWKDownloadDelegateEvent(FData).doDownloadFinish(download);
   end;
 end;
 
@@ -82,11 +82,11 @@ procedure NSWKDownloadDelegateProtocol.download_didFailWithError_resumeData (dow
 begin
   if FData <> nil then
   begin
-    IWKDownloadEvent(FData).doDownloadFailWithError(download, error, resumeData);
+    IWKDownloadDelegateEvent(FData).doDownloadFailWithError(download, error, resumeData);
   end;
 end;
 
-constructor TWKDownloadDelegate.Create(event: IWKDownloadEvent);
+constructor TWKDownloadDelegate.Create(event: IWKDownloadDelegateEvent);
 begin
   inherited Create;
   FData := NSWKDownloadDelegateProtocol.alloc.init;

@@ -1,6 +1,6 @@
 
 //constructor
-function WKDownloadDelegate_Create(event: IWKDownloadEvent): TWKDownloadDelegate; extdecl;
+function WKDownloadDelegate_Create(event: IWKDownloadDelegateEvent): TWKDownloadDelegate; extdecl;
 begin
   handleExceptionBegin
   Result := TWKDownloadDelegate.Create(event);

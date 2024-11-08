@@ -23,7 +23,7 @@ type
   private
     FData: NSWKURLSchemeHandler;
   public
-    constructor Create(event: IWKURLSchemeHandlerEvent);
+    constructor Create(event: IWKURLSchemeHandlerDelegateEvent);
     destructor Destroy; override;
     function Data(): WKURLSchemeHandlerProtocol;
   end;
@@ -36,18 +36,18 @@ procedure NSWKURLSchemeHandler.webView_startURLSchemeTask (webView: WKWebView; u
 begin
   if FData = nil then
     exit;
-  IWKURLSchemeHandlerEvent(FData).doStartURLSchemeTask(webView, urlSchemeTask);
+  IWKURLSchemeHandlerDelegateEvent(FData).doStartURLSchemeTask(webView, urlSchemeTask);
 end;
 
 procedure NSWKURLSchemeHandler.webView_stopURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
 begin
   if FData = nil then
     exit;
-  IWKURLSchemeHandlerEvent(FData).doStopURLSchemeTask(webView, urlSchemeTask);
+  IWKURLSchemeHandlerDelegateEvent(FData).doStopURLSchemeTask(webView, urlSchemeTask);
 end;
 
 
-constructor TWKURLSchemeHandler.Create(event: IWKURLSchemeHandlerEvent);
+constructor TWKURLSchemeHandler.Create(event: IWKURLSchemeHandlerDelegateEvent);
 begin
   inherited Create;
   FData := NSWKURLSchemeHandler.alloc.init;

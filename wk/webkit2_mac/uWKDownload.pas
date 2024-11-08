@@ -16,11 +16,11 @@ type
   TWKDownload = class
   private
     FData: WKDownload;
-    FWebViewDelegate: IWKDownloadEvent;
+    FWebViewDelegate: IWKDownloadDelegateEvent;
   protected
     procedure doCancelCompletionHandler(resumeData: NSData);
   public
-    constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadEvent);
+    constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownload;
   public
@@ -33,7 +33,7 @@ type
 
 implementation
 
-constructor TWKDownload.Create(AData: WKDownload; AWebViewDelegate: IWKDownloadEvent);
+constructor TWKDownload.Create(AData: WKDownload; AWebViewDelegate: IWKDownloadDelegateEvent);
 begin
   inherited Create;
   FData := AData;

@@ -223,7 +223,7 @@ procedure TForm1.FormShow(Sender: TObject);
 begin
   //FWebView.LoadURL('https://energye.github.io');
   //FWebView.LoadURL('http://www.baidu.com');
-  FWebView.LoadURL('https://devui.design/components/zh-cn/button/demo#button-loading');
+  FWebView.LoadURL('energy://test.com');
   //FWebView.LoadHTML('<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="content-type" content="text/html;charset=utf-8"><title>从字符串加载HTML</title></head><body><p>这是一个从字符串加载的HTML。</p></body></html>', '')
 end;
 
