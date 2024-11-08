@@ -1,6 +1,6 @@
 
 //function
-function WkWebview_Data(AObj: TWkWebview): WKWebView; extdecl;
+function WkWebview_Data(AObj: TWkWebview): WkWebview; extdecl;
 begin
   handleExceptionBegin
   Result := AObj.Data();
