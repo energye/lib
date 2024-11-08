@@ -23,6 +23,14 @@ begin
   handleExceptionEnd
 end;
 
+//function
+function WKDownload_Progress(AObj: TWKDownload): NSProgress; extdecl;
+begin
+  handleExceptionBegin
+  Result := AObj.Progress();
+  handleExceptionEnd
+end;
+
 //procedure
 procedure WKDownload_SetDelegate(AObj: TWKDownload; downloadDelegate: TWKDownloadDelegate); extdecl;
 begin
@@ -44,5 +52,6 @@ exports
   WKDownload_Create,
   WKDownload_Data,
   WKDownload_OriginalRequest,
+  WKDownload_Progress,
   WKDownload_SetDelegate,
   WKDownload_Cancel;

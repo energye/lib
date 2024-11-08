@@ -1,5 +1,6 @@
 {$I ./wk/webkit2_inc_mac/WK_NSHTTPURLResponse.inc}
 {$I ./wk/webkit2_inc_mac/WK_NSMutableURLRequest.inc}
+{$I ./wk/webkit2_inc_mac/WK_NSProgress.inc}
 {$I ./wk/webkit2_inc_mac/WK_NSURL.inc}
 {$I ./wk/webkit2_inc_mac/WK_NSURLAuthenticationChallenge.inc}
 {$I ./wk/webkit2_inc_mac/WK_NSURLCredential.inc}
