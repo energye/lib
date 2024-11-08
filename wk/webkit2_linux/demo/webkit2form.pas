@@ -25,7 +25,7 @@ type
     LoadURLBtn: TButton;
     ExecuteJSBtn: TButton;
     CloseTimer: TTimer;
-    FwebViewParent: TWkWebViewParent;
+    FwebViewParent: TWkWebviewParent;
     FWebView: TWkWebview;
     FChildTForm1: TChildForm;
     procedure CloseTimerTimer(Sender: TObject);
@@ -374,7 +374,7 @@ begin
   aMainMenu.Items.Add(aShowDevToolsMenu);
 
   // webview
-  FwebViewParent := TWkWebViewParent.Create(self);
+  FwebViewParent := TWkWebviewParent.Create(self);
   FwebViewParent.Parent := self;
   FwebViewParent.Top := 100;
   FwebViewParent.Left := 30;

@@ -22,7 +22,6 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value=".."/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -69,15 +68,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../uWkWebview.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../uwkwebviewparent.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="uWkWebviewParent"/>
       </Unit>
     </Units>
   </ProjectOptions>

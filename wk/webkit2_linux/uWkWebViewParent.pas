@@ -14,7 +14,7 @@ uses
 
 type
 
-  TWkWebViewParent = class(TCustomPanel)
+  TWkWebviewParent = class(TCustomPanel)
   protected
     FScrolledWindow: PGtkScrolledWindow;
     FWebview: TWkWebview;
@@ -34,7 +34,7 @@ type
 
 implementation
 
-constructor TWkWebViewParent.Create(AOwner: TComponent);
+constructor TWkWebviewParent.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   BevelOuter := bvNone;
@@ -46,13 +46,12 @@ begin
   Height := 0;
 end;
 
-destructor TWkWebViewParent.Destroy;
+destructor TWkWebviewParent.Destroy;
 begin
   inherited Destroy;
-  WriteLn('TWkWebViewParent.Destroy');
 end;
 
-procedure TWkWebViewParent.SetWebview(const AValue: TWkWebview);
+procedure TWkWebviewParent.SetWebview(const AValue: TWkWebview);
 begin
   if (FWebview = nil) and Assigned(AValue) then
   begin
@@ -74,12 +73,12 @@ begin
   end;
 end;
 
-procedure TWkWebViewParent.CreateWnd;
+procedure TWkWebviewParent.CreateWnd;
 begin
   inherited CreateWnd;
 end;
 
-procedure TWkWebViewParent.FreeChild();
+procedure TWkWebviewParent.FreeChild();
 begin
   //gtk_widget_destroy(FWidget);
   //FWebview := nil;
@@ -107,7 +106,7 @@ begin
   Free();
 end;
 
-procedure TWkWebViewParent.Resize;
+procedure TWkWebviewParent.Resize;
 begin
   if Assigned(FScrolledWindow) then
   {$IFDEF LCLgtk3}

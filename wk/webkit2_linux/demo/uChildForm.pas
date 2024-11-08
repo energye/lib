@@ -14,7 +14,7 @@ uses
 type
   TChildForm = class(TForm)
   private
-    FwebViewParent: TWkWebViewParent;
+    FwebViewParent: TWkWebviewParent;
     FWebView: TWkWebview;
     FUrl: string;
   public
@@ -48,7 +48,7 @@ procedure TChildForm.FormCreate(Sender: TObject);
 begin
   WriteLn('TChildForm.FormCreate');
   // webview
-  FwebViewParent := TWkWebViewParent.Create(self);
+  FwebViewParent := TWkWebviewParent.Create(self);
   FwebViewParent.Parent := self;
   FwebViewParent.Align := alClient;
 end;
