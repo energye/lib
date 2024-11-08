@@ -16,6 +16,6 @@
 {$I ./wk/webkit2_inc_linux/WK_WkURIResponse.inc}
 {$I ./wk/webkit2_inc_linux/WK_WkURISchemeRequest.inc}
 {$I ./wk/webkit2_inc_linux/WK_WkWebContext.inc}
-{$I ./wk/webkit2_inc_linux/WK_WkWebViewParent.inc}
 {$I ./wk/webkit2_inc_linux/WK_WkWebsitePolicies.inc}
 {$I ./wk/webkit2_inc_linux/WK_WkWebview.inc}
+{$I ./wk/webkit2_inc_linux/WK_WkWebviewParent.inc}

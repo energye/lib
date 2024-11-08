@@ -1,14 +1,14 @@
 
 //constructor
-function WkWebViewParent_Create(aOwner: TComponent): TWkWebViewParent; extdecl;
+function WkWebviewParent_Create(aOwner: TComponent): TWkWebviewParent; extdecl;
 begin
   handleExceptionBegin
-  Result := TWkWebViewParent.Create(aOwner);
+  Result := TWkWebviewParent.Create(aOwner);
   handleExceptionEnd
 end;
 
 //property
-function WkWebViewParent_ScrolledWindow(AIsSet: LongBool; AObj: TWkWebViewParent; AValue: TScrolledWindow): TScrolledWindow; extdecl;
+function WkWebviewParent_ScrolledWindow(AIsSet: LongBool; AObj: TWkWebviewParent; AValue: TScrolledWindow): TScrolledWindow; extdecl;
 begin
   handleExceptionBegin
   if AIsSet then
@@ -20,7 +20,7 @@ begin
 end;
 
 //property
-function WkWebViewParent_WebView(AIsSet: LongBool; AObj: TWkWebViewParent; AValue: TWkWebview): TWkWebview; extdecl;
+function WkWebviewParent_WebView(AIsSet: LongBool; AObj: TWkWebviewParent; AValue: TWkWebview): TWkWebview; extdecl;
 begin
   handleExceptionBegin
   if AIsSet then
@@ -32,7 +32,7 @@ begin
 end;
 
 //procedure
-procedure WkWebViewParent_FreeChild(AObj: TWkWebViewParent); extdecl;
+procedure WkWebviewParent_FreeChild(AObj: TWkWebviewParent); extdecl;
 begin
   handleExceptionBegin
   AObj.FreeChild();
@@ -41,7 +41,7 @@ end;
 
 
 exports
-  WkWebViewParent_Create,
-  WkWebViewParent_ScrolledWindow,
-  WkWebViewParent_WebView,
-  WkWebViewParent_FreeChild;
+  WkWebviewParent_Create,
+  WkWebviewParent_ScrolledWindow,
+  WkWebviewParent_WebView,
+  WkWebviewParent_FreeChild;
