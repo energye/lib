@@ -11,6 +11,7 @@ uNSURLRequest, uNSURLResponse, uWKDownload, uWKDownloadDelegateProtocol, uWKFram
 uWKNavigationAction, uWKNavigationDelegate, uWKNavigationResponse, uWKPreferences, uWKScriptMessageHandler,
 uWKUIDelegate, uWKURLSchemeHandler, uWKURLSchemeTask, uWKUserContentController, uWKUserScript,
 uWKWebpagePreferences, uWkWebview, uWKWebViewConfiguration, uWkWebviewParent, uWKWindowFeatures,
+uNSProgress,
 uWKEventCallback
 
 

@@ -352,13 +352,12 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="151">
+    <Units Count="153">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="39"/>
-        <CursorPos Y="84"/>
+        <TopLine Value="50"/>
+        <CursorPos X="25" Y="42"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -1087,9 +1086,10 @@
       </Unit111>
       <Unit112>
         <Filename Value="UnitsWK2MacOS.inc"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos Y="8"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="2" Y="14"/>
         <UsageCount Value="26"/>
+        <Loaded Value="True"/>
       </Unit112>
       <Unit113>
         <Filename Value="wk\webkit2_mac\uNSURL.pas"/>
@@ -1335,8 +1335,22 @@
         <CursorPos X="34" Y="50"/>
         <UsageCount Value="10"/>
       </Unit150>
+      <Unit151>
+        <Filename Value="ImportWK2Mac.inc"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit151>
+      <Unit152>
+        <Filename Value="wk\webkit2_inc_mac\WK_NSProgress.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="5" Y="8"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit152>
     </Units>
-    <JumpHistory Count="2" HistoryIndex="1">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="84" TopLine="48"/>
@@ -1345,6 +1359,21 @@
         <Filename Value="liblcl.lpr"/>
         <Caret Line="84" TopLine="39"/>
       </Position2>
+      <Position3>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="42" Column="25" TopLine="84"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ImportWK2Mac.inc"/>
+      </Position4>
+      <Position5>
+        <Filename Value="wk\webkit2_inc_mac\WK_NSProgress.inc"/>
+        <Caret Line="13" Column="31"/>
+      </Position5>
+      <Position6>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="42" Column="25" TopLine="50"/>
+      </Position6>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
