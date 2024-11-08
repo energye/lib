@@ -1088,7 +1088,7 @@
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="1"/>
         <CursorPos X="59" Y="9"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit112>
       <Unit113>
@@ -1134,18 +1134,18 @@
       </Unit118>
       <Unit119>
         <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="88" Y="36"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit119>
       <Unit120>
         <Filename Value="wk\webkit2_mac\uWkInterface.pas"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="33"/>
-        <CursorPos X="22" Y="54"/>
-        <UsageCount Value="10"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="11"/>
+        <CursorPos X="47" Y="15"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit120>
       <Unit121>
@@ -1184,7 +1184,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="712"/>
         <CursorPos X="26" Y="712"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit126>
       <Unit127>
@@ -1235,19 +1235,17 @@
       </Unit133>
       <Unit134>
         <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="24" Y="85"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit134>
       <Unit135>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="30" Y="46"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit135>
       <Unit136>
         <Filename Value="wk\webkit2_mac\uWKUserContentController.pas"/>
@@ -1284,11 +1282,10 @@
       </Unit140>
       <Unit141>
         <Filename Value="wk\webkit2_mac\uWKScriptMessageHandler.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <CursorPos X="32" Y="38"/>
         <UsageCount Value="21"/>
-        <Loaded Value="True"/>
       </Unit141>
       <Unit142>
         <Filename Value="wk\webkit2_mac\uWKWebViewConfiguration.pas"/>
@@ -1361,10 +1358,10 @@
       </Unit152>
       <Unit153>
         <Filename Value="wk\webkit2_mac\uWKEventCallback.pas"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="333"/>
         <CursorPos X="31" Y="344"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit153>
       <Unit154>
@@ -1397,35 +1394,30 @@
       </Unit157>
       <Unit158>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownload.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="84" Y="3"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit158>
       <Unit159>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownloadDelegate.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="62" Y="3"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit159>
       <Unit160>
         <Filename Value="wk\webkit2_inc_mac\WK_WKScriptMessageHandler.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="76" Y="3"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit160>
       <Unit161>
         <Filename Value="wk\webkit2_inc_mac\WK_WKURLSchemeHandler.inc"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="70" Y="3"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit161>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="15" HistoryIndex="14">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="84" TopLine="48"/>
@@ -1482,46 +1474,6 @@
         <Filename Value="wk\webkit2_mac\uWkWebview.pas"/>
         <Caret Line="720" Column="80" TopLine="712"/>
       </Position15>
-      <Position16>
-        <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
-        <Caret Line="89" Column="66" TopLine="71"/>
-      </Position16>
-      <Position17>
-        <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
-        <Caret Line="85" Column="24" TopLine="78"/>
-      </Position17>
-      <Position18>
-        <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
-        <Caret Line="36" Column="88" TopLine="40"/>
-      </Position18>
-      <Position19>
-        <Filename Value="wk\webkit2_mac\uWKScriptMessageHandler.pas"/>
-        <Caret Line="45" Column="12" TopLine="13"/>
-      </Position19>
-      <Position20>
-        <Filename Value="wk\webkit2_mac\uWKScriptMessageHandler.pas"/>
-        <Caret Line="38" Column="32" TopLine="20"/>
-      </Position20>
-      <Position21>
-        <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
-        <Caret Line="50" Column="74" TopLine="38"/>
-      </Position21>
-      <Position22>
-        <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
-        <Caret Line="46" Column="30" TopLine="28"/>
-      </Position22>
-      <Position23>
-        <Filename Value="wk\webkit2_inc_mac\WK_WKDownload.inc"/>
-        <Caret Line="3" Column="84"/>
-      </Position23>
-      <Position24>
-        <Filename Value="wk\webkit2_inc_mac\WK_WKDownloadDelegate.inc"/>
-        <Caret Line="3" Column="62"/>
-      </Position24>
-      <Position25>
-        <Filename Value="wk\webkit2_inc_mac\WK_WKScriptMessageHandler.inc"/>
-        <Caret Line="3" Column="76"/>
-      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
