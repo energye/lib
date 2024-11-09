@@ -1086,7 +1086,6 @@
       </Unit111>
       <Unit112>
         <Filename Value="UnitsWK2MacOS.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos Y="17"/>
         <UsageCount Value="34"/>
@@ -1309,9 +1308,11 @@
       </Unit145>
       <Unit146>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="34"/>
+        <CursorPos X="22" Y="53"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit146>
       <Unit147>
         <Filename Value="UnitsWV2.inc"/>
@@ -1373,10 +1374,11 @@
       </Unit155>
       <Unit156>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="81" Y="27"/>
-        <UsageCount Value="9"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="23" Y="13"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit156>
       <Unit157>
         <Filename Value="uString.pas"/>
@@ -1430,7 +1432,7 @@
         <UsageCount Value="10"/>
       </Unit164>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <Caret Line="9" Column="59"/>
@@ -1479,6 +1481,14 @@
         <Filename Value="UnitsWK2MacOS.inc"/>
         <Caret Line="13" Column="85"/>
       </Position12>
+      <Position13>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="17"/>
+      </Position13>
+      <Position14>
+        <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
+        <Caret Line="53" Column="22" TopLine="34"/>
+      </Position14>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
