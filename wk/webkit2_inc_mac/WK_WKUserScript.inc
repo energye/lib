@@ -51,6 +51,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKUserScript_Release(AObj: TWKUserScript); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKUserScript_Create,
@@ -59,4 +67,5 @@ exports
   WKUserScript_Data,
   WKUserScript_Source,
   WKUserScript_InjectionTime,
-  WKUserScript_IsForMainFrameOnly;
+  WKUserScript_IsForMainFrameOnly,
+  WKUserScript_Release;

@@ -31,9 +31,18 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKFrameInfo_Release(AObj: TWKFrameInfo); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKFrameInfo_Create,
   WKFrameInfo_Data,
   WKFrameInfo_IsMainFrame,
-  WKFrameInfo_Request;
+  WKFrameInfo_Request,
+  WKFrameInfo_Release;

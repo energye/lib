@@ -30,6 +30,14 @@ begin
 end;
 
 //procedure
+procedure WKUserContentController_Release(AObj: TWKUserContentController); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKUserContentController_AddUserScript(AObj: TWKUserContentController; userScript: WKUserScript); extdecl;
 begin
   handleExceptionBegin
@@ -67,6 +75,7 @@ exports
   WKUserContentController_New,
   WKUserContentController_Data,
   WKUserContentController_UserScripts,
+  WKUserContentController_Release,
   WKUserContentController_AddUserScript,
   WKUserContentController_RemoveAllUserScripts,
   WKUserContentController_AddScriptMessageHandlerName,

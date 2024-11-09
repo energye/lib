@@ -62,6 +62,14 @@ begin
 end;
 
 //procedure
+procedure WKPreferences_Release(AObj: TWKPreferences); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKPreferences_SetMinimumFontSize(AObj: TWKPreferences; var newValue: double); extdecl;
 begin
   handleExceptionBegin
@@ -135,6 +143,7 @@ exports
   WKPreferences_JavaScriptCanOpenWindowsAutomatically,
   WKPreferences_JavaEnabled,
   WKPreferences_PlugInsEnabled,
+  WKPreferences_Release,
   WKPreferences_SetMinimumFontSize,
   WKPreferences_SetJavaScriptEnabled,
   WKPreferences_SetJavaScriptCanOpenWindowsAutomatically,

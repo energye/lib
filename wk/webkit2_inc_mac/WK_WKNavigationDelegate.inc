@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKNavigationDelegate_Release(AObj: TWKNavigationDelegate); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKNavigationDelegate_Create,
-  WKNavigationDelegate_Data;
+  WKNavigationDelegate_Data,
+  WKNavigationDelegate_Release;

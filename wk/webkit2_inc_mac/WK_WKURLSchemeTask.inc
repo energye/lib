@@ -24,6 +24,14 @@ begin
 end;
 
 //procedure
+procedure WKURLSchemeTask_Release(AObj: TWKURLSchemeTask); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKURLSchemeTask_ReceiveResponse(AObj: TWKURLSchemeTask; response: NSURLResponse); extdecl;
 begin
   handleExceptionBegin
@@ -60,6 +68,7 @@ exports
   WKURLSchemeTask_Create,
   WKURLSchemeTask_Data,
   WKURLSchemeTask_Request,
+  WKURLSchemeTask_Release,
   WKURLSchemeTask_ReceiveResponse,
   WKURLSchemeTask_ReceiveData,
   WKURLSchemeTask_Finish,

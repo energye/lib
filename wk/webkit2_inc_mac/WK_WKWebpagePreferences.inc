@@ -38,6 +38,14 @@ begin
 end;
 
 //procedure
+procedure WKWebpagePreferences_Release(AObj: TWKWebpagePreferences); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKWebpagePreferences_SetPreferredContentMode(AObj: TWKWebpagePreferences; aValue: WKContentMode); extdecl;
 begin
   handleExceptionBegin
@@ -60,5 +68,6 @@ exports
   WKWebpagePreferences_Data,
   WKWebpagePreferences_PreferredContentMode,
   WKWebpagePreferences_AllowsContentJavaScript,
+  WKWebpagePreferences_Release,
   WKWebpagePreferences_SetPreferredContentMode,
   WKWebpagePreferences_SetAllowsContentJavaScript;

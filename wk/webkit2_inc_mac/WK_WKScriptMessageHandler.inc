@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKScriptMessageHandler_Release(AObj: TWKScriptMessageHandler); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKScriptMessageHandler_Create,
-  WKScriptMessageHandler_Data;
+  WKScriptMessageHandler_Data,
+  WKScriptMessageHandler_Release;

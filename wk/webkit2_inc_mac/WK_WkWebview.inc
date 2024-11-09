@@ -184,6 +184,14 @@ begin
 end;
 
 //procedure
+procedure WkWebview_Release(AObj: TWkWebview); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WkWebview_LoadHTML(AObj: TWkWebview; aHtml,  aBaseURL: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -271,16 +279,11 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
 procedure WkWebview_RemoveFromSuperview(AObj: TWkWebview); extdecl;
 begin
   handleExceptionBegin
   AObj.RemoveFromSuperview();
-  handleExceptionEnd
-end;
-
-procedure WkWebview_RemoveAllSubviews(AObj: TWkWebview); extdecl;
-begin
-  handleExceptionBegin
   handleExceptionEnd
 end;
 
@@ -501,6 +504,7 @@ exports
   WkWebview_AsWKURLSchemeHandlerDelegate,
   WkWebview_AsWKUIDelegate,
   WkWebview_AsWKDownloadDelegate,
+  WkWebview_Release,
   WkWebview_LoadHTML,
   WkWebview_LoadURL,
   WkWebview_SetNavigationDelegate,
@@ -513,7 +517,6 @@ exports
   WkWebview_SetMagnification,
   WkWebview_SetMagnificationCenteredAtPoint,
   WkWebview_RemoveFromSuperview,
-  WkWebview_RemoveAllSubviews,
   WkWebview_SetOnProcessMessage,
   WkWebview_SetOnDecidePolicyForNavigationActionPreferences,
   WkWebview_SetOnDecidePolicyForNavigationResponse,

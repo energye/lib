@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure NSURLAuthenticationChallenge_Release(AObj: TNSURLAuthenticationChallenge); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   NSURLAuthenticationChallenge_Create,
-  NSURLAuthenticationChallenge_Data;
+  NSURLAuthenticationChallenge_Data,
+  NSURLAuthenticationChallenge_Release;

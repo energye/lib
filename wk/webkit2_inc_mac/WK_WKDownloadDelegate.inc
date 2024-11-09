@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKDownloadDelegate_Release(AObj: TWKDownloadDelegate); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKDownloadDelegate_Create,
-  WKDownloadDelegate_Data;
+  WKDownloadDelegate_Data,
+  WKDownloadDelegate_Release;

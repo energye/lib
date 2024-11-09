@@ -124,6 +124,14 @@ begin
 end;
 
 //procedure
+procedure NSProgress_Release(AObj: TNSProgress); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure NSProgress_SetTotalUnitCount(AObj: TNSProgress; var aValue: int64); extdecl;
 begin
   handleExceptionBegin
@@ -237,6 +245,7 @@ exports
   NSProgress_PausingHandler,
   NSProgress_IsIndeterminate,
   NSProgress_FractionCompleted,
+  NSProgress_Release,
   NSProgress_SetTotalUnitCount,
   NSProgress_SetCompletedUnitCount,
   NSProgress_SetLocalizedDescription,

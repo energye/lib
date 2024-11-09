@@ -63,6 +63,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKNavigationAction_Release(AObj: TWKNavigationAction); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKNavigationAction_Create,
@@ -72,4 +80,5 @@ exports
   WKNavigationAction_NavigationType,
   WKNavigationAction_Request,
   WKNavigationAction_ModifierFlags,
-  WKNavigationAction_ButtonNumber;
+  WKNavigationAction_ButtonNumber,
+  WKNavigationAction_Release;

@@ -23,8 +23,17 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKNavigation_Release(AObj: TWKNavigation); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKNavigation_Create,
   WKNavigation_Data,
-  WKNavigation_EffectiveContentMode;
+  WKNavigation_EffectiveContentMode,
+  WKNavigation_Release;

@@ -32,6 +32,14 @@ begin
 end;
 
 //procedure
+procedure WKDownload_Release(AObj: TWKDownload); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKDownload_SetDelegate(AObj: TWKDownload; downloadDelegate: TWKDownloadDelegate); extdecl;
 begin
   handleExceptionBegin
@@ -53,5 +61,6 @@ exports
   WKDownload_Data,
   WKDownload_OriginalRequest,
   WKDownload_Progress,
+  WKDownload_Release,
   WKDownload_SetDelegate,
   WKDownload_Cancel;

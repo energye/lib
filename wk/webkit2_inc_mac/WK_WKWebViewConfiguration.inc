@@ -54,6 +54,14 @@ begin
 end;
 
 //procedure
+procedure WKWebViewConfiguration_Release(AObj: TWKWebViewConfiguration); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKWebViewConfiguration_SetPreferences(AObj: TWKWebViewConfiguration; preferences: WKPreferences); extdecl;
 begin
   handleExceptionBegin
@@ -102,6 +110,7 @@ exports
   WKWebViewConfiguration_UserContentController,
   WKWebViewConfiguration_SuppressesIncrementalRendering,
   WKWebViewConfiguration_ApplicationNameForUserAgent,
+  WKWebViewConfiguration_Release,
   WKWebViewConfiguration_SetPreferences,
   WKWebViewConfiguration_SetUserContentController,
   WKWebViewConfiguration_SetSuppressesIncrementalRendering,

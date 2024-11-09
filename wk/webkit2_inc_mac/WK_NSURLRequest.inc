@@ -111,6 +111,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure NSURLRequest_Release(AObj: TNSURLRequest); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   NSURLRequest_Create,
@@ -127,4 +135,5 @@ exports
   NSURLRequest_AllowsCellularAccess,
   NSURLRequest_HTTPMethod,
   NSURLRequest_AllHTTPHeaderFields,
-  NSURLRequest_ValueForHTTPHeaderField;
+  NSURLRequest_ValueForHTTPHeaderField,
+  NSURLRequest_Release;

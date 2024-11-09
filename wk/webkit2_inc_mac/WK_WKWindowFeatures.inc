@@ -79,6 +79,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKWindowFeatures_Release(AObj: TWKWindowFeatures); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKWindowFeatures_Create,
@@ -90,4 +98,5 @@ exports
   WKWindowFeatures_X,
   WKWindowFeatures_Y,
   WKWindowFeatures_Width,
-  WKWindowFeatures_Height;
+  WKWindowFeatures_Height,
+  WKWindowFeatures_Release;

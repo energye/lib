@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKURLSchemeHandler_Release(AObj: TWKURLSchemeHandler); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKURLSchemeHandler_Create,
-  WKURLSchemeHandler_Data;
+  WKURLSchemeHandler_Data,
+  WKURLSchemeHandler_Release;

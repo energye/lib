@@ -45,6 +45,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKNavigationResponse_Release(AObj: TWKNavigationResponse); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKNavigationResponse_Create,
@@ -52,4 +60,5 @@ exports
   WKNavigationResponse_Data,
   WKNavigationResponse_IsForMainFrame,
   WKNavigationResponse_Response,
-  WKNavigationResponse_CanShowMIMEType;
+  WKNavigationResponse_CanShowMIMEType,
+  WKNavigationResponse_Release;

@@ -137,6 +137,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure NSURL_Release(AObj: TNSURL); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   NSURL_Create,
@@ -156,4 +164,5 @@ exports
   NSURL_Path,
   NSURL_Fragment,
   NSURL_ParameterString,
-  NSURL_Query;
+  NSURL_Query,
+  NSURL_Release;

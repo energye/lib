@@ -23,8 +23,17 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure NSURLCredential_Release(AObj: TNSURLCredential); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   NSURLCredential_Create,
   NSURLCredential_Data,
-  NSURLCredential_Persistence;
+  NSURLCredential_Persistence,
+  NSURLCredential_Release;

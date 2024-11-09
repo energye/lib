@@ -15,7 +15,16 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure WKUIDelegate_Release(AObj: TWKUIDelegate); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   WKUIDelegate_Create,
-  WKUIDelegate_Data;
+  WKUIDelegate_Data,
+  WKUIDelegate_Release;

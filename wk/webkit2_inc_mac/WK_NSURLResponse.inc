@@ -69,6 +69,14 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure NSURLResponse_Release(AObj: TNSURLResponse); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Release();
+  handleExceptionEnd
+end;
+
 
 exports
   NSURLResponse_Create,
@@ -79,4 +87,5 @@ exports
   NSURLResponse_MIMEType,
   NSURLResponse_ExpectedContentLength,
   NSURLResponse_TextEncodingName,
-  NSURLResponse_SuggestedFilename;
+  NSURLResponse_SuggestedFilename,
+  NSURLResponse_Release;
