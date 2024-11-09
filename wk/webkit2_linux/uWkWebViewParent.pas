@@ -20,12 +20,12 @@ type
     FWebview: TWkWebview;
     FWidget: PGtkWidget;
   protected
-    procedure Resize; override;
     procedure CreateWnd; override;
+  public
+    procedure Resize; override;
     procedure SetWebview(const AValue: TWkWebview);
   public
     property ScrolledWindow: TScrolledWindow read FScrolledWindow write FScrolledWindow;
-    property WebView: TWkWebview read FWebview write SetWebview;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;

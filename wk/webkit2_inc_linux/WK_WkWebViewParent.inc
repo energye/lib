@@ -19,15 +19,19 @@ begin
   handleExceptionEnd
 end;
 
-//property
-function WkWebviewParent_WebView(AIsSet: LongBool; AObj: TWkWebviewParent; AValue: TWkWebview): TWkWebview; extdecl;
+//procedure
+procedure WkWebviewParent_Resize(AObj: TWkWebviewParent); extdecl;
 begin
   handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.WebView := AValue;
-  end else
-    Result := AObj.WebView;
+  AObj.Resize();
+  handleExceptionEnd
+end;
+
+//procedure
+procedure WkWebviewParent_SetWebview(AObj: TWkWebviewParent; const aValue: TWkWebview); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SetWebview(aValue);
   handleExceptionEnd
 end;
 
@@ -43,5 +47,6 @@ end;
 exports
   WkWebviewParent_Create,
   WkWebviewParent_ScrolledWindow,
-  WkWebviewParent_WebView,
+  WkWebviewParent_Resize,
+  WkWebviewParent_SetWebview,
   WkWebviewParent_FreeChild;
