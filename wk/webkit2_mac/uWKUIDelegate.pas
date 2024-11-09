@@ -31,6 +31,7 @@ type
     constructor Create(event: IWKUIDelegateEvent);
     destructor Destroy; override;
     function Data(): WKUIDelegateProtocol;
+    // Release the current object and Data pointer
     procedure Release();
   public
   end;

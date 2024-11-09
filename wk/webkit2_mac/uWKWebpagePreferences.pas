@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKWebpagePreferences);
     destructor Destroy; override;
     function Data(): WKWebpagePreferences;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKWebpagePreferences;

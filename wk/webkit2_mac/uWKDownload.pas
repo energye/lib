@@ -23,6 +23,7 @@ type
     constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownload;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function OriginalRequest: NSURLRequest;

@@ -60,6 +60,7 @@ type
     constructor Create(event: IWKNavigationDelegateEvent);
     destructor Destroy; override;
     function Data(): WKNavigationDelegateProtocol;
+    // Release the current object and Data pointer
     procedure Release();
   end;
 

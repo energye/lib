@@ -20,6 +20,7 @@ type
     constructor Create(AData: NSURLResponse);
     destructor Destroy; override;
     function Data(): NSURLResponse;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TNSURLResponse;

@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKNavigation);
     destructor Destroy; override;
     function Data(): WKNavigation;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function EffectiveContentMode: WKContentMode;

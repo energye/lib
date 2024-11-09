@@ -19,6 +19,7 @@ type
     constructor Create(AData: NSProgress);
     destructor Destroy; override;
     function Data(): NSProgress;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function CurrentProgress: TNSProgress;

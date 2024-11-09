@@ -26,6 +26,7 @@ type
     constructor Create(event: IWKURLSchemeHandlerDelegateEvent);
     destructor Destroy; override;
     function Data(): WKURLSchemeHandlerProtocol;
+    // Release the current object and Data pointer
     procedure Release();
   end;
 

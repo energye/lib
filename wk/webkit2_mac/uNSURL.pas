@@ -18,6 +18,7 @@ type
     constructor Create(AData: NSURL);
     destructor Destroy; override;
     function Data(): NSURL;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TNSURL;
