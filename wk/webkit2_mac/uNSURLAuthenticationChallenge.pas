@@ -21,6 +21,7 @@ type
     constructor Create(AData: NSURLAuthenticationChallenge);
     destructor Destroy; override;
     function Data(): NSURLAuthenticationChallenge;
+    procedure Release();
   end;
 
 
@@ -36,10 +37,18 @@ destructor TNSURLAuthenticationChallenge.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSURLAuthenticationChallenge.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSURLAuthenticationChallenge.Data(): NSURLAuthenticationChallenge;

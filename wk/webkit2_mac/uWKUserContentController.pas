@@ -12,22 +12,6 @@ uses
 
 type
 
-  TRefMessageHandle = record
-    Name: string;
-    Handler: TWKScriptMessageHandler;
-  end;
-
-  // 维护消息处理引用类，因为它是一个集合，所以用数组来引用维护
-  TRefMessageHandles = class
-  private
-    FHandles: array of TRefMessageHandle;
-  public
-    constructor Create; overload;
-    destructor Destroy; override;
-    procedure Add(Name: string; Handler: TWKScriptMessageHandler);
-    procedure Remove(Name: string);
-  end;
-
   TWKUserContentController = class
   private
     FData: WKUserContentController;
@@ -35,6 +19,7 @@ type
     constructor Create(AData: WKUserContentController);
     destructor Destroy; override;
     function Data(): WKUserContentController;
+    procedure Release();
   public
     class function New(): TWKUserContentController;
     function UserScripts: TStrings;
@@ -57,10 +42,18 @@ destructor TWKUserContentController.Destroy;
 begin
   if FData <> nil then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKUserContentController.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKUserContentController.New(): TWKUserContentController;
@@ -133,51 +126,6 @@ begin
   begin
     FData.removeScriptMessageHandlerForName(NSStringUtf8(name));
   end;
-end;
-
-constructor TRefMessageHandles.Create;
-begin
-  inherited Create;
-  SetLength(FHandles, 0);
-end;
-
-destructor TRefMessageHandles.Destroy;
-begin
-  SetLength(FHandles, 0);
-  FHandles := nil;
-end;
-
-procedure TRefMessageHandles.Add(Name: string; Handler: TWKScriptMessageHandler);
-var
-  len: Integer;
-  TempMessageHandle: TRefMessageHandle;
-begin
-  len := Length(FHandles);
-  SetLength(FHandles, len + 1);
-  TempMessageHandle.Name := Name;
-  TempMessageHandle.Handler := Handler;
-  FHandles[len] := TempMessageHandle;
-end;
-
-procedure TRefMessageHandles.Remove(Name: string);
-var
-  idx, deleteIndex: Integer;
-  TempMessageHandle: TRefMessageHandle;
-begin
-  for idx := 0 to Length(FHandles) -1 do
-  begin
-    TempMessageHandle := FHandles[idx];
-    if TempMessageHandle.Name = Name then
-    begin
-      deleteIndex := idx;
-      break;
-    end;
-  end;
-  for idx := deleteIndex to Length(FHandles) - 2 do
-  begin
-    FHandles[idx] := FHandles[idx + 1]
-  end;
-  SetLength(FHandles, Length(FHandles) - 1);
 end;
 
 end.

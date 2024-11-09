@@ -20,10 +20,6 @@ type
   protected
     procedure FieldEmpty();
   private
-    FConfiguration: WKWebViewConfiguration;
-    FNavigationDelegate: WKNavigationDelegate;
-    FUIDelegate: WKUIDelegate;
-  private
     // WKScriptMessageHandlerProtocol
     FOnProcessMessage: TWkProcessMessageEvent;
     // WKNavigationDelegateProtocol
@@ -60,6 +56,7 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function Data(): WkWebview;
+    procedure Release();
   public
     procedure LoadHTML(AHtml, ABaseURL: string);
     procedure LoadURL(AURL: string);
@@ -91,6 +88,7 @@ type
     procedure SetMagnification(newValue: double);
     function Magnification: double;
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
+    procedure RemoveFromSuperview();
     function AsReceiveScriptMessageDelegate(): IReceiveScriptMessageDelegateEvent;
     function AsWKNavigationDelegate(): IWKNavigationDelegateEvent;
     function AsWKURLSchemeHandlerDelegate(): IWKURLSchemeHandlerDelegateEvent;
@@ -175,16 +173,25 @@ end;
 
 destructor TWkWebview.Destroy;
 begin
+  if Assigned(FData) then
+  begin
+    FData := nil;
+  end;
   FieldEmpty();
   inherited Destroy;
 end;
 
+procedure TWkWebview.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    FData := nil;
+  end;
+end;
+
 procedure TWkWebview.FieldEmpty();
 begin
-  FData := nil;
-  FConfiguration := nil;
-  FNavigationDelegate := nil;
-  FUIDelegate := nil;
   FOnProcessMessage := nil;
   FOnStartProvisionalNavigation := nil;
   FOnReceiveServerRedirectForProvisionalNavigation := nil;
@@ -487,11 +494,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-    if FConfiguration = nil then
-    begin
-      FConfiguration := FData.configuration;
-    end;
-    Result := FConfiguration;
+    Result := FData.configuration;
   end;
 end;
 
@@ -508,8 +511,7 @@ procedure TWkWebview.SetNavigationDelegate(navigationDelegate: WKNavigationDeleg
 begin
   if Assigned(FData) then
   begin
-    FNavigationDelegate := navigationDelegate;
-    FData.setNavigationDelegate(FNavigationDelegate);
+    FData.setNavigationDelegate(navigationDelegate);
   end;
 end;
 
@@ -517,8 +519,7 @@ procedure TWkWebview.SetUIDelegate(uiDelegate: WKUIDelegate);
 begin
   if Assigned(FData) then
   begin
-    FUIDelegate := uiDelegate;
-    FData.setUIDelegate(FUIDelegate);
+    FData.setUIDelegate(uiDelegate);
   end;
 end;
 
@@ -528,14 +529,12 @@ var
 begin
   if (FData = nil) and Assigned(AConfiguration) then
   begin
-    FConfiguration := AConfiguration;
-
     TempFrame.origin.x := CGFloat(AFrame.Left);
     TempFrame.origin.y := CGFloat(AFrame.Top);
     TempFrame.size.Width := CGFloat(AFrame.Width);
     TempFrame.size.Height := CGFloat(AFrame.Height);
 
-    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, FConfiguration);
+    FData := WKWebView.alloc.initWithFrame_configuration(TempFrame, AConfiguration);
   end;
 end;
 
@@ -716,6 +715,36 @@ begin
     FData.setMagnification_centeredAtPoint(CGFloat(magnification_), TempPoint);
   end;
 end;
+
+procedure TWkWebview.RemoveFromSuperview();
+begin
+  if Assigned(FData) then
+  begin
+    FData.removeFromSuperview;
+  end;
+end;
+
+//procedure TWkWebview.RemoveAllSubviews();
+//var
+//  TempViews: NSArray;
+//  Idx, TempCount: Integer;
+//  TempView: WkWebview;
+//begin
+//  if Assigned(FData) then
+//  begin
+//    TempViews := FData.subviews;
+//    if Assigned(TempViews) then
+//    begin
+//      TempCount := Integer(TempViews.count);
+//      for Idx := 0 to TempCount - 1 do
+//      begin
+//        TempView := WkWebview(TempViews.objectAtIndex(NSUInteger(Idx)));
+//        TempView.removeFromSuperview;
+//      end;
+//      TempViews.release;
+//    end;
+//  end;
+//end;
 
 function TWkWebview.AsReceiveScriptMessageDelegate(): IReceiveScriptMessageDelegateEvent;
 begin

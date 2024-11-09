@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKURLSchemeTask);
     destructor Destroy; override;
     function Data(): WKURLSchemeTask;
+    procedure Release();
   public
     function Request(): NSURLRequest;
     procedure ReceiveResponse (response: NSURLResponse);
@@ -41,10 +42,18 @@ destructor TWKURLSchemeTask.Destroy;
 begin
   if FData <> nil then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKURLSchemeTask.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKURLSchemeTask.Data(): WKURLSchemeTask;

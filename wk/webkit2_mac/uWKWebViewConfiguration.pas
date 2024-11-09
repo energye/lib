@@ -14,16 +14,11 @@ type
   TWKWebViewConfiguration = class
   private
     FData: WKWebViewConfiguration;
-  protected
-    procedure FieldEmpty();
-  private
-    FPreferences: WKPreferences;
-    FUserContentController: WKUserContentController;
-    FURLSchemeHandler: WKURLSchemeHandler;
   public
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
     function Data(): WKWebViewConfiguration;
+    procedure Release();
   public
     class function New(): TWKWebViewConfiguration;
     procedure SetPreferences(preferences: WKPreferences);
@@ -45,18 +40,24 @@ constructor TWKWebViewConfiguration.Create(AData: WKWebViewConfiguration);
 begin
   inherited Create;
   FData := AData;
-  FieldEmpty();
 end;
 
 destructor TWKWebViewConfiguration.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
-  FieldEmpty();
   inherited Destroy;
+end;
+
+procedure TWKWebViewConfiguration.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKWebViewConfiguration.New(): TWKWebViewConfiguration;
@@ -64,24 +65,15 @@ begin
   Result := Create(WKWebViewConfiguration.alloc.init);
 end;
 
-procedure TWKWebViewConfiguration.FieldEmpty();
-begin
-  FPreferences := nil;
-  FUserContentController := nil;
-  FURLSchemeHandler := nil;
-end;
-
 function TWKWebViewConfiguration.Data(): WKWebViewConfiguration;
 begin
   Result := FData;
 end;
 
-
 procedure TWKWebViewConfiguration.SetPreferences(preferences: WKPreferences);
 begin
   if Assigned(FData) then
   begin
-    FPreferences := preferences;
     FData.setPreferences(preferences);
   end;
 end;
@@ -91,11 +83,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-    if FPreferences = nil then
-    begin
-      FPreferences := FData.preferences;
-    end;
-    Result := FPreferences;
+    Result := FData.preferences;
   end;
 end;
 
@@ -103,7 +91,6 @@ procedure TWKWebViewConfiguration.SetUserContentController(userContentController
 begin
   if Assigned(FData) then
   begin
-    FUserContentController := userContentController;
     FData.setUserContentController(userContentController);
   end;
 end;
@@ -113,11 +100,7 @@ begin
   Result := nil;
   if Assigned(FData) then
   begin
-    if FUserContentController = nil then
-    begin
-      FUserContentController := FData.userContentController;
-    end;
-    Result := FUserContentController;
+    Result := FData.userContentController;
   end;
 end;
 
@@ -159,7 +142,6 @@ procedure TWKWebViewConfiguration.SetURLSchemeHandlerForURLScheme(urlSchemeHandl
 begin
   if Assigned(FData) then
   begin
-    FUrlSchemeHandler := urlSchemeHandler;
     FData.setURLSchemeHandlerForURLScheme (urlSchemeHandler, NSStringUtf8(urlScheme));
   end;
 end;

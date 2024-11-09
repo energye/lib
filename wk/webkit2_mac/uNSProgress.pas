@@ -19,6 +19,7 @@ type
     constructor Create(AData: NSProgress);
     destructor Destroy; override;
     function Data(): NSProgress;
+    procedure Release();
   public
     class function CurrentProgress: TNSProgress;
     class function ProgressWithTotalUnitCount (aCount: int64): TNSProgress;
@@ -61,10 +62,18 @@ destructor TNSProgress.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSProgress.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSProgress.Data(): NSProgress;

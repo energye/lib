@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKFrameInfo);
     destructor Destroy; override;
     function Data(): WKFrameInfo;
+    procedure Release();
   public
     function IsMainFrame: Boolean;
     function Request: NSURLRequest;
@@ -38,6 +39,15 @@ destructor TWKFrameInfo.Destroy;
 begin
   FData := nil;
   inherited Destroy;
+end;
+
+procedure TWKFrameInfo.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKFrameInfo.Data(): WKFrameInfo;

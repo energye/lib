@@ -26,6 +26,7 @@ type
     constructor Create(event: IWKURLSchemeHandlerDelegateEvent);
     destructor Destroy; override;
     function Data(): WKURLSchemeHandlerProtocol;
+    procedure Release();
   end;
 
 
@@ -63,6 +64,15 @@ begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKURLSchemeHandler.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKURLSchemeHandler.Data(): WKURLSchemeHandlerProtocol;

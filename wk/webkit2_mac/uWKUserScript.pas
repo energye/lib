@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKUserScript);
     destructor Destroy; override;
     function Data(): WKUserScript;
+    procedure Release();
   public
     class function New(): TWKUserScript;
     function Source: string;
@@ -42,10 +43,18 @@ destructor TWKUserScript.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKUserScript.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKUserScript.New(): TWKUserScript;

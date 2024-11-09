@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKNavigationResponse);
     destructor Destroy; override;
     function Data(): WKNavigationResponse;
+    procedure Release();
   public
     class function New(): TWKNavigationResponse;
     function IsForMainFrame: LongBool;
@@ -40,10 +41,18 @@ destructor TWKNavigationResponse.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKNavigationResponse.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKNavigationResponse.New(): TWKNavigationResponse;

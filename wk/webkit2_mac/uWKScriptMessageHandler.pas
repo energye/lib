@@ -25,6 +25,7 @@ type
     constructor Create(event: IReceiveScriptMessageDelegateEvent);
     destructor Destroy; override;
     function Data(): WKScriptMessageHandlerProtocol;
+    procedure Release();
   end;
 
 
@@ -49,11 +50,19 @@ destructor TWKScriptMessageHandler.Destroy;
 begin
   if FData <> nil then
   begin
-    //FData.release;
     FData.FData := nil;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKScriptMessageHandler.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKScriptMessageHandler.Data(): WKScriptMessageHandlerProtocol;

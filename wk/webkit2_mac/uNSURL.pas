@@ -18,6 +18,7 @@ type
     constructor Create(AData: NSURL);
     destructor Destroy; override;
     function Data(): NSURL;
+    procedure Release();
   public
     class function New(): TNSURL;
     class function URLWithString (URLString: string): TNSURL;
@@ -48,11 +49,20 @@ end;
 
 destructor TNSURL.Destroy;
 begin
-  if FData <> nil then
+  if Assigned(FData) then
   begin
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSURL.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSURL.Data(): NSURL;

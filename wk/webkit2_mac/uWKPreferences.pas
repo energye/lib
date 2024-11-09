@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKPreferences);
     destructor Destroy; override;
     function Data(): WKPreferences;
+    procedure Release();
   public
     class function New(): TWKPreferences;
     procedure SetMinimumFontSize(newValue: double);
@@ -51,10 +52,18 @@ destructor TWKPreferences.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKPreferences.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKPreferences.New(): TWKPreferences;

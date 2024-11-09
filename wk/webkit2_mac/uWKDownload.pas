@@ -23,6 +23,7 @@ type
     constructor Create(AData: WKDownload; AWebViewDelegate: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownload;
+    procedure Release();
   public
     function OriginalRequest: NSURLRequest;
     procedure SetDelegate(downloadDelegate: TWKDownloadDelegate);
@@ -44,11 +45,19 @@ destructor TWKDownload.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   FWebViewDelegate := nil;
   inherited Destroy;
+end;
+
+procedure TWKDownload.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKDownload.Data(): WKDownload;

@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKNavigation);
     destructor Destroy; override;
     function Data(): WKNavigation;
+    procedure Release();
   public
     function EffectiveContentMode: WKContentMode;
   end;
@@ -36,10 +37,18 @@ destructor TWKNavigation.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKNavigation.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKNavigation.Data(): WKNavigation;

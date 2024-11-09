@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKWindowFeatures);
     destructor Destroy; override;
     function Data(): WKWindowFeatures;
+    procedure Release();
   public
     function MenuBarVisibility: Boolean;
     function StatusBarVisibility: Boolean;
@@ -45,10 +46,18 @@ destructor TWKWindowFeatures.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKWindowFeatures.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKWindowFeatures.Data(): WKWindowFeatures;

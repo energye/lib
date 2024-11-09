@@ -20,6 +20,7 @@ type
     constructor Create(AData: NSURLResponse);
     destructor Destroy; override;
     function Data(): NSURLResponse;
+    procedure Release();
   public
     class function New(): TNSURLResponse;
     function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: NSURL; MIMEType: string; length: Integer; name: String): TNSURLResponse;
@@ -34,6 +35,7 @@ type
   public
     constructor Create(AData: NSHTTPURLResponse);
     destructor Destroy; override;
+    procedure Release();
   public
     class function New(): TNSHTTPURLResponse;
     function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: NSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): TNSHTTPURLResponse;
@@ -54,10 +56,18 @@ destructor TNSURLResponse.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSURLResponse.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSURLResponse.Data(): NSURLResponse;
@@ -138,6 +148,14 @@ end;
 destructor TNSHTTPURLResponse.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TNSHTTPURLResponse.Release();
+begin
+  if Assigned(FData) then
+  begin
+    inherited Release;
+  end;
 end;
 
 class function TNSHTTPURLResponse.New(): TNSHTTPURLResponse;

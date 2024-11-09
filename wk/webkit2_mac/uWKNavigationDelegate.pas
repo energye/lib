@@ -60,6 +60,7 @@ type
     constructor Create(event: IWKNavigationDelegateEvent);
     destructor Destroy; override;
     function Data(): WKNavigationDelegateProtocol;
+    procedure Release();
   end;
 
 
@@ -209,11 +210,19 @@ destructor TWKNavigationDelegate.Destroy;
 begin
   if FData <> nil then
   begin
-    //FData.release;
     FData.FData := nil;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKNavigationDelegate.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKNavigationDelegate.Data(): WKNavigationDelegateProtocol;

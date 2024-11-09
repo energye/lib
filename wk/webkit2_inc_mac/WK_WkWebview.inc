@@ -271,6 +271,19 @@ begin
   handleExceptionEnd
 end;
 
+procedure WkWebview_RemoveFromSuperview(AObj: TWkWebview); extdecl;
+begin
+  handleExceptionBegin
+  AObj.RemoveFromSuperview();
+  handleExceptionEnd
+end;
+
+procedure WkWebview_RemoveAllSubviews(AObj: TWkWebview); extdecl;
+begin
+  handleExceptionBegin
+  handleExceptionEnd
+end;
+
 //property event
 procedure WkWebview_SetOnProcessMessage(AObj: TWkWebview; AEventData: Pointer); extdecl;
 begin
@@ -499,6 +512,8 @@ exports
   WkWebview_SetAllowsMagnification,
   WkWebview_SetMagnification,
   WkWebview_SetMagnificationCenteredAtPoint,
+  WkWebview_RemoveFromSuperview,
+  WkWebview_RemoveAllSubviews,
   WkWebview_SetOnProcessMessage,
   WkWebview_SetOnDecidePolicyForNavigationActionPreferences,
   WkWebview_SetOnDecidePolicyForNavigationResponse,

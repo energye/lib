@@ -30,6 +30,7 @@ type
     constructor Create(event: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownloadDelegateProtocol;
+    procedure Release();
   end;
 
 
@@ -95,13 +96,22 @@ end;
 
 destructor TWKDownloadDelegate.Destroy;
 begin
-  if FData <> nil then
+  if Assigned(FData) then
   begin
     //FData.release;
     FData.FData := nil;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKDownloadDelegate.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKDownloadDelegate.Data(): WKDownloadDelegateProtocol;

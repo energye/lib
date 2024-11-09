@@ -13,12 +13,13 @@ type
 
 
   TNSURLRequest = class
-  private
+  protected
     FData: NSURLRequest;
   public
     constructor Create(AData: NSURLRequest);
     destructor Destroy; override;
     function Data(): NSURLRequest;
+    procedure Release();
   public
     class function New(): TNSURLRequest;
     class function RequestWithURL(URL: NSURL): TNSURLRequest;
@@ -35,14 +36,11 @@ type
     function ValueForHTTPHeaderField (aField: string): string;
   end;
 
-  TNSMutableURLRequest = class
-  private
-    FMutableData: NSMutableURLRequest;
-  protected
-    function MutableData(): NSMutableURLRequest;
+  TNSMutableURLRequest = class(TNSURLRequest)
   public
     constructor Create(AData: NSMutableURLRequest);
     destructor Destroy; override;
+    procedure Release();
   public
     class function New(): TNSMutableURLRequest;
     procedure SetHTTPMethod(aMethod: string);
@@ -64,10 +62,18 @@ destructor TNSURLRequest.Destroy;
 begin
   if Assigned(FData) then
   begin
-    // FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSURLRequest.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSURLRequest.Data(): NSURLRequest;
@@ -206,14 +212,20 @@ end;
 
 constructor TNSMutableURLRequest.Create(AData: NSMutableURLRequest);
 begin
-  inherited Create();
-  FMutableData := AData;
+  FData := AData;
 end;
 
 destructor TNSMutableURLRequest.Destroy;
 begin
-  FMutableData := nil;
   inherited Destroy;
+end;
+
+procedure TNSMutableURLRequest.Release();
+begin
+  if Assigned(FData) then
+  begin
+    inherited Release;
+  end;
 end;
 
 class function TNSMutableURLRequest.New(): TNSMutableURLRequest;
@@ -221,16 +233,11 @@ begin
   Result := Create(NSMutableURLRequest.alloc.init);
 end;
 
-function TNSMutableURLRequest.MutableData(): NSMutableURLRequest;
-begin
-  Result := FMutableData;
-end;
-
 procedure TNSMutableURLRequest.SetHTTPMethod(aMethod: string);
 begin
-  if Assigned(FMutableData) then
+  if Assigned(FData) then
   begin
-    FMutableData.setHTTPMethod(StrToNSString(aMethod));
+    NSMutableURLRequest(FData).setHTTPMethod(StrToNSString(aMethod));
   end;
 end;
 
@@ -239,7 +246,7 @@ var
   TempHeaderJSONData: NSData;
   TempHeaderFields: NSDictionary;
 begin
-  if Assigned(FMutableData) then
+  if Assigned(FData) then
   begin
     TempHeaderJSONData := NSData.dataWithBytes_length(PChar(headerFieldsJSONString), NSUInteger(Length(headerFieldsJSONString)));
     if TempHeaderJSONData = nil then
@@ -247,23 +254,23 @@ begin
     TempHeaderFields := NSJSONSerialization.JSONObjectWithData_options_error(TempHeaderJSONData, NSJSONReadingMutableContainers, nil);
     if TempHeaderFields = nil then
       exit;
-    FMutableData.setAllHTTPHeaderFields(TempHeaderFields);
+    NSMutableURLRequest(FData).setAllHTTPHeaderFields(TempHeaderFields);
   end;
 end;
 
 procedure TNSMutableURLRequest.SetValueForHTTPHeaderField (aValue: string; aField: string);
 begin
-  if Assigned(FMutableData) then
+  if Assigned(FData) then
   begin
-    FMutableData.setValue_forHTTPHeaderField(StrToNSString(aValue), StrToNSString(aField));
+    NSMutableURLRequest(FData).setValue_forHTTPHeaderField(StrToNSString(aValue), StrToNSString(aField));
   end;
 end;
 
 procedure TNSMutableURLRequest.AddValueForHTTPHeaderField (aValue: string; aField: string);
 begin
-  if Assigned(FMutableData) then
+  if Assigned(FData) then
   begin
-    FMutableData.addValue_forHTTPHeaderField(StrToNSString(aValue), StrToNSString(aField));
+    NSMutableURLRequest(FData).addValue_forHTTPHeaderField(StrToNSString(aValue), StrToNSString(aField));
   end;
 end;
 

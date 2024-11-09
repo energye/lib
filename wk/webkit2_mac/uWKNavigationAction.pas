@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKNavigationAction);
     destructor Destroy; override;
     function Data(): WKNavigationAction;
+    procedure Release();
   public
     function SourceFrame: WKFrameInfo;
     function TargetFrame: WKFrameInfo;
@@ -43,10 +44,18 @@ destructor TWKNavigationAction.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKNavigationAction.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKNavigationAction.Data(): WKNavigationAction;

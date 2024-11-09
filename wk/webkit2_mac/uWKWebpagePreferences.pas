@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKWebpagePreferences);
     destructor Destroy; override;
     function Data(): WKWebpagePreferences;
+    procedure Release();
   public
     class function New(): TWKWebpagePreferences;
     procedure SetPreferredContentMode(aValue: WKContentMode);
@@ -39,10 +40,18 @@ destructor TWKWebpagePreferences.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKWebpagePreferences.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 class function TWKWebpagePreferences.New(): TWKWebpagePreferences;

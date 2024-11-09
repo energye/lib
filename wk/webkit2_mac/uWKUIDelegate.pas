@@ -31,6 +31,7 @@ type
     constructor Create(event: IWKUIDelegateEvent);
     destructor Destroy; override;
     function Data(): WKUIDelegateProtocol;
+    procedure Release();
   public
   end;
 
@@ -102,11 +103,19 @@ destructor TWKUIDelegate.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData.FData := nil;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TWKUIDelegate.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TWKUIDelegate.Data(): WKUIDelegateProtocol;

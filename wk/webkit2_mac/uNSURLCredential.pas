@@ -8,8 +8,7 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  CocoaAll, CocoaUtils,
-  uWebKit, uWkInterface;
+  CocoaAll;
 
 type
 
@@ -21,6 +20,7 @@ type
     constructor Create(AData: NSURLCredential);
     destructor Destroy; override;
     function Data(): NSURLCredential;
+    procedure Release();
   public
     function Persistence: NSURLCredentialPersistence;
   end;
@@ -38,10 +38,18 @@ destructor TNSURLCredential.Destroy;
 begin
   if Assigned(FData) then
   begin
-    //FData.release;
     FData := nil;
   end;
   inherited Destroy;
+end;
+
+procedure TNSURLCredential.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
 end;
 
 function TNSURLCredential.Data(): NSURLCredential;
