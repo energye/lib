@@ -352,7 +352,7 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="165">
+    <Units Count="153">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -434,139 +434,139 @@
         <Filename Value="uControlPatchs.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="154"/>
       </Unit11>
       <Unit12>
         <Filename Value="uFormDesignerFile.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="20"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="154"/>
       </Unit12>
       <Unit13>
         <Filename Value="UseAll.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="11" Y="32"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="154"/>
       </Unit13>
       <Unit14>
         <Filename Value="uComponents.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="154"/>
       </Unit14>
       <Unit15>
         <Filename Value="ImageButton.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="17"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="149"/>
       </Unit15>
       <Unit16>
         <Filename Value="uEventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="304"/>
         <CursorPos Y="309"/>
-        <UsageCount Value="142"/>
+        <UsageCount Value="140"/>
       </Unit16>
       <Unit17>
         <Filename Value="uRecordStruct.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="19" Y="7"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="120"/>
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="359"/>
         <CursorPos X="5" Y="380"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="90"/>
       </Unit18>
       <Unit19>
         <Filename Value="ImportLCL.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="30"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="96"/>
       </Unit19>
       <Unit20>
         <Filename Value="ExtDecl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="12" Y="112"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="92"/>
       </Unit20>
       <Unit21>
         <Filename Value="ImportCEF.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="172"/>
         <CursorPos X="35" Y="172"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="90"/>
       </Unit21>
       <Unit22>
         <Filename Value="cef\CEF_Events_Declaration.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="261"/>
         <CursorPos X="252" Y="322"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit22>
       <Unit23>
         <Filename Value="cef\CEF_Events_Implement.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1501"/>
         <CursorPos X="5" Y="1562"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit23>
       <Unit24>
         <Filename Value="ImportWV.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="55" Y="31"/>
-        <UsageCount Value="108"/>
+        <UsageCount Value="106"/>
       </Unit24>
       <Unit25>
         <Filename Value="WVComponentUnits.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="67"/>
       </Unit25>
       <Unit26>
         <Filename Value="uCEF_CustomEvents.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="21" Y="59"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit26>
       <Unit27>
         <Filename Value="uCEF_CustomCallbacks.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="577"/>
         <CursorPos X="9" Y="591"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="63"/>
       </Unit27>
       <Unit28>
         <Filename Value="uCEF_CustomClasss.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos X="19" Y="34"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="14"/>
       </Unit28>
       <Unit29>
         <Filename Value="Test.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="157"/>
         <CursorPos X="6" Y="188"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="11"/>
       </Unit29>
       <Unit30>
         <Filename Value="uLCL_EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2012"/>
         <CursorPos X="50" Y="2069"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="65"/>
       </Unit30>
       <Unit31>
         <Filename Value="uCEF_EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="386"/>
         <CursorPos X="3" Y="74"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="75"/>
       </Unit31>
       <Unit32>
         <Filename Value="E:\lazarus3-2\components\virtualtreeview\laz.virtualtrees.pas"/>
@@ -574,863 +574,783 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="947"/>
         <CursorPos Y="5315"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="12"/>
       </Unit32>
       <Unit33>
-        <Filename Value="uLCL_RecordStruct.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="132"/>
-        <CursorPos X="5" Y="167"/>
-        <UsageCount Value="2"/>
-      </Unit33>
-      <Unit34>
         <Filename Value="cef\CEF_V8Value.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="27" Y="11"/>
-        <UsageCount Value="19"/>
-      </Unit34>
-      <Unit35>
+        <UsageCount Value="17"/>
+      </Unit33>
+      <Unit34>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFInterfaces.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2947"/>
         <CursorPos X="3" Y="2967"/>
-        <UsageCount Value="17"/>
-      </Unit35>
-      <Unit36>
+        <UsageCount Value="15"/>
+      </Unit34>
+      <Unit35>
         <Filename Value="cef\CEF_ProcessMessage.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="21" Y="27"/>
-        <UsageCount Value="3"/>
-      </Unit36>
-      <Unit37>
+        <UsageCount Value="1"/>
+      </Unit35>
+      <Unit36>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFv8Value.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="212"/>
         <CursorPos X="10" Y="244"/>
-        <UsageCount Value="3"/>
-      </Unit37>
-      <Unit38>
+        <UsageCount Value="1"/>
+      </Unit36>
+      <Unit37>
         <Filename Value="cef\predef\CEF_V8ValuePredef.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="2" Y="33"/>
-        <UsageCount Value="3"/>
-      </Unit38>
-      <Unit39>
+        <UsageCount Value="1"/>
+      </Unit37>
+      <Unit38>
         <Filename Value="lcl\LCL_Control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="360"/>
         <CursorPos X="63" Y="379"/>
-        <UsageCount Value="7"/>
-      </Unit39>
-      <Unit40>
+        <UsageCount Value="5"/>
+      </Unit38>
+      <Unit39>
         <Filename Value="cef\CEF_WindowParent.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit40>
-      <Unit41>
+        <UsageCount Value="5"/>
+      </Unit39>
+      <Unit40>
         <Filename Value="cef\CEF_SchemeHandlerFactory.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="7"/>
-        <UsageCount Value="11"/>
-      </Unit41>
-      <Unit42>
+        <UsageCount Value="9"/>
+      </Unit40>
+      <Unit41>
         <Filename Value="cef\CEF_ResourceHandler.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="53" Y="52"/>
-        <UsageCount Value="11"/>
-      </Unit42>
-      <Unit43>
+        <UsageCount Value="9"/>
+      </Unit41>
+      <Unit42>
         <Filename Value="wv\WV_WVBrowserBase.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2345"/>
         <CursorPos X="41" Y="2382"/>
-        <UsageCount Value="29"/>
-      </Unit43>
-      <Unit44>
+        <UsageCount Value="27"/>
+      </Unit42>
+      <Unit43>
         <Filename Value="uWV_EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="671"/>
         <CursorPos X="85" Y="727"/>
-        <UsageCount Value="45"/>
-      </Unit44>
-      <Unit45>
+        <UsageCount Value="43"/>
+      </Unit43>
+      <Unit44>
         <Filename Value="wv\WV_CoreWebView2.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="421"/>
         <CursorPos X="58" Y="451"/>
-        <UsageCount Value="13"/>
-      </Unit45>
-      <Unit46>
+        <UsageCount Value="11"/>
+      </Unit44>
+      <Unit45>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVCoreWebView2.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1939"/>
         <CursorPos X="59" Y="1955"/>
-        <UsageCount Value="13"/>
-      </Unit46>
-      <Unit47>
+        <UsageCount Value="11"/>
+      </Unit45>
+      <Unit46>
         <Filename Value="wv\WV_CoreWebView2DownloadOperation.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="53"/>
         <CursorPos X="11" Y="74"/>
-        <UsageCount Value="7"/>
-      </Unit47>
-      <Unit48>
+        <UsageCount Value="5"/>
+      </Unit46>
+      <Unit47>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowserBase.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3972"/>
         <CursorPos X="39" Y="3989"/>
-        <UsageCount Value="29"/>
-      </Unit48>
-      <Unit49>
+        <UsageCount Value="27"/>
+      </Unit47>
+      <Unit48>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowser.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="43"/>
         <CursorPos X="41" Y="47"/>
-        <UsageCount Value="29"/>
-      </Unit49>
-      <Unit50>
+        <UsageCount Value="27"/>
+      </Unit48>
+      <Unit49>
         <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="580"/>
         <CursorPos X="15" Y="644"/>
-        <UsageCount Value="24"/>
-      </Unit50>
-      <Unit51>
+        <UsageCount Value="22"/>
+      </Unit49>
+      <Unit50>
         <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2220"/>
         <CursorPos X="16" Y="2243"/>
-        <UsageCount Value="24"/>
-      </Unit51>
-      <Unit52>
+        <UsageCount Value="22"/>
+      </Unit50>
+      <Unit51>
         <Filename Value="E:\lazarus3-2\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit52>
-      <Unit53>
-        <Filename Value="CEFComponentUnits.inc"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
-      </Unit53>
-      <Unit54>
+        <UsageCount Value="5"/>
+      </Unit51>
+      <Unit52>
         <Filename Value="lcl\LCL_CustomOpenGLControl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="23" Y="101"/>
-        <UsageCount Value="10"/>
-      </Unit54>
-      <Unit55>
+        <UsageCount Value="8"/>
+      </Unit52>
+      <Unit53>
         <Filename Value="ImportWK.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="19"/>
-        <UsageCount Value="32"/>
-      </Unit55>
-      <Unit56>
+        <UsageCount Value="30"/>
+      </Unit53>
+      <Unit54>
         <Filename Value="WKComponentUnits.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="31"/>
-      </Unit56>
-      <Unit57>
+        <UsageCount Value="29"/>
+      </Unit54>
+      <Unit55>
         <Filename Value="..\..\..\Lazarus\components\opengl\openglcontext.pas"/>
         <UnitName Value="OpenGLContext"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="129"/>
         <CursorPos Y="139"/>
-        <UsageCount Value="10"/>
-      </Unit57>
-      <Unit58>
+        <UsageCount Value="8"/>
+      </Unit55>
+      <Unit56>
         <Filename Value="wk\webkit\MiniWebviewMac.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="15"/>
-        <UsageCount Value="10"/>
-      </Unit58>
-      <Unit59>
-        <Filename Value="wk\webkit\uWkWebview.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="216"/>
-        <CursorPos X="5" Y="225"/>
-        <UsageCount Value="2"/>
-      </Unit59>
-      <Unit60>
-        <Filename Value="uCEF_TypesConvert.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="503"/>
-        <CursorPos X="45" Y="518"/>
-        <UsageCount Value="1"/>
-      </Unit60>
-      <Unit61>
+        <UsageCount Value="8"/>
+      </Unit56>
+      <Unit57>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\univint\src\MacOSAll.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="40" Y="121"/>
-        <UsageCount Value="10"/>
-      </Unit61>
-      <Unit62>
+        <UsageCount Value="8"/>
+      </Unit57>
+      <Unit58>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\CocoaAll.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit62>
-      <Unit63>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\WebKit.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="188"/>
-        <CursorPos X="20" Y="254"/>
-        <UsageCount Value="2"/>
-      </Unit63>
-      <Unit64>
+        <UsageCount Value="8"/>
+      </Unit58>
+      <Unit59>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\UndefinedTypes.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="18"/>
-        <UsageCount Value="10"/>
-      </Unit64>
-      <Unit65>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WKWebView.inc"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="2"/>
-      </Unit65>
-      <Unit66>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\Sources.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="120"/>
-        <CursorPos X="32" Y="171"/>
-        <UsageCount Value="2"/>
-      </Unit66>
-      <Unit67>
+        <UsageCount Value="8"/>
+      </Unit59>
+      <Unit60>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebKit.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit67>
-      <Unit68>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebView.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="32"/>
-        <CursorPos X="61" Y="56"/>
-        <UsageCount Value="2"/>
-      </Unit68>
-      <Unit69>
+        <UsageCount Value="8"/>
+      </Unit60>
+      <Unit61>
         <Filename Value="..\..\..\Lazarus\lcl\interfaces\cocoa\cocoautils.pas"/>
         <UnitName Value="CocoaUtils"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
-        <UsageCount Value="10"/>
-      </Unit69>
-      <Unit70>
+        <UsageCount Value="8"/>
+      </Unit61>
+      <Unit62>
         <Filename Value="cef\predef\CEF_ChromiumCorePredef.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="178" Y="2"/>
-        <UsageCount Value="3"/>
-      </Unit70>
-      <Unit71>
+        <UsageCount Value="1"/>
+      </Unit62>
+      <Unit63>
         <Filename Value="cef\predef\CEF_ApplicationPredef.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="24"/>
-        <UsageCount Value="10"/>
-      </Unit71>
-      <Unit72>
+        <UsageCount Value="8"/>
+      </Unit63>
+      <Unit64>
         <Filename Value="cef\CEF_UpdateZoomStepTask.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit72>
-      <Unit73>
+        <UsageCount Value="8"/>
+      </Unit64>
+      <Unit65>
         <Filename Value="..\..\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFTask.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="3" Y="91"/>
-        <UsageCount Value="10"/>
-      </Unit73>
-      <Unit74>
+        <UsageCount Value="8"/>
+      </Unit65>
+      <Unit66>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="4" Y="107"/>
-        <UsageCount Value="10"/>
-      </Unit74>
-      <Unit75>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFLinuxFunctions.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="46"/>
-        <CursorPos X="22" Y="19"/>
-        <UsageCount Value="1"/>
-      </Unit75>
-      <Unit76>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFLibFunctions.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="10"/>
-        <CursorPos X="45" Y="18"/>
-        <UsageCount Value="1"/>
-      </Unit76>
-      <Unit77>
+        <UsageCount Value="8"/>
+      </Unit66>
+      <Unit67>
         <Filename Value="wk\webkit2_linux\uLibWebkit.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="274"/>
         <CursorPos X="201" Y="306"/>
-        <UsageCount Value="33"/>
-      </Unit77>
-      <Unit78>
-        <Filename Value="liblcl.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="37"/>
-        <CursorPos X="16" Y="20"/>
-        <UsageCount Value="1"/>
-      </Unit78>
-      <Unit79>
+        <UsageCount Value="31"/>
+      </Unit67>
+      <Unit68>
         <Filename Value="wk\WK_WkWebContext.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit79>
-      <Unit80>
+        <UsageCount Value="5"/>
+      </Unit68>
+      <Unit69>
         <Filename Value="wk\webkit2_linux\uWkWebContext.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="34" Y="20"/>
-        <UsageCount Value="8"/>
-      </Unit80>
-      <Unit81>
+        <UsageCount Value="6"/>
+      </Unit69>
+      <Unit70>
         <Filename Value="wk\WK_WkWebview.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="359"/>
         <CursorPos X="36" Y="382"/>
-        <UsageCount Value="7"/>
-      </Unit81>
-      <Unit82>
+        <UsageCount Value="5"/>
+      </Unit70>
+      <Unit71>
         <Filename Value="wk\webkit2_linux\uWkWebview.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="11" Y="15"/>
-        <UsageCount Value="22"/>
-      </Unit82>
-      <Unit83>
+        <UsageCount Value="20"/>
+      </Unit71>
+      <Unit72>
         <Filename Value="wk\webkit2_linux\uWkInterfaces.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="32"/>
-      </Unit83>
-      <Unit84>
+        <UsageCount Value="30"/>
+      </Unit72>
+      <Unit73>
         <Filename Value="wk\WK_WkURISchemeRequest.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="27" Y="62"/>
-        <UsageCount Value="20"/>
-      </Unit84>
-      <Unit85>
+        <UsageCount Value="18"/>
+      </Unit73>
+      <Unit74>
         <Filename Value="wk\webkit2_linux\uWkURISchemeRequest.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="20"/>
-        <UsageCount Value="21"/>
-      </Unit85>
-      <Unit86>
+        <UsageCount Value="19"/>
+      </Unit74>
+      <Unit75>
         <Filename Value="uWK_EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="2"/>
-        <UsageCount Value="14"/>
-      </Unit86>
-      <Unit87>
+        <UsageCount Value="12"/>
+      </Unit75>
+      <Unit76>
         <Filename Value="wk\webkit2_linux\uWkWebviewEvents.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="71" Y="28"/>
-        <UsageCount Value="14"/>
-      </Unit87>
-      <Unit88>
+        <UsageCount Value="12"/>
+      </Unit76>
+      <Unit77>
         <Filename Value="wk\WK_WkInputStream.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="50" Y="27"/>
-        <UsageCount Value="6"/>
-      </Unit88>
-      <Unit89>
+        <UsageCount Value="4"/>
+      </Unit77>
+      <Unit78>
         <Filename Value="wk\webkit2_linux\uWkInputStream.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="18" Y="22"/>
-        <UsageCount Value="7"/>
-      </Unit89>
-      <Unit90>
+        <UsageCount Value="5"/>
+      </Unit78>
+      <Unit79>
         <Filename Value="..\..\..\..\..\..\usr\share\lazarus\3.6.0\lcl\interfaces\gtk3\gtk3bindings\lazgio2.pas"/>
         <UnitName Value="LazGio2"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8036"/>
         <CursorPos X="99" Y="8056"/>
-        <UsageCount Value="6"/>
-      </Unit90>
-      <Unit91>
-        <Filename Value="..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="279"/>
-        <CursorPos X="24" Y="306"/>
-        <UsageCount Value="2"/>
-      </Unit91>
-      <Unit92>
+        <UsageCount Value="4"/>
+      </Unit79>
+      <Unit80>
         <Filename Value="wk\WK_WkHeaders.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="23"/>
-        <UsageCount Value="17"/>
-      </Unit92>
-      <Unit93>
+        <UsageCount Value="15"/>
+      </Unit80>
+      <Unit81>
         <Filename Value="wk\webkit2_linux\uWkHeaders.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="5" Y="42"/>
-        <UsageCount Value="18"/>
-      </Unit93>
-      <Unit94>
+        <UsageCount Value="16"/>
+      </Unit81>
+      <Unit82>
         <Filename Value="..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="424"/>
         <CursorPos X="24" Y="454"/>
-        <UsageCount Value="4"/>
-      </Unit94>
-      <Unit95>
+        <UsageCount Value="2"/>
+      </Unit82>
+      <Unit83>
         <Filename Value="wk\webkit2_linux\uWkContextMenu.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="19"/>
-      </Unit95>
-      <Unit96>
+        <UsageCount Value="17"/>
+      </Unit83>
+      <Unit84>
         <Filename Value="wk\webkit2_linux\uWkContextMenuItem.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="19"/>
-        <UsageCount Value="18"/>
-      </Unit96>
-      <Unit97>
+        <UsageCount Value="16"/>
+      </Unit84>
+      <Unit85>
         <Filename Value="wk\webkit2_linux\uWkCookieManager.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="319"/>
         <CursorPos X="20" Y="339"/>
-        <UsageCount Value="10"/>
-      </Unit97>
-      <Unit98>
+        <UsageCount Value="8"/>
+      </Unit85>
+      <Unit86>
         <Filename Value="wk\WK_WkContextMenuItem.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="18"/>
-      </Unit98>
-      <Unit99>
+        <UsageCount Value="16"/>
+      </Unit86>
+      <Unit87>
         <Filename Value="wk\WK_WkContextMenu.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="27" Y="6"/>
-        <UsageCount Value="6"/>
-      </Unit99>
-      <Unit100>
+        <UsageCount Value="4"/>
+      </Unit87>
+      <Unit88>
         <Filename Value="..\..\..\..\..\..\usr\share\lazarus\3.6.0\lcl\interfaces\gtk3\gtk3bindings\lazglib2.pas"/>
         <UnitName Value="LazGLib2"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1598"/>
         <CursorPos X="3" Y="1618"/>
-        <UsageCount Value="6"/>
-      </Unit100>
-      <Unit101>
+        <UsageCount Value="4"/>
+      </Unit88>
+      <Unit89>
         <Filename Value="wk\webkit2_linux\uWkFunctions.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit101>
-      <Unit102>
+        <UsageCount Value="5"/>
+      </Unit89>
+      <Unit90>
         <Filename Value="wk\webkit2_linux\uWkURIRequest.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="27" Y="45"/>
-        <UsageCount Value="7"/>
-      </Unit102>
-      <Unit103>
+        <UsageCount Value="5"/>
+      </Unit90>
+      <Unit91>
         <Filename Value="wk\webkit2_linux\uWkNavigationAction.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="34" Y="18"/>
-        <UsageCount Value="7"/>
-      </Unit103>
-      <Unit104>
+        <UsageCount Value="5"/>
+      </Unit91>
+      <Unit92>
         <Filename Value="wk\webkit2_linux\uWkURIResponse.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="25" Y="46"/>
-        <UsageCount Value="7"/>
-      </Unit104>
-      <Unit105>
+        <UsageCount Value="5"/>
+      </Unit92>
+      <Unit93>
         <Filename Value="wk\webkit2_linux\uWkPolicyDecision.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="19"/>
-        <UsageCount Value="7"/>
-      </Unit105>
-      <Unit106>
+        <UsageCount Value="5"/>
+      </Unit93>
+      <Unit94>
         <Filename Value="wk\webkit2_linux\uWkWebsitePolicies.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit106>
-      <Unit107>
+        <UsageCount Value="5"/>
+      </Unit94>
+      <Unit95>
         <Filename Value="wk\webkit2_linux\uWkJSValue.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit107>
-      <Unit108>
+        <UsageCount Value="5"/>
+      </Unit95>
+      <Unit96>
         <Filename Value="wk\webkit2_linux\uWkSettings.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="34" Y="31"/>
-        <UsageCount Value="7"/>
-      </Unit108>
-      <Unit109>
+        <UsageCount Value="5"/>
+      </Unit96>
+      <Unit97>
         <Filename Value="..\..\..\..\..\..\usr\share\lazarus\3.6.0\lcl\interfaces\gtk3\gtk3bindings\lazgobject2.pas"/>
         <UnitName Value="LazGObject2"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="474"/>
         <CursorPos X="3" Y="494"/>
-        <UsageCount Value="6"/>
-      </Unit109>
-      <Unit110>
+        <UsageCount Value="4"/>
+      </Unit97>
+      <Unit98>
         <Filename Value="ImportWKLinux.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="8"/>
-        <UsageCount Value="10"/>
-      </Unit110>
-      <Unit111>
+        <UsageCount Value="8"/>
+      </Unit98>
+      <Unit99>
         <Filename Value="wk\webkit2_linux\uWkWebViewParent.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit111>
-      <Unit112>
+        <UsageCount Value="5"/>
+      </Unit99>
+      <Unit100>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="2"/>
         <CursorPos Y="17"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
-      </Unit112>
-      <Unit113>
+      </Unit100>
+      <Unit101>
         <Filename Value="wk\webkit2_mac\uNSURL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="17" Y="56"/>
-        <UsageCount Value="10"/>
-      </Unit113>
-      <Unit114>
+        <UsageCount Value="8"/>
+      </Unit101>
+      <Unit102>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSURL.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="8" Y="47"/>
-        <UsageCount Value="7"/>
-      </Unit114>
-      <Unit115>
+        <UsageCount Value="5"/>
+      </Unit102>
+      <Unit103>
         <Filename Value="wk\webkit2_mac\uNSURLRequest.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="19" Y="74"/>
-        <UsageCount Value="22"/>
-      </Unit115>
-      <Unit116>
+        <UsageCount Value="20"/>
+      </Unit103>
+      <Unit104>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSURLRequest.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="51" Y="63"/>
-        <UsageCount Value="10"/>
-      </Unit116>
-      <Unit117>
+        <UsageCount Value="8"/>
+      </Unit104>
+      <Unit105>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\inc\objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="322"/>
         <CursorPos X="9" Y="325"/>
-        <UsageCount Value="10"/>
-      </Unit117>
-      <Unit118>
+        <UsageCount Value="8"/>
+      </Unit105>
+      <Unit106>
         <Filename Value="wk\webkit2_mac\uNSURLResponse.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="174"/>
         <CursorPos X="15" Y="194"/>
-        <UsageCount Value="10"/>
-      </Unit118>
-      <Unit119>
+        <UsageCount Value="8"/>
+      </Unit106>
+      <Unit107>
         <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="15" Y="50"/>
-        <UsageCount Value="10"/>
-      </Unit119>
-      <Unit120>
+        <UsageCount Value="8"/>
+      </Unit107>
+      <Unit108>
         <Filename Value="wk\webkit2_mac\uWkInterface.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="47" Y="15"/>
-        <UsageCount Value="11"/>
-      </Unit120>
-      <Unit121>
+        <UsageCount Value="9"/>
+      </Unit108>
+      <Unit109>
         <Filename Value="wk\webkit2_mac\uWKFrameInfo.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="15" Y="23"/>
-        <UsageCount Value="10"/>
-      </Unit121>
-      <Unit122>
+        <UsageCount Value="8"/>
+      </Unit109>
+      <Unit110>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeTask.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="5" Y="48"/>
-        <UsageCount Value="10"/>
-      </Unit122>
-      <Unit123>
+        <UsageCount Value="8"/>
+      </Unit110>
+      <Unit111>
         <Filename Value="wk\webkit2_mac\uWebKit.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit123>
-      <Unit124>
+        <UsageCount Value="5"/>
+      </Unit111>
+      <Unit112>
         <Filename Value="wk\webkit2_mac\uWKNavigationAction.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="51"/>
-        <UsageCount Value="10"/>
-      </Unit124>
-      <Unit125>
+        <UsageCount Value="8"/>
+      </Unit112>
+      <Unit113>
         <Filename Value="wk\webkit2_mac\uWKNavigationResponse.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit125>
-      <Unit126>
+        <UsageCount Value="8"/>
+      </Unit113>
+      <Unit114>
         <Filename Value="wk\webkit2_mac\uWkWebview.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
-        <UsageCount Value="26"/>
-      </Unit126>
-      <Unit127>
+        <UsageCount Value="24"/>
+      </Unit114>
+      <Unit115>
         <Filename Value="wk\webkit2_mac\uWkWebviewEvents.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="24"/>
-      </Unit127>
-      <Unit128>
+        <UsageCount Value="22"/>
+      </Unit115>
+      <Unit116>
         <Filename Value="wk\webkit2_mac\uWKWebpagePreferences.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos X="5" Y="46"/>
-        <UsageCount Value="10"/>
-      </Unit128>
-      <Unit129>
+        <UsageCount Value="8"/>
+      </Unit116>
+      <Unit117>
         <Filename Value="wk\webkit2_mac\uWKWindowFeatures.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="5" Y="52"/>
-        <UsageCount Value="10"/>
-      </Unit129>
-      <Unit130>
+        <UsageCount Value="8"/>
+      </Unit117>
+      <Unit118>
         <Filename Value="wk\webkit2_mac\uWKNavigationDelegate.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="15" Y="63"/>
-        <UsageCount Value="10"/>
-      </Unit130>
-      <Unit131>
+        <UsageCount Value="8"/>
+      </Unit118>
+      <Unit119>
         <Filename Value="wk\webkit2_mac\WKTypes.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="207"/>
         <CursorPos X="23" Y="224"/>
-        <UsageCount Value="22"/>
-      </Unit131>
-      <Unit132>
+        <UsageCount Value="20"/>
+      </Unit119>
+      <Unit120>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\DefinedClassesWebKit.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos X="37" Y="125"/>
-        <UsageCount Value="10"/>
-      </Unit132>
-      <Unit133>
+        <UsageCount Value="8"/>
+      </Unit120>
+      <Unit121>
         <Filename Value="wk\webkit2_mac\uWKUIDelegate.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit133>
-      <Unit134>
+        <UsageCount Value="8"/>
+      </Unit121>
+      <Unit122>
         <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="15" Y="33"/>
-        <UsageCount Value="10"/>
-      </Unit134>
-      <Unit135>
+        <UsageCount Value="8"/>
+      </Unit122>
+      <Unit123>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos Y="68"/>
-        <UsageCount Value="10"/>
-      </Unit135>
-      <Unit136>
+        <UsageCount Value="8"/>
+      </Unit123>
+      <Unit124>
         <Filename Value="wk\webkit2_mac\uWKUserContentController.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="5" Y="113"/>
-        <UsageCount Value="10"/>
-      </Unit136>
-      <Unit137>
+        <UsageCount Value="8"/>
+      </Unit124>
+      <Unit125>
         <Filename Value="wk\webkit2_mac\uNSURLAuthenticationChallenge.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="6" Y="50"/>
-        <UsageCount Value="10"/>
-      </Unit137>
-      <Unit138>
+        <UsageCount Value="8"/>
+      </Unit125>
+      <Unit126>
         <Filename Value="wk\webkit2_mac\uNSURLCredential.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos Y="45"/>
-        <UsageCount Value="11"/>
-      </Unit138>
-      <Unit139>
+        <UsageCount Value="9"/>
+      </Unit126>
+      <Unit127>
         <Filename Value="wk\webkit2_mac\uWKNavigation.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit139>
-      <Unit140>
+        <UsageCount Value="8"/>
+      </Unit127>
+      <Unit128>
         <Filename Value="wk\webkit2_mac\uWKPreferences.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos X="15" Y="22"/>
-        <UsageCount Value="10"/>
-      </Unit140>
-      <Unit141>
+        <UsageCount Value="8"/>
+      </Unit128>
+      <Unit129>
         <Filename Value="wk\webkit2_mac\uWKScriptMessageHandler.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="21"/>
-      </Unit141>
-      <Unit142>
+        <UsageCount Value="19"/>
+      </Unit129>
+      <Unit130>
         <Filename Value="wk\webkit2_mac\uWKWebViewConfiguration.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
-        <UsageCount Value="10"/>
-      </Unit142>
-      <Unit143>
+        <UsageCount Value="8"/>
+      </Unit130>
+      <Unit131>
         <Filename Value="wk\webkit2_mac\uWKUserScript.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="5" Y="49"/>
-        <UsageCount Value="10"/>
-      </Unit143>
-      <Unit144>
+        <UsageCount Value="8"/>
+      </Unit131>
+      <Unit132>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSURLCredential.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="15"/>
-        <UsageCount Value="7"/>
-      </Unit144>
-      <Unit145>
+        <UsageCount Value="5"/>
+      </Unit132>
+      <Unit133>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSDate.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="21"/>
-        <UsageCount Value="21"/>
-      </Unit145>
-      <Unit146>
+        <UsageCount Value="19"/>
+      </Unit133>
+      <Unit134>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
         <EditorIndex Value="3"/>
         <TopLine Value="34"/>
         <CursorPos X="22" Y="53"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
-      </Unit146>
-      <Unit147>
+      </Unit134>
+      <Unit135>
         <Filename Value="UnitsWV2.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="10"/>
-      </Unit147>
-      <Unit148>
+        <UsageCount Value="8"/>
+      </Unit135>
+      <Unit136>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVLoader.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="9"/>
-      </Unit148>
-      <Unit149>
+        <UsageCount Value="7"/>
+      </Unit136>
+      <Unit137>
         <Filename Value="wv\webview2\uWV2EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="33" Y="33"/>
-        <UsageCount Value="9"/>
-      </Unit149>
-      <Unit150>
+        <UsageCount Value="7"/>
+      </Unit137>
+      <Unit138>
         <Filename Value="wv\webview2\uWV2Loader.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="34" Y="50"/>
-        <UsageCount Value="9"/>
-      </Unit150>
-      <Unit151>
+        <UsageCount Value="7"/>
+      </Unit138>
+      <Unit139>
         <Filename Value="ImportWK2Mac.inc"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
-      </Unit151>
-      <Unit152>
+      </Unit139>
+      <Unit140>
         <Filename Value="wk\webkit2_inc_mac\WK_NSProgress.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="54" Y="19"/>
-        <UsageCount Value="9"/>
-      </Unit152>
-      <Unit153>
+        <UsageCount Value="7"/>
+      </Unit140>
+      <Unit141>
         <Filename Value="wk\webkit2_mac\uWKEventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="333"/>
         <CursorPos X="31" Y="344"/>
-        <UsageCount Value="17"/>
-      </Unit153>
-      <Unit154>
+        <UsageCount Value="15"/>
+      </Unit141>
+      <Unit142>
         <Filename Value="uTools.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="17" Y="47"/>
-        <UsageCount Value="10"/>
-      </Unit154>
-      <Unit155>
+        <UsageCount Value="8"/>
+      </Unit142>
+      <Unit143>
         <Filename Value="wk\webkit2_linux\uWKEventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="277"/>
         <CursorPos X="58" Y="296"/>
-        <UsageCount Value="9"/>
-      </Unit155>
-      <Unit156>
+        <UsageCount Value="7"/>
+      </Unit143>
+      <Unit144>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="23" Y="13"/>
-        <UsageCount Value="10"/>
+        <CursorPos X="17" Y="14"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
-      </Unit156>
-      <Unit157>
+      </Unit144>
+      <Unit145>
         <Filename Value="uString.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="22" Y="24"/>
-        <UsageCount Value="10"/>
-      </Unit157>
-      <Unit158>
+        <UsageCount Value="8"/>
+      </Unit145>
+      <Unit146>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownload.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="84" Y="3"/>
-        <UsageCount Value="10"/>
-      </Unit158>
-      <Unit159>
+        <UsageCount Value="8"/>
+      </Unit146>
+      <Unit147>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownloadDelegate.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="62" Y="3"/>
-        <UsageCount Value="10"/>
-      </Unit159>
-      <Unit160>
+        <UsageCount Value="8"/>
+      </Unit147>
+      <Unit148>
         <Filename Value="wk\webkit2_inc_mac\WK_WKScriptMessageHandler.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="76" Y="3"/>
-        <UsageCount Value="10"/>
-      </Unit160>
-      <Unit161>
+        <UsageCount Value="8"/>
+      </Unit148>
+      <Unit149>
         <Filename Value="wk\webkit2_inc_mac\WK_WKURLSchemeHandler.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="70" Y="3"/>
-        <UsageCount Value="10"/>
-      </Unit161>
-      <Unit162>
+        <UsageCount Value="8"/>
+      </Unit149>
+      <Unit150>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebview.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="266"/>
         <CursorPos X="23" Y="283"/>
-        <UsageCount Value="11"/>
-      </Unit162>
-      <Unit163>
+        <UsageCount Value="9"/>
+      </Unit150>
+      <Unit151>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\inc\objcbase.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="5" Y="156"/>
-        <UsageCount Value="10"/>
-      </Unit163>
-      <Unit164>
+        <UsageCount Value="8"/>
+      </Unit151>
+      <Unit152>
         <Filename Value="wk\webkit2_mac\uNSProgress.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="15" Y="22"/>
-        <UsageCount Value="10"/>
-      </Unit164>
+        <UsageCount Value="8"/>
+      </Unit152>
     </Units>
     <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
