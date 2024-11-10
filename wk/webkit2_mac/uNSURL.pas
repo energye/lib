@@ -24,21 +24,38 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an NSURL object.
     class function New(): TNSURL;
+    // Creates and returns an NSURL object initialized with a provided URL string.
     class function URLWithString (URLString: string): TNSURL;
+    // Creates and returns an NSURL object initialized with a base URL and a relative string.
     class function URLWithStringRelativeToURL (URLString: string; baseURL: NSURL): TNSURL;
+    // The URL string for the receiver as an absolute URL. (read-only)
     function AbsoluteString: string;
+    // A string representation of the relative portion of the URL. (read-only)
     function RelativeString: string;
+    // The base URL. (read-only)
     function BaseURL: TNSURL;
+    // An absolute URL that refers to the same resource as the receiver. (read-only)
     function AbsoluteURL: TNSURL;
+    // The scheme. (read-only)
     function Scheme: string;
+    // The host, conforming to RFC 1808. (read-only)
     function Host: string;
+    // The port, conforming to RFC 1808.
     function Port: Integer;
+    // The user name, conforming to RFC 1808.
     function User: string;
+    // The password conforming to RFC 1808. (read-only)
     function Password: string;
+    // The path, conforming to RFC 1808. (read-only)
     function Path: string;
+    // The fragment identifier, conforming to RFC 1808. (read-only)
     function Fragment: string;
+    // The parameter string conforming to RFC 1808. (read-only)
+    // Deprecated
     function ParameterString: string;
+    // The query string, conforming to RFC 1808.
     function Query: string;
   end;
 
