@@ -59,8 +59,9 @@ type
   public
     constructor Create(event: IWKNavigationDelegateEvent);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKNavigationDelegateProtocol;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   end;
 

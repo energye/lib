@@ -18,8 +18,9 @@ type
   public
     constructor Create(AData: WKWebpagePreferences);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKWebpagePreferences;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
     class function New(): TWKWebpagePreferences;

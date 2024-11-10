@@ -19,8 +19,9 @@ type
   public
     constructor Create(AData: WKFrameInfo);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKFrameInfo;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
     function IsMainFrame: Boolean;

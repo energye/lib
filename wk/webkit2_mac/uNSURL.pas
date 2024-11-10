@@ -11,14 +11,17 @@ uses
 
 type
 
+  // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
+  // https://developer.apple.com/documentation/foundation/nsurl?language=objc
   TNSURL = class
   private
     FData: NSURL;
   public
     constructor Create(AData: NSURL);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): NSURL;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
     class function New(): TNSURL;

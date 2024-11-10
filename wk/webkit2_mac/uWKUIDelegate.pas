@@ -30,8 +30,9 @@ type
   public
     constructor Create(event: IWKUIDelegateEvent);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKUIDelegateProtocol;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
   end;

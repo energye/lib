@@ -19,6 +19,7 @@ type
   public
     constructor Create(AData: NSURLAuthenticationChallenge);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): NSURLAuthenticationChallenge;
     procedure Release();
   end;

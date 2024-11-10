@@ -24,8 +24,9 @@ type
   public
     constructor Create(event: IReceiveScriptMessageDelegateEvent);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKScriptMessageHandlerProtocol;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   end;
 

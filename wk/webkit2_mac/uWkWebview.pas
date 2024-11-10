@@ -52,8 +52,9 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WkWebview;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
     procedure LoadHTML(AHtml, ABaseURL: string);

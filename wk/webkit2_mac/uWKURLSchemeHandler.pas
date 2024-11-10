@@ -25,8 +25,9 @@ type
   public
     constructor Create(event: IWKURLSchemeHandlerDelegateEvent);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): WKURLSchemeHandlerProtocol;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   end;
 

@@ -23,8 +23,9 @@ type
   public
     constructor Create(AData: NSProgress);
     destructor Destroy; override;
+    // Returns the object implemented by this class.
     function Data(): NSProgress;
-    // Release the current object and Data pointer
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
     // Returns the progress instance, if any.
@@ -47,37 +48,37 @@ type
     procedure SetLocalizedAdditionalDescription(aValue: string);
     // Returns A more specific localized description of tracked progress for the receiver.
     function LocalizedAdditionalDescription: string;
-    //
+    // Sets A Boolean value that indicates whether the receiver is tracking work that you can cancel.
     procedure SetCancellable(aValue: LongBool);
-    //
+    // Returns A Boolean value that indicates whether the receiver is tracking work that you can cancel.
     function IsCancellable: LongBool;
-    //
+    // Sets A Boolean value that indicates whether the receiver is tracking work that you can pause.
     procedure SetPausable(aValue: LongBool);
-    //
+    // Returns A Boolean value that indicates whether the receiver is tracking work that you can pause.
     function IsPausable: LongBool;
-    //
+    // A Boolean value that Indicates whether the receiver is tracking canceled work.
     function IsCancelled: LongBool;
-    //
+    // A Boolean value that indicates whether the receiver is tracking paused work.
     function IsPaused: LongBool;
-    //
+    // Sets The block to invoke when canceling progress.
     procedure SetCancellationHandler(aValue: Pointer);
-    //
+    // Returns The block to invoke when canceling progress.
     function CancellationHandler: Pointer;
-    //
+    // Sets The block to invoke when pausing progress.
     procedure SetPausingHandler(aValue: Pointer);
-    //
+    // Returns The block to invoke when pausing progress.
     function PausingHandler: Pointer;
-    //
+    // A Boolean value that indicates whether the tracked progress is indeterminate.
     function IsIndeterminate: LongBool;
-    //
+    // The fraction of the overall work that the progress object completes, including work from its suboperations.
     function FractionCompleted: double;
-    //
+    // Cancels progress tracking.
     procedure Cancel;
-    //
+    // Pauses progress tracking.
     procedure Pause;
-    //
+    // Publishes the progress object for other processes to observe it.
     procedure Publish;
-    //
+    // Removes a progress object from publication, making it unobservable by other processes.
     procedure Unpublish;
   end;
 
