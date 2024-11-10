@@ -10,5 +10,5 @@ uLibWebkit, uWkInterfaces, uWkFunctions, uWkContextMenu, uWkContextMenuItem,
 uWkHeaders, uWkInputStream, uWkJSValue, uWkCookieManager,
 uWkNavigationAction, uWkPolicyDecision, uWkSettings, uWkURIRequest,
 uWkURIResponse, uWkURISchemeRequest, uWkWebContext, uWkWebsitePolicies,
-uWkWebViewParent, uWkWebview, uWkTypes, uWkWebviewEvents,
+uWkWebviewParent, uWkWebview, uWkTypes, uWkWebviewEvents,
 uWKEventCallback
