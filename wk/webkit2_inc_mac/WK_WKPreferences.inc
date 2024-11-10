@@ -126,6 +126,22 @@ begin
 end;
 
 //procedure
+procedure WKPreferences_SetTextInteractionEnabled(AObj: TWKPreferences; newValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SetTextInteractionEnabled(newValue);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure WKPreferences_SetElementFullscreenEnabled(AObj: TWKPreferences; newValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SetElementFullscreenEnabled(newValue);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure WKPreferences_SetValueForKey(AObj: TWKPreferences; value: LongBool; key: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -151,4 +167,6 @@ exports
   WKPreferences_SetPlugInsEnabled,
   WKPreferences_SetTabFocusesLinks,
   WKPreferences_SetFraudulentWebsiteWarningEnabled,
+  WKPreferences_SetTextInteractionEnabled,
+  WKPreferences_SetElementFullscreenEnabled,
   WKPreferences_SetValueForKey;

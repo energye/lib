@@ -53,6 +53,8 @@ type
     procedure webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
 
+  // https://developer.apple.com/documentation/webkit/wknavigationdelegate?language=objc
+  // Methods for accepting or rejecting navigation changes, and for tracking the progress of navigation requests.
   TWKNavigationDelegate = class
   private
     FData: NSWKNavigationDelegate;

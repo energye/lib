@@ -17,13 +17,20 @@ type
   private
     FData: Pointer;
   public
+    // Creates a new web view.
     function webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures (webView: WKWebView; configuration: WKWebViewConfiguration; navigationAction: WKNavigationAction; windowFeatures: WKWindowFeatures): WKWebView;
+    // Displays a JavaScript alert panel.
     procedure webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptAlertCallback);
+    // Displays a JavaScript confirm panel.
     procedure webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler (webView: WKWebView; message_: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptConfirmCallback);
+    // Displays a JavaScript text input panel.
     procedure webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler (webView: WKWebView; prompt: NSString; defaultText: NSString; frame: WKFrameInfo; completionHandler: WKUIDelegateJavaScriptTextInputCallback);
+    // Notifies your app that the DOM window closed successfully.
     procedure webViewDidClose(webView: WKWebView);
   end;
 
+  // The methods for presenting native user interface elements on behalf of a webpage.
+  // https://developer.apple.com/documentation/webkit/wkuidelegate?language=objc
   TWKUIDelegate = class
   private
     FData: NSWKUIDelegate;
@@ -34,7 +41,6 @@ type
     function Data(): WKUIDelegateProtocol;
     // Freeing the class and the objects it implements.
     procedure Release();
-  public
   end;
 
 

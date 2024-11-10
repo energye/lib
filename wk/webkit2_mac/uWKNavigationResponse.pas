@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // An object that contains the response to a navigation request, and which you use to make navigation-related policy decisions.
+  // https://developer.apple.com/documentation/webkit/wknavigationresponse?language=objc
   TWKNavigationResponse = class
   private
     FData: WKNavigationResponse;
@@ -24,9 +25,13 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an WKNavigationResponse object.
     class function New(): TWKNavigationResponse;
+    // A Boolean value that indicates whether the response targets the web view’s main frame.
     function IsForMainFrame: LongBool;
+    // The frame’s response.
     function Response: NSURLResponse;
+    // A Boolean value that indicates whether WebKit is capable of displaying the response’s MIME type natively.
     function CanShowMIMEType: LongBool;
   end;
 

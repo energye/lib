@@ -15,9 +15,12 @@ type
   private
     FData: Pointer;
   public
+    // Tells the handler that a webpage sent a script message.
     procedure userContentController_didReceiveScriptMessage (userContentController: WKUserContentController; message_: WKScriptMessage);
   end;
 
+  // An interface for receiving messages from JavaScript code running in a webpage.
+  // https://developer.apple.com/documentation/webkit/wkscriptmessagehandler?language=objc
   TWKScriptMessageHandler = class
   private
     FData: NSWKScriptMessageHandler;

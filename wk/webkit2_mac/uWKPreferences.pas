@@ -12,6 +12,8 @@ uses
 
 type
 
+  // An object that encapsulates the standard behaviors to apply to websites.
+  // https://developer.apple.com/documentation/webkit/wkpreferences?language=objc
   TWKPreferences = class
   private
     FData: WKPreferences;
@@ -23,21 +25,37 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an WKPreferences object.
     class function New(): TWKPreferences;
+    // Sets The minimum font size, in points.
     procedure SetMinimumFontSize(newValue: double);
+    // Returns The minimum font size, in points.
     function MinimumFontSize: double;
+    // Sets A Boolean value that indicates whether JavaScript is enabled.
     procedure SetJavaScriptEnabled(newValue: LongBool);
+    // Returns A Boolean value that indicates whether JavaScript is enabled.
     function JavaScriptEnabled: LongBool;
+    // Sets A Boolean value that indicates whether JavaScript can open windows without user interaction.
     procedure SetJavaScriptCanOpenWindowsAutomatically(newValue: LongBool);
+    // Returns A Boolean value that indicates whether JavaScript can open windows without user interaction.
     function JavaScriptCanOpenWindowsAutomatically: LongBool;
+    // Sets A Boolean value that indicates whether Java is enabled.
     procedure SetJavaEnabled(newValue: LongBool);
+    // Returns A Boolean value that indicates whether Java is enabled.
     function JavaEnabled: LongBool;
+    // Sets A Boolean value that indicates whether plug-ins are enabled.
     procedure SetPlugInsEnabled(newValue: LongBool);
+    // Returns A Boolean value that indicates whether plug-ins are enabled.
     function PlugInsEnabled: LongBool;
+    // Sets A Boolean value that indicates whether pressing the tab key changes the focus to links and form controls.
     procedure SetTabFocusesLinks(newValue: LongBool);
+    // Sets A Boolean value that indicates whether the web view shows warnings for suspected fraudulent content, such as malware or phishing attemps.
     procedure SetFraudulentWebsiteWarningEnabled(newValue: LongBool);
-    procedure SetTextInteractionEnabled(newValue: LongBool); // 11.3
-    procedure SetElementFullscreenEnabled(newValue: LongBool); // 12.3
+    // Sets A Boolean value that indicates whether to allow people to select or otherwise interact with text. 11.3
+    procedure SetTextInteractionEnabled(newValue: LongBool);
+    // Sets A Boolean value that indicates whether a web view can display content full screen. 12.3
+    procedure SetElementFullscreenEnabled(newValue: LongBool);
+    // Writes a custom value to a field
     procedure SetValueForKey(value: LongBool; key: string);
   end;
 

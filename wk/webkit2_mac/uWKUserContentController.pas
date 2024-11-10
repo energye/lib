@@ -12,6 +12,8 @@ uses
 
 type
 
+  // An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
+  // https://developer.apple.com/documentation/webkit/wkusercontentcontroller?language=objc
   TWKUserContentController = class
   private
     FData: WKUserContentController;
@@ -23,11 +25,17 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an WKUserContentController object.
     class function New(): TWKUserContentController;
+    // The user scripts associated with the user content controller.
     function UserScripts: TStrings;
+    // Injects the specified script into the webpage’s content.
     procedure AddUserScript (userScript: WKUserScript);
+    // Removes all user scripts from the web view.
     procedure RemoveAllUserScripts;
+    // Installs a message handler that you can call from your JavaScript code.
     procedure AddScriptMessageHandlerName (scriptMessageHandler: TWKScriptMessageHandler; name: string);
+    // Uninstalls the custom message handler with the specified name from your JavaScript code.
     procedure RemoveScriptMessageHandlerForName (name: string);
   end;
 

@@ -15,10 +15,14 @@ type
   private
     FData: Pointer;
   public
+    // Asks your handler to begin loading the data for the specified resource.
     procedure webView_startURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
+    // Asks your handler to stop loading the data for the specified resource.
     procedure webView_stopURLSchemeTask (webView: WKWebView; urlSchemeTask: WKURLSchemeTask);
   end;
 
+  // A protocol for loading resources with URL schemes that WebKit doesn't handle.
+  // https://developer.apple.com/documentation/webkit/wkurlschemehandler?language=objc
   TWKURLSchemeHandler = class
   private
     FData: NSWKURLSchemeHandler;

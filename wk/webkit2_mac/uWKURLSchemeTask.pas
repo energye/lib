@@ -12,6 +12,8 @@ uses
 
 type
 
+  // An interface that WebKit uses to request custom resources from your app.
+  // https://developer.apple.com/documentation/webkit/wkurlschemetask?language=objc
   TWKURLSchemeTask = class
   private
     FData: WKURLSchemeTask;
@@ -23,10 +25,15 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Information about the resource to load.
     function Request(): NSURLRequest;
+    // Returns a URL response to WebKit with information about the requested resource.
     procedure ReceiveResponse (response: NSURLResponse);
+    // Sends some or all of the resource data to WebKit.
     procedure ReceiveData(ADataBytes: Pointer; ALength: Integer {NSData});
+    // Signals the successful completion of the task.
     procedure Finish ();
+    // Completes the task and reports the specified error back to WebKit.
     procedure FailWithError (error: string {NSError});
   end;
 

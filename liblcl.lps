@@ -1007,7 +1007,7 @@
       <Unit100>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="2"/>
-        <CursorPos Y="17"/>
+        <CursorPos Y="15"/>
         <UsageCount Value="46"/>
         <Loaded Value="True"/>
       </Unit100>
@@ -1228,9 +1228,9 @@
       </Unit133>
       <Unit134>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="34"/>
-        <CursorPos X="22" Y="53"/>
+        <CursorPos Y="14"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit134>
@@ -1294,9 +1294,8 @@
       </Unit143>
       <Unit144>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="17" Y="14"/>
+        <CursorPos X="21" Y="7"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit144>

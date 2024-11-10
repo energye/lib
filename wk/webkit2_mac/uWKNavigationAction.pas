@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // An object that contains information about an action that causes navigation to occur.
+  // https://developer.apple.com/documentation/webkit/wknavigationaction?language=objc
   TWKNavigationAction = class
   private
     FData: WKNavigationAction;
@@ -24,11 +25,17 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // The frame that requested the navigation.
     function SourceFrame: WKFrameInfo;
+    // The frame in which to display the new content.
     function TargetFrame: WKFrameInfo;
+    // The type of action that triggered the navigation.
     function NavigationType: WKNavigationType;
+    // The URL request object associated with the navigation action.
     function Request: NSURLRequest;
+    // The modifier keys that were pressed at the time of the navigation request.
     function ModifierFlags: NSEventModifierFlags;
+    // The number of the mouse button that caused the navigation request.
     function ButtonNumber: Integer;
   end;
 
