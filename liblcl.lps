@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="8" Active="MacOS64(cocoa)">
+    <BuildModes Count="8" Active="MacOS64(cocoa)ARM64">
       <Item1 Name="Win64">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="win32"/>
@@ -221,7 +221,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols;wk\webkit2_mac"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -1007,7 +1007,7 @@
       <Unit100>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="2"/>
-        <CursorPos Y="15"/>
+        <CursorPos X="16" Y="7"/>
         <UsageCount Value="46"/>
         <Loaded Value="True"/>
       </Unit100>
@@ -1083,8 +1083,10 @@
       </Unit110>
       <Unit111>
         <Filename Value="wk\webkit2_mac\uWebKit.pas"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit111>
       <Unit112>
         <Filename Value="wk\webkit2_mac\uWKNavigationAction.pas"/>
@@ -1173,9 +1175,8 @@
       <Unit125>
         <Filename Value="wk\webkit2_mac\uNSURLAuthenticationChallenge.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="11"/>
-        <CursorPos X="6" Y="50"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="35"/>
+        <UsageCount Value="10"/>
       </Unit125>
       <Unit126>
         <Filename Value="wk\webkit2_mac\uNSURLCredential.pas"/>
@@ -1228,11 +1229,9 @@
       </Unit133>
       <Unit134>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
         <UsageCount Value="21"/>
-        <Loaded Value="True"/>
       </Unit134>
       <Unit135>
         <Filename Value="UnitsWV2.inc"/>
@@ -1294,10 +1293,9 @@
       </Unit143>
       <Unit144>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="7"/>
         <UsageCount Value="21"/>
-        <Loaded Value="True"/>
       </Unit144>
       <Unit145>
         <Filename Value="uString.pas"/>
@@ -1351,7 +1349,7 @@
         <UsageCount Value="8"/>
       </Unit152>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="15" HistoryIndex="14">
       <Position1>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <Caret Line="9" Column="59"/>
@@ -1405,9 +1403,13 @@
         <Caret Line="17"/>
       </Position13>
       <Position14>
-        <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
-        <Caret Line="53" Column="22" TopLine="34"/>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="15"/>
       </Position14>
+      <Position15>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="7" Column="18"/>
+      </Position15>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
