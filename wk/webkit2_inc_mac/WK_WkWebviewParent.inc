@@ -8,13 +8,6 @@ begin
 end;
 
 //procedure
-procedure WkWebviewParent_UpdateBounds(AObj: TWkWebviewParent); extdecl;
-begin
-  handleExceptionBegin
-  handleExceptionEnd
-end;
-
-//procedure
 procedure WkWebviewParent_Resize(AObj: TWkWebviewParent); extdecl;
 begin
   handleExceptionBegin
@@ -33,6 +26,5 @@ end;
 
 exports
   WkWebviewParent_Create,
-  WkWebviewParent_UpdateBounds,
   WkWebviewParent_Resize,
   WkWebviewParent_SetWebview;
