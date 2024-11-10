@@ -23,6 +23,8 @@ type
     procedure download_didFailWithError_resumeData (download: WKDownload; error: NSError; resumeData: NSData);
   end;
 
+  // A protocol you implement to track download progress and handle redirects, authentication challenges, and failures.
+  // https://developer.apple.com/documentation/webkit/wkdownloaddelegate?language=objc
   TWKDownloadDelegate = class
   private
     FData: NSWKDownloadDelegateProtocol;

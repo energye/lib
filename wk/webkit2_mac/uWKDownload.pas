@@ -13,6 +13,8 @@ uses
 
 type
 
+  // An object that represents the download of a web resource.
+  // https://developer.apple.com/documentation/webkit/wkdownload?language=objc
   TWKDownload = class
   private
     FData: WKDownload;
@@ -27,9 +29,14 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // An object that represents the request that initiated the download.
     function OriginalRequest: NSURLRequest;
+    // An object you use to track download progress and handle redirects, authentication challenges, and failures.
     procedure SetDelegate(downloadDelegate: TWKDownloadDelegate);
+    // Cancels the download, and optionally captures data so that you can resume the download later.
     procedure Cancel ();
+    // An object that conveys ongoing progress to the user for a specified task.
+    // https://developer.apple.com/documentation/foundation/nsprogress?language=objc
     function Progress: NSProgress;
   end;
 

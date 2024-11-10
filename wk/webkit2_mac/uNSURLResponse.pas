@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
+  // https://developer.apple.com/documentation/foundation/nsurlresponse?language=objc
   TNSURLResponse = class
   private
     FData: NSURLResponse;
@@ -24,26 +25,41 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an TNSURLResponse object.
     class function New(): TNSURLResponse;
+    // Creates an initialized NSURLResponse object with the URL, MIME type, length, and text encoding set to given values.
     function InitWithURLMIMETypeExpectedContentLengthTextEncodingName (URL: NSURL; MIMEType: string; length: Integer; name: String): TNSURLResponse;
+    // The URL for the response.
     function URL: NSURL;
+    // The MIME type of the response.
     function MIMEType: string;
+    // The expected length of the response’s content.
     function ExpectedContentLength: int64;
+    // The name of the text encoding provided by the response’s originating source.
     function TextEncodingName: string;
+    // A suggested filename for the response data.
     function SuggestedFilename: string;
   end;
 
+  // The metadata associated with the response to an HTTP protocol URL load request.
+  // https://developer.apple.com/documentation/foundation/nshttpurlresponse?language=objc
   TNSHTTPURLResponse = class(TNSURLResponse)
   public
     constructor Create(AData: NSHTTPURLResponse);
     destructor Destroy; override;
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an TNSHTTPURLResponse object.
     class function New(): TNSHTTPURLResponse;
+    // Initializes an HTTP URL response object with a status code, protocol version, and response headers.
     function InitWithURLStatusCodeHTTPVersionHeaderFields (url_: NSURL; statusCode: Integer; HTTPVersion: string; headerFieldsJSONString: string): TNSHTTPURLResponse;
+    // The response’s HTTP status code.
     function StatusCode: Integer;
+    // All HTTP header fields of the response.
     function AllHeaderFields: string;
-     // statusCode: https://www.ietf.org/rfc/rfc2616.txt
+    // Returns a localized string corresponding to a specified HTTP status code.
+    // statusCode: https://www.ietf.org/rfc/rfc2616.txt
     class function LocalizedStringForStatusCode (statusCode_: Integer): string;
   end;
 

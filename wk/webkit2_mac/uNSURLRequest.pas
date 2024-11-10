@@ -11,7 +11,8 @@ uses
 
 type
 
-
+  // A URL load request that is independent of protocol or URL scheme.
+  // https://developer.apple.com/documentation/foundation/nsurlrequest?language=objc
   TNSURLRequest = class
   protected
     FData: NSURLRequest;
@@ -23,31 +24,52 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an NSURLRequest object.
     class function New(): TNSURLRequest;
+    // Creates and returns a URL request for a specified URL.
     class function RequestWithURL(URL: NSURL): TNSURLRequest;
+    // A Boolean value indicating whether the NSURLRequest implements the NSSecureCoding protocol.
     class function SupportsSecureCoding: LongBool;
+    // Creates and returns an initialized URL request with specified URL, cache policy, and timeout values.
     class function RequestWithURLCachePolicyTimeoutInterval (URL: NSURL; cachePolicy: NSURLRequestCachePolicy; timeoutInterval: NSTimeInterval): TNSURLRequest;
+    // The URL being requested.
     function URL: NSURL;
+    // The request’s cache policy.
     function CachePolicy: NSURLRequestCachePolicy;
+    // The request’s timeout interval, in seconds.
     function TimeoutInterval: double;
+    // The main document URL associated with the request.
     function MainDocumentURL: NSURL;
+    // The network service type of the request.
     function NetworkServiceType: NSURLRequestNetworkServiceType;
+    // A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
     function AllowsCellularAccess: LongBool;
+    // The HTTP request method.
     function HTTPMethod: string;
+    // A dictionary containing all of the HTTP header fields for a request. JSON string.
     function AllHTTPHeaderFields: string;
+    // Returns the value of the specified HTTP header field.
     function ValueForHTTPHeaderField (aField: string): string;
   end;
 
+  // A mutable URL load request that is independent of protocol or URL scheme.
+  // https://developer.apple.com/documentation/foundation/nsmutableurlrequest?language=objc
   TNSMutableURLRequest = class(TNSURLRequest)
   public
     constructor Create(AData: NSMutableURLRequest);
     destructor Destroy; override;
+    // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an NSMutableURLRequest object.
     class function New(): TNSMutableURLRequest;
+    // The HTTP request method.
     procedure SetHTTPMethod(aMethod: string);
+    // A dictionary containing all of the HTTP header fields for a request.
     procedure SetAllHTTPHeaderFields(headerFieldsJSONString: string);
+    // Sets a value for the header field.
     procedure SetValueForHTTPHeaderField (aValue: string; aField: string);
+    // Adds a value to the header field.
     procedure AddValueForHTTPHeaderField (aValue: string; aField: string);
   end;
 

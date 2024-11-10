@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // An authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
+  // https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc
   TNSURLCredential = class
   private
     FData: NSURLCredential;
@@ -24,6 +25,7 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // The credential’s persistence setting.
     function Persistence: NSURLCredentialPersistence;
   end;
 

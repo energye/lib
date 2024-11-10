@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // An object that contains information about a frame on a webpage.
+  // https://developer.apple.com/documentation/webkit/wkframeinfo?language=objc
   TWKFrameInfo = class
   private
     FData: WKFrameInfo;
@@ -24,7 +25,9 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // A Boolean value indicating whether the frame is the web site's main frame or a subframe.
     function IsMainFrame: Boolean;
+    // The frame’s current request.
     function Request: NSURLRequest;
   end;
 

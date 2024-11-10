@@ -12,7 +12,9 @@ uses
 
 type
 
-
+  // A challenge from a server requiring authentication from the client.
+  // https://developer.apple.com/documentation/foundation/nsurlauthenticationchallenge?language=objc
+  // No Impl
   TNSURLAuthenticationChallenge = class
   private
     FData: NSURLAuthenticationChallenge;
@@ -21,6 +23,7 @@ type
     destructor Destroy; override;
     // Returns the object implemented by this class.
     function Data(): NSURLAuthenticationChallenge;
+    // Freeing the class and the objects it implements.
     procedure Release();
   end;
 

@@ -11,7 +11,8 @@ uses
 
 type
 
-
+  // An object that tracks the loading progress of a webpage.
+  // https://developer.apple.com/documentation/webkit/wknavigation?language=objc
   TWKNavigation = class
   private
     FData: WKNavigation;
@@ -23,6 +24,7 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // The content mode WebKit uses to load the webpage.
     function EffectiveContentMode: WKContentMode;
   end;
 
