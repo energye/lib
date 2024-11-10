@@ -202,17 +202,27 @@ type
     // Asks your handler to stop loading the data for the specified resource.
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
     // WKUIDelegateProtocol
+    // Creates a new web view.
     property OnCreateWebView: TWKCreateWebView read FOnCreateWebView write FOnCreateWebView;
+    // Displays a JavaScript alert panel.
     property OnRunJavaScriptAlert: TWKRunJavaScriptAlert read FOnRunJavaScriptAlert write FOnRunJavaScriptAlert;
+    // Displays a JavaScript confirm panel.
     property OnRunJavaScriptConfirmCompletion: TWKRunJavaScriptConfirmCompletion read FOnRunJavaScriptConfirmCompletion write FOnRunJavaScriptConfirmCompletion;
+    // Displays a JavaScript text input panel.
     property OnRunJavaScriptTextInputCompletion: TWKRunJavaScriptTextInputCompletion read FOnRunJavaScriptTextInputCompletion write FOnRunJavaScriptTextInputCompletion;
+    // Notifies your app that the DOM window closed successfully.
     property OnWebViewDidClose: TWKWebViewDidClose read FOnWebViewDidClose write FOnWebViewDidClose;
     // WKDownload
     property OnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler read FOnDownloadCancelCompletionHandler write FOnDownloadCancelCompletionHandler;
+    // Asks the delegate to provide a file destination where the system should write the download data.
     property OnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename read FOnDownloadDecideDestinationUsingResponseSuggestedFilename write FOnDownloadDecideDestinationUsingResponseSuggestedFilename;
+    // Asks the delegate to respond to the download’s redirect response.
     property OnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest read FOnDownloadWillPerformHTTPRedirectionNewRequest write FOnDownloadWillPerformHTTPRedirectionNewRequest;
+    // Asks the delegate to respond to an authentication challenge.
     //property OnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge read FOnDownloadReceiveAuthenticationChallenge write FOnDownloadReceiveAuthenticationChallenge;
+    // Tells the delegate that the download finished.
     property OnDownloadFinish: TWKDownloadFinish read FOnDownloadFinish write FOnDownloadFinish;
+    // Tells the delegate that the download failed, with error information and data you can use to restart the download.
     property OnDownloadFailWithError: TWKDownloadFailWithError read FOnDownloadFailWithError write FOnDownloadFailWithError;
   end;
 

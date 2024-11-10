@@ -16,10 +16,15 @@ type
   private
     FData: Pointer;
   public
+    // Asks the delegate to provide a file destination where the system should write the download data.
     procedure download_decideDestinationUsingResponse_suggestedFilename_completionHandler (download: WKDownload; response: NSURLResponse; suggestedFilename: NSString; completionHandler: WKDownloadDecideDestinationUsingResponseSuggestedFilename);
+    // Asks the delegate to respond to the download’s redirect response.
     procedure download_willPerformHTTPRedirection_newRequest_decisionHandler (download: WKDownload; response: NSHTTPURLResponse; request: NSURLRequest; decisionHandler: WKDownloadWillPerformHTTPRedirectionNewRequest);
+    // Asks the delegate to respond to an authentication challenge.
     //procedure download_didReceiveAuthenticationChallenge_completionHandler (download: WKDownload; challenge: NSURLAuthenticationChallenge; completionHandler: WKReceiveAuthenticationChallenge);
+    // Tells the delegate that the download finished.
     procedure downloadDidFinish (download: WKDownload);
+    // Tells the delegate that the download failed, with error information and data you can use to restart the download.
     procedure download_didFailWithError_resumeData (download: WKDownload; error: NSError; resumeData: NSData);
   end;
 
