@@ -12,44 +12,43 @@ uses
   uWebKit, uWkInterface;
 
 type
-  // 接受或拒绝导航更改以及跟踪导航请求进度的方法。
-  // 在用于协调web视图主框架中的更改的对象中实现WKNavigationDelegate协议的方法。
-  // 当用户尝试浏览web内容时，web视图与其导航代理协调以管理任何转换。
-  // 例如，您可以使用这些方法来限制内容中特定链接的导航。
-  // 您还可以使用它们来跟踪请求的进度，并对错误和身份验证挑战做出响应。
   NSWKNavigationDelegate = objcclass(NSViewController, WKNavigationDelegateProtocol)
   private
     FData: Pointer;
   public
-    // 请求代理人根据指定的操作信息导航到新内容的权限。
-    //procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction;
-    //  decisionHandler: WKDecidePolicyNavigationAction);
-    // 根据指定的首选项和操作信息，请求代表允许导航到新内容。
-    // 使用此方法允许或拒绝由指定操作发起的导航请求。
-    // web视图在交互发生后但在尝试加载任何内容之前调用此方法。
-    // 如果实现此方法，请始终在某个时候执行decisionHandler块。
-    // 您可以从委托方法的实现中同步执行它，也可以在方法返回后异步执行它。
-    // 如果您的委托对象实现了此方法，则web视图不会调用webView:decidePolicyForNavigationAction:decisionHandler:方法。
-    procedure webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction;
-      preferences: WKWebpagePreferences; decisionHandler: WKDecidePolicyNavigationActionPreferences);
-    // 在web视图收到对其原始URL请求的响应后，使用此方法允许或拒绝导航请求。
-    // navigationResponse参数包含响应的详细信息，包括响应包含的数据类型。
-    // 如果实现此方法，请始终在某个时候执行decisionHandler块。
-    // 您可以从委托方法的实现中同步执行它，也可以在方法返回后异步执行它。
-    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse;
-      decisionHandler: WKDecidePolicyNavigationResponse);
+    // Asks the delegate for permission to navigate to new content based on the specified action information.
+    // procedure webView_decidePolicyForNavigationAction_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; decisionHandler: WKDecidePolicyNavigationAction);
+
+    // Asks the delegate for permission to navigate to new content based on the specified preferences and action information.
+    // Use this method to allow or deny a navigation request that originated with the specified action.
+    // The web view calls this method after the interaction occurs but before it attempts to load any content.
+    procedure webView_decidePolicyForNavigationAction_preferences_decisionHandler (webView: WKWebView; navigationAction: WKNavigationAction; preferences: WKWebpagePreferences; decisionHandler: WKDecidePolicyNavigationActionPreferences);
+    // Asks the delegate for permission to navigate to new content after the response to the navigation request is known.
+    // Use this method to allow or deny a navigation request after the web view receives the response to its original URL request.
+    // The navigationResponse parameter contains the details of the response, including the type of data that the response contains.
+    procedure webView_decidePolicyForNavigationResponse_decisionHandler (webView: WKWebView; navigationResponse: WKNavigationResponse; decisionHandler: WKDecidePolicyNavigationResponse);
+    // Tells the delegate that navigation from the main frame has started.
+    // The web view calls this method after it receives provisional approval to process a navigation request, but before it receives a response to that request.
     procedure webView_didStartProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    // Tells the delegate that the web view received a server redirect for a request.
     procedure webView_didReceiveServerRedirectForProvisionalNavigation (webView: WKWebView; navigation: WKNavigation);
+    // Tells the delegate that an error occurred during the early navigation process.
     procedure webView_didFailProvisionalNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    // Tells the delegate that the web view has started to receive content for the main frame.
     procedure webView_didCommitNavigation (webView: WKWebView; navigation: WKNavigation);
+    // Tells the delegate that navigation is complete.
     procedure webView_didFinishNavigation (webView: WKWebView; navigation: WKNavigation);
+    // Tells the delegate that an error occurred during navigation.
     procedure webView_didFailNavigation_withError (webView: WKWebView; navigation: WKNavigation; error: NSError);
+    // Asks the delegate to respond to an authentication challenge.
     //procedure webView_didReceiveAuthenticationChallenge_completionHandler (webView: WKWebView; challenge: NSURLAuthenticationChallenge; completionHandler: WKReceiveAuthenticationChallenge);
+    // Tells the delegate that the web view’s content process was terminated.
     procedure webViewWebContentProcessDidTerminate (webView: WKWebView);
+    // Asks the delegate whether to continue with a connection that uses a deprecated version of TLS.
     //procedure webView_authenticationChallenge_shouldAllowDeprecatedTLS (webView: WKWebView; challenge: NSURLAuthenticationChallenge; decisionHandler: WKAuthenticationChallenge);
-    // 告知代理导航操作已变为下载。实施此方法以开始跟踪下载进度。
+    // Tells the delegate that a navigation action became a download.
     procedure webView_navigationAction_didBecomeDownload (webView: WKWebView; navigationAction: WKNavigationAction; download: WKDownload);
-    // 告知代理导航响应已变为下载。实施此方法以开始跟踪下载进度。
+    // Tells the delegate that a navigation response became a download.
     procedure webView_navigationResponse_didBecomeDownload (webView: WKWebView; navigationResponse: WKNavigationResponse; download: WKDownload);
   end;
 

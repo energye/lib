@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // A script that the web view injects into a webpage.
+  // https://developer.apple.com/documentation/webkit/wkuserscript?language=objc
   TWKUserScript = class
   private
     FData: WKUserScript;
@@ -24,10 +25,15 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an WKUserScript object.
     class function New(): TWKUserScript;
+    // The script’s source code.
     function Source: string;
+    // The time at which to inject the script into the webpage.
     function InjectionTime: int64;
+    // A Boolean value that indicates whether to inject the script into the main frame or all frames.
     function IsForMainFrameOnly: LongBool;
+    // Creates a user script object that contains the specified source code and attributes.
     class function InitWithSourceInjectionTimeForMainFrameOnly(ASource: string; AInjectionTime: int64; AForMainFrameOnly: LongBool): TWKUserScript;
   end;
 

@@ -11,6 +11,8 @@ uses
 
 type
 
+  // A collection of properties that you use to initialize a web view.
+  // https://developer.apple.com/documentation/webkit/wkwebviewconfiguration?language=objc
   TWKWebViewConfiguration = class
   private
     FData: WKWebViewConfiguration;
@@ -22,17 +24,26 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an NSMutableURLRequest object.
     class function New(): TWKWebViewConfiguration;
+    // Sets The object that manages the preference-related settings for the web view.
     procedure SetPreferences(preferences: WKPreferences);
+    // Returns The object that manages the preference-related settings for the web view.
     function Preferences: WKPreferences;
+    // Sets The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
     procedure SetUserContentController(userContentController: WKUserContentController);
+    // Returns The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
     function UserContentController: WKUserContentController;
+    // Sets A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
     procedure SetSuppressesIncrementalRendering(newValue: LongBool);
+    // Returns A Boolean value that indicates whether the web view suppresses content rendering until the content is fully loaded into memory.
     function SuppressesIncrementalRendering: LongBool;
-    function ApplicationNameForUserAgent: string;
+    // Sets The app name that appears in the user agent string.
     procedure SetApplicationNameForUserAgent(newValue: string);
+    // Returns The app name that appears in the user agent string.
+    function ApplicationNameForUserAgent: string;
+    // Sets Registers an object to load resources associated with the specified URL scheme.
     procedure SetURLSchemeHandlerForURLScheme(urlSchemeHandler: WKURLSchemeHandler; urlScheme: string);
-
   end;
 
 

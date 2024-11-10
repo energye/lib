@@ -12,7 +12,8 @@ uses
 
 type
 
-
+  // Display-related attributes that a webpage requests for its window.
+  // https://developer.apple.com/documentation/webkit/wkwindowfeatures?language=objc
   TWKWindowFeatures = class
   private
     FData: WKWindowFeatures;
@@ -24,13 +25,21 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // A Boolean value that indicates whether the webpage requests a visible menu bar.
     function MenuBarVisibility: Boolean;
+    // A Boolean value that indicates whether the webpage requested a visible status bar.
     function StatusBarVisibility: Boolean;
+    // A Boolean value that indicates whether the webpage requested a visible toolbar.
     function ToolbarsVisibility: Boolean;
+    // A Boolean value that indicates whether to make the containing window window resizable.
     function AllowsResizing: Boolean;
+    // The requested x-coordinate of the containing window.
     function X: Integer;
+    // The requested y-coordinate of the containing window.
     function Y: Integer;
+    // The requested width of the containing window.
     function Width: Integer;
+    // The requested height of the containing window.
     function Height: Integer;
   end;
 

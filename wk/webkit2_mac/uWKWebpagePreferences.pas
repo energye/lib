@@ -12,6 +12,8 @@ uses
 type
 
 
+  // An object that specifies the behaviors to use when loading and rendering page content.
+  // https://developer.apple.com/documentation/webkit/wkwebpagepreferences?language=objc
   TWKWebpagePreferences = class
   private
     FData: WKWebpagePreferences;
@@ -23,10 +25,15 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Creates and returns an WKUserScript object.
     class function New(): TWKWebpagePreferences;
+    // Sets The content mode for the web view to use when it loads and renders a webpage.
     procedure SetPreferredContentMode(aValue: WKContentMode);
+    // Returns The content mode for the web view to use when it loads and renders a webpage.
     function PreferredContentMode: WKContentMode;
+    // Sets A Boolean value that indicates whether JavaScript from web content is allowed to run.
     procedure SetAllowsContentJavaScript(aValue: LongBool);
+    // Returns A Boolean value that indicates whether JavaScript from web content is allowed to run.
     function AllowsContentJavaScript: LongBool;
   end;
 

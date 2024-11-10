@@ -368,14 +368,6 @@ begin
 end;
 
 //property event
-procedure WkWebview_SetOnNavigationActionDidBecomeDownload(AObj: TWkWebview; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WkWebview_OnNavigationActionDidBecomeDownload}
-  {$DEFINE EventName := OnNavigationActionDidBecomeDownload}
-  WKEventMethodCode
-end;
-
-//property event
 procedure WkWebview_SetOnNavigationResponseDidBecomeDownload(AObj: TWkWebview; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := WkWebview_OnNavigationResponseDidBecomeDownload}
@@ -527,7 +519,6 @@ exports
   WkWebview_SetOnFinishNavigation,
   WkWebview_SetOnFailNavigationWithError,
   WkWebview_SetOnWebContentProcessDidTerminate,
-  WkWebview_SetOnNavigationActionDidBecomeDownload,
   WkWebview_SetOnNavigationResponseDidBecomeDownload,
   WkWebview_SetOnStartURLSchemeTask,
   WkWebview_SetOnStopURLSchemeTask,

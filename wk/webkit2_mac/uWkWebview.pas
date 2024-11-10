@@ -57,41 +57,75 @@ type
     // Freeing the class and the objects it implements.
     procedure Release();
   public
+    // Loads the contents of the specified HTML string and navigates to it.
     procedure LoadHTML(AHtml, ABaseURL: string);
+    // Load the specified url
     procedure LoadURL(AURL: string);
+    // The object that contains the configuration details for the web view.
     function Configuration: WKWebViewConfiguration;
+    // Loads the web content that the specified URL request object references and navigates to that content.
     function LoadRequest (request: NSURLRequest): WKNavigation;
+    // The object you use to manage navigation behavior for the web view.
     procedure SetNavigationDelegate(navigationDelegate: WKNavigationDelegate);
+    // The object you use to integrate custom user interface elements, such as contextual menus or panels, into web view interactions.
     procedure SetUIDelegate(uiDelegate: WKUIDelegate);
+    // Creates a web view and initializes it with the specified frame and configuration data.
     procedure InitWithFrameConfiguration (AFrame: TRect; AConfiguration: WKWebViewConfiguration);
+    // The page title
     function Title: string;
+    // The URL for the current webpage.
     function URL: NSURL;
+    // A Boolean value that indicates whether the view is currently loading content.
     function IsLoading: LongBool;
-    // 根据接收到的总字节数，此值的范围为0.0到1.0，包括主文档及其所有潜在的子资源。
-    // 导航加载完成后，估计进度值保持在1.0，直到新的导航开始，此时估计进度值重置为0.0。
-    // WKWebView类符合此属性的键值观察（KVO）标准。
+    // This value ranges from 0.0 to 1.0 based on the total number of bytes received,
+    // including the main document and all of its potential subresources.
+    // After navigation loading completes, the estimatedProgress value remains at 1.0 until a new navigation starts,
+    // at which point the estimatedProgress value resets to 0.0. The WKWebView class
+    // is key-value observing (KVO) compliant for this property.
     function EstimatedProgress: double;
+    // A Boolean value that indicates whether the web view loaded all resources on the page through securely encrypted connections.
     function HasOnlySecureContent: LongBool;
+    // A Boolean value that indicates whether there is a valid back item in the back-forward list.
     function CanGoBack: LongBool;
+    // A Boolean value that indicates whether there is a valid forward item in the back-forward list.
     function CanGoForward: LongBool;
+    // Navigates to the back item in the back-forward list.
     function GoBack: WKNavigation;
+    // Navigates to the forward item in the back-forward list.
     function GoForward: WKNavigation;
+    // Reloads the current webpage.
     function Reload: WKNavigation;
+    // Reloads the current webpage, and performs end-to-end revalidation of the content using cache-validating conditionals, if possible.
     function ReloadFromOrigin: WKNavigation;
+    // Stops loading all resources on the current page.
     procedure StopLoading;
+    // Evaluates the specified JavaScript string.
     procedure EvaluateJavaScript(javaScriptString: string);
+    // Sets A Boolean value that indicates whether horizontal swipe gestures trigger backward and forward page navigation.
     procedure SetAllowsBackForwardNavigationGestures(newValue: LongBool);
+    // Returns A Boolean value that indicates whether horizontal swipe gestures trigger backward and forward page navigation.
     function AllowsBackForwardNavigationGestures: LongBool;
+    // Sets A Boolean value that indicates whether magnify gestures change the web view’s magnification.
     procedure SetAllowsMagnification(newValue: LongBool);
+    // Returns A Boolean value that indicates whether magnify gestures change the web view’s magnification.
     function AllowsMagnification: LongBool;
+    // Sets The factor by which the page content is currently scaled.
     procedure SetMagnification(newValue: double);
+    // Returns The factor by which the page content is currently scaled.
     function Magnification: double;
+    // Scales the page content and centers the result on the specified point.
     procedure SetMagnificationCenteredAtPoint (magnification_: double; point: TPoint);
+    // Called when closing the window properly closes the webview
     procedure RemoveFromSuperview();
+    // Must display conversion to interface type
     function AsReceiveScriptMessageDelegate(): IReceiveScriptMessageDelegateEvent;
+    // Must display conversion to interface type
     function AsWKNavigationDelegate(): IWKNavigationDelegateEvent;
+    // Must display conversion to interface type
     function AsWKURLSchemeHandlerDelegate(): IWKURLSchemeHandlerDelegateEvent;
+    // Must display conversion to interface type
     function AsWKUIDelegate(): IWKUIDelegateEvent;
+    // Must display conversion to interface type
     function AsWKDownloadDelegate(): IWKDownloadDelegateEvent;
   protected
     // WKScriptMessageHandlerProtocol
@@ -128,23 +162,44 @@ type
     procedure doDownloadFailWithError(download: WKDownload; error: NSError; resumeData: NSData);
   published
     // WKScriptMessageHandlerProtocol
+    // Tells the handler that a webpage sent a script message.
     property OnProcessMessage: TWkProcessMessageEvent read FOnProcessMessage write FOnProcessMessage;
     // WKNavigationDelegateProtocol
+    // Asks the delegate for permission to navigate to new content based on the specified preferences and action information.
+    // Use this method to allow or deny a navigation request that originated with the specified action.
+    // The web view calls this method after the interaction occurs but before it attempts to load any content.
     property OnDecidePolicyForNavigationActionPreferences: TWKDecidePolicyForNavigationActionPreferences read FOnDecidePolicyForNavigationActionPreferences write FOnDecidePolicyForNavigationActionPreferences;
+    // Asks the delegate for permission to navigate to new content after the response to the navigation request is known.
+    // Use this method to allow or deny a navigation request after the web view receives the response to its original URL request.
+    // The navigationResponse parameter contains the details of the response, including the type of data that the response contains.
     property OnDecidePolicyForNavigationResponse: TWKDecidePolicyForNavigationResponse read FOnDecidePolicyForNavigationResponse write FOnDecidePolicyForNavigationResponse;
+    // Tells the delegate that navigation from the main frame has started.
+    // The web view calls this method after it receives provisional approval to process a navigation request, but before it receives a response to that request.
     property OnStartProvisionalNavigation: TWkStartProvisionalNavigation read FOnStartProvisionalNavigation write FOnStartProvisionalNavigation;
+    // Tells the delegate that the web view received a server redirect for a request.
     property OnReceiveServerRedirectForProvisionalNavigation: TWkReceiveServerRedirectForProvisionalNavigation read FOnReceiveServerRedirectForProvisionalNavigation write FOnReceiveServerRedirectForProvisionalNavigation;
+    // Tells the delegate that an error occurred during the early navigation process.
     property OnFailProvisionalNavigationWithError: TWkFailProvisionalNavigationWithError read FOnFailProvisionalNavigationWithError write FOnFailProvisionalNavigationWithError;
+    // Tells the delegate that the web view has started to receive content for the main frame.
     property OnCommitNavigation: TWkCommitNavigation read FOnCommitNavigation write FOnCommitNavigation;
+    // Tells the delegate that navigation is complete.
     property OnFinishNavigation: TWkFinishNavigation read FOnFinishNavigation write FOnFinishNavigation;
+    // Tells the delegate that an error occurred during navigation.
     property OnFailNavigationWithError: TWkFailNavigationWithError read FOnFailNavigationWithError write FOnFailNavigationWithError;
+    // Asks the delegate to respond to an authentication challenge.
     //property OnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge read FOnReceiveAuthenticationChallenge write FOnReceiveAuthenticationChallenge;
+    // Tells the delegate that the web view’s content process was terminated.
     property OnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate read FOnWebContentProcessDidTerminate write FOnWebContentProcessDidTerminate;
+    // Asks the delegate whether to continue with a connection that uses a deprecated version of TLS.
     //property OnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS read FOnAuthenticationChallengeShouldAllowDeprecatedTLS write FOnAuthenticationChallengeShouldAllowDeprecatedTLS;
+    Tells the delegate that a navigation action became a download.
     property OnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload read FOnNavigationActionDidBecomeDownload write FOnNavigationActionDidBecomeDownload;
+    // Tells the delegate that a navigation response became a download.
     property OnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload read FOnNavigationResponseDidBecomeDownload write FOnNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
+    // Asks your handler to begin loading the data for the specified resource.
     property OnStartURLSchemeTask: TWKStartURLSchemeTask read FOnStartURLSchemeTask write FOnStartURLSchemeTask;
+    // Asks your handler to stop loading the data for the specified resource.
     property OnStopURLSchemeTask: TWKStopURLSchemeTask read FOnStopURLSchemeTask write FOnStopURLSchemeTask;
     // WKUIDelegateProtocol
     property OnCreateWebView: TWKCreateWebView read FOnCreateWebView write FOnCreateWebView;
