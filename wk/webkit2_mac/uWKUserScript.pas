@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKUserScript);
     destructor Destroy; override;
     function Data(): WKUserScript;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKUserScript;

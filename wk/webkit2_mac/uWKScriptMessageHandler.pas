@@ -25,6 +25,7 @@ type
     constructor Create(event: IReceiveScriptMessageDelegateEvent);
     destructor Destroy; override;
     function Data(): WKScriptMessageHandlerProtocol;
+    // Release the current object and Data pointer
     procedure Release();
   end;
 

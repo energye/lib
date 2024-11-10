@@ -31,9 +31,7 @@ type
     FOnCommitNavigation: TWkCommitNavigation;
     FOnFinishNavigation: TWkFinishNavigation;
     FOnFailNavigationWithError: TWkFailNavigationWithError;
-    //FOnReceiveAuthenticationChallenge: TWkReceiveAuthenticationChallenge;
     FOnWebContentProcessDidTerminate: TWkWebContentProcessDidTerminate;
-    //FOnAuthenticationChallengeShouldAllowDeprecatedTLS: TWkAuthenticationChallengeShouldAllowDeprecatedTLS;
     FOnNavigationActionDidBecomeDownload: TWkNavigationActionDidBecomeDownload;
     FOnNavigationResponseDidBecomeDownload: TWkNavigationResponseDidBecomeDownload;
     // WKURLSchemeHandlerProtocol
@@ -49,13 +47,13 @@ type
     FOnDownloadCancelCompletionHandler: TWKDownloadCancelCompletionHandler;
     FOnDownloadDecideDestinationUsingResponseSuggestedFilename: TWKDownloadDecideDestinationUsingResponseSuggestedFilename;
     FOnDownloadWillPerformHTTPRedirectionNewRequest: TWKDownloadWillPerformHTTPRedirectionNewRequest;
-    //FOnDownloadReceiveAuthenticationChallenge: TWKDownloadReceiveAuthenticationChallenge;
     FOnDownloadFinish: TWKDownloadFinish;
     FOnDownloadFailWithError: TWKDownloadFailWithError;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function Data(): WkWebview;
+    // Release the current object and Data pointer
     procedure Release();
   public
     procedure LoadHTML(AHtml, ABaseURL: string);

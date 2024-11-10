@@ -21,6 +21,7 @@ type
     constructor Create(AData: NSURLAuthenticationChallenge);
     destructor Destroy; override;
     function Data(): NSURLAuthenticationChallenge;
+    // Release the current object and Data pointer
     procedure Release();
   end;
 

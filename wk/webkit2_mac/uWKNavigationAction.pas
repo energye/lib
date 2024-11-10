@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKNavigationAction);
     destructor Destroy; override;
     function Data(): WKNavigationAction;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function SourceFrame: WKFrameInfo;

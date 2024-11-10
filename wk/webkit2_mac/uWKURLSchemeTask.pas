@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKURLSchemeTask);
     destructor Destroy; override;
     function Data(): WKURLSchemeTask;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function Request(): NSURLRequest;

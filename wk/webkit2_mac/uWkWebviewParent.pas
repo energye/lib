@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, Controls, ExtCtrls, Graphics,
-  CocoaAll, uWkInterface, uWebKit;
+  CocoaAll, uWebKit;
 
 type
 
@@ -19,9 +19,10 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   public
-    procedure UpdateBounds();
     procedure Resize(); override;
     procedure SetWebview(AWebview: WkWebview);
+  published
+    property OnResize;
   end;
 
 implementation
@@ -41,10 +42,11 @@ begin
   inherited Destroy;
 end;
 
-procedure TWkWebviewParent.UpdateBounds;
+procedure TWkWebviewParent.Resize;
 var
   LR: NSRect;
 begin
+  inherited Resize;
   if Assigned(FWebview) then
   begin
     LR.origin.x := 0;
@@ -53,12 +55,6 @@ begin
     LR.size.Height := Height;
     FWebview.setFrame(LR);
   end;
-end;
-
-procedure TWkWebviewParent.Resize;
-begin
-  inherited Resize;
-  UpdateBounds;
 end;
 
 procedure TWkWebviewParent.SetWebview(AWebview: WkWebview);

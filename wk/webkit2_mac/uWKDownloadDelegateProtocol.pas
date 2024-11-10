@@ -30,6 +30,7 @@ type
     constructor Create(event: IWKDownloadDelegateEvent);
     destructor Destroy; override;
     function Data(): WKDownloadDelegateProtocol;
+    // Release the current object and Data pointer
     procedure Release();
   end;
 

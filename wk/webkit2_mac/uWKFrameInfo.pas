@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKFrameInfo);
     destructor Destroy; override;
     function Data(): WKFrameInfo;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function IsMainFrame: Boolean;

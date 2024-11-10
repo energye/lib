@@ -357,7 +357,7 @@
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
         <TopLine Value="42"/>
-        <CursorPos X="25" Y="42"/>
+        <CursorPos X="17" Y="49"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -1087,7 +1087,7 @@
       <Unit112>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="85" Y="13"/>
+        <CursorPos Y="17"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit112>
@@ -1231,12 +1231,10 @@
       </Unit133>
       <Unit134>
         <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="15" Y="33"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit134>
       <Unit135>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
@@ -1261,11 +1259,10 @@
       </Unit137>
       <Unit138>
         <Filename Value="wk\webkit2_mac\uNSURLCredential.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos Y="45"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit138>
       <Unit139>
         <Filename Value="wk\webkit2_mac\uWKNavigation.pas"/>
@@ -1311,9 +1308,11 @@
       </Unit145>
       <Unit146>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="34"/>
+        <CursorPos X="22" Y="53"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit146>
       <Unit147>
         <Filename Value="UnitsWV2.inc"/>
@@ -1375,10 +1374,11 @@
       </Unit155>
       <Unit156>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="81" Y="27"/>
-        <UsageCount Value="9"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="23" Y="13"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit156>
       <Unit157>
         <Filename Value="uString.pas"/>
@@ -1427,13 +1427,12 @@
       </Unit163>
       <Unit164>
         <Filename Value="wk\webkit2_mac\uNSProgress.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="15" Y="22"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit164>
     </Units>
-    <JumpHistory Count="16" HistoryIndex="15">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <Caret Line="9" Column="59"/>
@@ -1471,33 +1470,25 @@
         <Caret Line="12" Column="8"/>
       </Position9>
       <Position10>
-        <Filename Value="wk\webkit2_mac\uNSURLCredential.pas"/>
-        <Caret Line="45" TopLine="27"/>
+        <Filename Value="UnitsWK2MacOS.inc"/>
+        <Caret Line="12" Column="85"/>
       </Position10>
       <Position11>
         <Filename Value="UnitsWK2MacOS.inc"/>
-        <Caret Line="12" Column="85"/>
+        <Caret Line="13" Column="27"/>
       </Position11>
       <Position12>
         <Filename Value="UnitsWK2MacOS.inc"/>
-        <Caret Line="13" Column="27"/>
+        <Caret Line="13" Column="85"/>
       </Position12>
       <Position13>
         <Filename Value="UnitsWK2MacOS.inc"/>
-        <Caret Line="13" Column="85"/>
+        <Caret Line="17"/>
       </Position13>
       <Position14>
-        <Filename Value="wk\webkit2_mac\uNSProgress.pas"/>
-        <Caret Line="68" TopLine="38"/>
+        <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
+        <Caret Line="53" Column="22" TopLine="34"/>
       </Position14>
-      <Position15>
-        <Filename Value="wk\webkit2_mac\uNSProgress.pas"/>
-        <Caret Line="22" Column="15"/>
-      </Position15>
-      <Position16>
-        <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
-        <Caret Line="106" TopLine="80"/>
-      </Position16>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKNavigationResponse);
     destructor Destroy; override;
     function Data(): WKNavigationResponse;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKNavigationResponse;

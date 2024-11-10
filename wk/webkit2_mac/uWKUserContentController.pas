@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKUserContentController);
     destructor Destroy; override;
     function Data(): WKUserContentController;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKUserContentController;

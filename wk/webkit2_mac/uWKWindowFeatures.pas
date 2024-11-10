@@ -20,6 +20,7 @@ type
     constructor Create(AData: WKWindowFeatures);
     destructor Destroy; override;
     function Data(): WKWindowFeatures;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function MenuBarVisibility: Boolean;

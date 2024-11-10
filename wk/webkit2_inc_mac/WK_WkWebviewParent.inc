@@ -11,7 +11,6 @@ end;
 procedure WkWebviewParent_UpdateBounds(AObj: TWkWebviewParent); extdecl;
 begin
   handleExceptionBegin
-  AObj.UpdateBounds();
   handleExceptionEnd
 end;
 

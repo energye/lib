@@ -19,6 +19,7 @@ type
     constructor Create(AData: WKPreferences);
     destructor Destroy; override;
     function Data(): WKPreferences;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKPreferences;

@@ -20,6 +20,7 @@ type
     constructor Create(AData: NSURLCredential);
     destructor Destroy; override;
     function Data(): NSURLCredential;
+    // Release the current object and Data pointer
     procedure Release();
   public
     function Persistence: NSURLCredentialPersistence;

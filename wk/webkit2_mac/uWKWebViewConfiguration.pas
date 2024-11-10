@@ -18,6 +18,7 @@ type
     constructor Create(AData: WKWebViewConfiguration);
     destructor Destroy; override;
     function Data(): WKWebViewConfiguration;
+    // Release the current object and Data pointer
     procedure Release();
   public
     class function New(): TWKWebViewConfiguration;
