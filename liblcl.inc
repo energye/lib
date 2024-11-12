@@ -81,8 +81,14 @@
 {$ENDIF}
 
 {$IFDEF LCLGTK3}
-{$IFDEF WK2}  // Linux
+{$IFDEF WK2}  // Linux GTK3
   {$DEFINE UseLinuxWebkit2}
+{$ENDIF}
+{$ENDIF}
+
+{$IFDEF LCLGTK2}
+{$IFDEF WK}  // Linux GTK2
+  {$DEFINE UseLinuxWebkit}
 {$ENDIF}
 {$ENDIF}
 // ==== Build end ==== //

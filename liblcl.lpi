@@ -133,7 +133,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="3rd-party\WebView4Delphi\source;wv\webview2"/>
+      <OtherUnitFiles Value="3rd-party\WebView4Delphi\source"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

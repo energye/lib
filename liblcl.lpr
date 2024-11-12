@@ -76,8 +76,8 @@ uses
 {$ENDIF}
 
 // Webkit Linux GTK2
-{$IFDEF LCLGTK2}
-
+{$IFDEF UseLinuxWebkit}
+//,{$I UnitsWKLinux.inc}
 {$ENDIF}
 ;
 
@@ -115,6 +115,11 @@ uses
 // Webkit2 Linux GTK3
 {$IFDEF UseLinuxWebkit2}
 {$I ImportWK2Linux.inc}
+{$ENDIF}
+
+// Webkit2 Linux GTK3
+{$IFDEF UseLinuxWebkit}
+//{$I ImportWKLinux.inc}
 {$ENDIF}
 
 begin

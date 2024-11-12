@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="14" Active="MacOS64 WK2">
+    <BuildModes Count="18" Active="Linux64 GTK2 WK">
       <Item1 Name="Win64 CEF">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
@@ -16,7 +16,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\WebView4Delphi\source;wv\webview2"/>
+            <OtherUnitFiles Value="3rd-party\WebView4Delphi\source"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -63,7 +63,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols;wk\webkit2_linux"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -133,7 +133,89 @@
           </Other>
         </CompilerOptions>
       </Item3>
-      <Item4 Name="MacOS64 CEF">
+      <Item4 Name="Linux64 GTK2 CEF ">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="${Home}\golcl\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+            <SmallerCode Value="True"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf3"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK
+-dCEF"/>
+            <OtherDefines Count="1">
+              <Define0 Value="RMLCLTRUNK"/>
+            </OtherDefines>
+          </Other>
+        </CompilerOptions>
+      </Item4>
+      <Item5 Name="LinuxARM64 GTK2  CEF">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="${Home}\golcl\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dCEF"/>
+          </Other>
+        </CompilerOptions>
+      </Item5>
+      <Item6 Name="MacOS64 CEF">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -175,8 +257,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item4>
-      <Item5 Name="MacOS64(M) CEF">
+      </Item6>
+      <Item7 Name="MacOS64(M) CEF">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -217,8 +299,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item5>
-      <Item6 Name="Win32 WV2">
+      </Item7>
+      <Item8 Name="Win32 WV2">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
         </MacroValues>
@@ -259,8 +341,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item6>
-      <Item7 Name="Win64 WV2">
+      </Item8>
+      <Item9 Name="Win64 WV2">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
         </MacroValues>
@@ -306,8 +388,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item7>
-      <Item8 Name="Linux32">
+      </Item9>
+      <Item10 Name="Linux32">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -347,8 +429,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item8>
-      <Item9 Name="Linux64 WK2">
+      </Item10>
+      <Item11 Name="Linux64 WK2">
         <MacroValues Count="1">
           <Macro4 Name="LCLWidgetType" Value="gtk3"/>
         </MacroValues>
@@ -391,10 +473,92 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item9>
-      <Item10 Name="LinuxARM64 WK2">
+      </Item11>
+      <Item12 Name="LinuxARM64 WK2">
         <MacroValues Count="1">
           <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="${Home}\golcl\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols;wk\webkit2_linux"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dWK2"/>
+          </Other>
+        </CompilerOptions>
+      </Item12>
+      <Item13 Name="Linux64 GTK2 WK">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="${Home}\golcl\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+            <SmallerCode Value="True"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf3"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK
+-dWK"/>
+            <OtherDefines Count="1">
+              <Define0 Value="RMLCLTRUNK"/>
+            </OtherDefines>
+          </Other>
+        </CompilerOptions>
+      </Item13>
+      <Item14 Name="LinuxARM64 GTK2 WK">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -426,11 +590,11 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dWK2"/>
+            <CustomOptions Value="-dWK"/>
           </Other>
         </CompilerOptions>
-      </Item10>
-      <Item11 Name="MacOS64 WK2">
+      </Item14>
+      <Item15 Name="MacOS64 WK2">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -472,8 +636,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item11>
-      <Item12 Name="MacOS64(M) WK2">
+      </Item15>
+      <Item16 Name="MacOS64(M) WK2">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -514,8 +678,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item12>
-      <Item13 Name="Debug">
+      </Item16>
+      <Item17 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -563,8 +727,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item13>
-      <Item14 Name="Release">
+      </Item17>
+      <Item18 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -606,20 +770,24 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item14>
-      <SessionEnabledMatrixOptions Count="12">
+      </Item18>
+      <SessionEnabledMatrixOptions Count="16">
         <Item1 Mode="Win64 CEF" Option="028265915746"/>
         <Item2 Mode="Linux64 CEF" Option="411076831854"/>
         <Item3 Mode="LinuxARM64 CEF" Option="411076831854"/>
-        <Item4 Mode="MacOS64 CEF" Option="558457850193"/>
-        <Item5 Mode="MacOS64(M) CEF" Option="558457850193"/>
-        <Item6 Mode="Win32 WV2" Option="028265915746"/>
-        <Item7 Mode="Win64 WV2" Option="028265915746"/>
-        <Item8 Mode="Linux32" Option="316477307003"/>
-        <Item9 Mode="Linux64 WK2" Option="411076831854"/>
-        <Item10 Mode="LinuxARM64 WK2" Option="411076831854"/>
-        <Item11 Mode="MacOS64 WK2" Option="558457850193"/>
-        <Item12 Mode="MacOS64(M) WK2" Option="558457850193"/>
+        <Item4 Mode="Linux64 GTK2 CEF " Option="316477307003"/>
+        <Item5 Mode="LinuxARM64 GTK2  CEF" Option="316477307003"/>
+        <Item6 Mode="MacOS64 CEF" Option="558457850193"/>
+        <Item7 Mode="MacOS64(M) CEF" Option="558457850193"/>
+        <Item8 Mode="Win32 WV2" Option="028265915746"/>
+        <Item9 Mode="Win64 WV2" Option="028265915746"/>
+        <Item10 Mode="Linux32" Option="316477307003"/>
+        <Item11 Mode="Linux64 WK2" Option="411076831854"/>
+        <Item12 Mode="LinuxARM64 WK2" Option="411076831854"/>
+        <Item13 Mode="Linux64 GTK2 WK" Option="316477307003"/>
+        <Item14 Mode="LinuxARM64 GTK2 WK" Option="316477307003"/>
+        <Item15 Mode="MacOS64 WK2" Option="558457850193"/>
+        <Item16 Mode="MacOS64(M) WK2" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
@@ -628,8 +796,8 @@
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="93"/>
-        <CursorPos X="24" Y="116"/>
+        <TopLine Value="96"/>
+        <CursorPos X="12" Y="105"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -749,8 +917,8 @@
         <Filename Value="LazarusDef.inc"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="377"/>
-        <CursorPos X="6" Y="391"/>
+        <TopLine Value="1019"/>
+        <CursorPos X="11" Y="1031"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
       </Unit18>
@@ -1542,13 +1710,16 @@
       </Unit141>
       <Unit142>
         <Filename Value="liblcl.inc"/>
-        <TopLine Value="56"/>
-        <CursorPos X="41" Y="56"/>
+        <TopLine Value="74"/>
+        <CursorPos X="9" Y="87"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit142>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <OtherDefines Count="1">
+      <Define0 Value="RMLCLTRUNK"/>
+    </OtherDefines>
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="49" Column="21" TopLine="42"/>
@@ -1573,6 +1744,18 @@
         <Filename Value="LazarusDef.inc"/>
         <Caret Line="1036" Column="21" TopLine="1017"/>
       </Position6>
+      <Position7>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="410" Column="39" TopLine="999"/>
+      </Position7>
+      <Position8>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="405" Column="3" TopLine="1059"/>
+      </Position8>
+      <Position9>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="403" Column="29" TopLine="395"/>
+      </Position9>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
