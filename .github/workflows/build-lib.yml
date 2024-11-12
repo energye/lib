@@ -20,6 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build Dynamic library
+        run: |
+          git config --global --add safe.directory ./
+          git fetch
+          ls
+        shell: bash
+
       # Golang Install
       - name: Install Golang Environment
         uses: actions/setup-go@v3
@@ -33,6 +40,11 @@ jobs:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
 
-      - name: Build Dynamic library
+      # Add Package
+      - name: Add Lazarus Package
         run: |
-          ls
+          lazbuild --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
+          lazbuild ./3rd-party/richmemo/richmemopackage.lpk
+          lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
+          lazbuild ./3rd-party/richmemo/ide/richmemo_design.lpk
+        shell: bash
