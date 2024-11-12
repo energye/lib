@@ -66,7 +66,7 @@ uses
 {$ENDIF}
 
 // Webkit2 MacOS
-{$IFDEF LCLCocoa}
+{$IFDEF UseMacOSWebkit2}
 ,{$I UnitsWK2MacOS.inc}
 {$ENDIF}
 

@@ -399,7 +399,7 @@ end;
 {$ENDIF}
 
 // 事件回调 WK
-{$IFDEF UseWebkit2}
+{$IF DEFINED(UseMacOSWebkit2) OR DEFINED(UseLinuxWebkit2)}
 procedure SetWKEventCallback(APtr: Pointer); extdecl;
 begin
   GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
@@ -1031,7 +1031,7 @@ exports
   {$ENDIF}
 
   // 事件回调 Webkit2
-  {$IFDEF UseWebkit2}
+  {$IF DEFINED(UseMacOSWebkit2) OR DEFINED(UseLinuxWebkit2)}
   // 设置 WK 事件回调
   SetWKEventCallback,
   // 设置 WK 事件移除回调
