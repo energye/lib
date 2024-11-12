@@ -20,20 +20,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Dynamic library
+      - name: Git safe directory
         run: |
           git config --global --add safe.directory ./
           git fetch
           ls
         shell: bash
 
-      # Golang Install
+      # Install Golang
       - name: Install Golang Environment
         uses: actions/setup-go@v3
         with:
           go-version: '1.20'
 
-      # Lazarus Install
+      # Install Lazarus
       - name: Install Lazarus Environment
         uses: energye/setup-lazarus@v1.0.4
         with:
@@ -47,4 +47,8 @@ jobs:
           lazbuild ./3rd-party/richmemo/richmemopackage.lpk
           lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
           lazbuild ./3rd-party/richmemo/ide/richmemo_design.lpk
+        shell: bash
+
+      - name: Build Dynamic library
+        run: |
         shell: bash
