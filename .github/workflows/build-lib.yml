@@ -1,0 +1,40 @@
+name: Build dynamic library
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ "notpresent" ]
+#    tags:
+#      - 'v*.*.*'
+
+jobs:
+  # windows 64
+  windows-64:
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ windows-2019 ]
+        lazarus-versions: [ 3.6 ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Golang Install
+#      - name: Install Golang Environment
+#        uses: actions/setup-go@v3
+#        with:
+#          go-version: '1.20'
+
+      # Lazarus Install
+#      - name: Install Lazarus Environment
+#        uses: energye/setup-lazarus@v1.0.4
+#        with:
+#          lazarus-version: ${{ matrix.lazarus-versions }}
+#          with-cache: true
+
+      - name: Build Dynamic library
+        run: |
+          git config --global --add safe.directory .\
+          git fetch
+        shell: bash
