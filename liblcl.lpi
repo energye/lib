@@ -28,20 +28,16 @@
       <StringTable Comments="Go Energy LCL for Windows" CompanyName="yanghy" FileDescription="Go Energy LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright yanghy" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="3.0.0.0"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro4 Name="LCLWidgetType" Value="win32"/>
+      <Macro2 Name="LCLWidgetType" Value="win32"/>
     </MacroValues>
     <BuildModes Count="1">
-      <Item1 Name="Win32" Default="True"/>
-      <SharedMatrixOptions Count="9">
+      <Item1 Name="Win32 CEF" Default="True"/>
+      <SharedMatrixOptions Count="5">
         <Item1 ID="400096739333" Type="IDEMacro" MacroName="LCLWidgetType" Value="carbon"/>
-        <Item2 ID="558457850193" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
-        <Item3 ID="374570744772" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
-        <Item4 ID="929688853515" Modes="Win32" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
-        <Item5 ID="028265915746" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
-        <Item6 ID="316477307003" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
-        <Item7 ID="411076831854" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
-        <Item8 ID="184723594569" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
-        <Item9 ID="471587070140" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+        <Item2 ID="028265915746" Modes="Win32 CEF" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
+        <Item3 ID="316477307003" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item4 ID="411076831854" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+        <Item5 ID="558457850193" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
@@ -160,6 +156,7 @@
       </Options>
     </Linking>
     <Other>
+      <CustomOptions Value="-dCEF"/>
       <OtherDefines Count="1">
         <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
       </OtherDefines>

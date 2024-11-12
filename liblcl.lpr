@@ -14,6 +14,10 @@ library liblcl;
   {$define UseCThreads}
 {$ENDIF}
 
+
+// lib lcl 宏定义
+{$I liblcl.inc}
+
 uses
 {$IFDEF UNIX}{$IFDEF UseCThreads}cthreads,{$ENDIF}{$ENDIF}
   Interfaces, InterfaceBase,
@@ -47,29 +51,31 @@ uses
   uExceptionHandle,
   uLCL_RecordStruct, uLCL_SortMethods,
   //LCL 事件回调
-  uLCL_EventCallback,
+  uLCL_EventCallback
 
 // ============ xxx.unit ============= //
 
 // CEF unit's
-{$I UnitsCEF.inc}
+{$IFDEF UseCEF}
+,{$I UnitsCEF.inc}
+{$ENDIF}
 
 // Webview2 Windows unit's
-{$IFDEF WINDOWS}
+{$IFDEF UseWebview2}
  ,{$I UnitsWV2.inc}
 {$ENDIF}
 
-// Webkit2 MacOS unit's
+// Webkit2 MacOS
 {$IFDEF LCLCocoa}
 ,{$I UnitsWK2MacOS.inc}
 {$ENDIF}
 
-// Webkit2 Linux GTK3 unit's
-{$IFDEF LCLGTK3}
+// Webkit2 Linux GTK3
+{$IFDEF UseLinuxWebkit2}
 ,{$I UnitsWK2Linux.inc}
 {$ENDIF}
 
-// Webkit Linux GTK2 unit's
+// Webkit Linux GTK2
 {$IFDEF LCLGTK2}
 
 {$ENDIF}
@@ -82,32 +88,32 @@ uses
   {$SetPEFlags IMAGE_FILE_LARGE_ADDRESS_AWARE}
 {$ENDIF}
 
-// lib lcl 宏定义
-{$I liblcl.inc}
-
 {$I ExtDecl.inc}
 
 {$I CustomWidgetInterfaces.inc}
+
 {$I LazarusDef.inc}
 
 // LCL
 {$I ImportLCL.inc}
 
 // CEF
+{$IFDEF UseCEF}
 {$I ImportCEF.inc}
+{$ENDIF}
 
-// Webview2 Windows
-{$IFDEF WINDOWS}
+// Webview2
+{$IFDEF UseWebview2}
 {$I ImportWV.inc}
 {$ENDIF}
 
 // Webkit2 MacOS
-{$IFDEF LCLCocoa}
+{$IFDEF UseMacOSWebkit2}
 {$I ImportWK2Mac.inc}
 {$ENDIF}
 
 // Webkit2 Linux GTK3
-{$IFDEF LCLGTK3}
+{$IFDEF UseLinuxWebkit2}
 {$I ImportWK2Linux.inc}
 {$ENDIF}
 

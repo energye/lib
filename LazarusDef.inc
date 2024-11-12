@@ -373,7 +373,7 @@ begin
 end;
 
 // 事件回调 CEF
-
+{$IFDEF UseCEF}
 procedure SetCEFEventCallback(APtr: Pointer); extdecl;
 begin
   GCEFEventCallbackPtr := APtr;
@@ -383,6 +383,7 @@ procedure SetCEFRemoveEventCallback(APtr: Pointer); extdecl;
 begin
   GCEFRemoveEventCallbackPtr := APtr;
 end;
+{$ENDIF}
 
 // 事件回调 WV
 {$IFDEF UseWebview2}
@@ -1013,10 +1014,13 @@ exports
   // 设置 LCL TForm Create 回调
   SetRequestCallFormCreateCallback,
 
+  // 事件回调 CEF
+  {$IFDEF UseCEF}
   // 设置 CEF 事件回调
   SetCEFEventCallback,
   // 设置 CEF 事件移除回调
   SetCEFRemoveEventCallback,
+  {$ENDIF}
 
   // 事件回调 Webview2
   {$IFDEF UseWebview2}
@@ -1033,7 +1037,6 @@ exports
   // 设置 WK 事件移除回调
   SetWKRemoveEventCallback,
   {$ENDIF}
-
 
   // LCL 事件主线程中运行
   SetThreadSyncCallback,

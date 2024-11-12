@@ -66,11 +66,23 @@
 // ==== OpenGLContext end ==== //
 
 // ==== Build begin ==== //
-{$IFDEF WINDOWS}
+{$IFDEF CEF} // Windows, MacOS, Linux
+  {$DEFINE UseCEF}
+{$ENDIF}
+
+{$IFDEF WV2} // Windows
   {$DEFINE UseWebview2}
 {$ENDIF}
 
-{$IF defined(LCLGTK3) or defined(LCLCocoa)}
-  {$DEFINE UseWebkit2}
+{$IFDEF LCLCocoa}
+{$IFDEF WK2}  // MacOS
+  {$DEFINE UseMacOSWebkit2}
+{$ENDIF}
+{$ENDIF}
+
+{$IFDEF LCLGTK3}
+{$IFDEF WK2}  // Linux
+  {$DEFINE UseLinuxWebkit2}
+{$ENDIF}
 {$ENDIF}
 // ==== Build end ==== //
