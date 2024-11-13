@@ -2,6 +2,12 @@
 
 echo "Add Dependency Package"
 
+workspaceDir="."  #lazarusBaseDir
+
+if [ "$1" != "" ]; then
+  workspaceDir=$1
+fi
+
 lazbuild --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
 lazbuild ./3rd-party/richmemo/richmemopackage.lpk
 lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk

@@ -137,11 +137,18 @@ jobs:
           cd $RUNNER_WORKSPACE/lazarus
           sudo make clean all
           
-          ls -a $RUNNER_WORKSPACE/lazarus
-#         git clean -xdf
-#         mkdir bin && ./.github/shell/add-package.sh
-#         lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
-#         zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
+          ls $RUNNER_WORKSPACE/lazarus
+          
+          git clean -xdf
+          mkdir bin
+          $RUNNER_WORKSPACE/lazarus/lazbuild --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
+          $RUNNER_WORKSPACE/lazarus/lazbuild ./3rd-party/richmemo/richmemopackage.lpk
+          $RUNNER_WORKSPACE/lazarus/lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
+          $RUNNER_WORKSPACE/lazarus/lazbuild ./3rd-party/richmemo/ide/richmemo_design.lpk
+          
+#         mkdir bin && ./.github/shell/add-package.sh $RUNNER_WORKSPACE
+          $RUNNER_WORKSPACE/lazarus/lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
 #
 #      - name: Release # 将二进制文件上传到发布tags
 #        uses: softprops/action-gh-release@v2
