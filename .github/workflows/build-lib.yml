@@ -147,7 +147,6 @@ jobs:
           mkdir bin && ./.github/shell/add-package.sh
           lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
-        shell: bash
 
       - name: Release # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
