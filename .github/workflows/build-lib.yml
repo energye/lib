@@ -136,11 +136,12 @@ jobs:
           
           cd $RUNNER_WORKSPACE/lazarus
           sudo make clean all
-          
+          pwd
           ls $RUNNER_WORKSPACE/lazarus
 
       - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
+          pwd
           git clean -xdf
           mkdir bin
           $RUNNER_WORKSPACE/lazarus/lazbuild --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
