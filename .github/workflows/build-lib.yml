@@ -133,7 +133,7 @@ jobs:
         run: |
           pwd
           cd $RUNNER_WORKSPACE/lazarus/fpc-3.2.2.x86_64-linux
-          sudo ./install.sh <<esxu
+          sudo echo y | ./install.sh
           pwd
           cd ../
           sudo make clean all
