@@ -8,7 +8,7 @@ on:
       - 'v*.*.*'
 
 jobs:
-  # ============== windows 64 ==============
+  # ============== Windows 64 ==============
   windows-64:
     runs-on: ${{ matrix.operating-system }}
 
@@ -20,29 +20,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 配置基础环境
-      - name: Config Base Environment
+      - name: Config Base Environment  # 配置基础环境
         run: |
           git config --global --add safe.directory ./
           git fetch
           mkdir D:/bins
         shell: bash # git bash
 
-      # Install Golang
-      - name: Install Golang Environment
+      - name: Install Golang Environment # Install Golang
         uses: actions/setup-go@v5
         with:
           go-version: '1.20'
 
-      # Install Lazarus
-      - name: Install Lazarus Environment
+
+      - name: Install Lazarus Environment # Install Lazarus
         uses: energye/setup-lazarus@v1.0.4
         with:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
 
-      # 构建 LCL + CEF
-      - name: Build Dynamic library LCL CEF
+
+      - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
@@ -50,14 +48,13 @@ jobs:
           7z a D:/bins/lcl_cef_binary_windows64.zip ./bin/liblcl.dll
         shell: bash
 
-      # 将二进制文件上传到发布tags
-      - name: Release
+      - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: D:/bins/**
 
-  # ============== windows 32 ==============
+  # ============== Windows 32 ==============
   windows-32:
     runs-on: ${{ matrix.operating-system }}
 
@@ -69,30 +66,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 配置基础环境
-      - name: Config Base Environment
+      - name: Config Base Environment # 配置基础环境
         run: |
           git config --global --add safe.directory ./
           git fetch
           mkdir D:/bins
         shell: bash # git bash
 
-      # Install Golang
-      - name: Install Golang Environment
+      - name: Install Golang Environment # Install Golang
         uses: actions/setup-go@v5
         with:
           go-version: '1.20'
 
-      # Install Lazarus
-      - name: Install Lazarus Environment
+      - name: Install Lazarus Environment # Install Lazarus
         uses: energye/setup-lazarus@v1.0.4
         with:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
           os-arch: i386
 
-      # 构建 LCL + CEF
-      - name: Build Dynamic library LCL CEF
+      - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
@@ -100,14 +93,13 @@ jobs:
           7z a D:/bins/lcl_cef_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
 
-      # 将二进制文件上传到发布tags
-      - name: Release
+      - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: D:/bins/**
 
-  # ============== windows 32 ==============
+  # ============== Linux amd64 ==============
   linux-amd64:
     runs-on: ${{ matrix.operating-system }}
 
@@ -119,29 +111,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 配置基础环境
-      - name: Config Base Environment
+      - name: Config Base Environment # 配置基础环境
         run: |
           git config --global --add safe.directory ./
           git fetch
           mkdir $RUNNER_WORKSPACE/bins && chmod +x ./.github/shell/add-package.sh
           sudo apt-get install libgtk-3-dev
 
-      # Install Golang
-      - name: Install Golang Environment
+      - name: Install Golang Environment  # Install Golang
         uses: actions/setup-go@v5
         with:
           go-version: '1.20'
 
-      # Install Lazarus
-      - name: Install Lazarus Environment
+      - name: Install Lazarus Environment # Install Lazarus
         uses: energye/setup-lazarus@v1.0.4
         with:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
 
-      # 构建 LCL + CEF
-      - name: Build Dynamic library LCL CEF
+      - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.sh
