@@ -44,9 +44,9 @@ jobs:
         run: |
           git clean -xdf
           cp -R ./.github/shell ./
-          mkdir bin
           ./shell/add-package.bat
           lazbuild -B --bm="Win64 CEF" "liblcl.lpi"
+          ls -a bin
         shell: bash
 
       - name: Build Dynamic library
