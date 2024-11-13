@@ -131,11 +131,17 @@ jobs:
 
       - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
-           ls -a $RUNNER_WORKSPACE/lazarus
-#          git clean -xdf
-#          mkdir bin && ./.github/shell/add-package.sh
-#          lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
-#          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
+          cd $RUNNER_WORKSPACE/lazarus/fpc-3.2.2.aarch64-linux
+          ./install.sh <<esxu
+          
+          cd $RUNNER_WORKSPACE/lazarus
+          make clean all
+          
+          ls -a $RUNNER_WORKSPACE/lazarus
+#         git clean -xdf
+#         mkdir bin && ./.github/shell/add-package.sh
+#         lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
+#         zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
 #
 #      - name: Release # 将二进制文件上传到发布tags
 #        uses: softprops/action-gh-release@v2
