@@ -148,10 +148,9 @@ jobs:
           $RUNNER_WORKSPACE/lazarus/lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
           $RUNNER_WORKSPACE/lazarus/lazbuild ./3rd-party/richmemo/ide/richmemo_design.lpk
           
-#         mkdir bin && ./.github/shell/add-package.sh $RUNNER_WORKSPACE
           $RUNNER_WORKSPACE/lazarus/lazbuild -B --bm="Linux64 CEF" --ws=gtk3 "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_linux64.zip ./bin/liblcl.so
-#
+
 #      - name: Release # 将二进制文件上传到发布tags
 #        uses: softprops/action-gh-release@v2
 #        if: startsWith(github.ref, 'refs/tags/')
