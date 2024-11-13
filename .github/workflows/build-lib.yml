@@ -131,7 +131,7 @@ jobs:
 
       - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
-          cd $RUNNER_WORKSPACE/lazarus/fpc-3.2.2.aarch64-linux
+          cd $RUNNER_WORKSPACE/lazarus/fpc-3.2.2.x86_64-linux
           ./install.sh <<esxu
           
           cd $RUNNER_WORKSPACE/lazarus
