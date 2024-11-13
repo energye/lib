@@ -20,11 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Git safe directory
+      - name: Config Base Environment
         run: |
           git config --global --add safe.directory ./
           git fetch
-          ls
+          mv ./.github/shell ./
+          mkdir bin
         shell: bash
 
       # Install Golang
@@ -43,10 +44,7 @@ jobs:
       # Add Package
       - name: Add Lazarus Package
         run: |
-          lazbuild --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
-          lazbuild ./3rd-party/richmemo/richmemopackage.lpk
-          lazbuild --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
-          lazbuild ./3rd-party/richmemo/ide/richmemo_design.lpk
+          ./shell/add-package.bat
         shell: bash
 
       - name: Build Dynamic library
