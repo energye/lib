@@ -24,8 +24,6 @@ jobs:
         run: |
           git config --global --add safe.directory ./
           git fetch
-          mv ./.github/shell ./
-          mkdir bin
         shell: bash
 
       # Install Golang
@@ -45,6 +43,8 @@ jobs:
       - name: Add Lazarus Package
         run: |
           git clean -xdf
+          cp -R ./.github/shell ./
+          mkdir bin
           ./shell/add-package.bat
           lazbuild -B --bm="Win64 CEF" "src/liblcl.lpi"
         shell: bash
