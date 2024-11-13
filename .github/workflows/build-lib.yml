@@ -46,7 +46,7 @@ jobs:
           cp -R ./.github/shell ./
           mkdir bin
           ./shell/add-package.bat
-          lazbuild -B --bm="Win64 CEF" "src/liblcl.lpi"
+          lazbuild -B --bm="Win64 CEF" "liblcl.lpi"
         shell: bash
 
       - name: Build Dynamic library
