@@ -45,10 +45,11 @@ jobs:
       - name: Build Dynamic library LCL CEF
         run: |
           git clean -xdf
+          mkdir bin
           cp -R ./.github/shell ./
           ./shell/add-package.bat
           lazbuild -B --bm="Win64 CEF" "liblcl.lpi"
-          7z a D:/bins/lcl_cef_binary_windows64.zip ../bin/liblcl.dll
+          7z a D:/bins/lcl_cef_binary_windows64.zip ./bin/liblcl.dll
         shell: bash # git bash
 
       # 将二进制文件上传到发布tags
