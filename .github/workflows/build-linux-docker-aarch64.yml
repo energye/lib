@@ -85,10 +85,12 @@ jobs:
             make clean all
             objdump -p /app/lazarus/lazbuild
             
-            echo "Build Dynamic library LCL CEF ============================================="
+            echo "Add Package ============================================="
             cd /app/lib
             ls -al
             ./.github/shell/add-package.sh "/app/lazarus"
+            
+            echo "Build Dynamic library LCL CEF ============================================="
             /app/lazarus/lazbuild -B --bm="LinuxARM64 CEF" --ws=gtk3 --lazarusdir="/app/lazarus" "liblcl.lpi"
             
             echo "View liblcl.so ============================================="
