@@ -83,7 +83,6 @@ jobs:
             cd ../
             make clean all
             sudo ln -s /app/lazarus/lazbuild /usr/local/bin/lazbuild
-            ldd lazbuild
             objdump -p lazbuild
             
             echo "Build Dynamic library LCL CEF ============================================="
