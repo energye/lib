@@ -3,27 +3,27 @@
 echo "Add Dependency Package"
 
 lazarusBaseDir="lazbuild"
-lazarusdirArgs=""
+lazarusDirArgs=""
 
 if [ "$1" != "" ]; then
   lazarusBaseDir=$1/lazbuild
-  lazarusdirArgs="--lazarusdir=$1"
+  lazarusDirArgs="--lazarusdir=$1"
 fi
 
 echo "Lazarus: $lazarusBaseDir ============================================="
 
-$lazarusBaseDir $lazarusdirArgs --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/richmemo/richmemopackage.lpk
-$lazarusBaseDir $lazarusdirArgs --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/richmemo/ide/richmemo_design.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/richmemo/richmemopackage.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/richmemo/ide/richmemo_design.lpk
 
-$lazarusBaseDir $lazarusdirArgs --add-package ./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk
 
-$lazarusBaseDir $lazarusdirArgs --add-package-link ./3rd-party/DCPcrypt/dcpcrypt.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/DCPcrypt/dcpcrypt.lpk
-$lazarusBaseDir $lazarusdirArgs --add-package ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package-link ./3rd-party/DCPcrypt/dcpcrypt.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/DCPcrypt/dcpcrypt.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
 
-$lazarusBaseDir $lazarusdirArgs --add-package ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
-$lazarusBaseDir $lazarusdirArgs ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
