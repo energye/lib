@@ -16,9 +16,6 @@ jobs:
       matrix:
         operating-system: [ ubuntu-20.04 ]
         lazarus-versions: [ 3.6 ]
-        include:
-          - arch: amd64
-            distro: ubuntu20.04
 
     steps:
       - uses: actions/checkout@v4
