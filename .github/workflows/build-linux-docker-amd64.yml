@@ -91,4 +91,4 @@ jobs:
             /app/lazarus/lazbuild -B --bm="Linux64 CEF" --lazarusdir="/app/lazarus" "liblcl.lpi"
             
             echo "View liblcl.so ============================================="
-            objdump -p /app/bin/liblcl.so
+            objdump -p /app/lib/bin/liblcl.so
