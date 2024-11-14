@@ -1,4 +1,4 @@
-name: build-linux-amd64
+name: Build Linux docker amd64
 
 on:
   workflow_dispatch:
