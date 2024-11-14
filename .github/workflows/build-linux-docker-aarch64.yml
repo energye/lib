@@ -26,8 +26,8 @@ jobs:
         id: build
         with:
           arch: aarch64
-          distro: ubuntu20.04
-          # base_image: arm64v8/ubuntu:20.04
+          distro: debian:bullseye
+          # base_image: arm64v8/debian:bullseye
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
