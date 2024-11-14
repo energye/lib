@@ -59,3 +59,4 @@ jobs:
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
            ls /app
+           docker info
