@@ -58,4 +58,5 @@ jobs:
             uname -m
             uname -r
             uname -s
+            ldd --version
             cat /etc/os-release
