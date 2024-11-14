@@ -83,7 +83,7 @@ jobs:
             cd ../
             make clean all
             sudo ln -s /app/lazarus/lazbuild /usr/local/bin/lazbuild
-            objdump -p lazbuild
+            objdump -p ./lazbuild
             
             echo "Build Dynamic library LCL CEF ============================================="
             cd /app/lib
@@ -92,4 +92,4 @@ jobs:
             
             echo "View liblcl.so ============================================="
             cd /app/bin
-            objdump -p liblcl.so
+            objdump -p ./liblcl.so
