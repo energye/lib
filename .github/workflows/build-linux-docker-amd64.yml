@@ -16,6 +16,9 @@ jobs:
       matrix:
         operating-system: [ ubuntu-20.04 ]
         lazarus-versions: [ 3.6 ]
+        include:
+          - arch: amd64
+            distro: bullseye
 
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +30,7 @@ jobs:
         with:
           arch: none
           distro: none
-          # base_image: amd64/ubuntu:18.04
-          base_image: amd64/debian:11
+          base_image: ${{ matrix.arch }}/${{ matrix.distro }} # 因为没有amd架构，所以手动指定基础镜像
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
