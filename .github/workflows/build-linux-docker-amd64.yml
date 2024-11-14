@@ -88,6 +88,7 @@ jobs:
             cd /app/lib
             ls -al
             ./.github/shell/add-package.sh "/app/lazarus"
+            /app/lazarus/lazbuild -B --bm="Linux64 CEF" --lazarusdir="/app/lazarus" "liblcl.lpi"
             
             echo "View liblcl.so ============================================="
             objdump -p /app/bin/liblcl.so
