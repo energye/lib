@@ -1,0 +1,62 @@
+name: build-linux-aarch64
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ "main" ]
+#    tags:
+#      - 'v*.*.*'
+
+jobs:
+  linux-amd64:
+    runs-on: ${{ matrix.operating-system }}
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
+
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-20.04 ]
+        lazarus-versions: [ 3.6 ]
+        include:
+          - arch: none
+            distro: none
+            base_image: linux/amd64 amd64/ubuntu:20.04 # --platform=linux/amd64 amd64/ubuntu:20.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # arch
+      - uses: uraimo/run-on-arch-action@v2
+        name: Container Build Lazarus
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          base_image: ${{ matrix.base_image }}
+
+          # 不需要，但可加快构建速度
+          githubToken: ${{ github.token }}
+
+          # 将目录装载为容器中的/app
+          dockerRunArgs: |
+            --volume "$RUNNER_WORKSPACE:/app"
+
+          # 在容器中运行命令的shell
+          shell: /bin/sh
+
+          #在容器中安装一些依赖项。如果
+          #您也在使用githubToken。此处安装的任何依赖项都将
+          #是缓存的容器映像的一部分，因此后续
+          #构建不必重新安装它们。缓存图像层
+          #在项目的包存储库中公开，因此
+          #容器状态或日志中不存在机密。
+          install: |
+            case "${{ matrix.base_image }}" in
+              ubuntu*)
+                apt-get update -q -y
+                apt-get install -q -y git
+                apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
+                ;;
+            esac
+          # run 要在容器中运行的命令，复制git文件到挂载的目录中
+          run: |
+           ls /app
