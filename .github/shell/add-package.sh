@@ -7,7 +7,7 @@ lazarusdir=""
 
 if [ "$1" != "" ]; then
   lazarusBaseDir=$1/lazbuild
-  lazarusdir="--lazarusdir="$lazarusBaseDir
+  lazarusdir="--lazarusdir=$lazarusBaseDir"
 fi
 
 $lazarusBaseDir lazarusdir --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
