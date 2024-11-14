@@ -25,9 +25,9 @@ jobs:
         name: Container Build Lazarus
         id: build
         with:
-          arch: none
-          distro: none
-          base_image: arm64v8/ubuntu:20.04
+          arch: aarch64
+          distro: ubuntu20.04
+          # base_image: arm64v8/ubuntu:20.04
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
