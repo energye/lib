@@ -17,9 +17,8 @@ jobs:
         operating-system: [ ubuntu-20.04 ]
         lazarus-versions: [ 3.6 ]
         include:
-          - arch: none
-            distro: none
-            base_image: linux/amd64 amd64/ubuntu:20.04 # --platform=linux/amd64 amd64/ubuntu:20.04
+          - arch: amd64
+            distro: ubuntu20.04
 
     steps:
       - uses: actions/checkout@v4
@@ -29,9 +28,9 @@ jobs:
         name: Container Build Lazarus
         id: build
         with:
-          arch: ${{ matrix.arch }}
-          distro: ${{ matrix.distro }}
-          base_image: ${{ matrix.base_image }}
+          arch: none
+          distro: none
+          base_image: amd64/ubuntu:20.04
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
