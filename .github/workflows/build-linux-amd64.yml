@@ -49,13 +49,9 @@ jobs:
           #在项目的包存储库中公开，因此
           #容器状态或日志中不存在机密。
           install: |
-            case "${{ matrix.base_image }}" in
-              ubuntu*)
-                apt-get update -q -y
-                apt-get install -q -y git
-                apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
-                ;;
-            esac
+            apt-get update -q -y
+            apt-get install -q -y git
+            apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
            ls /app
