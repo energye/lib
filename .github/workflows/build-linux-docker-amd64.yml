@@ -59,7 +59,11 @@ jobs:
             apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
-            echo "Operating System Info"
+            chmod +x /app/lib/.github/shell/add-package.sh
+            
+            pwd
+            
+            echo "Operating System Info ============================================="
             ls -al /app
             uname -m
             uname -r
@@ -69,14 +73,19 @@ jobs:
             ldd --version
             cat /etc/os-release
             
-            echo "Build fpc"
+            echo "Build fpc ============================================="
             cd /app/lazarus/fpc-3.2.2.x86_64-linux
             ls -al
             ./install.sh <<esxu
             esxu
             
-            echo "Build lazarus"
+            echo "Build lazarus ============================================="
             cd ../
             make clean all
+            sudo ln -s /app/lazarus/lazbuild /usr/local/bin/lazbuild
+            ldd lazbuild
             
-            ./lazbuild
+            echo "Build Dynamic library LCL CEF ============================================="
+            cd /app/lib
+            ls -al
+            ./.github/shell/add-package.sh
