@@ -10,6 +10,8 @@ if [ "$1" != "" ]; then
   lazarusdir="--lazarusdir=$lazarusBaseDir"
 fi
 
+echo "Lazarus: $lazarusBaseDir"
+
 $lazarusBaseDir lazarusdir --add-package-link ./3rd-party/richmemo/richmemopackage.lpk
 $lazarusBaseDir lazarusdir ./3rd-party/richmemo/richmemopackage.lpk
 $lazarusBaseDir lazarusdir --add-package ./3rd-party/richmemo/ide/richmemo_design.lpk
