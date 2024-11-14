@@ -82,13 +82,12 @@ jobs:
             echo "Build lazarus ============================================="
             cd ../
             make clean all
-            sudo ln -s /app/lazarus/lazbuild /usr/local/bin/lazbuild
-            objdump -p ./lazbuild
+            objdump -p /app/lazarus/lazbuild
             
             echo "Build Dynamic library LCL CEF ============================================="
             cd /app/lib
             ls -al
-            ./.github/shell/add-package.sh
+            ./.github/shell/add-package.sh "/app/lazarus/lazbuild"
             
             echo "View liblcl.so ============================================="
             cd /app/bin
