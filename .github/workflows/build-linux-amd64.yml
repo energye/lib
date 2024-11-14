@@ -30,7 +30,7 @@ jobs:
         with:
           arch: none
           distro: none
-          base_image: amd64/ubuntu:20.04
+          base_image: amd64/ubuntu:18.04
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
