@@ -7,7 +7,7 @@ lazarusdir=""
 
 if [ "$1" != "" ]; then
   lazarusBaseDir=$1/lazbuild
-  lazarusdir="--lazarusdir=$lazarusBaseDir"
+  lazarusdir="--lazarusdir=$1"
 fi
 
 echo "Lazarus: $lazarusBaseDir"
