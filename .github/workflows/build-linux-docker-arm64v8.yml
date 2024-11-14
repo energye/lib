@@ -27,7 +27,7 @@ jobs:
         with:
           arch: none
           distro: none
-          base_image: arm64/debian:11
+          base_image: arm64v8/debian:11
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
