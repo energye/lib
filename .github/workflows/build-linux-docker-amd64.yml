@@ -18,7 +18,7 @@ jobs:
         lazarus-versions: [ 3.6 ]
         include:
           - arch: amd64
-            distro: bullseye
+            distro: debian:11
 
     steps:
       - uses: actions/checkout@v4
