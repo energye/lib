@@ -87,7 +87,7 @@ jobs:
             echo "Build Dynamic library LCL CEF ============================================="
             cd /app/lib
             ls -al
-            ./.github/shell/add-package.sh "/app/lazarus/lazbuild"
+            ./.github/shell/add-package.sh "/app/lazarus"
             
             echo "View liblcl.so ============================================="
             cd /app/bin
