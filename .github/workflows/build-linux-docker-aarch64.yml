@@ -18,12 +18,11 @@ jobs:
         lazarus-versions: [ 3.6 ]
         include:
           - arch: aarch64
-            distro: bullseye
+            distro: bullseye # 使用 debian:11
 
     steps:
       - uses: actions/checkout@v4
 
-      # arch
       - uses: uraimo/run-on-arch-action@v2
         name: Container Build Lazarus
         id: build

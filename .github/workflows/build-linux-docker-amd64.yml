@@ -23,7 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # arch
+      - name: Install Lazarus Environment # Install Lazarus
+        uses: energye/setup-lazarus@v1.0.0
+        with:
+          lazarus-version: ${{ matrix.lazarus-versions }}
+          source-install: true
+
       - uses: uraimo/run-on-arch-action@v2
         name: Container Build Lazarus
         id: build
