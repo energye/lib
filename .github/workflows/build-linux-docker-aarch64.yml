@@ -71,7 +71,7 @@ jobs:
             cat /etc/os-release
             
             echo "Build fpc"
-            cd /app/lazarus/fpc-3.2.2.x86_64-linux
+            cd /app/lazarus/fpc-3.2.2.aarch64-linux
             ls -al
             ./install.sh <<esxu
             esxu
