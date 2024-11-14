@@ -59,6 +59,7 @@ jobs:
             apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
+            echo "Operating System Info"
             ls -al /app
             uname -m
             uname -r

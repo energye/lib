@@ -23,6 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Lazarus Environment # Install Lazarus
+        uses: energye/setup-lazarus@v1.0.0
+        with:
+          lazarus-version: ${{ matrix.lazarus-versions }}
+          source-install: true
+          os-arch: ${{ matrix.arch }}
+
       - uses: uraimo/run-on-arch-action@v2
         name: Container Build Lazarus
         id: build
@@ -54,7 +61,7 @@ jobs:
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
             echo "Operating System Info"
-            ls /app
+            ls -al /app
             uname -m
             uname -r
             uname -s
@@ -62,4 +69,16 @@ jobs:
             dpkg -l | grep libglib2.0
             ldd --version
             cat /etc/os-release
+            
+            echo "Build fpc"
+            cd /app/lazarus/fpc-3.2.2.x86_64-linux
+            ls -al
+            ./install.sh <<esxu
+            esxu
+            
+            echo "Build lazarus"
+            cd ../
+            make clean all
+            
+            ./lazbuild
             
