@@ -1,4 +1,4 @@
-name: Build Linux docker arm64v8
+name: Build Linux docker aarch64
 
 on:
   workflow_dispatch:
