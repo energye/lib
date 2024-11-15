@@ -23,6 +23,7 @@ jobs:
           git config --global --add safe.directory ./
           git fetch
           mkdir $RUNNER_WORKSPACE/bins
+          chmod +x ./.github/shell/add-package.sh
 
       - name: Install Golang Environment # Install Golang
         uses: actions/setup-go@v5
@@ -35,6 +36,12 @@ jobs:
         with:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
+
+      - name: Lazarus Execution Permissions
+        run: |
+          sudo chown -R ${USER}:admin /Applications/Lazarus
+          ls -la /Applications/Lazarus    
+          
 
       - name: Build Dynamic library LCL CEF (x86_64) # 构建 LCL + CEF
         run: |
