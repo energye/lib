@@ -2,9 +2,9 @@ name: Build MacOS(x86_64, M(n))
 
 on:
   workflow_dispatch:
-#  push:
-#    tags:
-#      - 'v*.*.*'
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   macos-x86_64-arm64:
