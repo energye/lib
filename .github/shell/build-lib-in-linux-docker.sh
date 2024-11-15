@@ -53,7 +53,28 @@ if [ "$bm" = "WK2" ] && [ "$ws" = "gtk3" ]; then
 fi
 
 # gtk2 相关
-# coding ...
+# coding ... 还未增加对 webkit1 支持
+
+# gtk2 需要 CEF <= 106 以下版本
+if [ "$bm" = "CEF" ] && [ "$ws" = "gtk2" ]; then
+  if [ "$arch" = "x64" ]; then
+    bm="Linux64 GTK2 CEF"
+    zipFilename="lcl_cef_binary_linux64_gtk2.zip"
+  elif [ "$arch" = "ARM64" ]; then
+    bm="LinuxARM64 GTK2 CEF"
+    zipFilename="lcl_cef_binary_linuxarm64_gtk2.zip"
+  fi
+fi
+
+if [ "$bm" = "WK1" ] && [ "$ws" = "gtk2" ]; then
+  if [ "$arch" = "x64" ]; then
+    bm="Linux64 GTK2 WK"
+    zipFilename="lcl_wk_binary_linux64_gtk2.zip"
+  elif [ "$arch" = "ARM64" ]; then
+    bm="LinuxARM64 GTK2 WK"
+    zipFilename="lcl_wk_binary_linuxarm64_gtk2.zip"
+  fi
+fi
 
 # 检查 zipFilename 如果为空，则上面的判断条件都未符合
 if [ "$zipFilename" = "" ]; then
