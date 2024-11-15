@@ -23,7 +23,7 @@ jobs:
           git config --global --add safe.directory ./
           git fetch
           mkdir $RUNNER_WORKSPACE/bins
-          chmod +x ./.github/shell/add-package.sh
+          sudo chmod +x ./.github/shell/add-package.sh
 
       - name: Install Golang Environment # Install Golang
         uses: actions/setup-go@v5
@@ -46,14 +46,14 @@ jobs:
       - name: Build Dynamic library LCL CEF (x86_64) # 构建 LCL + CEF
         run: |
           git clean -xdf
-          mkdir bin && ./.github/shell/add-package.bat
+          mkdir bin && sudo ./.github/shell/add-package.bat
           sudo lazbuild -B --bm="MacOSx64 CEF" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosx64.zip ./bin/liblcl.dll
 
       - name: Build Dynamic library LCL CEF (ARM64) # 构建 LCL + CEF
         run: |
           git clean -xdf
-          mkdir bin && ./.github/shell/add-package.bat
+          mkdir bin && sudo ./.github/shell/add-package.bat
           sudo lazbuild -B --bm="MacOSARM64 CEF" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm.zip ./bin/liblcl.dll
 
