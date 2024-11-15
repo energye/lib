@@ -87,8 +87,8 @@ jobs:
             
             echo "Run Build shell ============================================="
             cd /app/lib
-            ./.github/shell/build-lib-in-linux-docker.sh CEF GTK3 ARM64
-            ./.github/shell/build-lib-in-linux-docker.sh WK2 GTK3 ARM64
+            ./.github/shell/build-lib-in-linux-docker.sh CEF gtk3 ARM64
+            ./.github/shell/build-lib-in-linux-docker.sh WK2 gtk3 ARM64
 
       - name: Release # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
