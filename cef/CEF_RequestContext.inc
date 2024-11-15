@@ -149,24 +149,6 @@ begin
   handleExceptionEnd
 end;
 
-//function
-procedure CefRequestContext_GetWebsiteSetting(AObj: ICefRequestContext; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; var Result: ICefValue); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetWebsiteSetting'}
-  handleExceptionBegin
-  Result := AObj.GetWebsiteSetting(requestingurl,  toplevelurl, contenttype);
-  handleExceptionEnd
-end;
-
-//function
-function CefRequestContext_GetContentSetting(AObj: ICefRequestContext; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes): TCefContentSettingValues; extdecl;
-begin
-  {$define handleExceptionFuncName :='GetContentSetting'}
-  handleExceptionBegin
-  Result := AObj.GetContentSetting(requestingurl,  toplevelurl, contenttype);
-  handleExceptionEnd
-end;
-
 //procedure
 procedure CefRequestContext_ClearCertificateExceptions(AObj: ICefRequestContext; const callback: ICefCompletionCallback); extdecl;
 begin
@@ -212,24 +194,6 @@ begin
   handleExceptionEnd
 end;
 
-//procedure
-procedure CefRequestContext_SetWebsiteSetting(AObj: ICefRequestContext; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; const value: ICefValue); extdecl;
-begin
-  {$define handleExceptionFuncName :='SetWebsiteSetting'}
-  handleExceptionBegin
-  AObj.SetWebsiteSetting(requestingurl,  toplevelurl, contenttype, value);
-  handleExceptionEnd
-end;
-
-//procedure
-procedure CefRequestContext_SetContentSetting(AObj: ICefRequestContext; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; value: TCefContentSettingValues); extdecl;
-begin
-  {$define handleExceptionFuncName :='SetContentSetting'}
-  handleExceptionBegin
-  AObj.SetContentSetting(requestingurl,  toplevelurl, contenttype, value);
-  handleExceptionEnd
-end;
-
 
 exports
   CefRequestContext_UnWrap,
@@ -250,12 +214,8 @@ exports
   CefRequestContext_GetExtensions,
   CefRequestContext_GetExtension,
   CefRequestContext_GetMediaRouter,
-  CefRequestContext_GetWebsiteSetting,
-  CefRequestContext_GetContentSetting,
   CefRequestContext_ClearCertificateExceptions,
   CefRequestContext_ClearHttpAuthCredentials,
   CefRequestContext_CloseAllConnections,
   CefRequestContext_ResolveHost,
-  CefRequestContext_LoadExtension,
-  CefRequestContext_SetWebsiteSetting,
-  CefRequestContext_SetContentSetting;
+  CefRequestContext_LoadExtension;

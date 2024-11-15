@@ -83,7 +83,6 @@
 {$I ./cef/CEF_DownloadItem.inc}
 {$I ./cef/CEF_DownloadItemCallback.inc}
 {$I ./cef/CEF_DragData.inc}
-{$I ./cef/CEF_EnableFocusTask.inc}
 {$I ./cef/CEF_EnergyStringList.inc}
 {$I ./cef/CEF_EnergyStringMap.inc}
 {$I ./cef/CEF_Extension.inc}
@@ -99,7 +98,6 @@
 {$I ./cef/CEF_LabelButton.inc}
 {$I ./cef/CEF_LabelButtonComponent.inc}
 {$I ./cef/CEF_Layout.inc}
-{$I ./cef/CEF_LinkedWinControlBase.inc}
 {$I ./cef/CEF_LinkedWindowParent.inc}
 {$I ./cef/CEF_ListValue.inc}
 {$I ./cef/CEF_MediaAccessCallback.inc}

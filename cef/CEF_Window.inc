@@ -138,15 +138,6 @@ begin
 end;
 
 //procedure
-procedure CefWindow_ShowAsBrowserModalDialog(AObj: ICefWindow; const browserview: ICefBrowserView); extdecl;
-begin
-  {$define handleExceptionFuncName :='ShowAsBrowserModalDialog'}
-  handleExceptionBegin
-  AObj.ShowAsBrowserModalDialog(browserview);
-  handleExceptionEnd
-end;
-
-//procedure
 procedure CefWindow_Hide(AObj: ICefWindow); extdecl;
 begin
   {$define handleExceptionFuncName :='Hide'}
@@ -371,7 +362,6 @@ exports
   CefWindow_GetClientAreaBoundsInScreen,
   CefWindow_GetWindowHandle,
   CefWindow_Show,
-  CefWindow_ShowAsBrowserModalDialog,
   CefWindow_Hide,
   CefWindow_CenterWindow,
   CefWindow_Close,

@@ -1,3 +1,20 @@
+// ************************************************************************
+// ***************************** CEF4Delphi *******************************
+// ************************************************************************
+//
+// CEF4Delphi is based on DCEF3 which uses CEF to embed a chromium-based
+// browser in Delphi applications.
+//
+// The original license of DCEF3 still applies to CEF4Delphi.
+//
+// For more information about CEF4Delphi visit :
+//         https://www.briskbard.com/index.php?lang=en&pageid=cef
+//
+//        Copyright © 2023 Salvador Diaz Fau. All rights reserved.
+//
+// Unit Author: Jonas Maebe
+//
+
 unit uCEFLazarusCocoa;
 
 
@@ -43,10 +60,6 @@ var   LastMacOsKeyDownCode: cushort;
 {$ENDIF}
 
 implementation
-
-//
-// Unit Author: Jonas Maebe
-//
 
 {$IFDEF DARWIN}  // $IFDEF MACOSX
 uses

@@ -48,19 +48,6 @@ begin
 end;
 
 //property
-function CefApplicationCore_MainBundlePath(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='MainBundlePath'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MainBundlePath := AValue;
-  end else
-    Result := ToPChar(AObj.MainBundlePath);
-  handleExceptionEnd
-end;
-
-//property
 function CefApplicationCore_ChromeRuntime(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
 begin
   {$define handleExceptionFuncName :='ChromeRuntime'}
@@ -148,6 +135,19 @@ begin
     AObj.RootCache := AValue;
   end else
     Result := ToPChar(AObj.RootCache);
+  handleExceptionEnd
+end;
+
+//property
+function CefApplicationCore_UserDataPath(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
+begin
+  {$define handleExceptionFuncName :='UserDataPath'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.UserDataPath := AValue;
+  end else
+    Result := ToPChar(AObj.UserDataPath);
   handleExceptionEnd
 end;
 
@@ -243,19 +243,6 @@ begin
 end;
 
 //property
-function CefApplicationCore_LogItems(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefLogItems): TCefLogItems; extdecl;
-begin
-  {$define handleExceptionFuncName :='LogItems'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.LogItems := AValue;
-  end else
-    Result := AObj.LogItems;
-  handleExceptionEnd
-end;
-
-//property
 function CefApplicationCore_JavaScriptFlags(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
 begin
   {$define handleExceptionFuncName :='JavaScriptFlags'}
@@ -334,6 +321,19 @@ begin
 end;
 
 //property
+function CefApplicationCore_IgnoreCertificateErrors(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='IgnoreCertificateErrors'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.IgnoreCertificateErrors := AValue;
+  end else
+    Result := AObj.IgnoreCertificateErrors;
+  handleExceptionEnd
+end;
+
+//property
 function CefApplicationCore_BackgroundColor(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefColor): TCefColor; extdecl;
 begin
   {$define handleExceptionFuncName :='BackgroundColor'}
@@ -386,812 +386,6 @@ begin
 end;
 
 //property
-function CefApplicationCore_ChromePolicyId(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='ChromePolicyId'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ChromePolicyId := AValue;
-  end else
-    Result := ToPChar(AObj.ChromePolicyId);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_SingleProcess(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='SingleProcess'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.SingleProcess := AValue;
-  end else
-    Result := AObj.SingleProcess;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableMediaStream(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableMediaStream'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableMediaStream := AValue;
-  end else
-    Result := AObj.EnableMediaStream;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableSpeechInput(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableSpeechInput'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableSpeechInput := AValue;
-  end else
-    Result := AObj.EnableSpeechInput;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_UseFakeUIForMediaStream(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='UseFakeUIForMediaStream'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.UseFakeUIForMediaStream := AValue;
-  end else
-    Result := AObj.UseFakeUIForMediaStream;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableUsermediaScreenCapturing(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableUsermediaScreenCapturing'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableUsermediaScreenCapturing := AValue;
-  end else
-    Result := AObj.EnableUsermediaScreenCapturing;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableGPU(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableGPU'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableGPU := AValue;
-  end else
-    Result := AObj.EnableGPU;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableFeatures(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableFeatures'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableFeatures := AValue;
-  end else
-    Result := ToPChar(AObj.EnableFeatures);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableFeatures(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableFeatures'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableFeatures := AValue;
-  end else
-    Result := ToPChar(AObj.DisableFeatures);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableBlinkFeatures(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableBlinkFeatures'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableBlinkFeatures := AValue;
-  end else
-    Result := ToPChar(AObj.EnableBlinkFeatures);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableBlinkFeatures(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableBlinkFeatures'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableBlinkFeatures := AValue;
-  end else
-    Result := ToPChar(AObj.DisableBlinkFeatures);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_BlinkSettings(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='BlinkSettings'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.BlinkSettings := AValue;
-  end else
-    Result := ToPChar(AObj.BlinkSettings);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_ForceFieldTrials(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='ForceFieldTrials'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ForceFieldTrials := AValue;
-  end else
-    Result := ToPChar(AObj.ForceFieldTrials);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_ForceFieldTrialParams(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='ForceFieldTrialParams'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ForceFieldTrialParams := AValue;
-  end else
-    Result := ToPChar(AObj.ForceFieldTrialParams);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_SmoothScrolling(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefState): TCefState; extdecl;
-begin
-  {$define handleExceptionFuncName :='SmoothScrolling'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.SmoothScrolling := AValue;
-  end else
-    Result := AObj.SmoothScrolling;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_MuteAudio(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='MuteAudio'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MuteAudio := AValue;
-  end else
-    Result := AObj.MuteAudio;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_SitePerProcess(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='SitePerProcess'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.SitePerProcess := AValue;
-  end else
-    Result := AObj.SitePerProcess;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableWebSecurity(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableWebSecurity'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableWebSecurity := AValue;
-  end else
-    Result := AObj.DisableWebSecurity;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisablePDFExtension(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisablePDFExtension'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisablePDFExtension := AValue;
-  end else
-    Result := AObj.DisablePDFExtension;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableSiteIsolationTrials(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableSiteIsolationTrials'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableSiteIsolationTrials := AValue;
-  end else
-    Result := AObj.DisableSiteIsolationTrials;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableChromeLoginPrompt(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableChromeLoginPrompt'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableChromeLoginPrompt := AValue;
-  end else
-    Result := AObj.DisableChromeLoginPrompt;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableExtensions(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableExtensions'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableExtensions := AValue;
-  end else
-    Result := AObj.DisableExtensions;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AutoplayPolicy(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefAutoplayPolicy): TCefAutoplayPolicy; extdecl;
-begin
-  {$define handleExceptionFuncName :='AutoplayPolicy'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AutoplayPolicy := AValue;
-  end else
-    Result := AObj.AutoplayPolicy;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableBackgroundNetworking(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableBackgroundNetworking'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableBackgroundNetworking := AValue;
-  end else
-    Result := AObj.DisableBackgroundNetworking;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_MetricsRecordingOnly(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='MetricsRecordingOnly'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MetricsRecordingOnly := AValue;
-  end else
-    Result := AObj.MetricsRecordingOnly;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AllowFileAccessFromFiles(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='AllowFileAccessFromFiles'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AllowFileAccessFromFiles := AValue;
-  end else
-    Result := AObj.AllowFileAccessFromFiles;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AllowRunningInsecureContent(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='AllowRunningInsecureContent'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AllowRunningInsecureContent := AValue;
-  end else
-    Result := AObj.AllowRunningInsecureContent;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnablePrintPreview(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnablePrintPreview'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnablePrintPreview := AValue;
-  end else
-    Result := AObj.EnablePrintPreview;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableJavascript(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableJavascript'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableJavascript := AValue;
-  end else
-    Result := AObj.DisableJavascript;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableJavascriptCloseWindows(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableJavascriptCloseWindows'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableJavascriptCloseWindows := AValue;
-  end else
-    Result := AObj.DisableJavascriptCloseWindows;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableJavascriptAccessClipboard(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableJavascriptAccessClipboard'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableJavascriptAccessClipboard := AValue;
-  end else
-    Result := AObj.DisableJavascriptAccessClipboard;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableJavascriptDomPaste(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableJavascriptDomPaste'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableJavascriptDomPaste := AValue;
-  end else
-    Result := AObj.DisableJavascriptDomPaste;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AllowUniversalAccessFromFileUrls(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='AllowUniversalAccessFromFileUrls'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AllowUniversalAccessFromFileUrls := AValue;
-  end else
-    Result := AObj.AllowUniversalAccessFromFileUrls;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableImageLoading(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableImageLoading'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableImageLoading := AValue;
-  end else
-    Result := AObj.DisableImageLoading;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_ImageShrinkStandaloneToFit(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='ImageShrinkStandaloneToFit'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ImageShrinkStandaloneToFit := AValue;
-  end else
-    Result := AObj.ImageShrinkStandaloneToFit;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableTextAreaResize(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableTextAreaResize'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableTextAreaResize := AValue;
-  end else
-    Result := AObj.DisableTextAreaResize;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableTabToLinks(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableTabToLinks'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableTabToLinks := AValue;
-  end else
-    Result := AObj.DisableTabToLinks;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_EnableProfanityFilter(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableProfanityFilter'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableProfanityFilter := AValue;
-  end else
-    Result := AObj.EnableProfanityFilter;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableSpellChecking(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableSpellChecking'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableSpellChecking := AValue;
-  end else
-    Result := AObj.DisableSpellChecking;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_OverrideSpellCheckLang(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='OverrideSpellCheckLang'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.OverrideSpellCheckLang := AValue;
-  end else
-    Result := ToPChar(AObj.OverrideSpellCheckLang);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_TouchEvents(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefState): TCefState; extdecl;
-begin
-  {$define handleExceptionFuncName :='TouchEvents'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.TouchEvents := AValue;
-  end else
-    Result := AObj.TouchEvents;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableReadingFromCanvas(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableReadingFromCanvas'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableReadingFromCanvas := AValue;
-  end else
-    Result := AObj.DisableReadingFromCanvas;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_HyperlinkAuditing(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='HyperlinkAuditing'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.HyperlinkAuditing := AValue;
-  end else
-    Result := AObj.HyperlinkAuditing;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableNewBrowserInfoTimeout(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableNewBrowserInfoTimeout'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableNewBrowserInfoTimeout := AValue;
-  end else
-    Result := AObj.DisableNewBrowserInfoTimeout;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DevToolsProtocolLogFile(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='DevToolsProtocolLogFile'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DevToolsProtocolLogFile := AValue;
-  end else
-    Result := ToPChar(AObj.DevToolsProtocolLogFile);
-  handleExceptionEnd
-end;
-
-//property
-procedure CefApplicationCore_ForcedDeviceScaleFactor(AIsSet: LongBool; AObj: TCefApplicationCore; var AValue: single; var Result: single); extdecl;
-begin
-  {$define handleExceptionFuncName :='ForcedDeviceScaleFactor'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ForcedDeviceScaleFactor := AValue;
-  end else
-    Result := AObj.ForcedDeviceScaleFactor;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableZygote(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableZygote'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableZygote := AValue;
-  end else
-    Result := AObj.DisableZygote;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_UseMockKeyChain(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='UseMockKeyChain'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.UseMockKeyChain := AValue;
-  end else
-    Result := AObj.UseMockKeyChain;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableRequestHandlingForTesting(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableRequestHandlingForTesting'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableRequestHandlingForTesting := AValue;
-  end else
-    Result := AObj.DisableRequestHandlingForTesting;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisablePopupBlocking(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisablePopupBlocking'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisablePopupBlocking := AValue;
-  end else
-    Result := AObj.DisablePopupBlocking;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableBackForwardCache(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableBackForwardCache'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableBackForwardCache := AValue;
-  end else
-    Result := AObj.DisableBackForwardCache;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_DisableComponentUpdate(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='DisableComponentUpdate'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.DisableComponentUpdate := AValue;
-  end else
-    Result := AObj.DisableComponentUpdate;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AllowInsecureLocalhost(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='AllowInsecureLocalhost'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AllowInsecureLocalhost := AValue;
-  end else
-    Result := AObj.AllowInsecureLocalhost;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_KioskPrinting(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='KioskPrinting'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.KioskPrinting := AValue;
-  end else
-    Result := AObj.KioskPrinting;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_TreatInsecureOriginAsSecure(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='TreatInsecureOriginAsSecure'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.TreatInsecureOriginAsSecure := AValue;
-  end else
-    Result := ToPChar(AObj.TreatInsecureOriginAsSecure);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_NetLogEnabled(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='NetLogEnabled'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.NetLogEnabled := AValue;
-  end else
-    Result := AObj.NetLogEnabled;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_NetLogFile(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='NetLogFile'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.NetLogFile := AValue;
-  end else
-    Result := ToPChar(AObj.NetLogFile);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_NetLogCaptureMode(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefNetLogCaptureMode): TCefNetLogCaptureMode; extdecl;
-begin
-  {$define handleExceptionFuncName :='NetLogCaptureMode'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.NetLogCaptureMode := AValue;
-  end else
-    Result := AObj.NetLogCaptureMode;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_RemoteAllowOrigins(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
-begin
-  {$define handleExceptionFuncName :='RemoteAllowOrigins'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.RemoteAllowOrigins := AValue;
-  end else
-    Result := ToPChar(AObj.RemoteAllowOrigins);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_AutoAcceptCamAndMicCapture(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='AutoAcceptCamAndMicCapture'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.AutoAcceptCamAndMicCapture := AValue;
-  end else
-    Result := AObj.AutoAcceptCamAndMicCapture;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_UIColorMode(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TCefUIColorMode): TCefUIColorMode; extdecl;
-begin
-  {$define handleExceptionFuncName :='UIColorMode'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.UIColorMode := AValue;
-  end else
-    Result := AObj.UIColorMode;
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_IgnoreCertificateErrors(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='IgnoreCertificateErrors'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.IgnoreCertificateErrors := AValue;
-  end else
-    Result := AObj.IgnoreCertificateErrors;
-  handleExceptionEnd
-end;
-
-//property
 function CefApplicationCore_WindowsSandboxInfo(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: Pointer): Pointer; extdecl;
 begin
   {$define handleExceptionFuncName :='WindowsSandboxInfo'}
@@ -1201,6 +395,19 @@ begin
     AObj.WindowsSandboxInfo := AValue;
   end else
     Result := AObj.WindowsSandboxInfo;
+  handleExceptionEnd
+end;
+
+//property
+function CefApplicationCore_EnableHighDPISupport(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='EnableHighDPISupport'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.EnableHighDPISupport := AValue;
+  end else
+    Result := AObj.EnableHighDPISupport;
   handleExceptionEnd
 end;
 
@@ -1653,6 +860,51 @@ begin
   handleExceptionEnd
 end;
 
+//function
+function CefApplicationCore_InternalGetLocalizedString(AObj: TCefApplicationCore; stringId: Integer; var stringVal: PChar): LongBool; extdecl;
+var
+  RetstringVal: UnicodeString;
+begin
+  {$define handleExceptionFuncName :='InternalGetLocalizedString'}
+  handleExceptionBegin
+  RetstringVal := stringVal;
+  Result := AObj.Internal_GetLocalizedString(stringId, RetstringVal);
+  stringVal := ToPChar(RetstringVal);
+  handleExceptionEnd
+end;
+
+//function
+function CefApplicationCore_InternalGetDataResource(AObj: TCefApplicationCore; resourceId: Integer; var data: Pointer; var dataSize: NativeUInt): LongBool; extdecl;
+var
+  Retdata: Pointer;
+  RetdataSize: NativeUInt;
+begin
+  {$define handleExceptionFuncName :='InternalGetDataResource'}
+  handleExceptionBegin
+  Retdata := data;
+  RetdataSize := dataSize;
+  Result := AObj.Internal_GetDataResource(resourceId, Retdata, RetdataSize);
+  data := Retdata;
+  dataSize := RetdataSize;
+  handleExceptionEnd
+end;
+
+//function
+function CefApplicationCore_InternalGetDataResourceForScale(AObj: TCefApplicationCore; resourceId: Integer; scaleFactor: TCefScaleFactor; var data: Pointer; var dataSize: NativeUInt): LongBool; extdecl;
+var
+  Retdata: Pointer;
+  RetdataSize: NativeUInt;
+begin
+  {$define handleExceptionFuncName :='InternalGetDataResourceForScale'}
+  handleExceptionBegin
+  Retdata := data;
+  RetdataSize := dataSize;
+  Result := AObj.Internal_GetDataResourceForScale(resourceId, scaleFactor, Retdata, RetdataSize);
+  data := Retdata;
+  dataSize := RetdataSize;
+  handleExceptionEnd
+end;
+
 //procedure
 procedure CefApplicationCore_AddCustomCommandLine(AObj: TCefApplicationCore; const aCommandLine: PChar; const aValue: PChar); extdecl;
 begin
@@ -1707,6 +959,185 @@ begin
   AObj.InitLibLocationFromArgs();
   handleExceptionEnd
 {$ENDIF}
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnBeforeCommandLineProcessing(AObj: TCefApplicationCore; const processType: PChar; const commandLine: ICefCommandLine); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnBeforeCommandLineProcessing'}
+  handleExceptionBegin
+  AObj.Internal_OnBeforeCommandLineProcessing(processType, commandLine);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnRegisterCustomSchemes(AObj: TCefApplicationCore; const registrar: TCefSchemeRegistrarRef); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnRegisterCustomSchemes'}
+  handleExceptionBegin
+  AObj.Internal_OnRegisterCustomSchemes(registrar);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnRegisterCustomPreferences(AObj: TCefApplicationCore; type_: TCefPreferencesType; const registrar: TCefPreferenceRegistrarRef); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnRegisterCustomPreferences'}
+  handleExceptionBegin
+  AObj.Internal_OnRegisterCustomPreferences(type_, registrar);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnContextInitialized(AObj: TCefApplicationCore); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnContextInitialized'}
+  handleExceptionBegin
+  AObj.Internal_OnContextInitialized();
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnBeforeChildProcessLaunch(AObj: TCefApplicationCore; const commandLine: ICefCommandLine); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnBeforeChildProcessLaunch'}
+  handleExceptionBegin
+  AObj.Internal_OnBeforeChildProcessLaunch(commandLine);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnScheduleMessagePumpWork(AObj: TCefApplicationCore; var delayMs: Int64); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnScheduleMessagePumpWork'}
+  handleExceptionBegin
+  AObj.Internal_OnScheduleMessagePumpWork(delayMs);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnWebKitInitialized(AObj: TCefApplicationCore); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnWebKitInitialized'}
+  handleExceptionBegin
+  AObj.Internal_OnWebKitInitialized();
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnBrowserCreated(AObj: TCefApplicationCore; const browser: ICefBrowser; const extrainfo: ICefDictionaryValue); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnBrowserCreated'}
+  handleExceptionBegin
+  AObj.Internal_OnBrowserCreated(browser, extrainfo);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnBrowserDestroyed(AObj: TCefApplicationCore; const browser: ICefBrowser); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnBrowserDestroyed'}
+  handleExceptionBegin
+  AObj.Internal_OnBrowserDestroyed(browser);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnContextCreated(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; const context: ICefv8Context); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnContextCreated'}
+  handleExceptionBegin
+  AObj.Internal_OnContextCreated(browser, frame, context);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnContextReleased(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; const context: ICefv8Context); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnContextReleased'}
+  handleExceptionBegin
+  AObj.Internal_OnContextReleased(browser, frame, context);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnUncaughtException(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; const context: ICefv8Context; const exception: ICefV8Exception; const stackTrace: ICefV8StackTrace); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnUncaughtException'}
+  handleExceptionBegin
+  AObj.Internal_OnUncaughtException(browser, frame, context, exception, stackTrace);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnFocusedNodeChanged(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; const node: ICefDomNode); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnFocusedNodeChanged'}
+  handleExceptionBegin
+  AObj.Internal_OnFocusedNodeChanged(browser, frame, node);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnProcessMessageReceived(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; sourceProcess: TCefProcessId; const aMessage: ICefProcessMessage; var aHandled: LongBool); extdecl;
+var
+  RetaHandled: boolean;
+begin
+  {$define handleExceptionFuncName :='InternalOnProcessMessageReceived'}
+  handleExceptionBegin
+  RetaHandled := aHandled;
+  AObj.Internal_OnProcessMessageReceived(browser, frame, sourceProcess, aMessage, RetaHandled);
+  aHandled := LongBool(RetaHandled);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnLoadingStateChange(AObj: TCefApplicationCore; const browser: ICefBrowser; isLoading,  canGoBack,  canGoForward: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnLoadingStateChange'}
+  handleExceptionBegin
+  AObj.Internal_OnLoadingStateChange(browser, isLoading,  canGoBack,  canGoForward);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnLoadStart(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; transitionType: TCefTransitionType); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnLoadStart'}
+  handleExceptionBegin
+  AObj.Internal_OnLoadStart(browser, frame, transitionType);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnLoadEnd(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; httpStatusCode: Integer); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnLoadEnd'}
+  handleExceptionBegin
+  AObj.Internal_OnLoadEnd(browser, frame, httpStatusCode);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnLoadError(AObj: TCefApplicationCore; const browser: ICefBrowser; const frame: ICefFrame; errorCode: Integer; const errorText,  failedUrl: PChar); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnLoadError'}
+  handleExceptionBegin
+  AObj.Internal_OnLoadError(browser, frame, errorCode, errorText,  failedUrl);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalGetDefaultClient(AObj: TCefApplicationCore; var aClient: ICefClient); extdecl;
+var
+  RetaClient: ICefClient;
+begin
+  {$define handleExceptionFuncName :='InternalGetDefaultClient'}
+  handleExceptionBegin
+  RetaClient := aClient;
+  AObj.Internal_GetDefaultClient(RetaClient);
+  aClient := RetaClient;
+  handleExceptionEnd
 end;
 
 //property event
@@ -1862,7 +1293,6 @@ exports
   CefApplicationCore_NoSandbox,
   CefApplicationCore_BrowserSubprocessPath,
   CefApplicationCore_FrameworkDirPath,
-  CefApplicationCore_MainBundlePath,
   CefApplicationCore_ChromeRuntime,
   CefApplicationCore_MultiThreadedMessageLoop,
   CefApplicationCore_ExternalMessagePump,
@@ -1870,6 +1300,7 @@ exports
   CefApplicationCore_CommandLineArgsDisabled,
   CefApplicationCore_Cache,
   CefApplicationCore_RootCache,
+  CefApplicationCore_UserDataPath,
   CefApplicationCore_PersistSessionCookies,
   CefApplicationCore_PersistUserPreferences,
   CefApplicationCore_UserAgent,
@@ -1877,80 +1308,19 @@ exports
   CefApplicationCore_Locale,
   CefApplicationCore_LogFile,
   CefApplicationCore_LogSeverity,
-  CefApplicationCore_LogItems,
   CefApplicationCore_JavaScriptFlags,
   CefApplicationCore_ResourcesDirPath,
   CefApplicationCore_LocalesDirPath,
   CefApplicationCore_PackLoadingDisabled,
   CefApplicationCore_RemoteDebuggingPort,
   CefApplicationCore_UncaughtExceptionStackSize,
+  CefApplicationCore_IgnoreCertificateErrors,
   CefApplicationCore_BackgroundColor,
   CefApplicationCore_AcceptLanguageList,
   CefApplicationCore_CookieableSchemesList,
   CefApplicationCore_CookieableSchemesExcludeDefaults,
-  CefApplicationCore_ChromePolicyId,
-  CefApplicationCore_SingleProcess,
-  CefApplicationCore_EnableMediaStream,
-  CefApplicationCore_EnableSpeechInput,
-  CefApplicationCore_UseFakeUIForMediaStream,
-  CefApplicationCore_EnableUsermediaScreenCapturing,
-  CefApplicationCore_EnableGPU,
-  CefApplicationCore_EnableFeatures,
-  CefApplicationCore_DisableFeatures,
-  CefApplicationCore_EnableBlinkFeatures,
-  CefApplicationCore_DisableBlinkFeatures,
-  CefApplicationCore_BlinkSettings,
-  CefApplicationCore_ForceFieldTrials,
-  CefApplicationCore_ForceFieldTrialParams,
-  CefApplicationCore_SmoothScrolling,
-  CefApplicationCore_MuteAudio,
-  CefApplicationCore_SitePerProcess,
-  CefApplicationCore_DisableWebSecurity,
-  CefApplicationCore_DisablePDFExtension,
-  CefApplicationCore_DisableSiteIsolationTrials,
-  CefApplicationCore_DisableChromeLoginPrompt,
-  CefApplicationCore_DisableExtensions,
-  CefApplicationCore_AutoplayPolicy,
-  CefApplicationCore_DisableBackgroundNetworking,
-  CefApplicationCore_MetricsRecordingOnly,
-  CefApplicationCore_AllowFileAccessFromFiles,
-  CefApplicationCore_AllowRunningInsecureContent,
-  CefApplicationCore_EnablePrintPreview,
-  CefApplicationCore_DisableJavascript,
-  CefApplicationCore_DisableJavascriptCloseWindows,
-  CefApplicationCore_DisableJavascriptAccessClipboard,
-  CefApplicationCore_DisableJavascriptDomPaste,
-  CefApplicationCore_AllowUniversalAccessFromFileUrls,
-  CefApplicationCore_DisableImageLoading,
-  CefApplicationCore_ImageShrinkStandaloneToFit,
-  CefApplicationCore_DisableTextAreaResize,
-  CefApplicationCore_DisableTabToLinks,
-  CefApplicationCore_EnableProfanityFilter,
-  CefApplicationCore_DisableSpellChecking,
-  CefApplicationCore_OverrideSpellCheckLang,
-  CefApplicationCore_TouchEvents,
-  CefApplicationCore_DisableReadingFromCanvas,
-  CefApplicationCore_HyperlinkAuditing,
-  CefApplicationCore_DisableNewBrowserInfoTimeout,
-  CefApplicationCore_DevToolsProtocolLogFile,
-  CefApplicationCore_ForcedDeviceScaleFactor,
-  CefApplicationCore_DisableZygote,
-  CefApplicationCore_UseMockKeyChain,
-  CefApplicationCore_DisableRequestHandlingForTesting,
-  CefApplicationCore_DisablePopupBlocking,
-  CefApplicationCore_DisableBackForwardCache,
-  CefApplicationCore_DisableComponentUpdate,
-  CefApplicationCore_AllowInsecureLocalhost,
-  CefApplicationCore_KioskPrinting,
-  CefApplicationCore_TreatInsecureOriginAsSecure,
-  CefApplicationCore_NetLogEnabled,
-  CefApplicationCore_NetLogFile,
-  CefApplicationCore_NetLogCaptureMode,
-  CefApplicationCore_RemoteAllowOrigins,
-  CefApplicationCore_AutoAcceptCamAndMicCapture,
-  CefApplicationCore_UIColorMode,
-  CefApplicationCore_IgnoreCertificateErrors,
   CefApplicationCore_WindowsSandboxInfo,
+  CefApplicationCore_EnableHighDPISupport,
   CefApplicationCore_ArgcCopy,
   CefApplicationCore_ArgvCopy,
   CefApplicationCore_DeleteCache,
@@ -1994,12 +1364,34 @@ exports
   CefApplicationCore_CheckCEFLibrary,
   CefApplicationCore_StartMainProcess,
   CefApplicationCore_StartSubProcess,
+  CefApplicationCore_InternalGetLocalizedString,
+  CefApplicationCore_InternalGetDataResource,
+  CefApplicationCore_InternalGetDataResourceForScale,
   CefApplicationCore_AddCustomCommandLine,
   CefApplicationCore_DoMessageLoopWork,
   CefApplicationCore_RunMessageLoop,
   CefApplicationCore_QuitMessageLoop,
   CefApplicationCore_UpdateDeviceScaleFactor,
   CefApplicationCore_InitLibLocationFromArgs,
+  CefApplicationCore_InternalOnBeforeCommandLineProcessing,
+  CefApplicationCore_InternalOnRegisterCustomSchemes,
+  CefApplicationCore_InternalOnRegisterCustomPreferences,
+  CefApplicationCore_InternalOnContextInitialized,
+  CefApplicationCore_InternalOnBeforeChildProcessLaunch,
+  CefApplicationCore_InternalOnScheduleMessagePumpWork,
+  CefApplicationCore_InternalOnWebKitInitialized,
+  CefApplicationCore_InternalOnBrowserCreated,
+  CefApplicationCore_InternalOnBrowserDestroyed,
+  CefApplicationCore_InternalOnContextCreated,
+  CefApplicationCore_InternalOnContextReleased,
+  CefApplicationCore_InternalOnUncaughtException,
+  CefApplicationCore_InternalOnFocusedNodeChanged,
+  CefApplicationCore_InternalOnProcessMessageReceived,
+  CefApplicationCore_InternalOnLoadingStateChange,
+  CefApplicationCore_InternalOnLoadStart,
+  CefApplicationCore_InternalOnLoadEnd,
+  CefApplicationCore_InternalOnLoadError,
+  CefApplicationCore_InternalGetDefaultClient,
   CefApplicationCore_SetOnRegCustomSchemes,
   CefApplicationCore_SetOnRegisterCustomPreferences,
   CefApplicationCore_SetOnContextInitialized,

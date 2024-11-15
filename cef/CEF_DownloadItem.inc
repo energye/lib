@@ -42,24 +42,6 @@ begin
 end;
 
 //function
-function CefDownloadItem_IsInterrupted(AObj: ICefDownloadItem): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='IsInterrupted'}
-  handleExceptionBegin
-  Result := AObj.IsInterrupted();
-  handleExceptionEnd
-end;
-
-//function
-function CefDownloadItem_GetInterruptReason(AObj: ICefDownloadItem): TCefDownloadInterruptReason; extdecl;
-begin
-  {$define handleExceptionFuncName :='GetInterruptReason'}
-  handleExceptionBegin
-  Result := AObj.GetInterruptReason();
-  handleExceptionEnd
-end;
-
-//function
 procedure CefDownloadItem_GetCurrentSpeed(AObj: ICefDownloadItem; var Result: Int64); extdecl;
 begin
   {$define handleExceptionFuncName :='GetCurrentSpeed'}
@@ -183,8 +165,6 @@ exports
   CefDownloadItem_IsInProgress,
   CefDownloadItem_IsComplete,
   CefDownloadItem_IsCanceled,
-  CefDownloadItem_IsInterrupted,
-  CefDownloadItem_GetInterruptReason,
   CefDownloadItem_GetCurrentSpeed,
   CefDownloadItem_GetPercentComplete,
   CefDownloadItem_GetTotalBytes,

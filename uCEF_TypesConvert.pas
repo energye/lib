@@ -48,8 +48,8 @@ type
     Databases: PInteger; // TCefState
     Webgl: PInteger; // TCefState
     BackgroundColor: PInteger; // TCefColor
+    AcceptLanguageList: PChar; // TCefString
     ChromeStatusBubble: PInteger; // TCefState
-    ChromeZoomBubble: PInteger; // TCefState
   end;
 
   PEngCookiePtr = ^TEngCookiePtr;
@@ -95,7 +95,6 @@ type
     DisplayHeaderFooter: PInteger; // Integer
     HeaderTemplate: PChar; // TCefString
     FooterTemplate: PChar; // TCefString
-    GenerateTaggedPdf: PInteger; // integer
   end;
 
   PEngRequestContextSettingsPtr = ^TEngRequestContextSettingsPtr;
@@ -123,6 +122,7 @@ type
     CommandLineArgsDisabled: PInteger; // Integer
     CachePath: PChar; // TCefString
     RootCachePath: PChar; // TCefString
+    UserDataPath: PChar; // TCefString
     PersistSessionCookies: PInteger; // Integer
     PersistUserPreferences: PInteger; // Integer
     UserAgent: PChar; // TCefString
@@ -130,7 +130,6 @@ type
     Locale: PChar; // TCefString
     LogFile: PChar; // TCefString
     LogSeverity: PInteger; // TCefLogSeverity
-    LogItems: PInteger; // TCefLogItems
     JavascriptFlags: PChar; // TCefString
     ResourcesDirPath: PChar; // TCefString
     LocalesDirPath: PChar; // TCefString
@@ -141,7 +140,6 @@ type
     AcceptLanguageList: PChar; // TCefString
     CookieableSchemesList: PChar; // TCefString
     CookieableSchemesExcludeDefaults: PInteger; // integer
-    ChromePolicyId: PChar; // TCefString
   end;
 
   PEngUrlPartsPtr = ^TEngUrlPartsPtr;
@@ -257,8 +255,8 @@ begin
   Result.Databases := @(AData.databases);
   Result.Webgl := @(AData.webgl);
   Result.BackgroundColor := @(AData.background_color);
+  Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
   Result.ChromeStatusBubble := @(AData.chrome_status_bubble);
-  Result.ChromeZoomBubble := @(AData.chrome_zoom_bubble);
 end;
 
 function EngBrowserSettingsToPas(const AData: TEngBrowserSettingsPtr): TCefBrowserSettings;
@@ -289,8 +287,8 @@ begin
   Result.databases := TCefState(AData.Databases^);
   Result.webgl := TCefState(AData.Webgl^);
   Result.background_color := TCefColor(AData.BackgroundColor^);
+  Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
   Result.chrome_status_bubble := TCefState(AData.ChromeStatusBubble^);
-  Result.chrome_zoom_bubble := TCefState(AData.ChromeZoomBubble^);
 end;
 
 // TCefCookie
@@ -359,7 +357,6 @@ begin
   Result.DisplayHeaderFooter := @(AData.display_header_footer);
   Result.HeaderTemplate := ToPChar(CefString(@AData.header_template));
   Result.FooterTemplate := ToPChar(CefString(@AData.footer_template));
-  Result.GenerateTaggedPdf := @(AData.generate_tagged_pdf);
 end;
 
 function EngPdfPrintSettingsToPas(const AData: TEngPdfPrintSettingsPtr): TCefPdfPrintSettings;
@@ -379,7 +376,6 @@ begin
   Result.display_header_footer := Integer(AData.DisplayHeaderFooter^);
   Result.header_template := CefString(PCharToUStr(AData.HeaderTemplate));
   Result.footer_template := CefString(PCharToUStr(AData.FooterTemplate));
-  Result.generate_tagged_pdf := integer(AData.GenerateTaggedPdf^);
 end;
 
 // TCefRequestContextSettings
@@ -418,6 +414,7 @@ begin
   Result.CommandLineArgsDisabled := @(AData.command_line_args_disabled);
   Result.CachePath := ToPChar(CefString(@AData.cache_path));
   Result.RootCachePath := ToPChar(CefString(@AData.root_cache_path));
+  Result.UserDataPath := ToPChar(CefString(@AData.user_data_path));
   Result.PersistSessionCookies := @(AData.persist_session_cookies);
   Result.PersistUserPreferences := @(AData.persist_user_preferences);
   Result.UserAgent := ToPChar(CefString(@AData.user_agent));
@@ -425,7 +422,6 @@ begin
   Result.Locale := ToPChar(CefString(@AData.locale));
   Result.LogFile := ToPChar(CefString(@AData.log_file));
   Result.LogSeverity := @(AData.log_severity);
-  Result.LogItems := @(AData.log_items);
   Result.JavascriptFlags := ToPChar(CefString(@AData.javascript_flags));
   Result.ResourcesDirPath := ToPChar(CefString(@AData.resources_dir_path));
   Result.LocalesDirPath := ToPChar(CefString(@AData.locales_dir_path));
@@ -436,7 +432,6 @@ begin
   Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
   Result.CookieableSchemesList := ToPChar(CefString(@AData.cookieable_schemes_list));
   Result.CookieableSchemesExcludeDefaults := @(AData.cookieable_schemes_exclude_defaults);
-  Result.ChromePolicyId := ToPChar(CefString(@AData.chrome_policy_id));
 end;
 
 function EngSettingsToPas(const AData: TEngSettingsPtr): TCefSettings;
@@ -453,6 +448,7 @@ begin
   Result.command_line_args_disabled := Integer(AData.CommandLineArgsDisabled^);
   Result.cache_path := CefString(PCharToUStr(AData.CachePath));
   Result.root_cache_path := CefString(PCharToUStr(AData.RootCachePath));
+  Result.user_data_path := CefString(PCharToUStr(AData.UserDataPath));
   Result.persist_session_cookies := Integer(AData.PersistSessionCookies^);
   Result.persist_user_preferences := Integer(AData.PersistUserPreferences^);
   Result.user_agent := CefString(PCharToUStr(AData.UserAgent));
@@ -460,7 +456,6 @@ begin
   Result.locale := CefString(PCharToUStr(AData.Locale));
   Result.log_file := CefString(PCharToUStr(AData.LogFile));
   Result.log_severity := TCefLogSeverity(AData.LogSeverity^);
-  Result.log_items := TCefLogItems(AData.LogItems^);
   Result.javascript_flags := CefString(PCharToUStr(AData.JavascriptFlags));
   Result.resources_dir_path := CefString(PCharToUStr(AData.ResourcesDirPath));
   Result.locales_dir_path := CefString(PCharToUStr(AData.LocalesDirPath));
@@ -471,7 +466,6 @@ begin
   Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
   Result.cookieable_schemes_list := CefString(PCharToUStr(AData.CookieableSchemesList));
   Result.cookieable_schemes_exclude_defaults := integer(AData.CookieableSchemesExcludeDefaults^);
-  Result.chrome_policy_id := CefString(PCharToUStr(AData.ChromePolicyId));
 end;
 
 // TCefUrlParts

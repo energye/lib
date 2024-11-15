@@ -1,3 +1,40 @@
+// ************************************************************************
+// ***************************** CEF4Delphi *******************************
+// ************************************************************************
+//
+// CEF4Delphi is based on DCEF3 which uses CEF to embed a chromium-based
+// browser in Delphi applications.
+//
+// The original license of DCEF3 still applies to CEF4Delphi.
+//
+// For more information about CEF4Delphi visit :
+//         https://www.briskbard.com/index.php?lang=en&pageid=cef
+//
+//        Copyright © 2023 Salvador Diaz Fau. All rights reserved.
+//
+// ************************************************************************
+// ************ vvvv Original license and comments below vvvv *************
+// ************************************************************************
+(*
+ *                       Delphi Chromium Embedded 3
+ *
+ * Usage allowed under the restrictions of the Lesser GNU General Public License
+ * or alternatively the restrictions of the Mozilla Public License 1.1
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * Unit owner : Henri Gourvest <hgourvest@gmail.com>
+ * Web site   : http://www.progdigy.com
+ * Repository : http://code.google.com/p/delphichromiumembedded/
+ * Group      : http://groups.google.com/group/delphichromiumembedded
+ *
+ * Embarcadero Technologies, Inc is not permitted to use or redistribute
+ * this source code without explicit permission.
+ *
+ *)
+
 unit uCEFBrowser;
 
 {$IFDEF FPC}
@@ -57,11 +94,7 @@ type
       function  GetWindowHandle: TCefWindowHandle;
       function  GetOpenerWindowHandle: TCefWindowHandle;
       function  HasView: Boolean;
-      function  GetClient: ICefClient;
       function  GetRequestContext: ICefRequestContext;
-      function  CanZoom(command: TCefZoomCommand): boolean;
-      procedure Zoom(command: TCefZoomCommand);
-      function  GetDefaultZoomLevel: Double;
       function  GetZoomLevel: Double;
       procedure SetZoomLevel(const zoomLevel: Double);
       procedure RunFileDialog(mode: TCefFileDialogMode; const title, defaultFilePath: ustring; const acceptFilters: TStrings; const callback: ICefRunFileDialogCallback);
@@ -116,8 +149,6 @@ type
       function  IsBackgroundHost : boolean;
       procedure SetAudioMuted(mute: boolean);
       function  IsAudioMuted : boolean;
-      function  IsFullscreen : boolean;
-      procedure ExitFullscreen(will_cause_resize: boolean);
 
     public
       class function UnWrap(data: Pointer): ICefBrowserHost;
@@ -128,7 +159,7 @@ implementation
 uses
   uCEFMiscFunctions, uCEFLibFunctions, uCEFDownloadImageCallBack, uCEFFrame, uCEFPDFPrintCallback,
   uCEFRunFileDialogCallback, uCEFRequestContext, uCEFNavigationEntryVisitor, uCEFNavigationEntry,
-  uCEFExtension, uCEFStringList, uCEFRegistration, uCEFClient;
+  uCEFExtension, uCEFStringList, uCEFRegistration;
 
 
 // TCefBrowserRef
@@ -360,16 +391,6 @@ begin
   Result := PCefBrowserHost(FData)^.is_audio_muted(PCefBrowserHost(FData)) <> 0;
 end;
 
-function TCefBrowserHostRef.IsFullscreen : boolean;
-begin
-  Result := PCefBrowserHost(FData)^.is_fullscreen(PCefBrowserHost(FData)) <> 0;
-end;
-
-procedure TCefBrowserHostRef.ExitFullscreen(will_cause_resize: boolean);
-begin
-  PCefBrowserHost(FData)^.exit_fullscreen(PCefBrowserHost(FData), Ord(will_cause_resize));
-end;
-
 procedure TCefBrowserHostRef.DragTargetDragEnter(const dragData: ICefDragData; const event: PCefMouseEvent; allowedOps: TCefDragOperations);
 begin
   PCefBrowserHost(FData)^.drag_target_drag_enter(PCefBrowserHost(FData), CefGetData(dragData), event, allowedOps);
@@ -540,29 +561,9 @@ begin
   Result := PCefBrowserHost(FData)^.get_opener_window_handle(PCefBrowserHost(FData));
 end;
 
-function TCefBrowserHostRef.GetClient: ICefClient;
-begin
-  Result := TCefClientRef.UnWrap(PCefBrowserHost(FData)^.get_client(PCefBrowserHost(FData)));
-end;
-
 function TCefBrowserHostRef.GetRequestContext: ICefRequestContext;
 begin
   Result := TCefRequestContextRef.UnWrap(PCefBrowserHost(FData)^.get_request_context(PCefBrowserHost(FData)));
-end;
-
-function TCefBrowserHostRef.CanZoom(command: TCefZoomCommand): boolean;
-begin
-  Result := (PCefBrowserHost(FData)^.can_zoom(PCefBrowserHost(FData), command) <> 0);
-end;
-
-procedure TCefBrowserHostRef.Zoom(command: TCefZoomCommand);
-begin
-  PCefBrowserHost(FData)^.zoom(PCefBrowserHost(FData), command);
-end;
-
-function TCefBrowserHostRef.GetDefaultZoomLevel: Double;
-begin
-  Result := PCefBrowserHost(FData)^.get_default_zoom_level(PCefBrowserHost(FData));
 end;
 
 procedure TCefBrowserHostRef.GetNavigationEntries(const visitor: ICefNavigationEntryVisitor; currentOnly: Boolean);

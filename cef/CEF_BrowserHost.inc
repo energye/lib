@@ -51,38 +51,11 @@ begin
 end;
 
 //function
-procedure CefBrowserHost_GetClient(AObj: ICefBrowserHost; var Result: ICefClient); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetClient'}
-  handleExceptionBegin
-  Result := AObj.GetClient();
-  handleExceptionEnd
-end;
-
-//function
 procedure CefBrowserHost_GetRequestContext(AObj: ICefBrowserHost; var Result: ICefRequestContext); extdecl;
 begin
   {$define handleExceptionFuncName :='GetRequestContext'}
   handleExceptionBegin
   Result := AObj.GetRequestContext();
-  handleExceptionEnd
-end;
-
-//function
-function CefBrowserHost_CanZoom(AObj: ICefBrowserHost; command: TCefZoomCommand): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CanZoom'}
-  handleExceptionBegin
-  Result := AObj.CanZoom(command);
-  handleExceptionEnd
-end;
-
-//function
-procedure CefBrowserHost_GetDefaultZoomLevel(AObj: ICefBrowserHost; var Result: Double); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetDefaultZoomLevel'}
-  handleExceptionBegin
-  Result := AObj.GetDefaultZoomLevel();
   handleExceptionEnd
 end;
 
@@ -185,15 +158,6 @@ begin
   handleExceptionEnd
 end;
 
-//function
-function CefBrowserHost_IsFullscreen(AObj: ICefBrowserHost): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='IsFullscreen'}
-  handleExceptionBegin
-  Result := AObj.IsFullscreen();
-  handleExceptionEnd
-end;
-
 //procedure
 procedure CefBrowserHost_CloseBrowser(AObj: ICefBrowserHost; forceClose: LongBool); extdecl;
 begin
@@ -209,15 +173,6 @@ begin
   {$define handleExceptionFuncName :='SetFocus'}
   handleExceptionBegin
   AObj.SetFocus(focus);
-  handleExceptionEnd
-end;
-
-//procedure
-procedure CefBrowserHost_Zoom(AObj: ICefBrowserHost; command: TCefZoomCommand); extdecl;
-begin
-  {$define handleExceptionFuncName :='Zoom'}
-  handleExceptionBegin
-  AObj.Zoom(command);
   handleExceptionEnd
 end;
 
@@ -571,15 +526,6 @@ begin
   handleExceptionEnd
 end;
 
-//procedure
-procedure CefBrowserHost_ExitFullscreen(AObj: ICefBrowserHost; willcauseresize: LongBool); extdecl;
-begin
-  {$define handleExceptionFuncName :='ExitFullscreen'}
-  handleExceptionBegin
-  AObj.ExitFullscreen(willcauseresize);
-  handleExceptionEnd
-end;
-
 
 exports
   CefBrowserHost_UnWrap,
@@ -588,10 +534,7 @@ exports
   CefBrowserHost_GetWindowHandle,
   CefBrowserHost_GetOpenerWindowHandle,
   CefBrowserHost_HasView,
-  CefBrowserHost_GetClient,
   CefBrowserHost_GetRequestContext,
-  CefBrowserHost_CanZoom,
-  CefBrowserHost_GetDefaultZoomLevel,
   CefBrowserHost_GetZoomLevel,
   CefBrowserHost_HasDevTools,
   CefBrowserHost_SendDevToolsMessage,
@@ -603,10 +546,8 @@ exports
   CefBrowserHost_GetExtension,
   CefBrowserHost_IsBackgroundHost,
   CefBrowserHost_IsAudioMuted,
-  CefBrowserHost_IsFullscreen,
   CefBrowserHost_CloseBrowser,
   CefBrowserHost_SetFocus,
-  CefBrowserHost_Zoom,
   CefBrowserHost_SetZoomLevel,
   CefBrowserHost_RunFileDialog,
   CefBrowserHost_StartDownload,
@@ -644,5 +585,4 @@ exports
   CefBrowserHost_DragSourceSystemDragEnded,
   CefBrowserHost_SetAccessibilityState,
   CefBrowserHost_SetAutoResizeEnabled,
-  CefBrowserHost_SetAudioMuted,
-  CefBrowserHost_ExitFullscreen;
+  CefBrowserHost_SetAudioMuted;

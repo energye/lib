@@ -419,42 +419,6 @@ begin
 end;
 
 //property
-procedure ChromiumCore_DefaultZoomLevel(AObj: TChromiumCore; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='DefaultZoomLevel'}
-  handleExceptionBegin
-  Result := AObj.DefaultZoomLevel;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_CanIncZoom(AObj: TChromiumCore): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CanIncZoom'}
-  handleExceptionBegin
-  Result := AObj.CanIncZoom;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_CanDecZoom(AObj: TChromiumCore): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CanDecZoom'}
-  handleExceptionBegin
-  Result := AObj.CanDecZoom;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_CanResetZoom(AObj: TChromiumCore): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CanResetZoom'}
-  handleExceptionBegin
-  Result := AObj.CanResetZoom;
-  handleExceptionEnd
-end;
-
-//property
 procedure ChromiumCore_ZoomPct(AIsSet: LongBool; AObj: TChromiumCore; var AValue: double; var Result: double); extdecl;
 begin
   {$define handleExceptionFuncName :='ZoomPct'}
@@ -668,15 +632,6 @@ begin
 end;
 
 //property
-function ChromiumCore_Fullscreen(AObj: TChromiumCore): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='Fullscreen'}
-  handleExceptionBegin
-  Result := AObj.Fullscreen;
-  handleExceptionEnd
-end;
-
-//property
 function ChromiumCore_SafeSearch(AIsSet: LongBool; AObj: TChromiumCore; AValue: LongBool): LongBool; extdecl;
 begin
   {$define handleExceptionFuncName :='SafeSearch'}
@@ -846,37 +801,15 @@ begin
 end;
 
 //property
-function ChromiumCore_HighEfficiencyModeState(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefHighEfficiencyModeState): TCefHighEfficiencyModeState; extdecl;
+function ChromiumCore_HighEfficiencyMode(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefState): TCefState; extdecl;
 begin
-  {$define handleExceptionFuncName :='HighEfficiencyModeState'}
+  {$define handleExceptionFuncName :='HighEfficiencyMode'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.HighEfficiencyModeState := AValue;
+    AObj.HighEfficiencyMode := AValue;
   end else
-    Result := AObj.HighEfficiencyModeState;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_CanFocus(AObj: TChromiumCore): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CanFocus'}
-  handleExceptionBegin
-  Result := AObj.CanFocus;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_EnableFocusDelayMs(AIsSet: LongBool; AObj: TChromiumCore; AValue: uint32): uint32; extdecl;
-begin
-  {$define handleExceptionFuncName :='EnableFocusDelayMs'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.EnableFocusDelayMs := AValue;
-  end else
-    Result := AObj.EnableFocusDelayMs;
+    Result := AObj.HighEfficiencyMode;
   handleExceptionEnd
 end;
 
@@ -1351,24 +1284,6 @@ begin
   {$define handleExceptionFuncName :='GetExtension'}
   handleExceptionBegin
   Result := AObj.GetExtension(extensionid);
-  handleExceptionEnd
-end;
-
-//function
-procedure ChromiumCore_GetWebsiteSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; var Result: ICefValue); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetWebsiteSetting'}
-  handleExceptionBegin
-  Result := AObj.GetWebsiteSetting(requestingurl,  toplevelurl, contenttype);
-  handleExceptionEnd
-end;
-
-//function
-function ChromiumCore_GetContentSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes): TCefContentSettingValues; extdecl;
-begin
-  {$define handleExceptionFuncName :='GetContentSetting'}
-  handleExceptionBegin
-  Result := AObj.GetContentSetting(requestingurl,  toplevelurl, contenttype);
   handleExceptionEnd
 end;
 
@@ -1929,33 +1844,6 @@ begin
 end;
 
 //procedure
-procedure ChromiumCore_IncZoomCommand(AObj: TChromiumCore); extdecl;
-begin
-  {$define handleExceptionFuncName :='IncZoomCommand'}
-  handleExceptionBegin
-  AObj.IncZoomCommand();
-  handleExceptionEnd
-end;
-
-//procedure
-procedure ChromiumCore_DecZoomCommand(AObj: TChromiumCore); extdecl;
-begin
-  {$define handleExceptionFuncName :='DecZoomCommand'}
-  handleExceptionBegin
-  AObj.DecZoomCommand();
-  handleExceptionEnd
-end;
-
-//procedure
-procedure ChromiumCore_ResetZoomCommand(AObj: TChromiumCore); extdecl;
-begin
-  {$define handleExceptionFuncName :='ResetZoomCommand'}
-  handleExceptionBegin
-  AObj.ResetZoomCommand();
-  handleExceptionEnd
-end;
-
-//procedure
 procedure ChromiumCore_WasResized(AObj: TChromiumCore); extdecl;
 begin
   {$define handleExceptionFuncName :='WasResized'}
@@ -1997,15 +1885,6 @@ begin
   {$define handleExceptionFuncName :='Invalidate'}
   handleExceptionBegin
   AObj.Invalidate(type_);
-  handleExceptionEnd
-end;
-
-//procedure
-procedure ChromiumCore_ExitFullscreen(AObj: TChromiumCore; willcauseresize: LongBool); extdecl;
-begin
-  {$define handleExceptionFuncName :='ExitFullscreen'}
-  handleExceptionBegin
-  AObj.ExitFullscreen(willcauseresize);
   handleExceptionEnd
 end;
 
@@ -2274,24 +2153,6 @@ begin
   handleExceptionEnd
 end;
 
-//procedure
-procedure ChromiumCore_SetWebsiteSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; const value: ICefValue); extdecl;
-begin
-  {$define handleExceptionFuncName :='SetWebsiteSetting'}
-  handleExceptionBegin
-  AObj.SetWebsiteSetting(requestingurl,  toplevelurl, contenttype, value);
-  handleExceptionEnd
-end;
-
-//procedure
-procedure ChromiumCore_SetContentSetting(AObj: TChromiumCore; const requestingurl,  toplevelurl: PChar; contenttype: TCefContentSettingTypes; value: TCefContentSettingValues); extdecl;
-begin
-  {$define handleExceptionFuncName :='SetContentSetting'}
-  handleExceptionBegin
-  AObj.SetContentSetting(requestingurl,  toplevelurl, contenttype, value);
-  handleExceptionEnd
-end;
-
 //property event
 procedure ChromiumCore_SetOnTextResultAvailable(AObj: TChromiumCore; AEventData: Pointer); extdecl;
 begin
@@ -2441,14 +2302,6 @@ procedure ChromiumCore_SetOnMediaSinkDeviceInfo(AObj: TChromiumCore; AEventData:
 begin
   {$DEFINE EventMethodName := ChromiumCore_OnMediaSinkDeviceInfo}
   {$DEFINE EventName := OnMediaSinkDeviceInfo}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnCanFocus(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnCanFocus}
-  {$DEFINE EventName := OnCanFocus}
   CEFEventMethodCode
 end;
 
@@ -3423,38 +3276,6 @@ begin
 end;
 
 //property event
-procedure ChromiumCore_SetOnIsChromeAppMenuItemVisible(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnIsChromeAppMenuItemVisible}
-  {$DEFINE EventName := OnIsChromeAppMenuItemVisible}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnIsChromeAppMenuItemEnabled(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnIsChromeAppMenuItemEnabled}
-  {$DEFINE EventName := OnIsChromeAppMenuItemEnabled}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnIsChromePageActionIconVisible(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnIsChromePageActionIconVisible}
-  {$DEFINE EventName := OnIsChromePageActionIconVisible}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnIsChromeToolbarButtonVisible(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnIsChromeToolbarButtonVisible}
-  {$DEFINE EventName := OnIsChromeToolbarButtonVisible}
-  CEFEventMethodCode
-end;
-
-//property event
 procedure ChromiumCore_SetOnRequestMediaAccessPermission(AObj: TChromiumCore; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := ChromiumCore_OnRequestMediaAccessPermission}
@@ -3524,10 +3345,6 @@ exports
   ChromiumCore_RequestContextIsGlobal,
   ChromiumCore_DocumentURL,
   ChromiumCore_ZoomLevel,
-  ChromiumCore_DefaultZoomLevel,
-  ChromiumCore_CanIncZoom,
-  ChromiumCore_CanDecZoom,
-  ChromiumCore_CanResetZoom,
   ChromiumCore_ZoomPct,
   ChromiumCore_ZoomStep,
   ChromiumCore_WindowlessFrameRate,
@@ -3545,7 +3362,6 @@ exports
   ChromiumCore_FrameCount,
   ChromiumCore_DragOperations,
   ChromiumCore_AudioMuted,
-  ChromiumCore_Fullscreen,
   ChromiumCore_SafeSearch,
   ChromiumCore_YouTubeRestrict,
   ChromiumCore_PrintingEnabled,
@@ -3559,9 +3375,7 @@ exports
   ChromiumCore_JavascriptEnabled,
   ChromiumCore_LoadImagesAutomatically,
   ChromiumCore_BatterySaverModeState,
-  ChromiumCore_HighEfficiencyModeState,
-  ChromiumCore_CanFocus,
-  ChromiumCore_EnableFocusDelayMs,
+  ChromiumCore_HighEfficiencyMode,
   ChromiumCore_WebRTCIPHandlingPolicy,
   ChromiumCore_WebRTCMultipleRoutes,
   ChromiumCore_WebRTCNonproxiedUDP,
@@ -3607,8 +3421,6 @@ exports
   ChromiumCore_HasExtension,
   ChromiumCore_GetExtensions,
   ChromiumCore_GetExtension,
-  ChromiumCore_GetWebsiteSetting,
-  ChromiumCore_GetContentSetting,
   ChromiumCore_CloseBrowser,
   ChromiumCore_CloseAllBrowsers,
   ChromiumCore_InitializeDragAndDrop,
@@ -3670,15 +3482,11 @@ exports
   ChromiumCore_ResetZoomLevel,
   ChromiumCore_ResetZoomPct,
   ChromiumCore_ReadZoom,
-  ChromiumCore_IncZoomCommand,
-  ChromiumCore_DecZoomCommand,
-  ChromiumCore_ResetZoomCommand,
   ChromiumCore_WasResized,
   ChromiumCore_WasHidden,
   ChromiumCore_NotifyScreenInfoChanged,
   ChromiumCore_NotifyMoveOrResizeStarted,
   ChromiumCore_Invalidate,
-  ChromiumCore_ExitFullscreen,
   ChromiumCore_SendExternalBeginFrame,
   ChromiumCore_SendKeyEvent,
   ChromiumCore_SendMouseClickEvent,
@@ -3708,8 +3516,6 @@ exports
   ChromiumCore_NotifyCurrentRoutes,
   ChromiumCore_CreateRoute,
   ChromiumCore_GetDeviceInfo,
-  ChromiumCore_SetWebsiteSetting,
-  ChromiumCore_SetContentSetting,
   ChromiumCore_SetOnTextResultAvailable,
   ChromiumCore_SetOnPdfPrintFinished,
   ChromiumCore_SetOnPrefsAvailable,
@@ -3729,7 +3535,6 @@ exports
   ChromiumCore_SetOnZoomPctAvailable,
   ChromiumCore_SetOnMediaRouteCreateFinished,
   ChromiumCore_SetOnMediaSinkDeviceInfo,
-  ChromiumCore_SetOnCanFocus,
   ChromiumCore_SetOnBrowserCompMsg,
   ChromiumCore_SetOnWidgetCompMsg,
   ChromiumCore_SetOnRenderCompMsg,
@@ -3849,10 +3654,6 @@ exports
   ChromiumCore_SetOnFrameDetached,
   ChromiumCore_SetOnMainFrameChanged,
   ChromiumCore_SetOnChromeCommand,
-  ChromiumCore_SetOnIsChromeAppMenuItemVisible,
-  ChromiumCore_SetOnIsChromeAppMenuItemEnabled,
-  ChromiumCore_SetOnIsChromePageActionIconVisible,
-  ChromiumCore_SetOnIsChromeToolbarButtonVisible,
   ChromiumCore_SetOnRequestMediaAccessPermission,
   ChromiumCore_SetOnShowPermissionPrompt,
   ChromiumCore_SetOnDismissPermissionPrompt;

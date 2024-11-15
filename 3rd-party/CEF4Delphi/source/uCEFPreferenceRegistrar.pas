@@ -1,3 +1,40 @@
+// ************************************************************************
+// ***************************** CEF4Delphi *******************************
+// ************************************************************************
+//
+// CEF4Delphi is based on DCEF3 which uses CEF to embed a chromium-based
+// browser in Delphi applications.
+//
+// The original license of DCEF3 still applies to CEF4Delphi.
+//
+// For more information about CEF4Delphi visit :
+//         https://www.briskbard.com/index.php?lang=en&pageid=cef
+//
+//        Copyright © 2023 Salvador Diaz Fau. All rights reserved.
+//
+// ************************************************************************
+// ************ vvvv Original license and comments below vvvv *************
+// ************************************************************************
+(*
+ *                       Delphi Chromium Embedded 3
+ *
+ * Usage allowed under the restrictions of the Lesser GNU General Public License
+ * or alternatively the restrictions of the Mozilla Public License 1.1
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * Unit owner : Henri Gourvest <hgourvest@gmail.com>
+ * Web site   : http://www.progdigy.com
+ * Repository : http://code.google.com/p/delphichromiumembedded/
+ * Group      : http://groups.google.com/group/delphichromiumembedded
+ *
+ * Embarcadero Technologies, Inc is not permitted to use or redistribute
+ * this source code without explicit permission.
+ *
+ *)
+
 unit uCEFPreferenceRegistrar;
 
 {$IFDEF FPC}
@@ -15,25 +52,8 @@ uses
   uCEFBaseScopedWrapper, uCEFTypes, uCEFInterfaces;
 
 type
-  /// <summary>
-  /// Class that manages custom preference registrations.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://bitbucket.org/chromiumembedded/cef/src/master/include/capi/cef_preference_capi.h">CEF source file: /include/capi/cef_preference_capi.h (cef_preference_registrar_t)</see></para>
-  /// </remarks>
   TCefPreferenceRegistrarRef = class(TCEFBaseScopedWrapperRef)
     public
-      /// <summary>
-      /// Register a preference with the specified |name| and |default_value|. To
-      /// avoid conflicts with built-in preferences the |name| value should contain
-      /// an application-specific prefix followed by a period (e.g. "myapp.value").
-      /// The contents of |default_value| will be copied. The data type for the
-      /// preference will be inferred from |default_value|'s type and cannot be
-      /// changed after registration. Returns true (1) on success. Returns false (0)
-      /// if |name| is already registered or if |default_value| has an invalid type.
-      /// This function must be called from within the scope of the
-      /// ICefBrowserProcessHandler.OnRegisterCustomPreferences callback.
-      /// </summary>
       function AddPreference(const name: ustring; const default_value: ICefValue): Boolean;
   end;
 

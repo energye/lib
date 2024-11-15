@@ -1,3 +1,40 @@
+// ************************************************************************
+// ***************************** CEF4Delphi *******************************
+// ************************************************************************
+//
+// CEF4Delphi is based on DCEF3 which uses CEF to embed a chromium-based
+// browser in Delphi applications.
+//
+// The original license of DCEF3 still applies to CEF4Delphi.
+//
+// For more information about CEF4Delphi visit :
+//         https://www.briskbard.com/index.php?lang=en&pageid=cef
+//
+//        Copyright © 2023 Salvador Diaz Fau. All rights reserved.
+//
+// ************************************************************************
+// ************ vvvv Original license and comments below vvvv *************
+// ************************************************************************
+(*
+ *                       Delphi Chromium Embedded 3
+ *
+ * Usage allowed under the restrictions of the Lesser GNU General Public License
+ * or alternatively the restrictions of the Mozilla Public License 1.1
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * Unit owner : Henri Gourvest <hgourvest@gmail.com>
+ * Web site   : http://www.progdigy.com
+ * Repository : http://code.google.com/p/delphichromiumembedded/
+ * Group      : http://groups.google.com/group/delphichromiumembedded
+ *
+ * Embarcadero Technologies, Inc is not permitted to use or redistribute
+ * this source code without explicit permission.
+ *
+ *)
+
 unit uCEFRenderProcessHandler;
 
 {$IFDEF FPC}
@@ -277,8 +314,7 @@ end;
 procedure TCefCustomRenderProcessHandler.OnWebKitInitialized;
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnWebKitInitialized;
+    if (FCefApp <> nil) then FCefApp.Internal_OnWebKitInitialized;
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnWebKitInitialized', e) then raise;
@@ -288,8 +324,7 @@ end;
 procedure TCefCustomRenderProcessHandler.OnBrowserCreated(const browser: ICefBrowser; const extra_info: ICefDictionaryValue);
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnBrowserCreated(browser, extra_info);
+    if (FCefApp <> nil) then FCefApp.Internal_OnBrowserCreated(browser, extra_info);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnBrowserCreated', e) then raise;
@@ -299,8 +334,7 @@ end;
 procedure TCefCustomRenderProcessHandler.OnBrowserDestroyed(const browser: ICefBrowser);
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnBrowserDestroyed(browser);
+    if (FCefApp <> nil) then FCefApp.Internal_OnBrowserDestroyed(browser);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnBrowserDestroyed', e) then raise;
@@ -320,8 +354,7 @@ procedure TCefCustomRenderProcessHandler.OnContextCreated(const browser : ICefBr
                                                           const context : ICefv8Context);
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnContextCreated(browser, frame, context);
+    if (FCefApp <> nil) then FCefApp.Internal_OnContextCreated(browser, frame, context);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnContextCreated', e) then raise;
@@ -333,8 +366,7 @@ procedure TCefCustomRenderProcessHandler.OnContextReleased(const browser : ICefB
                                                            const context : ICefv8Context);
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnContextReleased(browser, frame, context);
+    if (FCefApp <> nil) then FCefApp.Internal_OnContextReleased(browser, frame, context);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnContextReleased', e) then raise;
@@ -348,8 +380,7 @@ procedure TCefCustomRenderProcessHandler.OnUncaughtException(const browser     :
                                                              const stackTrace  : ICefV8StackTrace);
 begin
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnUncaughtException(browser, frame, context, V8Exception, stackTrace);
+    if (FCefApp <> nil) then FCefApp.Internal_OnUncaughtException(browser, frame, context, V8Exception, stackTrace);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnUncaughtException', e) then raise;
@@ -361,8 +392,7 @@ procedure TCefCustomRenderProcessHandler.OnFocusedNodeChanged(const browser : IC
                                                               const node    : ICefDomNode);
 begin
   try
-   if (FCefApp <> nil) then
-    IApplicationCoreEvents(FCefApp).doOnFocusedNodeChanged(browser, frame, node);
+   if (FCefApp <> nil) then FCefApp.Internal_OnFocusedNodeChanged(browser, frame, node);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnFocusedNodeChanged', e) then raise;
@@ -377,8 +407,7 @@ begin
   Result := inherited OnProcessMessageReceived(browser, frame, sourceProcess, aMessage);
 
   try
-    if (FCefApp <> nil) then
-      IApplicationCoreEvents(FCefApp).doOnProcessMessageReceived(browser, frame, sourceProcess, aMessage, Result);
+    if (FCefApp <> nil) then FCefApp.Internal_OnProcessMessageReceived(browser, frame, sourceProcess, aMessage, Result);
   except
     on e : exception do
       if CustomExceptionHandler('TCefCustomRenderProcessHandler.OnProcessMessageReceived', e) then raise;

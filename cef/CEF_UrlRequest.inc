@@ -21,15 +21,6 @@ begin
 end;
 
 //function
-procedure CefUrlRequest_GetClient(AObj: ICefUrlRequest; var Result: ICefUrlrequestClient); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetClient'}
-  handleExceptionBegin
-  Result := AObj.GetClient();
-  handleExceptionEnd
-end;
-
-//function
 function CefUrlRequest_GetRequestStatus(AObj: ICefUrlRequest): TCefUrlRequestStatus; extdecl;
 begin
   {$define handleExceptionFuncName :='GetRequestStatus'}
@@ -79,7 +70,6 @@ exports
   CefUrlRequest_UnWrap,
   CefUrlRequest_New,
   CefUrlRequest_GetRequest,
-  CefUrlRequest_GetClient,
   CefUrlRequest_GetRequestStatus,
   CefUrlRequest_GetRequestError,
   CefUrlRequest_GetResponse,

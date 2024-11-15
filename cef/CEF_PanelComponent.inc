@@ -17,15 +17,6 @@ begin
   handleExceptionEnd
 end;
 
-//property
-function CEFPanelComponent_ChildViewCount(AObj: TCEFPanelComponent): NativeUInt; extdecl;
-begin
-  {$define handleExceptionFuncName :='ChildViewCount'}
-  handleExceptionBegin
-  Result := AObj.ChildViewCount;
-  handleExceptionEnd
-end;
-
 //function
 procedure CEFPanelComponent_SetToFillLayout(AObj: TCEFPanelComponent; var Result: ICefFillLayout); extdecl;
 begin
@@ -50,6 +41,15 @@ begin
   {$define handleExceptionFuncName :='GetLayout'}
   handleExceptionBegin
   Result := AObj.GetLayout();
+  handleExceptionEnd
+end;
+
+//function
+function CEFPanelComponent_GetChildViewCount(AObj: TCEFPanelComponent): NativeUInt; extdecl;
+begin
+  {$define handleExceptionFuncName :='GetChildViewCount'}
+  handleExceptionBegin
+  Result := AObj.GetChildViewCount();
   handleExceptionEnd
 end;
 
@@ -129,10 +129,10 @@ end;
 exports
   CEFPanelComponent_Create,
   CEFPanelComponent_AsWindow,
-  CEFPanelComponent_ChildViewCount,
   CEFPanelComponent_SetToFillLayout,
   CEFPanelComponent_SetToBoxLayout,
   CEFPanelComponent_GetLayout,
+  CEFPanelComponent_GetChildViewCount,
   CEFPanelComponent_GetChildViewAt,
   CEFPanelComponent_CreatePanel,
   CEFPanelComponent_Layout,

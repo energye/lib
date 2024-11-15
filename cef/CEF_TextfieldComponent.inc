@@ -57,28 +57,6 @@ begin
 end;
 
 //property
-procedure CEFTextfieldComponent_SelectedRange(AIsSet: LongBool; AObj: TCEFTextfieldComponent; var AValue: TCefRange; var Result: TCefRange); extdecl;
-begin
-  {$define handleExceptionFuncName :='SelectedRange'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.SelectedRange := AValue;
-  end else
-    Result := AObj.SelectedRange;
-  handleExceptionEnd
-end;
-
-//property
-function CEFTextfieldComponent_CursorPosition(AObj: TCEFTextfieldComponent): NativeUInt; extdecl;
-begin
-  {$define handleExceptionFuncName :='CursorPosition'}
-  handleExceptionBegin
-  Result := AObj.CursorPosition;
-  handleExceptionEnd
-end;
-
-//property
 function CEFTextfieldComponent_TextColor(AIsSet: LongBool; AObj: TCEFTextfieldComponent; AValue: TCefColor): TCefColor; extdecl;
 begin
   {$define handleExceptionFuncName :='TextColor'}
@@ -194,6 +172,15 @@ begin
 end;
 
 //procedure
+procedure CEFTextfieldComponent_SelectRange(AObj: TCEFTextfieldComponent; var range_: TCefRange); extdecl;
+begin
+  {$define handleExceptionFuncName :='SelectRange'}
+  handleExceptionBegin
+  AObj.SelectRange(range_);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure CEFTextfieldComponent_SetFontList(AObj: TCEFTextfieldComponent; const fontlist: PChar); extdecl;
 begin
   {$define handleExceptionFuncName :='SetFontList'}
@@ -279,8 +266,6 @@ exports
   CEFTextfieldComponent_ReadOnly,
   CEFTextfieldComponent_Text,
   CEFTextfieldComponent_SelectedText,
-  CEFTextfieldComponent_SelectedRange,
-  CEFTextfieldComponent_CursorPosition,
   CEFTextfieldComponent_TextColor,
   CEFTextfieldComponent_SelectionTextColor,
   CEFTextfieldComponent_SelectionBackgroundColor,
@@ -292,6 +277,7 @@ exports
   CEFTextfieldComponent_InsertOrReplaceText,
   CEFTextfieldComponent_SelectAll,
   CEFTextfieldComponent_ClearSelection,
+  CEFTextfieldComponent_SelectRange,
   CEFTextfieldComponent_SetFontList,
   CEFTextfieldComponent_ApplyTextColor,
   CEFTextfieldComponent_ApplyTextStyle,

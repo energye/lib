@@ -100,19 +100,6 @@ begin
 end;
 
 //property
-function PDFPrintOptions_GenerateTaggedPDF(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='GenerateTaggedPDF'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.GenerateTaggedPDF := AValue;
-  end else
-    Result := AObj.GenerateTaggedPDF;
-  handleExceptionEnd
-end;
-
-//property
 procedure PDFPrintOptions_Scale(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
 begin
   {$define handleExceptionFuncName :='Scale'}
@@ -331,7 +318,6 @@ exports
   PDFPrintOptions_DisplayHeaderFooter,
   PDFPrintOptions_HeaderTemplate,
   PDFPrintOptions_FooterTemplate,
-  PDFPrintOptions_GenerateTaggedPDF,
   PDFPrintOptions_Scale,
   PDFPrintOptions_ScalePct,
   PDFPrintOptions_PaperWidthInch,

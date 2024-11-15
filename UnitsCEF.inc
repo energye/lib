@@ -68,7 +68,7 @@ uCEFCommandHandler, uCEFLinuxEventPipe, uCEFPermissionHandler,
 uCEFRunQuickMenuCallback, uCEFMediaAccessHandler, uCEFMediaAccessCallback,
 uCEFPermissionPromptCallback, uCEFSharedProcessMessageBuilder,
 uCEFSharedMemoryRegion, uCEFPreferenceManager, uCEFPreferenceRegistrar,
-uCEFApplicationEvents, uCEFBrowserBitmap,
+uCEFApplicationEvents,
 // CEF 自定义单元
 uCEF_EventCallback,
 uTools, uCEF_Application, uCEF_CustomCallbacks, uCEF_CustomClasss, uCEF_ValueConvert,

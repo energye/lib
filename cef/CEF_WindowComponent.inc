@@ -164,15 +164,6 @@ begin
 end;
 
 //procedure
-procedure CEFWindowComponent_ShowAsBrowserModalDialog(AObj: TCEFWindowComponent; const browserview: ICefBrowserView); extdecl;
-begin
-  {$define handleExceptionFuncName :='ShowAsBrowserModalDialog'}
-  handleExceptionBegin
-  AObj.ShowAsBrowserModalDialog(browserview);
-  handleExceptionEnd
-end;
-
-//procedure
 procedure CEFWindowComponent_Hide(AObj: TCEFWindowComponent); extdecl;
 begin
   {$define handleExceptionFuncName :='Hide'}
@@ -383,14 +374,6 @@ begin
 end;
 
 //property event
-procedure CEFWindowComponent_SetOnIsWindowModalDialog(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnIsWindowModalDialog}
-  {$DEFINE EventName := OnIsWindowModalDialog}
-  CEFEventMethodCode
-end;
-
-//property event
 procedure CEFWindowComponent_SetOnGetInitialBounds(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := WindowComponent_OnGetInitialBounds}
@@ -411,22 +394,6 @@ procedure CEFWindowComponent_SetOnIsFrameless(AObj: TCEFWindowComponent; AEventD
 begin
   {$DEFINE EventMethodName := WindowComponent_OnIsFrameless}
   {$DEFINE EventName := OnIsFrameless}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure CEFWindowComponent_SetOnWithStandardWindowButtons(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnWithStandardWindowButtons}
-  {$DEFINE EventName := OnWithStandardWindowButtons}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure CEFWindowComponent_SetOnGetTitlebarHeight(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnGetTitlebarHeight}
-  {$DEFINE EventName := OnGetTitlebarHeight}
   CEFEventMethodCode
 end;
 
@@ -478,14 +445,6 @@ begin
   CEFEventMethodCode
 end;
 
-//property event
-procedure CEFWindowComponent_SetOnWindowFullscreenTransition(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnWindowFullscreenTransition}
-  {$DEFINE EventName := OnWindowFullscreenTransition}
-  CEFEventMethodCode
-end;
-
 
 exports
   CEFWindowComponent_Create,
@@ -504,7 +463,6 @@ exports
   CEFWindowComponent_AddOverlayView,
   CEFWindowComponent_CreateTopLevelWindow,
   CEFWindowComponent_Show,
-  CEFWindowComponent_ShowAsBrowserModalDialog,
   CEFWindowComponent_Hide,
   CEFWindowComponent_CenterWindow,
   CEFWindowComponent_Close,
@@ -529,16 +487,12 @@ exports
   CEFWindowComponent_SetOnWindowActivationChanged,
   CEFWindowComponent_SetOnWindowBoundsChanged,
   CEFWindowComponent_SetOnGetParentWindow,
-  CEFWindowComponent_SetOnIsWindowModalDialog,
   CEFWindowComponent_SetOnGetInitialBounds,
   CEFWindowComponent_SetOnGetInitialShowState,
   CEFWindowComponent_SetOnIsFrameless,
-  CEFWindowComponent_SetOnWithStandardWindowButtons,
-  CEFWindowComponent_SetOnGetTitlebarHeight,
   CEFWindowComponent_SetOnCanResize,
   CEFWindowComponent_SetOnCanMaximize,
   CEFWindowComponent_SetOnCanMinimize,
   CEFWindowComponent_SetOnCanClose,
   CEFWindowComponent_SetOnAccelerator,
-  CEFWindowComponent_SetOnKeyEvent,
-  CEFWindowComponent_SetOnWindowFullscreenTransition;
+  CEFWindowComponent_SetOnKeyEvent;

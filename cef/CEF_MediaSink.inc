@@ -24,6 +24,15 @@ begin
 end;
 
 //function
+function CefMediaSink_GetDescription(AObj: ICefMediaSink): PChar; extdecl;
+begin
+  {$define handleExceptionFuncName :='GetDescription'}
+  handleExceptionBegin
+  Result := ToPChar(AObj.GetDescription());
+  handleExceptionEnd
+end;
+
+//function
 function CefMediaSink_GetIconType(AObj: ICefMediaSink): TCefMediaSinkIconType; extdecl;
 begin
   {$define handleExceptionFuncName :='GetIconType'}
@@ -73,6 +82,7 @@ exports
   CefMediaSink_UnWrap,
   CefMediaSink_GetId,
   CefMediaSink_GetName,
+  CefMediaSink_GetDescription,
   CefMediaSink_GetIconType,
   CefMediaSink_IsCastSink,
   CefMediaSink_IsDialSink,

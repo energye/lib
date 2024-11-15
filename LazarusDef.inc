@@ -385,32 +385,6 @@ begin
 end;
 {$ENDIF}
 
-// 事件回调 WV
-{$IFDEF UseWebview2}
-procedure SetWVEventCallback(APtr: Pointer); extdecl;
-begin
-  GWVEventCallbackPtr := TWVEventCallbackPtr(APtr);
-end;
-
-procedure SetWVRemoveEventCallback(APtr: Pointer); extdecl;
-begin
-  GWVRemoveEventCallbackPtr := TWVRemoveEventCallPtr(APtr);
-end;
-{$ENDIF}
-
-// 事件回调 WK
-{$IF DEFINED(UseMacOSWebkit2) OR DEFINED(UseLinuxWebkit2)}
-procedure SetWKEventCallback(APtr: Pointer); extdecl;
-begin
-  GWKEventCallbackPtr := TWKEventCallbackPtr(APtr);
-end;
-
-procedure SetWKRemoveEventCallback(APtr: Pointer); extdecl;
-begin
-  GWKRemoveEventCallbackPtr := TWKRemoveEventCallPtr(APtr);
-end;
-{$ENDIF}
-
 // 从string数组中获取成员
 function DGetStringArrOf(P: Pointer; AIndex: NativeInt): PChar; extdecl;
 begin
@@ -1020,22 +994,6 @@ exports
   SetCEFEventCallback,
   // 设置 CEF 事件移除回调
   SetCEFRemoveEventCallback,
-  {$ENDIF}
-
-  // 事件回调 Webview2
-  {$IFDEF UseWebview2}
-  // 设置 WV 事件回调
-  SetWVEventCallback,
-  // 设置 WV 事件移除回调
-  SetWVRemoveEventCallback,
-  {$ENDIF}
-
-  // 事件回调 Webkit2
-  {$IF DEFINED(UseMacOSWebkit2) OR DEFINED(UseLinuxWebkit2)}
-  // 设置 WK 事件回调
-  SetWKEventCallback,
-  // 设置 WK 事件移除回调
-  SetWKRemoveEventCallback,
   {$ENDIF}
 
   // LCL 事件主线程中运行

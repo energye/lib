@@ -142,19 +142,6 @@ begin
 end;
 
 //function
-function CefDragData_GetFilePaths(AObj: ICefDragData; var paths: TStrings): Integer; extdecl;
-var
-  Retpaths: TStrings;
-begin
-  {$define handleExceptionFuncName :='GetFilePaths'}
-  handleExceptionBegin
-  Retpaths := TStringList.Create();
-  Result := AObj.GetFilePaths(Retpaths);
-  paths := Retpaths;
-  handleExceptionEnd
-end;
-
-//function
 procedure CefDragData_GetImage(AObj: ICefDragData; var Result: ICefImage); extdecl;
 begin
   {$define handleExceptionFuncName :='GetImage'}
@@ -280,7 +267,6 @@ exports
   CefDragData_GetFileName,
   CefDragData_GetFileContents,
   CefDragData_GetFileNames,
-  CefDragData_GetFilePaths,
   CefDragData_GetImage,
   CefDragData_GetImageHotspot,
   CefDragData_HasImage,

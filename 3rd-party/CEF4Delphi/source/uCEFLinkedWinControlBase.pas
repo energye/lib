@@ -1,3 +1,40 @@
+// ************************************************************************
+// ***************************** CEF4Delphi *******************************
+// ************************************************************************
+//
+// CEF4Delphi is based on DCEF3 which uses CEF to embed a chromium-based
+// browser in Delphi applications.
+//
+// The original license of DCEF3 still applies to CEF4Delphi.
+//
+// For more information about CEF4Delphi visit :
+//         https://www.briskbard.com/index.php?lang=en&pageid=cef
+//
+//        Copyright © 2023 Salvador Diaz Fau. All rights reserved.
+//
+// ************************************************************************
+// ************ vvvv Original license and comments below vvvv *************
+// ************************************************************************
+(*
+ *                       Delphi Chromium Embedded 3
+ *
+ * Usage allowed under the restrictions of the Lesser GNU General Public License
+ * or alternatively the restrictions of the Mozilla Public License 1.1
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * Unit owner : Henri Gourvest <hgourvest@gmail.com>
+ * Web site   : http://www.progdigy.com
+ * Repository : http://code.google.com/p/delphichromiumembedded/
+ * Group      : http://groups.google.com/group/delphichromiumembedded
+ *
+ * Embarcadero Technologies, Inc is not permitted to use or redistribute
+ * this source code without explicit permission.
+ *
+ *)
+
 unit uCEFLinkedWinControlBase;
 
 {$I cef.inc}
@@ -24,21 +61,13 @@ uses
   uCEFTypes, uCEFInterfaces, uCEFWinControl, uCEFChromium;
 
 type
-  /// <summary>
-  /// TCEFLinkedWinControlBase is a custom TWinControl to host the child controls created by the web browser
-  /// to show the web contents and it's linked to the TChromium instance that handles that web browser.
-  /// TCEFLinkedWinControlBase is the parent class of TChromiumWindow, TBrowserWindow and TCEFLinkedWindowParent.
-  /// </summary>
+
+  { TCEFLinkedWinControlBase }
+
   TCEFLinkedWinControlBase = class(TCEFWinControl)
     protected
-      {$IFDEF MSWINDOWS}
-      FUseSetFocus    : boolean;
-      {$ENDIF}
       function  GetChromium: TChromium; virtual; abstract;
-      {$IFDEF MSWINDOWS}
       function  GetUseSetFocus: Boolean; virtual;
-      procedure SetUseSetFocus(aValue : boolean); virtual;
-      {$ENDIF}
 
       {$IFDEF FPC}
       procedure SetVisible(Value: Boolean); override;
@@ -47,45 +76,20 @@ type
       {$IFDEF MSWINDOWS}
       procedure WndProc(var aMessage: TMessage); override;
       {$ENDIF}
-      /// <summary>
-      /// TChromium instance used by this component.
-      /// </summary>
+
       property  Chromium   : TChromium    read GetChromium;
     public
-      constructor Create(AOwner: TComponent); override;
       procedure UpdateSize; override;
-    published
-      {$IFDEF MSWINDOWS}
-      /// <summary>
-      /// Use TChromium.SetFocus when the component receives a WM_SETFOCUS message in Windows.
-      /// </summary>
-      property UseSetFocus      : boolean         read GetUseSetFocus      write SetUseSetFocus  default True;
-      {$ENDIF}
   end;
 
 implementation
 
 { TCEFLinkedWinControlBase }
 
-constructor TCEFLinkedWinControlBase.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-  {$IFDEF MSWINDOWS}
-  FUseSetFocus := True;
-  {$ENDIF}
-end;
-
-{$IFDEF MSWINDOWS}
 function TCEFLinkedWinControlBase.GetUseSetFocus: Boolean;
 begin
-  Result := FUseSetFocus;
+  Result := True;
 end;
-
-procedure TCEFLinkedWinControlBase.SetUseSetFocus(aValue : boolean);
-begin
-  FUseSetFocus := aValue;
-end;
-{$ENDIF}
 
 {$IFDEF FPC}
 procedure TCEFLinkedWinControlBase.SetVisible(Value: Boolean);
@@ -127,7 +131,7 @@ begin
   case aMessage.Msg of
     WM_SETFOCUS:
       begin
-        if UseSetFocus and (Chromium <> nil) then
+        if GetUseSetFocus and (Chromium <> nil) then
           Chromium.SetFocus(True)
          else
           begin

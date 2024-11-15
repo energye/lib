@@ -303,19 +303,6 @@ begin
 end;
 
 //property
-procedure CEFViewComponent_Insets(AIsSet: LongBool; AObj: TCEFViewComponent; var AValue: TCefInsets; var Result: TCefInsets); extdecl;
-begin
-  {$define handleExceptionFuncName :='Insets'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.Insets := AValue;
-  end else
-    Result := AObj.Insets;
-  handleExceptionEnd
-end;
-
-//property
 function CEFViewComponent_TypeString(AObj: TCEFViewComponent): PChar; extdecl;
 begin
   {$define handleExceptionFuncName :='TypeString'}
@@ -568,7 +555,6 @@ exports
   CEFViewComponent_Bounds,
   CEFViewComponent_Size,
   CEFViewComponent_Position,
-  CEFViewComponent_Insets,
   CEFViewComponent_TypeString,
   CEFViewComponent_HeightForWidth,
   CEFViewComponent_ToStringEx,

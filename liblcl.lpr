@@ -59,28 +59,7 @@ uses
 {$IFDEF UseCEF}
 ,{$I UnitsCEF.inc}
 {$ENDIF}
-
-// Webview2 Windows unit's
-{$IFDEF UseWebview2}
- ,{$I UnitsWV2.inc}
-{$ENDIF}
-
-// Webkit2 MacOS
-{$IFDEF UseMacOSWebkit2}
-,{$I UnitsWK2MacOS.inc}
-{$ENDIF}
-
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit2}
-,{$I UnitsWK2Linux.inc}
-{$ENDIF}
-
-// Webkit Linux GTK2
-{$IFDEF UseLinuxWebkit}
-//,{$I UnitsWKLinux.inc}
-{$ENDIF}
 ;
-
 // ============ xxx.inc ============= //
 
 {$IFDEF WINDOWS}
@@ -100,26 +79,6 @@ uses
 // CEF
 {$IFDEF UseCEF}
 {$I ImportCEF.inc}
-{$ENDIF}
-
-// Webview2
-{$IFDEF UseWebview2}
-{$I ImportWV.inc}
-{$ENDIF}
-
-// Webkit2 MacOS
-{$IFDEF UseMacOSWebkit2}
-{$I ImportWK2Mac.inc}
-{$ENDIF}
-
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit2}
-{$I ImportWK2Linux.inc}
-{$ENDIF}
-
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit}
-//{$I ImportWKLinux.inc}
 {$ENDIF}
 
 begin

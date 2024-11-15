@@ -96,22 +96,6 @@ begin
   CEFEventMethodCode
 end;
 
-//property event
-procedure CEFBrowserViewComponent_SetOnUseFramelessWindowForPictureInPicture(AObj: TCEFBrowserViewComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := BrowserViewComponent_OnUseFramelessWindowForPictureInPicture}
-  {$DEFINE EventName := OnUseFramelessWindowForPictureInPicture}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure CEFBrowserViewComponent_SetOnGestureCommand(AObj: TCEFBrowserViewComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := BrowserViewComponent_OnGestureCommand}
-  {$DEFINE EventName := OnGestureCommand}
-  CEFEventMethodCode
-end;
-
 
 exports
   CEFBrowserViewComponent_Create,
@@ -124,6 +108,4 @@ exports
   CEFBrowserViewComponent_SetOnBrowserDestroyed,
   CEFBrowserViewComponent_SetOnGetDelegateForPopupBrowserView,
   CEFBrowserViewComponent_SetOnPopupBrowserViewCreated,
-  CEFBrowserViewComponent_SetOnGetChromeToolbarType,
-  CEFBrowserViewComponent_SetOnUseFramelessWindowForPictureInPicture,
-  CEFBrowserViewComponent_SetOnGestureCommand;
+  CEFBrowserViewComponent_SetOnGetChromeToolbarType;

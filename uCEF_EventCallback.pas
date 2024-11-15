@@ -158,8 +158,6 @@ type
     procedure ChromiumCore_OnVirtualKeyboardRequested(Sender: TObject; const browser: ICefBrowser; input_mode: TCefTextInpuMode);
     procedure ChromiumCore_OnIsChromeAppMenuItemVisible(Sender: TObject; const browser: ICefBrowser; command_id: integer; var aResult: boolean);
     procedure ChromiumCore_OnIsChromeAppMenuItemEnabled(Sender: TObject; const browser: ICefBrowser; command_id: integer; var aResult: boolean);
-    procedure ChromiumCore_OnIsChromePageActionIconVisible(Sender: TObject; icon_type: TCefChromePageActionIconType; var aResult: boolean);
-    procedure ChromiumCore_OnIsChromeToolbarButtonVisible(Sender: TObject; button_type: TCefChromeToolbarButtonType; var aResult: boolean);
 
     procedure ChromiumCore_OnAfterCreated(Sender: TObject; const browser: ICefBrowser);
     procedure ChromiumCore_OnBeforeBrowse(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; user_gesture, isRedirect: Boolean; out Result: Boolean);
@@ -267,9 +265,8 @@ type
     procedure BrowserViewComponent_OnBrowserDestroyed(const Sender: TObject; const browser_view: ICefBrowserView; const browser: ICefBrowser);
     procedure BrowserViewComponent_OnGetDelegateForPopupBrowserView(const Sender: TObject; const browser_view: ICefBrowserView; const settings: TCefBrowserSettings; const client: ICefClient; is_devtools: boolean; var aResult : ICefBrowserViewDelegate);
     procedure BrowserViewComponent_OnPopupBrowserViewCreated(const Sender: TObject; const browser_view, popup_browser_view: ICefBrowserView; is_devtools: boolean; var aResult : boolean);
-    procedure BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; const browser_view: ICefBrowserView; var aChromeToolbarType: TCefChromeToolbarType);
+    procedure BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; var aChromeToolbarType: TCefChromeToolbarType);
     procedure BrowserViewComponent_OnUseFramelessWindowForPictureInPicture(const Sender: TObject; const browser_view: ICefBrowserView; var aResult : boolean);
-    procedure BrowserViewComponent_OnGestureCommand(const Sender: TObject; const browser_view: ICefBrowserView; gesture_command: TCefGestureCommand; var aResult : boolean);
 
     //TCEFViewComponent
     procedure ViewComponent_OnGetPreferredSize(const Sender: TObject; const view: ICefView; var aResult : TCefSize);
@@ -997,16 +994,6 @@ begin
   SendEvent([Sender, browser, command_id, @aResult]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnIsChromePageActionIconVisible(Sender: TObject; icon_type: TCefChromePageActionIconType; var aResult: boolean);
-begin
-  SendEvent([Sender, icon_type, @aResult]);
-end;
-
-procedure TCEFEvent.ChromiumCore_OnIsChromeToolbarButtonVisible(Sender: TObject; button_type: TCefChromeToolbarButtonType; var aResult: boolean);
-begin
-  SendEvent([Sender, button_type, @aResult]);
-end;
-
 procedure TCEFEvent.ChromiumCore_OnAfterCreated(Sender: TObject; const browser: ICefBrowser);
 begin
   SendEvent([Sender, browser]);
@@ -1597,19 +1584,14 @@ begin
   SendEvent([Sender, browser_view, popup_browser_view, is_devtools, @aResult]);
 end;
 
-procedure TCEFEvent.BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; const browser_view: ICefBrowserView; var aChromeToolbarType: TCefChromeToolbarType);
+procedure TCEFEvent.BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; var aChromeToolbarType: TCefChromeToolbarType);
 begin
-  SendEvent([Sender, browser_view, @aChromeToolbarType]);
+  SendEvent([Sender, @aChromeToolbarType]);
 end;
 
 procedure TCEFEvent.BrowserViewComponent_OnUseFramelessWindowForPictureInPicture(const Sender: TObject; const browser_view: ICefBrowserView; var aResult: boolean);
 begin
   SendEvent([Sender, browser_view, @aResult]);
-end;
-
-procedure TCEFEvent.BrowserViewComponent_OnGestureCommand(const Sender: TObject; const browser_view: ICefBrowserView; gesture_command: TCefGestureCommand; var aResult: boolean);
-begin
-  SendEvent([Sender, browser_view, gesture_command, @aResult]);
 end;
 
 {==TCEFViewComponent==}

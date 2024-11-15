@@ -165,6 +165,19 @@ begin
 end;
 
 //property
+function ChromiumOptions_AcceptLanguageList(AIsSet: LongBool; AObj: TChromiumOptions; AValue: PChar): PChar; extdecl;
+begin
+  {$define handleExceptionFuncName :='AcceptLanguageList'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.AcceptLanguageList := AValue;
+  end else
+    Result := ToPChar(AObj.AcceptLanguageList);
+  handleExceptionEnd
+end;
+
+//property
 function ChromiumOptions_WindowlessFrameRate(AIsSet: LongBool; AObj: TChromiumOptions; AValue: Integer): Integer; extdecl;
 begin
   {$define handleExceptionFuncName :='WindowlessFrameRate'}
@@ -190,19 +203,6 @@ begin
   handleExceptionEnd
 end;
 
-//property
-function ChromiumOptions_ChromeZoomBubble(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
-begin
-  {$define handleExceptionFuncName :='ChromeZoomBubble'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ChromeZoomBubble := AValue;
-  end else
-    Result := AObj.ChromeZoomBubble;
-  handleExceptionEnd
-end;
-
 
 exports
   ChromiumOptions_Create,
@@ -218,6 +218,6 @@ exports
   ChromiumOptions_Databases,
   ChromiumOptions_Webgl,
   ChromiumOptions_BackgroundColor,
+  ChromiumOptions_AcceptLanguageList,
   ChromiumOptions_WindowlessFrameRate,
-  ChromiumOptions_ChromeStatusBubble,
-  ChromiumOptions_ChromeZoomBubble;
+  ChromiumOptions_ChromeStatusBubble;

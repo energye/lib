@@ -69,26 +69,4 @@
 {$IFDEF CEF} // Windows, MacOS, Linux
   {$DEFINE UseCEF}
 {$ENDIF}
-
-{$IFDEF WV2} // Windows
-  {$DEFINE UseWebview2}
-{$ENDIF}
-
-{$IFDEF LCLCocoa}
-{$IFDEF WK2}  // MacOS
-  {$DEFINE UseMacOSWebkit2}
-{$ENDIF}
-{$ENDIF}
-
-{$IFDEF LCLGTK3}
-{$IFDEF WK2}  // Linux GTK3
-  {$DEFINE UseLinuxWebkit2}
-{$ENDIF}
-{$ENDIF}
-
-{$IFDEF LCLGTK2}
-{$IFDEF WK}  // Linux GTK2
-  {$DEFINE UseLinuxWebkit}
-{$ENDIF}
-{$ENDIF}
 // ==== Build end ==== //

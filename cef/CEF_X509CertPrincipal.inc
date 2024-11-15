@@ -51,6 +51,15 @@ begin
 end;
 
 //procedure
+procedure CefX509CertPrincipal_GetStreetAddresses(AObj: ICefX509CertPrincipal; const addresses: TStrings); extdecl;
+begin
+  {$define handleExceptionFuncName :='GetStreetAddresses'}
+  handleExceptionBegin
+  AObj.GetStreetAddresses(addresses);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure CefX509CertPrincipal_GetOrganizationNames(AObj: ICefX509CertPrincipal; const names: TStrings); extdecl;
 begin
   {$define handleExceptionFuncName :='GetOrganizationNames'}
@@ -68,6 +77,15 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefX509CertPrincipal_GetDomainComponents(AObj: ICefX509CertPrincipal; const components: TStrings); extdecl;
+begin
+  {$define handleExceptionFuncName :='GetDomainComponents'}
+  handleExceptionBegin
+  AObj.GetDomainComponents(components);
+  handleExceptionEnd
+end;
+
 
 exports
   CefX509CertPrincipal_UnWrap,
@@ -76,5 +94,7 @@ exports
   CefX509CertPrincipal_GetLocalityName,
   CefX509CertPrincipal_GetStateOrProvinceName,
   CefX509CertPrincipal_GetCountryName,
+  CefX509CertPrincipal_GetStreetAddresses,
   CefX509CertPrincipal_GetOrganizationNames,
-  CefX509CertPrincipal_GetOrganizationUnitNames;
+  CefX509CertPrincipal_GetOrganizationUnitNames,
+  CefX509CertPrincipal_GetDomainComponents;

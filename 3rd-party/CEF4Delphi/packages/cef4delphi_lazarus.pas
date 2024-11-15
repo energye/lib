@@ -17,7 +17,7 @@ uses
   uCEFCookieManager, uCEFCookieVisitor, uCEFCustomStreamReader, 
   uCEFDeleteCookiesCallback, uCEFDialogHandler, uCEFDictionaryValue, 
   uCEFDisplayHandler, uCEFDomDocument, uCEFDomNode, uCEFDomVisitor, 
-  uCEFDownloadHandler, uCEFDownloadImageCallBack, uCEFDownloadItem, 
+  uCEFDownloadHandler, uCEFDownloadImageCallBack, uCEFDownLoadItem, 
   uCEFDownloadItemCallback, uCEFDragData, uCEFDragHandler, 
   uCEFEndTracingCallback, uCEFExtension, uCEFExtensionHandler, 
   uCEFFileDialogCallback, uCEFFindHandler, uCEFFocusHandler, uCEFFrame, 
@@ -70,7 +70,7 @@ uses
   uCEFRunQuickMenuCallback, uCEFMediaAccessHandler, uCEFMediaAccessCallback, 
   uCEFPermissionPromptCallback, uCEFSharedProcessMessageBuilder, 
   uCEFSharedMemoryRegion, uCEFPreferenceManager, uCEFPreferenceRegistrar, 
-  uCEFApplicationEvents, uCEFBrowserBitmap, LazarusPackageIntf;
+  uCEFApplicationEvents, LazarusPackageIntf;
 
 implementation
 
