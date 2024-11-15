@@ -85,6 +85,7 @@ jobs:
             objdump -p /app/lazarus/lazbuild
             
             echo "Run Build shell ============================================="
+            cd /app/lib
             ./.github/shell/build-lib-in-linux-docker.sh CEF GTK3 x64
             ./.github/shell/build-lib-in-linux-docker.sh WK2 GTK3 x64
 
