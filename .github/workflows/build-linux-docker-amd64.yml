@@ -90,7 +90,7 @@ jobs:
             ./.github/shell/build-lib-in-linux-docker.sh WK2 gtk3 x64
             
             ./.github/shell/build-lib-in-linux-docker.sh CEF gtk2 x64
-            ./.github/shell/build-lib-in-linux-docker.sh WK1 gtk2 x64
+            ./.github/shell/build-lib-in-linux-docker.sh WK gtk2 x64
 
       - name: Release # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2

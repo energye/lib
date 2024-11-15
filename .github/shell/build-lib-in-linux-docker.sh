@@ -66,7 +66,7 @@ if [ "$bm" = "CEF" ] && [ "$ws" = "gtk2" ]; then
   fi
 fi
 
-if [ "$bm" = "WK1" ] && [ "$ws" = "gtk2" ]; then
+if [ "$bm" = "WK" ] && [ "$ws" = "gtk2" ]; then
   if [ "$arch" = "x64" ]; then
     bm="Linux64 GTK2 WK"
     zipFilename="lcl_wk_binary_linux64_gtk2.zip"
