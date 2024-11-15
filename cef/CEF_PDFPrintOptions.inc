@@ -9,171 +9,93 @@ begin
 end;
 
 //property
-function PDFPrintOptions_Landscape(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
+function PDFPrintOptions_PageWidth(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='Landscape'}
+  {$define handleExceptionFuncName :='PageWidth'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.Landscape := AValue;
+    AObj.page_width := AValue;
   end else
-    Result := AObj.Landscape;
+    Result := AObj.page_width;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_PrintBackground(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
+function PDFPrintOptions_PageHeight(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='PrintBackground'}
+  {$define handleExceptionFuncName :='PageHeight'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.PrintBackground := AValue;
+    AObj.page_height := AValue;
   end else
-    Result := AObj.PrintBackground;
+    Result := AObj.page_height;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_PreferCSSPageSize(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
+function PDFPrintOptions_ScaleFactor(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='PreferCSSPageSize'}
+  {$define handleExceptionFuncName :='ScaleFactor'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.PreferCSSPageSize := AValue;
+    AObj.scale_factor := AValue;
   end else
-    Result := AObj.PreferCSSPageSize;
+    Result := AObj.scale_factor;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_PageRanges(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
+function PDFPrintOptions_MarginTop(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='PageRanges'}
+  {$define handleExceptionFuncName :='MarginTop'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.PageRanges := AValue;
+    AObj.margin_top := AValue;
   end else
-    Result := ToPChar(AObj.PageRanges);
+    Result := AObj.margin_top;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_DisplayHeaderFooter(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
+function PDFPrintOptions_MarginRight(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='DisplayHeaderFooter'}
+  {$define handleExceptionFuncName :='MarginRight'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.DisplayHeaderFooter := AValue;
+    AObj.margin_right := AValue;
   end else
-    Result := AObj.DisplayHeaderFooter;
+    Result := AObj.margin_right;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_HeaderTemplate(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
+function PDFPrintOptions_MarginBottom(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='HeaderTemplate'}
+  {$define handleExceptionFuncName :='MarginBottom'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.HeaderTemplate := AValue;
+    AObj.margin_bottom := AValue;
   end else
-    Result := ToPChar(AObj.HeaderTemplate);
+    Result := AObj.margin_bottom;
   handleExceptionEnd
 end;
 
 //property
-function PDFPrintOptions_FooterTemplate(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: PChar): PChar; extdecl;
+function PDFPrintOptions_MarginLeft(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: integer): integer; extdecl;
 begin
-  {$define handleExceptionFuncName :='FooterTemplate'}
+  {$define handleExceptionFuncName :='MarginLeft'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.FooterTemplate := AValue;
+    AObj.margin_left := AValue;
   end else
-    Result := ToPChar(AObj.FooterTemplate);
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_Scale(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='Scale'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.Scale := AValue;
-  end else
-    Result := AObj.Scale;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_ScalePct(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='ScalePct'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ScalePct := AValue;
-  end else
-    Result := AObj.ScalePct;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_PaperWidthInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='PaperWidthInch'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.PaperWidthInch := AValue;
-  end else
-    Result := AObj.PaperWidthInch;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_PaperHeightInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='PaperHeightInch'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.PaperHeightInch := AValue;
-  end else
-    Result := AObj.PaperHeightInch;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_PaperWidthMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='PaperWidthMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.PaperWidthMM := AValue;
-  end else
-    Result := AObj.PaperWidthMM;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_PaperHeightMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='PaperHeightMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.PaperHeightMM := AValue;
-  end else
-    Result := AObj.PaperHeightMM;
+    Result := AObj.margin_left;
   handleExceptionEnd
 end;
 
@@ -184,153 +106,76 @@ begin
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.MarginType := AValue;
+    AObj.margin_type := AValue;
   end else
-    Result := AObj.MarginType;
+    Result := AObj.margin_type;
   handleExceptionEnd
 end;
 
 //property
-procedure PDFPrintOptions_MarginTopInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
+function PDFPrintOptions_HeaderFooterEnabled(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
-  {$define handleExceptionFuncName :='MarginTopInch'}
+  {$define handleExceptionFuncName :='HeaderFooterEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.MarginTopInch := AValue;
+    AObj.header_footer_enabled := AValue;
   end else
-    Result := AObj.MarginTopInch;
+    Result := AObj.header_footer_enabled;
   handleExceptionEnd
 end;
 
 //property
-procedure PDFPrintOptions_MarginRightInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
+function PDFPrintOptions_SelectionOnly(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
-  {$define handleExceptionFuncName :='MarginRightInch'}
+  {$define handleExceptionFuncName :='SelectionOnly'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.MarginRightInch := AValue;
+    AObj.selection_only := AValue;
   end else
-    Result := AObj.MarginRightInch;
+    Result := AObj.selection_only;
   handleExceptionEnd
 end;
 
 //property
-procedure PDFPrintOptions_MarginBottomInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
+function PDFPrintOptions_Landscape(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
-  {$define handleExceptionFuncName :='MarginBottomInch'}
+  {$define handleExceptionFuncName :='Landscape'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.MarginBottomInch := AValue;
+    AObj.landscape := AValue;
   end else
-    Result := AObj.MarginBottomInch;
+    Result := AObj.landscape;
   handleExceptionEnd
 end;
 
 //property
-procedure PDFPrintOptions_MarginLeftInch(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
+function PDFPrintOptions_BackgroundsEnabled(AIsSet: LongBool; AObj: TPDFPrintOptions; AValue: LongBool): LongBool; extdecl;
 begin
-  {$define handleExceptionFuncName :='MarginLeftInch'}
+  {$define handleExceptionFuncName :='BackgroundsEnabled'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.MarginLeftInch := AValue;
+    AObj.backgrounds_enabled := AValue;
   end else
-    Result := AObj.MarginLeftInch;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_MarginTopMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='MarginTopMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MarginTopMM := AValue;
-  end else
-    Result := AObj.MarginTopMM;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_MarginRightMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='MarginRightMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MarginRightMM := AValue;
-  end else
-    Result := AObj.MarginRightMM;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_MarginBottomMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='MarginBottomMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MarginBottomMM := AValue;
-  end else
-    Result := AObj.MarginBottomMM;
-  handleExceptionEnd
-end;
-
-//property
-procedure PDFPrintOptions_MarginLeftMM(AIsSet: LongBool; AObj: TPDFPrintOptions; var AValue: double; var Result: double); extdecl;
-begin
-  {$define handleExceptionFuncName :='MarginLeftMM'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.MarginLeftMM := AValue;
-  end else
-    Result := AObj.MarginLeftMM;
-  handleExceptionEnd
-end;
-
-//procedure
-procedure PDFPrintOptions_CopyToSettings(AObj: TPDFPrintOptions; var aSettings: PEngPdfPrintSettingsPtr); extdecl;
-var
-  InaSettings: TCefPdfPrintSettings;
-  RetaSettings: TEngPdfPrintSettingsPtr;
-begin
-  {$define handleExceptionFuncName :='CopyToSettings'}
-  handleExceptionBegin
-  AObj.CopyToSettings(InaSettings);
-  RetaSettings := EngPdfPrintSettingsToGo(InaSettings);
-  aSettings := @RetaSettings;
+    Result := AObj.backgrounds_enabled;
   handleExceptionEnd
 end;
 
 
 exports
   PDFPrintOptions_Create,
-  PDFPrintOptions_Landscape,
-  PDFPrintOptions_PrintBackground,
-  PDFPrintOptions_PreferCSSPageSize,
-  PDFPrintOptions_PageRanges,
-  PDFPrintOptions_DisplayHeaderFooter,
-  PDFPrintOptions_HeaderTemplate,
-  PDFPrintOptions_FooterTemplate,
-  PDFPrintOptions_Scale,
-  PDFPrintOptions_ScalePct,
-  PDFPrintOptions_PaperWidthInch,
-  PDFPrintOptions_PaperHeightInch,
-  PDFPrintOptions_PaperWidthMM,
-  PDFPrintOptions_PaperHeightMM,
+  PDFPrintOptions_PageWidth,
+  PDFPrintOptions_PageHeight,
+  PDFPrintOptions_ScaleFactor,
+  PDFPrintOptions_MarginTop,
+  PDFPrintOptions_MarginRight,
+  PDFPrintOptions_MarginBottom,
+  PDFPrintOptions_MarginLeft,
   PDFPrintOptions_MarginType,
-  PDFPrintOptions_MarginTopInch,
-  PDFPrintOptions_MarginRightInch,
-  PDFPrintOptions_MarginBottomInch,
-  PDFPrintOptions_MarginLeftInch,
-  PDFPrintOptions_MarginTopMM,
-  PDFPrintOptions_MarginRightMM,
-  PDFPrintOptions_MarginBottomMM,
-  PDFPrintOptions_MarginLeftMM,
-  PDFPrintOptions_CopyToSettings;
+  PDFPrintOptions_HeaderFooterEnabled,
+  PDFPrintOptions_SelectionOnly,
+  PDFPrintOptions_Landscape,
+  PDFPrintOptions_BackgroundsEnabled;

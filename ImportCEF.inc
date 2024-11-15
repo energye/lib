@@ -118,8 +118,6 @@
 {$I ./cef/CEF_PermissionPromptCallback.inc}
 {$I ./cef/CEF_PostData.inc}
 {$I ./cef/CEF_PostDataElement.inc}
-{$I ./cef/CEF_PreferenceManager.inc}
-{$I ./cef/CEF_PreferenceRegistrarRef.inc}
 {$I ./cef/CEF_PrintDialogCallback.inc}
 {$I ./cef/CEF_PrintJobCallback.inc}
 {$I ./cef/CEF_PrintSettings.inc}

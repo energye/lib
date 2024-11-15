@@ -80,21 +80,20 @@ type
   PEngPdfPrintSettingsPtr = ^TEngPdfPrintSettingsPtr;
 
   TEngPdfPrintSettingsPtr = record
-    Landscape: PInteger; // Integer
-    PrintBackground: PInteger; // Integer
-    Scale: PDouble; // double
-    PaperWidth: PDouble; // double
-    PaperHeight: PDouble; // double
-    PreferCssPageSize: PInteger; // Integer
+    HeaderFooterTitle: PChar; // TCefString
+    HeaderFooterUrl: PChar; // TCefString
+    PageWidth: PInteger; // Integer
+    PageHeight: PInteger; // Integer
+    ScaleFactor: PInteger; // Integer
+    MarginTop: PInteger; // Integer
+    MarginRight: PInteger; // Integer
+    MarginBottom: PInteger; // Integer
+    MarginLeft: PInteger; // Integer
     MarginType: PInteger; // TCefPdfPrintMarginType
-    MarginTop: PDouble; // double
-    MarginRight: PDouble; // double
-    MarginBottom: PDouble; // double
-    MarginLeft: PDouble; // double
-    PageRanges: PChar; // TCefString
-    DisplayHeaderFooter: PInteger; // Integer
-    HeaderTemplate: PChar; // TCefString
-    FooterTemplate: PChar; // TCefString
+    HeaderFooterEnabled: PInteger; // Integer
+    SelectionOnly: PInteger; // Integer
+    Landscape: PInteger; // Integer
+    BackgroundsEnabled: PInteger; // Integer
   end;
 
   PEngRequestContextSettingsPtr = ^TEngRequestContextSettingsPtr;
@@ -342,40 +341,38 @@ end;
 // TCefPdfPrintSettings
 function EngPdfPrintSettingsToGo(const AData: TCefPdfPrintSettings): TEngPdfPrintSettingsPtr;
 begin
-  Result.Landscape := @(AData.landscape);
-  Result.PrintBackground := @(AData.print_background);
-  Result.Scale := @(AData.scale);
-  Result.PaperWidth := @(AData.paper_width);
-  Result.PaperHeight := @(AData.paper_height);
-  Result.PreferCssPageSize := @(AData.prefer_css_page_size);
-  Result.MarginType := @(AData.margin_type);
+  Result.HeaderFooterTitle := ToPChar(CefString(@AData.header_footer_title));
+  Result.HeaderFooterUrl := ToPChar(CefString(@AData.header_footer_url));
+  Result.PageWidth := @(AData.page_width);
+  Result.PageHeight := @(AData.page_height);
+  Result.ScaleFactor := @(AData.scale_factor);
   Result.MarginTop := @(AData.margin_top);
   Result.MarginRight := @(AData.margin_right);
   Result.MarginBottom := @(AData.margin_bottom);
   Result.MarginLeft := @(AData.margin_left);
-  Result.PageRanges := ToPChar(CefString(@AData.page_ranges));
-  Result.DisplayHeaderFooter := @(AData.display_header_footer);
-  Result.HeaderTemplate := ToPChar(CefString(@AData.header_template));
-  Result.FooterTemplate := ToPChar(CefString(@AData.footer_template));
+  Result.MarginType := @(AData.margin_type);
+  Result.HeaderFooterEnabled := @(AData.header_footer_enabled);
+  Result.SelectionOnly := @(AData.selection_only);
+  Result.Landscape := @(AData.landscape);
+  Result.BackgroundsEnabled := @(AData.backgrounds_enabled);
 end;
 
 function EngPdfPrintSettingsToPas(const AData: TEngPdfPrintSettingsPtr): TCefPdfPrintSettings;
 begin
-  Result.landscape := Integer(AData.Landscape^);
-  Result.print_background := Integer(AData.PrintBackground^);
-  Result.scale := double(AData.Scale^);
-  Result.paper_width := double(AData.PaperWidth^);
-  Result.paper_height := double(AData.PaperHeight^);
-  Result.prefer_css_page_size := Integer(AData.PreferCssPageSize^);
+  Result.header_footer_title := CefString(PCharToUStr(AData.HeaderFooterTitle));
+  Result.header_footer_url := CefString(PCharToUStr(AData.HeaderFooterUrl));
+  Result.page_width := Integer(AData.PageWidth^);
+  Result.page_height := Integer(AData.PageHeight^);
+  Result.scale_factor := Integer(AData.ScaleFactor^);
+  Result.margin_top := Integer(AData.MarginTop^);
+  Result.margin_right := Integer(AData.MarginRight^);
+  Result.margin_bottom := Integer(AData.MarginBottom^);
+  Result.margin_left := Integer(AData.MarginLeft^);
   Result.margin_type := TCefPdfPrintMarginType(AData.MarginType^);
-  Result.margin_top := double(AData.MarginTop^);
-  Result.margin_right := double(AData.MarginRight^);
-  Result.margin_bottom := double(AData.MarginBottom^);
-  Result.margin_left := double(AData.MarginLeft^);
-  Result.page_ranges := CefString(PCharToUStr(AData.PageRanges));
-  Result.display_header_footer := Integer(AData.DisplayHeaderFooter^);
-  Result.header_template := CefString(PCharToUStr(AData.HeaderTemplate));
-  Result.footer_template := CefString(PCharToUStr(AData.FooterTemplate));
+  Result.header_footer_enabled := Integer(AData.HeaderFooterEnabled^);
+  Result.selection_only := Integer(AData.SelectionOnly^);
+  Result.landscape := Integer(AData.Landscape^);
+  Result.backgrounds_enabled := Integer(AData.BackgroundsEnabled^);
 end;
 
 // TCefRequestContextSettings

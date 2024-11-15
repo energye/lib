@@ -980,15 +980,6 @@ begin
 end;
 
 //procedure
-procedure CefApplicationCore_InternalOnRegisterCustomPreferences(AObj: TCefApplicationCore; type_: TCefPreferencesType; const registrar: TCefPreferenceRegistrarRef); extdecl;
-begin
-  {$define handleExceptionFuncName :='InternalOnRegisterCustomPreferences'}
-  handleExceptionBegin
-  AObj.Internal_OnRegisterCustomPreferences(type_, registrar);
-  handleExceptionEnd
-end;
-
-//procedure
 procedure CefApplicationCore_InternalOnContextInitialized(AObj: TCefApplicationCore); extdecl;
 begin
   {$define handleExceptionFuncName :='InternalOnContextInitialized'}
@@ -1145,13 +1136,6 @@ procedure CefApplicationCore_SetOnRegCustomSchemes(AObj: TCefApplicationCore; AE
 begin
   OnRegCustomSchemes_DataPtr :=  AEventData;
   AObj.OnRegCustomSchemes := ApplicationCore_OnRegCustomSchemes;
-end;
-
-//property event
-procedure CefApplicationCore_SetOnRegisterCustomPreferences(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
-begin
-  OnRegisterCustomPreferences_DataPtr :=  AEventData;
-  AObj.OnRegisterCustomPreferences := ApplicationCore_OnRegisterCustomPreferences;
 end;
 
 //property event
@@ -1375,7 +1359,6 @@ exports
   CefApplicationCore_InitLibLocationFromArgs,
   CefApplicationCore_InternalOnBeforeCommandLineProcessing,
   CefApplicationCore_InternalOnRegisterCustomSchemes,
-  CefApplicationCore_InternalOnRegisterCustomPreferences,
   CefApplicationCore_InternalOnContextInitialized,
   CefApplicationCore_InternalOnBeforeChildProcessLaunch,
   CefApplicationCore_InternalOnScheduleMessagePumpWork,
@@ -1393,7 +1376,6 @@ exports
   CefApplicationCore_InternalOnLoadError,
   CefApplicationCore_InternalGetDefaultClient,
   CefApplicationCore_SetOnRegCustomSchemes,
-  CefApplicationCore_SetOnRegisterCustomPreferences,
   CefApplicationCore_SetOnContextInitialized,
   CefApplicationCore_SetOnBeforeChildProcessLaunch,
   CefApplicationCore_SetOnScheduleMessagePumpWork,

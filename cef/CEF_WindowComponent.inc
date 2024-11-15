@@ -334,14 +334,6 @@ begin
 end;
 
 //property event
-procedure CEFWindowComponent_SetOnWindowClosing(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnWindowClosing}
-  {$DEFINE EventName := OnWindowClosing}
-  CEFEventMethodCode
-end;
-
-//property event
 procedure CEFWindowComponent_SetOnWindowDestroyed(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := WindowComponent_OnWindowDestroyed}
@@ -354,14 +346,6 @@ procedure CEFWindowComponent_SetOnWindowActivationChanged(AObj: TCEFWindowCompon
 begin
   {$DEFINE EventMethodName := WindowComponent_OnWindowActivationChanged}
   {$DEFINE EventName := OnWindowActivationChanged}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure CEFWindowComponent_SetOnWindowBoundsChanged(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnWindowBoundsChanged}
-  {$DEFINE EventName := OnWindowBoundsChanged}
   CEFEventMethodCode
 end;
 
@@ -482,10 +466,8 @@ exports
   CEFWindowComponent_RemoveAccelerator,
   CEFWindowComponent_RemoveAllAccelerators,
   CEFWindowComponent_SetOnWindowCreated,
-  CEFWindowComponent_SetOnWindowClosing,
   CEFWindowComponent_SetOnWindowDestroyed,
   CEFWindowComponent_SetOnWindowActivationChanged,
-  CEFWindowComponent_SetOnWindowBoundsChanged,
   CEFWindowComponent_SetOnGetParentWindow,
   CEFWindowComponent_SetOnGetInitialBounds,
   CEFWindowComponent_SetOnGetInitialShowState,

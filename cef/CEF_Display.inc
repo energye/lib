@@ -42,18 +42,6 @@ begin
 end;
 
 //function
-procedure CefDisplay_ScreenRectToPixels(var aScreenRect: TRect; var Result: TRect); extdecl;
-begin
-  Result := TCefDisplayRef.ScreenRectToPixels(aScreenRect);
-end;
-
-//function
-procedure CefDisplay_ScreenRectFromPixels(var aPixelsRect: TRect; var Result: TRect); extdecl;
-begin
-  Result := TCefDisplayRef.ScreenRectFromPixels(aPixelsRect);
-end;
-
-//function
 procedure CefDisplay_GetID(AObj: ICefDisplay; var Result: int64); extdecl;
 begin
   {$define handleExceptionFuncName :='GetID'}
@@ -133,8 +121,6 @@ exports
   CefDisplay_GetCount,
   CefDisplay_ScreenPointToPixels,
   CefDisplay_ScreenPointFromPixels,
-  CefDisplay_ScreenRectToPixels,
-  CefDisplay_ScreenRectFromPixels,
   CefDisplay_GetID,
   CefDisplay_GetDeviceScaleFactor,
   CefDisplay_GetBounds,

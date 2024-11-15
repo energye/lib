@@ -78,12 +78,6 @@ begin
 end;
 
 //function
-procedure CefV8Value_NewPromise(var Result: ICefv8Value); extdecl;
-begin
-  Result := TCefv8ValueRef.NewPromise();
-end;
-
-//function
 function CefV8Value_IsValid(AObj: ICefV8Value): LongBool; extdecl;
 begin
   {$define handleExceptionFuncName :='IsValid'}
@@ -197,15 +191,6 @@ begin
   {$define handleExceptionFuncName :='IsFunction'}
   handleExceptionBegin
   Result := AObj.IsFunction();
-  handleExceptionEnd
-end;
-
-//function
-function CefV8Value_IsPromise(AObj: ICefV8Value): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='IsPromise'}
-  handleExceptionBegin
-  Result := AObj.IsPromise();
   handleExceptionEnd
 end;
 
@@ -497,24 +482,6 @@ begin
   handleExceptionEnd
 end;
 
-//function
-function CefV8Value_ResolvePromise(AObj: ICefV8Value; const arg: ICefv8Value): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='ResolvePromise'}
-  handleExceptionBegin
-  Result := AObj.ResolvePromise(arg);
-  handleExceptionEnd
-end;
-
-//function
-function CefV8Value_RejectPromise(AObj: ICefV8Value; const errorMsg: PChar): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='RejectPromise'}
-  handleExceptionBegin
-  Result := AObj.RejectPromise(errorMsg);
-  handleExceptionEnd
-end;
-
 
 exports
   CefV8Value_UnWrap,
@@ -530,7 +497,6 @@ exports
   CefV8Value_NewArray,
   CefV8Value_NewArrayBuffer,
   CefV8Value_NewFunction,
-  CefV8Value_NewPromise,
   CefV8Value_IsValid,
   CefV8Value_IsUndefined,
   CefV8Value_IsNull,
@@ -544,7 +510,6 @@ exports
   CefV8Value_IsArray,
   CefV8Value_IsArrayBuffer,
   CefV8Value_IsFunction,
-  CefV8Value_IsPromise,
   CefV8Value_IsSame,
   CefV8Value_GetBoolValue,
   CefV8Value_GetIntValue,
@@ -576,6 +541,4 @@ exports
   CefV8Value_GetArrayBufferReleaseCallback,
   CefV8Value_NeuterArrayBuffer,
   CefV8Value_GetFunctionName,
-  CefV8Value_GetFunctionHandler,
-  CefV8Value_ResolvePromise,
-  CefV8Value_RejectPromise;
+  CefV8Value_GetFunctionHandler;

@@ -788,32 +788,6 @@ begin
 end;
 
 //property
-function ChromiumCore_BatterySaverModeState(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefBatterySaverModeState): TCefBatterySaverModeState; extdecl;
-begin
-  {$define handleExceptionFuncName :='BatterySaverModeState'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.BatterySaverModeState := AValue;
-  end else
-    Result := AObj.BatterySaverModeState;
-  handleExceptionEnd
-end;
-
-//property
-function ChromiumCore_HighEfficiencyMode(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefState): TCefState; extdecl;
-begin
-  {$define handleExceptionFuncName :='HighEfficiencyMode'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.HighEfficiencyMode := AValue;
-  end else
-    Result := AObj.HighEfficiencyMode;
-  handleExceptionEnd
-end;
-
-//property
 function ChromiumCore_WebRTCIPHandlingPolicy(AIsSet: LongBool; AObj: TChromiumCore; AValue: TCefWebRTCHandlingPolicy): TCefWebRTCHandlingPolicy; extdecl;
 begin
   {$define handleExceptionFuncName :='WebRTCIPHandlingPolicy'}
@@ -966,6 +940,19 @@ begin
     AObj.MaxConnectionsPerProxy := AValue;
   end else
     Result := AObj.MaxConnectionsPerProxy;
+  handleExceptionEnd
+end;
+
+//property
+function ChromiumCore_OnQuotaRequest(AIsSet: LongBool; AObj: TChromiumCore; AValue: TOnQuotaRequest): TOnQuotaRequest; extdecl;
+begin
+  {$define handleExceptionFuncName :='OnQuotaRequest'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.OnQuotaRequest := AValue;
+  end else
+    Result := AObj.OnQuotaRequest;
   handleExceptionEnd
 end;
 
@@ -1700,11 +1687,11 @@ begin
 end;
 
 //procedure
-procedure ChromiumCore_PrintToPDF(AObj: TChromiumCore; const aFilePath: PChar); extdecl;
+procedure ChromiumCore_PrintToPDF(AObj: TChromiumCore; const aFilePath,  aTitle,  aURL: PChar); extdecl;
 begin
   {$define handleExceptionFuncName :='PrintToPDF'}
   handleExceptionBegin
-  AObj.PrintToPDF(aFilePath);
+  AObj.PrintToPDF(aFilePath,  aTitle,  aURL);
   handleExceptionEnd
 end;
 
@@ -3374,8 +3361,6 @@ exports
   ChromiumCore_QuicAllowed,
   ChromiumCore_JavascriptEnabled,
   ChromiumCore_LoadImagesAutomatically,
-  ChromiumCore_BatterySaverModeState,
-  ChromiumCore_HighEfficiencyMode,
   ChromiumCore_WebRTCIPHandlingPolicy,
   ChromiumCore_WebRTCMultipleRoutes,
   ChromiumCore_WebRTCNonproxiedUDP,
@@ -3388,6 +3373,7 @@ exports
   ChromiumCore_ProxyScriptURL,
   ChromiumCore_ProxyByPassList,
   ChromiumCore_MaxConnectionsPerProxy,
+  ChromiumCore_OnQuotaRequest,
   ChromiumCore_CreateClientHandler,
   ChromiumCore_CreateClientHandler1,
   ChromiumCore_TryCloseBrowser,

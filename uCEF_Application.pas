@@ -24,7 +24,7 @@ unit uCEF_Application;
 interface
 
 uses
-  SysUtils, Controls, uCEFSchemeRegistrar, uCEFPreferenceRegistrar,
+  SysUtils, Controls, uCEFSchemeRegistrar,
   uCEFWorkScheduler,
   uCEFInterfaces, uCEFTypes,
   uTools, uCEF_EventCallback;
@@ -35,7 +35,6 @@ uses
 procedure ApplicationCore_OnRegCustomSchemes(const registrar: TCefSchemeRegistrarRef);
 
 // ICefBrowserProcessHandler
-procedure ApplicationCore_OnRegisterCustomPreferences(type_: TCefPreferencesType; const registrar: TCefPreferenceRegistrarRef);
 procedure ApplicationCore_OnContextInitialized;
 procedure ApplicationCore_OnBeforeChildProcessLaunch(const commandLine: ICefCommandLine);
 procedure ApplicationCore_OnGetDefaultClient(var aClient: ICefClient);
@@ -105,10 +104,6 @@ begin
 end;
 
 // ICefBrowserProcessHandler
-procedure ApplicationCore_OnRegisterCustomPreferences(type_: TCefPreferencesType; const registrar: TCefPreferenceRegistrarRef);
-begin
-  SendCEFEventByPointer(OnRegisterCustomPreferences_DataPtr, [Integer(type_), registrar]);
-end;
 
 procedure ApplicationCore_OnContextInitialized;
 begin

@@ -105,6 +105,55 @@ begin
 end;
 
 //function
+function CefRequestContext_HasPreference(AObj: ICefRequestContext; const name: PChar): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='HasPreference'}
+  handleExceptionBegin
+  Result := AObj.HasPreference(name);
+  handleExceptionEnd
+end;
+
+//function
+procedure CefRequestContext_GetPreference(AObj: ICefRequestContext; const name: PChar; var Result: ICefValue); extdecl;
+begin
+  {$define handleExceptionFuncName :='GetPreference'}
+  handleExceptionBegin
+  Result := AObj.GetPreference(name);
+  handleExceptionEnd
+end;
+
+//function
+procedure CefRequestContext_GetAllPreferences(AObj: ICefRequestContext; includeDefaults: LongBool; var Result: ICefDictionaryValue); extdecl;
+begin
+  {$define handleExceptionFuncName :='GetAllPreferences'}
+  handleExceptionBegin
+  Result := AObj.GetAllPreferences(includeDefaults);
+  handleExceptionEnd
+end;
+
+//function
+function CefRequestContext_CanSetPreference(AObj: ICefRequestContext; const name: PChar): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='CanSetPreference'}
+  handleExceptionBegin
+  Result := AObj.CanSetPreference(name);
+  handleExceptionEnd
+end;
+
+//function
+function CefRequestContext_SetPreference(AObj: ICefRequestContext; const name: PChar; const value: ICefValue; out outError: PChar): LongBool; extdecl;
+var
+  RetoutError: UnicodeString;
+begin
+  {$define handleExceptionFuncName :='SetPreference'}
+  handleExceptionBegin
+  RetoutError := outError;
+  Result := AObj.SetPreference(name, value, RetoutError);
+  outError := ToPChar(RetoutError);
+  handleExceptionEnd
+end;
+
+//function
 function CefRequestContext_DidLoadExtension(AObj: ICefRequestContext; const extensionid: PChar): LongBool; extdecl;
 begin
   {$define handleExceptionFuncName :='DidLoadExtension'}
@@ -209,6 +258,11 @@ exports
   CefRequestContext_GetCookieManager,
   CefRequestContext_RegisterSchemeHandlerFactory,
   CefRequestContext_ClearSchemeHandlerFactories,
+  CefRequestContext_HasPreference,
+  CefRequestContext_GetPreference,
+  CefRequestContext_GetAllPreferences,
+  CefRequestContext_CanSetPreference,
+  CefRequestContext_SetPreference,
   CefRequestContext_DidLoadExtension,
   CefRequestContext_HasExtension,
   CefRequestContext_GetExtensions,
