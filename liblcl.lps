@@ -251,7 +251,7 @@
           <Other>
             <CustomOptions Value="-dCEF"/>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;${Home}\golcl\liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
@@ -293,7 +293,7 @@
           <Other>
             <CustomOptions Value="-dCEF"/>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;${Home}\golcl\liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
@@ -630,7 +630,7 @@
           <Other>
             <CustomOptions Value="-dWK2"/>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;${Home}\golcl\liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
@@ -672,7 +672,7 @@
           <Other>
             <CustomOptions Value="-dWK2"/>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;${Home}\golcl\liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
@@ -1628,7 +1628,7 @@
         <Filename Value="liblcl.inc"/>
         <TopLine Value="74"/>
         <CursorPos X="9" Y="87"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit111>
