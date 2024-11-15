@@ -54,7 +54,21 @@ jobs:
           sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
           sudo lazbuild -B --bm="MacOSARM64 CEF" --ws=cocoa "liblcl.lpi"
-          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm.zip ./bin/liblcl.dylib
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL WK2 (x86_64) # 构建 LCL + Webkit2
+        run: |
+          sudo git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          sudo lazbuild -B --bm="MacOSx64 WK2" --ws=cocoa "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_wk2_binary_macosx64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL WK2 (ARM64) # 构建 LCL + Webkit2
+        run: |
+          sudo git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          sudo lazbuild -B --bm="MacOSARM64 WK2" --ws=cocoa "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_wk2_binary_macosarm64.zip ./bin/liblcl.dylib
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2

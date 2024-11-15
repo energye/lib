@@ -1,13 +1,12 @@
 name: Build Windows(i386, x86_64)
 
 on:
-#  workflow_dispatch:
+  workflow_dispatch:
   push:
     tags:
       - 'v*.*.*'
 
 jobs:
-  # ============== Windows 64 ==============
   windows-64:
     runs-on: ${{ matrix.operating-system }}
 
@@ -38,7 +37,6 @@ jobs:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
 
-
       - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
         run: |
           git clean -xdf
@@ -47,13 +45,20 @@ jobs:
           7z a D:/bins/lcl_cef_binary_windows64.zip ./bin/liblcl.dll
         shell: bash
 
+      - name: Build Dynamic library LCL WV2 # 构建 LCL + Webview2
+        run: |
+          git clean -xdf
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win64 WV2" "liblcl.lpi"
+          7z a D:/bins/lcl_wv2_binary_windows64.zip ./bin/liblcl.dll
+        shell: bash
+
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: D:/bins/**
 
-  # ============== Windows 32 ==============
   windows-32:
     runs-on: ${{ matrix.operating-system }}
 
@@ -90,6 +95,14 @@ jobs:
           mkdir bin && ./.github/shell/add-package.bat
           lazbuild -B --bm="Win32 CEF" "liblcl.lpi"
           7z a D:/bins/lcl_cef_binary_windows32.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL WV2 # 构建 LCL + Webview2
+        run: |
+          git clean -xdf
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win32 WV2" "liblcl.lpi"
+          7z a D:/bins/lcl_wv2_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags

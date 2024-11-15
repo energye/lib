@@ -59,6 +59,7 @@ jobs:
           # run 要在容器中运行的命令，复制git文件到挂载的目录中
           run: |
             chmod +x /app/lib/.github/shell/add-package.sh
+            chmod +x /app/lib/.github/shell/build-lib-in-linux-docker.sh
             
             pwd
             
@@ -83,20 +84,9 @@ jobs:
             make clean all
             objdump -p /app/lazarus/lazbuild
             
-            echo "Add Package ============================================="
-            cd /app/lib
-            ls -al
-            ./.github/shell/add-package.sh "/app/lazarus"
-            
-            echo "Build Dynamic library LCL CEF ============================================="
-            /app/lazarus/lazbuild -B --bm="Linux64 CEF" --ws=gtk3 --lazarusdir="/app/lazarus" "liblcl.lpi"
-            
-            echo "View liblcl.so ============================================="
-            objdump -p /app/lib/bin/liblcl.so
-            
-            echo "ZIP liblcl.so ============================================="
-            mkdir /app/bins
-            zip -j /app/bins/lcl_cef_binary_linux64.zip /app/lib/bin/liblcl.so
+            echo "Run Build shell ============================================="
+            ./.github/shell/build-lib-in-linux-docker.sh CEF GTK3 x64
+            ./.github/shell/build-lib-in-linux-docker.sh WK2 GTK3 x64
 
       - name: Release # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
