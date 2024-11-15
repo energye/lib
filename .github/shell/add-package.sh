@@ -28,5 +28,5 @@ $lazarusBaseDir $lazarusDirArgs ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
 $lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
 $lazarusBaseDir $lazarusDirArgs ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
 
-$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/CEF4Delphi/packages/webview4delphi.lpk
-$lazarusBaseDir $lazarusDirArgs ./3rd-party/CEF4Delphi/packages/webview4delphi.lpk
+$lazarusBaseDir $lazarusDirArgs --add-package ./3rd-party/WebView4Delphi/packages/webview4delphi.lpk
+$lazarusBaseDir $lazarusDirArgs ./3rd-party/WebView4Delphi/packages/webview4delphi.lpk
