@@ -22,8 +22,8 @@ jobs:
         run: |
           git config --global --add safe.directory ./
           git fetch
-          mkdir $RUNNER_WORKSPACE/bins
           sudo chmod +x ./.github/shell/add-package.sh
+          mkdir $RUNNER_WORKSPACE/bins
 
       - name: Install Golang Environment # Install Golang
         uses: actions/setup-go@v5
@@ -41,21 +41,20 @@ jobs:
         run: |
           sudo chown -R ${USER}:admin /Applications/Lazarus
           ls -la /Applications/Lazarus    
-          
 
       - name: Build Dynamic library LCL CEF (x86_64) # 构建 LCL + CEF
         run: |
           git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
           sudo lazbuild -B --bm="MacOSx64 CEF" --ws=cocoa "liblcl.lpi"
-          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosx64.zip ./bin/liblcl.dll
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosx64.zip ./bin/liblcl.dylib
 
       - name: Build Dynamic library LCL CEF (ARM64) # 构建 LCL + CEF
         run: |
           git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
           sudo lazbuild -B --bm="MacOSARM64 CEF" --ws=cocoa "liblcl.lpi"
-          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm.zip ./bin/liblcl.dll
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm.zip ./bin/liblcl.dylib
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
