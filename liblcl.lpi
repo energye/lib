@@ -144,7 +144,6 @@
       <Optimizations>
         <OptimizationLevel Value="4"/>
       </Optimizations>
-      <SmallerCode Value="True"/>
     </CodeGeneration>
     <Linking>
       <Debugging>
@@ -156,7 +155,6 @@
       </Options>
     </Linking>
     <Other>
-      <CustomOptions Value="-dCEF"/>
       <OtherDefines Count="1">
         <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
       </OtherDefines>
