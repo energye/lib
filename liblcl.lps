@@ -1007,9 +1007,10 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="658"/>
-        <CursorPos X="26" Y="661"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="657"/>
+        <CursorPos X="45" Y="673"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
       </Unit18>
@@ -1022,18 +1023,16 @@
       </Unit19>
       <Unit20>
         <Filename Value="ExtDecl.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos Y="43"/>
         <UsageCount Value="80"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
         <Filename Value="ImportCEF.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="172"/>
-        <CursorPos X="35" Y="172"/>
+        <TopLine Value="131"/>
         <UsageCount Value="78"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
@@ -1093,12 +1092,10 @@
       </Unit28>
       <Unit29>
         <Filename Value="uCEF_EventCallback.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="280"/>
-        <CursorPos X="118" Y="311"/>
+        <CursorPos X="35" Y="283"/>
         <UsageCount Value="63"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -1240,8 +1237,7 @@
       <Unit48>
         <Filename Value="cef\predef\CEF_ApplicationPredef.inc"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="22" Y="24"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit48>
       <Unit49>
@@ -1685,11 +1681,10 @@
       </Unit108>
       <Unit109>
         <Filename Value="UnitsCEF.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
-        <CursorPos X="32" Y="43"/>
+        <CursorPos Y="8"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit109>
       <Unit110>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFv8ArrayBufferReleaseCallback.pas"/>
@@ -1706,20 +1701,18 @@
       </Unit111>
       <Unit112>
         <Filename Value="uCEF_TypesConvert.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="269"/>
         <CursorPos X="23" Y="305"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit112>
       <Unit113>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFTypes.pas"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="73"/>
         <CursorPos X="11" Y="106"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit113>
       <Unit114>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFMiscFunctions.pas"/>
@@ -1730,145 +1723,41 @@
       </Unit114>
       <Unit115>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFChromiumCore.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="187"/>
         <CursorPos X="20" Y="243"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit115>
       <Unit116>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFRunFileDialogCallback.pas"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="95" Y="62"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit116>
       <Unit117>
         <Filename Value="uCEF_CustomEvents.pas"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="97" Y="36"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit117>
       <Unit118>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFChromiumEvents.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos X="278" Y="139"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit118>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="1">
       <Position1>
-        <Filename Value="uCEF_TypesConvert.pas"/>
-        <Caret Line="318" Column="55" TopLine="285"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="38" Column="33" TopLine="23"/>
       </Position1>
-      <Position2>
-        <Filename Value="uCEF_TypesConvert.pas"/>
-        <Caret Line="302" Column="31" TopLine="269"/>
-      </Position2>
-      <Position3>
-        <Filename Value="uCEF_TypesConvert.pas"/>
-        <Caret Line="305" Column="23" TopLine="269"/>
-      </Position3>
-      <Position4>
-        <Filename Value="UnitsCEF.inc"/>
-        <Caret Line="15" Column="62" TopLine="5"/>
-      </Position4>
-      <Position5>
-        <Filename Value="UnitsCEF.inc"/>
-        <Caret Line="43" Column="32" TopLine="5"/>
-      </Position5>
-      <Position6>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="77" Column="62" TopLine="69"/>
-      </Position6>
-      <Position7>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="676" Column="5" TopLine="620"/>
-      </Position7>
-      <Position8>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="137" Column="49" TopLine="104"/>
-      </Position8>
-      <Position9>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="864" Column="5" TopLine="808"/>
-      </Position9>
-      <Position10>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="143" Column="5" TopLine="110"/>
-      </Position10>
-      <Position11>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="894" Column="5" TopLine="838"/>
-      </Position11>
-      <Position12>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="143" Column="5" TopLine="110"/>
-      </Position12>
-      <Position13>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="145" Column="5" TopLine="113"/>
-      </Position13>
-      <Position14>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="904" Column="5" TopLine="848"/>
-      </Position14>
-      <Position15>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="139" Column="122" TopLine="119"/>
-      </Position15>
-      <Position16>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="942" Column="5" TopLine="886"/>
-      </Position16>
-      <Position17>
-        <Filename Value="uCEF_CustomEvents.pas"/>
-        <Caret Line="36" Column="97"/>
-      </Position17>
-      <Position18>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFChromiumCore.pas"/>
-        <Caret Line="16" Column="76"/>
-      </Position18>
-      <Position19>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFChromiumCore.pas"/>
-        <Caret Line="243" Column="20" TopLine="187"/>
-      </Position19>
-      <Position20>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="942" Column="5" TopLine="886"/>
-      </Position20>
-      <Position21>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="106" Column="272" TopLine="72"/>
-      </Position21>
-      <Position22>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="697" Column="114" TopLine="636"/>
-      </Position22>
-      <Position23>
-        <Filename Value="uCEF_CustomEvents.pas"/>
-        <Caret Line="8"/>
-      </Position23>
-      <Position24>
-        <Filename Value="uCEF_CustomEvents.pas"/>
-        <Caret Line="36" Column="28"/>
-      </Position24>
-      <Position25>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="652" Column="5" TopLine="636"/>
-      </Position25>
-      <Position26>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1731" Column="124" TopLine="1673"/>
-      </Position26>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
