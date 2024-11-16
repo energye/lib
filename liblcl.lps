@@ -72,7 +72,6 @@
             <Optimizations>
               <OptimizationLevel Value="4"/>
             </Optimizations>
-            <SmallerCode Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -115,7 +114,6 @@
             <Optimizations>
               <OptimizationLevel Value="4"/>
             </Optimizations>
-            <SmallerCode Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -234,7 +232,6 @@
             <Optimizations>
               <OptimizationLevel Value="4"/>
             </Optimizations>
-            <SmallerCode Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -404,7 +401,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="23"/>
-        <CursorPos X="42" Y="56"/>
+        <CursorPos Y="55"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
