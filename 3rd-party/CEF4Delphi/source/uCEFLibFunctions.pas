@@ -178,9 +178,6 @@ var
   // /include/capi/cef_server_capi.h
   cef_server_create : procedure(const address: PCefString; port: uint16; backlog: Integer; handler: PCefServerHandler); cdecl;
 
-  // /include/capi/cef_shared_process_message_builder_capi.h
-  cef_shared_process_message_builder_create : function(const name: PCefString; byte_size: NativeUInt) : PCefSharedProcessMessageBuilder; cdecl;
-
   // /include/capi/cef_ssl_info_capi.h
   cef_is_cert_status_error       : function(status : TCefCertStatus) : integer; cdecl;
 
@@ -219,7 +216,7 @@ var
   cef_v8value_create_int            : function(value: Integer): PCefv8Value; cdecl;
   cef_v8value_create_uint           : function(value: Cardinal): PCefv8Value; cdecl;
   cef_v8value_create_double         : function(value: Double): PCefv8Value; cdecl;
-  cef_v8value_create_date           : function(value: TCefBaseTime): PCefv8Value; cdecl;
+  cef_v8value_create_date           : function(const value: PCefTime): PCefv8Value; cdecl;
   cef_v8value_create_string         : function(const value: PCefString): PCefv8Value; cdecl;
   cef_v8value_create_object         : function(accessor: PCefV8Accessor; interceptor: PCefV8Interceptor): PCefv8Value; cdecl;
   cef_v8value_create_array          : function(length: Integer): PCefv8Value; cdecl;
@@ -254,13 +251,11 @@ var
   cef_browser_view_get_for_browser : function(browser: PCefBrowser): PCefBrowserView; cdecl;
 
   // /include/capi/views/cef_display_capi.h
-  cef_display_get_primary                      : function : PCefDisplay; cdecl;
-  cef_display_get_nearest_point                : function(const point: PCefPoint; input_pixel_coords: Integer): PCefDisplay; cdecl;
-  cef_display_get_matching_bounds              : function(const bounds: PCefRect; input_pixel_coords: Integer): PCefDisplay; cdecl;
-  cef_display_get_count                        : function : NativeUInt; cdecl;
-  cef_display_get_alls                         : procedure(displaysCount: PNativeUInt; displays: PPCefDisplay); cdecl;
-  cef_display_convert_screen_point_to_pixels   : function(const point: PCefPoint): TCefPoint; cdecl;
-  cef_display_convert_screen_point_from_pixels : function(const point: PCefPoint): TCefPoint; cdecl;
+  cef_display_get_primary         : function : PCefDisplay; cdecl;
+  cef_display_get_nearest_point   : function(const point: PCefPoint; input_pixel_coords: Integer): PCefDisplay; cdecl;
+  cef_display_get_matching_bounds : function(const bounds: PCefRect; input_pixel_coords: Integer): PCefDisplay; cdecl;
+  cef_display_get_count           : function : NativeUInt; cdecl;
+  cef_display_get_alls            : procedure(displaysCount: PNativeUInt; displays: PPCefDisplay); cdecl;
 
   // /include/capi/views/cef_label_button_capi.h
   cef_label_button_create         : function(delegate: PCefButtonDelegate; const text: PCefString): PCefLabelButton; cdecl;
@@ -351,17 +346,6 @@ var
   // /include/internal/cef_thread_internal.h
   cef_get_current_platform_thread_id     : function : TCefPlatformThreadId; cdecl;
   cef_get_current_platform_thread_handle : function : TCefPlatformThreadHandle; cdecl;
-
-  // /include/internal/cef_time.h
-  cef_time_to_timet         : function(const cef_time: PCefTime; out time_: Int64): integer; cdecl;
-  cef_time_from_timet       : function(time_: int64; out cef_time: TCefTime): integer; cdecl;
-  cef_time_to_doublet       : function(const cef_time: PCefTime; out time_: double): integer; cdecl;
-  cef_time_from_doublet     : function(time: double; out cef_time: TCefTime): integer; cdecl;
-  cef_time_now              : function(out cef_time: TCefTime): integer; cdecl;
-  cef_basetime_now          : function : TCefBaseTime; cdecl;
-  cef_time_delta            : function(const cef_time1, cef_time2: PCefTime; out delta: int64): integer; cdecl;
-  cef_time_to_basetime      : function(const from: PCefTime; to_: PCefBaseTime) : integer; cdecl;
-  cef_time_from_basetime    : function(const from: TCefBaseTime; to_: PCefTime) : integer; cdecl;
 
   // /include/internal/cef_trace_event_internal.h
   cef_trace_event_instant         : procedure(const category, name, arg1_name: PAnsiChar; arg1_val: uint64; const arg2_name: PAnsiChar; arg2_val: UInt64; copy: Integer); cdecl;

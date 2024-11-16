@@ -92,7 +92,7 @@ end;
 
 function TCefDownLoadItemRef.GetEndTime: TDateTime;
 begin
-  Result := CefBaseTimeToDateTime(PCefDownloadItem(FData)^.get_end_time(PCefDownloadItem(FData)));
+  Result := CefTimeToDateTime(PCefDownloadItem(FData)^.get_end_time(PCefDownloadItem(FData)));
 end;
 
 function TCefDownLoadItemRef.GetFullPath: ustring;
@@ -127,7 +127,7 @@ end;
 
 function TCefDownLoadItemRef.GetStartTime: TDateTime;
 begin
-  Result := CefBaseTimeToDateTime(PCefDownloadItem(FData)^.get_start_time(PCefDownloadItem(FData)));
+  Result := CefTimeToDateTime(PCefDownloadItem(FData)^.get_start_time(PCefDownloadItem(FData)));
 end;
 
 function TCefDownLoadItemRef.GetSuggestedFileName: ustring;

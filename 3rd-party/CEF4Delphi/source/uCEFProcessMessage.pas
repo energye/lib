@@ -59,7 +59,6 @@ type
       function Copy: ICefProcessMessage;
       function GetName: ustring;
       function GetArgumentList: ICefListValue;
-      function GetSharedMemoryRegion: ICefSharedMemoryRegion;
 
     public
       class function UnWrap(data: Pointer): ICefProcessMessage;
@@ -69,7 +68,7 @@ type
 implementation
 
 uses
-  uCEFMiscFunctions, uCEFLibFunctions, uCEFListValue, uCEFSharedMemoryRegion;
+  uCEFMiscFunctions, uCEFLibFunctions, uCEFListValue;
 
 function TCefProcessMessageRef.Copy: ICefProcessMessage;
 begin
@@ -79,11 +78,6 @@ end;
 function TCefProcessMessageRef.GetArgumentList: ICefListValue;
 begin
   Result := TCefListValueRef.UnWrap(PCefProcessMessage(FData)^.get_argument_list(PCefProcessMessage(FData)));
-end;
-
-function TCefProcessMessageRef.GetSharedMemoryRegion: ICefSharedMemoryRegion;
-begin
-  Result := TCefSharedMemoryRegionRef.UnWrap(PCefProcessMessage(FData)^.get_shared_memory_region(PCefProcessMessage(FData)));
 end;
 
 function TCefProcessMessageRef.GetName: ustring;

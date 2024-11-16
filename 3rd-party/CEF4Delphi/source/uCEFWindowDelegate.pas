@@ -61,7 +61,6 @@ type
     protected
       procedure OnWindowCreated(const window: ICefWindow);
       procedure OnWindowDestroyed(const window: ICefWindow);
-      procedure OnWindowActivationChanged(const window: ICefWindow; active: boolean);
       procedure OnGetParentWindow(const window: ICefWindow; var is_menu, can_activate_menu: boolean; var aResult : ICefWindow);
       procedure OnGetInitialBounds(const window: ICefWindow; var aResult : TCefRect);
       procedure OnGetInitialShowState(const window: ICefWindow; var aResult : TCefShowState);
@@ -81,7 +80,6 @@ type
     protected
       procedure OnWindowCreated(const window: ICefWindow); virtual;
       procedure OnWindowDestroyed(const window: ICefWindow); virtual;
-      procedure OnWindowActivationChanged(const window: ICefWindow; active: boolean); virtual;
       procedure OnGetParentWindow(const window: ICefWindow; var is_menu, can_activate_menu: boolean; var aResult : ICefWindow); virtual;
       procedure OnGetInitialBounds(const window: ICefWindow; var aResult : TCefRect); virtual;
       procedure OnGetInitialShowState(const window: ICefWindow; var aResult : TCefShowState); virtual;
@@ -118,7 +116,6 @@ type
       // ICefWindowDelegate
       procedure OnWindowCreated(const window: ICefWindow); override;
       procedure OnWindowDestroyed(const window: ICefWindow); override;
-      procedure OnWindowActivationChanged(const window: ICefWindow; active: boolean); override;
       procedure OnGetParentWindow(const window: ICefWindow; var is_menu, can_activate_menu: boolean; var aResult : ICefWindow); override;
       procedure OnGetInitialBounds(const window: ICefWindow; var aResult : TCefRect); override;
       procedure OnGetInitialShowState(const window: ICefWindow; var aResult : TCefShowState); override;
@@ -152,11 +149,6 @@ end;
 procedure TCefWindowDelegateRef.OnWindowDestroyed(const window: ICefWindow);
 begin
   PCefWindowDelegate(FData)^.on_window_destroyed(PCefWindowDelegate(FData), CefGetData(window));
-end;
-
-procedure TCefWindowDelegateRef.OnWindowActivationChanged(const window: ICefWindow; active: boolean);
-begin
-  PCefWindowDelegate(FData)^.on_window_activation_changed(PCefWindowDelegate(FData), CefGetData(window), ord(active));
 end;
 
 procedure TCefWindowDelegateRef.OnGetParentWindow(const window            : ICefWindow;
@@ -252,17 +244,6 @@ begin
 
   if (TempObject <> nil) and (TempObject is TCefWindowDelegateOwn) then
     TCefWindowDelegateOwn(TempObject).OnWindowDestroyed(TCefWindowRef.UnWrap(window));
-end;
-
-procedure cef_window_delegate_on_window_activation_changed(self: PCefWindowDelegate; window: PCefWindow; active: integer); stdcall;
-var
-  TempObject : TObject;
-begin
-  TempObject := CefGetObject(self);
-
-  if (TempObject <> nil) and (TempObject is TCefWindowDelegateOwn) then
-    TCefWindowDelegateOwn(TempObject).OnWindowActivationChanged(TCefWindowRef.UnWrap(window),
-                                                                active <> 0);
 end;
 
 function cef_window_delegate_get_parent_window(self              : PCefWindowDelegate;
@@ -441,19 +422,18 @@ begin
 
   with PCefWindowDelegate(FData)^ do
     begin
-      on_window_created                := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_window_created;
-      on_window_destroyed              := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_window_destroyed;
-      on_window_activation_changed     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_window_activation_changed;
-      get_parent_window                := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_parent_window;
-      get_initial_bounds               := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_initial_bounds;
-      get_initial_show_state           := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_initial_show_state;
-      is_frameless                     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_is_frameless;
-      can_resize                       := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_resize;
-      can_maximize                     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_maximize;
-      can_minimize                     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_minimize;
-      can_close                        := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_close;
-      on_accelerator                   := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_accelerator;
-      on_key_event                     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_key_event;
+      on_window_created       := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_window_created;
+      on_window_destroyed     := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_window_destroyed;
+      get_parent_window       := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_parent_window;
+      get_initial_bounds      := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_initial_bounds;
+      get_initial_show_state  := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_get_initial_show_state;
+      is_frameless            := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_is_frameless;
+      can_resize              := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_resize;
+      can_maximize            := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_maximize;
+      can_minimize            := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_minimize;
+      can_close               := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_can_close;
+      on_accelerator          := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_accelerator;
+      on_key_event            := {$IFDEF FPC}@{$ENDIF}cef_window_delegate_on_key_event;
     end;
 end;
 
@@ -463,11 +443,6 @@ begin
 end;
 
 procedure TCefWindowDelegateOwn.OnWindowDestroyed(const window: ICefWindow);
-begin
-  //
-end;
-
-procedure TCefWindowDelegateOwn.OnWindowActivationChanged(const window: ICefWindow; active: boolean);
 begin
   //
 end;
@@ -663,17 +638,6 @@ begin
   except
     on e : exception do
       if CustomExceptionHandler('TCustomWindowDelegate.OnWindowDestroyed', e) then raise;
-  end;
-end;
-
-procedure TCustomWindowDelegate.OnWindowActivationChanged(const window: ICefWindow; active: boolean);
-begin
-  try
-    if (FEvents <> nil) then
-      ICefWindowDelegateEvents(FEvents).doOnWindowActivationChanged(window, active);
-  except
-    on e : exception do
-      if CustomExceptionHandler('TCustomWindowDelegate.OnWindowActivationChanged', e) then raise;
   end;
 end;
 

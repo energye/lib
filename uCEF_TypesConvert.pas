@@ -61,10 +61,10 @@ type
     Path: PChar; // TCefString
     Secure: PInteger; // Integer
     Httponly: PInteger; // Integer
-    Creation: PInt64; // TCefBaseTime
-    LastAccess: PInt64; // TCefBaseTime
+    Creation: PDateTime; // TCefTime
+    LastAccess: PDateTime; // TCefTime
     HasExpires: PInteger; // Integer
-    Expires: PInt64; // TCefBaseTime
+    Expires: PDateTime; // TCefTime
     SameSite: PInteger; // TCefCookieSameSite
     Priority: PInteger; // TCefCookiePriority
   end;
@@ -299,10 +299,10 @@ begin
   Result.Path := ToPChar(CefString(@AData.path));
   Result.Secure := @(AData.secure);
   Result.Httponly := @(AData.httponly);
-  Result.Creation := @(AData.creation);
-  Result.LastAccess := @(AData.last_access);
+  Result.Creation := PDateTime(CefTimeToDateTime(AData.creation));
+  Result.LastAccess := PDateTime(CefTimeToDateTime(AData.last_access));
   Result.HasExpires := @(AData.has_expires);
-  Result.Expires := @(AData.expires);
+  Result.Expires := PDateTime(CefTimeToDateTime(AData.expires));
   Result.SameSite := @(AData.same_site);
   Result.Priority := @(AData.priority);
 end;
@@ -315,10 +315,10 @@ begin
   Result.path := CefString(PCharToUStr(AData.Path));
   Result.secure := Integer(AData.Secure^);
   Result.httponly := Integer(AData.Httponly^);
-  Result.creation := TCefBaseTime(AData.Creation^);
-  Result.last_access := TCefBaseTime(AData.LastAccess^);
+  Result.creation := DateTimeToCefTime(AData.Creation^);
+  Result.last_access := DateTimeToCefTime(AData.LastAccess^);
   Result.has_expires := Integer(AData.HasExpires^);
-  Result.expires := TCefBaseTime(AData.Expires^);
+  Result.expires := DateTimeToCefTime(AData.Expires^);
   Result.same_site := TCefCookieSameSite(AData.SameSite^);
   Result.priority := TCefCookiePriority(AData.Priority^);
 end;

@@ -33,7 +33,7 @@ type
   TOnDeleteCookiesComplete = procedure(numDeleted: integer) of object;
 
   // TRunFileDialogCallback
-  TOnRunFileDialogDismissed = procedure(const filePaths: TStrings) of object;
+  TOnRunFileDialogDismissed = procedure(selectedAcceptFilter: Integer; const filePaths: TStrings) of object;
 
   // TDomVisitor
   TOnDomVisitor = procedure(const document: ICefDomDocument) of object;

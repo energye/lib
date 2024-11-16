@@ -99,12 +99,11 @@ type
     procedure ChromiumCore_OnDevToolsRawEvent(Sender: TObject; const browser: ICefBrowser; const method: ustring; const params: Pointer; params_size: nativeuint);
     procedure ChromiumCore_OnDevToolsRawMessage(Sender: TObject; const browser: ICefBrowser; const message_: Pointer; message_size: nativeuint; var aHandled: boolean);
     procedure ChromiumCore_OnDialogClosed(Sender: TObject; const browser: ICefBrowser);
-    procedure ChromiumCore_OnDismissPermissionPrompt(Sender: TObject; const browser: ICefBrowser; prompt_id: uint64; Result: TCefPermissionRequestResult);
     procedure ChromiumCore_OnDocumentAvailableInMainFrame(Sender: TObject; const browser: ICefBrowser);
     procedure ChromiumCore_OnDownloadImageFinished(Sender: TObject; const imageUrl: ustring; httpStatusCode: integer; const image: ICefImage);
     procedure ChromiumCore_OnExecuteTaskOnCefThread(Sender: TObject; aTaskID: cardinal);
     procedure ChromiumCore_OnFavIconUrlChange(Sender: TObject; const browser: ICefBrowser; const iconUrls: TStrings);
-    procedure ChromiumCore_OnFileDialog(Sender: TObject; const browser: ICefBrowser; mode: TCefFileDialogMode; const title, defaultFilePath: ustring; const acceptFilters: TStrings; const callback: ICefFileDialogCallback; var Result: boolean);
+    procedure ChromiumCore_OnFileDialog(Sender: TObject; const browser: ICefBrowser; mode: TCefFileDialogMode; const title, defaultFilePath: ustring; const acceptFilters: TStrings; selectedAcceptFilter: Integer; const callback: ICefFileDialogCallback; out Result: Boolean);
     procedure ChromiumCore_OnGetAccessibilityHandler(Sender: TObject; var aAccessibilityHandler: ICefAccessibilityHandler);
     procedure ChromiumCore_OnGetAudioParameters(Sender: TObject; const browser: ICefBrowser; var params: TCefAudioParameters; var aResult: boolean);
     procedure ChromiumCore_OnGetResourceHandler(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; var aResourceHandler: ICefResourceHandler);
@@ -135,17 +134,14 @@ type
     procedure ChromiumCore_OnQuickMenuCommand(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; command_id: integer; event_flags: TCefEventFlags; var aResult: boolean);
     procedure ChromiumCore_OnQuickMenuDismissed(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame);
     procedure ChromiumCore_OnRequestContextInitialized(Sender: TObject; const request_context: ICefRequestContext);
-    procedure ChromiumCore_OnRequestMediaAccessPermission(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const requesting_origin: ustring; requested_permissions: cardinal; const callback: ICefMediaAccessCallback; var aResult: boolean);
     procedure ChromiumCore_OnResetDialogState(Sender: TObject; const browser: ICefBrowser);
     procedure ChromiumCore_OnResolvedHostAvailable(Sender: TObject; Result: TCefErrorCode; const resolvedIps: TStrings);
     procedure ChromiumCore_OnRouteMessageReceived(Sender: TObject; const route: ICefMediaRoute; const message_: ustring);
     procedure ChromiumCore_OnRoutes(Sender: TObject; const routes: TCefMediaRouteArray);
     procedure ChromiumCore_OnRouteStateChanged(Sender: TObject; const route: ICefMediaRoute; state: TCefMediaRouteConnectionState);
     procedure ChromiumCore_OnRunContextMenu(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const params: ICefContextMenuParams; const model: ICefMenuModel; const callback: ICefRunContextMenuCallback; var aResult: boolean);
-    procedure ChromiumCore_OnRunQuickMenu(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; location: TCefPoint; size: TCefSize; edit_state_flags: TCefQuickMenuEditStateFlags; const callback: ICefRunQuickMenuCallback; var aResult: boolean);
     procedure ChromiumCore_OnSelectClientCertificate(Sender: TObject; const browser: ICefBrowser; isProxy: boolean; const host: ustring; port: integer; certificatesCount: nativeuint; const certificates: TCefX509CertificateArray; const callback: ICefSelectClientCertificateCallback; var aResult: boolean);
     procedure ChromiumCore_OnSetFocus(Sender: TObject; const browser: ICefBrowser; Source: TCefFocusSource; out Result: boolean);
-    procedure ChromiumCore_OnShowPermissionPrompt(Sender: TObject; const browser: ICefBrowser; prompt_id: uint64; const requesting_origin: ustring; requested_permissions: cardinal; const callback: ICefPermissionPromptCallback; var aResult: boolean);
     procedure ChromiumCore_OnSinks(Sender: TObject; const sinks: TCefMediaSinkArray);
     procedure ChromiumCore_OnStartDragging(Sender: TObject; const browser: ICefBrowser; const dragData: ICefDragData; allowedOps: TCefDragOperations; x, y: integer; out Result: boolean);
     procedure ChromiumCore_OnStatusMessage(Sender: TObject; const browser: ICefBrowser; const Value: ustring);
@@ -153,7 +149,6 @@ type
     procedure ChromiumCore_OnTextResultAvailable(Sender: TObject; const aText: ustring);
     procedure ChromiumCore_OnTextSelectionChanged(Sender: TObject; const browser: ICefBrowser; const selected_text: ustring; const selected_range: PCefRange);
     procedure ChromiumCore_OnTooltip(Sender: TObject; const browser: ICefBrowser; var Text: ustring; out Result: boolean);
-    procedure ChromiumCore_OnTouchHandleStateChanged(Sender: TObject; const browser: ICefBrowser; const state: TCefTouchHandleState);
     procedure ChromiumCore_OnUpdateDragCursor(Sender: TObject; const browser: ICefBrowser; operation: TCefDragOperation);
     procedure ChromiumCore_OnVirtualKeyboardRequested(Sender: TObject; const browser: ICefBrowser; input_mode: TCefTextInpuMode);
     procedure ChromiumCore_OnIsChromeAppMenuItemVisible(Sender: TObject; const browser: ICefBrowser; command_id: integer; var aResult: boolean);
@@ -313,7 +308,7 @@ type
     procedure ResourceHandler_OnCancel();
 
     // TRunFileDialogCallback
-    procedure RunFileDialogCallback_OnRunFileDialogDismissed(const filePaths: TStrings);
+    procedure RunFileDialogCallback_OnRunFileDialogDismissed(selectedAcceptFilter: Integer; const filePaths: TStrings);
 
     // TSchemeHandlerFactory
     function SchemeHandlerFactory_OnNew(const browser: ICefBrowser; const frame: ICefFrame; const schemeName: ustring; const request: ICefRequest): ICefResourceHandler;
@@ -676,11 +671,6 @@ begin
   SendEvent([Sender, browser]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnDismissPermissionPrompt(Sender: TObject; const browser: ICefBrowser; prompt_id: uint64; Result: TCefPermissionRequestResult);
-begin
-  SendEvent([Sender, browser, @prompt_id, Result]);
-end;
-
 procedure TCEFEvent.ChromiumCore_OnDocumentAvailableInMainFrame(Sender: TObject; const browser: ICefBrowser);
 begin
   SendEvent([Sender, browser]);
@@ -701,10 +691,10 @@ begin
   SendEvent([Sender, browser, iconUrls]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnFileDialog(Sender: TObject; const browser: ICefBrowser; mode: TCefFileDialogMode; const title, defaultFilePath: ustring;
-  const acceptFilters: TStrings; const callback: ICefFileDialogCallback; var Result: boolean);
+procedure TCEFEvent.ChromiumCore_OnFileDialog(Sender: TObject; const browser: ICefBrowser; mode: TCefFileDialogMode; const title, defaultFilePath: ustring; const acceptFilters: TStrings;
+  selectedAcceptFilter: Integer; const callback: ICefFileDialogCallback; out Result: Boolean);
 begin
-  SendEvent([Sender, browser, mode, ToPChar(title), ToPChar(defaultFilePath), acceptFilters, callback, @Result]);
+  SendEvent([Sender, browser, mode, ToPChar(title), ToPChar(defaultFilePath), acceptFilters, selectedAcceptFilter, callback, @Result]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnGetAccessibilityHandler(Sender: TObject; var aAccessibilityHandler: ICefAccessibilityHandler);
@@ -870,12 +860,6 @@ begin
   SendEvent([Sender, request_context]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnRequestMediaAccessPermission(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame;
-  const requesting_origin: ustring; requested_permissions: cardinal; const callback: ICefMediaAccessCallback; var aResult: boolean);
-begin
-  SendEvent([Sender, browser, frame, ToPChar(requesting_origin), requested_permissions, callback, @aResult]);
-end;
-
 procedure TCEFEvent.ChromiumCore_OnResetDialogState(Sender: TObject; const browser: ICefBrowser);
 begin
   SendEvent([Sender, browser]);
@@ -907,12 +891,6 @@ begin
   SendEvent([Sender, browser, frame, params, model, callback, @aResult]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnRunQuickMenu(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; location: TCefPoint;
-  size: TCefSize; edit_state_flags: TCefQuickMenuEditStateFlags; const callback: ICefRunQuickMenuCallback; var aResult: boolean);
-begin
-  SendEvent([Sender, browser, frame, @location, @size, edit_state_flags, callback, @aResult]);
-end;
-
 procedure TCEFEvent.ChromiumCore_OnSelectClientCertificate(Sender: TObject; const browser: ICefBrowser; isProxy: boolean; const host: ustring;
   port: integer; certificatesCount: nativeuint; const certificates: TCefX509CertificateArray; const callback: ICefSelectClientCertificateCallback; var aResult: boolean);
 begin
@@ -922,12 +900,6 @@ end;
 procedure TCEFEvent.ChromiumCore_OnSetFocus(Sender: TObject; const browser: ICefBrowser; Source: TCefFocusSource; out Result: boolean);
 begin
   SendEvent([Sender, browser, integer(Source), @Result]);
-end;
-
-procedure TCEFEvent.ChromiumCore_OnShowPermissionPrompt(Sender: TObject; const browser: ICefBrowser; prompt_id: uint64; const requesting_origin: ustring;
-  requested_permissions: cardinal; const callback: ICefPermissionPromptCallback; var aResult: boolean);
-begin
-  SendEvent([Sender, browser, @prompt_id, ToPChar(requesting_origin), requested_permissions, callback, @aResult]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnSinks(Sender: TObject; const sinks: TCefMediaSinkArray);
@@ -967,11 +939,6 @@ var
 begin
   PText := ToPChar(Text);
   SendEvent([Sender, browser, @PText, @Result]);
-end;
-
-procedure TCEFEvent.ChromiumCore_OnTouchHandleStateChanged(Sender: TObject; const browser: ICefBrowser; const state: TCefTouchHandleState);
-begin
-  SendEvent([Sender, browser, @state]);
 end;
 
 procedure TCEFEvent.ChromiumCore_OnUpdateDragCursor(Sender: TObject; const browser: ICefBrowser; operation: TCefDragOperation);
@@ -1761,9 +1728,9 @@ begin
 end;
 
 // TRunFileDialogCallback
-procedure TCEFEvent.RunFileDialogCallback_OnRunFileDialogDismissed(const filePaths: TStrings);
+procedure TCEFEvent.RunFileDialogCallback_OnRunFileDialogDismissed(selectedAcceptFilter: Integer; const filePaths: TStrings);
 begin
-  SendEvent([filePaths]);
+  SendEvent([selectedAcceptFilter, filePaths]);
 end;
 
 // TSchemeHandlerFactory

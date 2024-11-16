@@ -59,10 +59,10 @@ uses
     Messages,
     {$ENDIF}
   {$ENDIF}
-  uCEFWinControl, uCEFTypes, uCEFInterfaces, uCEFConstants;
+  uCEFWinControl, uCEFTypes, uCEFInterfaces;
 
 type
-  {$IFNDEF FPC}{$IFDEF DELPHI16_UP}[ComponentPlatformsAttribute(pfidWindows)]{$ENDIF}{$ENDIF}
+  {$IFNDEF FPC}{$IFDEF DELPHI16_UP}[ComponentPlatformsAttribute(pidWin32 or pidWin64)]{$ENDIF}{$ENDIF}
   TCEFWindowParent = class(TCEFWinControl)
     protected
       {$IFDEF MSWINDOWS}
@@ -77,7 +77,7 @@ procedure Register;
 implementation
 
 uses
-  uCEFMiscFunctions, uCEFClient;
+  uCEFMiscFunctions, uCEFClient, uCEFConstants;
 
 {$IFDEF MSWINDOWS}
 procedure TCEFWindowParent.WndProc(var aMessage: TMessage);

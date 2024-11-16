@@ -59,10 +59,10 @@ uses
     Messages,
     {$ENDIF}
   {$ENDIF}
-  uCEFConstants, uCEFTypes, uCEFInterfaces, uCEFChromiumCore;
+  uCEFTypes, uCEFInterfaces, uCEFChromiumCore;
 
 type
-  {$IFNDEF FPC}{$IFDEF DELPHI16_UP}[ComponentPlatformsAttribute(pfidWindows)]{$ENDIF}{$ENDIF}
+  {$IFNDEF FPC}{$IFDEF DELPHI16_UP}[ComponentPlatformsAttribute(pidWin32 or pidWin64)]{$ENDIF}{$ENDIF}
   TChromium = class(TChromiumCore)
     protected
       function  GetParentFormHandle : TCefWindowHandle; override;

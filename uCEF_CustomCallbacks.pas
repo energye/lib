@@ -110,7 +110,7 @@ type
     destructor Destroy; override;
   protected
     FOnRunFileDialogDismissed: TOnRunFileDialogDismissed;
-    procedure OnFileDialogDismissed(const filePaths: TStrings); override;
+    procedure OnFileDialogDismissed(selectedAcceptFilter: Integer; const filePaths: TStrings); override;
   published
     /// <summary>
     /// Called asynchronously after the file dialog is dismissed. |file_paths|
@@ -668,11 +668,11 @@ begin
 end;
 
 // RunFileDialogCallback
-procedure TRunFileDialogCallback.OnFileDialogDismissed(const filePaths: TStrings);
+procedure TRunFileDialogCallback.OnFileDialogDismissed(selectedAcceptFilter: Integer; const filePaths: TStrings);
 begin
   if assigned(FOnRunFileDialogDismissed) then
   begin
-    FOnRunFileDialogDismissed(filePaths);
+    FOnRunFileDialogDismissed(selectedAcceptFilter, filePaths);
   end;
 end;
 

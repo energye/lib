@@ -58,7 +58,6 @@
 {$I ./cef/CEF_CustomMenuButtonDelegate.inc}
 {$I ./cef/CEF_CustomPDFPrintCallBack.inc}
 {$I ./cef/CEF_CustomPanelDelegate.inc}
-{$I ./cef/CEF_CustomPermissionHandler.inc}
 {$I ./cef/CEF_CustomPrintHandler.inc}
 {$I ./cef/CEF_CustomRenderHandler.inc}
 {$I ./cef/CEF_CustomRenderLoadHandler.inc}
@@ -100,7 +99,6 @@
 {$I ./cef/CEF_Layout.inc}
 {$I ./cef/CEF_LinkedWindowParent.inc}
 {$I ./cef/CEF_ListValue.inc}
-{$I ./cef/CEF_MediaAccessCallback.inc}
 {$I ./cef/CEF_MediaRoute.inc}
 {$I ./cef/CEF_MediaRouter.inc}
 {$I ./cef/CEF_MediaSink.inc}
@@ -115,7 +113,6 @@
 {$I ./cef/CEF_PDFPrintOptions.inc}
 {$I ./cef/CEF_Panel.inc}
 {$I ./cef/CEF_PanelComponent.inc}
-{$I ./cef/CEF_PermissionPromptCallback.inc}
 {$I ./cef/CEF_PostData.inc}
 {$I ./cef/CEF_PostDataElement.inc}
 {$I ./cef/CEF_PrintDialogCallback.inc}
@@ -133,7 +130,6 @@
 {$I ./cef/CEF_Response.inc}
 {$I ./cef/CEF_RunContextMenuCallback.inc}
 {$I ./cef/CEF_RunFileDialogCallback.inc}
-{$I ./cef/CEF_RunQuickMenuCallback.inc}
 {$I ./cef/CEF_SSLStatus.inc}
 {$I ./cef/CEF_SavePrefsTask.inc}
 {$I ./cef/CEF_SchemeHandlerFactory.inc}
@@ -144,12 +140,9 @@
 {$I ./cef/CEF_Sentinel.inc}
 {$I ./cef/CEF_Server.inc}
 {$I ./cef/CEF_ServerComponent.inc}
-{$I ./cef/CEF_SetAudioMutedTask.inc}
 {$I ./cef/CEF_SetZoomLevelTask.inc}
 {$I ./cef/CEF_SetZoomPctTask.inc}
 {$I ./cef/CEF_SetZoomStepTask.inc}
-{$I ./cef/CEF_SharedMemoryRegion.inc}
-{$I ./cef/CEF_SharedProcessMessageBuilder.inc}
 {$I ./cef/CEF_SslInfo.inc}
 {$I ./cef/CEF_StreamReader.inc}
 {$I ./cef/CEF_StreamWriter.inc}
@@ -163,7 +156,6 @@
 {$I ./cef/CEF_TaskRunner.inc}
 {$I ./cef/CEF_Textfield.inc}
 {$I ./cef/CEF_TextfieldComponent.inc}
-{$I ./cef/CEF_ToggleAudioMutedTask.inc}
 {$I ./cef/CEF_URLRequestTask.inc}
 {$I ./cef/CEF_UpdatePrefsTask.inc}
 {$I ./cef/CEF_UpdateZoomPctTask.inc}
