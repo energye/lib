@@ -42,17 +42,16 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dUSED_BY_LAZLOGGER_DUMMY
--dCEF"/>
+            <CustomOptions Value="-dUSED_BY_LAZLOGGER_DUMMY"/>
             <OtherDefines Count="1">
               <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
       </Item1>
-      <Item2 Name="Linux64 CEF">
+      <Item2 Name="Linux32 CEF ">
         <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -68,7 +67,7 @@
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
             <RelocatableUnit Value="True"/>
-            <TargetCPU Value="x86_64"/>
+            <TargetCPU Value="i386"/>
             <TargetOS Value="linux"/>
             <Optimizations>
               <OptimizationLevel Value="4"/>
@@ -86,53 +85,14 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dRMLCLTRUNK
--dCEF"/>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
             <OtherDefines Count="1">
               <Define0 Value="RMLCLTRUNK"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="LinuxARM64 CEF">
-        <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
-        </MacroValues>
-        <CompilerOptions>
-          <Version Value="11"/>
-          <PathDelim Value="\"/>
-          <Target>
-            <Filename Value=".\bin\liblcl"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
-            <TargetCPU Value="aarch64"/>
-            <TargetOS Value="linux"/>
-            <Optimizations>
-              <OptimizationLevel Value="4"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <ExecutableType Value="Library"/>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dCEF"/>
-          </Other>
-        </CompilerOptions>
-      </Item3>
-      <Item4 Name="Linux64 GTK2 CEF ">
+      <Item3 Name="Linux64 CEF">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -174,8 +134,46 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
+      </Item3>
+      <Item4 Name="LinuxARM32 CEF">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+          </Other>
+        </CompilerOptions>
       </Item4>
-      <Item5 Name="LinuxARM64 GTK2  CEF">
+      <Item5 Name="LinuxARM64 CEF">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -208,6 +206,9 @@
               <ExecutableType Value="Library"/>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+          </Other>
         </CompilerOptions>
       </Item5>
       <Item6 Name="MacOSx64 CEF">
@@ -245,7 +246,6 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dCEF"/>
             <ExecuteAfter>
               <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
@@ -287,7 +287,6 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dCEF"/>
             <ExecuteAfter>
               <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
@@ -389,10 +388,10 @@
       </Item9>
       <SessionEnabledMatrixOptions Count="7">
         <Item1 Mode="Win64 CEF" Option="028265915746"/>
-        <Item2 Mode="Linux64 CEF" Option="411076831854"/>
-        <Item3 Mode="LinuxARM64 CEF" Option="411076831854"/>
-        <Item4 Mode="Linux64 GTK2 CEF " Option="316477307003"/>
-        <Item5 Mode="LinuxARM64 GTK2  CEF" Option="316477307003"/>
+        <Item2 Mode="Linux32 CEF " Option="316477307003"/>
+        <Item3 Mode="Linux64 CEF" Option="316477307003"/>
+        <Item4 Mode="LinuxARM32 CEF" Option="316477307003"/>
+        <Item5 Mode="LinuxARM64 CEF" Option="316477307003"/>
         <Item6 Mode="MacOSx64 CEF" Option="558457850193"/>
         <Item7 Mode="MacOSARM64 CEF" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
@@ -402,9 +401,10 @@
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="23"/>
-        <CursorPos X="33" Y="38"/>
+        <CursorPos X="42" Y="56"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -540,9 +540,8 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="657"/>
+        <TopLine Value="675"/>
         <CursorPos X="45" Y="673"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
@@ -1188,7 +1187,8 @@
       </Unit104>
       <Unit105>
         <Filename Value="liblcl.inc"/>
-        <CursorPos X="11" Y="4"/>
+        <TopLine Value="5"/>
+        <CursorPos X="17" Y="70"/>
         <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
