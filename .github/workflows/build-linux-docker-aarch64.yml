@@ -92,6 +92,8 @@ jobs:
             
             ./.github/shell/build-lib-in-linux-docker.sh CEF gtk2 ARM64
             ./.github/shell/build-lib-in-linux-docker.sh WK gtk2 ARM64
+            
+            ./.github/shell/build-lib-in-linux-docker.sh none gtk2 ARM64
 
       - name: Release # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
