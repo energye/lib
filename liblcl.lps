@@ -782,7 +782,7 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="112">
+    <Units Count="109">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -1017,62 +1017,53 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
-        <Filename Value="E:\lazarus3-2\components\virtualtreeview\laz.virtualtrees.pas"/>
-        <UnitName Value="laz.VirtualTrees"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="947"/>
-        <CursorPos Y="5315"/>
-        <UsageCount Value="0"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit30>
-      <Unit31>
         <Filename Value="cef\CEF_V8Value.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="27" Y="11"/>
         <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit31>
-      <Unit32>
+      </Unit30>
+      <Unit31>
         <Filename Value="..\..\github.com\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFInterfaces.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2947"/>
         <CursorPos X="3" Y="2967"/>
         <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit32>
-      <Unit33>
+      </Unit31>
+      <Unit32>
         <Filename Value="wv\WV_WVBrowserBase.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2345"/>
         <CursorPos X="41" Y="2382"/>
         <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit33>
-      <Unit34>
+      </Unit32>
+      <Unit33>
         <Filename Value="uWV_EventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="671"/>
         <CursorPos X="85" Y="727"/>
         <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit34>
-      <Unit35>
+      </Unit33>
+      <Unit34>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowserBase.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3972"/>
         <CursorPos X="39" Y="3989"/>
         <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit35>
-      <Unit36>
+      </Unit34>
+      <Unit35>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowser.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="43"/>
         <CursorPos X="41" Y="47"/>
         <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit36>
-      <Unit37>
+      </Unit35>
+      <Unit36>
         <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
@@ -1080,37 +1071,37 @@
         <CursorPos X="15" Y="644"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit37>
-      <Unit38>
+      </Unit36>
+      <Unit37>
         <Filename Value="E:\lazarus3-2\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2220"/>
         <CursorPos X="16" Y="2243"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit38>
-      <Unit39>
+      </Unit37>
+      <Unit38>
         <Filename Value="lcl\LCL_CustomOpenGLControl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="23" Y="101"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit39>
-      <Unit40>
+      </Unit38>
+      <Unit39>
         <Filename Value="ImportWK.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="19"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit40>
-      <Unit41>
+      </Unit39>
+      <Unit40>
         <Filename Value="WKComponentUnits.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="17"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit41>
-      <Unit42>
+      </Unit40>
+      <Unit41>
         <Filename Value="..\..\..\Lazarus\components\opengl\openglcontext.pas"/>
         <UnitName Value="OpenGLContext"/>
         <EditorIndex Value="-1"/>
@@ -1118,515 +1109,501 @@
         <CursorPos Y="139"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit42>
-      <Unit43>
+      </Unit41>
+      <Unit42>
         <Filename Value="wk\webkit\MiniWebviewMac.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="15"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit43>
-      <Unit44>
+      </Unit42>
+      <Unit43>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\univint\src\MacOSAll.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="40" Y="121"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit44>
-      <Unit45>
+      </Unit43>
+      <Unit44>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\CocoaAll.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit45>
-      <Unit46>
+      </Unit44>
+      <Unit45>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\UndefinedTypes.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="18"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit46>
-      <Unit47>
+      </Unit45>
+      <Unit46>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\webkit\WebKit.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit47>
-      <Unit48>
+      </Unit46>
+      <Unit47>
         <Filename Value="..\..\..\Lazarus\lcl\interfaces\cocoa\cocoautils.pas"/>
         <UnitName Value="CocoaUtils"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit48>
-      <Unit49>
+      </Unit47>
+      <Unit48>
         <Filename Value="cef\predef\CEF_ApplicationPredef.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="24"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit49>
-      <Unit50>
+      </Unit48>
+      <Unit49>
         <Filename Value="cef\CEF_UpdateZoomStepTask.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit50>
-      <Unit51>
+      </Unit49>
+      <Unit50>
         <Filename Value="..\..\energye\liblcl\src\3rd-party\CEF4Delphi\source\uCEFTask.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="3" Y="91"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit51>
-      <Unit52>
+      </Unit50>
+      <Unit51>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="4" Y="107"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit52>
-      <Unit53>
+      </Unit51>
+      <Unit52>
         <Filename Value="wk\webkit2_linux\uLibWebkit.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="274"/>
         <CursorPos X="201" Y="306"/>
         <UsageCount Value="19"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit53>
-      <Unit54>
+      </Unit52>
+      <Unit53>
         <Filename Value="wk\webkit2_linux\uWkWebview.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="11" Y="15"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit54>
-      <Unit55>
+      </Unit53>
+      <Unit54>
         <Filename Value="wk\webkit2_linux\uWkInterfaces.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="18"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit55>
-      <Unit56>
+      </Unit54>
+      <Unit55>
         <Filename Value="wk\WK_WkURISchemeRequest.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="27" Y="62"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit56>
-      <Unit57>
+      </Unit55>
+      <Unit56>
         <Filename Value="wk\webkit2_linux\uWkURISchemeRequest.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="20"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit57>
-      <Unit58>
-        <Filename Value="uWK_EventCallback.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="2"/>
-        <UsageCount Value="0"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit58>
-      <Unit59>
-        <Filename Value="wk\webkit2_linux\uWkWebviewEvents.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="71" Y="28"/>
-        <UsageCount Value="0"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit59>
-      <Unit60>
+      </Unit56>
+      <Unit57>
         <Filename Value="wk\WK_WkHeaders.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="23"/>
         <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit60>
-      <Unit61>
+      </Unit57>
+      <Unit58>
         <Filename Value="wk\webkit2_linux\uWkHeaders.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="5" Y="42"/>
         <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit61>
-      <Unit62>
+      </Unit58>
+      <Unit59>
         <Filename Value="wk\webkit2_linux\uWkContextMenu.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit62>
-      <Unit63>
+      </Unit59>
+      <Unit60>
         <Filename Value="wk\webkit2_linux\uWkContextMenuItem.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="19"/>
         <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit63>
-      <Unit64>
+      </Unit60>
+      <Unit61>
         <Filename Value="wk\webkit2_linux\uWkCookieManager.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="319"/>
         <CursorPos X="20" Y="339"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit64>
-      <Unit65>
+      </Unit61>
+      <Unit62>
         <Filename Value="wk\WK_WkContextMenuItem.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit65>
-      <Unit66>
+      </Unit62>
+      <Unit63>
         <Filename Value="ImportWKLinux.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="8"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit66>
-      <Unit67>
+      </Unit63>
+      <Unit64>
         <Filename Value="UnitsWK2MacOS.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="15"/>
         <UsageCount Value="35"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit67>
-      <Unit68>
+      </Unit64>
+      <Unit65>
         <Filename Value="wk\webkit2_mac\uNSURL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="17" Y="56"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit68>
-      <Unit69>
+      </Unit65>
+      <Unit66>
         <Filename Value="wk\webkit2_mac\uNSURLRequest.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="19" Y="74"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit69>
-      <Unit70>
+      </Unit66>
+      <Unit67>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSURLRequest.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="51" Y="63"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit70>
-      <Unit71>
+      </Unit67>
+      <Unit68>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\inc\objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="322"/>
         <CursorPos X="9" Y="325"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit71>
-      <Unit72>
+      </Unit68>
+      <Unit69>
         <Filename Value="wk\webkit2_mac\uNSURLResponse.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="174"/>
         <CursorPos X="15" Y="194"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit72>
-      <Unit73>
+      </Unit69>
+      <Unit70>
         <Filename Value="wk\webkit2_mac\uWKDownload.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="15" Y="50"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit73>
-      <Unit74>
+      </Unit70>
+      <Unit71>
         <Filename Value="wk\webkit2_mac\uWKFrameInfo.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="15" Y="23"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit74>
-      <Unit75>
+      </Unit71>
+      <Unit72>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeTask.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="5" Y="48"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit75>
-      <Unit76>
+      </Unit72>
+      <Unit73>
         <Filename Value="wk\webkit2_mac\uWKNavigationAction.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos Y="51"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit76>
-      <Unit77>
+      </Unit73>
+      <Unit74>
         <Filename Value="wk\webkit2_mac\uWKNavigationResponse.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit77>
-      <Unit78>
+      </Unit74>
+      <Unit75>
         <Filename Value="wk\webkit2_mac\uWkWebview.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <UsageCount Value="12"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit78>
-      <Unit79>
+      </Unit75>
+      <Unit76>
         <Filename Value="wk\webkit2_mac\uWkWebviewEvents.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit79>
-      <Unit80>
+      </Unit76>
+      <Unit77>
         <Filename Value="wk\webkit2_mac\uWKWebpagePreferences.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos X="5" Y="46"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit80>
-      <Unit81>
+      </Unit77>
+      <Unit78>
         <Filename Value="wk\webkit2_mac\uWKWindowFeatures.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="5" Y="52"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit81>
-      <Unit82>
+      </Unit78>
+      <Unit79>
         <Filename Value="wk\webkit2_mac\uWKNavigationDelegate.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="15" Y="63"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit82>
-      <Unit83>
+      </Unit79>
+      <Unit80>
         <Filename Value="wk\webkit2_mac\WKTypes.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="207"/>
         <CursorPos X="23" Y="224"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit83>
-      <Unit84>
+      </Unit80>
+      <Unit81>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\DefinedClassesWebKit.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos X="37" Y="125"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit84>
-      <Unit85>
+      </Unit81>
+      <Unit82>
         <Filename Value="wk\webkit2_mac\uWKUIDelegate.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit85>
-      <Unit86>
+      </Unit82>
+      <Unit83>
         <Filename Value="wk\webkit2_mac\uWKDownloadDelegateProtocol.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="15" Y="33"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit86>
-      <Unit87>
+      </Unit83>
+      <Unit84>
         <Filename Value="wk\webkit2_mac\uWKURLSchemeHandler.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos Y="68"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit87>
-      <Unit88>
+      </Unit84>
+      <Unit85>
         <Filename Value="wk\webkit2_mac\uWKUserContentController.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="5" Y="113"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit88>
-      <Unit89>
+      </Unit85>
+      <Unit86>
         <Filename Value="wk\webkit2_mac\uWKNavigation.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit89>
-      <Unit90>
+      </Unit86>
+      <Unit87>
         <Filename Value="wk\webkit2_mac\uWKPreferences.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos X="15" Y="22"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit90>
-      <Unit91>
+      </Unit87>
+      <Unit88>
         <Filename Value="wk\webkit2_mac\uWKScriptMessageHandler.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit91>
-      <Unit92>
+      </Unit88>
+      <Unit89>
         <Filename Value="wk\webkit2_mac\uWKWebViewConfiguration.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit92>
-      <Unit93>
+      </Unit89>
+      <Unit90>
         <Filename Value="wk\webkit2_mac\uWKUserScript.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="5" Y="49"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit93>
-      <Unit94>
+      </Unit90>
+      <Unit91>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\packages\cocoaint\src\foundation\NSDate.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="21"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit94>
-      <Unit95>
+      </Unit91>
+      <Unit92>
         <Filename Value="wk\webkit2_mac\uWkWebviewParent.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
         <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit95>
-      <Unit96>
+      </Unit92>
+      <Unit93>
         <Filename Value="UnitsWV2.inc"/>
         <EditorIndex Value="4"/>
         <CursorPos X="54" Y="27"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit96>
-      <Unit97>
+      </Unit93>
+      <Unit94>
         <Filename Value="ImportWK2Mac.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit97>
-      <Unit98>
+      </Unit94>
+      <Unit95>
         <Filename Value="wk\webkit2_mac\uWKEventCallback.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="333"/>
         <CursorPos X="31" Y="344"/>
         <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit98>
-      <Unit99>
+      </Unit95>
+      <Unit96>
         <Filename Value="uTools.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="17" Y="47"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit99>
-      <Unit100>
+      </Unit96>
+      <Unit97>
         <Filename Value="wk\webkit2_inc_mac\WK_WkWebviewParent.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="7"/>
         <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit100>
-      <Unit101>
+      </Unit97>
+      <Unit98>
         <Filename Value="uString.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="22" Y="24"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit101>
-      <Unit102>
+      </Unit98>
+      <Unit99>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownload.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="84" Y="3"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit102>
-      <Unit103>
+      </Unit99>
+      <Unit100>
         <Filename Value="wk\webkit2_inc_mac\WK_WKDownloadDelegate.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="62" Y="3"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit103>
-      <Unit104>
+      </Unit100>
+      <Unit101>
         <Filename Value="wk\webkit2_inc_mac\WK_WKScriptMessageHandler.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="76" Y="3"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit104>
-      <Unit105>
+      </Unit101>
+      <Unit102>
         <Filename Value="wk\webkit2_inc_mac\WK_WKURLSchemeHandler.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="70" Y="3"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit105>
-      <Unit106>
+      </Unit102>
+      <Unit103>
         <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.2\rtl\inc\objcbase.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="5" Y="156"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit106>
-      <Unit107>
+      </Unit103>
+      <Unit104>
         <Filename Value="wk\webkit2_mac\uNSProgress.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="15" Y="22"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit107>
-      <Unit108>
+      </Unit104>
+      <Unit105>
         <Filename Value="liblcl.inc"/>
         <IsVisibleTab Value="True"/>
         <TopLine Value="28"/>
-        <CursorPos X="38" Y="69"/>
-        <UsageCount Value="72"/>
+        <CursorPos Y="76"/>
+        <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit108>
-      <Unit109>
+      </Unit105>
+      <Unit106>
         <Filename Value="E:\lazarus3.6\lcl\lclversion.pas"/>
         <UnitName Value="LCLVersion"/>
         <EditorIndex Value="2"/>
         <CursorPos X="3" Y="35"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
-      </Unit109>
-      <Unit110>
+      </Unit106>
+      <Unit107>
         <Filename Value="E:\lazarus3.6\components\lazutils\lazversion.pas"/>
         <UnitName Value="LazVersion"/>
         <EditorIndex Value="3"/>
         <CursorPos X="18" Y="30"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
-      </Unit110>
-      <Unit111>
+      </Unit107>
+      <Unit108>
         <Filename Value="E:\lazarus3.6\fpc\3.2.2\source\rtl\objpas\objpas.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="12" Y="62"/>
         <UsageCount Value="11"/>
-      </Unit111>
+      </Unit108>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
