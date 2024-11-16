@@ -114,7 +114,6 @@
             <Optimizations>
               <OptimizationLevel Value="4"/>
             </Optimizations>
-            <SmallerCode Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -152,7 +151,7 @@
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
             <RelocatableUnit Value="True"/>
-            <TargetCPU Value="aarch64"/>
+            <TargetCPU Value="arm"/>
             <TargetOS Value="linux"/>
             <Optimizations>
               <OptimizationLevel Value="4"/>
@@ -227,7 +226,6 @@
             <Optimizations>
               <OptimizationLevel Value="4"/>
             </Optimizations>
-            <SmallerCode Value="True"/>
           </CodeGeneration>
           <Linking>
             <Debugging>
@@ -397,7 +395,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="21"/>
-        <CursorPos X="32" Y="34"/>
+        <CursorPos X="14" Y="58"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
