@@ -3,8 +3,8 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="9" Active="Win64 CEF">
-      <Item1 Name="Win64 CEF">
+    <BuildModes Count="9" Active="Win64">
+      <Item1 Name="Win64">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
         </MacroValues>
@@ -49,7 +49,7 @@
           </Other>
         </CompilerOptions>
       </Item1>
-      <Item2 Name="Linux32 CEF ">
+      <Item2 Name="Linux32">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -91,7 +91,7 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="Linux64 CEF">
+      <Item3 Name="Linux64">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -133,7 +133,7 @@
           </Other>
         </CompilerOptions>
       </Item3>
-      <Item4 Name="LinuxARM32 CEF">
+      <Item4 Name="LinuxARM32">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -171,7 +171,7 @@
           </Other>
         </CompilerOptions>
       </Item4>
-      <Item5 Name="LinuxARM64 CEF">
+      <Item5 Name="LinuxARM64">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -209,7 +209,7 @@
           </Other>
         </CompilerOptions>
       </Item5>
-      <Item6 Name="MacOSx64 CEF">
+      <Item6 Name="MacOSx64">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -250,7 +250,7 @@
           </Other>
         </CompilerOptions>
       </Item6>
-      <Item7 Name="MacOSARM64 CEF">
+      <Item7 Name="MacOSARM64">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -384,13 +384,13 @@
         </CompilerOptions>
       </Item9>
       <SessionEnabledMatrixOptions Count="7">
-        <Item1 Mode="Win64 CEF" Option="028265915746"/>
-        <Item2 Mode="Linux32 CEF " Option="316477307003"/>
-        <Item3 Mode="Linux64 CEF" Option="316477307003"/>
-        <Item4 Mode="LinuxARM32 CEF" Option="316477307003"/>
-        <Item5 Mode="LinuxARM64 CEF" Option="316477307003"/>
-        <Item6 Mode="MacOSx64 CEF" Option="558457850193"/>
-        <Item7 Mode="MacOSARM64 CEF" Option="558457850193"/>
+        <Item1 Mode="Win64" Option="028265915746"/>
+        <Item2 Mode="Linux32" Option="316477307003"/>
+        <Item3 Mode="Linux64" Option="316477307003"/>
+        <Item4 Mode="LinuxARM32" Option="316477307003"/>
+        <Item5 Mode="LinuxARM64" Option="316477307003"/>
+        <Item6 Mode="MacOSx64" Option="558457850193"/>
+        <Item7 Mode="MacOSARM64" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
