@@ -52,7 +52,7 @@
       </Item1>
       <Item2 Name="Linux64">
         <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -94,7 +94,7 @@
       </Item2>
       <Item3 Name="LinuxARM32">
         <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -132,7 +132,7 @@
       </Item3>
       <Item4 Name="LinuxARM64">
         <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -344,9 +344,9 @@
       </Item8>
       <SessionEnabledMatrixOptions Count="6">
         <Item1 Mode="Win64" Option="028265915746"/>
-        <Item2 Mode="Linux64" Option="411076831854"/>
-        <Item3 Mode="LinuxARM32" Option="411076831854"/>
-        <Item4 Mode="LinuxARM64" Option="411076831854"/>
+        <Item2 Mode="Linux64" Option="316477307003"/>
+        <Item3 Mode="LinuxARM32" Option="316477307003"/>
+        <Item4 Mode="LinuxARM64" Option="316477307003"/>
         <Item5 Mode="MacOSx64" Option="558457850193"/>
         <Item6 Mode="MacOSARM64" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
@@ -494,10 +494,9 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="999"/>
-        <CursorPos X="17" Y="1036"/>
+        <CursorPos X="24" Y="1026"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -1142,8 +1141,9 @@
       </Unit104>
       <Unit105>
         <Filename Value="liblcl.inc"/>
-        <TopLine Value="6"/>
-        <CursorPos X="38" Y="69"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="5"/>
+        <CursorPos X="9" Y="48"/>
         <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
