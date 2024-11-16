@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="8" Active="Win64 CEF">
+    <BuildModes Count="9" Active="Win64 CEF">
       <Item1 Name="Win64 CEF">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
@@ -43,182 +43,14 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dUSED_BY_LAZLOGGER_DUMMY
--dCEF"/>
+            <CustomOptions Value="-dUSED_BY_LAZLOGGER_DUMMY"/>
             <OtherDefines Count="1">
               <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
       </Item1>
-      <Item2 Name="Linux64 CEF">
-        <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
-        </MacroValues>
-        <CompilerOptions>
-          <Version Value="11"/>
-          <PathDelim Value="\"/>
-          <Target>
-            <Filename Value=".\bin\liblcl"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
-            <TargetCPU Value="x86_64"/>
-            <TargetOS Value="linux"/>
-            <Optimizations>
-              <OptimizationLevel Value="4"/>
-            </Optimizations>
-            <SmallerCode Value="True"/>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-              <DebugInfoType Value="dsDwarf3"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <ExecutableType Value="Library"/>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dRMLCLTRUNK
--dCEF"/>
-            <OtherDefines Count="1">
-              <Define0 Value="RMLCLTRUNK"/>
-            </OtherDefines>
-          </Other>
-        </CompilerOptions>
-      </Item2>
-      <Item3 Name="LinuxARM64 CEF">
-        <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
-        </MacroValues>
-        <CompilerOptions>
-          <Version Value="11"/>
-          <PathDelim Value="\"/>
-          <Target>
-            <Filename Value=".\bin\liblcl"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
-            <TargetCPU Value="aarch64"/>
-            <TargetOS Value="linux"/>
-            <Optimizations>
-              <OptimizationLevel Value="4"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <ExecutableType Value="Library"/>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dCEF"/>
-          </Other>
-        </CompilerOptions>
-      </Item3>
-      <Item4 Name="MacOSx64 CEF">
-        <MacroValues Count="1">
-          <Macro5 Name="LCLWidgetType" Value="cocoa"/>
-        </MacroValues>
-        <CompilerOptions>
-          <Version Value="11"/>
-          <PathDelim Value="\"/>
-          <Target>
-            <Filename Value=".\bin\liblcl"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
-            <TargetCPU Value="x86_64"/>
-            <TargetOS Value="darwin"/>
-            <Optimizations>
-              <OptimizationLevel Value="4"/>
-            </Optimizations>
-            <SmallerCode Value="True"/>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <ExecutableType Value="Library"/>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dCEF"/>
-            <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
-              <CompileReasons Compile="False" Run="False"/>
-            </ExecuteAfter>
-          </Other>
-        </CompilerOptions>
-      </Item4>
-      <Item5 Name="MacOSARM64 CEF">
-        <MacroValues Count="1">
-          <Macro5 Name="LCLWidgetType" Value="cocoa"/>
-        </MacroValues>
-        <CompilerOptions>
-          <Version Value="11"/>
-          <PathDelim Value="\"/>
-          <Target>
-            <Filename Value=".\bin\liblcl"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
-            <TargetCPU Value="aarch64"/>
-            <TargetOS Value="darwin"/>
-            <Optimizations>
-              <OptimizationLevel Value="4"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <ExecutableType Value="Library"/>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dCEF"/>
-            <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
-              <CompileReasons Compile="False" Run="False"/>
-            </ExecuteAfter>
-          </Other>
-        </CompilerOptions>
-      </Item5>
-      <Item6 Name="Linux32">
+      <Item2 Name="Linux32 CEF">
         <MacroValues Count="1">
           <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
@@ -258,8 +90,204 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
+      </Item2>
+      <Item3 Name="Linux64 CEF">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+            <SmallerCode Value="True"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf3"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+            <OtherDefines Count="1">
+              <Define0 Value="RMLCLTRUNK"/>
+            </OtherDefines>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="LinuxARM32 CEF">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="aarch64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+      <Item5 Name="LinuxARM64 CEF">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="aarch64"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item5>
+      <Item6 Name="MacOSx64 CEF">
+        <MacroValues Count="1">
+          <Macro5 Name="LCLWidgetType" Value="cocoa"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="darwin"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+            <SmallerCode Value="True"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <ExecuteAfter>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
+              <CompileReasons Compile="False" Run="False"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
       </Item6>
-      <Item7 Name="Debug">
+      <Item7 Name="MacOSARM64 CEF">
+        <MacroValues Count="1">
+          <Macro5 Name="LCLWidgetType" Value="cocoa"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\cocoa;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="aarch64"/>
+            <TargetOS Value="darwin"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <ExecuteAfter>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;.\bin\liblcl.dylib&quot;"/>
+              <CompileReasons Compile="False" Run="False"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item7>
+      <Item8 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -307,8 +335,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item7>
-      <Item8 Name="Release">
+      </Item8>
+      <Item9 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -350,14 +378,15 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item8>
-      <SessionEnabledMatrixOptions Count="6">
+      </Item9>
+      <SessionEnabledMatrixOptions Count="7">
         <Item1 Mode="Win64 CEF" Option="028265915746"/>
-        <Item2 Mode="Linux64 CEF" Option="411076831854"/>
-        <Item3 Mode="LinuxARM64 CEF" Option="411076831854"/>
-        <Item4 Mode="MacOSx64 CEF" Option="558457850193"/>
-        <Item5 Mode="MacOSARM64 CEF" Option="558457850193"/>
-        <Item6 Mode="Linux32" Option="316477307003"/>
+        <Item2 Mode="Linux32 CEF" Option="316477307003"/>
+        <Item3 Mode="Linux64 CEF" Option="316477307003"/>
+        <Item4 Mode="LinuxARM32 CEF" Option="316477307003"/>
+        <Item5 Mode="LinuxARM64 CEF" Option="316477307003"/>
+        <Item6 Mode="MacOSx64 CEF" Option="558457850193"/>
+        <Item7 Mode="MacOSARM64 CEF" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
@@ -365,9 +394,10 @@
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="23"/>
-        <CursorPos X="12" Y="38"/>
+        <TopLine Value="21"/>
+        <CursorPos X="32" Y="34"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -503,9 +533,8 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="341"/>
-        <CursorPos X="9" Y="386"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="39" Y="17"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -518,19 +547,17 @@
       </Unit19>
       <Unit20>
         <Filename Value="ExtDecl.inc"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="12" Y="75"/>
         <UsageCount Value="80"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
         <Filename Value="ImportCEF.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="35" Y="15"/>
         <UsageCount Value="78"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
@@ -589,11 +616,10 @@
       </Unit28>
       <Unit29>
         <Filename Value="uCEF_EventCallback.pas"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="237"/>
         <CursorPos X="82" Y="268"/>
         <UsageCount Value="63"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
@@ -633,6 +659,7 @@
         <TopLine Value="3972"/>
         <CursorPos X="39" Y="3989"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit34>
       <Unit35>
         <Filename Value="3rd-party\WebView4Delphi\source\uWVBrowser.pas"/>
@@ -640,6 +667,7 @@
         <TopLine Value="43"/>
         <CursorPos X="41" Y="47"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
       <Unit36>
         <Filename Value="E:\lazarus3-2\lcl\forms.pp"/>
@@ -1151,8 +1179,8 @@
       </Unit104>
       <Unit105>
         <Filename Value="liblcl.inc"/>
-        <TopLine Value="6"/>
-        <CursorPos X="38" Y="69"/>
+        <TopLine Value="5"/>
+        <CursorPos X="17" Y="70"/>
         <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -1180,178 +1208,85 @@
       </Unit108>
       <Unit109>
         <Filename Value="UnitsCEF.inc"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="8"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
         <CursorPos X="24" Y="70"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit109>
       <Unit110>
         <Filename Value="cef\CEF_BrowserViewComponent.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="60" Y="92"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit110>
       <Unit111>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFBrowserViewComponent.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="30" Y="74"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit111>
       <Unit112>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFViewsFrameworkEvents.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="3" Y="83"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit112>
       <Unit113>
         <Filename Value="uCEF_Application.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="152"/>
         <CursorPos X="29" Y="106"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit113>
       <Unit114>
         <Filename Value="cef\CEF_ApplicationCore.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit114>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="60" Column="2" TopLine="47"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="377" Column="30" TopLine="346"/>
       </Position1>
       <Position2>
         <Filename Value="LazarusDef.inc"/>
-        <Caret Line="377" Column="30" TopLine="346"/>
+        <Caret Line="1036" Column="21" TopLine="1017"/>
       </Position2>
       <Position3>
         <Filename Value="LazarusDef.inc"/>
-        <Caret Line="1036" Column="21" TopLine="1017"/>
+        <Caret Line="403" Column="29" TopLine="395"/>
       </Position3>
       <Position4>
         <Filename Value="LazarusDef.inc"/>
-        <Caret Line="403" Column="29" TopLine="395"/>
+        <Caret Line="1020" Column="22" TopLine="1010"/>
       </Position4>
       <Position5>
         <Filename Value="LazarusDef.inc"/>
-        <Caret Line="1020" Column="22" TopLine="1010"/>
+        <Caret Line="386" Column="9" TopLine="356"/>
       </Position5>
       <Position6>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="386" Column="9" TopLine="356"/>
-      </Position6>
-      <Position7>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="38" Column="12" TopLine="23"/>
+      </Position6>
+      <Position7>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="370" Column="7" TopLine="341"/>
       </Position7>
       <Position8>
-        <Filename Value="ImportCEF.inc"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="912" Column="16" TopLine="878"/>
       </Position8>
-      <Position9>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="160" Column="145" TopLine="130"/>
-      </Position9>
-      <Position10>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="996" Column="5" TopLine="955"/>
-      </Position10>
-      <Position11>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="269" Column="75" TopLine="237"/>
-      </Position11>
-      <Position12>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1590" Column="5" TopLine="1534"/>
-      </Position12>
-      <Position13>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1595" Column="5" TopLine="1559"/>
-      </Position13>
-      <Position14>
-        <Filename Value="UnitsCEF.inc"/>
-        <Caret Line="71" Column="23" TopLine="9"/>
-      </Position14>
-      <Position15>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1589" Column="47" TopLine="1559"/>
-      </Position15>
-      <Position16>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1580" TopLine="1559"/>
-      </Position16>
-      <Position17>
-        <Filename Value="ImportCEF.inc"/>
-        <Caret Line="36" Column="40"/>
-      </Position17>
-      <Position18>
-        <Filename Value="ImportCEF.inc"/>
-        <Caret Line="15" Column="35"/>
-      </Position18>
-      <Position19>
-        <Filename Value="cef\CEF_BrowserViewComponent.inc"/>
-        <Caret Line="36" Column="52"/>
-      </Position19>
-      <Position20>
-        <Filename Value="cef\CEF_BrowserViewComponent.inc"/>
-        <Caret Line="92" Column="60" TopLine="34"/>
-      </Position20>
-      <Position21>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFBrowserViewComponent.pas"/>
-        <Caret Line="64" Column="3"/>
-      </Position21>
-      <Position22>
-        <Filename Value="3rd-party\CEF4Delphi\source\uCEFBrowserViewComponent.pas"/>
-        <Caret Line="74" Column="30" TopLine="16"/>
-      </Position22>
-      <Position23>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1589" Column="22" TopLine="1559"/>
-      </Position23>
-      <Position24>
-        <Filename Value="uCEF_EventCallback.pas"/>
-        <Caret Line="1590" Column="5" TopLine="1554"/>
-      </Position24>
-      <Position25>
-        <Filename Value="cef\CEF_BrowserViewComponent.inc"/>
-        <Caret Line="92" Column="60" TopLine="34"/>
-      </Position25>
-      <Position26>
-        <Filename Value="UnitsCEF.inc"/>
-        <Caret Line="70" Column="24" TopLine="8"/>
-      </Position26>
-      <Position27>
-        <Filename Value="uCEF_Application.pas"/>
-        <Caret Line="27" Column="43"/>
-      </Position27>
-      <Position28>
-        <Filename Value="ImportCEF.inc"/>
-        <Caret Line="15" Column="35"/>
-      </Position28>
-      <Position29>
-        <Filename Value="cef\CEF_ApplicationCore.inc"/>
-      </Position29>
-      <Position30>
-        <Filename Value="uCEF_Application.pas"/>
-        <Caret Line="37" Column="29" TopLine="5"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

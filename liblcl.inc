@@ -66,7 +66,6 @@
 // ==== OpenGLContext end ==== //
 
 // ==== Build begin ==== //
-{$IFDEF CEF} // Windows, MacOS, Linux
-  {$DEFINE UseCEF}
-{$ENDIF}
+// Windows, MacOS, Linux
+{$DEFINE UseCEF}
 // ==== Build end ==== //

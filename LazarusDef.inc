@@ -14,10 +14,14 @@ begin
   Result := seUTF8;
 end;
 
-function DLibVersion: Cardinal; extdecl;
+procedure GetLCLVersion(var AMajor: Word; var AMinor: Word; var ARelease: Word; var APatch: Word; var AFullVersion: Cardinal; var AVersion: PChar); extdecl;
 begin
-  // 共8位，2位2位的
-  Result := $03000000;
+  AMajor := Word(lcl_major);
+  AMinor := Word(lcl_minor);
+  ARelease := Word(lcl_release);
+  APatch := Word(lcl_patch);
+  AFullVersion := Cardinal(lcl_fullversion);
+  AVersion := PChar(lcl_version);
 end;
 
 // 一些初始
@@ -696,27 +700,22 @@ begin
   Result := Printer;
 end;
 
-//CLASSMETHOD:
-//procedure Printer_SetPrinter(Obj: TPrinter; aName: PChar); extdecl;
-//begin
-//  handleExceptionBegin
-//  Obj.SetPrinter(aName);
-//  handleExceptionEnd
-//end;
-
 function DLibAbout: PChar; extdecl;
 var
   LVal: string;
 begin
   LVal := 'Author: yanghy'#13#10 +
-          'Official website: https://energye.github.io'#13#10 +
-          'github: https://github.com/energye/energy'#13#10 +
-          'Based on Lazarus ' + lcl_version + #13#10 +
+          'Official Website: https://energye.github.io'#13#10 +
+          'Github: '#13#10 +
+          '  energy: https://github.com/energye/energy'#13#10 +
+          '  lcl   : https://github.com/energye/lcl'#13#10 +
+          '  cef   : https://github.com/energye/cef'#13#10 +
+          '  wv2   : https://github.com/energye/wv'#13#10 +
           'Third party library list:'#13#10;
-  LVal := LVal + '    CEF4Delphi'#13#10;
-  LVal := LVal + '    WebView4Delphi'#13#10;
-  LVal := LVal + '    TRichMemo'#13#10;
-  LVal := LVal + '    TATGauge';
+  LVal := LVal + '  CEF4Delphi'#13#10;
+  LVal := LVal + '  WebView4Delphi'#13#10;
+  LVal := LVal + '  TRichMemo'#13#10;
+  LVal := LVal + '  TATGauge';
   Result := PChar(LVal);
 end;
 
@@ -810,17 +809,6 @@ function DGetLibType: TLibType; extdecl;
 begin
   Result := ltLCL;
 end;
-
-
-//procedure DSetDefaultLang(ALang: PChar; ADir: PChar; AForceUpdate: LongBool);
-//begin
-//  SetDefaultLang(ALang, ADir, AForceUpdate);
-//end;
-//
-//function DGetDefaultLang: PChar;
-//begin
-//  Result := ToPChar(GetDefaultLang);
-//end;
 
 // 用于go编译成dll时使用
 procedure DInitGoDll(AMainThreadId: TThreadID); extdecl;
@@ -925,7 +913,7 @@ exports
 
   // 库的信息
   DLibStringEncoding,
-  DLibVersion,
+  GetLCLVersion,
 
   // TApplication
   Application_Instance,
@@ -1037,52 +1025,11 @@ exports
   DSetPropertyValue,
   DSetPropertySecValue,
 
-  // TMemoryStream
-  //MemoryStream_Write,
-  //MemoryStream_Read,
-
   // TClipboard
   Clipboard_Instance,
-  //Clipboard_HasFormat,
-  //Clipboard_GetTextBuf,
-  //Clipboard_GetAsText,
-  //Clipboard_SetAsText,
-  //Clipboard_GetAsHtml,
+
   DPredefinedClipboardFormat,
   DSetClipboard,
-
-
-  // TCanavs
-  //Canvas_BrushCopy,
-  //Canvas_CopyRect,
-  //Canvas_Draw1,
-  //Canvas_DrawFocusRect,
-  //Canvas_FillRect,
-  //Canvas_FrameRect,
-  //Canvas_TextRect1,
-  //Canvas_TextRect2,
- // Canvas_Polygon,
-  //Canvas_Polyline,
-  //Canvas_PolyBezier,
-
-  // TImageList
-  //ImageList_Draw1,
-  //ImageList_Draw2,
-  //ImageList_DrawOverlay1,
-  //ImageList_DrawOverlay2,
-  //ImageList_GetIcon1,
-  //ImageList_GetIcon2,
-
-  // TMenuItem
-  //MenuItem_GetShortCutText,
-  //MenuItem_SetShortCutText,
-
-  //ResFormLoadFromStream,
-  //ResFormLoadFromFile,
-  //ResFormLoadFromResourceName,
-  //ResFormRegisterFormResource,
-  //ResFormLoadFromClassName,
-
 
   // TGUID
   DGUIDToString,
