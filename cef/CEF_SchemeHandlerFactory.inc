@@ -1,0 +1,29 @@
+
+//constructor
+function SchemeHandlerFactory_Create(const aClass: TCefResourceHandlerClass): TSchemeHandlerFactory; extdecl;
+begin
+  {$define handleExceptionFuncName :='Create'}
+  handleExceptionBegin
+  Result := TSchemeHandlerFactory.Create(aClass);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure SchemeHandlerFactory_AsInterface(AObj: TSchemeHandlerFactory; var Result: ICefSchemeHandlerFactory); extdecl;
+begin
+  Result := AObj as ICefSchemeHandlerFactory;
+end;
+
+//property event
+procedure SchemeHandlerFactory_SetOnNew(AObj: TSchemeHandlerFactory; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := SchemeHandlerFactory_OnNew}
+  {$DEFINE EventName := OnNew}
+  CEFEventMethodCode
+end;
+
+
+exports
+  SchemeHandlerFactory_Create,
+  SchemeHandlerFactory_AsInterface,
+  SchemeHandlerFactory_SetOnNew;
