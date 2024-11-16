@@ -3,8 +3,8 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="7" Active="Win64 CEF">
-      <Item1 Name="Win64 CEF">
+    <BuildModes Count="8" Active="Win64">
+      <Item1 Name="Win64">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="win32"/>
         </MacroValues>
@@ -50,7 +50,7 @@
           </Other>
         </CompilerOptions>
       </Item1>
-      <Item2 Name="Linux64 CEF">
+      <Item2 Name="Linux64">
         <MacroValues Count="1">
           <Macro4 Name="LCLWidgetType" Value="gtk3"/>
         </MacroValues>
@@ -92,7 +92,45 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="LinuxARM64 CEF">
+      <Item3 Name="LinuxARM32">
+        <MacroValues Count="1">
+          <Macro4 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value=".\bin\liblcl"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\gtk2;3rd-party\ATFlatControls\atflatcontrols"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="4"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="LinuxARM64">
         <MacroValues Count="1">
           <Macro4 Name="LCLWidgetType" Value="gtk3"/>
         </MacroValues>
@@ -129,8 +167,8 @@
             <CustomOptions Value="-dRMLCLTRUNK"/>
           </Other>
         </CompilerOptions>
-      </Item3>
-      <Item4 Name="MacOSx64 CEF">
+      </Item4>
+      <Item5 Name="MacOSx64">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -170,8 +208,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item4>
-      <Item5 Name="MacOSARM64 CEF">
+      </Item5>
+      <Item6 Name="MacOSARM64">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
@@ -211,8 +249,8 @@
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
-      </Item5>
-      <Item6 Name="Debug">
+      </Item6>
+      <Item7 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -260,8 +298,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item6>
-      <Item7 Name="Release">
+      </Item7>
+      <Item8 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -303,13 +341,14 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item7>
-      <SessionEnabledMatrixOptions Count="5">
-        <Item1 Mode="Win64 CEF" Option="028265915746"/>
-        <Item2 Mode="Linux64 CEF" Option="411076831854"/>
-        <Item3 Mode="LinuxARM64 CEF" Option="411076831854"/>
-        <Item4 Mode="MacOSx64 CEF" Option="558457850193"/>
-        <Item5 Mode="MacOSARM64 CEF" Option="558457850193"/>
+      </Item8>
+      <SessionEnabledMatrixOptions Count="6">
+        <Item1 Mode="Win64" Option="028265915746"/>
+        <Item2 Mode="Linux64" Option="411076831854"/>
+        <Item3 Mode="LinuxARM32" Option="411076831854"/>
+        <Item4 Mode="LinuxARM64" Option="411076831854"/>
+        <Item5 Mode="MacOSx64" Option="558457850193"/>
+        <Item6 Mode="MacOSARM64" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
@@ -458,7 +497,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="999"/>
-        <CursorPos Y="1033"/>
+        <CursorPos X="17" Y="1036"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
