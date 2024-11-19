@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -41,10 +41,10 @@ unit uCEFLibFunctions;
   {$MODE OBJFPC}{$H+}
 {$ENDIF}
 
-{$I cef.inc}
-
-{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
+{$IFNDEF CPUX64}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
+
+{$I cef.inc}
 
 interface
 
@@ -111,14 +111,11 @@ var
   cef_zip_directory                      : function(const src_dir, dest_file : PCefString; include_hidden_files : integer): Integer; cdecl;
   cef_load_crlsets_file                  : procedure(const path : PCefString); cdecl;
 
-  // / include/capi/cef_i18n_util_capi.h
-  cef_is_rtl                             : function : Integer; cdecl;
-
   // /include/capi/cef_image_capi.h
   cef_image_create : function : PCefImage; cdecl;
 
   // /include/capi/cef_media_router_capi.h
-  cef_media_router_get_global : function(callback: PCefCompletionCallback) : PCefMediaRouter; cdecl;
+  cef_media_router_get_global : function : PCefMediaRouter; cdecl;
 
   // /include/capi/cef_menu_model_capi.h
   cef_menu_model_create : function(delegate: PCefMenuModelDelegate): PCefMenuModel; cdecl;
@@ -233,6 +230,14 @@ var
 
   // /include/capi/cef_waitable_event_capi.h
   cef_waitable_event_create : function(automatic_reset, initially_signaled : integer): PCefWaitableEvent; cdecl;
+
+  // /include/capi/cef_web_plugin_capi.h
+  cef_visit_web_plugin_info          : procedure(visitor: PCefWebPluginInfoVisitor); cdecl;
+  cef_refresh_web_plugins            : procedure; cdecl;
+  cef_unregister_internal_web_plugin : procedure(const path: PCefString); cdecl;
+  cef_register_web_plugin_crash      : procedure(const path: PCefString); cdecl;
+  cef_is_web_plugin_unstable         : procedure(const path: PCefString; callback: PCefWebPluginUnstableCallback); cdecl;
+  cef_register_widevine_cdm          : procedure(const path: PCefString; callback: PCefRegisterCDMCallback); cdecl;
 
   // /include/capi/cef_xml_reader_capi.h
   cef_xml_reader_create : function(stream: PCefStreamReader; encodingType: TCefXmlEncodingType; const URI: PCefString): PCefXmlReader; cdecl;

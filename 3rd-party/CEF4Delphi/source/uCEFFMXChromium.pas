@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -37,10 +37,10 @@
 
 unit uCEFFMXChromium;
 
-{$I cef.inc}
-
-{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
+{$IFNDEF CPUX64}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
+
+{$I cef.inc}
 
 interface
 
@@ -49,10 +49,7 @@ uses
   {$IFDEF MSWINDOWS}
   WinApi.Windows, WinApi.Messages, FMX.Platform.Win,
   {$ENDIF}
-  FMX.Types, FMX.Platform, FMX.Forms, FMX.Controls,
-  {$IFDEF DELPHI19_UP}
-  FMX.Graphics,
-  {$ENDIF}
+  FMX.Types, FMX.Platform, FMX.Forms, FMX.Controls, FMX.Graphics,
   uCEFTypes, uCEFInterfaces, uCEFChromiumCore;
 
 type
@@ -76,7 +73,7 @@ type
       procedure SetFormTopTo(const y : Integer);
 
       function  CreateBrowser(const aWindowName : ustring = ''; const aContext : ICefRequestContext = nil; const aExtraInfo : ICefDictionaryValue = nil) : boolean; overload; virtual;
-      function  SaveAsBitmapStream(const aStream : TStream; const aRect : System.Types.TRect) : boolean;
+      function  SaveAsBitmapStream(var aStream : TStream; const aRect : System.Types.TRect) : boolean;
       function  TakeSnapshot(var aBitmap : TBitmap; const aRect : System.Types.TRect) : boolean;
 
       property  ScreenScale    : single             read GetScreenScale;
@@ -112,7 +109,7 @@ type
 implementation
 
 uses
-  {$IFDEF MSWINDOWS}{$IFDEF DELPHI24_UP}FMX.Helpers.Win,{$ENDIF}{$ENDIF}
+  {$IFDEF MSWINDOWS}FMX.Helpers.Win,{$ENDIF}
   System.SysUtils, System.Math,
   uCEFApplicationCore;
 
@@ -215,16 +212,16 @@ end;
 procedure TFMXChromium.MoveFormTo(const x, y: Integer);
 var
   TempForm : TCustomForm;
-  {$IFDEF DELPHI21_UP}
+  {$IFDEF DELPHI17_UP}
   TempRect : TRect;
   {$ENDIF}
 begin
   TempForm := GetParentForm;
-  {$IFDEF DELPHI21_UP}
+  {$IFDEF DELPHI17_UP}
   if (TempForm <> nil) then
     begin
-      TempRect.Left   := min(max(x, max(round(screen.DesktopLeft), 0)), round(screen.DesktopWidth)  - TempForm.Width);
-      TempRect.Top    := min(max(y, max(round(screen.DesktopTop),  0)), round(screen.DesktopHeight) - TempForm.Height);
+      TempRect.Left   := min(max(x, max(screen.DesktopLeft, 0)), screen.DesktopWidth  - TempForm.Width);
+      TempRect.Top    := min(max(y, max(screen.DesktopTop,  0)), screen.DesktopHeight - TempForm.Height);
       TempRect.Right  := TempRect.Left + TempForm.Width  - 1;
       TempRect.Bottom := TempRect.Top  + TempForm.Height - 1;
 
@@ -238,16 +235,16 @@ end;
 procedure TFMXChromium.MoveFormBy(const x, y: Integer);
 var
   TempForm : TCustomForm;
-  {$IFDEF DELPHI21_UP}
+  {$IFDEF DELPHI17_UP}
   TempRect : TRect;
   {$ENDIF}
 begin
   TempForm := GetParentForm;
-  {$IFDEF DELPHI21_UP}
+  {$IFDEF DELPHI17_UP}
   if (TempForm <> nil) then
     begin
-      TempRect.Left   := min(max(TempForm.Left + x, max(round(screen.DesktopLeft), 0)), round(screen.DesktopWidth)  - TempForm.Width);
-      TempRect.Top    := min(max(TempForm.Top  + y, max(round(screen.DesktopTop),  0)), round(screen.DesktopHeight) - TempForm.Height);
+      TempRect.Left   := min(max(TempForm.Left + x, max(screen.DesktopLeft, 0)), screen.DesktopWidth  - TempForm.Width);
+      TempRect.Top    := min(max(TempForm.Top  + y, max(screen.DesktopTop,  0)), screen.DesktopHeight - TempForm.Height);
       TempRect.Right  := TempRect.Left + TempForm.Width  - 1;
       TempRect.Bottom := TempRect.Top  + TempForm.Height - 1;
 
@@ -295,8 +292,8 @@ begin
   TempForm := GetParentForm;
 
   if (TempForm <> nil) then
-    {$IFDEF DELPHI21_UP}
-    TempForm.Left := min(max(x, max(round(screen.DesktopLeft), 0)), round(screen.DesktopWidth) - TempForm.Width);
+    {$IFDEF DELPHI17_UP}
+    TempForm.Left := min(max(x, max(screen.DesktopLeft, 0)), screen.DesktopWidth  - TempForm.Width);
     {$ELSE}
     TempForm.Left := x;
     {$ENDIF}
@@ -309,14 +306,14 @@ begin
   TempForm := GetParentForm;
 
   if (TempForm <> nil) then
-    {$IFDEF DELPHI21_UP}
-    TempForm.Top := min(max(y, max(round(screen.DesktopTop), 0)), round(screen.DesktopHeight) - TempForm.Height);
+    {$IFDEF DELPHI17_UP}
+    TempForm.Top := min(max(y, max(screen.DesktopTop, 0)), screen.DesktopHeight - TempForm.Height);
     {$ELSE}
     TempForm.Top := y;
     {$ENDIF}
 end;
 
-function TFMXChromium.SaveAsBitmapStream(const aStream : TStream; const aRect : System.Types.TRect) : boolean;
+function TFMXChromium.SaveAsBitmapStream(var aStream : TStream; const aRect : System.Types.TRect) : boolean;
 {$IFDEF MSWINDOWS}
 var
   TempDC   : HDC;
@@ -354,7 +351,7 @@ begin
   try
     TempStream := TMemoryStream.Create;
 
-    if SaveAsBitmapStream(TempStream, aRect) then
+    if SaveAsBitmapStream(TStream(TempStream), aRect) then
       begin
         aBitmap.LoadFromStream(TempStream);
         Result := True;

@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -80,18 +80,6 @@ type
   TGdkEventType  = int32;
   PGdkEventKey   = ^TGdkEventKey;
   PXDisplay      = pointer;
-  PDisplay       = pointer;
-
- PXErrorEvent = ^TXErrorEvent;
- TXErrorEvent = record
-      _type : longint;
-      display : PDisplay;
-      resourceid : uint64;
-      serial : uint64;
-      error_code : uint8;
-      request_code : uint8;
-      minor_code : uint8;
-   end;
 
   PGTypeClass = ^TGTypeClass;
   TGTypeClass = record
@@ -136,11 +124,6 @@ type
     rgbGreen    : Byte;
     rgbRed      : Byte;
     rgbReserved : Byte;
-  end;
-
-  PGdkScreen = ^TGdkScreen;
-  TGdkScreen = record
-    parent_instance : TGObject;
   end;
 {$ENDIF}
 {$ENDIF}

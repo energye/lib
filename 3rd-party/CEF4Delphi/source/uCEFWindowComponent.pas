@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -41,10 +41,10 @@ unit uCEFWindowComponent;
   {$MODE OBJFPC}{$H+}
 {$ENDIF}
 
-{$I cef.inc}
-
-{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
+{$IFNDEF CPUX64}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
+
+{$I cef.inc}
 
 interface
 
@@ -71,7 +71,6 @@ type
       FOnWindowDestroyed      : TOnWindowDestroyedEvent;
       FOnGetParentWindow      : TOnGetParentWindowEvent;
       FOnGetInitialBounds     : TOnGetInitialBoundsEvent;
-      FOnGetInitialShowState  : TOnGetInitialShowStateEvent;
       FOnIsFrameless          : TOnIsFramelessEvent;
       FOnCanResize            : TOnCanResizeEvent;
       FOnCanMaximize          : TOnCanMaximizeEvent;
@@ -111,7 +110,6 @@ type
       procedure doOnWindowDestroyed(const window_: ICefWindow);
       procedure doOnGetParentWindow(const window_: ICefWindow; var is_menu, can_activate_menu: boolean; var aResult : ICefWindow);
       procedure doOnGetInitialBounds(const window_: ICefWindow; var aResult : TCefRect);
-      procedure doOnGetInitialShowState(const window_: ICefWindow; var aResult : TCefShowState);
       procedure doOnIsFrameless(const window_: ICefWindow; var aResult : boolean);
       procedure doOnCanResize(const window_: ICefWindow; var aResult : boolean);
       procedure doOnCanMaximize(const window_: ICefWindow; var aResult : boolean);
@@ -135,7 +133,6 @@ type
       procedure Maximize;
       procedure Minimize;
       procedure Restore;
-      function  AddOverlayView(const view: ICefView; docking_mode: TCefDockingMode): ICefOverlayController;
       procedure ShowMenu(const menu_model: ICefMenuModel; const screen_point: TCefPoint; anchor_position : TCefMenuAnchorPosition);
       procedure CancelMenu;
       procedure SetDraggableRegions(regionsCount: NativeUInt; const regions: PCefDraggableRegionArray);
@@ -160,18 +157,17 @@ type
       property IsMinimized              : boolean            read GetIsMinimized;
 
     published
-      property OnWindowCreated        : TOnWindowCreatedEvent       read FOnWindowCreated       write FOnWindowCreated;
-      property OnWindowDestroyed      : TOnWindowDestroyedEvent     read FOnWindowDestroyed     write FOnWindowDestroyed;
-      property OnGetParentWindow      : TOnGetParentWindowEvent     read FOnGetParentWindow     write FOnGetParentWindow;
-      property OnGetInitialBounds     : TOnGetInitialBoundsEvent    read FOnGetInitialBounds    write FOnGetInitialBounds;
-      property OnGetInitialShowState  : TOnGetInitialShowStateEvent read FOnGetInitialShowState write FOnGetInitialShowState;
-      property OnIsFrameless          : TOnIsFramelessEvent         read FOnIsFrameless         write FOnIsFrameless;
-      property OnCanResize            : TOnCanResizeEvent           read FOnCanResize           write FOnCanResize;
-      property OnCanMaximize          : TOnCanMaximizeEvent         read FOnCanMaximize         write FOnCanMaximize;
-      property OnCanMinimize          : TOnCanMinimizeEvent         read FOnCanMinimize         write FOnCanMinimize;
-      property OnCanClose             : TOnCanCloseEvent            read FOnCanClose            write FOnCanClose;
-      property OnAccelerator          : TOnAcceleratorEvent         read FOnAccelerator         write FOnAccelerator;
-      property OnKeyEvent             : TOnWindowKeyEventEvent      read FOnKeyEvent            write FOnKeyEvent;
+      property OnWindowCreated        : TOnWindowCreatedEvent     read FOnWindowCreated    write FOnWindowCreated;
+      property OnWindowDestroyed      : TOnWindowDestroyedEvent   read FOnWindowDestroyed  write FOnWindowDestroyed;
+      property OnGetParentWindow      : TOnGetParentWindowEvent   read FOnGetParentWindow  write FOnGetParentWindow;
+      property OnGetInitialBounds     : TOnGetInitialBoundsEvent  read FOnGetInitialBounds write FOnGetInitialBounds;
+      property OnIsFrameless          : TOnIsFramelessEvent       read FOnIsFrameless      write FOnIsFrameless;
+      property OnCanResize            : TOnCanResizeEvent         read FOnCanResize        write FOnCanResize;
+      property OnCanMaximize          : TOnCanMaximizeEvent       read FOnCanMaximize      write FOnCanMaximize;
+      property OnCanMinimize          : TOnCanMinimizeEvent       read FOnCanMinimize      write FOnCanMinimize;
+      property OnCanClose             : TOnCanCloseEvent          read FOnCanClose         write FOnCanClose;
+      property OnAccelerator          : TOnAcceleratorEvent       read FOnAccelerator      write FOnAccelerator;
+      property OnKeyEvent             : TOnWindowKeyEventEvent    read FOnKeyEvent         write FOnKeyEvent;
   end;
 
 {$IFDEF FPC}
@@ -220,7 +216,6 @@ begin
   FOnWindowDestroyed      := nil;
   FOnGetParentWindow      := nil;
   FOnGetInitialBounds     := nil;
-  FOnGetInitialShowState  := nil;
   FOnIsFrameless          := nil;
   FOnCanResize            := nil;
   FOnCanMaximize          := nil;
@@ -310,12 +305,6 @@ procedure TCEFWindowComponent.doOnGetInitialBounds(const window_: ICefWindow; va
 begin
   if assigned(FOnGetInitialBounds) then
     FOnGetInitialBounds(self, window_, aResult);
-end;
-
-procedure TCEFWindowComponent.doOnGetInitialShowState(const window_: ICefWindow; var aResult : TCefShowState);
-begin
-  if assigned(FOnGetInitialShowState) then
-    FOnGetInitialShowState(self, window_, aResult);
 end;
 
 procedure TCEFWindowComponent.doOnIsFrameless(const window_: ICefWindow; var aResult : boolean);
@@ -485,14 +474,6 @@ function TCEFWindowComponent.GetWindowAppIcon : ICefImage;
 begin
   if Initialized then
     Result := FWindow.GetWindowAppIcon
-   else
-    Result := nil;
-end;
-
-function TCEFWindowComponent.AddOverlayView(const view: ICefView; docking_mode: TCefDockingMode): ICefOverlayController;
-begin
-  if Initialized then
-    Result := FWindow.AddOverlayView(view, docking_mode)
    else
     Result := nil;
 end;

@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -37,10 +37,10 @@
 
 unit uCEFFMXWindowParent;
 
-{$I cef.inc}
-
-{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
+{$IFNDEF CPUX64}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
+
+{$I cef.inc}
 
 interface
 
@@ -63,7 +63,7 @@ type
 
     public
       {$IFDEF MSWINDOWS}
-      procedure Reparent(const aNewParentHandle : {$IFDEF DELPHI18_UP}TWindowHandle{$ELSE}TFmxHandle{$ENDIF});
+      procedure Reparent(const aNewParentHandle : TWindowHandle);
       property  ChildWindowHandle : HWND   read GetChildWindowHandle;
       {$ENDIF}
 
@@ -130,15 +130,11 @@ begin
   end;
 end;
 
-procedure TFMXWindowParent.Reparent(const aNewParentHandle : {$IFDEF DELPHI18_UP}TWindowHandle{$ELSE}TFmxHandle{$ENDIF});
+procedure TFMXWindowParent.Reparent(const aNewParentHandle : TWindowHandle);
 var
   TempChildHandle, TempParentHandle : HWND;
 begin
-  {$IFDEF DELPHI18_UP}
   if (aNewParentHandle <> nil) then
-  {$ELSE}
-  if (aNewParentHandle <> 0) then
-  {$ENDIF}
     begin
       TempChildHandle  := FmxHandleToHWND(Handle);
       TempParentHandle := FmxHandleToHWND(aNewParentHandle);

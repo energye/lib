@@ -10,7 +10,7 @@
 // For more information about CEF4Delphi visit :
 //         https://www.briskbard.com/index.php?lang=en&pageid=cef
 //
-//        Copyright © 2022 Salvador Diaz Fau. All rights reserved.
+//        Copyright © 2021 Salvador Diaz Fau. All rights reserved.
 //
 // ************************************************************************
 // ************ vvvv Original license and comments below vvvv *************
@@ -41,10 +41,10 @@ unit uCEFRequestContext;
   {$MODE OBJFPC}{$H+}
 {$ENDIF}
 
-{$I cef.inc}
-
-{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
+{$IFNDEF CPUX64}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
+
+{$I cef.inc}
 
 interface
 
@@ -68,6 +68,7 @@ type
       function  GetCookieManagerProc(const callback: TCefCompletionCallbackProc): ICefCookieManager;
       function  RegisterSchemeHandlerFactory(const schemeName, domainName: ustring; const factory: ICefSchemeHandlerFactory): Boolean;
       function  ClearSchemeHandlerFactories: Boolean;
+      procedure PurgePluginListCache(reloadPages: Boolean);
       function  HasPreference(const name: ustring): Boolean;
       function  GetPreference(const name: ustring): ICefValue;
       function  GetAllPreferences(includeDefaults: Boolean): ICefDictionaryValue;
@@ -82,13 +83,13 @@ type
       function  HasExtension(const extension_id: ustring): boolean;
       function  GetExtensions(const extension_ids: TStringList): boolean;
       function  GetExtension(const extension_id: ustring): ICefExtension;
-      function  GetMediaRouter(const callback: ICefCompletionCallback): ICefMediaRouter;
+      function  GetMediaRouter: ICefMediaRouter;
 
     public
       class function UnWrap(data: Pointer): ICefRequestContext;
       class function Global: ICefRequestContext;
       class function New(const settings: PCefRequestContextSettings; const handler: ICefRequestContextHandler = nil): ICefRequestContext; overload;
-      class function New(const aCache, aAcceptLanguageList, aCookieableSchemesList : ustring; aCookieableSchemesExcludeDefaults, aPersistSessionCookies, aPersistUserPreferences : boolean; const handler: ICefRequestContextHandler = nil): ICefRequestContext; overload;
+      class function New(const aCache, aAcceptLanguageList : ustring; aPersistSessionCookies, aPersistUserPreferences, aIgnoreCertificateErrors : boolean; const handler: ICefRequestContextHandler = nil): ICefRequestContext; overload;
       class function Shared(const other: ICefRequestContext; const handler: ICefRequestContextHandler): ICefRequestContext;
   end;
 
@@ -172,25 +173,28 @@ begin
   Result := UnWrap(cef_request_context_create_context(settings, CefGetData(handler)));
 end;
 
-class function TCefRequestContextRef.New(const aCache                            : ustring;
-                                         const aAcceptLanguageList               : ustring;
-                                         const aCookieableSchemesList            : ustring;
-                                               aCookieableSchemesExcludeDefaults : boolean;
-                                               aPersistSessionCookies            : boolean;
-                                               aPersistUserPreferences           : boolean;
-                                         const handler                           : ICefRequestContextHandler): ICefRequestContext;
+class function TCefRequestContextRef.New(const aCache                       : ustring;
+                                         const aAcceptLanguageList          : ustring;
+                                               aPersistSessionCookies       : boolean;
+                                               aPersistUserPreferences      : boolean;
+                                               aIgnoreCertificateErrors     : boolean;
+                                         const handler                      : ICefRequestContextHandler): ICefRequestContext;
 var
   TempSettings : TCefRequestContextSettings;
 begin
-  TempSettings.size                                 := SizeOf(TCefRequestContextSettings);
-  TempSettings.cache_path                           := CefString(aCache);
-  TempSettings.persist_session_cookies              := Ord(aPersistSessionCookies);
-  TempSettings.persist_user_preferences             := Ord(aPersistUserPreferences);
-  TempSettings.accept_language_list                 := CefString(aAcceptLanguageList);
-  TempSettings.cookieable_schemes_list              := CefString(aCookieableSchemesList);
-  TempSettings.cookieable_schemes_exclude_defaults  := Ord(aCookieableSchemesExcludeDefaults);
+  TempSettings.size                           := SizeOf(TCefRequestContextSettings);
+  TempSettings.cache_path                     := CefString(aCache);
+  TempSettings.persist_session_cookies        := Ord(aPersistSessionCookies);
+  TempSettings.persist_user_preferences       := Ord(aPersistUserPreferences);
+  TempSettings.ignore_certificate_errors      := Ord(aIgnoreCertificateErrors);
+  TempSettings.accept_language_list           := CefString(aAcceptLanguageList);
 
   Result := UnWrap(cef_request_context_create_context(@TempSettings, CefGetData(handler)));
+end;
+
+procedure TCefRequestContextRef.PurgePluginListCache(reloadPages: Boolean);
+begin
+  PCefRequestContext(FData)^.purge_plugin_list_cache(PCefRequestContext(FData), Ord(reloadPages));
 end;
 
 function TCefRequestContextRef.HasPreference(const name: ustring): Boolean;
@@ -305,9 +309,9 @@ begin
   Result := TCefExtensionRef.UnWrap(PCefRequestContext(FData)^.get_extension(PCefRequestContext(FData), @TempID));
 end;
 
-function TCefRequestContextRef.GetMediaRouter(const callback: ICefCompletionCallback): ICefMediaRouter;
+function TCefRequestContextRef.GetMediaRouter: ICefMediaRouter;
 begin
-  Result := TCefMediaRouterRef.UnWrap(PCefRequestContext(FData)^.get_media_router(PCefRequestContext(FData), CefGetData(callback)));
+  Result := TCefMediaRouterRef.UnWrap(PCefRequestContext(FData)^.get_media_router(PCefRequestContext(FData)));
 end;
 
 function TCefRequestContextRef.RegisterSchemeHandlerFactory(const schemeName : ustring;
