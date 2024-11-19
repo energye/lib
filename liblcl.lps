@@ -352,12 +352,12 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="113">
+    <Units Count="115">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="23"/>
+        <TopLine Value="17"/>
         <CursorPos X="12" Y="38"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
@@ -496,8 +496,6 @@
         <Filename Value="LazarusDef.inc"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="999"/>
-        <CursorPos X="24" Y="1026"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -1172,8 +1170,7 @@
       <Unit109>
         <Filename Value="UnitsCEF.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="9"/>
-        <CursorPos X="23" Y="71"/>
+        <CursorPos X="64" Y="36"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit109>
@@ -1199,11 +1196,24 @@
         <CursorPos X="3" Y="83"/>
         <UsageCount Value="10"/>
       </Unit112>
+      <Unit113>
+        <Filename Value="3rd-party\CEF4Delphi\source\uCEFDownloadHandler.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos X="69" Y="85"/>
+        <UsageCount Value="10"/>
+      </Unit113>
+      <Unit114>
+        <Filename Value="3rd-party\CEF4Delphi\source\uCEFDownloadItem.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="45" Y="16"/>
+        <UsageCount Value="10"/>
+      </Unit114>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="49" Column="21" TopLine="42"/>
@@ -1242,8 +1252,12 @@
       </Position9>
       <Position10>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="38" Column="12" TopLine="23"/>
+        <Caret Line="38" Column="12" TopLine="11"/>
       </Position10>
+      <Position11>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="38" Column="12" TopLine="17"/>
+      </Position11>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
