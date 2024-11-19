@@ -292,6 +292,10 @@ end;
 
 // TCefCookie
 function EngCookieToGo(const AData: TCefCookie): TEngCookiePtr;
+var
+  TmpCreation: TDateTime;
+  TmpLastAccess: TDateTime;
+  TmpExpires: TDateTime;
 begin
   Result.Name := ToPChar(CefString(@AData.name));
   Result.Value := ToPChar(CefString(@AData.value));
@@ -299,10 +303,13 @@ begin
   Result.Path := ToPChar(CefString(@AData.path));
   Result.Secure := @(AData.secure);
   Result.Httponly := @(AData.httponly);
-  Result.Creation := PDateTime(CefTimeToDateTime(AData.creation));
-  Result.LastAccess := PDateTime(CefTimeToDateTime(AData.last_access));
+  TmpCreation := CefTimeToDateTime(AData.creation);
+  Result.Creation := PDateTime(@TmpCreation);
+  TmpLastAccess := CefTimeToDateTime(AData.last_access);
+  Result.LastAccess := PDateTime(@TmpLastAccess);
   Result.HasExpires := @(AData.has_expires);
-  Result.Expires := PDateTime(CefTimeToDateTime(AData.expires));
+  TmpExpires := CefTimeToDateTime(AData.expires);
+  Result.Expires := PDateTime(@TmpExpires);
   Result.SameSite := @(AData.same_site);
   Result.Priority := @(AData.priority);
 end;

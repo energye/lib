@@ -394,7 +394,7 @@
       </SessionEnabledMatrixOptions>
     </BuildModes>
     <ManyBuildModesSelection Value="Win32,Win64"/>
-    <Units Count="120">
+    <Units Count="121">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -518,10 +518,9 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="673"/>
-        <CursorPos X="25" Y="677"/>
+        <CursorPos X="17" Y="686"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
       </Unit18>
@@ -1127,10 +1126,12 @@
       </Unit111>
       <Unit112>
         <Filename Value="uCEF_TypesConvert.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="269"/>
-        <CursorPos X="23" Y="305"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="292"/>
+        <CursorPos X="40" Y="308"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit112>
       <Unit113>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFTypes.pas"/>
@@ -1141,10 +1142,11 @@
       </Unit113>
       <Unit114>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFMiscFunctions.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="98"/>
-        <CursorPos X="41" Y="131"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="67"/>
+        <CursorPos X="58" Y="130"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit114>
       <Unit115>
         <Filename Value="3rd-party\CEF4Delphi\source\uCEFChromiumCore.pas"/>
@@ -1180,15 +1182,35 @@
         <CursorPos X="25" Y="73"/>
         <UsageCount Value="10"/>
       </Unit119>
+      <Unit120>
+        <Filename Value="..\..\..\..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="460"/>
+        <CursorPos X="3" Y="472"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit120>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="RMLCLTRUNK"/>
     </OtherDefines>
-    <JumpHistory Count="1">
+    <JumpHistory Count="4" HistoryIndex="3">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="38" Column="33" TopLine="23"/>
       </Position1>
+      <Position2>
+        <Filename Value="uCEF_TypesConvert.pas"/>
+        <Caret Line="302" Column="30" TopLine="293"/>
+      </Position2>
+      <Position3>
+        <Filename Value="uCEF_TypesConvert.pas"/>
+        <Caret Line="64" Column="5" TopLine="52"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\..\..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\inc\systemh.inc"/>
+        <Caret Line="547" Column="3" TopLine="535"/>
+      </Position4>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
