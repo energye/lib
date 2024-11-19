@@ -1143,7 +1143,7 @@
         <Filename Value="liblcl.inc"/>
         <IsVisibleTab Value="True"/>
         <TopLine Value="5"/>
-        <CursorPos X="9" Y="48"/>
+        <CursorPos X="9" Y="55"/>
         <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
