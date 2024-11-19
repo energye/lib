@@ -108,7 +108,7 @@ jobs:
         run: |
           sudo git clean -xdf
           sudo git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
-          bin && sudo ./.github/shell/add-package.sh
+          mkdir bin && sudo ./.github/shell/add-package.sh
           sudo lazbuild -B --bm="MacOSx64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_106.1.1_binary_macosx64.zip ./bin/liblcl.dylib
 
