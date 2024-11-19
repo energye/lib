@@ -15,6 +15,3 @@ lazbuild ./3rd-party/DCPcrypt/dcpcrypt_laz.lpk
 
 lazbuild --add-package ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
 lazbuild ./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk
-
-lazbuild --add-package ./3rd-party/WebView4Delphi/packages/webview4delphi.lpk
-lazbuild ./3rd-party/WebView4Delphi/packages/webview4delphi.lpk
