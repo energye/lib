@@ -37,20 +37,55 @@ jobs:
           lazarus-version: ${{ matrix.lazarus-versions }}
           with-cache: true
 
-      - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
+      - name: Build Dynamic library LCL
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
-          lazbuild -B --bm="Win64 CEF" "liblcl.lpi"
+          lazbuild -B --bm="Win64" "liblcl.lpi"
+          7z a D:/bins/lcl_binary_windows64.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF
+        run: |
+          git clean -xdf
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win64_CEF" "liblcl.lpi"
           7z a D:/bins/lcl_cef_binary_windows64.zip ./bin/liblcl.dll
         shell: bash
 
-      - name: Build Dynamic library LCL WV2 # 构建 LCL + Webview2
+      - name: Build Dynamic library LCL + WV2
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
-          lazbuild -B --bm="Win64 WV2" "liblcl.lpi"
+          lazbuild -B --bm="Win64_WV2" "liblcl.lpi"
           7z a D:/bins/lcl_wv2_binary_windows64.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_109.1.18
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_109.1.18 origin/CEF_109.1.18 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win64" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_109.1.18_binary_windows64.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_106.1.1
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win64" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_106.1.1_binary_windows64.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_101.0.18
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win64" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_101.0.18_binary_windows64.zip ./bin/liblcl.dll
         shell: bash
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
@@ -89,20 +124,55 @@ jobs:
           with-cache: true
           os-arch: i386
 
-      - name: Build Dynamic library LCL CEF # 构建 LCL + CEF
+      - name: Build Dynamic library LCL
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
-          lazbuild -B --bm="Win32 CEF" "liblcl.lpi"
+          lazbuild -B --bm="Win32F" "liblcl.lpi"
+          7z a D:/bins/lcl_binary_windows32.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF
+        run: |
+          git clean -xdf
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win32_CEF" "liblcl.lpi"
           7z a D:/bins/lcl_cef_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
 
-      - name: Build Dynamic library LCL WV2 # 构建 LCL + Webview2
+      - name: Build Dynamic library LCL + WV2
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
-          lazbuild -B --bm="Win32 WV2" "liblcl.lpi"
+          lazbuild -B --bm="Win32_WV2" "liblcl.lpi"
           7z a D:/bins/lcl_wv2_binary_windows32.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_109.1.18
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_109.1.18 origin/CEF_109.1.18 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win32" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_109.1.18_binary_windows32.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_106.1.1
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win32" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_106.1.1_binary_windows32.zip ./bin/liblcl.dll
+        shell: bash
+
+      - name: Build Dynamic library LCL + CEF_101.0.18
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          mkdir bin && ./.github/shell/add-package.bat
+          lazbuild -B --bm="Win32" "liblcl.lpi"
+          7z a D:/bins/lcl_cef_101.0.18_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags

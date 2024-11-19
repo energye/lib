@@ -40,35 +40,101 @@ jobs:
       - name: Lazarus Execution Permissions
         run: |
           sudo chown -R ${USER}:admin /Applications/Lazarus
-          ls -la /Applications/Lazarus    
+          ls -la /Applications/Lazarus
 
-      - name: Build Dynamic library LCL CEF (x86_64) # 构建 LCL + CEF
+      # LCL
+      - name: Build Dynamic library LCL(x86_64)
         run: |
           sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          sudo lazbuild -B --bm="MacOSx64 CEF" --ws=cocoa "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSx64" --ws=cocoa "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_binary_macosx64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL(ARM64)
+        run: |
+          sudo git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          sudo lazbuild -B --bm="MacOSARM64" --ws=cocoa "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_binary_macosarm64.zip ./bin/liblcl.dylib
+
+      # LCL + CEF
+      - name: Build Dynamic library LCL + CEF(x86_64)
+        run: |
+          sudo git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          sudo lazbuild -B --bm="MacOSx64_CEF" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosx64.zip ./bin/liblcl.dylib
 
-      - name: Build Dynamic library LCL CEF (ARM64) # 构建 LCL + CEF
+      - name: Build Dynamic library LCL + CEF(ARM64)
         run: |
           sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          sudo lazbuild -B --bm="MacOSARM64 CEF" --ws=cocoa "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSARM64_CEF" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_binary_macosarm64.zip ./bin/liblcl.dylib
 
-      - name: Build Dynamic library LCL WK2 (x86_64) # 构建 LCL + Webkit2
+      # LCL + WK2
+      - name: Build Dynamic library LCL + WK2(x86_64)
         run: |
           sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          sudo lazbuild -B --bm="MacOSx64 WK2" --ws=cocoa "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSx64_WK2" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_wk2_binary_macosx64.zip ./bin/liblcl.dylib
 
-      - name: Build Dynamic library LCL WK2 (ARM64) # 构建 LCL + Webkit2
+      - name: Build Dynamic library LCL + WK2(ARM64)
         run: |
           sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          sudo lazbuild -B --bm="MacOSARM64 WK2" --ws=cocoa "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSARM64_WK2" --ws=cocoa "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_wk2_binary_macosarm64.zip ./bin/liblcl.dylib
+
+      # LCL + CEF_109.1.18
+      - name: Build Dynamic library LCL + CEF_109.1.18(x86_64)
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_109.1.18 origin/CEF_109.1.18 --
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_109.1.18_binary_macosx64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL + CEF_109.1.18(ARM64)
+        run: |
+          git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_109.1.18_binary_macosarm64.zip ./bin/liblcl.dylib
+
+      # LCL + CEF_106.1.1
+      - name: Build Dynamic library LCL + CEF_106.1.1(x86_64)
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_106.1.1_binary_macosx64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL + CEF_106.1.1(ARM64)
+        run: |
+          git clean -xdf
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_106.1.1_binary_macosarm64.zip ./bin/liblcl.dylib
+
+      # LCL + CEF_101.0.18
+      - name: Build Dynamic library LCL + CEF_101.0.18(x86_64)
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_101.0.18_binary_macosx64.zip ./bin/liblcl.dylib
+
+      - name: Build Dynamic library LCL + CEF_101.0.18(ARM64)
+        run: |
+          git clean -xdf
+          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          mkdir bin && sudo ./.github/shell/add-package.sh
+          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          zip -j $RUNNER_WORKSPACE/bins/lcl_cef_101.0.18_binary_macosarm64.zip ./bin/liblcl.dylib
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
         uses: softprops/action-gh-release@v2
