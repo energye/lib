@@ -85,7 +85,7 @@ type
     procedure ChromiumCore_OnCanDownload(Sender: TObject; const browser: ICefBrowser; const url, request_method: ustring; var aResult: boolean);
     procedure ChromiumCore_OnCanSaveCookie(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const response: ICefResponse; const cookie: PCefCookie; var aResult: boolean);
     procedure ChromiumCore_OnCanSendCookie(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const cookie: PCefCookie; var aResult: boolean);
-    procedure ChromiumCore_OnCertificateError(Sender: TObject; const browser: ICefBrowser; certError: TCefErrorcode; const requestUrl: ustring; const sslInfo: ICefSslInfo; const callback: ICefCallback; out Result: boolean);
+    procedure ChromiumCore_OnCertificateError(Sender: TObject; const browser: ICefBrowser; certError: TCefErrorcode; const requestUrl: ustring; const sslInfo: ICefSslInfo; const callback: ICefRequestCallback; out Result: Boolean);
     procedure ChromiumCore_OnCertificateExceptionsCleared(Sender: TObject);
     procedure ChromiumCore_OnChromeCommand(Sender: TObject; const browser: ICefBrowser; command_id: integer; disposition: TCefWindowOpenDisposition; var aResult: boolean);
     procedure ChromiumCore_OnConsoleMessage(Sender: TObject; const browser: ICefBrowser; level: TCefLogSeverity; const message, Source: ustring; line: integer; out Result: boolean);
@@ -185,7 +185,7 @@ type
     procedure ChromiumCore_OnScrollOffsetChanged(Sender: TObject; const browser: ICefBrowser; x, y: Double);
     procedure ChromiumCore_OnProcessMessageReceived(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; sourceProcess: TCefProcessId; const message: ICefProcessMessage; out Result: Boolean);
     procedure ChromiumCore_OnFindResult(Sender: TObject; const browser: ICefBrowser; identifier, count: Integer; const selectionRect: PCefRect; activeMatchOrdinal: Integer; finalUpdate: Boolean);
-    procedure ChromiumCore_OnBeforeResourceLoad(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const callback: ICefCallback; out Result: TCefReturnValue);
+    procedure ChromiumCore_OnBeforeResourceLoad(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const callback: ICefRequestCallback; out Result: TCefReturnValue);
     procedure ChromiumCore_OnResourceResponse(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const response: ICefResponse; out Result: boolean);
     procedure ChromiumCore_OnResourceRedirect(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const response: ICefResponse; var newUrl: ustring);
     procedure ChromiumCore_OnResourceLoadComplete(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest; const response: ICefResponse;
@@ -210,12 +210,12 @@ type
     procedure ChromiumCore_OnExtensionLoaded(Sender: TObject; const extension: ICefExtension);
     procedure ChromiumCore_OnExtensionLoadFailed(Sender: TObject; Result: TCefErrorcode);
     procedure ChromiumCore_OnExtensionUnloaded(Sender: TObject; const extension: ICefExtension);
-    procedure ChromiumCore_OnPrintStart(Sender: TObject; const browser: ICefBrowser);
-    procedure ChromiumCore_OnPrintSettings(Sender: TObject; const browser: ICefBrowser; const settings: ICefPrintSettings; getDefaults: boolean);
-    procedure ChromiumCore_OnPrintDialog(Sender: TObject; const browser: ICefBrowser; hasSelection: boolean; const callback: ICefPrintDialogCallback; var aResult : boolean);
-    procedure ChromiumCore_OnPrintJob(Sender: TObject; const browser: ICefBrowser; const documentName, PDFFilePath: ustring; const callback: ICefPrintJobCallback; var aResult : boolean);
-    procedure ChromiumCore_OnPrintReset(Sender: TObject; const browser: ICefBrowser);
-    procedure ChromiumCore_OnGetPDFPaperSize(Sender: TObject; const browser: ICefBrowser; deviceUnitsPerInch: Integer; var aResult : TCefSize);
+    procedure ApplicationCore_OnPrintStart(const browser: ICefBrowser);
+    procedure ApplicationCore_OnPrintSettings(const browser: ICefBrowser; const settings: ICefPrintSettings; getDefaults: boolean);
+    procedure ApplicationCore_OnPrintDialog(const browser: ICefBrowser; hasSelection: boolean; const callback: ICefPrintDialogCallback; var aResult : boolean);
+    procedure ApplicationCore_OnPrintJob(const browser: ICefBrowser; const documentName, PDFFilePath: ustring; const callback: ICefPrintJobCallback; var aResult : boolean);
+    procedure ApplicationCore_OnPrintReset(const browser: ICefBrowser);
+    procedure ApplicationCore_OnGetPDFPaperSize(deviceUnitsPerInch: Integer; var aResult : TCefSize);
 
     // TCefCookieVisitor
     function CookieVisitor_OnCookieVisit(const Name, Value, domain, path: ustring; secure, httponly, hasExpires: boolean; const creation, lastAccess, expires: TDateTime; Count, total: integer; same_site: TCefCookieSameSite; priority: TCefCookiePriority; out deleteCookie: boolean): boolean;
@@ -596,7 +596,7 @@ begin
 end;
 
 procedure TCEFEvent.ChromiumCore_OnCertificateError(Sender: TObject; const browser: ICefBrowser; certError: TCefErrorcode; const requestUrl: ustring;
-  const sslInfo: ICefSslInfo; const callback: ICefCallback; out Result: boolean);
+  const sslInfo: ICefSslInfo; const callback: ICefRequestCallback; out Result: Boolean);
 begin
   SendEvent([Sender, browser, certError, ToPChar(requestUrl), sslInfo, callback, @Result]);
 end;
@@ -1199,7 +1199,7 @@ begin
 end;
 
 procedure TCEFEvent.ChromiumCore_OnBeforeResourceLoad(Sender: TObject; const browser: ICefBrowser; const frame: ICefFrame; const request: ICefRequest;
-  const callback: ICefCallback; out Result: TCefReturnValue);
+  const callback: ICefRequestCallback; out Result: TCefReturnValue);
 begin
   SendEvent([Sender, browser, frame, request, callback, @Result]);
 end;
@@ -1321,35 +1321,35 @@ begin
   SendEvent([Sender, extension]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnPrintStart(Sender: TObject; const browser: ICefBrowser);
+procedure TCEFEvent.ApplicationCore_OnPrintStart(const browser: ICefBrowser);
 begin
-  SendEvent([Sender, browser]);
+  SendEvent([browser]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnPrintSettings(Sender: TObject; const browser: ICefBrowser; const settings: ICefPrintSettings; getDefaults: boolean);
+procedure TCEFEvent.ApplicationCore_OnPrintSettings(const browser: ICefBrowser; const settings: ICefPrintSettings; getDefaults: boolean);
 begin
-  SendEvent([Sender, browser, settings, longbool(getDefaults)]);
+  SendEvent([browser, settings, longbool(getDefaults)]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnPrintDialog(Sender: TObject; const browser: ICefBrowser; hasSelection: boolean; const callback: ICefPrintDialogCallback; var aResult: boolean);
+procedure TCEFEvent.ApplicationCore_OnPrintDialog(const browser: ICefBrowser; hasSelection: boolean; const callback: ICefPrintDialogCallback; var aResult: boolean);
 begin
-  SendEvent([Sender, browser, longbool(hasSelection), callback, @aResult]);
+  SendEvent([browser, longbool(hasSelection), callback, @aResult]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnPrintJob(Sender: TObject; const browser: ICefBrowser; const documentName, PDFFilePath: ustring;
+procedure TCEFEvent.ApplicationCore_OnPrintJob(const browser: ICefBrowser; const documentName, PDFFilePath: ustring;
   const callback: ICefPrintJobCallback; var aResult: boolean);
 begin
-  SendEvent([Sender, browser, ToPChar(documentName), ToPChar(PDFFilePath), callback, @aResult]);
+  SendEvent([browser, ToPChar(documentName), ToPChar(PDFFilePath), callback, @aResult]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnPrintReset(Sender: TObject; const browser: ICefBrowser);
+procedure TCEFEvent.ApplicationCore_OnPrintReset(const browser: ICefBrowser);
 begin
-  SendEvent([Sender, browser]);
+  SendEvent([browser]);
 end;
 
-procedure TCEFEvent.ChromiumCore_OnGetPDFPaperSize(Sender: TObject; const browser: ICefBrowser; deviceUnitsPerInch: integer; var aResult: TCefSize);
+procedure TCEFEvent.ApplicationCore_OnGetPDFPaperSize(deviceUnitsPerInch: integer; var aResult: TCefSize);
 begin
-  SendEvent([Sender, browser, deviceUnitsPerInch, @aResult]);
+  SendEvent([deviceUnitsPerInch, @aResult]);
 end;
 
 {== TCefCookieVisitor ==}

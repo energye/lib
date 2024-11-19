@@ -591,14 +591,12 @@ type
       property OnLoadError                       : TOnRenderLoadError                  read FOnLoadError                       write FOnLoadError;
 
       // ICefPrintHandler
-      {$IFDEF LINUX}
       property OnPrintStart                      : TOnPrintStartEvent                  read FOnPrintStart                      write FOnPrintStart;
       property OnPrintSettings                   : TOnPrintSettingsEvent               read FOnPrintSettings                   write FOnPrintSettings;
       property OnPrintDialog                     : TOnPrintDialogEvent                 read FOnPrintDialog                     write FOnPrintDialog;
       property OnPrintJob                        : TOnPrintJobEvent                    read FOnPrintJob                        write FOnPrintJob;
       property OnPrintReset                      : TOnPrintResetEvent                  read FOnPrintReset                      write FOnPrintReset;
       property OnGetPDFPaperSize                 : TOnGetPDFPaperSizeEvent             read FOnGetPDFPaperSize                 write FOnGetPDFPaperSize;
-      {$ENDIF}
   end;
 
   TCEFDirectoryDeleterThread = class(TThread)
