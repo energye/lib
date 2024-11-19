@@ -241,7 +241,6 @@ type
     procedure WindowComponent_OnGetParentWindow(const Sender: TObject; const window: ICefWindow; var is_menu, can_activate_menu: boolean; var aResult : ICefWindow);
     procedure WindowComponent_OnIsWindowModalDialog(const Sender: TObject; const window_: ICefWindow; var aResult : boolean);
     procedure WindowComponent_OnGetInitialBounds(const Sender: TObject; const window: ICefWindow; var aResult : TCefRect);
-    procedure WindowComponent_OnGetInitialShowState(const Sender: TObject; const window: ICefWindow; var aResult : TCefShowState);
     procedure WindowComponent_OnIsFrameless(const Sender: TObject; const window: ICefWindow; var aResult : boolean);
     procedure WindowComponent_OnWithStandardWindowButtons(const Sender: TObject; const window_: ICefWindow; var aResult : boolean);
     procedure WindowComponent_OnGetTitlebarHeight(const Sender: TObject; const window_: ICefWindow; var titlebar_height: Single; var aResult : boolean);
@@ -260,7 +259,6 @@ type
     procedure BrowserViewComponent_OnBrowserDestroyed(const Sender: TObject; const browser_view: ICefBrowserView; const browser: ICefBrowser);
     procedure BrowserViewComponent_OnGetDelegateForPopupBrowserView(const Sender: TObject; const browser_view: ICefBrowserView; const settings: TCefBrowserSettings; const client: ICefClient; is_devtools: boolean; var aResult : ICefBrowserViewDelegate);
     procedure BrowserViewComponent_OnPopupBrowserViewCreated(const Sender: TObject; const browser_view, popup_browser_view: ICefBrowserView; is_devtools: boolean; var aResult : boolean);
-    procedure BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; var aChromeToolbarType: TCefChromeToolbarType);
     procedure BrowserViewComponent_OnUseFramelessWindowForPictureInPicture(const Sender: TObject; const browser_view: ICefBrowserView; var aResult : boolean);
 
     //TCEFViewComponent
@@ -1460,11 +1458,6 @@ begin
   SendEvent([Sender, window, @aResult]);
 end;
 
-procedure TCEFEvent.WindowComponent_OnGetInitialShowState(const Sender: TObject; const window: ICefWindow; var aResult: TCefShowState);
-begin
-  SendEvent([Sender, window, @aResult]);
-end;
-
 procedure TCEFEvent.WindowComponent_OnIsFrameless(const Sender: TObject; const window: ICefWindow; var aResult: boolean);
 begin
   SendEvent([Sender, window, @aResult]);
@@ -1549,11 +1542,6 @@ procedure TCEFEvent.BrowserViewComponent_OnPopupBrowserViewCreated(const Sender:
   is_devtools: boolean; var aResult: boolean);
 begin
   SendEvent([Sender, browser_view, popup_browser_view, is_devtools, @aResult]);
-end;
-
-procedure TCEFEvent.BrowserViewComponent_OnGetChromeToolbarType(const Sender: TObject; var aChromeToolbarType: TCefChromeToolbarType);
-begin
-  SendEvent([Sender, @aChromeToolbarType]);
 end;
 
 procedure TCEFEvent.BrowserViewComponent_OnUseFramelessWindowForPictureInPicture(const Sender: TObject; const browser_view: ICefBrowserView; var aResult: boolean);

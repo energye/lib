@@ -61,6 +61,58 @@ begin
 end;
 
 //property
+function ChromiumOptions_Plugins(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
+begin
+  {$define handleExceptionFuncName :='Plugins'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.Plugins := AValue;
+  end else
+    Result := AObj.Plugins;
+  handleExceptionEnd
+end;
+
+//property
+function ChromiumOptions_UniversalAccessFromFileUrls(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
+begin
+  {$define handleExceptionFuncName :='UniversalAccessFromFileUrls'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.UniversalAccessFromFileUrls := AValue;
+  end else
+    Result := AObj.UniversalAccessFromFileUrls;
+  handleExceptionEnd
+end;
+
+//property
+function ChromiumOptions_FileAccessFromFileUrls(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
+begin
+  {$define handleExceptionFuncName :='FileAccessFromFileUrls'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.FileAccessFromFileUrls := AValue;
+  end else
+    Result := AObj.FileAccessFromFileUrls;
+  handleExceptionEnd
+end;
+
+//property
+function ChromiumOptions_WebSecurity(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
+begin
+  {$define handleExceptionFuncName :='WebSecurity'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.WebSecurity := AValue;
+  end else
+    Result := AObj.WebSecurity;
+  handleExceptionEnd
+end;
+
+//property
 function ChromiumOptions_ImageLoading(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
 begin
   {$define handleExceptionFuncName :='ImageLoading'}
@@ -139,6 +191,19 @@ begin
 end;
 
 //property
+function ChromiumOptions_ApplicationCache(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
+begin
+  {$define handleExceptionFuncName :='ApplicationCache'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.ApplicationCache := AValue;
+  end else
+    Result := AObj.ApplicationCache;
+  handleExceptionEnd
+end;
+
+//property
 function ChromiumOptions_Webgl(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
 begin
   {$define handleExceptionFuncName :='Webgl'}
@@ -190,19 +255,6 @@ begin
   handleExceptionEnd
 end;
 
-//property
-function ChromiumOptions_ChromeStatusBubble(AIsSet: LongBool; AObj: TChromiumOptions; AValue: TCefState): TCefState; extdecl;
-begin
-  {$define handleExceptionFuncName :='ChromeStatusBubble'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.ChromeStatusBubble := AValue;
-  end else
-    Result := AObj.ChromeStatusBubble;
-  handleExceptionEnd
-end;
-
 
 exports
   ChromiumOptions_Create,
@@ -210,14 +262,18 @@ exports
   ChromiumOptions_JavascriptCloseWindows,
   ChromiumOptions_JavascriptAccessClipboard,
   ChromiumOptions_JavascriptDomPaste,
+  ChromiumOptions_Plugins,
+  ChromiumOptions_UniversalAccessFromFileUrls,
+  ChromiumOptions_FileAccessFromFileUrls,
+  ChromiumOptions_WebSecurity,
   ChromiumOptions_ImageLoading,
   ChromiumOptions_ImageShrinkStandaloneToFit,
   ChromiumOptions_TextAreaResize,
   ChromiumOptions_TabToLinks,
   ChromiumOptions_LocalStorage,
   ChromiumOptions_Databases,
+  ChromiumOptions_ApplicationCache,
   ChromiumOptions_Webgl,
   ChromiumOptions_BackgroundColor,
   ChromiumOptions_AcceptLanguageList,
-  ChromiumOptions_WindowlessFrameRate,
-  ChromiumOptions_ChromeStatusBubble;
+  ChromiumOptions_WindowlessFrameRate;

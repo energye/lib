@@ -33,7 +33,6 @@
 {$I ./cef/CEF_CustomCefStringVisitor.inc}
 {$I ./cef/CEF_CustomCefUrlrequestClient.inc}
 {$I ./cef/CEF_CustomClientHandler.inc}
-{$I ./cef/CEF_CustomCommandHandler.inc}
 {$I ./cef/CEF_CustomCompletionCallback.inc}
 {$I ./cef/CEF_CustomContextMenuHandler.inc}
 {$I ./cef/CEF_CustomCookieVisitor.inc}
@@ -47,7 +46,6 @@
 {$I ./cef/CEF_CustomExtensionHandler.inc}
 {$I ./cef/CEF_CustomFindHandler.inc}
 {$I ./cef/CEF_CustomFocusHandler.inc}
-{$I ./cef/CEF_CustomFrameHandler.inc}
 {$I ./cef/CEF_CustomJsDialogHandler.inc}
 {$I ./cef/CEF_CustomKeyboardHandler.inc}
 {$I ./cef/CEF_CustomLifeSpanHandler.inc}
@@ -86,7 +84,6 @@
 {$I ./cef/CEF_EnergyStringMap.inc}
 {$I ./cef/CEF_Extension.inc}
 {$I ./cef/CEF_FileDialogCallback.inc}
-{$I ./cef/CEF_FileDialogInfo.inc}
 {$I ./cef/CEF_FillLayout.inc}
 {$I ./cef/CEF_Frame.inc}
 {$I ./cef/CEF_GenericTask.inc}
@@ -109,7 +106,6 @@
 {$I ./cef/CEF_MenuModel.inc}
 {$I ./cef/CEF_MenuModelDelegate.inc}
 {$I ./cef/CEF_NavigationEntry.inc}
-{$I ./cef/CEF_OverlayController.inc}
 {$I ./cef/CEF_PDFPrintOptions.inc}
 {$I ./cef/CEF_Panel.inc}
 {$I ./cef/CEF_PanelComponent.inc}

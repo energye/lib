@@ -186,15 +186,6 @@ begin
 end;
 
 //function
-procedure CefView_GetInsets(AObj: ICefView; var Result: TCefInsets); extdecl;
-begin
-  {$define handleExceptionFuncName :='GetInsets'}
-  handleExceptionBegin
-  Result := AObj.GetInsets();
-  handleExceptionEnd
-end;
-
-//function
 procedure CefView_GetPreferredSize(AObj: ICefView; var Result: TCefSize); extdecl;
 begin
   {$define handleExceptionFuncName :='GetPreferredSize'}
@@ -408,15 +399,6 @@ begin
 end;
 
 //procedure
-procedure CefView_SetInsets(AObj: ICefView; var insets: TCefInsets); extdecl;
-begin
-  {$define handleExceptionFuncName :='SetInsets'}
-  handleExceptionBegin
-  AObj.SetInsets(insets);
-  handleExceptionEnd
-end;
-
-//procedure
 procedure CefView_SizeToPreferredSize(AObj: ICefView); extdecl;
 begin
   {$define handleExceptionFuncName :='SizeToPreferredSize'}
@@ -502,7 +484,6 @@ exports
   CefView_GetBoundsInScreen,
   CefView_GetSize,
   CefView_GetPosition,
-  CefView_GetInsets,
   CefView_GetPreferredSize,
   CefView_GetMinimumSize,
   CefView_GetMaximumSize,
@@ -524,7 +505,6 @@ exports
   CefView_SetBounds,
   CefView_SetSize,
   CefView_SetPosition,
-  CefView_SetInsets,
   CefView_SizeToPreferredSize,
   CefView_InvalidateLayout,
   CefView_SetVisible,

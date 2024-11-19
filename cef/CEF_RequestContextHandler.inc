@@ -5,6 +5,19 @@ begin
   Result := TCefRequestContextHandlerRef.UnWrap(data);
 end;
 
+//function
+function CefRequestContextHandler_OnBeforePluginLoad(AObj: ICefRequestContextHandler; const mimeType,  pluginUrl: PChar; isMainFrame: LongBool; const topOriginUrl: PChar; const pluginInfo: ICefWebPluginInfo; var pluginPolicy: TCefPluginPolicy): LongBool; extdecl;
+var
+  RetpluginPolicy: TCefPluginPolicy;
+begin
+  {$define handleExceptionFuncName :='OnBeforePluginLoad'}
+  handleExceptionBegin
+  RetpluginPolicy := pluginPolicy;
+  Result := AObj.OnBeforePluginLoad(mimeType,  pluginUrl, isMainFrame, topOriginUrl, pluginInfo, RetpluginPolicy);
+  pluginPolicy := RetpluginPolicy;
+  handleExceptionEnd
+end;
+
 //procedure
 procedure CefRequestContextHandler_OnRequestContextInitialized(AObj: ICefRequestContextHandler; const requestcontext: ICefRequestContext); extdecl;
 begin
@@ -42,6 +55,7 @@ end;
 
 exports
   CefRequestContextHandler_UnWrap,
+  CefRequestContextHandler_OnBeforePluginLoad,
   CefRequestContextHandler_OnRequestContextInitialized,
   CefRequestContextHandler_GetResourceRequestHandler,
   CefRequestContextHandler_RemoveReferences;

@@ -240,15 +240,6 @@ begin
   handleExceptionEnd
 end;
 
-//procedure
-procedure CefDragData_ClearFilenames(AObj: ICefDragData); extdecl;
-begin
-  {$define handleExceptionFuncName :='ClearFilenames'}
-  handleExceptionBegin
-  AObj.ClearFilenames();
-  handleExceptionEnd
-end;
-
 
 exports
   CefDragData_UnWrap,
@@ -277,5 +268,4 @@ exports
   CefDragData_SetFragmentHtml,
   CefDragData_SetFragmentBaseUrl,
   CefDragData_ResetFileContents,
-  CefDragData_AddFile,
-  CefDragData_ClearFilenames;
+  CefDragData_AddFile;

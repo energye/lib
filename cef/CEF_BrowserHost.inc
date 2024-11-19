@@ -234,11 +234,11 @@ begin
 end;
 
 //procedure
-procedure CefBrowserHost_Find(AObj: ICefBrowserHost; const searchText: PChar; forward,  matchCase,  findNext: LongBool); extdecl;
+procedure CefBrowserHost_Find(AObj: ICefBrowserHost; identifier: Integer; const searchText: PChar; forward,  matchCase,  findNext: LongBool); extdecl;
 begin
   {$define handleExceptionFuncName :='Find'}
   handleExceptionBegin
-  AObj.Find(searchText, forward,  matchCase,  findNext);
+  AObj.Find(identifier, searchText, forward,  matchCase,  findNext);
   handleExceptionEnd
 end;
 
@@ -388,6 +388,15 @@ begin
   {$define handleExceptionFuncName :='SendTouchEvent'}
   handleExceptionBegin
   AObj.SendTouchEvent(event);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefBrowserHost_SendFocusEvent(AObj: ICefBrowserHost; aSetFocus: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='SendFocusEvent'}
+  handleExceptionBegin
+  AObj.SendFocusEvent(aSetFocus);
   handleExceptionEnd
 end;
 
@@ -571,6 +580,7 @@ exports
   CefBrowserHost_SendMouseMoveEvent,
   CefBrowserHost_SendMouseWheelEvent,
   CefBrowserHost_SendTouchEvent,
+  CefBrowserHost_SendFocusEvent,
   CefBrowserHost_SendCaptureLostEvent,
   CefBrowserHost_NotifyMoveOrResizeStarted,
   CefBrowserHost_SetWindowlessFrameRate,

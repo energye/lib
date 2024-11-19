@@ -18,11 +18,15 @@ begin
 end;
 
 //function
-function Chromium_SaveAsBitmapStream(AObj: TChromium; const aStream: TStream): LongBool; extdecl;
+function Chromium_SaveAsBitmapStream(AObj: TChromium; var aStream: TStream): LongBool; extdecl;
+var
+  RetaStream: TStream;
 begin
   {$define handleExceptionFuncName :='SaveAsBitmapStream'}
   handleExceptionBegin
-  Result := AObj.SaveAsBitmapStream(aStream);
+  RetaStream := aStream;
+  Result := AObj.SaveAsBitmapStream(RetaStream);
+  aStream := RetaStream;
   handleExceptionEnd
 end;
 

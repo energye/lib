@@ -93,15 +93,6 @@ begin
 end;
 
 //function
-procedure CefWindow_AddOverlayView(AObj: ICefWindow; const view: ICefView; dockingmode: TCefDockingMode; var Result: ICefOverlayController); extdecl;
-begin
-  {$define handleExceptionFuncName :='AddOverlayView'}
-  handleExceptionBegin
-  Result := AObj.AddOverlayView(view, dockingmode);
-  handleExceptionEnd
-end;
-
-//function
 procedure CefWindow_GetDisplay(AObj: ICefWindow; var Result: ICefDisplay); extdecl;
 begin
   {$define handleExceptionFuncName :='GetDisplay'}
@@ -357,7 +348,6 @@ exports
   CefWindow_GetTitle,
   CefWindow_GetWindowIcon,
   CefWindow_GetWindowAppIcon,
-  CefWindow_AddOverlayView,
   CefWindow_GetDisplay,
   CefWindow_GetClientAreaBoundsInScreen,
   CefWindow_GetWindowHandle,

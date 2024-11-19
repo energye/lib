@@ -1,10 +1,10 @@
 
 //constructor
-function CustomPrintHandler_Create(const events: IChromiumEvents): TCustomPrintHandler; extdecl;
+function CustomPrintHandler_Create(const aCefApp: TCefApplicationCore): TCustomPrintHandler; extdecl;
 begin
   {$define handleExceptionFuncName :='Create'}
   handleExceptionBegin
-  Result := TCustomPrintHandler.Create(events);
+  Result := TCustomPrintHandler.Create(aCefApp);
   handleExceptionEnd
 end;
 

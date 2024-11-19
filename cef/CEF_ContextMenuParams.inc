@@ -185,6 +185,15 @@ begin
   handleExceptionEnd
 end;
 
+//function
+function CefContextMenuParams_IsPepperMenu(AObj: ICefContextMenuParams): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='IsPepperMenu'}
+  handleExceptionBegin
+  Result := AObj.IsPepperMenu();
+  handleExceptionEnd
+end;
+
 
 exports
   CefContextMenuParams_UnWrap,
@@ -207,4 +216,5 @@ exports
   CefContextMenuParams_IsEditable,
   CefContextMenuParams_IsSpellCheckEnabled,
   CefContextMenuParams_GetEditStateFlags,
-  CefContextMenuParams_IsCustomMenu;
+  CefContextMenuParams_IsCustomMenu,
+  CefContextMenuParams_IsPepperMenu;

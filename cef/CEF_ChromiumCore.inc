@@ -956,6 +956,32 @@ begin
   handleExceptionEnd
 end;
 
+//property
+function ChromiumCore_OnPluginCrashed(AIsSet: LongBool; AObj: TChromiumCore; AValue: TOnPluginCrashed): TOnPluginCrashed; extdecl;
+begin
+  {$define handleExceptionFuncName :='OnPluginCrashed'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.OnPluginCrashed := AValue;
+  end else
+    Result := AObj.OnPluginCrashed;
+  handleExceptionEnd
+end;
+
+//property
+function ChromiumCore_OnBeforePluginLoad(AIsSet: LongBool; AObj: TChromiumCore; AValue: TOnBeforePluginLoad): TOnBeforePluginLoad; extdecl;
+begin
+  {$define handleExceptionFuncName :='OnBeforePluginLoad'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.OnBeforePluginLoad := AValue;
+  end else
+    Result := AObj.OnBeforePluginLoad;
+  handleExceptionEnd
+end;
+
 //function
 function ChromiumCore_CreateClientHandler(AObj: TChromiumCore; aIsOSR: LongBool): LongBool; extdecl;
 begin
@@ -1030,11 +1056,11 @@ begin
 end;
 
 //function
-function ChromiumCore_CreateBrowserByWindowHandle(AObj: TChromiumCore; aParentHandle: TCefWindowHandle; var aParentRect: TRect; const aWindowName: PChar; const aContext: ICefRequestContext; const aExtraInfo: ICefDictionaryValue; aForceAsPopup: LongBool): LongBool; extdecl;
+function ChromiumCore_CreateBrowserByWindowHandle(AObj: TChromiumCore; aParentHandle: TCefWindowHandle; var aParentRect: TRect; const aWindowName: PChar; const aContext: ICefRequestContext; const aExtraInfo: ICefDictionaryValue): LongBool; extdecl;
 begin
   {$define handleExceptionFuncName :='CreateBrowserByWindowHandle'}
   handleExceptionBegin
-  Result := AObj.CreateBrowser(aParentHandle, aParentRect, aWindowName, aContext, aExtraInfo, aForceAsPopup);
+  Result := AObj.CreateBrowser(aParentHandle, aParentRect, aWindowName, aContext, aExtraInfo);
   handleExceptionEnd
 end;
 
@@ -1312,6 +1338,15 @@ begin
   AObj.ShutdownDragAndDrop();
   handleExceptionEnd
 {$ENDIF}
+end;
+
+//procedure
+procedure ChromiumCore_CreateBrowser2(AObj: TChromiumCore; const aWindowName: PChar); extdecl;
+begin
+  {$define handleExceptionFuncName :='CreateBrowser2'}
+  handleExceptionBegin
+  AObj.CreateBrowser(aWindowName);
+  handleExceptionEnd
 end;
 
 //procedure
@@ -1621,6 +1656,15 @@ begin
 end;
 
 //procedure
+procedure ChromiumCore_UpdateSupportedSchemes(AObj: TChromiumCore; const aSchemes: TStrings; aIncludeDefaults: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='UpdateSupportedSchemes'}
+  handleExceptionBegin
+  AObj.UpdateSupportedSchemes(aSchemes, aIncludeDefaults);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure ChromiumCore_ShowDevTools(AObj: TChromiumCore; var inspectElementAt: TPoint; aWindowInfo: PEngWindowInfoPtr); extdecl;
 var
   InaWindowInfo: TCefWindowInfo;
@@ -1651,11 +1695,11 @@ begin
 end;
 
 //procedure
-procedure ChromiumCore_Find(AObj: TChromiumCore; const aSearchText: PChar; aForward,  aMatchCase,  aFindNext: LongBool); extdecl;
+procedure ChromiumCore_Find(AObj: TChromiumCore; aIdentifier: integer; const aSearchText: PChar; aForward,  aMatchCase,  aFindNext: LongBool); extdecl;
 begin
   {$define handleExceptionFuncName :='Find'}
   handleExceptionBegin
-  AObj.Find(aSearchText, aForward,  aMatchCase,  aFindNext);
+  AObj.Find(aIdentifier, aSearchText, aForward,  aMatchCase,  aFindNext);
   handleExceptionEnd
 end;
 
@@ -1921,6 +1965,15 @@ begin
 end;
 
 //procedure
+procedure ChromiumCore_SendFocusEvent(AObj: TChromiumCore; setFocus: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='SendFocusEvent'}
+  handleExceptionBegin
+  AObj.SendFocusEvent(setFocus);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure ChromiumCore_SendCaptureLostEvent(AObj: TChromiumCore); extdecl;
 begin
   {$define handleExceptionFuncName :='SendCaptureLostEvent'}
@@ -2152,14 +2205,6 @@ procedure ChromiumCore_SetOnPrefsAvailable(AObj: TChromiumCore; AEventData: Poin
 begin
   {$DEFINE EventMethodName := ChromiumCore_OnPrefsAvailable}
   {$DEFINE EventName := OnPrefsAvailable}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnPrefsUpdated(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnPrefsUpdated}
-  {$DEFINE EventName := OnPrefsUpdated}
   CEFEventMethodCode
 end;
 
@@ -2502,14 +2547,6 @@ procedure ChromiumCore_SetOnCursorChange(AObj: TChromiumCore; AEventData: Pointe
 begin
   {$DEFINE EventMethodName := ChromiumCore_OnCursorChange}
   {$DEFINE EventName := OnCursorChange}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnCanDownload(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnCanDownload}
-  {$DEFINE EventName := OnCanDownload}
   CEFEventMethodCode
 end;
 
@@ -3105,106 +3142,6 @@ begin
   CEFEventMethodCode
 end;
 
-//property event
-procedure ChromiumCore_SetOnPrintStart(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnPrintStart}
-  {$DEFINE EventName := OnPrintStart}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnPrintSettings(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnPrintSettings}
-  {$DEFINE EventName := OnPrintSettings}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnPrintDialog(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnPrintDialog}
-  {$DEFINE EventName := OnPrintDialog}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnPrintJob(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnPrintJob}
-  {$DEFINE EventName := OnPrintJob}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnPrintReset(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnPrintReset}
-  {$DEFINE EventName := OnPrintReset}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnGetPDFPaperSize(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-{$IFDEF LINUX}
-  {$DEFINE EventMethodName := ChromiumCore_OnGetPDFPaperSize}
-  {$DEFINE EventName := OnGetPDFPaperSize}
-  CEFEventMethodCode
-{$ENDIF}
-end;
-
-//property event
-procedure ChromiumCore_SetOnFrameCreated(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnFrameCreated}
-  {$DEFINE EventName := OnFrameCreated}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnFrameAttached(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnFrameAttached}
-  {$DEFINE EventName := OnFrameAttached}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnFrameDetached(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnFrameDetached}
-  {$DEFINE EventName := OnFrameDetached}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnMainFrameChanged(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnMainFrameChanged}
-  {$DEFINE EventName := OnMainFrameChanged}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure ChromiumCore_SetOnChromeCommand(AObj: TChromiumCore; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ChromiumCore_OnChromeCommand}
-  {$DEFINE EventName := OnChromeCommand}
-  CEFEventMethodCode
-end;
-
 
 exports
   ChromiumCore_Create,
@@ -3293,6 +3230,8 @@ exports
   ChromiumCore_ProxyByPassList,
   ChromiumCore_MaxConnectionsPerProxy,
   ChromiumCore_OnQuotaRequest,
+  ChromiumCore_OnPluginCrashed,
+  ChromiumCore_OnBeforePluginLoad,
   ChromiumCore_CreateClientHandler,
   ChromiumCore_CreateClientHandler1,
   ChromiumCore_TryCloseBrowser,
@@ -3330,6 +3269,7 @@ exports
   ChromiumCore_CloseAllBrowsers,
   ChromiumCore_InitializeDragAndDrop,
   ChromiumCore_ShutdownDragAndDrop,
+  ChromiumCore_CreateBrowser2,
   ChromiumCore_LoadURL,
   ChromiumCore_LoadURL1,
   ChromiumCore_LoadURL2,
@@ -3364,6 +3304,7 @@ exports
   ChromiumCore_SetUserAgentOverride,
   ChromiumCore_ClearDataForOrigin,
   ChromiumCore_ClearCache,
+  ChromiumCore_UpdateSupportedSchemes,
   ChromiumCore_ShowDevTools,
   ChromiumCore_CloseDevTools,
   ChromiumCore_CloseDevTools1,
@@ -3397,6 +3338,7 @@ exports
   ChromiumCore_SendMouseMoveEvent,
   ChromiumCore_SendMouseWheelEvent,
   ChromiumCore_SendTouchEvent,
+  ChromiumCore_SendFocusEvent,
   ChromiumCore_SendCaptureLostEvent,
   ChromiumCore_SendProcessMessage,
   ChromiumCore_SendProcessMessage1,
@@ -3423,7 +3365,6 @@ exports
   ChromiumCore_SetOnTextResultAvailable,
   ChromiumCore_SetOnPdfPrintFinished,
   ChromiumCore_SetOnPrefsAvailable,
-  ChromiumCore_SetOnPrefsUpdated,
   ChromiumCore_SetOnCookiesDeleted,
   ChromiumCore_SetOnResolvedHostAvailable,
   ChromiumCore_SetOnNavigationVisitorResultAvailable,
@@ -3466,7 +3407,6 @@ exports
   ChromiumCore_SetOnAutoResize,
   ChromiumCore_SetOnLoadingProgressChange,
   ChromiumCore_SetOnCursorChange,
-  ChromiumCore_SetOnCanDownload,
   ChromiumCore_SetOnBeforeDownload,
   ChromiumCore_SetOnDownloadUpdated,
   ChromiumCore_SetOnJsdialog,
@@ -3540,15 +3480,4 @@ exports
   ChromiumCore_SetOnExtensionBeforeBrowser,
   ChromiumCore_SetOnExtensionGetActiveBrowser,
   ChromiumCore_SetOnExtensionCanAccessBrowser,
-  ChromiumCore_SetOnExtensionGetExtensionResource,
-  ChromiumCore_SetOnPrintStart,
-  ChromiumCore_SetOnPrintSettings,
-  ChromiumCore_SetOnPrintDialog,
-  ChromiumCore_SetOnPrintJob,
-  ChromiumCore_SetOnPrintReset,
-  ChromiumCore_SetOnGetPDFPaperSize,
-  ChromiumCore_SetOnFrameCreated,
-  ChromiumCore_SetOnFrameAttached,
-  ChromiumCore_SetOnFrameDetached,
-  ChromiumCore_SetOnMainFrameChanged,
-  ChromiumCore_SetOnChromeCommand;
+  ChromiumCore_SetOnExtensionGetExtensionResource;

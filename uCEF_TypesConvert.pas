@@ -40,16 +40,20 @@ type
     JavascriptCloseWindows: PInteger; // TCefState
     JavascriptAccessClipboard: PInteger; // TCefState
     JavascriptDomPaste: PInteger; // TCefState
+    Plugins: PInteger; // TCefState
+    UniversalAccessFromFileUrls: PInteger; // TCefState
+    FileAccessFromFileUrls: PInteger; // TCefState
+    WebSecurity: PInteger; // TCefState
     ImageLoading: PInteger; // TCefState
     ImageShrinkStandaloneToFit: PInteger; // TCefState
     TextAreaResize: PInteger; // TCefState
     TabToLinks: PInteger; // TCefState
     LocalStorage: PInteger; // TCefState
     Databases: PInteger; // TCefState
+    ApplicationCache: PInteger; // TCefState
     Webgl: PInteger; // TCefState
     BackgroundColor: PInteger; // TCefColor
     AcceptLanguageList: PChar; // TCefString
-    ChromeStatusBubble: PInteger; // TCefState
   end;
 
   PEngCookiePtr = ^TEngCookiePtr;
@@ -61,10 +65,10 @@ type
     Path: PChar; // TCefString
     Secure: PInteger; // Integer
     Httponly: PInteger; // Integer
-    Creation: PDateTime; // TCefTime
-    LastAccess: PDateTime; // TCefTime
+    Creation: PCefTime; // TCefTime
+    LastAccess: PCefTime; // TCefTime
     HasExpires: PInteger; // Integer
-    Expires: PDateTime; // TCefTime
+    Expires: PCefTime; // TCefTime
     SameSite: PInteger; // TCefCookieSameSite
     Priority: PInteger; // TCefCookiePriority
   end;
@@ -102,9 +106,8 @@ type
     CachePath: PChar; // TCefString
     PersistSessionCookies: PInteger; // Integer
     PersistUserPreferences: PInteger; // Integer
+    IgnoreCertificateErrors: PInteger; // Integer
     AcceptLanguageList: PChar; // TCefString
-    CookieableSchemesList: PChar; // TCefString
-    CookieableSchemesExcludeDefaults: PInteger; // integer
   end;
 
   PEngSettingsPtr = ^TEngSettingsPtr;
@@ -125,7 +128,7 @@ type
     PersistSessionCookies: PInteger; // Integer
     PersistUserPreferences: PInteger; // Integer
     UserAgent: PChar; // TCefString
-    UserAgentProduct: PChar; // TCefString
+    ProductVersion: PChar; // TCefString
     Locale: PChar; // TCefString
     LogFile: PChar; // TCefString
     LogSeverity: PInteger; // TCefLogSeverity
@@ -135,10 +138,10 @@ type
     PackLoadingDisabled: PInteger; // Integer
     RemoteDebuggingPort: PInteger; // Integer
     UncaughtExceptionStackSize: PInteger; // Integer
+    IgnoreCertificateErrors: PInteger; // Integer
     BackgroundColor: PInteger; // TCefColor
     AcceptLanguageList: PChar; // TCefString
-    CookieableSchemesList: PChar; // TCefString
-    CookieableSchemesExcludeDefaults: PInteger; // integer
+    ApplicationClientIdForFileScanning: PChar; // TCefString
   end;
 
   PEngUrlPartsPtr = ^TEngUrlPartsPtr;
@@ -246,16 +249,20 @@ begin
   Result.JavascriptCloseWindows := @(AData.javascript_close_windows);
   Result.JavascriptAccessClipboard := @(AData.javascript_access_clipboard);
   Result.JavascriptDomPaste := @(AData.javascript_dom_paste);
+  Result.Plugins := @(AData.plugins);
+  Result.UniversalAccessFromFileUrls := @(AData.universal_access_from_file_urls);
+  Result.FileAccessFromFileUrls := @(AData.file_access_from_file_urls);
+  Result.WebSecurity := @(AData.web_security);
   Result.ImageLoading := @(AData.image_loading);
   Result.ImageShrinkStandaloneToFit := @(AData.image_shrink_standalone_to_fit);
   Result.TextAreaResize := @(AData.text_area_resize);
   Result.TabToLinks := @(AData.tab_to_links);
   Result.LocalStorage := @(AData.local_storage);
   Result.Databases := @(AData.databases);
+  Result.ApplicationCache := @(AData.application_cache);
   Result.Webgl := @(AData.webgl);
   Result.BackgroundColor := @(AData.background_color);
   Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
-  Result.ChromeStatusBubble := @(AData.chrome_status_bubble);
 end;
 
 function EngBrowserSettingsToPas(const AData: TEngBrowserSettingsPtr): TCefBrowserSettings;
@@ -278,24 +285,24 @@ begin
   Result.javascript_close_windows := TCefState(AData.JavascriptCloseWindows^);
   Result.javascript_access_clipboard := TCefState(AData.JavascriptAccessClipboard^);
   Result.javascript_dom_paste := TCefState(AData.JavascriptDomPaste^);
+  Result.plugins := TCefState(AData.Plugins^);
+  Result.universal_access_from_file_urls := TCefState(AData.UniversalAccessFromFileUrls^);
+  Result.file_access_from_file_urls := TCefState(AData.FileAccessFromFileUrls^);
+  Result.web_security := TCefState(AData.WebSecurity^);
   Result.image_loading := TCefState(AData.ImageLoading^);
   Result.image_shrink_standalone_to_fit := TCefState(AData.ImageShrinkStandaloneToFit^);
   Result.text_area_resize := TCefState(AData.TextAreaResize^);
   Result.tab_to_links := TCefState(AData.TabToLinks^);
   Result.local_storage := TCefState(AData.LocalStorage^);
   Result.databases := TCefState(AData.Databases^);
+  Result.application_cache := TCefState(AData.ApplicationCache^);
   Result.webgl := TCefState(AData.Webgl^);
   Result.background_color := TCefColor(AData.BackgroundColor^);
   Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
-  Result.chrome_status_bubble := TCefState(AData.ChromeStatusBubble^);
 end;
 
 // TCefCookie
 function EngCookieToGo(const AData: TCefCookie): TEngCookiePtr;
-var
-  TmpCreation: TDateTime;
-  TmpLastAccess: TDateTime;
-  TmpExpires: TDateTime;
 begin
   Result.Name := ToPChar(CefString(@AData.name));
   Result.Value := ToPChar(CefString(@AData.value));
@@ -303,13 +310,10 @@ begin
   Result.Path := ToPChar(CefString(@AData.path));
   Result.Secure := @(AData.secure);
   Result.Httponly := @(AData.httponly);
-  TmpCreation := CefTimeToDateTime(AData.creation);
-  Result.Creation := PDateTime(@TmpCreation);
-  TmpLastAccess := CefTimeToDateTime(AData.last_access);
-  Result.LastAccess := PDateTime(@TmpLastAccess);
+  Result.Creation := @(AData.creation);
+  Result.LastAccess := @(AData.last_access);;
   Result.HasExpires := @(AData.has_expires);
-  TmpExpires := CefTimeToDateTime(AData.expires);
-  Result.Expires := PDateTime(@TmpExpires);
+  Result.Expires := @(AData.expires);
   Result.SameSite := @(AData.same_site);
   Result.Priority := @(AData.priority);
 end;
@@ -322,10 +326,10 @@ begin
   Result.path := CefString(PCharToUStr(AData.Path));
   Result.secure := Integer(AData.Secure^);
   Result.httponly := Integer(AData.Httponly^);
-  Result.creation := DateTimeToCefTime(AData.Creation^);
-  Result.last_access := DateTimeToCefTime(AData.LastAccess^);
+  Result.creation := AData.Creation^;
+  Result.last_access := AData.LastAccess^;
   Result.has_expires := Integer(AData.HasExpires^);
-  Result.expires := DateTimeToCefTime(AData.Expires^);
+  Result.expires := AData.Expires^;
   Result.same_site := TCefCookieSameSite(AData.SameSite^);
   Result.priority := TCefCookiePriority(AData.Priority^);
 end;
@@ -388,9 +392,8 @@ begin
   Result.CachePath := ToPChar(CefString(@AData.cache_path));
   Result.PersistSessionCookies := @(AData.persist_session_cookies);
   Result.PersistUserPreferences := @(AData.persist_user_preferences);
+  Result.IgnoreCertificateErrors := @(AData.ignore_certificate_errors);
   Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
-  Result.CookieableSchemesList := ToPChar(CefString(@AData.cookieable_schemes_list));
-  Result.CookieableSchemesExcludeDefaults := @(AData.cookieable_schemes_exclude_defaults);
 end;
 
 function EngRequestContextSettingsToPas(const AData: TEngRequestContextSettingsPtr): TCefRequestContextSettings;
@@ -399,9 +402,8 @@ begin
   Result.cache_path := CefString(PCharToUStr(AData.CachePath));
   Result.persist_session_cookies := Integer(AData.PersistSessionCookies^);
   Result.persist_user_preferences := Integer(AData.PersistUserPreferences^);
+  Result.ignore_certificate_errors := Integer(AData.IgnoreCertificateErrors^);
   Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
-  Result.cookieable_schemes_list := CefString(PCharToUStr(AData.CookieableSchemesList));
-  Result.cookieable_schemes_exclude_defaults := integer(AData.CookieableSchemesExcludeDefaults^);
 end;
 
 // TCefSettings
@@ -422,7 +424,7 @@ begin
   Result.PersistSessionCookies := @(AData.persist_session_cookies);
   Result.PersistUserPreferences := @(AData.persist_user_preferences);
   Result.UserAgent := ToPChar(CefString(@AData.user_agent));
-  Result.UserAgentProduct := ToPChar(CefString(@AData.user_agent_product));
+  Result.ProductVersion := ToPChar(CefString(@AData.product_version));
   Result.Locale := ToPChar(CefString(@AData.locale));
   Result.LogFile := ToPChar(CefString(@AData.log_file));
   Result.LogSeverity := @(AData.log_severity);
@@ -432,10 +434,10 @@ begin
   Result.PackLoadingDisabled := @(AData.pack_loading_disabled);
   Result.RemoteDebuggingPort := @(AData.remote_debugging_port);
   Result.UncaughtExceptionStackSize := @(AData.uncaught_exception_stack_size);
+  Result.IgnoreCertificateErrors := @(AData.ignore_certificate_errors);
   Result.BackgroundColor := @(AData.background_color);
   Result.AcceptLanguageList := ToPChar(CefString(@AData.accept_language_list));
-  Result.CookieableSchemesList := ToPChar(CefString(@AData.cookieable_schemes_list));
-  Result.CookieableSchemesExcludeDefaults := @(AData.cookieable_schemes_exclude_defaults);
+  Result.ApplicationClientIdForFileScanning := ToPChar(CefString(@AData.application_client_id_for_file_scanning));
 end;
 
 function EngSettingsToPas(const AData: TEngSettingsPtr): TCefSettings;
@@ -456,7 +458,7 @@ begin
   Result.persist_session_cookies := Integer(AData.PersistSessionCookies^);
   Result.persist_user_preferences := Integer(AData.PersistUserPreferences^);
   Result.user_agent := CefString(PCharToUStr(AData.UserAgent));
-  Result.user_agent_product := CefString(PCharToUStr(AData.UserAgentProduct));
+  Result.product_version := CefString(PCharToUStr(AData.ProductVersion));
   Result.locale := CefString(PCharToUStr(AData.Locale));
   Result.log_file := CefString(PCharToUStr(AData.LogFile));
   Result.log_severity := TCefLogSeverity(AData.LogSeverity^);
@@ -466,10 +468,10 @@ begin
   Result.pack_loading_disabled := Integer(AData.PackLoadingDisabled^);
   Result.remote_debugging_port := Integer(AData.RemoteDebuggingPort^);
   Result.uncaught_exception_stack_size := Integer(AData.UncaughtExceptionStackSize^);
+  Result.ignore_certificate_errors := Integer(AData.IgnoreCertificateErrors^);
   Result.background_color := TCefColor(AData.BackgroundColor^);
   Result.accept_language_list := CefString(PCharToUStr(AData.AcceptLanguageList));
-  Result.cookieable_schemes_list := CefString(PCharToUStr(AData.CookieableSchemesList));
-  Result.cookieable_schemes_exclude_defaults := integer(AData.CookieableSchemesExcludeDefaults^);
+  Result.application_client_id_for_file_scanning := CefString(PCharToUStr(AData.ApplicationClientIdForFileScanning));
 end;
 
 // TCefUrlParts

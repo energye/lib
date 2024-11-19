@@ -6,15 +6,6 @@ begin
 end;
 
 //function
-function CefBrowser_IsValid(AObj: ICefBrowser): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='IsValid'}
-  handleExceptionBegin
-  Result := AObj.IsValid();
-  handleExceptionEnd
-end;
-
-//function
 procedure CefBrowser_GetHost(AObj: ICefBrowser; var Result: ICefBrowserHost); extdecl;
 begin
   {$define handleExceptionFuncName :='GetHost'}
@@ -208,7 +199,6 @@ end;
 
 exports
   CefBrowser_UnWrap,
-  CefBrowser_IsValid,
   CefBrowser_GetHost,
   CefBrowser_CanGoBack,
   CefBrowser_CanGoForward,

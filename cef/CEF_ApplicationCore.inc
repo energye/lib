@@ -191,15 +191,15 @@ begin
 end;
 
 //property
-function CefApplicationCore_UserAgentProduct(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
+function CefApplicationCore_ProductVersion(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
 begin
-  {$define handleExceptionFuncName :='UserAgentProduct'}
+  {$define handleExceptionFuncName :='ProductVersion'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.UserAgentProduct := AValue;
+    AObj.ProductVersion := AValue;
   end else
-    Result := ToPChar(AObj.UserAgentProduct);
+    Result := ToPChar(AObj.ProductVersion);
   handleExceptionEnd
 end;
 
@@ -360,28 +360,15 @@ begin
 end;
 
 //property
-function CefApplicationCore_CookieableSchemesList(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
+function CefApplicationCore_ApplicationClientID(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
 begin
-  {$define handleExceptionFuncName :='CookieableSchemesList'}
+  {$define handleExceptionFuncName :='ApplicationClientID'}
   handleExceptionBegin
   if AIsSet then
   begin
-    AObj.CookieableSchemesList := AValue;
+    AObj.ApplicationClientID := AValue;
   end else
-    Result := ToPChar(AObj.CookieableSchemesList);
-  handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_CookieableSchemesExcludeDefaults(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='CookieableSchemesExcludeDefaults'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.CookieableSchemesExcludeDefaults := AValue;
-  end else
-    Result := AObj.CookieableSchemesExcludeDefaults;
+    Result := ToPChar(AObj.ApplicationClientID);
   handleExceptionEnd
 end;
 
@@ -409,28 +396,6 @@ begin
   end else
     Result := AObj.EnableHighDPISupport;
   handleExceptionEnd
-end;
-
-//property
-function CefApplicationCore_ArgcCopy(AObj: TCefApplicationCore): LongInt; extdecl;
-begin
-{$IFDEF LINUX}
-  {$define handleExceptionFuncName :='ArgcCopy'}
-  handleExceptionBegin
-  Result := AObj.argcCopy;
-  handleExceptionEnd
-{$ENDIF}
-end;
-
-//property
-function CefApplicationCore_ArgvCopy(AObj: TCefApplicationCore): PPAnsiChar; extdecl;
-begin
-{$IFDEF LINUX}
-  {$define handleExceptionFuncName :='ArgvCopy'}
-  handleExceptionBegin
-  Result := AObj.argvCopy;
-  handleExceptionEnd
-{$ENDIF}
 end;
 
 //property
@@ -637,6 +602,19 @@ begin
 end;
 
 //property
+function CefApplicationCore_CheckDevToolsResources(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='CheckDevToolsResources'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.CheckDevToolsResources := AValue;
+  end else
+    Result := AObj.CheckDevToolsResources;
+  handleExceptionEnd
+end;
+
+//property
 function CefApplicationCore_LocalesRequired(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
 begin
   {$define handleExceptionFuncName :='LocalesRequired'}
@@ -711,6 +689,19 @@ begin
 end;
 
 //property
+function CefApplicationCore_MustCreatePrintHandler(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
+begin
+  {$define handleExceptionFuncName :='MustCreatePrintHandler'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.MustCreatePrintHandler := AValue;
+  end else
+    Result := AObj.MustCreatePrintHandler;
+  handleExceptionEnd
+end;
+
+//property
 procedure CefApplicationCore_OsmodalLoop(AObj: TCefApplicationCore; AValue: LongBool); extdecl;
 begin
 {$IFDEF MSWINDOWS}
@@ -736,6 +727,19 @@ begin
   {$define handleExceptionFuncName :='MissingLibFiles'}
   handleExceptionBegin
   Result := ToPChar(AObj.MissingLibFiles);
+  handleExceptionEnd
+end;
+
+//property
+function CefApplicationCore_WidevinePath(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: PChar): PChar; extdecl;
+begin
+  {$define handleExceptionFuncName :='WidevinePath'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.WidevinePath := AValue;
+  end else
+    Result := ToPChar(AObj.WidevinePath);
   handleExceptionEnd
 end;
 
@@ -825,6 +829,15 @@ begin
 end;
 
 //property
+function CefApplicationCore_SupportedSchemes(AObj: TCefApplicationCore): TStringList; extdecl;
+begin
+  {$define handleExceptionFuncName :='SupportedSchemes'}
+  handleExceptionBegin
+  Result := AObj.SupportedSchemes;
+  handleExceptionEnd
+end;
+
+//property
 function CefApplicationCore_LastErrorMessage(AObj: TCefApplicationCore): PChar; extdecl;
 begin
   {$define handleExceptionFuncName :='LastErrorMessage'}
@@ -833,12 +846,29 @@ begin
   handleExceptionEnd
 end;
 
-//function
-function CefApplicationCore_CheckCEFLibrary(AObj: TCefApplicationCore): LongBool; extdecl;
+//property
+function CefApplicationCore_OnGetCookieableSchemes(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TOnGetCookieableSchemesEvent): TOnGetCookieableSchemesEvent; extdecl;
 begin
-  {$define handleExceptionFuncName :='CheckCEFLibrary'}
+  {$define handleExceptionFuncName :='OnGetCookieableSchemes'}
   handleExceptionBegin
-  Result := AObj.CheckCEFLibrary();
+  if AIsSet then
+  begin
+    AObj.OnGetCookieableSchemes := AValue;
+  end else
+    Result := AObj.OnGetCookieableSchemes;
+  handleExceptionEnd
+end;
+
+//property
+function CefApplicationCore_OnCDMRegistrationComplete(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: TOnCDMRegistrationCompleteEvent): TOnCDMRegistrationCompleteEvent; extdecl;
+begin
+  {$define handleExceptionFuncName :='OnCDMRegistrationComplete'}
+  handleExceptionBegin
+  if AIsSet then
+  begin
+    AObj.OnCDMRegistrationComplete := AValue;
+  end else
+    Result := AObj.OnCDMRegistrationComplete;
   handleExceptionEnd
 end;
 
@@ -915,6 +945,17 @@ begin
 end;
 
 //procedure
+procedure CefApplicationCore_InitLibLocationFromArgs(AObj: TCefApplicationCore); extdecl;
+begin
+{$IFDEF DARWIN}
+  {$define handleExceptionFuncName :='InitLibLocationFromArgs'}
+  handleExceptionBegin
+  AObj.InitLibLocationFromArgs();
+  handleExceptionEnd
+{$ENDIF}
+end;
+
+//procedure
 procedure CefApplicationCore_DoMessageLoopWork(AObj: TCefApplicationCore); extdecl;
 begin
   {$define handleExceptionFuncName :='DoMessageLoopWork'}
@@ -948,17 +989,6 @@ begin
   handleExceptionBegin
   AObj.UpdateDeviceScaleFactor();
   handleExceptionEnd
-end;
-
-//procedure
-procedure CefApplicationCore_InitLibLocationFromArgs(AObj: TCefApplicationCore); extdecl;
-begin
-{$IFDEF DARWIN}
-  {$define handleExceptionFuncName :='InitLibLocationFromArgs'}
-  handleExceptionBegin
-  AObj.InitLibLocationFromArgs();
-  handleExceptionEnd
-{$ENDIF}
 end;
 
 //procedure
@@ -1083,6 +1113,15 @@ begin
 end;
 
 //procedure
+procedure CefApplicationCore_InternalOnCDMRegistrationComplete(AObj: TCefApplicationCore; result: TCefCDMRegistrationError; const errormessage: PChar); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnCDMRegistrationComplete'}
+  handleExceptionBegin
+  AObj.Internal_OnCDMRegistrationComplete(result, errormessage);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure CefApplicationCore_InternalOnLoadingStateChange(AObj: TCefApplicationCore; const browser: ICefBrowser; isLoading,  canGoBack,  canGoForward: LongBool); extdecl;
 begin
   {$define handleExceptionFuncName :='InternalOnLoadingStateChange'}
@@ -1119,6 +1158,22 @@ begin
 end;
 
 //procedure
+procedure CefApplicationCore_InternalGetCookieableSchemes(AObj: TCefApplicationCore; var schemes: TStringList; var includedefaults: LongBool); extdecl;
+var
+  Retschemes: TStringList;
+  Retincludedefaults: boolean;
+begin
+  {$define handleExceptionFuncName :='InternalGetCookieableSchemes'}
+  handleExceptionBegin
+  Retschemes := schemes;
+  Retincludedefaults := includedefaults;
+  AObj.Internal_GetCookieableSchemes(Retschemes, Retincludedefaults);
+  schemes := Retschemes;
+  includedefaults := LongBool(Retincludedefaults);
+  handleExceptionEnd
+end;
+
+//procedure
 procedure CefApplicationCore_InternalGetDefaultClient(AObj: TCefApplicationCore; var aClient: ICefClient); extdecl;
 var
   RetaClient: ICefClient;
@@ -1128,6 +1183,72 @@ begin
   RetaClient := aClient;
   AObj.Internal_GetDefaultClient(RetaClient);
   aClient := RetaClient;
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnPrintStart(AObj: TCefApplicationCore; const browser: ICefBrowser); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnPrintStart'}
+  handleExceptionBegin
+  AObj.Internal_OnPrintStart(browser);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnPrintSettings(AObj: TCefApplicationCore; const browser: ICefBrowser; const settings: ICefPrintSettings; getDefaults: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnPrintSettings'}
+  handleExceptionBegin
+  AObj.Internal_OnPrintSettings(browser, settings, getDefaults);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnPrintDialog(AObj: TCefApplicationCore; const browser: ICefBrowser; hasSelection: LongBool; const callback: ICefPrintDialogCallback; var aResult: LongBool); extdecl;
+var
+  RetaResult: boolean;
+begin
+  {$define handleExceptionFuncName :='InternalOnPrintDialog'}
+  handleExceptionBegin
+  RetaResult := aResult;
+  AObj.Internal_OnPrintDialog(browser, hasSelection, callback, RetaResult);
+  aResult := LongBool(RetaResult);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnPrintJob(AObj: TCefApplicationCore; const browser: ICefBrowser; const documentName,  pDFFilePath: PChar; const callback: ICefPrintJobCallback; var aResult: LongBool); extdecl;
+var
+  RetaResult: boolean;
+begin
+  {$define handleExceptionFuncName :='InternalOnPrintJob'}
+  handleExceptionBegin
+  RetaResult := aResult;
+  AObj.Internal_OnPrintJob(browser, documentName,  pDFFilePath, callback, RetaResult);
+  aResult := LongBool(RetaResult);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnPrintReset(AObj: TCefApplicationCore; const browser: ICefBrowser); extdecl;
+begin
+  {$define handleExceptionFuncName :='InternalOnPrintReset'}
+  handleExceptionBegin
+  AObj.Internal_OnPrintReset(browser);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefApplicationCore_InternalOnGetPDFPaperSize(AObj: TCefApplicationCore; deviceUnitsPerInch: Integer; var aResult: TCefSize); extdecl;
+var
+  RetaResult: TCefSize;
+begin
+  {$define handleExceptionFuncName :='InternalOnGetPDFPaperSize'}
+  handleExceptionBegin
+  RetaResult := aResult;
+  AObj.Internal_OnGetPDFPaperSize(deviceUnitsPerInch, RetaResult);
+  aResult := RetaResult;
   handleExceptionEnd
 end;
 
@@ -1271,6 +1392,54 @@ begin
   AObj.OnLoadError := ApplicationCore_OnLoadError;
 end;
 
+//property event
+procedure CefApplicationCore_SetOnPrintStart(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnPrintStart}
+  {$DEFINE EventName := OnPrintStart}
+  CEFEventMethodCode
+end;
+
+//property event
+procedure CefApplicationCore_SetOnPrintSettings(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnPrintSettings}
+  {$DEFINE EventName := OnPrintSettings}
+  CEFEventMethodCode
+end;
+
+//property event
+procedure CefApplicationCore_SetOnPrintDialog(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnPrintDialog}
+  {$DEFINE EventName := OnPrintDialog}
+  CEFEventMethodCode
+end;
+
+//property event
+procedure CefApplicationCore_SetOnPrintJob(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnPrintJob}
+  {$DEFINE EventName := OnPrintJob}
+  CEFEventMethodCode
+end;
+
+//property event
+procedure CefApplicationCore_SetOnPrintReset(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnPrintReset}
+  {$DEFINE EventName := OnPrintReset}
+  CEFEventMethodCode
+end;
+
+//property event
+procedure CefApplicationCore_SetOnGetPDFPaperSize(AObj: TCefApplicationCore; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := ApplicationCore_OnGetPDFPaperSize}
+  {$DEFINE EventName := OnGetPDFPaperSize}
+  CEFEventMethodCode
+end;
+
 
 exports
   CefApplicationCore_Create,
@@ -1288,7 +1457,7 @@ exports
   CefApplicationCore_PersistSessionCookies,
   CefApplicationCore_PersistUserPreferences,
   CefApplicationCore_UserAgent,
-  CefApplicationCore_UserAgentProduct,
+  CefApplicationCore_ProductVersion,
   CefApplicationCore_Locale,
   CefApplicationCore_LogFile,
   CefApplicationCore_LogSeverity,
@@ -1301,12 +1470,9 @@ exports
   CefApplicationCore_IgnoreCertificateErrors,
   CefApplicationCore_BackgroundColor,
   CefApplicationCore_AcceptLanguageList,
-  CefApplicationCore_CookieableSchemesList,
-  CefApplicationCore_CookieableSchemesExcludeDefaults,
+  CefApplicationCore_ApplicationClientID,
   CefApplicationCore_WindowsSandboxInfo,
   CefApplicationCore_EnableHighDPISupport,
-  CefApplicationCore_ArgcCopy,
-  CefApplicationCore_ArgvCopy,
   CefApplicationCore_DeleteCache,
   CefApplicationCore_DeleteCookies,
   CefApplicationCore_CheckCEFFiles,
@@ -1326,15 +1492,18 @@ exports
   CefApplicationCore_LogProcessInfo,
   CefApplicationCore_ReRaiseExceptions,
   CefApplicationCore_DeviceScaleFactor,
+  CefApplicationCore_CheckDevToolsResources,
   CefApplicationCore_LocalesRequired,
   CefApplicationCore_ProcessType,
   CefApplicationCore_MustCreateResourceBundleHandler,
   CefApplicationCore_MustCreateBrowserProcessHandler,
   CefApplicationCore_MustCreateRenderProcessHandler,
   CefApplicationCore_MustCreateLoadHandler,
+  CefApplicationCore_MustCreatePrintHandler,
   CefApplicationCore_OsmodalLoop,
   CefApplicationCore_Status,
   CefApplicationCore_MissingLibFiles,
+  CefApplicationCore_WidevinePath,
   CefApplicationCore_MustFreeLibrary,
   CefApplicationCore_ChildProcessesCount,
   CefApplicationCore_UsedMemory,
@@ -1344,19 +1513,21 @@ exports
   CefApplicationCore_ApiHashUniversal,
   CefApplicationCore_ApiHashPlatform,
   CefApplicationCore_ApiHashCommit,
+  CefApplicationCore_SupportedSchemes,
   CefApplicationCore_LastErrorMessage,
-  CefApplicationCore_CheckCEFLibrary,
+  CefApplicationCore_OnGetCookieableSchemes,
+  CefApplicationCore_OnCDMRegistrationComplete,
   CefApplicationCore_StartMainProcess,
   CefApplicationCore_StartSubProcess,
   CefApplicationCore_InternalGetLocalizedString,
   CefApplicationCore_InternalGetDataResource,
   CefApplicationCore_InternalGetDataResourceForScale,
   CefApplicationCore_AddCustomCommandLine,
+  CefApplicationCore_InitLibLocationFromArgs,
   CefApplicationCore_DoMessageLoopWork,
   CefApplicationCore_RunMessageLoop,
   CefApplicationCore_QuitMessageLoop,
   CefApplicationCore_UpdateDeviceScaleFactor,
-  CefApplicationCore_InitLibLocationFromArgs,
   CefApplicationCore_InternalOnBeforeCommandLineProcessing,
   CefApplicationCore_InternalOnRegisterCustomSchemes,
   CefApplicationCore_InternalOnContextInitialized,
@@ -1370,11 +1541,19 @@ exports
   CefApplicationCore_InternalOnUncaughtException,
   CefApplicationCore_InternalOnFocusedNodeChanged,
   CefApplicationCore_InternalOnProcessMessageReceived,
+  CefApplicationCore_InternalOnCDMRegistrationComplete,
   CefApplicationCore_InternalOnLoadingStateChange,
   CefApplicationCore_InternalOnLoadStart,
   CefApplicationCore_InternalOnLoadEnd,
   CefApplicationCore_InternalOnLoadError,
+  CefApplicationCore_InternalGetCookieableSchemes,
   CefApplicationCore_InternalGetDefaultClient,
+  CefApplicationCore_InternalOnPrintStart,
+  CefApplicationCore_InternalOnPrintSettings,
+  CefApplicationCore_InternalOnPrintDialog,
+  CefApplicationCore_InternalOnPrintJob,
+  CefApplicationCore_InternalOnPrintReset,
+  CefApplicationCore_InternalOnGetPDFPaperSize,
   CefApplicationCore_SetOnRegCustomSchemes,
   CefApplicationCore_SetOnContextInitialized,
   CefApplicationCore_SetOnBeforeChildProcessLaunch,
@@ -1394,4 +1573,10 @@ exports
   CefApplicationCore_SetOnLoadingStateChange,
   CefApplicationCore_SetOnLoadStart,
   CefApplicationCore_SetOnLoadEnd,
-  CefApplicationCore_SetOnLoadError;
+  CefApplicationCore_SetOnLoadError,
+  CefApplicationCore_SetOnPrintStart,
+  CefApplicationCore_SetOnPrintSettings,
+  CefApplicationCore_SetOnPrintDialog,
+  CefApplicationCore_SetOnPrintJob,
+  CefApplicationCore_SetOnPrintReset,
+  CefApplicationCore_SetOnGetPDFPaperSize;

@@ -88,14 +88,6 @@ begin
   CEFEventMethodCode
 end;
 
-//property event
-procedure CEFBrowserViewComponent_SetOnGetChromeToolbarType(AObj: TCEFBrowserViewComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := BrowserViewComponent_OnGetChromeToolbarType}
-  {$DEFINE EventName := OnGetChromeToolbarType}
-  CEFEventMethodCode
-end;
-
 
 exports
   CEFBrowserViewComponent_Create,
@@ -107,5 +99,4 @@ exports
   CEFBrowserViewComponent_SetOnBrowserCreated,
   CEFBrowserViewComponent_SetOnBrowserDestroyed,
   CEFBrowserViewComponent_SetOnGetDelegateForPopupBrowserView,
-  CEFBrowserViewComponent_SetOnPopupBrowserViewCreated,
-  CEFBrowserViewComponent_SetOnGetChromeToolbarType;
+  CEFBrowserViewComponent_SetOnPopupBrowserViewCreated;

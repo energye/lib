@@ -56,6 +56,24 @@ begin
   handleExceptionEnd
 end;
 
+//procedure
+procedure CefCookieManager_SetSupportedSchemes(AObj: ICefCookieManager; const schemes: TStrings; includedefaults: LongBool; const callback: ICefCompletionCallback); extdecl;
+begin
+  {$define handleExceptionFuncName :='SetSupportedSchemes'}
+  handleExceptionBegin
+  AObj.SetSupportedSchemes(schemes, includedefaults, callback);
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefCookieManager_SetSupportedSchemesProc(AObj: ICefCookieManager; const schemes: TStrings; includedefaults: LongBool; const callback: TCefCompletionCallbackProc); extdecl;
+begin
+  {$define handleExceptionFuncName :='SetSupportedSchemesProc'}
+  handleExceptionBegin
+  AObj.SetSupportedSchemesProc(schemes, includedefaults, callback);
+  handleExceptionEnd
+end;
+
 
 exports
   CefCookieManager_UnWrap,
@@ -64,4 +82,6 @@ exports
   CefCookieManager_VisitUrlCookies,
   CefCookieManager_SetCookie,
   CefCookieManager_DeleteCookies,
-  CefCookieManager_FlushStore;
+  CefCookieManager_FlushStore,
+  CefCookieManager_SetSupportedSchemes,
+  CefCookieManager_SetSupportedSchemesProc;

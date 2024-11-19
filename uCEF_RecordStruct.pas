@@ -91,10 +91,10 @@ begin
   Result.ex_style := @settings.ex_style;
   Result.window_name := PChar(string(CefString(@settings.window_name)));
   Result.style := @settings.style;
-  Result.x := @settings.bounds.x;
-  Result.y := @settings.bounds.y;
-  Result.Width := @settings.bounds.Width;
-  Result.Height := @settings.bounds.Height;
+  Result.x := @settings.x;
+  Result.y := @settings.y;
+  Result.Width := @settings.Width;
+  Result.Height := @settings.Height;
   Result.parent_window := @settings.parent_window;
   Result.menu := @settings.menu;
   Result.windowless_rendering_enabled := @settings.windowless_rendering_enabled;
@@ -104,10 +104,10 @@ begin
   {$ENDIF}
   {$IFDEF Darwin}
   Result.window_name := PChar(string(CefString(@settings.window_name)));
-  Result.x := @settings.bounds.x;
-  Result.y := @settings.bounds.y;
-  Result.Width := @settings.bounds.Width;
-  Result.Height := @settings.bounds.Height;
+  Result.x := @settings.x;
+  Result.y := @settings.y;
+  Result.Width := @settings.Width;
+  Result.Height := @settings.Height;
   Result.hidden := @settings.hidden;
   Result.parent_view := @settings.parent_view;
   Result.windowless_rendering_enabled := @settings.windowless_rendering_enabled;
@@ -117,10 +117,10 @@ begin
   {$ENDIF}
   {$IFDEF LINUX}
   Result.window_name := PChar(string(CefString(@settings.window_name)));
-  Result.x := @settings.bounds.x;
-  Result.y := @settings.bounds.y;
-  Result.Width := @settings.bounds.Width;
-  Result.Height := @settings.bounds.Height;
+  Result.x := @settings.x;
+  Result.y := @settings.y;
+  Result.Width := @settings.Width;
+  Result.Height := @settings.Height;
   Result.parent_window := @settings.parent_window;
   Result.windowless_rendering_enabled := @settings.windowless_rendering_enabled;
   Result.shared_texture_enabled := @settings.shared_texture_enabled;
@@ -135,10 +135,10 @@ begin
   Result.ex_style := settings.ex_style^;
   Result.window_name := CefString(PCharToUStr(settings.window_name));
   Result.style := settings.style^;
-  Result.bounds.x := settings.x^;
-  Result.bounds.y := settings.y^;
-  Result.bounds.Width := settings.Width^;
-  Result.bounds.Height := settings.Height^;
+  Result.x := settings.x^;
+  Result.y := settings.y^;
+  Result.Width := settings.Width^;
+  Result.Height := settings.Height^;
   Result.parent_window := settings.parent_window^;
   Result.menu := settings.menu^;
   Result.windowless_rendering_enabled := settings.windowless_rendering_enabled^;
@@ -148,10 +148,10 @@ begin
   {$ENDIF}
   {$IFDEF Darwin}
   Result.window_name := CefString(PCharToUStr(settings.window_name));
-  Result.bounds.x := settings.x^;
-  Result.bounds.y := settings.y^;
-  Result.bounds.Width := settings.Width^;
-  Result.bounds.Height := settings.Height^;
+  Result.x := settings.x^;
+  Result.y := settings.y^;
+  Result.Width := settings.Width^;
+  Result.Height := settings.Height^;
   Result.hidden := settings.hidden^;
   Result.parent_view := settings.parent_view^;
   Result.windowless_rendering_enabled := settings.windowless_rendering_enabled^;
@@ -161,10 +161,10 @@ begin
   {$ENDIF}
   {$IFDEF LINUX}
   Result.window_name := CefString(PCharToUStr(settings.window_name));
-  Result.bounds.x := settings.x^;
-  Result.bounds.y := settings.y^;
-  Result.bounds.Width := settings.Width^;
-  Result.bounds.Height := settings.Height^;
+  Result.x := settings.x^;
+  Result.y := settings.y^;
+  Result.Width := settings.Width^;
+  Result.Height := settings.Height^;
   Result.parent_window := settings.parent_window^;
   Result.windowless_rendering_enabled := settings.windowless_rendering_enabled^;
   Result.shared_texture_enabled := settings.shared_texture_enabled^;

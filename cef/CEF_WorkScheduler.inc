@@ -71,19 +71,6 @@ begin
   handleExceptionEnd
 end;
 
-//property
-function CEFWorkScheduler_UseQueueThread(AIsSet: LongBool; AObj: TCEFWorkScheduler; AValue: LongBool): LongBool; extdecl;
-begin
-  {$define handleExceptionFuncName :='UseQueueThread'}
-  handleExceptionBegin
-  if AIsSet then
-  begin
-    AObj.UseQueueThread := AValue;
-  end else
-    Result := AObj.UseQueueThread;
-  handleExceptionEnd
-end;
-
 //procedure
 procedure CEFWorkScheduler_ScheduleMessagePumpWork(AObj: TCEFWorkScheduler; var delayms: int64); extdecl;
 begin
@@ -119,7 +106,6 @@ exports
   CEFWorkScheduler_DefaultInterval,
   CEFWorkScheduler_DepleteWorkCycles,
   CEFWorkScheduler_DepleteWorkDelay,
-  CEFWorkScheduler_UseQueueThread,
   CEFWorkScheduler_ScheduleMessagePumpWork,
   CEFWorkScheduler_StopScheduler,
   CEFWorkScheduler_CreateThread;

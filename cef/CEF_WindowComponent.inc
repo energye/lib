@@ -136,15 +136,6 @@ begin
   handleExceptionEnd
 end;
 
-//function
-procedure CEFWindowComponent_AddOverlayView(AObj: TCEFWindowComponent; const view: ICefView; dockingmode: TCefDockingMode; var Result: ICefOverlayController); extdecl;
-begin
-  {$define handleExceptionFuncName :='AddOverlayView'}
-  handleExceptionBegin
-  Result := AObj.AddOverlayView(view, dockingmode);
-  handleExceptionEnd
-end;
-
 //procedure
 procedure CEFWindowComponent_CreateTopLevelWindow(AObj: TCEFWindowComponent); extdecl;
 begin
@@ -358,14 +349,6 @@ begin
 end;
 
 //property event
-procedure CEFWindowComponent_SetOnGetInitialShowState(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := WindowComponent_OnGetInitialShowState}
-  {$DEFINE EventName := OnGetInitialShowState}
-  CEFEventMethodCode
-end;
-
-//property event
 procedure CEFWindowComponent_SetOnIsFrameless(AObj: TCEFWindowComponent; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := WindowComponent_OnIsFrameless}
@@ -436,7 +419,6 @@ exports
   CEFWindowComponent_IsFullscreen,
   CEFWindowComponent_IsMaximized,
   CEFWindowComponent_IsMinimized,
-  CEFWindowComponent_AddOverlayView,
   CEFWindowComponent_CreateTopLevelWindow,
   CEFWindowComponent_Show,
   CEFWindowComponent_Hide,
@@ -461,7 +443,6 @@ exports
   CEFWindowComponent_SetOnWindowDestroyed,
   CEFWindowComponent_SetOnGetParentWindow,
   CEFWindowComponent_SetOnGetInitialBounds,
-  CEFWindowComponent_SetOnGetInitialShowState,
   CEFWindowComponent_SetOnIsFrameless,
   CEFWindowComponent_SetOnCanResize,
   CEFWindowComponent_SetOnCanMaximize,

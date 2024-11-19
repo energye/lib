@@ -21,9 +21,9 @@ begin
 end;
 
 //function
-procedure CefRequestContext_New1(const aCache,  aAcceptLanguageList,  aCookieableSchemesList: PChar; aCookieableSchemesExcludeDefaults,  aPersistSessionCookies,  aPersistUserPreferences: LongBool; const handler: ICefRequestContextHandler; var Result: ICefRequestContext); extdecl;
+procedure CefRequestContext_New1(const aCache,  aAcceptLanguageList: PChar; aPersistSessionCookies,  aPersistUserPreferences,  aIgnoreCertificateErrors: LongBool; const handler: ICefRequestContextHandler; var Result: ICefRequestContext); extdecl;
 begin
-  Result := TCefRequestContextRef.New(aCache,  aAcceptLanguageList,  aCookieableSchemesList, aCookieableSchemesExcludeDefaults,  aPersistSessionCookies,  aPersistUserPreferences, handler);
+  Result := TCefRequestContextRef.New(aCache,  aAcceptLanguageList, aPersistSessionCookies,  aPersistUserPreferences,  aIgnoreCertificateErrors, handler);
 end;
 
 //function
@@ -190,11 +190,20 @@ begin
 end;
 
 //function
-procedure CefRequestContext_GetMediaRouter(AObj: ICefRequestContext; const callback: ICefCompletionCallback; var Result: ICefMediaRouter); extdecl;
+procedure CefRequestContext_GetMediaRouter(AObj: ICefRequestContext; var Result: ICefMediaRouter); extdecl;
 begin
   {$define handleExceptionFuncName :='GetMediaRouter'}
   handleExceptionBegin
-  Result := AObj.GetMediaRouter(callback);
+  Result := AObj.GetMediaRouter();
+  handleExceptionEnd
+end;
+
+//procedure
+procedure CefRequestContext_PurgePluginListCache(AObj: ICefRequestContext; reloadPages: LongBool); extdecl;
+begin
+  {$define handleExceptionFuncName :='PurgePluginListCache'}
+  handleExceptionBegin
+  AObj.PurgePluginListCache(reloadPages);
   handleExceptionEnd
 end;
 
@@ -268,6 +277,7 @@ exports
   CefRequestContext_GetExtensions,
   CefRequestContext_GetExtension,
   CefRequestContext_GetMediaRouter,
+  CefRequestContext_PurgePluginListCache,
   CefRequestContext_ClearCertificateExceptions,
   CefRequestContext_ClearHttpAuthCredentials,
   CefRequestContext_CloseAllConnections,

@@ -492,22 +492,6 @@ begin
 end;
 
 //property event
-procedure CEFViewComponent_SetOnWindowChanged(AObj: TCEFViewComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ViewComponent_OnWindowChanged}
-  {$DEFINE EventName := OnWindowChanged}
-  CEFEventMethodCode
-end;
-
-//property event
-procedure CEFViewComponent_SetOnLayoutChanged(AObj: TCEFViewComponent; AEventData: Pointer); extdecl;
-begin
-  {$DEFINE EventMethodName := ViewComponent_OnLayoutChanged}
-  {$DEFINE EventName := OnLayoutChanged}
-  CEFEventMethodCode
-end;
-
-//property event
 procedure CEFViewComponent_SetOnFocus(AObj: TCEFViewComponent; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := ViewComponent_OnFocus}
@@ -574,7 +558,5 @@ exports
   CEFViewComponent_SetOnGetHeightForWidth,
   CEFViewComponent_SetOnParentViewChanged,
   CEFViewComponent_SetOnChildViewChanged,
-  CEFViewComponent_SetOnWindowChanged,
-  CEFViewComponent_SetOnLayoutChanged,
   CEFViewComponent_SetOnFocus,
   CEFViewComponent_SetOnBlur;
