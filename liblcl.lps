@@ -494,6 +494,7 @@
       </Unit17>
       <Unit18>
         <Filename Value="LazarusDef.inc"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="999"/>
         <CursorPos X="24" Y="1026"/>
@@ -1141,9 +1142,8 @@
       </Unit104>
       <Unit105>
         <Filename Value="liblcl.inc"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="5"/>
-        <CursorPos X="9" Y="55"/>
+        <CursorPos X="11" Y="18"/>
         <UsageCount Value="73"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
