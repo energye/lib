@@ -128,7 +128,7 @@ jobs:
         run: |
           git clean -xdf
           mkdir bin && ./.github/shell/add-package.bat
-          lazbuild -B --bm="Win32F" "liblcl.lpi"
+          lazbuild -B --bm="Win32" "liblcl.lpi"
           7z a D:/bins/lcl_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
 
