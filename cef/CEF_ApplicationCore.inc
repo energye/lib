@@ -401,6 +401,7 @@ end;
 //property
 function CefApplicationCore_EnableHighDPISupport(AIsSet: LongBool; AObj: TCefApplicationCore; AValue: LongBool): LongBool; extdecl;
 begin
+  {$IFDEF MSWINDOWS}
   {$define handleExceptionFuncName :='EnableHighDPISupport'}
   handleExceptionBegin
   if AIsSet then
@@ -409,6 +410,7 @@ begin
   end else
     Result := AObj.EnableHighDPISupport;
   handleExceptionEnd
+  {$ENDIF}
 end;
 
 //property
