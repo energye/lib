@@ -56,7 +56,7 @@ jobs:
       - name: Build Dynamic library LCL + WV2
         run: |
           git clean -xdf
-          mkdir bin && ./.github/shell/add-package.bat
+          mkdir bin && ./.github/shell/add-package.bat && ./.github/shell/add-package-webview2.bat
           lazbuild -B --bm="Win64_WV2" "liblcl.lpi"
           7z a D:/bins/lcl_wv2_binary_windows64.zip ./bin/liblcl.dll
         shell: bash
@@ -143,7 +143,7 @@ jobs:
       - name: Build Dynamic library LCL + WV2
         run: |
           git clean -xdf
-          mkdir bin && ./.github/shell/add-package.bat
+          mkdir bin && ./.github/shell/add-package.bat && ./.github/shell/add-package-webview2.bat
           lazbuild -B --bm="Win32_WV2" "liblcl.lpi"
           7z a D:/bins/lcl_wv2_binary_windows32.zip ./bin/liblcl.dll
         shell: bash
