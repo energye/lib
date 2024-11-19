@@ -90,50 +90,50 @@ jobs:
       # LCL + CEF_109.1.18
       - name: Build Dynamic library LCL + CEF_109.1.18(x86_64)
         run: |
-          git clean -xdf
-          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_109.1.18 origin/CEF_109.1.18 --
+          sudo git clean -xdf
+          sudo git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_109.1.18 origin/CEF_109.1.18 --
           mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSx64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_109.1.18_binary_macosx64.zip ./bin/liblcl.dylib
 
       - name: Build Dynamic library LCL + CEF_109.1.18(ARM64)
         run: |
-          git clean -xdf
+          sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_109.1.18_binary_macosarm64.zip ./bin/liblcl.dylib
 
       # LCL + CEF_106.1.1
       - name: Build Dynamic library LCL + CEF_106.1.1(x86_64)
         run: |
-          git clean -xdf
-          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
-          mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          sudo git clean -xdf
+          sudo git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_106.1.1 origin/CEF_106.1.1 --
+          bin && sudo ./.github/shell/add-package.sh
+          sudo lazbuild -B --bm="MacOSx64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_106.1.1_binary_macosx64.zip ./bin/liblcl.dylib
 
       - name: Build Dynamic library LCL + CEF_106.1.1(ARM64)
         run: |
-          git clean -xdf
+          sudo git clean -xdf
           mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_106.1.1_binary_macosarm64.zip ./bin/liblcl.dylib
 
       # LCL + CEF_101.0.18
       - name: Build Dynamic library LCL + CEF_101.0.18(x86_64)
         run: |
-          git clean -xdf
-          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          sudo git clean -xdf
+          sudo git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
           mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSx64" "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSx64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_101.0.18_binary_macosx64.zip ./bin/liblcl.dylib
 
       - name: Build Dynamic library LCL + CEF_101.0.18(ARM64)
         run: |
-          git clean -xdf
-          git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
+          sudo git clean -xdf
+          sudo git -c credential.helper= -c core.quotepath=false -c log.showSignature=false checkout -B CEF_101.0.18 origin/CEF_101.0.18 --
           mkdir bin && sudo ./.github/shell/add-package.sh
-          lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
+          sudo lazbuild -B --bm="MacOSARM64" "liblcl.lpi"
           zip -j $RUNNER_WORKSPACE/bins/lcl_cef_101.0.18_binary_macosarm64.zip ./bin/liblcl.dylib
 
       - name: Release Binary ZIP # 将二进制文件上传到发布tags
