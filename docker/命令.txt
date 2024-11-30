@@ -1,0 +1,183 @@
+sudo systemctl start docker
+sudo systemctl restart docker
+sudo systemctl status docker
+系统启动
+sudo systemctl enable docker
+
+拉取镜像
+docker pull
+
+查看镜像
+docker images 
+
+拉取 debian 11 版本镜像
+docker pull --platform i386 debian:bullseye
+docker pull --platform amd64 debian:bullseye
+
+docker pull --platform=linux/arm   arm32v7/debian:bullseye
+docker pull --platform=linux/arm64 arm64v8/debian:bullseye
+
+拉取 ubuntu 18.04 版本镜像
+
+docker pull --platform=linux/i386  i386/ubuntu:18.04
+docker pull --platform=linux/amd64 amd64/ubuntu:18.04
+
+docker pull --platform=linux/arm   arm32v7/ubuntu:18.04
+docker pull --platform=linux/arm64 arm64v8/ubuntu:18.04
+
+运行基础镜像，并生成一个容器
+
+运行 debian 11
+
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name debian32_11 debian:bullseye
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name debian64_11 debian:bullseye
+
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name debianarm64_11 arm64v8/debian:bullseye
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name debianarm32_11 arm32v7/debian:bullseye
+
+运行 ubuntu:18.04
+
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name ubuntu32_18.04 i386/ubuntu:18.04
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name ubuntu64_18.04 amd64/ubuntu:18.04
+
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name ubuntuarm32_18.04 arm32v7/ubuntu:18.04
+docker run -d -it -v D:\Software\Lazarus\3.6\source:/app --name ubuntuarm64_18.04 arm64v8/ubuntu:18.04
+
+运行准备好环境的镜像
+docker run -d -it -v /home/yanghy/app/docker/workspace:/app --name debianarm32_11 debianarm32_11_base:1
+docker exec -it debianarm32_11 /bin/bash
+
+一次性运行
+docker run --rm \
+  -v /home/yanghy/app/docker/workspace:/app \
+  -v /home/yanghy/app/gopath/src/github.com/energye/workspace/lib:/app/lib \
+  --tty debianarm32_11_base:1 "/app/shell/run-commands.sh" arm gtk3 LinuxARM32_CEF
+  
+准备好的环境运行
+docker run -d -it \
+  -v /home/yanghy/app/docker/workspace:/app \
+  -v /home/yanghy/app/gopath/src/github.com/energye/workspace/lib:/app/lib \
+  --name debian11_arm debianarm32_11_base:1
+  
+docker exec -it debian11_arm /bin/bash
+
+
+
+/app/arm/lazarus/lazbuild -B --bm="LinuxARM32_CEF" --ws=gtk3 --lazarusdir="/app/arm/lazarus" "liblcl.lpi"
+
+/home/yanghy/app/gopath/src/github.com/energye/workspace/lib
+
+
+查看正在运行的容器
+docker ps
+
+查看全部容器
+docker ps -a
+
+进入容器 debian 11
+
+docker exec -it debian32_11 /bin/bash
+docker exec -it debian64_11 /bin/bash
+docker exec -it debianarm32_11 /bin/bash
+docker exec -it debianarm64_11 /bin/bash
+
+进入容器 ubuntu:18.04
+
+docker exec -it ubuntu32_18.04 /bin/bash
+docker exec -it ubuntu64_18.04 /bin/bash
+docker exec -it ubuntuarm32_18.04 /bin/bash
+docker exec -it ubuntuarm64_18.04 /bin/bash
+
+查看image系统架构
+docker inspect 3f247d96247e
+
+删除容器
+docker rm 容器id
+
+容器安装好环境后，提交保存一个新的镜像，给后面使用
+docker commit container_id newImageName:newTag
+
+docker commit cb4cd8b7d260 debian11_i386_base:1
+docker commit 264aa7961793 debian11_x86_64_base:1
+docker commit ac59c29b0ed0 debianarm32_11_base:1
+docker commit 8a3c2a76e06a debianarm64_11_base:1
+
+docker commit 837fefe017b8 ubuntu18.04_i386_base:1
+docker commit 06d0a4b2208f ubuntu18.04_x86_64_base:1
+docker commit 142bedff2256 ubuntu18.04_arm32_base:1
+docker commit 3086492515b6 ubuntu18.04_arm64_base:1
+
+镜像保存到本地
+docker save -o xxxImage.tar myImage:myTag
+
+加载本地镜像
+docker load -i xxxImagePath.tar
+
+docker save -o F:\docker\multiarch_qemu-user-static_image.tar multiarch_qemu-user-static:latest
+
+docker save -o F:\docker\debian11_i386_base_image.tar debian11_i386_base:1
+docker save -o F:\docker\debian11_x86_64_base_image.tar debian11_x86_64_base:1
+docker save -o F:\docker\debian11_arm32_base_image.tar debianarm32_11_base:1
+docker save -o F:\docker\debian11_arm64_base_image.tar debianarm64_11_base:1
+
+docker save -o F:\docker\ubuntu18.04_i386_base_image.tar ubuntu18.04_i386_base:1
+docker save -o F:\docker\ubuntu18.04_x86_64_base_image.tar ubuntu18.04_x86_64_base:1
+docker save -o F:\docker\ubuntu18.04_arm32_base_image.tar ubuntu18.04_arm32_base:1
+docker save -o F:\docker\ubuntu18.04_arm64_base_image.tar ubuntu18.04_arm64_base:1
+
+更新和安装依赖
+apt-get update -q -y
+apt-get install -q -y git
+apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
+
+
+系统信息
+uname -m
+uname -r
+uname -s
+ldd --version
+dpkg -l | grep libgtk-3-0
+dpkg -l | grep libglib2.0
+cat /etc/os-release
+lscpu
+
+
+
+
+
+
+
+==========================
+docker images
+
+REPOSITORY                   TAG        IMAGE ID       CREATED             SIZE
+ubuntu18.04_arm64_base       1          e81113196cc3   2 minutes ago       767MB
+ubuntu18.04_arm32_base       1          2984cdea437a   2 minutes ago       634MB
+ubuntu18.04_x86_64_base      1          b1432a3effc2   About an hour ago   826MB
+ubuntu18.04_i386_base        1          cef2a33cb364   About an hour ago   789MB
+debianarm64_11_base          1          768103b14152   10 hours ago        1.06GB
+debianarm32_11_base          1          fffcdbf258de   11 hours ago        890MB
+debian11_x86_64_base         1          2a7e77946964   12 hours ago        1.12GB
+debian11_i386_base           1          ebe80b757ba2   13 hours ago        1.12GB
+arm64v8/debian               bullseye   7b31f566f6d6   6 days ago          118MB
+debian                       11.11      8ab4832d3342   6 days ago          124MB
+debian                       bullseye   3f247d96247e   6 days ago          125MB
+arm32v7/debian               bullseye   ccbfefc9d959   6 days ago          100MB
+arm32v7/ubuntu               18.04      e1317ca4808c   17 months ago       45.8MB
+arm64v8/ubuntu               18.04      d1a528908992   17 months ago       56.7MB
+i386/ubuntu                  18.04      70288ee657e2   17 months ago       64MB
+amd64/ubuntu                 18.04      f9a80a55f492   17 months ago       63.2MB
+multiarch/qemu-user-static   latest     3539aaa87393   22 months ago       305MB
+
+
+docker ps -a
+
+CONTAINER ID   IMAGE                     COMMAND       CREATED        STATUS                      PORTS     NAMES
+3086492515b6   arm64v8/ubuntu:18.04      "/bin/bash"   2 hours ago    Exited (0) 33 seconds ago             ubuntuarm64_18.04
+142bedff2256   arm32v7/ubuntu:18.04      "/bin/bash"   2 hours ago    Exited (0) 26 seconds ago             ubuntuarm32_18.04
+06d0a4b2208f   amd64/ubuntu:18.04        "/bin/bash"   2 hours ago    Exited (0) 17 seconds ago             ubuntu64_18.04
+837fefe017b8   i386/ubuntu:18.04         "/bin/bash"   2 hours ago    Exited (0) 8 seconds ago              ubuntu32_18.04
+8a3c2a76e06a   arm64v8/debian:bullseye   "bash"        11 hours ago   Exited (137) 2 hours ago              debianarm64_11
+ac59c29b0ed0   arm32v7/debian:bullseye   "bash"        11 hours ago   Exited (137) 2 hours ago              debianarm32_11
+264aa7961793   debian:11.11              "bash"        13 hours ago   Exited (255) 11 hours ago             debian64_11
+cb4cd8b7d260   debian:bullseye           "bash"        14 hours ago   Exited (255) 11 hours ago             debian32_11
