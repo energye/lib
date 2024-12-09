@@ -14,8 +14,7 @@ unit uGoForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, LMessages, LCLType, fgl,
-  uCEF_EventCallback;
+  Classes, SysUtils, Forms, Controls, LMessages, LCLType, fgl;
 
 type
   // 消息过程定义
