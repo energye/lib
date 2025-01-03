@@ -55,7 +55,6 @@ docker run -d -it \
   --name ubuntu18.04_arm ubuntu18.04_arm32_base:1
 docker exec -it ubuntu18.04_arm /bin/bash
 
-
 i386:
 docker run -d -it \
   -v /home/yanghy/app/docker/workspace:/app \

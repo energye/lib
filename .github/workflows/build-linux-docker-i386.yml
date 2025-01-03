@@ -69,8 +69,8 @@ jobs:
             uname -m
             uname -r
             uname -s
-            dpkg -l | grep libgtk-3-0
-            dpkg -l | grep libglib2.0
+            pkg-config --modversion gtk+-2.0
+            pkg-config --modversion gtk+-3.0
             ldd --version
             cat /etc/os-release
             
