@@ -40,25 +40,7 @@ type
 
 
 
-{$IFDEF WINDOWS}
- type
-   TTrayIcon = class(ExtCtrls.TTrayIcon)
-   public
-     constructor Create(TheOwner: TComponent); override;
-   end;
-{$ENDIF}
-
 type
-
-  { TTreeView }
-
-  TTreeView = class(ComCtrls.TTreeView)
-  public
-    constructor Create(AOwner: TComponent); override;
-    procedure DeleteSelected;
-    function CustomSort(SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): Boolean;
-    function AlphaSort(ARecurse: Boolean): Boolean;
-  end;
 
   { TColorBoxHelper }
 
@@ -154,21 +136,6 @@ type
     procedure MyRun;
     procedure SetRunLoopReceived(AProc: Pointer);
   end;
-
-
-  { TFrame }
-
-  //TFrame = class(Forms.TFrame)
-  //private
-  //  FOnDestroy: TNotifyEvent;
-  //public
-  //  constructor Create(TheOwner: TComponent); override;
-  //  procedure BeforeDestruction; override;
-  //public
-  //  property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
-  //end;
-
-
 
   function ToUnixTime(ADateTime: TDateTime): TUnixDateTime; inline;
   function UnixToTime(ADateTime: TUnixDateTime): TDateTime; inline;
@@ -310,7 +277,6 @@ begin
 end;
 
 
-
 { TListHelper }
 
 procedure TListHelper.Assign(ListA: TList; AOperator: TListAssignOp;
@@ -351,47 +317,25 @@ begin
     Items.Delete(ItemIndex);
 end;
 
-{$IFDEF WINDOWS}
-constructor TTrayIcon.Create(TheOwner: TComponent);
-begin
-  inherited Create(TheOwner);
-  if not Application.Icon.Empty then
-    Icon.Assign(Application.Icon);
-end;
+//procedure TTreeView.DeleteSelected;
+//var
+//  LNode: TTreeNode;
+//begin
+//  LNode := Selected;
+//  if LNode <> nil then
+//     LNode.Delete;
+//end;
+//
+//function TTreeView.CustomSort(SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): Boolean;
+//begin
+//  // no support
+//  Result := inherited CustomSort(nil);
+//end;
 
-{$ENDIF}
-
-{ TTreeView }
-
-constructor TTreeView.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-  Self.ScrollBars := TScrollStyle.ssAutoBoth;
-//  Self.ExpandSignType := tvestArrowFill;
-//{$IFNDEF WINDOWS}
-//  Self.TreeLinePenStyle := TPenStyle.psSolid;
-//{$ENDIF}
-end;
-
-procedure TTreeView.DeleteSelected;
-var
-  LNode: TTreeNode;
-begin
-  LNode := Selected;
-  if LNode <> nil then
-     LNode.Delete;
-end;
-
-function TTreeView.CustomSort(SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): Boolean;
-begin
-  // no support
-  Result := inherited CustomSort(nil);
-end;
-
-function TTreeView.AlphaSort(ARecurse: Boolean): Boolean;
-begin
-  Result := inherited AlphaSort();
-end;
+//function TTreeView.AlphaSort(ARecurse: Boolean): Boolean;
+//begin
+//  Result := inherited AlphaSort();
+//end;
 
 
 { TListView }

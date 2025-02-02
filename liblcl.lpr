@@ -42,8 +42,7 @@ uses
 {$IFDEF LINUX}
   uLinuxPatchs,
 {$ENDIF}
-  uControlPatchs,
-  ATGauge, ATFlatThemes,
+  uControlPatchs, ATGauge, ATFlatThemes,
   uGoForm, uRichEdit, uGauge,
   uString, uRunMainThread,
   //uComponents, uFormDesignerFile,

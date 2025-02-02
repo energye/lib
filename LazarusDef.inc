@@ -6,10 +6,10 @@
 //
 //----------------------------------------
 
-function DLibStringEncoding: TStringEncoding; extdecl;
-begin
-  Result := seUTF8;
-end;
+//function DLibStringEncoding: TStringEncoding; extdecl;
+//begin
+//  Result := seUTF8;
+//end;
 
 procedure GetLCLVersion(var AMajor: Word; var AMinor: Word; var ARelease: Word; var APatch: Word; var AFullVersion: Cardinal; var AVersion: PChar); extdecl;
 begin
@@ -935,7 +935,7 @@ exports
   AddLazarusResources2,
 
   // 库的信息
-  DLibStringEncoding,
+  //DLibStringEncoding,
   GetLCLVersion,
 
   // TApplication
