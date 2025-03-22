@@ -97,9 +97,9 @@ uses
 {$I ImportLCL.inc}
 
 // CEF
-{$IFDEF UseCEF}
+//{$IFDEF UseCEF}
 {$I ImportCEF.inc}
-{$ENDIF}
+//{$ENDIF}
 
 // Webview2
 {$IFDEF UseWebview2}
@@ -122,6 +122,7 @@ uses
 {$ENDIF}
 
 begin
+
   RequireDerivedFormResource := False;
   IsMultiThread := True;
   InitLazarusDef;
