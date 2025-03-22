@@ -20,6 +20,7 @@ uses
 function Internal_CreateCoreWebView2EnvironmentWithOptions(browserExecutableFolder, userDataFolder: LPCWSTR; const environmentOptions: ICoreWebView2EnvironmentOptions; const environment_created_handler: ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler): HRESULT; stdcall;
 function Internal_CreateCoreWebView2Environment(const environment_created_handler: ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler): HRESULT; stdcall;
 function Internal_GetAvailableCoreWebView2BrowserVersionString(browserExecutableFolder: LPCWSTR; pVersionInfo: PLPWSTR): HRESULT; stdcall;
+function Internal_GetAvailableCoreWebView2BrowserVersionStringWithOptions(browserExecutableFolder: LPCWSTR; const environmentOptions: ICoreWebView2EnvironmentOptions; pVersionInfo: PLPWSTR): HRESULT; stdcall;
 function Internal_CompareBrowserVersions(version1, version2: LPCWSTR; pRet: PInteger): HRESULT; stdcall;
 
 implementation
@@ -32,10 +33,6 @@ uses
   {$ENDIF}
   SysUtils,
   uWVMiscFunctions;
-
-{$IFNDEF DELPHI16_UP}
-function GetCurrentProcessExplicitAppUserModelID(var AppID: LPWSTR): HRESULT; stdcall; external 'shell32' name 'GetCurrentProcessExplicitAppUserModelID';
-{$ENDIF}
 
 type
   TWebView2ReleaseChannelPreference = (kStable = 0, kCanary = 1);
@@ -87,26 +84,31 @@ begin
     Result := False;
 end;
 
-function GetAppUserModelIdForCurrentProcess(var idOut: wvstring): integer;
+function GetAppUserModelIdForCurrentProcess(var idOut: wvstring): HRESULT;
 type
-  GetCurrentApplicationUserModelIdProc = function(var applicationUserModelIdLength: Cardinal; applicationUserModelId: PWideChar): HRESULT; stdcall;
+  GetCurrentApplicationUserModelIdProc        = function(var applicationUserModelIdLength: Cardinal; applicationUserModelId: PWideChar): HRESULT; stdcall;
+  GetCurrentProcessExplicitAppUserModelIDProc = function(var AppID: LPWSTR): HRESULT; stdcall;
 var
-  GetCurrentApplicationUserModelId : GetCurrentApplicationUserModelIdProc;
+  LGetCurrentApplicationUserModelId        : GetCurrentApplicationUserModelIdProc;
+  LGetCurrentProcessExplicitAppUserModelID : GetCurrentProcessExplicitAppUserModelIDProc;
   TempLen   : Cardinal;
   TempAppID : PWideChar;
 begin
+  Result := E_NOTIMPL;
+  idOut  := '';
+
   // GetCurrentApplicationUserModelId is only available in Windows 8 or newer
   if (Win32MajorVersion > 6) or
      ((Win32MajorVersion = 6) and (Win32MinorVersion >= 2)) then
     begin
-      GetCurrentApplicationUserModelId := GetProcAddress(GetModuleHandleW('Kernel32.dll'), 'GetCurrentApplicationUserModelId');
+      LGetCurrentApplicationUserModelId := GetProcAddress(GetModuleHandleW('Kernel32.dll'), 'GetCurrentApplicationUserModelId');
       TempLen := 0;
 
-      if assigned(GetCurrentApplicationUserModelId) and
-         (GetCurrentApplicationUserModelId(TempLen, nil) = ERROR_INSUFFICIENT_BUFFER) then
+      if assigned(LGetCurrentApplicationUserModelId) and
+         (LGetCurrentApplicationUserModelId(TempLen, nil) = ERROR_INSUFFICIENT_BUFFER) then
         begin
           SetLength(idOut, TempLen);
-          if (GetCurrentApplicationUserModelId(TempLen, PWideChar(idOut)) = ERROR_SUCCESS) then
+          if (LGetCurrentApplicationUserModelId(TempLen, PWideChar(idOut)) = ERROR_SUCCESS) then
             begin
               idOut  := trim(idOut);
               Result := S_OK;
@@ -115,16 +117,25 @@ begin
         end;
     end;
 
-  TempAppID := nil;
-  Result    := GetCurrentProcessExplicitAppUserModelID(TempAppID);
+  // GetCurrentProcessExplicitAppUserModelID is only available in Windows 7 or newer
+  if (Win32MajorVersion > 6) or
+     ((Win32MajorVersion = 6) and (Win32MinorVersion >= 1)) then
+    begin
+      LGetCurrentProcessExplicitAppUserModelID := GetProcAddress(GetModuleHandleW('shell32.dll'), 'GetCurrentProcessExplicitAppUserModelID');
+      TempLen := 0;
 
-  if succeeded(Result) then
-    idOut := TempAppID
-   else
-    idOut := '';
+      if assigned(LGetCurrentProcessExplicitAppUserModelID) then
+        begin
+          TempAppID := nil;
+          Result    := LGetCurrentProcessExplicitAppUserModelID(TempAppID);
 
-  if assigned(TempAppID) then
-    CoTaskMemFree(TempAppID);
+          if succeeded(Result) then
+            idOut := TempAppID;
+
+          if assigned(TempAppID) then
+            CoTaskMemFree(TempAppID);
+        end;
+    end;
 end;
 
 function GetModulePath(h: HModule; var outPath: wvstring): HRESULT;
@@ -556,15 +567,18 @@ function FindInstalledClientDll(var clientPath : wvstring;
                                     preference : TWebView2ReleaseChannelPreference;
                                 var versionStr : wvstring;
                                 var channelStr : wvstring): integer;
+const
+  APPMODEL_ERROR_NO_PACKAGE = $00003D54;                                
 var
   channel: Cardinal;
   lpSubKey: wvstring;
   version: TVersionRec;
-  pkBuf: wvstring;
+  pkBuf: array of byte;
   i, j: integer;
   len, cPackages: Cardinal;
   packages, package: PPACKAGE_INFO;
   GetCurrentPackageInfo: TGetCurrentPackageInfoProc;
+  TempResult : integer;
 begin
   // GetCurrentPackageInfo is only available in Windows 8 or newer
   if (Win32MajorVersion > 6) or
@@ -600,11 +614,18 @@ begin
         continue;
 
       len := 0;
-      if (GetCurrentPackageInfo(1, len, nil, cPackages) <> ERROR_INSUFFICIENT_BUFFER) or (len = 0) then
+      TempResult := GetCurrentPackageInfo(1, len, nil, cPackages);
+      if (TempResult = APPMODEL_ERROR_NO_PACKAGE) then
+        begin
+          Result := E_FAIL;
+          exit;
+        end;
+      
+      if (TempResult <> ERROR_INSUFFICIENT_BUFFER) or (len = 0) then
         continue;
 
       SetLength(pkBuf, len);
-      if (GetCurrentPackageInfo(1, len, pointer(pkBuf), cPackages) <> 0) or (cPackages = 0) then
+      if (GetCurrentPackageInfo(1, len, @pkBuf[0], cPackages) <> 0) or (cPackages = 0) then
         continue;
 
       packages := PPACKAGE_INFO(pkBuf);
@@ -880,6 +901,12 @@ begin
     end
    else
     Result := E_FAIL;
+end;
+
+function Internal_GetAvailableCoreWebView2BrowserVersionStringWithOptions(browserExecutableFolder: LPCWSTR; const environmentOptions: ICoreWebView2EnvironmentOptions; pVersionInfo: PLPWSTR): HRESULT; stdcall;
+begin
+  // TO-DO: Implement GetAvailableCoreWebView2BrowserVersionStringWithOptions
+  Result := E_NOTIMPL;
 end;
 
 function Internal_CompareBrowserVersions(version1, version2: LPCWSTR; pRet: PInteger): HRESULT; stdcall;

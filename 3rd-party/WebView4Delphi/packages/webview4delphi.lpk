@@ -16,8 +16,8 @@
     </CompilerOptions>
     <Description Value="WebView4Delphi is an open source project created by Salvador Díaz Fau to embed Chromium-based browsers in applications made with Delphi or Lazarus/FPC."/>
     <License Value="MIT"/>
-    <Version Major="1" Release="2277" Build="86"/>
-    <Files Count="62">
+    <Version Major="1" Release="3124" Build="44"/>
+    <Files Count="66">
       <Item1>
         <Filename Value="..\source\uWVBrowser.pas"/>
         <HasRegisterProc Value="True"/>
@@ -268,6 +268,22 @@
         <Filename Value="..\source\uWVCoreWebView2ScriptException.pas"/>
         <UnitName Value="uWVCoreWebView2ScriptException"/>
       </Item62>
+      <Item63>
+        <Filename Value="..\source\uWVCoreWebView2RegionRectCollectionView.pas"/>
+        <UnitName Value="uWVCoreWebView2RegionRectCollectionView"/>
+      </Item63>
+      <Item64>
+        <Filename Value="..\source\uWVCoreWebView2ObjectCollection.pas"/>
+        <UnitName Value="uWVCoreWebView2ObjectCollection"/>
+      </Item64>
+      <Item65>
+        <Filename Value="..\source\uWVCoreWebView2FileSystemHandle.pas"/>
+        <UnitName Value="uWVCoreWebView2FileSystemHandle"/>
+      </Item65>
+      <Item66>
+        <Filename Value="..\source\uWVCoreWebView2Notification.pas"/>
+        <UnitName Value="uWVCoreWebView2Notification"/>
+      </Item66>
     </Files>
     <CompatibilityMode Value="True"/>
     <RequiredPkgs Count="2">

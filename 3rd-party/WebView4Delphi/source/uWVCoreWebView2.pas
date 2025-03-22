@@ -38,6 +38,12 @@ type
       FBaseIntf19                              : ICoreWebView2_19;
       FBaseIntf20                              : ICoreWebView2_20;
       FBaseIntf21                              : ICoreWebView2_21;
+      FBaseIntf22                              : ICoreWebView2_22;
+      FBaseIntf23                              : ICoreWebView2_23;
+      FBaseIntf24                              : ICoreWebView2_24;
+      FBaseIntf25                              : ICoreWebView2_25;
+      FBaseIntf26                              : ICoreWebView2_26;
+      FBaseIntf27                              : ICoreWebView2_27;
       FContainsFullScreenElementChangedToken   : EventRegistrationToken;
       FContentLoadingToken                     : EventRegistrationToken;
       FDocumentTitleChangedToken               : EventRegistrationToken;
@@ -68,6 +74,10 @@ type
       FServerCertificateErrorDetectedToken     : EventRegistrationToken;
       FFaviconChangedToken                     : EventRegistrationToken;
       FLaunchingExternalUriSchemeToken         : EventRegistrationToken;
+      FNotificationReceivedToken               : EventRegistrationToken;
+      FSaveAsUIShowingToken                    : EventRegistrationToken;
+      FSaveFileSecurityCheckStartingToken      : EventRegistrationToken;
+      FScreenCaptureStartingToken              : EventRegistrationToken;
       FFrameIDCopy                             : cardinal;
       FDevToolsEventNames                      : TStringList;
       FDevToolsEventTokens                     : array of EventRegistrationToken;
@@ -134,6 +144,10 @@ type
       function  AddServerCertificateErrorDetectedEvent(const aBrowserComponent : TComponent) : boolean;
       function  AddFaviconChanged(const aBrowserComponent : TComponent) : boolean;
       function  AddLaunchingExternalUriScheme(const aBrowserComponent : TComponent) : boolean;
+      function  AddNotificationReceived(const aBrowserComponent : TComponent) : boolean;
+      function  AddSaveAsUIShowing(const aBrowserComponent : TComponent) : boolean;
+      function  AddSaveFileSecurityCheckStarting(const aBrowserComponent : TComponent) : boolean;
+      function  AddScreenCaptureStarting(const aBrowserComponent : TComponent) : boolean;
 
     public
       constructor Create(const aBaseIntf : ICoreWebView2); reintroduce;
@@ -435,6 +449,11 @@ type
       /// If you require CDP methods to run in a particular order, you should wait
       /// for the previous method's completed handler to run before calling the
       /// next method.</para>
+      /// <para>If the method is to run in add_NewWindowRequested handler it should be called
+      /// before the new window is set if the cdp message should affect the initial navigation. If
+      /// called after setting the NewWindow property, the cdp messages
+      /// may or may not apply to the initial navigation and may only apply to the subsequent navigation.
+      /// For more details see `ICoreWebView2NewWindowRequestedEventArgs::put_NewWindow`.</para>
       /// </summary>
       function    CallDevToolsProtocolMethod(const aMethodName, aParametersAsJson : wvstring; aExecutionID : integer; const aBrowserComponent : TComponent) : boolean;
       /// <summary>
@@ -468,6 +487,13 @@ type
       /// </summary>
       function    CallDevToolsProtocolMethodForSession(const aSessionId, aMethodName, aParametersAsJson : wvstring; aExecutionID : integer; const aBrowserComponent : TComponent) : boolean;
       /// <summary>
+      /// Warning: This method is deprecated and does not behave as expected for
+      /// iframes. It will cause the WebResourceRequested event to fire only for the
+      /// main frame and its same-origin iframes. Please use
+      /// `AddWebResourceRequestedFilterWithRequestSourceKinds`
+      /// instead, which will let the event to fire for all iframes on the
+      /// document.
+      ///
       /// Adds a URI and resource context filter for the `WebResourceRequested`
       /// event.  A web resource request with a resource context that matches this
       /// filter's resource context and a URI that matches this filter's URI
@@ -509,25 +535,28 @@ type
       /// </summary>
       function    AddWebResourceRequestedFilter(const URI : wvstring; ResourceContext: TWVWebResourceContext) : boolean;
       /// <summary>
-      /// Removes a matching WebResource filter that was previously added for the
+      /// <para>Warning: This method and `AddWebResourceRequestedFilter` are deprecated.
+      /// Please use `AddWebResourceRequestedFilterWithRequestSourceKinds` and
+      /// `RemoveWebResourceRequestedFilterWithRequestSourceKinds` instead.</para>
+      /// <para>Removes a matching WebResource filter that was previously added for the
       /// `WebResourceRequested` event.  If the same filter was added multiple
       /// times, then it must be removed as many times as it was added for the
       /// removal to be effective.  Returns `E_INVALIDARG` for a filter that was
-      /// never added.
+      /// never added.</para>
       /// </summary>
       function    RemoveWebResourceRequestedFilter(const URI : wvstring; ResourceContext: TWVWebResourceContext) : boolean;
       /// <summary>
-      /// Add the provided host object to script running in the WebView with the
+      /// <para>Add the provided host object to script running in the WebView with the
       /// specified name.  Host objects are exposed as host object proxies using
       /// `window.chrome.webview.hostObjects.{name}`.  Host object proxies are
       /// promises and resolves to an object representing the host object.  The
-      /// promise is rejected if the app has not added an object with the name.
-      /// When JavaScript code access a property or method of the object, a promise
+      /// promise is rejected if the app has not added an object with the name.</para>
+      /// <para>When JavaScript code access a property or method of the object, a promise
       ///  is return, which resolves to the value returned from the host for the
       /// property or method, or rejected in case of error, for example, no
-      /// property or method on the object or parameters are not valid.
+      /// property or method on the object or parameters are not valid.</para>
       ///
-      /// NOTE: While simple types, `IDispatch` and array are supported, and
+      /// <para>NOTE: While simple types, `IDispatch` and array are supported, and
       /// `IUnknown` objects that also implement `IDispatch` are treated as `IDispatch`,
       /// generic `IUnknown`, `VT_DECIMAL`, or `VT_RECORD` variant is not supported.
       /// Remote JavaScript objects like callback functions are represented as an
@@ -535,44 +564,44 @@ type
       /// JavaScript callback method may be invoked using `DISPID_VALUE` for the
       /// `DISPID`.  Such callback method invocations will return immediately and will
       /// not wait for the JavaScript function to run and so will not provide the return
-      /// value of the JavaScript function.
-      /// Nested arrays are supported up to a depth of 3.  Arrays of by
+      /// value of the JavaScript function.</para>
+      /// <para>Nested arrays are supported up to a depth of 3.  Arrays of by
       /// reference types are not supported. `VT_EMPTY` and `VT_NULL` are mapped
       /// into JavaScript as `null`.  In JavaScript, `null` and undefined are
-      /// mapped to `VT_EMPTY`.
+      /// mapped to `VT_EMPTY`.</para>
       ///
-      /// Additionally, all host objects are exposed as
+      /// <para>Additionally, all host objects are exposed as
       /// `window.chrome.webview.hostObjects.sync.{name}`.  Here the host objects
       /// are exposed as synchronous host object proxies. These are not promises
       /// and function runtimes or property access synchronously block running
       /// script waiting to communicate cross process for the host code to run.
       /// Accordingly the result may have reliability issues and it is recommended
       /// that you use the promise-based asynchronous
-      /// `window.chrome.webview.hostObjects.{name}` API.
+      /// `window.chrome.webview.hostObjects.{name}` API.</para>
       ///
-      /// Synchronous host object proxies and asynchronous host object proxies may
+      /// <para>Synchronous host object proxies and asynchronous host object proxies may
       /// both use a proxy to the same host object.  Remote changes made by one
       /// proxy propagates to any other proxy of that same host object whether
-      /// the other proxies and synchronous or asynchronous.
+      /// the other proxies and synchronous or asynchronous.</para>
       ///
-      /// While JavaScript is blocked on a synchronous run to native code, that
+      /// <para>While JavaScript is blocked on a synchronous run to native code, that
       /// native code is unable to run back to JavaScript.  Attempts to do so fail
-      ///  with `HRESULT_FROM_WIN32(ERROR_POSSIBLE_DEADLOCK)`.
+      ///  with `HRESULT_FROM_WIN32(ERROR_POSSIBLE_DEADLOCK)`.</para>
       ///
-      /// Host object proxies are JavaScript Proxy objects that intercept all
+      /// <para>Host object proxies are JavaScript Proxy objects that intercept all
       /// property get, property set, and method invocations. Properties or methods
       ///  that are a part of the Function or Object prototype are run locally.
       /// Additionally any property or method in the
       /// `chrome.webview.hostObjects.options.forceLocalProperties`
       /// array are also run locally.  This defaults to including optional methods
       /// that have meaning in JavaScript like `toJSON` and `Symbol.toPrimitive`.
-      /// Add more to the array as required.
+      /// Add more to the array as required.</para>
       ///
-      /// The `chrome.webview.hostObjects.cleanupSome` method performs a best
-      /// effort garbage collection on host object proxies.
+      /// <para>The `chrome.webview.hostObjects.cleanupSome` method performs a best
+      /// effort garbage collection on host object proxies.</para>
       ///
-      /// The `chrome.webview.hostObjects.options` object provides the ability to
-      /// change some functionality of host objects.
+      /// <para>The `chrome.webview.hostObjects.options` object provides the ability to
+      /// change some functionality of host objects.</para>
       /// <code>
       /// Options property | Details
       /// ---|---
@@ -582,9 +611,10 @@ type
       /// `defaultSyncProxy` | When calling a method on a synchronous proxy, the result should also be a synchronous proxy. But in some cases, the sync/async context is lost (for example, when providing to native code a reference to a function, and then calling that function in native code). In these cases, the proxy will be asynchronous, unless this property is set.
       /// `forceAsyncMethodMatches ` | This is an array of regular expressions. When calling a method on a synchronous proxy, the method call will be performed asynchronously if the method name matches a string or regular expression in this array. Setting this value to `Async` will make any method that ends with Async be an asynchronous method call. If an async method doesn't match here and isn't forced to be asynchronous, the method will be invoked synchronously, blocking execution of the calling JavaScript and then returning the resolution of the promise, rather than returning a promise.
       /// `ignoreMemberNotFoundError` | By default, an exception is thrown when attempting to get the value of a proxy property that doesn't exist on the corresponding native class. Setting this property to `true` switches the behavior to match Chakra WinRT projection (and general JavaScript) behavior of returning `undefined` with no error.
+      /// `shouldPassTypedArraysAsArrays` | By default, typed arrays are passed to the host as `IDispatch`. To instead pass typed arrays to the host as `array`, set this to `true`.
       /// </code>
-      /// Host object proxies additionally have the following methods which run
-      /// locally.
+      /// <para>Host object proxies additionally have the following methods which run
+      /// locally.</para>
       /// <code>
       /// Method name | Details
       /// ---|---
@@ -594,7 +624,7 @@ type
       ///`async` | Synchronous host object proxies expose an async method which blocks and returns an asynchronous host object proxy for the same host object.  For example, `chrome.webview.hostObjects.sync.sample.methodCall()` returns a synchronous host object proxy.  Running the `async` method on this blocks and then returns an asynchronous host object proxy for the same host object: `const asyncProxy = chrome.webview.hostObjects.sync.sample.methodCall().async()`.
       ///`then` | Asynchronous host object proxies have a `then` method.  Allows proxies to be awaitable.  `then` returns a promise that resolves with a representation of the host object.  If the proxy represents a JavaScript literal, a copy of that is returned locally.  If the proxy represents a function, a non-awaitable proxy is returned.  If the proxy represents a JavaScript object with a mix of literal properties and function properties, the a copy of the object is returned with some properties as host object proxies.
       /// </code>
-      /// All other property and method invocations (other than the above Remote
+      /// <para>All other property and method invocations (other than the above Remote
       /// object proxy methods, `forceLocalProperties` list, and properties on
       /// Function and Object prototypes) are run remotely.  Asynchronous host
       /// object proxies return a promise representing asynchronous completion of
@@ -602,15 +632,15 @@ type
       /// resolves after the remote operations complete and the promises resolve to
       ///  the resulting value of the operation.  Synchronous host object proxies
       /// work similarly, but block running JavaScript and wait for the remote
-      /// operation to complete.
+      /// operation to complete.</para>
       ///
-      /// Setting a property on an asynchronous host object proxy works slightly
+      /// <para>Setting a property on an asynchronous host object proxy works slightly
       /// differently.  The set returns immediately and the return value is the
       /// value that is set.  This is a requirement of the JavaScript Proxy object.
       /// If you need to asynchronously wait for the property set to complete, use
       /// the `setHostProperty` method which returns a promise as described above.
       /// Synchronous object property set property synchronously blocks until the
-      /// property is set.
+      /// property is set.</para>
       /// </summary>
       function    AddHostObjectToScript(const aName : wvstring; const aObject : OleVariant): boolean;
       /// <summary>
@@ -766,6 +796,122 @@ type
       /// \snippet ScriptComponent.cpp ExecuteScriptWithResult
       /// </summary>
       function ExecuteScriptWithResult(const JavaScript: wvstring; aExecutionID : integer; const aBrowserComponent : TComponent): boolean;
+      /// <summary>
+      /// A web resource request with a resource context that matches this
+      /// filter's resource context and a URI that matches this filter's URI
+      /// wildcard string for corresponding request sources will be raised via
+      /// the `WebResourceRequested` event. To receive all raised events filters
+      /// have to be added before main page navigation.
+      ///
+      /// The `uri` parameter value is a wildcard string matched against the URI
+      /// of the web resource request. This is a glob style
+      /// wildcard string in which a `*` matches zero or more characters and a `?`
+      /// matches exactly one character.
+      /// These wildcard characters can be escaped using a backslash just before
+      /// the wildcard character in order to represent the literal `*` or `?`.
+      ///
+      /// The matching occurs over the URI as a whole string and not limiting
+      /// wildcard matches to particular parts of the URI.
+      /// The wildcard filter is compared to the URI after the URI has been
+      /// normalized, any URI fragment has been removed, and non-ASCII hostnames
+      /// have been converted to punycode.
+      ///
+      /// Specifying a `nullptr` for the uri is equivalent to an empty string which
+      /// matches no URIs.
+      ///
+      /// For more information about resource context filters, navigate to
+      /// [COREWEBVIEW2_WEB_RESOURCE_CONTEXT](/microsoft-edge/webview2/reference/win32/icorewebview2#corewebview2_web_resource_context).
+      ///
+      /// The `requestSourceKinds` is a mask of one or more
+      /// `COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS`. OR operation(s) can be
+      /// applied to multiple `COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS` to
+      /// create a mask representing those data types. API returns `E_INVALIDARG` if
+      /// `requestSourceKinds` equals to zero. For more information about request
+      /// source kinds, navigate to
+      /// [COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS](/microsoft-edge/webview2/reference/win32/icorewebview2#corewebview2_web_resource_request_source_kinds).
+      ///
+      /// Because service workers and shared workers run separately from any one
+      /// HTML document their WebResourceRequested will be raised for all
+      /// CoreWebView2s that have appropriate filters added in the corresponding
+      /// CoreWebView2Environment. You should only add a WebResourceRequested filter
+      /// for COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_SERVICE_WORKER or
+      /// COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_SHARED_WORKER on
+      /// one CoreWebView2 to avoid handling the same WebResourceRequested
+      /// event multiple times.
+      ///
+      /// | URI Filter String | Request URI | Match | Notes |
+      /// | ---- | ---- | ---- | ---- |
+      /// | `*` | `https://contoso.com/a/b/c` | Yes | A single * will match all URIs |
+      /// | `*://contoso.com/*` | `https://contoso.com/a/b/c` | Yes | Matches everything in contoso.com across all schemes |
+      /// | `*://contoso.com/*` | `https://example.com/?https://contoso.com/` | Yes | But also matches a URI with just the same text anywhere in the URI |
+      /// | `example` | `https://contoso.com/example` | No | The filter does not perform partial matches |
+      /// | `*example` | `https://contoso.com/example` | Yes | The filter matches across URI parts |
+      /// | `*example` | `https://contoso.com/path/?example` | Yes | The filter matches across URI parts |
+      /// | `*example` | `https://contoso.com/path/?query#example` | No | The filter is matched against the URI with no fragment |
+      /// | `*example` | `https://example` | No | The URI is normalized before filter matching so the actual URI used for comparison is `https://example/` |
+      /// | `*example/` | `https://example` | Yes | Just like above, but this time the filter ends with a / just like the normalized URI |
+      /// | `https://xn--qei.example/` | `https://&#x2764;.example/` | Yes | Non-ASCII hostnames are normalized to punycode before wildcard comparison |
+      /// | `https://&#x2764;.example/` | `https://xn--qei.example/` | No | Non-ASCII hostnames are normalized to punycode before wildcard comparison |
+      ///
+      /// \snippet ScenarioSharedWorkerWRR.cpp WebResourceRequested2
+      /// </summary>
+      function AddWebResourceRequestedFilterWithRequestSourceKinds(const uri: wvstring;
+                                                                   ResourceContext: TWVWebResourceContext;
+                                                                   requestSourceKinds: TWVWebResourceRequestSourceKind): boolean;
+      /// <summary>
+      /// Removes a matching WebResource filter that was previously added for the
+      /// `WebResourceRequested` event.  If the same filter was added multiple
+      /// times, then it must be removed as many times as it was added for the
+      /// removal to be effective. Returns `E_INVALIDARG` for a filter that was
+      /// not added or is already removed.
+      /// If the filter was added for multiple requestSourceKinds and removed just for one of them
+      /// the filter remains for the non-removed requestSourceKinds.
+      /// </summary>
+      function RemoveWebResourceRequestedFilterWithRequestSourceKinds(const uri: wvstring;
+                                                                      ResourceContext: TWVWebResourceContext;
+                                                                      requestSourceKinds: TWVWebResourceRequestSourceKind): boolean;
+
+      /// <summary>
+      /// <para>Same as `PostWebMessageAsJson`, but also has support for posting DOM objects
+      /// to page content. The `additionalObjects` property in the DOM MessageEvent
+      /// fired on the page content is an array-like list of DOM objects that can
+      /// be posted to the web content. Currently these can be the following
+      /// types of objects:</para>
+      /// <code>
+      /// | Win32             | DOM type    |
+      /// |-------------------|-------------|
+      /// | ICoreWebView2FileSystemHandle | [FileSystemHandle](https://developer.mozilla.org/docs/Web/API/FileSystemHandle) |
+      /// | nullptr           | null        |
+      /// </code>
+      /// <para>The objects are posted to the web content, following the
+      /// [structured-clone](https://developer.mozilla.org/docs/Web/API/Web_Workers_API/Structured_clone_algorithm)
+      /// semantics, meaning only objects that can be cloned can be posted.</para>
+      /// <para>They will also behave as if they had been created by the web content they are
+      /// posted to. For example, if a FileSystemFileHandle is posted to a web content
+      /// it can only be re-transferred via postMessage to other web content
+      /// [with the same origin](https://fs.spec.whatwg.org/#filesystemhandle).</para>
+      /// <para>Warning: An app needs to be mindful when using this API to post DOM objects
+      /// as this API provides the web content with unusual access to sensitive Web
+      /// Platform features such as filesystem access! Similar to PostWebMessageAsJson
+      /// the app should check the `Source` property of WebView2 right before posting the message
+      /// to ensure the message and objects will only be sent to the target web content
+      /// that it expects to receive the DOM objects. Additionally, the order
+      /// of messages that are posted between `PostWebMessageAsJson` and `PostWebMessageAsJsonWithAdditionalObjects`
+      /// may not be preserved.</para>
+      /// </summary>
+      function PostWebMessageAsJsonWithAdditionalObjects(const webMessageAsJson: wvstring;
+                                                         const additionalObjects: ICoreWebView2ObjectCollectionView): boolean;
+      /// <summary>
+      /// <para>Programmatically trigger a Save As action for the currently loaded document.</para>
+      /// <para>The `SaveAsUIShowing` event is raised.</para>
+      ///
+      /// <para>Opens a system modal dialog by default. If the `SuppressDefaultDialog` property
+      /// is `TRUE`, the system dialog is not opened.</para>
+      ///
+      /// <para>This method returns `COREWEBVIEW2_SAVE_AS_UI_RESULT`. See
+      /// `COREWEBVIEW2_SAVE_AS_UI_RESULT` for details.</para>
+      /// </summary>
+      function ShowSaveAsUI(const aBrowserComponent : TComponent) : boolean;
 
       /// <summary>
       /// Returns true when the interface implemented by this class is fully initialized.
@@ -977,8 +1123,14 @@ begin
      LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_17, FBaseIntf17) and
      LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_18, FBaseIntf18) and
      LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_19, FBaseIntf19) and
-     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_20, FBaseIntf20) then
-    LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_21, FBaseIntf21);
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_20, FBaseIntf20) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_21, FBaseIntf21) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_22, FBaseIntf22) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_23, FBaseIntf23) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_24, FBaseIntf24) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_25, FBaseIntf25) and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_26, FBaseIntf26) then
+    LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2_27, FBaseIntf27);
 end;
 
 destructor TCoreWebView2.Destroy;
@@ -1031,6 +1183,12 @@ begin
   FBaseIntf19          := nil;
   FBaseIntf20          := nil;
   FBaseIntf21          := nil;
+  FBaseIntf22          := nil;
+  FBaseIntf23          := nil;
+  FBaseIntf24          := nil;
+  FBaseIntf25          := nil;
+  FBaseIntf26          := nil;
+  FBaseIntf27          := nil;
   FDevToolsEventTokens := nil;
   FDevToolsEventNames  := nil;
   FFrameIDCopy         := WEBVIEW4DELPHI_INVALID_FRAMEID;
@@ -1070,6 +1228,10 @@ begin
   FServerCertificateErrorDetectedToken.value     := 0;
   FFaviconChangedToken.value                     := 0;
   FLaunchingExternalUriSchemeToken.value         := 0;
+  FNotificationReceivedToken.value               := 0;
+  FSaveAsUIShowingToken.value                    := 0;
+  FSaveFileSecurityCheckStartingToken.value      := 0;
+  FScreenCaptureStartingToken.value              := 0;
 end;
 
 function TCoreWebView2.GetInitialized : boolean;
@@ -1191,6 +1353,22 @@ begin
           if assigned(FBaseIntf18) and
              (FLaunchingExternalUriSchemeToken.Value <> 0) then
             FBaseIntf18.remove_LaunchingExternalUriScheme(FLaunchingExternalUriSchemeToken);
+
+          if assigned(FBaseIntf24) and
+             (FNotificationReceivedToken.value <> 0) then
+            FBaseIntf24.remove_NotificationReceived(FNotificationReceivedToken);
+
+          if assigned(FBaseIntf25) and
+             (FSaveAsUIShowingToken.value <> 0) then
+            FBaseIntf25.remove_SaveAsUIShowing(FSaveAsUIShowingToken);
+
+          if assigned(FBaseIntf26) and
+             (FSaveFileSecurityCheckStartingToken.value <> 0) then
+            FBaseIntf26.remove_SaveFileSecurityCheckStarting(FSaveFileSecurityCheckStartingToken);
+
+          if assigned(FBaseIntf27) and
+             (FScreenCaptureStartingToken.value <> 0) then
+            FBaseIntf27.remove_ScreenCaptureStarting(FScreenCaptureStartingToken);
 
           UnsubscribeAllDevToolsProtocolEvents;
         end;
@@ -1653,6 +1831,66 @@ begin
     end;
 end;
 
+function TCoreWebView2.AddNotificationReceived(const aBrowserComponent : TComponent) : boolean;
+var
+  TempHandler : ICoreWebView2NotificationReceivedEventHandler;
+begin
+  Result := False;
+
+  if assigned(FBaseIntf24) and (FNotificationReceivedToken.value = 0) then
+    try
+      TempHandler := TCoreWebView2NotificationReceivedEventHandler.Create(TWVBrowserBase(aBrowserComponent));
+      Result      := succeeded(FBaseIntf24.add_NotificationReceived(TempHandler, FNotificationReceivedToken));
+    finally
+      TempHandler := nil;
+    end;
+end;
+
+function TCoreWebView2.AddSaveAsUIShowing(const aBrowserComponent : TComponent) : boolean;
+var
+  TempHandler : ICoreWebView2SaveAsUIShowingEventHandler;
+begin
+  Result := False;
+
+  if assigned(FBaseIntf25) and (FSaveAsUIShowingToken.value = 0) then
+    try
+      TempHandler := TCoreWebView2SaveAsUIShowingEventHandler.Create(TWVBrowserBase(aBrowserComponent));
+      Result      := succeeded(FBaseIntf25.add_SaveAsUIShowing(TempHandler, FSaveAsUIShowingToken));
+    finally
+      TempHandler := nil;
+    end;
+end;
+
+function TCoreWebView2.AddSaveFileSecurityCheckStarting(const aBrowserComponent : TComponent) : boolean;
+var
+  TempHandler : ICoreWebView2SaveFileSecurityCheckStartingEventHandler;
+begin
+  Result := False;
+
+  if assigned(FBaseIntf26) and (FSaveFileSecurityCheckStartingToken.value = 0) then
+    try
+      TempHandler := TCoreWebView2SaveFileSecurityCheckStartingEventHandler.Create(TWVBrowserBase(aBrowserComponent));
+      Result      := succeeded(FBaseIntf26.add_SaveFileSecurityCheckStarting(TempHandler, FSaveFileSecurityCheckStartingToken));
+    finally
+      TempHandler := nil;
+    end;
+end;
+
+function TCoreWebView2.AddScreenCaptureStarting(const aBrowserComponent : TComponent) : boolean;
+var
+  TempHandler : ICoreWebView2ScreenCaptureStartingEventHandler;
+begin
+  Result := False;
+
+  if assigned(FBaseIntf27) and (FScreenCaptureStartingToken.value = 0) then
+    try
+      TempHandler := TCoreWebView2ScreenCaptureStartingEventHandler.Create(TWVBrowserBase(aBrowserComponent));
+      Result      := succeeded(FBaseIntf27.add_ScreenCaptureStarting(TempHandler, FScreenCaptureStartingToken));
+    finally
+      TempHandler := nil;
+    end;
+end;
+
 function TCoreWebView2.AddAllBrowserEvents(const aBrowserComponent : TComponent) : boolean;
 begin
   Result := AddNavigationStartingEvent(aBrowserComponent)                 and
@@ -1684,7 +1922,11 @@ begin
             AddStatusBarTextChangedEvent(aBrowserComponent)               and
             AddServerCertificateErrorDetectedEvent(aBrowserComponent)     and
             AddFaviconChanged(aBrowserComponent)                          and
-            AddLaunchingExternalUriScheme(aBrowserComponent);
+            AddLaunchingExternalUriScheme(aBrowserComponent)              and
+            AddNotificationReceived(aBrowserComponent)                    and
+            AddSaveAsUIShowing(aBrowserComponent)                         and
+            AddSaveFileSecurityCheckStarting(aBrowserComponent)           and
+            AddScreenCaptureStarting(aBrowserComponent);
 end;
 
 function TCoreWebView2.AddWebResourceRequestedFilter(const URI             : wvstring;
@@ -2053,6 +2295,44 @@ begin
     try
       TempHandler := TCoreWebView2ExecuteScriptWithResultCompletedHandler.Create(TWVBrowserBase(aBrowserComponent), aExecutionID);
       Result      := succeeded(FBaseIntf21.ExecuteScriptWithResult(PWideChar(JavaScript), TempHandler));
+    finally
+      TempHandler := nil;
+    end;
+end;
+
+function TCoreWebView2.AddWebResourceRequestedFilterWithRequestSourceKinds(const uri                : wvstring;
+                                                                                 ResourceContext    : TWVWebResourceContext;
+                                                                                 requestSourceKinds : TWVWebResourceRequestSourceKind): boolean;
+begin
+  Result := assigned(FBaseIntf22) and
+            succeeded(FBaseIntf22.AddWebResourceRequestedFilterWithRequestSourceKinds(PWideChar(uri), ResourceContext, requestSourceKinds));
+end;
+
+function TCoreWebView2.RemoveWebResourceRequestedFilterWithRequestSourceKinds(const uri                : wvstring;
+                                                                                    ResourceContext    : TWVWebResourceContext;
+                                                                                    requestSourceKinds : TWVWebResourceRequestSourceKind): boolean;
+begin
+  Result := assigned(FBaseIntf22) and
+            succeeded(FBaseIntf22.RemoveWebResourceRequestedFilterWithRequestSourceKinds(PWideChar(uri), ResourceContext, requestSourceKinds));
+end;
+
+function TCoreWebView2.PostWebMessageAsJsonWithAdditionalObjects(const webMessageAsJson  : wvstring;
+                                                                 const additionalObjects : ICoreWebView2ObjectCollectionView): boolean;
+begin
+  Result := assigned(FBaseIntf23) and
+            succeeded(FBaseIntf23.PostWebMessageAsJsonWithAdditionalObjects(PWideChar(webMessageAsJson), additionalObjects));
+end;
+
+function TCoreWebView2.ShowSaveAsUI(const aBrowserComponent : TComponent) : boolean;
+var
+  TempHandler : ICoreWebView2ShowSaveAsUICompletedHandler;
+begin
+  Result := False;
+
+  if assigned(FBaseIntf25) then
+    try
+      TempHandler := TCoreWebView2ShowSaveAsUICompletedHandler.Create(TWVBrowserBase(aBrowserComponent));
+      Result      := succeeded(FBaseIntf25.ShowSaveAsUI(TempHandler));
     finally
       TempHandler := nil;
     end;

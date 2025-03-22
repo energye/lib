@@ -133,6 +133,14 @@ type
       property OnProfileGetBrowserExtensionsCompleted;
       property OnProfileDeleted;
       property OnExecuteScriptWithResultCompleted;
+      property OnNonClientRegionChanged;
+      property OnNotificationReceived;
+      property OnNotificationCloseRequested;
+      property OnSaveAsUIShowing;
+      property OnShowSaveAsUICompleted;
+      property OnSaveFileSecurityCheckStarting;
+      property OnScreenCaptureStarting;
+      property OnFrameScreenCaptureStarting;
   end;
 
 {$IFDEF FPC}

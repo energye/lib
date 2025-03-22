@@ -16,14 +16,15 @@ uses
 
 type
   {$IFDEF DELPHI12_UP}
-  wvstring = type string;
+    wvstring = type string;
   {$ELSE}
     {$IFDEF FPC}
-    wvstring = type UnicodeString;
+      wvstring = type UnicodeString;
     {$ELSE}
-    wvstring = type WideString;
+      wvstring = type WideString;
     {$ENDIF}
   {$ENDIF}
+
   /// <summary>
   /// Specifies the key event type that triggered an AcceleratorKeyPressed
   /// event.
@@ -357,6 +358,101 @@ type
   /// <para>Renamed COREWEBVIEW2_FRAME_KIND type.</para>
   /// </remarks>
   TWVFrameKind                            = type COREWEBVIEW2_FRAME_KIND;
+  /// <summary>
+  /// Specifies the source of `WebResourceRequested` event.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS type.</para>
+  /// </remarks>
+  TWVWebResourceRequestSourceKind         = type COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS;
+  /// <summary>
+  /// This enum contains values representing possible regions a given
+  /// point lies within. The values of this enum align with the
+  /// matching WM_NCHITTEST* window message return values.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_NON_CLIENT_REGION_KIND type.</para>
+  /// </remarks>
+  TWVNonClientRegionKind                  = type COREWEBVIEW2_NON_CLIENT_REGION_KIND;
+  /// <summary>
+  /// The channel search kind determines the order that release channels are
+  /// searched for during environment creation. The default behavior is to search
+  /// for and use the most stable channel found on the device. The order from most
+  /// to least stable is: WebView2 Runtime -> Beta -> Dev -> Canary. Switch the
+  /// order to prefer the least stable channel in order to perform pre-release
+  /// testing. See `COREWEBVIEW2_RELEASE_CHANNELS` for descriptions of channels.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_CHANNEL_SEARCH_KIND type.</para>
+  /// </remarks>
+  TWVChannelSearchKind                    = type COREWEBVIEW2_CHANNEL_SEARCH_KIND;
+  /// <summary>
+  /// <para>The WebView2 release channels. Use `ReleaseChannels` and `ChannelSearchKind`
+  /// on `ICoreWebView2EnvironmentOptions` to control which channel is searched
+  /// for during environment creation.</para>
+  /// <code>
+  /// |Channel|Primary purpose|How often updated with new features|
+  /// |:---:|---|:---:|
+  /// |Stable (WebView2 Runtime)|Broad Deployment|Monthly|
+  /// |Beta|Flighting with inner rings, automated testing|Monthly|
+  /// |Dev|Automated testing, selfhosting to test new APIs and features|Weekly|
+  /// |Canary|Automated testing, selfhosting to test new APIs and features|Daily|
+  /// </code>
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_RELEASE_CHANNELS type.</para>
+  /// </remarks>
+  TWVReleaseChannels                      = type COREWEBVIEW2_RELEASE_CHANNELS;
+  /// <summary>
+  /// Set ScrollBar style on `ICoreWebView2EnvironmentOptions` during environment creation.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_SCROLLBAR_STYLE type.</para>
+  /// </remarks>
+  TWVScrollBarStyle                       = type COREWEBVIEW2_SCROLLBAR_STYLE;
+  /// <summary>
+  /// Allowed permissions of a CoreWebView2FileSystemHandle as described in
+  /// [FileSystemHandle.requestPermission()](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/requestPermission)
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_FILE_SYSTEM_HANDLE_PERMISSION type.</para>
+  /// </remarks>
+  TWVFileSystemHandlePermission           = type COREWEBVIEW2_FILE_SYSTEM_HANDLE_PERMISSION;
+  /// <summary>
+  /// Kind of CoreWebView2FileSystemHandle as described in
+  /// [FileSystemHandle.kind](https://developer.mozilla.org/docs/Web/API/FileSystemHandle/kind)
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_FILE_SYSTEM_HANDLE_KIND type.</para>
+  /// </remarks>
+  TWVFileSystemHandleKind                 = type COREWEBVIEW2_FILE_SYSTEM_HANDLE_KIND;
+  /// <summary>
+  /// Indicates the text direction of the notification.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_TEXT_DIRECTION_KIND type.</para>
+  /// </remarks>
+  TWVTextDirectionKind                    = type COREWEBVIEW2_TEXT_DIRECTION_KIND;
+  /// <summary>
+  /// Specifies Save As kind selection options for
+  /// `ICoreWebView2SaveAsUIShowingEventArgs`.
+  ///
+  /// For HTML documents, we support 3 Save As kinds: HTML_ONLY, SINGLE_FILE and
+  /// COMPLETE. For non-HTML documents, you must use DEFAULT. MIME types of `text/html` and
+  /// `application/xhtml+xml` are considered HTML documents.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_SAVE_AS_KIND type.</para>
+  /// </remarks>
+  TWVSaveAsKind                           = type COREWEBVIEW2_SAVE_AS_KIND;
+  /// <summary>
+  /// Status of a programmatic Save As call. Indicates the result
+  /// of the `ShowSaveAsUI` method.
+  /// </summary>
+  /// <remarks>
+  /// <para>Renamed COREWEBVIEW2_SAVE_AS_UI_RESULT type.</para>
+  /// </remarks>
+  TWVSaveAsUIResult                       = type COREWEBVIEW2_SAVE_AS_UI_RESULT;
 
   /// <summary>
   /// TWVLoader status values

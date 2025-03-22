@@ -789,6 +789,7 @@ type
     protected
       FBaseIntf  : ICoreWebView2ProcessFailedEventArgs;
       FBaseIntf2 : ICoreWebView2ProcessFailedEventArgs2;
+      FBaseIntf3 : ICoreWebView2ProcessFailedEventArgs3;
 
       function GetInitialized : boolean;
       function GetProcessFailedKind : TWVProcessFailedKind;
@@ -796,6 +797,7 @@ type
       function GetExtiCode : integer;
       function GetProcessDescription : wvstring;
       function GetFrameInfosForFailedProcess : ICoreWebView2FrameInfoCollection;
+      function GetFailureSourceModulePath : wvstring;
 
       procedure InitializeFields;
 
@@ -880,6 +882,32 @@ type
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2processfailedeventargs2#get_frameinfosforfailedprocess">See the ICoreWebView2ProcessFailedEventArgs2 article.</see></para>
       /// </remarks>
       property FrameInfosForFailedProcess : ICoreWebView2FrameInfoCollection     read GetFrameInfosForFailedProcess;
+      /// <summary>
+      /// <para>This property is the full path of the module that caused the
+      /// crash in cases of Windows Code Integrity failures.</para>
+      /// <para>[Windows Code Integrity](/mem/intune/user-help/you-need-to-enable-code-integrity)
+      /// is a feature that verifies the integrity and
+      /// authenticity of dynamic-link libraries (DLLs)
+      /// on Windows systems. It ensures that only trusted
+      /// code can run on the system and prevents unauthorized or
+      /// malicious modifications.</para>
+      /// <para>When ProcessFailed occurred due to a failed Code Integrity check,
+      /// this property returns the full path of the file that was prevented from
+      /// loading on the system.</para>
+      /// <para>The webview2 process which tried to load the DLL will fail with
+      /// exit code STATUS_INVALID_IMAGE_HASH(-1073740760).</para>
+      /// <para>A file can fail integrity check for various
+      /// reasons, such as:</para>
+      /// <code>
+      /// - It has an invalid or missing signature that does
+      /// not match the publisher or signer of the file.
+      /// - It has been tampered with or corrupted by malware or other software.
+      /// - It has been blocked by an administrator or a security policy.
+      /// </code>
+      /// <para>This property always will be the empty string if failure is not caused by
+      /// STATUS_INVALID_IMAGE_HASH.</para>
+      /// </summary>
+      property FailureSourceModulePath    : wvstring                             read GetFailureSourceModulePath;
   end;
 
   /// <summary>
@@ -1092,15 +1120,19 @@ type
   /// </remarks>
   TCoreWebView2WebResourceRequestedEventArgs = class
     protected
-      FBaseIntf : ICoreWebView2WebResourceRequestedEventArgs;
+      FBaseIntf  : ICoreWebView2WebResourceRequestedEventArgs;
+      FBaseIntf2 : ICoreWebView2WebResourceRequestedEventArgs2;
 
       function  GetInitialized : boolean;
       function  GetRequest : ICoreWebView2WebResourceRequest;
       function  GetResponse : ICoreWebView2WebResourceResponse;
       function  GetDeferral : ICoreWebView2Deferral;
       function  GetResourceContext : TWVWebResourceContext;
+      function  GetRequestedSourceKind : TWVWebResourceRequestSourceKind;
 
       procedure SetResponse(const aValue : ICoreWebView2WebResourceResponse);
+
+      procedure InitializeFields;
 
     public
       constructor Create(const aArgs: ICoreWebView2WebResourceRequestedEventArgs); reintroduce;
@@ -1109,11 +1141,11 @@ type
       /// <summary>
       /// Returns true when the interface implemented by this class is fully initialized.
       /// </summary>
-      property Initialized     : boolean                                     read GetInitialized;
+      property Initialized         : boolean                                     read GetInitialized;
       /// <summary>
       /// Returns the interface implemented by this class.
       /// </summary>
-      property BaseIntf        : ICoreWebView2WebResourceRequestedEventArgs  read FBaseIntf;
+      property BaseIntf            : ICoreWebView2WebResourceRequestedEventArgs  read FBaseIntf;
       /// <summary>
       /// The Web resource request.  The request object may be missing some headers
       /// that are added by network stack at a later time.
@@ -1121,7 +1153,7 @@ type
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs#get_request">See the ICoreWebView2WebResourceRequestedEventArgs article.</see></para>
       /// </remarks>
-      property Request         : ICoreWebView2WebResourceRequest             read GetRequest;
+      property Request             : ICoreWebView2WebResourceRequest             read GetRequest;
       /// <summary>
       /// A placeholder for the web resource response object.  If this object is
       /// set, the web resource request is completed with the specified response.
@@ -1129,7 +1161,7 @@ type
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs#get_response">See the ICoreWebView2WebResourceRequestedEventArgs article.</see></para>
       /// </remarks>
-      property Response        : ICoreWebView2WebResourceResponse            read GetResponse         write SetResponse;
+      property Response            : ICoreWebView2WebResourceResponse            read GetResponse         write SetResponse;
       /// <summary>
       /// Obtain an `ICoreWebView2Deferral` object and put the event into a
       /// deferred state.  Use the `ICoreWebView2Deferral` object to complete the
@@ -1138,14 +1170,21 @@ type
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs#getdeferral">See the ICoreWebView2WebResourceRequestedEventArgs article.</see></para>
       /// </remarks>
-      property Deferral        : ICoreWebView2Deferral                       read GetDeferral;
+      property Deferral            : ICoreWebView2Deferral                       read GetDeferral;
       /// <summary>
       /// The web resource request context.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs#get_resourcecontext">See the ICoreWebView2WebResourceRequestedEventArgs article.</see></para>
       /// </remarks>
-      property ResourceContext : TWVWebResourceContext                       read GetResourceContext;
+      property ResourceContext     : TWVWebResourceContext                       read GetResourceContext;
+      /// <summary>
+      /// The web resource requested source.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs2#get_requestedsourcekind">See the ICoreWebView2WebResourceRequestedEventArgs2 article.</see></para>
+      /// </remarks>
+      property RequestedSourceKind : TWVWebResourceRequestSourceKind             read GetRequestedSourceKind;
   end;
 
   /// <summary>
@@ -1777,9 +1816,15 @@ type
       /// <para>The origin will be an empty string if the request is initiated by calling
       /// `CoreWebView2.Navigate` on the external URI scheme. If a script initiates
       /// the navigation, the `InitiatingOrigin` will be the top-level document's
-      /// `Source`, for example, if `window.location` is set to `"calculator://", the
+      /// `Source`, for example, if `window.location` is set to `"calculator://"`, the
       /// `InitiatingOrigin` will be set to `calculator://`. If the request is initiated
       ///  from a child frame, the `InitiatingOrigin` will be the source of that child frame.</para>
+      /// <para>If the `InitiatingOrigin` is
+      /// [opaque](https://html.spec.whatwg.org/multipage/origin.html#concept-origin-opaque),
+      /// the `InitiatingOrigin` reported in the event args will be its precursor origin.
+      /// The precursor origin is the origin that created the opaque origin. For example, if
+      /// a frame on example.com opens a subframe with a different opaque origin, the subframe's
+      /// precursor origin is example.com.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2launchingexternalurischemeeventargs#get_initiatingorigin">See the ICoreWebView2LaunchingExternalUriSchemeEventArgs article.</see></para>
@@ -1812,6 +1857,349 @@ type
       /// <remarks>
       /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2launchingexternalurischemeeventargs#getdeferral">See the ICoreWebView2LaunchingExternalUriSchemeEventArgs article.</see></para>
       /// </remarks>
+      property Deferral                      : ICoreWebView2Deferral                             read GetDeferral;
+  end;
+
+  /// <summary>
+  /// This is the Interface for non-client region change event args.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2nonclientregionchangedeventargs">See the ICoreWebView2NonClientRegionChangedEventArgs article.</see></para>
+  /// </remarks>
+  TCoreWebView2NonClientRegionChangedEventArgs = class
+    protected
+      FBaseIntf : ICoreWebView2NonClientRegionChangedEventArgs;
+
+      function  GetInitialized : boolean;
+      function  GetRegionKind : TWVNonClientRegionKind;
+
+    public
+      constructor Create(const aArgs: ICoreWebView2NonClientRegionChangedEventArgs); reintroduce;
+      destructor  Destroy; override;
+
+      /// <summary>
+      /// Returns true when the interface implemented by this class is fully initialized.
+      /// </summary>
+      property Initialized                   : boolean                                           read GetInitialized;
+      /// <summary>
+      /// Returns the interface implemented by this class.
+      /// </summary>
+      property BaseIntf                      : ICoreWebView2NonClientRegionChangedEventArgs      read FBaseIntf;
+      /// <summary>
+      /// This property represents the COREWEBVIEW2_NON_CLIENT_REGION_KIND which the
+      /// region changed event corresponds to. With this property an app can query
+      /// for a collection of rects which have that region kind by using
+      /// QueryNonClientRegion on the composition controller.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2nonclientregionchangedeventargs#get_regionkind">See the ICoreWebView2NonClientRegionChangedEventArgs article.</see></para>
+      /// </remarks>
+      property RegionKind                    : TWVNonClientRegionKind                            read GetRegionKind;
+  end;
+
+  /// <summary>
+  /// Event args for the `NotificationReceived` event.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2notificationreceivedeventargs">See the ICoreWebView2NotificationReceivedEventArgs article.</see></para>
+  /// </remarks>
+  TCoreWebView2NotificationReceivedEventArgs = class
+    protected
+      FBaseIntf : ICoreWebView2NotificationReceivedEventArgs;
+
+      function  GetInitialized : boolean;
+      function  GetSenderOrigin : wvstring;
+      function  GetNotification : ICoreWebView2Notification;
+      function  GetHandled : boolean;
+      function  GetDeferral : ICoreWebView2Deferral;
+
+      procedure SetHandled(aValue: boolean);
+
+    public
+      constructor Create(const aArgs: ICoreWebView2NotificationReceivedEventArgs); reintroduce;
+      destructor  Destroy; override;
+
+      /// <summary>
+      /// Returns true when the interface implemented by this class is fully initialized.
+      /// </summary>
+      property Initialized                   : boolean                                           read GetInitialized;
+      /// <summary>
+      /// Returns the interface implemented by this class.
+      /// </summary>
+      property BaseIntf                      : ICoreWebView2NotificationReceivedEventArgs        read FBaseIntf;
+      /// <summary>
+      /// The origin of the web content that sends the notification, such as
+      /// `https://example.com/` or `https://www.example.com/`.
+      /// </summary>
+      property SenderOrigin                  : wvstring                                          read GetSenderOrigin;
+      /// <summary>
+      /// The notification that was received. You can access the
+      /// properties on the Notification object to show your own notification.
+      /// </summary>
+      property Notification                  : ICoreWebView2Notification                         read GetNotification;
+      /// <summary>
+      /// <para>Sets whether the `NotificationReceived` event is handled by the host after
+      /// the event handler completes or if there is a deferral then after the
+      /// deferral is completed.</para>
+      ///
+      /// <para>If `Handled` is set to TRUE then WebView will not display the notification
+      /// with the default UI, and the host will be responsible for handling the
+      /// notification and for letting the web content know that the notification
+      /// has been displayed, clicked, or closed. You must set `Handled` to `TRUE`
+      /// before you call `ReportShown`, `ReportClicked`,
+      /// `ReportClickedWithActionIndex` and `ReportClosed`, otherwise they will
+      /// fail with `HRESULT_FROM_WIN32(ERROR_INVALID_STATE)`. If after the event
+      /// handler or deferral completes `Handled` is set to FALSE then WebView will
+      /// display the default notification UI. Note that you cannot un-handle this
+      /// event once you have set `Handled` to be `TRUE`. The initial value is
+      /// FALSE.</para>
+      /// </summary>
+      property Handled                       : boolean                                           read GetHandled              write SetHandled;
+      /// <summary>
+      /// Returns an `ICoreWebView2Deferral` object. Use this operation to complete
+      /// the event at a later time.
+      /// </summary>
+      property Deferral                      : ICoreWebView2Deferral                             read GetDeferral;
+  end;
+
+  /// <summary>
+  /// The event args for `SaveAsUIShowing` event.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2saveasuishowingeventargs">See the ICoreWebView2SaveAsUIShowingEventArgs article.</see></para>
+  /// </remarks>
+  TCoreWebView2SaveAsUIShowingEventArgs = class
+    protected
+      FBaseIntf : ICoreWebView2SaveAsUIShowingEventArgs;
+
+      function  GetInitialized : boolean;
+      function  GetContentMimeType : wvstring;
+      function  GetCancel : boolean;
+      function  GetSuppressDefaultDialog : boolean;
+      function  GetDeferral : ICoreWebView2Deferral;
+      function  GetSaveAsFilePath : wvstring;
+      function  GetAllowReplace : boolean;
+      function  GetKind : TWVSaveAsKind;
+
+      procedure SetCancel(aValue : boolean);
+      procedure SetSuppressDefaultDialog(aValue : boolean);
+      procedure SetSaveAsFilePath(const aValue : wvstring);
+      procedure SetAllowReplace(aValue : boolean);
+      procedure SetKind(aValue : TWVSaveAsKind);
+
+    public
+      constructor Create(const aArgs: ICoreWebView2SaveAsUIShowingEventArgs); reintroduce;
+      destructor  Destroy; override;
+
+      /// <summary>
+      /// Returns true when the interface implemented by this class is fully initialized.
+      /// </summary>
+      property Initialized                   : boolean                                           read GetInitialized;
+      /// <summary>
+      /// Returns the interface implemented by this class.
+      /// </summary>
+      property BaseIntf                      : ICoreWebView2SaveAsUIShowingEventArgs             read FBaseIntf;
+      /// <summary>
+      /// Get the Mime type of content to be saved.
+      /// </summary>
+      property ContentMimeType               : wvstring                                          read GetContentMimeType;
+      /// <summary>
+      /// Sets the `Cancel` property. Set this property to `TRUE` to cancel the Save As action
+      /// and prevent the download from starting. ShowSaveAsUI returns
+      /// `COREWEBVIEW2_SAVE_AS_UI_RESULT_CANCELLED` in this case. The default value is `FALSE`.
+      /// </summary>
+      property Cancel                        : boolean                                           read GetCancel                  write SetCancel;
+      /// <summary>
+      /// <para>Sets the `SuppressDefaultDialog` property, which indicates whether the system
+      /// default dialog is suppressed. When `SuppressDefaultDialog` is `FALSE`, the default
+      /// Save As dialog is shown and the values assigned through `SaveAsFilePath`, `AllowReplace`
+      /// and `Kind` are ignored when the event args invoke completed.</para>
+      ///
+      /// <para>Set `SuppressDefaultDialog` to `TRUE` to perform a silent Save As. When
+      /// `SuppressDefaultDialog` is `TRUE`, the system dialog is skipped and the
+      /// `SaveAsFilePath`, `AllowReplace` and `Kind` values are used.</para>
+      ///
+      /// <para>The default value is FALSE.</para>
+      /// </summary>
+      property SuppressDefaultDialog         : boolean                                           read GetSuppressDefaultDialog   write SetSuppressDefaultDialog;
+      /// <summary>
+      /// Returns an `ICoreWebView2Deferral` object. This will defer showing the
+      /// default Save As dialog and performing the Save As operation.
+      /// </summary>
+      property Deferral                      : ICoreWebView2Deferral                             read GetDeferral;
+      /// <summary>
+      /// <para>Set the `SaveAsFilePath` property for Save As. `SaveAsFilePath` is an absolute path
+      /// of the location. It includes the file name and extension. If `SaveAsFilePath` is not
+      /// valid (for example, the root drive does not exist), Save As is denied and
+      /// `COREWEBVIEW2_SAVE_AS_INVALID_PATH` is returned.</para>
+      ///
+      /// <para>If the associated download completes successfully, a target file is saved at
+      /// this location. If the Kind property is `COREWEBVIEW2_SAVE_AS_KIND_COMPLETE`,
+      /// there will be an additional directory with resources files.</para>
+      ///
+      /// <para>The default value is a system suggested path, based on users' local environment.</para>
+      /// </summary>
+      property SaveAsFilePath                : wvstring                                          read GetSaveAsFilePath          write SetSaveAsFilePath;
+      /// <summary>
+      /// <para>`AllowReplace` allows user to control what happens when a file already
+      /// exists in the file path to which the Save As operation is saving.</para>
+      /// <para>Setting this property to `TRUE` allows existing files to be replaced.</para>
+      /// <para>Setting this property to `FALSE` will not replace existing files and will return
+      /// `COREWEBVIEW2_SAVE_AS_UI_RESULT_FILE_ALREADY_EXISTS`.</para>
+      ///
+      /// <para>The default value is `FALSE`.</para>
+      /// </summary>
+      property AllowReplace                  : boolean                                           read GetAllowReplace           write SetAllowReplace;
+      /// <summary>
+      /// <para>Sets the `Kind` property to save documents of different kinds. See the
+      /// `COREWEBVIEW2_SAVE_AS_KIND` enum for a description of the different options.</para>
+      /// <para>If the kind is not allowed for the current document, ShowSaveAsUI returns
+      /// `COREWEBVIEW2_SAVE_AS_UI_RESULT_KIND_NOT_SUPPORTED`.</para>
+      ///
+      /// <para>The default value is `COREWEBVIEW2_SAVE_AS_KIND_DEFAULT`.</para>
+      /// </summary>
+      property Kind                          : TWVSaveAsKind                                     read GetKind                   write SetKind;
+  end;
+
+  /// <summary>
+  /// The event args for `SaveFileSecurityCheckStarting` event.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2savefilesecuritycheckstartingeventargs">See the ICoreWebView2SaveFileSecurityCheckStartingEventArgs article.</see></para>
+  /// </remarks>
+  TCoreWebView2SaveFileSecurityCheckStartingEventArgs = class
+    protected
+      FBaseIntf : ICoreWebView2SaveFileSecurityCheckStartingEventArgs;
+
+      function  GetInitialized : boolean;
+      function  GetCancelSave : boolean;
+      function  GetDocumentOriginUri : wvstring;
+      function  GetFileExtension : wvstring;
+      function  GetFilePath : wvstring;
+      function  GetSuppressDefaultPolicy : boolean;
+      function  GetDeferral : ICoreWebView2Deferral;
+
+      procedure SetCancelSave(aValue: boolean);
+      procedure SetSuppressDefaultPolicy(aValue: boolean);
+
+    public
+      constructor Create(const aArgs: ICoreWebView2SaveFileSecurityCheckStartingEventArgs); reintroduce;
+      destructor  Destroy; override;
+
+      /// <summary>
+      /// Returns true when the interface implemented by this class is fully initialized.
+      /// </summary>
+      property Initialized                   : boolean                                                    read GetInitialized;
+      /// <summary>
+      /// Returns the interface implemented by this class.
+      /// </summary>
+      property BaseIntf                      : ICoreWebView2SaveFileSecurityCheckStartingEventArgs        read FBaseIntf;
+      /// <summary>
+      /// Set if cancel the upcoming save/download. `TRUE` means the action
+      /// will be cancelled before validations in default policy.
+      /// The default value is `FALSE`.
+      /// </summary>
+      property CancelSave                    : boolean                                                    read GetCancelSave             write SetCancelSave;
+      /// <summary>
+      /// Get the document origin URI of this file save operation.
+      /// </summary>
+      property DocumentOriginUri             : wvstring                                                   read GetDocumentOriginUri;
+      /// <summary>
+      /// Get the extension of file to be saved.
+      /// The file extension is the extension portion of the FilePath,
+      /// preserving original case.
+      /// Only final extension with period "." will be provided. For example,
+      /// "*.tar.gz" is a double extension, where the ".gz" will be its
+      /// final extension.
+      /// File extension can be empty, if the file name has no extension
+      /// at all.
+      /// </summary>
+      property FileExtension                 : wvstring                                                   read GetFileExtension;
+      /// <summary>
+      /// Get the full path of file to be saved. This includes the
+      /// file name and extension.
+      /// This method doesn't provide path validation, the returned
+      /// string may longer than MAX_PATH.
+      /// </summary>
+      property FilePath                      : wvstring                                                   read GetFilePath;
+      /// <summary>
+      /// Set if the default policy checking and security warning will be
+      /// suppressed. `TRUE` means it will be suppressed.
+      /// The default value is `FALSE`.
+      /// </summary>
+      property SuppressDefaultPolicy         : boolean                                                    read GetSuppressDefaultPolicy  write SetSuppressDefaultPolicy;
+      /// <summary>
+      /// Returns an `ICoreWebView2Deferral` object. Use this operation to complete
+      /// the SaveFileSecurityCheckStartingEvent.
+      /// The default policy checking and any default UI will be blocked temporarily,
+      /// saving file to local won't start, until the deferral is completed.
+      /// </summary>
+      property Deferral                      : ICoreWebView2Deferral                                      read GetDeferral;
+  end;
+
+  /// <summary>
+  /// Event args for the `ScreenCaptureStarting` event.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/tcorewebview2screencapturestartingeventargs">See the TCoreWebView2ScreenCaptureStartingEventArgs article.</see></para>
+  /// </remarks>
+  TCoreWebView2ScreenCaptureStartingEventArgs = class
+    protected
+      FBaseIntf : ICoreWebView2ScreenCaptureStartingEventArgs;
+
+      function  GetInitialized : boolean;
+      function  GetCancel : boolean;
+      function  GetHandled : boolean;
+      function  GetCoreWebView2FrameInfo : ICoreWebView2FrameInfo;
+      function  GetDeferral : ICoreWebView2Deferral;
+
+      procedure SetCancel(aValue: boolean);
+      procedure SetHandled(aValue: boolean);
+
+    public
+      constructor Create(const aArgs: ICoreWebView2ScreenCaptureStartingEventArgs); reintroduce;
+      destructor  Destroy; override;
+
+      /// <summary>
+      /// Returns true when the interface implemented by this class is fully initialized.
+      /// </summary>
+      property Initialized                   : boolean                                           read GetInitialized;
+      /// <summary>
+      /// Returns the interface implemented by this class.
+      /// </summary>
+      property BaseIntf                      : ICoreWebView2ScreenCaptureStartingEventArgs       read FBaseIntf;
+      /// <summary>
+      /// <para>The host may set this flag to cancel the screen capture. If canceled,
+      /// the screen capture UI is not displayed regardless of the
+      /// `Handled` property.</para>
+      /// <para>On the script side, it will return with a NotAllowedError as Permission denied.</para>
+      /// </summary>
+      property Cancel                        : boolean                                           read GetCancel                  write SetCancel;
+      /// <summary>
+      /// <para>By default, both the `ScreenCaptureStarting` event handlers on the
+      /// `CoreWebView2Frame` and the `CoreWebView2` will be invoked, with the
+      /// `CoreWebView2Frame` event handlers invoked first. The host may
+      /// set this flag to `TRUE` within the `CoreWebView2Frame` event handlers
+      /// to prevent the remaining `CoreWebView2` event handlers from being
+      /// invoked. If the flag is set to `FALSE` within the `CoreWebView2Frame`
+      /// event handlers, downstream handlers can update the `Cancel` property.</para>
+      ///
+      /// <para>If a deferral is taken on the event args, then you must synchronously
+      /// set `Handled` to TRUE prior to taking your deferral to prevent the
+      /// `CoreWebView2`s event handlers from being invoked.</para>
+      /// </summary>
+      property Handled                       : boolean                                           read GetHandled                 write SetHandled;
+      /// <summary>
+      /// The associated frame information that requests the screen capture
+      /// permission. This can be used to get the frame source, name, frameId,
+      /// and parent frame information.
+      /// </summary>
+      property OriginalSourceFrameInfo       : ICoreWebView2FrameInfo                            read GetCoreWebView2FrameInfo;
+      /// <summary>
+      /// Returns an `ICoreWebView2Deferral` object. Use this deferral to
+      /// defer the decision to show the Screen Capture UI. getDisplayMedia()
+      /// won't call its callbacks until the deferral is completed.
+      /// </summary>
       property Deferral                      : ICoreWebView2Deferral                             read GetDeferral;
   end;
 
@@ -2635,8 +3023,9 @@ begin
 
   FBaseIntf := aArgs;
 
-  if Initialized then
-    LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2ProcessFailedEventArgs2, FBaseIntf2);
+  if Initialized and
+     LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2ProcessFailedEventArgs2, FBaseIntf2) then
+    LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2ProcessFailedEventArgs3, FBaseIntf3);
 end;
 
 destructor TCoreWebView2ProcessFailedEventArgs.Destroy;
@@ -2650,6 +3039,7 @@ procedure TCoreWebView2ProcessFailedEventArgs.InitializeFields;
 begin
   FBaseIntf  := nil;
   FBaseIntf2 := nil;
+  FBaseIntf3 := nil;
 end;
 
 function TCoreWebView2ProcessFailedEventArgs.GetInitialized : boolean;
@@ -2719,6 +3109,22 @@ begin
      succeeded(FBaseIntf2.Get_FrameInfosForFailedProcess(TempResult)) and
      (TempResult <> nil) then
     Result := TempResult;
+end;
+
+function TCoreWebView2ProcessFailedEventArgs.GetFailureSourceModulePath : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if assigned(FBaseIntf3) and
+     succeeded(FBaseIntf3.Get_FailureSourceModulePath(TempString)) and
+     (TempString <> nil) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
 end;
 
 
@@ -2972,14 +3378,25 @@ constructor TCoreWebView2WebResourceRequestedEventArgs.Create(const aArgs: ICore
 begin
   inherited Create;
 
+  InitializeFields;
+
   FBaseIntf := aArgs;
+
+  if Initialized then
+    LoggedQueryInterface(FBaseIntf, IID_ICoreWebView2WebResourceRequestedEventArgs2, FBaseIntf2);
 end;
 
 destructor TCoreWebView2WebResourceRequestedEventArgs.Destroy;
 begin
-  FBaseIntf := nil;
+  InitializeFields;
 
   inherited Destroy;
+end;
+
+procedure TCoreWebView2WebResourceRequestedEventArgs.InitializeFields;
+begin
+  FBaseIntf  := nil;
+  FBaseIntf2 := nil;
 end;
 
 function TCoreWebView2WebResourceRequestedEventArgs.GetInitialized : boolean;
@@ -3034,7 +3451,18 @@ begin
      succeeded(FBaseIntf.Get_ResourceContext(TempContext)) then
     Result := TempContext
    else
-    Result := 0;
+    Result := COREWEBVIEW2_WEB_RESOURCE_CONTEXT_ALL;
+end;
+
+function TCoreWebView2WebResourceRequestedEventArgs.GetRequestedSourceKind : TWVWebResourceRequestSourceKind;
+var
+  TempResult : COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS;
+begin
+  if assigned(FBaseIntf2) and
+     succeeded(FBaseIntf2.Get_RequestedSourceKind(TempResult)) then
+    Result := TempResult
+   else
+    Result := COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_NONE;
 end;
 
 procedure TCoreWebView2WebResourceRequestedEventArgs.SetResponse(const aValue : ICoreWebView2WebResourceResponse);
@@ -3825,6 +4253,438 @@ procedure TCoreWebView2LaunchingExternalUriSchemeEventArgs.SetCancel(aValue: boo
 begin
   if Initialized then
     FBaseIntf.Set_Cancel(ord(aValue));
+end;
+
+
+// TCoreWebView2NonClientRegionChangedEventArgs
+
+constructor TCoreWebView2NonClientRegionChangedEventArgs.Create(const aArgs: ICoreWebView2NonClientRegionChangedEventArgs);
+begin
+  inherited Create;
+
+  FBaseIntf := aArgs;
+end;
+
+destructor TCoreWebView2NonClientRegionChangedEventArgs.Destroy;
+begin
+  FBaseIntf := nil;
+
+  inherited Destroy;
+end;
+
+function TCoreWebView2NonClientRegionChangedEventArgs.GetInitialized : boolean;
+begin
+  Result := assigned(FBaseIntf);
+end;
+
+function TCoreWebView2NonClientRegionChangedEventArgs.GetRegionKind : TWVNonClientRegionKind;
+var
+  TempResult : COREWEBVIEW2_NON_CLIENT_REGION_KIND;
+begin
+  Result := COREWEBVIEW2_NON_CLIENT_REGION_KIND_NOWHERE;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_RegionKind(TempResult)) then
+    Result := TempResult;
+end;
+
+
+// TCoreWebView2NotificationReceivedEventArgs
+
+constructor TCoreWebView2NotificationReceivedEventArgs.Create(const aArgs: ICoreWebView2NotificationReceivedEventArgs);
+begin
+  inherited Create;
+
+  FBaseIntf := aArgs;
+end;
+
+destructor TCoreWebView2NotificationReceivedEventArgs.Destroy;
+begin
+  FBaseIntf := nil;
+
+  inherited Destroy;
+end;
+
+function TCoreWebView2NotificationReceivedEventArgs.GetInitialized : boolean;
+begin
+  Result := assigned(FBaseIntf);
+end;
+
+function TCoreWebView2NotificationReceivedEventArgs.GetSenderOrigin : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_SenderOrigin(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2NotificationReceivedEventArgs.GetNotification : ICoreWebView2Notification;
+var
+  TempResult : ICoreWebView2Notification;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_Notification(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+function TCoreWebView2NotificationReceivedEventArgs.GetHandled : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_Handled(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2NotificationReceivedEventArgs.GetDeferral : ICoreWebView2Deferral;
+var
+  TempResult : ICoreWebView2Deferral;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.GetDeferral(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+procedure TCoreWebView2NotificationReceivedEventArgs.SetHandled(aValue: boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_Handled(ord(aValue));
+end;
+
+
+// TCoreWebView2SaveAsUIShowingEventArgs
+
+constructor TCoreWebView2SaveAsUIShowingEventArgs.Create(const aArgs: ICoreWebView2SaveAsUIShowingEventArgs);
+begin
+  inherited Create;
+
+  FBaseIntf := aArgs;
+end;
+
+destructor TCoreWebView2SaveAsUIShowingEventArgs.Destroy;
+begin
+  FBaseIntf := nil;
+
+  inherited Destroy;
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetInitialized : boolean;
+begin
+  Result := assigned(FBaseIntf);
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetContentMimeType : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_ContentMimeType(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetCancel : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_Cancel(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetSuppressDefaultDialog : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_SuppressDefaultDialog(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetDeferral : ICoreWebView2Deferral;
+var
+  TempResult : ICoreWebView2Deferral;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.GetDeferral(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetSaveAsFilePath : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_SaveAsFilePath(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetAllowReplace : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_AllowReplace(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2SaveAsUIShowingEventArgs.GetKind : TWVSaveAsKind;
+var
+  TempResult : COREWEBVIEW2_SAVE_AS_KIND;
+begin
+  Result := COREWEBVIEW2_SAVE_AS_KIND_DEFAULT;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_Kind(TempResult)) then
+    Result := TempResult;
+end;
+
+procedure TCoreWebView2SaveAsUIShowingEventArgs.SetCancel(aValue : boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_Cancel(ord(aValue));
+end;
+
+procedure TCoreWebView2SaveAsUIShowingEventArgs.SetSuppressDefaultDialog(aValue : boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_SuppressDefaultDialog(ord(aValue));
+end;
+
+procedure TCoreWebView2SaveAsUIShowingEventArgs.SetSaveAsFilePath(const aValue : wvstring);
+begin
+  if Initialized then
+    FBaseIntf.Set_SaveAsFilePath(PWideChar(aValue));
+end;
+
+procedure TCoreWebView2SaveAsUIShowingEventArgs.SetAllowReplace(aValue : boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_AllowReplace(ord(aValue));
+end;
+
+procedure TCoreWebView2SaveAsUIShowingEventArgs.SetKind(aValue : TWVSaveAsKind);
+begin
+  if Initialized then
+    FBaseIntf.Set_Kind(aValue);
+end;
+
+
+// TCoreWebView2SaveFileSecurityCheckStartingEventArgs
+
+constructor TCoreWebView2SaveFileSecurityCheckStartingEventArgs.Create(const aArgs: ICoreWebView2SaveFileSecurityCheckStartingEventArgs);
+begin
+  inherited Create;
+
+  FBaseIntf := aArgs;
+end;
+
+destructor TCoreWebView2SaveFileSecurityCheckStartingEventArgs.Destroy;
+begin
+  FBaseIntf := nil;
+
+  inherited Destroy;
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetInitialized : boolean;
+begin
+  Result := assigned(FBaseIntf);
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetCancelSave : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_CancelSave(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetDocumentOriginUri : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_DocumentOriginUri(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetFileExtension : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_FileExtension(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetFilePath : wvstring;
+var
+  TempString : PWideChar;
+begin
+  Result     := '';
+  TempString := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_FilePath(TempString)) then
+    begin
+      Result := TempString;
+      CoTaskMemFree(TempString);
+    end;
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetSuppressDefaultPolicy : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_SuppressDefaultPolicy(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2SaveFileSecurityCheckStartingEventArgs.GetDeferral : ICoreWebView2Deferral;
+var
+  TempResult : ICoreWebView2Deferral;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.GetDeferral(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+procedure TCoreWebView2SaveFileSecurityCheckStartingEventArgs.SetCancelSave(aValue: boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_CancelSave(ord(aValue));
+end;
+
+procedure TCoreWebView2SaveFileSecurityCheckStartingEventArgs.SetSuppressDefaultPolicy(aValue: boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_SuppressDefaultPolicy(ord(aValue));
+end;
+
+
+// TCoreWebView2ScreenCaptureStartingEventArgs
+
+constructor TCoreWebView2ScreenCaptureStartingEventArgs.Create(const aArgs: ICoreWebView2ScreenCaptureStartingEventArgs);
+begin
+  inherited Create;
+
+  FBaseIntf := aArgs;
+end;
+
+destructor TCoreWebView2ScreenCaptureStartingEventArgs.Destroy;
+begin
+  FBaseIntf := nil;
+
+  inherited Destroy;
+end;
+
+function TCoreWebView2ScreenCaptureStartingEventArgs.GetInitialized : boolean;
+begin
+  Result := assigned(FBaseIntf);
+end;
+
+function TCoreWebView2ScreenCaptureStartingEventArgs.GetCancel : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_Cancel(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2ScreenCaptureStartingEventArgs.GetHandled : boolean;
+var
+  TempInt : integer;
+begin
+  Result := Initialized and
+            succeeded(FBaseIntf.Get_Handled(TempInt)) and
+            (TempInt <> 0);
+end;
+
+function TCoreWebView2ScreenCaptureStartingEventArgs.GetCoreWebView2FrameInfo : ICoreWebView2FrameInfo;
+var
+  TempResult : ICoreWebView2FrameInfo;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.Get_OriginalSourceFrameInfo(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+function TCoreWebView2ScreenCaptureStartingEventArgs.GetDeferral : ICoreWebView2Deferral;
+var
+  TempResult : ICoreWebView2Deferral;
+begin
+  Result     := nil;
+  TempResult := nil;
+
+  if Initialized and
+     succeeded(FBaseIntf.GetDeferral(TempResult)) and
+     (TempResult <> nil) then
+    Result := TempResult;
+end;
+
+procedure TCoreWebView2ScreenCaptureStartingEventArgs.SetCancel(aValue : boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_Cancel(ord(aValue));
+end;
+
+procedure TCoreWebView2ScreenCaptureStartingEventArgs.SetHandled(aValue : boolean);
+begin
+  if Initialized then
+    FBaseIntf.Set_Handled(ord(aValue));
 end;
 
 end.

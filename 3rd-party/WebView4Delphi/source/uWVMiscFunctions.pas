@@ -71,6 +71,10 @@ const
   {$ENDIF}
 {$ENDIF}
 
+{$IFNDEF FPC}{$IFNDEF DELPHI7_UP}
+function PosEx(const SubStr, S: string; Offset: Cardinal = 1): Integer;
+{$ENDIF}{$ENDIF}
+
 implementation
 
 uses
@@ -166,11 +170,14 @@ begin
 end;
 
 function ControllerOptionsCreationErrorToString(aErrorCode : HRESULT) : wvstring;
+const
+  UI_E_WRONG_THREAD = HRESULT($802A000C);
 begin
   case aErrorCode of
-    E_INVALIDARG : Result := 'Invalid profile name.';
-    E_NOTIMPL    : Result := 'Not implemented.';  // This error code is not documented. It's caused by an outdated WebView2 Runtime installation.
-    else           Result := 'Unexpected error result.';
+    E_INVALIDARG      : Result := 'Invalid profile name.';
+    E_NOTIMPL         : Result := 'Not implemented.';  // This error code is not documented. It's caused by an outdated WebView2 Runtime installation.
+    UI_E_WRONG_THREAD : Result := 'This method can only be called from the thread that created the object.';
+    else                Result := 'Unexpected error result.';
   end;
 end;
 
@@ -221,7 +228,7 @@ end;
 procedure OutputDebugMessage(const aMessage : string);
 begin
   {$IFDEF DEBUG}
-  OutputDebugString({$IFNDEF DELPHI16_UP}PAnsiChar{$ELSE}PWideChar{$ENDIF}(aMessage + #0));
+  OutputDebugString({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(aMessage + #0));
   {$ENDIF}
 end;
 
@@ -704,5 +711,21 @@ begin
           inc(i);
         end;
 end;
+
+{$IFNDEF FPC}{$IFNDEF DELPHI7_UP}
+function PosEx(const SubStr, S: string; Offset: Cardinal = 1): Integer;
+var
+  TempString : string;
+begin
+  if Offset <= 1 then
+    Result := Pos(SubStr, S)
+   else
+    begin
+      TempString := copy(S, Offset, length(S));
+      Result     := Pos(SubStr, TempString);
+      if (Result > 0) then inc(Result, Offset - 1);
+    end;
+end;
+{$ENDIF}{$ENDIF}
 
 end.

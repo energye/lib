@@ -38,11 +38,13 @@ type
       FCheckFiles                             : boolean;
       FShowMessageDlg                         : boolean;
       FInitCOMLibrary                         : boolean;
+      FLocalCOMInitMade                       : boolean;
       FDeviceScaleFactor                      : single;
       FForcedDeviceScaleFactor                : single;
       FReRaiseExceptions                      : boolean;
       FLoaderDllPath                          : wvstring;
       FUseInternalLoader                      : boolean;
+      FAllowOldRuntime                        : boolean;
 
       // Fields used to create the environment
       FAdditionalBrowserArguments             : wvstring;
@@ -53,6 +55,9 @@ type
       FCustomCrashReportingEnabled            : boolean;
       FEnableTrackingPrevention               : boolean;
       FAreBrowserExtensionsEnabled            : boolean;
+      FChannelSearchKind                      : TWVChannelSearchKind;
+      FReleaseChannels                        : TWVReleaseChannels;
+      FScrollBarStyle                         : TWVScrollBarStyle;
 
       // Fields used to set command line switches
       FEnableGPU                              : boolean;
@@ -83,10 +88,16 @@ type
       FJavaScriptFlags                        : wvstring;
       FDisableEdgePitchNotification           : boolean;
       FTreatInsecureOriginAsSecure            : wvstring;
+      FOpenOfficeDocumentsInWebViewer         : boolean;
+      FMicrosoftSignIn                        : boolean;
+      FPostQuantumKyber                       : TWVState;
+      FUserAgent                              : wvstring;
 
       FAutoAcceptCamAndMicCapture             : boolean;
 
+      function  GetInternalAvailableBrowserVersion : wvstring;
       function  GetAvailableBrowserVersion : wvstring;
+      function  GetAvailableBrowserVersionWithOptions : wvstring;
       function  GetInitialized : boolean;
       function  GetInitializationError : boolean;
       function  GetEnvironmentIsInitialized : boolean;
@@ -127,7 +138,7 @@ type
       procedure doProcessInfosChangedEvent(const sender: ICoreWebView2Environment); virtual;
       procedure doOnGetCustomSchemes(var aSchemeRegistrations : TWVCustomSchemeRegistrationArray); virtual;
 
-      function  EnvironmentCompletedHandler_Invoke(errorCode: HResult; const createdEnvironment: ICoreWebView2Environment): HRESULT;
+      function  EnvironmentCompletedHandler_Invoke(errorCode: HResult; const result_: ICoreWebView2Environment): HRESULT;
       function  NewBrowserVersionAvailableEventHandler_Invoke(const sender: ICoreWebView2Environment; const args: IUnknown): HRESULT;
       function  BrowserProcessExitedEventHandler_Invoke(const sender: ICoreWebView2Environment; const args: ICoreWebView2BrowserProcessExitedEventArgs): HRESULT;
       function  ProcessInfosChangedEventHandler_Invoke(const sender: ICoreWebView2Environment; const args: IUnknown): HRESULT;
@@ -182,9 +193,15 @@ type
       property Status                                 : TWV2LoaderStatus                   read FStatus;
       /// <summary>
       /// Get the browser version info including channel name if it is not the
-      /// WebView2 Runtime.  Channel names are Beta, Dev, and Canary.
+      /// WebView2 Runtime. Channel names are Beta, Dev, and Canary.
       /// </summary>
       property AvailableBrowserVersion                : wvstring                           read GetAvailableBrowserVersion;
+      /// <summary>
+      /// Get the browser version info of the release channel used when creating
+      /// an environment with the same options. Channel names are Beta, Dev, and
+      /// Canary.
+      /// </summary>
+      property AvailableBrowserVersionWithOptions     : wvstring                           read GetAvailableBrowserVersionWithOptions;
       /// <summary>
       /// Returns all the text appended to the error log with AppendErrorLog.
       /// </summary>
@@ -244,6 +261,10 @@ type
       /// <para><see href="https://github.com/jchv/OpenWebView2Loader">See the OpenWebView2Loader project repository at GitHub.</see></para>
       /// </remarks>
       property UseInternalLoader                      : boolean                            read FUseInternalLoader                       write FUseInternalLoader;
+      /// <summary>
+      /// Allow using old WebView2 Runtime versions.
+      /// </summary>
+      property AllowOldRuntime                        : boolean                            read FAllowOldRuntime                         write FAllowOldRuntime;
       /// <summary>
       /// <para>Use BrowserExecPath to specify whether WebView2 controls use a fixed or
       /// installed version of the WebView2 Runtime that exists on a user machine.
@@ -350,6 +371,88 @@ type
       /// </remarks>
       property AreBrowserExtensionsEnabled            : boolean                            read FAreBrowserExtensionsEnabled             write FAreBrowserExtensionsEnabled;
       /// <summary>
+      /// <para>The `ChannelSearchKind` property is `COREWEBVIEW2_CHANNEL_SEARCH_KIND_MOST_STABLE`
+      /// by default; environment creation searches for a release channel on the machine
+      /// from most to least stable using the first channel found. The default search order is:
+      /// WebView2 Runtime -&gt; Beta -&gt; Dev -&gt; Canary. Set `ChannelSearchKind` to
+      /// `COREWEBVIEW2_CHANNEL_SEARCH_KIND_LEAST_STABLE` to reverse the search order
+      /// so that environment creation searches for a channel from least to most stable. If
+      /// `ReleaseChannels` has been provided, the loader will only search
+      /// for channels in the set. See `COREWEBVIEW2_RELEASE_CHANNELS` for more details
+      /// on channels.</para>
+      /// <para>This property can be overridden by the corresponding
+      /// registry key `ChannelSearchKind` or the environment variable
+      /// `WEBVIEW2_CHANNEL_SEARCH_KIND`. Set the value to `1` to set the search kind to
+      /// `COREWEBVIEW2_CHANNEL_SEARCH_KIND_LEAST_STABLE`. See
+      /// `CreateCoreWebView2EnvironmentWithOptions` for more details on overrides.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para>Property used to create the environment. Used as ICoreWebView2EnvironmentOptions7.Get_ChannelSearchKind.</para>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2environmentoptions7">See the ICoreWebView2EnvironmentOptions7 article.</see></para>
+      /// </remarks>
+      property ChannelSearchKind                      : TWVChannelSearchKind               read FChannelSearchKind                       write FChannelSearchKind;
+      /// <summary>
+      /// <para>Sets the `ReleaseChannels`, which is a mask of one or more
+      /// `COREWEBVIEW2_RELEASE_CHANNELS` indicating which channels environment
+      /// creation should search for. OR operation(s) can be applied to multiple
+      /// `COREWEBVIEW2_RELEASE_CHANNELS` to create a mask. The default value is a
+      /// a mask of all the channels. By default, environment creation searches for
+      /// channels from most to least stable, using the first channel found on the
+      /// device. When `ReleaseChannels` is provided, environment creation will only
+      /// search for the channels specified in the set. Set `ChannelSearchKind` to
+      /// `COREWEBVIEW2_CHANNEL_SEARCH_KIND_LEAST_STABLE` to reverse the search order
+      /// so environment creation searches for least stable build first. See
+      /// `COREWEBVIEW2_RELEASE_CHANNELS` for descriptions of each channel.</para>
+      /// <para>`CreateCoreWebView2EnvironmentWithOptions` fails with
+      /// `HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND)` if environment creation is unable
+      /// to find any channel from the `ReleaseChannels` installed on the device.
+      /// Use `GetAvailableCoreWebView2BrowserVersionStringWithOptions` on
+      /// `ICoreWebView2Environment` to verify which channel is used when this option
+      /// is set.</para>
+      /// Examples:
+      /// <code>
+      /// |   ReleaseChannels   |   Channel Search Kind: Most Stable (default)   |   Channel Search Kind: Least Stable   |
+      /// | --- | --- | --- |
+      /// |COREWEBVIEW2_RELEASE_CHANNELS_BETA \| COREWEBVIEW2_RELEASE_CHANNELS_STABLE| WebView2 Runtime -&gt; Beta | Beta -&gt; WebView2 Runtime|
+      /// |COREWEBVIEW2_RELEASE_CHANNELS_CANARY \| COREWEBVIEW2_RELEASE_CHANNELS_DEV \| COREWEBVIEW2_RELEASE_CHANNELS_BETA \| COREWEBVIEW2_RELEASE_CHANNELS_STABLE| WebView2 Runtime -&gt; Beta -&gt; Dev -&gt; Canary | Canary -&gt; Dev -&gt; Beta -&gt; WebView2 Runtime |
+      /// |COREWEBVIEW2_RELEASE_CHANNELS_CANARY| Canary | Canary |
+      /// |COREWEBVIEW2_RELEASE_CHANNELS_BETA \| COREWEBVIEW2_RELEASE_CHANNELS_CANARY \| COREWEBVIEW2_RELEASE_CHANNELS_STABLE | WebView2 Runtime -&gt; Beta -&gt; Canary | Canary -&gt; Beta -&gt; WebView2 Runtime |
+      /// </code>
+      /// <para>If both `BrowserExecutableFolder` and `ReleaseChannels` are provided, the
+      /// `BrowserExecutableFolder` takes precedence, regardless of whether or not the
+      /// channel of `BrowserExecutableFolder` is included in the `ReleaseChannels`.</para>
+      /// <para>`ReleaseChannels` can be overridden by the corresponding registry override
+      /// `ReleaseChannels` or the environment variable `WEBVIEW2_RELEASE_CHANNELS`.</para>
+      /// <para>Set the value to a comma-separated string of integers, which map to the
+      /// following release channel values: Stable (0), Beta (1), Dev (2), and
+      /// Canary (3). For example, the values "0,2" and "2,0" indicate that environment
+      /// creation should only search for Dev channel and the WebView2 Runtime, using the
+      /// order indicated by `ChannelSearchKind`. Environment creation attempts to
+      /// interpret each integer and treats any invalid entry as Stable channel. See
+      /// `CreateCoreWebView2EnvironmentWithOptions` for more details on overrides.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para>Property used to create the environment. Used as ICoreWebView2EnvironmentOptions7.Get_ReleaseChannels.</para>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2environmentoptions7">See the ICoreWebView2EnvironmentOptions7 article.</see></para>
+      /// </remarks>
+      property ReleaseChannels                        : TWVReleaseChannels                 read FReleaseChannels                         write FReleaseChannels;
+      /// <summary>
+      /// <para>The ScrollBar style being set on the WebView2 Environment.</para>
+      /// <para>The default value is `COREWEBVIEW2_SCROLLBAR_STYLE_DEFAULT`
+      /// which specifies the default browser ScrollBar style.</para>
+      /// <para>The `color-scheme` CSS property needs to be set on the corresponding page
+      /// to allow ScrollBar to follow light or dark theme. Please see
+      /// [color-scheme](https://developer.mozilla.org/docs/Web/CSS/color-scheme#declaring_color_scheme_preferences)
+      /// for how `color-scheme` can be set.</para>
+      /// <para>CSS styles that modify the ScrollBar applied on top of native ScrollBar styling
+      /// that is selected with `ScrollBarStyle`.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para>Property used to create the environment. Used as ICoreWebView2EnvironmentOptions8.Get_ScrollBarStyle.</para>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2environmentoptions8">See the ICoreWebView2EnvironmentOptions8 article.</see></para>
+      /// </remarks>
+      property ScrollBarStyle                         : TWVScrollBarStyle                  read FScrollBarStyle                          write FScrollBarStyle;
+      /// <summary>
       /// Enable GPU hardware acceleration.
       /// </summary>
       /// <remarks>
@@ -362,6 +465,7 @@ type
       /// </summary>
       /// <remarks>
       /// <para><see href="https://peter.sh/experiments/chromium-command-line-switches/">Uses the following command line switch: --enable-features</see></para>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/webview-features-flags">See the WebView2 browser flags article.</see></para>
       /// <para>The list of features you can enable is here:</para>
       /// <para>https://chromium.googlesource.com/chromium/src/+/master/chrome/common/chrome_features.cc</para>
       /// <para>https://source.chromium.org/chromium/chromium/src/+/main:content/public/common/content_features.cc</para>
@@ -593,6 +697,30 @@ type
       /// </remarks>
       property TreatInsecureOriginAsSecure            : wvstring                           read FTreatInsecureOriginAsSecure             write FTreatInsecureOriginAsSecure;
       /// <summary>
+      /// <para>Enable the MS Office file viewer in the browser.</para>
+      /// <para>This is a workaround given by Microsoft to open MS Office documents in the web browser instead of downloading the files.</para>
+      /// </summary>
+      property OpenOfficeDocumentsInWebViewer         : boolean                            read FOpenOfficeDocumentsInWebViewer          write FOpenOfficeDocumentsInWebViewer;
+      /// <summary>
+      /// If enabled, allows implicit sign-in to Microsoft webpages using any account, by using the information from the primary OS account.
+      /// </summary>
+      /// <remarks>
+      /// <para>This property uses the msSingleSignOnOSForPrimaryAccountIsShared flag.</para>
+      /// <para><see href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/webview-features-flags">See the WebView2 browser flags article.</see></para>
+      /// </remarks>
+      property MicrosoftSignIn                        : boolean                            read FMicrosoftSignIn                         write FMicrosoftSignIn;
+      /// <summary>
+      /// This option enables a combination of X25519 and Kyber in TLS 1.3.
+      /// </summary>
+      property TLS13HybridizedKyberSupport            : TWVState                           read FPostQuantumKyber                        write FPostQuantumKyber;
+      /// <summary>
+      /// A string used to override the default user agent with a custom one.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://peter.sh/experiments/chromium-command-line-switches/">Uses the following command line switch: --user-agent</see></para>
+      /// </remarks>
+      property UserAgent                              : wvstring                           read FUserAgent                               write FUserAgent;
+      /// <summary>
       /// Bypasses the dialog prompting the user for permission to capture cameras and microphones.
       /// Useful in automatic tests of video-conferencing Web applications. This is nearly
       /// identical to kUseFakeUIForMediaStream, with the exception being that this flag does NOT
@@ -763,10 +891,12 @@ begin
   FCheckFiles                             := True;
   FShowMessageDlg                         := True;
   FInitCOMLibrary                         := {$IFDEF DELPHI16_UP}False{$ELSE}True{$ENDIF};
+  FLocalCOMInitMade                       := False;
   FForcedDeviceScaleFactor                := 0;
   FReRaiseExceptions                      := False;
   FLoaderDllPath                          := '';
   FUseInternalLoader                      := False;
+  FAllowOldRuntime                        := True;
   FRemoteDebuggingPort                    := 0;
   FRemoteAllowOrigins                     := '';
 
@@ -781,6 +911,12 @@ begin
   FCustomCrashReportingEnabled            := False;
   FEnableTrackingPrevention               := True;
   FAreBrowserExtensionsEnabled            := False;
+  FChannelSearchKind                      := COREWEBVIEW2_CHANNEL_SEARCH_KIND_MOST_STABLE;
+  FReleaseChannels                        := COREWEBVIEW2_RELEASE_CHANNELS_STABLE or
+                                             COREWEBVIEW2_RELEASE_CHANNELS_BETA or
+                                             COREWEBVIEW2_RELEASE_CHANNELS_DEV or
+                                             COREWEBVIEW2_RELEASE_CHANNELS_CANARY;
+  FScrollBarStyle                         := COREWEBVIEW2_SCROLLBAR_STYLE_DEFAULT;
 
   // Fields used to set command line switches
   FEnableGPU                              := True;
@@ -808,7 +944,11 @@ begin
   FJavaScriptFlags                        := '';
   FDisableEdgePitchNotification           := True;
   FTreatInsecureOriginAsSecure            := '';
+  FOpenOfficeDocumentsInWebViewer         := False;
   FAutoAcceptCamAndMicCapture             := False;
+  FMicrosoftSignIn                        := False;
+  FPostQuantumKyber                       := STATE_DEFAULT;
+  FUserAgent                              := '';
   FProxySettings                          := nil;
   FErrorLog                               := nil;
 
@@ -821,7 +961,7 @@ begin
     DestroyEnvironment;
     UnLoadWebView2Library;
 
-    if FInitCOMLibrary then
+    if FLocalCOMInitMade then
       CoUnInitialize;
 
     if assigned(FProxySettings) then
@@ -1123,7 +1263,8 @@ begin
   if (length(FBrowserExecPath) = 0) then
     begin
       if (length(InstalledRuntimeVersion) > 0) or
-         SearchInstalledProgram('WebView2 Runtime', 'Microsoft Corporation') then
+         SearchInstalledProgram('WebView2 Runtime', 'Microsoft Corporation') or
+         (length(GetInternalAvailableBrowserVersion) > 0) then
         Result := True
        else
         begin
@@ -1170,7 +1311,14 @@ begin
       Result := True;
 
   if not(Result) then
-    AppendErrorLog('The WebView Runtime version is older than expected! Some WebView4Delphi features won'+ #39 + 't work.');
+    begin
+      AppendErrorLog('The WebView Runtime version is older than expected! Some WebView4Delphi features won' + #39 + 't work.');
+
+      if FAllowOldRuntime then
+        Result  := True
+       else
+        FStatus := wvlsError;
+    end;
 end;
 
 function TWVLoader.Is32BitProcess : boolean;
@@ -1254,17 +1402,19 @@ begin
    else
     begin
       FStatus := wvlsError;
-      AppendErrorLog('Unsupported WebView2Loader.dll version !');
 
       if GetFileVersion(TempLoaderLibPath, TempVersionInfo) then
         begin
+          AppendErrorLog('Unsupported WebView2Loader.dll version !');
           AppendErrorLog('Expected WebView2Loader.dll version : ' + LowestLoaderDLLVersion);
           AppendErrorLog('Found WebView2Loader.dll version : ' +
                          IntToStr(TempVersionInfo.MajorVer) + '.' +
                          IntToStr(TempVersionInfo.MinorVer) + '.' +
                          IntToStr(TempVersionInfo.Release)  + '.' +
                          IntToStr(TempVersionInfo.Build));
-        end;
+        end
+       else
+        AppendErrorLog('WebView2Loader.dll file not found !');
 
       ShowErrorMessageDlg(ErrorMessage);
     end;
@@ -1376,26 +1526,29 @@ begin
 
   if FUseInternalLoader then
     begin
-      CreateCoreWebView2EnvironmentWithOptions     := Internal_CreateCoreWebView2EnvironmentWithOptions;
-      CreateCoreWebView2Environment                := Internal_CreateCoreWebView2Environment;
-      GetAvailableCoreWebView2BrowserVersionString := Internal_GetAvailableCoreWebView2BrowserVersionString;
-      CompareBrowserVersions                       := Internal_CompareBrowserVersions;
+      CreateCoreWebView2EnvironmentWithOptions                := Internal_CreateCoreWebView2EnvironmentWithOptions;
+      CreateCoreWebView2Environment                           := Internal_CreateCoreWebView2Environment;
+      GetAvailableCoreWebView2BrowserVersionString            := Internal_GetAvailableCoreWebView2BrowserVersionString;
+      GetAvailableCoreWebView2BrowserVersionStringWithOptions := Internal_GetAvailableCoreWebView2BrowserVersionStringWithOptions;
+      CompareBrowserVersions                                  := Internal_CompareBrowserVersions;
       FStatus := wvlsImported;
-      Result := True;
+      Result  := True;
     end
    else
     if (FLibHandle <> 0) then
       try
         begin
-          CreateCoreWebView2EnvironmentWithOptions      := GetProcAddress(FLibHandle, 'CreateCoreWebView2EnvironmentWithOptions');
-          CreateCoreWebView2Environment                 := GetProcAddress(FLibHandle, 'CreateCoreWebView2Environment');
-          GetAvailableCoreWebView2BrowserVersionString  := GetProcAddress(FLibHandle, 'GetAvailableCoreWebView2BrowserVersionString');
-          CompareBrowserVersions                        := GetProcAddress(FLibHandle, 'CompareBrowserVersions');
+          CreateCoreWebView2EnvironmentWithOptions                := GetProcAddress(FLibHandle, 'CreateCoreWebView2EnvironmentWithOptions');
+          CreateCoreWebView2Environment                           := GetProcAddress(FLibHandle, 'CreateCoreWebView2Environment');
+          GetAvailableCoreWebView2BrowserVersionString            := GetProcAddress(FLibHandle, 'GetAvailableCoreWebView2BrowserVersionString');
+          GetAvailableCoreWebView2BrowserVersionStringWithOptions := GetProcAddress(FLibHandle, 'GetAvailableCoreWebView2BrowserVersionStringWithOptions');
+          CompareBrowserVersions                                  := GetProcAddress(FLibHandle, 'CompareBrowserVersions');
 
-          if assigned(CreateCoreWebView2EnvironmentWithOptions)     and
-             assigned(CreateCoreWebView2Environment)                and
-             assigned(GetAvailableCoreWebView2BrowserVersionString) and
-             assigned(CompareBrowserVersions)                       then
+          if assigned(CreateCoreWebView2EnvironmentWithOptions)                and
+             assigned(CreateCoreWebView2Environment)                           and
+             assigned(GetAvailableCoreWebView2BrowserVersionString)            and
+             assigned(GetAvailableCoreWebView2BrowserVersionStringWithOptions) and
+             assigned(CompareBrowserVersions)                                  then
             begin
               Result  := True;
               FStatus := wvlsImported;
@@ -1412,15 +1565,16 @@ begin
         on e : exception do
           if CustomExceptionHandler('TWVLoader.LoadLibProcedures', e) then raise;
       end;
-
-  if Result then
-    CheckWebViewRuntimeVersion;
 end;
 
 function TWVLoader.GetCustomCommandLineSwitches : wvstring;
 var
   TempFeatures : wvstring;
+  {$IFDEF VER140}
+  TempDecimalSeparator : char;  // Only for Delphi 6
+  {$ELSE}
   TempFormatSettings : TFormatSettings;
+  {$ENDIF}
 begin
   if not(FEnableGPU) then
     Result := '--disable-gpu --disable-gpu-compositing ';
@@ -1429,8 +1583,35 @@ begin
   // https://chromium.googlesource.com/chromium/src/+/master/chrome/common/chrome_features.cc
   // https://source.chromium.org/chromium/chromium/src/+/main:content/public/common/content_features.cc
   // https://source.chromium.org/search?q=base::Feature
-  if (length(FEnableFeatures) > 0) then
-    Result := Result + '--enable-features=' + FEnableFeatures + ' ';
+  TempFeatures := FEnableFeatures;
+
+  // This is a workaround given by Microsoft to open MS Office documents in the web browser instead of downloading the files.
+  if FOpenOfficeDocumentsInWebViewer then
+    begin
+      if (length(TempFeatures) > 0) then
+        TempFeatures := TempFeatures + ',msOpenOfficeDocumentsInWebViewer'
+       else
+        TempFeatures := 'msOpenOfficeDocumentsInWebViewer';
+    end;
+
+  if FMicrosoftSignIn then
+    begin
+      if (length(TempFeatures) > 0) then
+        TempFeatures := TempFeatures + ',msSingleSignOnOSForPrimaryAccountIsShared'
+       else
+        TempFeatures := 'msSingleSignOnOSForPrimaryAccountIsShared';
+    end;
+
+  if (FPostQuantumKyber = STATE_ENABLED) then
+    begin
+      if (length(TempFeatures) > 0) then
+        TempFeatures := TempFeatures + ',PostQuantumKyber'
+       else
+        TempFeatures := 'PostQuantumKyber';
+    end;
+
+  if (length(TempFeatures) > 0) then
+    Result := Result + '--enable-features=' + TempFeatures + ' ';
 
   // The list of features you can disable is here :
   // https://chromium.googlesource.com/chromium/src/+/master/chrome/common/chrome_features.cc
@@ -1454,6 +1635,14 @@ begin
         TempFeatures := TempFeatures + ',msEdgeRose'
        else
         TempFeatures := 'msEdgeRose';
+    end;
+
+  if (FPostQuantumKyber = STATE_DISABLED) then
+    begin
+      if (length(TempFeatures) > 0) then
+        TempFeatures := TempFeatures + ',PostQuantumKyber'
+       else
+        TempFeatures := 'PostQuantumKyber';
     end;
 
   if (length(TempFeatures) > 0) then
@@ -1544,13 +1733,16 @@ begin
 
   if (FForcedDeviceScaleFactor <> 0) then
     begin
-      TempFormatSettings.DecimalSeparator := '.';
-      Result := Result + '--force-device-scale-factor=' +
-        {$IFDEF FPC}
-        UTF8Decode(FloatToStr(FForcedDeviceScaleFactor, TempFormatSettings)) + ' ';
-        {$ELSE}
-        FloatToStr(FForcedDeviceScaleFactor, TempFormatSettings) + ' ';
-        {$ENDIF}
+      {$IFDEF VER140}         // Only for Delphi 6
+        TempDecimalSeparator := DecimalSeparator;
+        DecimalSeparator     := '.';
+        Result := Result + '--force-device-scale-factor=' + FloatToStr(FForcedDeviceScaleFactor) + ' ';
+        DecimalSeparator     := TempDecimalSeparator;
+      {$ELSE}
+        TempFormatSettings.DecimalSeparator := '.';
+        Result := Result + '--force-device-scale-factor=' +
+          {$IFDEF FPC}UTF8Decode({$ENDIF}FloatToStr(FForcedDeviceScaleFactor, TempFormatSettings){$IFDEF FPC}){$ENDIF} + ' ';
+      {$ENDIF}
     end;
 
   if (FRemoteDebuggingPort > 0) then
@@ -1582,6 +1774,9 @@ begin
   // https://chromium.googlesource.com/v8/v8/+/master/src/flags/flag-definitions.h
   if (length(FJavaScriptFlags) > 0) then
     Result := Result + '--js-flags="' + FJavaScriptFlags + '" ';
+
+  if (length(FUserAgent) > 0) then
+    Result := Result + '--user-agent="' + FUserAgent + '" ';
 
   if (length(FAdditionalBrowserArguments) > 0) then
     Result := Result + FAdditionalBrowserArguments
@@ -1686,7 +1881,10 @@ begin
                                                               FCustomCrashReportingEnabled,
                                                               TempSchemeRegistrations,
                                                               FEnableTrackingPrevention,
-                                                              FAreBrowserExtensionsEnabled);
+                                                              FAreBrowserExtensionsEnabled,
+                                                              FChannelSearchKind,
+                                                              FReleaseChannels,
+                                                              FScrollBarStyle);
 
         TempHResult := CreateCoreWebView2EnvironmentWithOptions(PWideChar(FBrowserExecPath),
                                                                 PWideChar(FUserDataFolder),
@@ -1796,6 +1994,69 @@ begin
     end;
 end;
 
+function TWVLoader.GetInternalAvailableBrowserVersion : wvstring;
+var
+  TempVersion : PWideChar;
+begin
+  Result      := '';
+  TempVersion := nil;
+
+  if succeeded(Internal_GetAvailableCoreWebView2BrowserVersionString(PWideChar(FBrowserExecPath), @TempVersion)) and
+     assigned(TempVersion) then
+    begin
+      Result := TempVersion;
+      CoTaskMemFree(TempVersion);
+    end;
+end;
+
+function TWVLoader.GetAvailableBrowserVersionWithOptions : wvstring;
+var
+  TempVersion : PWideChar;
+  TempOptions : ICoreWebView2EnvironmentOptions;
+  TempSchemeRegistrations : TWVCustomSchemeRegistrationArray;
+  i : integer;
+begin
+  Result      := '';
+  TempVersion := nil;
+  TempOptions := nil;
+  TempSchemeRegistrations := nil;
+
+  if Initialized then
+    try
+      TempOptions := TCoreWebView2EnvironmentOptions.Create(CustomCommandLineSwitches,
+                                                            FLanguage,
+                                                            FTargetCompatibleBrowserVersion,
+                                                            FAllowSingleSignOnUsingOSPrimaryAccount,
+                                                            FExclusiveUserDataFolderAccess,
+                                                            FCustomCrashReportingEnabled,
+                                                            TempSchemeRegistrations,
+                                                            FEnableTrackingPrevention,
+                                                            FAreBrowserExtensionsEnabled,
+                                                            FChannelSearchKind,
+                                                            FReleaseChannels,
+                                                            FScrollBarStyle);
+
+      if succeeded(GetAvailableCoreWebView2BrowserVersionStringWithOptions(PWideChar(FBrowserExecPath), TempOptions, @TempVersion)) and
+         assigned(TempVersion) then
+        begin
+          Result := TempVersion;
+          CoTaskMemFree(TempVersion);
+        end;
+    finally
+      TempOptions := nil;
+
+      if assigned(TempSchemeRegistrations) then
+        begin
+          i := pred(length(TempSchemeRegistrations));
+          while (i >= 0) do
+            begin
+              TempSchemeRegistrations[i] := nil;
+              dec(i);
+            end;
+        end;
+    end;
+end;
+
 function TWVLoader.CompareVersions(const aVersion1, aVersion2 : wvstring; var aCompRslt : integer) : boolean;
 begin
   aCompRslt := 0;
@@ -1820,25 +2081,52 @@ end;
 
 function TWVLoader.StartWebView2 : boolean;
 begin
-  if FInitCOMLibrary then
-    CoInitializeEx(nil, COINIT_APARTMENTTHREADED);
+  Result := False;
 
-  Result := CheckWV2Library     and
-            LoadWebView2Library and
-            LoadLibProcedures   and
+  if FInitCOMLibrary and not(FLocalCOMInitMade) then
+    begin
+      case CoInitializeEx(nil, COINIT_APARTMENTTHREADED) of
+        S_OK, S_FALSE      :
+          begin
+            // To uninitialize the COM library gracefully on a thread, each
+            // successful call to CoInitialize or CoInitializeEx, including any
+            // call that returns S_FALSE, must be balanced by a corresponding
+            // call to CoUninitialize.
+            FLocalCOMInitMade := True;
+            Result            := True;
+          end;
+
+        RPC_E_CHANGED_MODE : AppendErrorLog('A previous call to CoInitializeEx specified an incompatible concurrency model for this thread.');
+        E_INVALIDARG       : AppendErrorLog('CoInitializeEx failed. One or more arguments are not valid.');
+        E_OUTOFMEMORY      : AppendErrorLog('CoInitializeEx failed to allocate necessary memory.');
+        E_UNEXPECTED       : AppendErrorLog('Unexpected CoInitializeEx failure.');
+        else                 AppendErrorLog('Unknown CoInitializeEx failure.');
+      end;
+
+      if not(Result) then
+        begin
+          ShowErrorMessageDlg(ErrorMessage);
+          exit;
+        end;
+    end;
+
+  Result := CheckWV2Library            and
+            LoadWebView2Library        and
+            LoadLibProcedures          and
+            CheckWebViewRuntimeVersion and
             CreateEnvironment;
 end;
 
-function TWVLoader.EnvironmentCompletedHandler_Invoke(      errorCode          : HResult;
-                                                      const createdEnvironment : ICoreWebView2Environment) : HRESULT;
+function TWVLoader.EnvironmentCompletedHandler_Invoke(      errorCode : HResult;
+                                                      const result_   : ICoreWebView2Environment) : HRESULT;
 begin
   Result := S_OK;
 
-  if succeeded(errorCode) and assigned(createdEnvironment) then
+  if succeeded(errorCode) and assigned(result_) then
     begin
       DestroyEnvironment;
 
-      FCoreWebView2Environment := TCoreWebView2Environment.Create(createdEnvironment);
+      FCoreWebView2Environment := TCoreWebView2Environment.Create(result_);
       FCoreWebView2Environment.AddAllLoaderEvents(self);
 
       FStatus := wvlsInitialized;
