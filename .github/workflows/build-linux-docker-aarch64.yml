@@ -7,7 +7,7 @@ on:
 #      - 'v*.*.*'
 
 jobs:
-  linux-amd64:
+  linux-arm64:
     runs-on: ${{ matrix.operating-system }}
     name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
 
@@ -16,8 +16,8 @@ jobs:
         operating-system: [ ubuntu-latest ]
         lazarus-versions: [ 3.6 ]
         include:
-          - arch: aarch64
-            distro: bullseye # 使用 debian:11
+          - arch: arm64v8
+            distro: ubuntu:18.04
 
     steps:
       - uses: actions/checkout@v4
@@ -27,15 +27,15 @@ jobs:
         with:
           lazarus-version: ${{ matrix.lazarus-versions }}
           source-install: true
-          os-arch: ${{ matrix.arch }}
+          os-arch: aarch64
 
       - name: Container Build Lazarus
         uses: uraimo/run-on-arch-action@v2
         id: build
         with:
-          arch: ${{ matrix.arch }}
-          distro: ${{ matrix.distro }}
-          # base_image: arm64v8/debian:bullseye Dockerfile.aarch64.bullseye
+          arch: none
+          distro: none
+          base_image: ${{ matrix.arch }}/${{ matrix.distro }}
 
           # 不需要，但可加快构建速度
           githubToken: ${{ github.token }}
