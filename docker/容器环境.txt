@@ -1,5 +1,12 @@
-
 环境准备：
+
+// lazarus source, tar.gz
+https://sourceforge.net/projects/lazarus/files/Lazarus%20Zip%20_%20GZip/Lazarus%20${this._LazarusVersion}/${lazFilename}
+// fcp, tar
+https://sourceforge.net/projects/freepascal/files/Linux/${fpcVersion}/${fpcFilename}
+// fpc source, tar.gz
+https://sourceforge.net/projects/freepascal/files/Source/${fpcVersion}/${fpcsrcFilename}
+
 1. 安装好环境依赖的 docker image 镜像
 2. lazarus, fpc编译工具和fpc源码
 	lazarus-3.6-0.tar.gz
