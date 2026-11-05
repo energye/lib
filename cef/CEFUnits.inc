@@ -10,6 +10,7 @@
 //{$DEFINE CEF109} // test
 //{$DEFINE CEF127} // test
 //{$DEFINE CEF147} // test
+//{$DEFINE CEF150} // test
 
 {$IFDEF CEF109}
 {$DEFINE CEF}
@@ -24,4 +25,9 @@
 {$IFDEF CEF147}
 {$DEFINE CEF}
 ,{$I ./147/CEFUnit.inc} // 147.0.14
+{$ENDIF}
+
+{$IFDEF CEF150}
+{$DEFINE CEF}
+,{$I ./150/CEFUnit.inc} // 150.0.14
 {$ENDIF}

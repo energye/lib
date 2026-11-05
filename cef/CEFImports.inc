@@ -25,3 +25,8 @@
 {$I ./147/cef.inc}
 {$I ./147/CEFImport.inc}
 {$ENDIF}
+
+{$IFDEF CEF150}
+{$I ./150/cef.inc}
+{$I ./150/CEFImport.inc}
+{$ENDIF}
