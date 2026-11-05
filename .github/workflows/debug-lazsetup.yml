@@ -64,8 +64,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache toolchain downloads
-        uses: actions/cache@v4
+      - name: Show dispatch inputs
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.cache/lazsetup"
+          echo "runner=${{ inputs.runner }} lazarus=${{ inputs.lazarus }} target=${{ inputs.target_os }}/${{ inputs.target_arch }} mode='${{ inputs.mode }}'"
+          echo "setup=${{ inputs.run_setup }} build=${{ inputs.run_build }} no_container=${{ inputs.no_container }}"
+
+      - name: Restore toolchain download cache
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/lazsetup
           key: lazsetup-dl-${{ runner.os }}-${{ inputs.lazarus }}-${{ inputs.target_os }}-${{ inputs.target_arch }}-v1
@@ -194,3 +201,12 @@ jobs:
           name: lazsetup-debug-${{ inputs.target_os }}-${{ inputs.target_arch }}
           path: bins/**
           if-no-files-found: warn
+
+      # Save even when a later step fails or the job is cancelled: macOS pulls
+      # ~500 MB per run, so keeping every already-completed component matters.
+      - name: Save toolchain download cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/lazsetup
+          key: lazsetup-dl-${{ runner.os }}-${{ inputs.lazarus }}-${{ inputs.target_os }}-${{ inputs.target_arch }}-v1

@@ -15,6 +15,7 @@
 
 | 项目 | `energye/setup-lazarus` | `lazsetup` |
 | --- | --- | --- |
+| 主源 | SourceForge 硬编码在 `version.ts` | 官方镜像 `download.lazarus-ide.org` + `downloads.freepascal.org`（GitHub runner 访问 SourceForge 一律 403 Cloudflare 页面）；URL 由 JSON 模板生成 |
 | HTTP | `@actions/tool-cache.downloadTool` → `@actions/http-client` → Node `https`，自动跟随 SourceForge 302 | `net/http`，`ProxyFromEnvironment`，自动跟随 302 |
 | 重试 | 3 次，仅 5xx/408/429，10~20 秒退避 | 可配置（默认 3 次），指数退避，同样按状态码判定 |
 | 写入 | `stream.pipeline` 到 `$RUNNER_TEMP/installers/<name>` | 流式写 `.part`，支持 HTTP Range 断点续传，成功后原子改名 |
@@ -58,24 +59,28 @@
 
 - Windows 386 / amd64：`Lazarus Windows <32|64> bits/Lazarus <ver>/lazarus-<ver>-fpc-<fpc>-win<32|64>.exe`，InnoSetup `/VERYSILENT /SP- /DIR=`。
 - macOS amd64 / arm64：**官方 dmg + zip 组合**。目录由 `${mac_dir}` 与 `${laz}` 拼出，例如 4.8 arm64 对应
-  `https://sourceforge.net/projects/lazarus/files/Lazarus%20macOS%20aarch64/Lazarus%204.8/`，
+  `https://download.lazarus-ide.org/Lazarus%20macOS%20aarch64/Lazarus%204.8/`，
   文件为 `fpc-3.2.4rc1a.intelarm64-macosx.dmg` + `lazarus-darwin-aarch64-4.8.zip`。
   换版本只需在 `releases` 里改 `mac_fpc_dmg` / `laz_mac_zip` 两个别名（3.8/4.0 已给出示例）。
-  zip 解压到 `/Applications` 后用 `ln -sfn` 建立 `lazbuild` 链接（`-f` 保证重复执行不失败）。
+  dmg 挂载后用 `installer -package ... -target /` 安装 FPC；zip 解压到 `${prefix}`，`xattr -cr` 后
+  `ln -sfn` 把 `lazbuild` 链接到 `/usr/local/bin`（`-f` 保证重复执行不失败）。
 
 ### source（Linux 全部架构）
 
 按需求，**Linux 386 / amd64 / arm / arm64 全部走源码编译**，不再使用 deb：
 
-1. `lazarus-<ver>-0.tar.gz` → 解压到 `${work}`（tar 内顶层目录为 `lazarus`，即 `${prefix}`）
+1. `lazarus-<ver>-0.tar.gz` → `strip:1` 直接解压到 `${prefix}`
 2. `fpc-<fpc>.<arch>-linux.tar` → 官方预编译编译器，解压到 `${prefix}`
 3. `fpc-<fpc>.source.tar.gz` → RTL/FCL 源码，解压到 `${prefix}`
-4. `cd ${cprefix}/fpc-<fpc>.<fpc_suffix> && ./install.sh`
-5. `cd ${cprefix} && make clean all` → 产出 `lazbuild`
+4. `cd ${cprefix}/fpc-<fpc>.<fpc_suffix> && printf '\n\n\n\n\n\n' | ./install.sh`（用默认答案，与旧 CI 一致）
+5. `cd ${cprefix} && make clean all` → 产出 `lazbuild`（默认只构建 gtk2 的 LCL）
+6. `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3` → 补齐 gtk3 LCL，否则 `linux_GTK3` 找不到 `Gtk3Globals`
 
 FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 `install.sh`，只有 Lazarus 需要 `make`。这与旧 workflow 中 `run-on-arch-action` 容器里做的事一致，现在由配置里的 `commands` 编排。
 
-4 个 Linux 架构全部通过 `container` 段用 docker/qemu 执行编译（同架构的 `linux/amd64` 也走容器，以便统一安装 `build-essential` 与 GTK 开发头文件）。容器同时挂两个卷：`${repo}:/app` 放仓库源码，`${prefix}:/toolchain` 放工具链，因此 `make clean all`、`lazbuild`、`liblcl.lpi` 都在容器里可见。任何目标都可以用 `--no-container` 强制在宿主机编译。
+**宿主 runner 用最新 Ubuntu，但工具链编译和 lib 编译全部在 docker 容器里完成**。镜像按 GTK2/GTK3 依赖基线选择：`linux/amd64` → `ubuntu:20.04`，`linux/arm64` → 旧 CI 验证过的 `arm64v8/ubuntu:18.04`，`linux/386` → `i386/debian:11`，`linux/arm` → `arm32v7/debian:11`（22.04 之后已无 `libgtk2.0-dev`，所以编译容器固定用 18/20 或 debian:11）。
+
+容器同时挂两个卷：`${repo}:/app` 放仓库源码，`${prefix}:/toolchain` 放工具链。关键点是**命名容器会话**：`docker run -d --name lazsetup-<os>-<arch> ... sleep infinity` 只创建一次，后续所有 `install.sh` / `make` / `lazbuild` 都通过 `docker exec` 进同一个容器。若沿用 `docker run --rm`，FPC 装进容器 `/usr/local` 后会随容器销毁，`make` 与 build 步骤必然失败。`--no-container` 仅用于本机调试，正式构建不用。
 
 Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / source 也解压到 `${prefix}`，三者汇合到同一个目录，`cd ${cprefix} && make clean all` 才能找到 `Makefile`；不依赖 `prefix` 恰好叫 `work/lazarus`。
 
@@ -87,6 +92,7 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 - `build.modes` — 每个模式的 `--bm`、`--ws`、`extra`、`artifact`（产物文件）、`output`（zip 名），并用 `os` / `arch` 限定适用范围
 - `bm` 必须匹配 `liblcl.lpi` 的 `<BuildModes><Item Name="...">`；`artifact` 对应该模式的 `Target/Filename`，例如 `win_amd64 → libenergy-amd64.dll`、`linux_GTK3 → libenergy-gtk3.so`、`Debug_CEF150 → libenergy-${laz_target}.${lib_ext}`
 - 源码模式下自动追加 `--lazarusdir=${cprefix}`，容器模式下 `lazbuild` 用 `${cprefix}/lazbuild` 而不是宿主机路径
+- **`ws` 必须显式配置**：`linux_GTK2 → gtk2`、`linux_GTK3 → gtk3`、`darwin_* → cocoa`（Windows 沿用默认 win32，不传 `--ws`）。`liblcl.lpi` 里的 `LCLWidgetType` 宏只供 IDE 使用，`lazbuild` 靠 `--ws` 决定去 `lcl/units/<cpu>-<os>/<widgetset>` 找 LCL 单元。缺了 `--ws=gtk3` 时，即使已经 `make lcl LCL_PLATFORM=gtk3`，仍会报 `Can't find unit Gtk3Globals used by LazSynGtk3IMM`。旧 CI 的 `build-lib-in-linux-docker.sh` / `build-macos.yml` 也始终显式传 `--ws`
 - 每个模式编译后立即把 `artifact` 打包成 zip（Go 原生 `archive/zip`）；产物不存在时**直接报错**，避免静默假成功
 
 默认只跑适合当前目标平台的模式；`--mode NAME` 可显式指定多个。

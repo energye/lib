@@ -70,7 +70,7 @@ CI 中的最小形态：
 --github             CI：写 GITHUB_PATH / GITHUB_ENV
 --network            doctor：探测下载 URL（可能遇到 Cloudflare 挑战页）
 --no-cache           强制重新下载
---no-container       宿主机直接编译，不用 docker（同架构时推荐）
+--no-container       仅调试用：跳过 docker，直接在宿主机编译（正式构建统一走容器）
 --mode NAME          build/all 的模式（可重复）
 --out DIR            产物目录
 --lazbuild PATH      指定 lazbuild
@@ -79,6 +79,17 @@ CI 中的最小形态：
 ```
 
 不带 `--mode` 时，`build` 只运行配置里 `os`/`arch` 匹配当前目标的模式。
+
+## 下载源
+
+主源是 Lazarus / FPC 官方镜像，配置在 `toolchain.json` 的 `vars` 里：
+
+- `https://download.lazarus-ide.org/` — Windows exe、macOS dmg/zip、Linux 源码 tarball
+- `https://downloads.freepascal.org/fpc/dist/<fpc>/` — 各架构 FPC 编译器 tar 与 `source/`
+
+SourceForge 只作为 `urls` 备用源保留：GitHub-hosted runner（以及部分网络出口）访问它一律返回 Cloudflare 403 HTML 页面，下载器会识别 HTML 并自动切下一个源。**不要把 SourceForge 写回主 `url`**，`config` 包里有回归测试守着这一点。
+
+Linux 编译一律在 docker 容器里完成（宿主 runner 用最新 Ubuntu）：`amd64` 用 `ubuntu:20.04`、`arm64` 沿用旧 CI 的 `arm64v8/ubuntu:18.04`、`386`/`arm` 沿用 `debian:11` 系列。选择 18/20 是因为 22.04 之后已移除 `libgtk2.0-dev`，而 lib 的 GTK2/GTK3 产物需要稳定的低版本 glibc/GTK 基线。容器用固定名字 + `docker exec` 复用，保证 `install.sh` 装进 `/usr/local` 的 FPC 在 `make`、`lazbuild` 两个步骤之间不会随 `docker run --rm` 消失。
 
 ## 改配置
 

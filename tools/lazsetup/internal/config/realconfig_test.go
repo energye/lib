@@ -81,6 +81,35 @@ func TestShippedConfigResolves(t *testing.T) {
 	}
 }
 
+// TestShippedModesHaveWidgetSet locks in the explicit --ws value for GTK2,
+// GTK3 and Cocoa. liblcl.lpi's LCLWidgetType macro is not enough for lazbuild:
+// without --ws=gtk3 lazbuild searches the gtk2 LCL unit directory and fails
+// with "Can't find unit Gtk3Globals used by LazSynGtk3IMM". The old CI scripts
+// always passed --ws explicitly.
+func TestShippedModesHaveWidgetSet(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{
+		"linux_GTK2":   "gtk2",
+		"linux_GTK3":   "gtk3",
+		"darwin_amd64": "cocoa",
+		"darwin_arm64": "cocoa",
+	}
+	for _, m := range c.Build.Modes {
+		if ws, ok := want[m.Name]; ok {
+			if m.WS != ws {
+				t.Errorf("mode %s: ws=%q, want %q", m.Name, m.WS, ws)
+			}
+			delete(want, m.Name)
+		}
+	}
+	for name := range want {
+		t.Errorf("required widgetset mode %q missing", name)
+	}
+}
+
 // TestShippedContainerMounts verifies that every Linux target builds inside a
 // container (Ubuntu 18/20 for the GTK2/GTK3 dependency baseline), mounts both
 // the checkout and the toolchain directory, and uses a stable container name
