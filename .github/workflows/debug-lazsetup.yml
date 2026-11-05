@@ -60,8 +60,16 @@ env:
 jobs:
   debug:
     runs-on: ${{ inputs.runner }}
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache toolchain downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/lazsetup
+          key: lazsetup-dl-${{ runner.os }}-${{ inputs.lazarus }}-${{ inputs.target_os }}-${{ inputs.target_arch }}-v1
+          restore-keys: lazsetup-dl-
 
       - uses: actions/setup-go@v5
         with:
