@@ -1,0 +1,1473 @@
+{%MainUnit gtk3int.pas}
+
+{******************************************************************************
+                 All GTK3 interface communication implementations.
+
+ *****************************************************************************
+  This file is part of the Lazarus Component Library (LCL)
+
+  See the file COPYING.modifiedLGPL.txt, included in this distribution,
+  for details about the license.
+ *****************************************************************************
+}
+
+
+//##apiwiz##sps##   // Do not remove
+
+function TGtk3WidgetSet.CreateRubberBand(const ARect: TRect; const ABrush: HBrush): HWND;
+var
+  Widget: PGtkWidget absolute Result;
+  dx, dy: integer;
+begin
+  dx := ARect.Right - ARect.Left;
+  dy := ARect.Bottom - ARect.Top;
+  if dx < 0 then
+    dx := 0;
+  if dy < 0 then
+    dy := 0;
+
+  // rubber band is just a window without a title
+  Result := {%H-}HWND(gtk_window_new(GTK_WINDOW_TOPLEVEL));
+  gtk_window_set_default_size({%H-}PGtkWindow(Result), dx, dy);
+
+  gtk_widget_realize(Widget);
+
+  gdk_window_set_decorations(Widget^.window, []);
+  gdk_window_set_functions(Widget^.window, [GDK_FUNC_RESIZE, GDK_FUNC_CLOSE]);
+  gtk_widget_set_opacity(Widget, 0.25);
+
+  gtk_widget_show(Widget);
+end;
+
+procedure TGtk3WidgetSet.DestroyRubberBand(ARubberBand: HWND);
+begin
+  gtk_widget_destroy({%H-}PGtkWidget(ARubberBand));
+end;
+
+// Custom draw for the dock image popup.
+function DockImageDrawCB(AWidget: PGtkWidget; cr: Pcairo_t;
+  {%H-}AData: gpointer): gboolean; cdecl;
+var
+  W, H: gint;
+  SysCol: TColor;
+  R, G, B: Double;
+  Grad: Pcairo_pattern_t;
+begin
+  Result := False;
+  W := AWidget^.get_allocated_width;
+  H := AWidget^.get_allocated_height;
+  if (W <= 0) or (H <= 0) then Exit;
+
+  //ColorToRGB returns $00BBGGRR - Windows/LCL BGR layout.
+  SysCol := ColorToRGB(TColor(GTK3WidgetSet.GetSysColor(COLOR_HIGHLIGHT)));
+  R := (SysCol and $FF) / 255.0;
+  G := ((SysCol shr 8) and $FF) / 255.0;
+  B := ((SysCol shr 16) and $FF) / 255.0;
+
+  // Clear to transparent, required for RGBA windows.
+  cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+  cairo_set_source_rgba(cr, 0, 0, 0, 0);
+  cairo_paint(cr);
+  cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
+
+  // Semi-transparent top-to-bottom gradient fill.
+  Grad := cairo_pattern_create_linear(0, 0, 0, H);
+  cairo_pattern_add_color_stop_rgba(Grad, 0, R,       G,       B,       0.45);
+  cairo_pattern_add_color_stop_rgba(Grad, 1, R * 0.7, G * 0.7, B * 0.7, 0.45);
+  cairo_set_source(cr, Grad);
+  cairo_rectangle(cr, 0, 0, W, H);
+  cairo_fill(cr);
+  cairo_pattern_destroy(Grad);
+
+  cairo_set_source_rgba(cr, R * 0.55, G * 0.55, B * 0.55, 1.0);
+  cairo_set_line_width(cr, 2);
+  cairo_rectangle(cr, 1, 1, W - 2, H - 2);
+  cairo_stroke(cr);
+
+  Result := True; // suppress GTK default paint
+end;
+
+procedure TGtk3WidgetSet.DrawDefaultDockImage(AOldRect, ANewRect: TRect;
+  AOperation: TDockImageOperation);
+var
+  dx, dy: integer;
+  Screen: PGdkScreen;
+  Visual: PGdkVisual;
+begin
+  dx := ANewRect.Right - ANewRect.Left;
+  dy := ANewRect.Bottom - ANewRect.Top;
+  if dx < 0 then dx := 0;
+  if dy < 0 then dy := 0;
+
+  if FDockImage = nil then
+  begin
+    // Decoration-free popup rendered entirely by DockImageDrawCB.
+    FDockImage := gtk_window_new(GTK_WINDOW_POPUP);
+    // RGBA visual so Cairo transparent areas are truly transparent.
+    Screen := gtk_widget_get_screen(FDockImage);
+    Visual := gdk_screen_get_rgba_visual(Screen);
+    if (Visual <> nil) and gdk_screen_is_composited(Screen) then
+      gtk_widget_set_visual(FDockImage, Visual);
+    FDockImage^.set_app_paintable(True);
+    gtk_widget_realize(FDockImage);
+    gdk_window_set_decorations(FDockImage^.window, []);
+    gdk_window_set_functions(FDockImage^.window, [GDK_FUNC_RESIZE, GDK_FUNC_CLOSE]);
+    g_signal_connect_data(PGObject(FDockImage), 'draw', TGCallback(@DockImageDrawCB), nil, nil, G_CONNECT_DEFAULT);
+  end;
+
+  PGtkWindow(FDockImage)^.move(ANewRect.Left, ANewRect.Top);
+  PGtkWindow(FDockImage)^.resize(dx, dy);
+
+  case AOperation of
+    disShow: gtk_widget_show(FDockImage);
+    disMove: ; // move/resize applied above; draw callback handles repaint
+    disHide: gtk_widget_hide(FDockImage);
+  end;
+end;
+
+procedure TGtk3WidgetSet.DrawGrid(DC: HDC; const R: TRect; DX, DY: Integer);
+var
+  gc: TGdkRGBA;
+  GtkDC: TGtk3DeviceContext absolute DC;
+  DotSize: Integer;
+  DashArray: array[0..1] of Double;
+  y: Integer;
+begin
+  if not IsValidDC(DC) then
+    exit;
+  if (DX < 1) or (DY < 1) or (R.Right <= R.Left) or (R.Bottom <= R.Top) then
+    exit;
+
+  gc := TColortoTGdkRGBA(GtkDC.CurrentPen.Color);
+  DotSize := Max(1, GtkDC.CurrentPen.Width);
+
+  GtkDC.Save;
+  GtkDC.Translate(GtkDC.ScrollbarsOffset);
+  cairo_set_source_rgb(GtkDC.pcr, gc.red, gc.green, gc.blue);
+  cairo_set_antialias(GtkDC.pcr, CAIRO_ANTIALIAS_NONE);
+  cairo_set_line_width(GtkDC.pcr, DotSize);
+  cairo_set_line_cap(GtkDC.pcr, CAIRO_LINE_CAP_BUTT);
+
+  if DotSize < DX then
+  begin
+    DashArray[0] := DotSize;
+    DashArray[1] := DX - DotSize;
+    cairo_set_dash(GtkDC.pcr, @DashArray[0], 2, 0);
+  end;
+
+  y := R.Top;
+  while y < R.Bottom do
+  begin
+    cairo_move_to(GtkDC.pcr, R.Left, y + DotSize * 0.5);
+    cairo_line_to(GtkDC.pcr, R.Right, y + DotSize * 0.5);
+    y := y + DY;
+  end;
+  cairo_stroke(GtkDC.pcr);
+
+  GtkDC.Restore;
+end;
+
+{------------------------------------------------------------------------------
+  function TGtk3WidgetSet.ExtUTF8Out(DC: HDC; X, Y: Integer; Options: Longint;
+    Rect: PRect; Str: PChar; Count: Longint; Dx: PInteger): Boolean;
+
+  As ExtTextOut except that Str is treated as UTF8
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.ExtUTF8Out(DC: HDC; X, Y: Integer; Options: Longint;
+  Rect: PRect; Str: PChar; Count: Longint; Dx: PInteger): Boolean;
+begin
+  // all fonts are UTF-8 under gtk2 => no mapping needed
+  Result:=ExtTextOut(DC,X,Y,Options,Rect,Str,Count,Dx);
+end;
+
+function TGtk3WidgetSet.TextUTF8Out(DC: HDC; X, Y: Integer; Str: PChar; Count: Longint): Boolean;
+begin
+  // all fonts are UTF-8 under gtk3 => no mapping needed
+  Result := TextOut(DC, X, Y, Str, Count);
+end;
+
+{------------------------------------------------------------------------------
+  function TGtk3WidgetSet.FontIsMonoSpace(Font: HFont): boolean;
+
+  True if font characters have all the same width.
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.FontIsMonoSpace(Font: HFont): boolean;
+begin
+  Result := IsValidGDIObject(Font) and TGtk3Font(Font).IsMonospace;
+end;
+
+{------------------------------------------------------------------------------
+  Function: GetAcceleratorString
+  Params: AVKey:
+          AShiftState:
+  Returns:
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.GetAcceleratorString(const AVKey: Byte;
+  const AShiftState: TShiftState): String;
+begin
+  Result:=inherited GetAcceleratorString(AVKey,AShiftState);
+end;
+
+
+{------------------------------------------------------------------------------
+  Function: RawImage_CreateBitmap
+  Params: ARawImage:
+          ABitmap:
+          AMask:
+          ASkipMask: When set, no mask is created
+  Returns:
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_CreateBitmaps(const ARawImage: TRawImage; out
+  ABitmap, AMask: HBitmap; ASkipMask: boolean): boolean;
+var
+  Desc: TRawImageDescription absolute ARawImage.Description;
+  NewData: PByte;
+  ImageFormat: Tcairo_format_t;
+  ARowStride: PtrUInt;
+  x,y:integer;
+  src,dst,SrcRowPtr,DstRowPtr:pbyte;
+  ridx,gidx,bidx,aidx:byte;
+  Src1BitStride: PtrUInt;
+  ColorBit: Boolean;
+begin
+  Result := False;
+  ABitmap := 0;
+  AMask := 0;
+
+  if ARawImage.DataSize > 0 then
+  begin
+    case Desc.LineEnd of
+    rileQWordBoundary:
+      begin
+        ARowStride := Desc.Width;
+        if Desc.Width and 1 <> 0 then Inc(ARowStride);
+        ARowStride := ARowStride shl 2;
+      end;
+    rileDQWordBoundary:
+      begin
+        ARowStride := Desc.Width shr 1;
+        if Desc.Width and 3 <> 0 then Inc(ARowStride);
+        ARowStride := ARowStride shl 3;
+      end;
+    else
+      ARowStride := Desc.Width shl 2;
+    end;
+
+    // check if the pixels are in order, pixbuf expects them in R-G-B-A
+    Desc.GetRGBIndices(Ridx, Gidx, Bidx, AIdx);
+
+    GetMem(NewData, ArawImage.DataSize);
+
+    if desc.BitsPerPixel = 1 then
+    begin
+      //Expand 1-bit monochrome to 32-bit RGBA for GdkPixbuf compatibility.
+      //GdkPixbuf has no sub-byte pixel format support.
+      Src1BitStride := GetBytesPerLine(Desc.Width, 1, Desc.LineEnd);
+      ARowStride := PtrUInt(Desc.Width) * 4;
+      FreeMem(NewData);
+      NewData := AllocMem(ARowStride * Desc.Height);
+      SrcRowPtr := ARawImage.Data;
+      DstRowPtr := NewData;
+      for y := 0 to Integer(Desc.Height) - 1 do
+      begin
+        Src := SrcRowPtr;
+        Dst := DstRowPtr;
+        for x := 0 to Integer(Desc.Width) - 1 do
+        begin
+          if Desc.BitOrder = riboReversedBits then
+            ColorBit := (Src[x shr 3] and ($80 shr (x and 7))) <> 0
+          else
+            ColorBit := (Src[x shr 3] and (1 shl (x and 7))) <> 0;
+          if ColorBit then
+          begin
+            Dst[0] := 255; Dst[1] := 255; Dst[2] := 255; Dst[3] := 255;
+          end else
+          begin
+            Dst[0] := 0; Dst[1] := 0; Dst[2] := 0; Dst[3] := 255;
+          end;
+          Inc(Dst, 4);
+        end;
+        Inc(SrcRowPtr, Src1BitStride);
+        Inc(DstRowPtr, ARowStride);
+      end;
+    end
+    else if desc.BitsPerPixel = 8 then
+    begin
+      DbgS('Bit depth not implemented '+inttostr(desc.BitsPerPixel));
+    end
+    else if desc.BitsPerPixel = 16 then
+    begin
+      DbgS('Bit depth not implemented '+inttostr(desc.BitsPerPixel));
+    end else
+    if desc.BitsPerPixel = 24 then
+    begin
+      Src1BitStride := GetBytesPerLine(Desc.Width, 24, Desc.LineEnd);
+      ARowStride := PtrUInt(Desc.Width) * 4;
+      FreeMem(NewData);
+      NewData := AllocMem(ARowStride * Desc.Height);
+      SrcRowPtr := ARawImage.Data;
+      DstRowPtr := NewData;
+      for y := 0 to Integer(Desc.Height) - 1 do
+      begin
+        Src := SrcRowPtr;
+        Dst := DstRowPtr;
+        for x := 0 to Integer(Desc.Width) - 1 do
+        begin
+          Dst[Ridx] := Src[0];
+          Dst[Gidx] := Src[1];
+          Dst[Bidx] := Src[2];
+          Dst[3] := $FF;
+          Inc(Src, 3);
+          Inc(Dst, 4);
+        end;
+        Inc(SrcRowPtr, Src1BitStride);
+        Inc(DstRowPtr, ARowStride);
+      end;
+    end else
+    if (Ridx <> 0) or (Gidx <> 1) or (Bidx <> 2) or (AIdx <> 3) then
+    begin
+      // put components in right order
+      DstRowPtr := NewData;
+      SrcRowPtr := ArawImage.Data;
+      y := Desc.Height;
+      while y > 0 do
+      begin
+        Src := SrcRowPtr;
+        Dst := DstRowPtr;
+        x := Desc.Width;
+        while x > 0 do
+        begin
+          Dst[0] := Src[Ridx];
+          Dst[1] := Src[Gidx];
+          Dst[2] := Src[Bidx];
+          if Desc.AlphaPrec > 0 then
+            Dst[3] := Src[Aidx]
+          else
+            Dst[3] := $FF;
+
+          Inc(Src, 4);
+          Inc(Dst, 4);
+          Dec(x);
+        end;
+        Inc(SrcRowPtr, ARowstride);
+        Inc(DstRowPtr, ARowstride);
+        Dec(y);
+      end;
+    end else begin
+      System.Move(ArawImage.Data^, NewData^, ArawImage.DataSize);
+      {If source has no alpha channel, fill alpha bytes to fully opaque.
+       After the move, data is in RGBA order (this branch: Ridx=0,Gidx=1,Bidx=2,Aidx=3),
+       so alpha is already at byte 3 - but if AlphaPrec=0 it may be 0 because of padding.}
+      if (Desc.AlphaPrec = 0) and (Desc.BitsPerPixel = 32) then
+      begin
+        DstRowPtr := NewData;
+        y := Desc.Height;
+        while y > 0 do
+        begin
+          Dst := DstRowPtr;
+          x := Desc.Width;
+          while x > 0 do
+          begin
+            Dst[3] := $FF;
+            Inc(Dst, 4);
+            Dec(x);
+          end;
+          Inc(DstRowPtr, ARowstride);
+          Dec(y);
+        end;
+      end;
+    end;
+
+  end
+  else
+    NewData := nil;
+
+  // this is only a rough implementation, there is no check against bitsperpixel
+  case Desc.BitsPerPixel of
+    1: ImageFormat := CAIRO_FORMAT_ARGB32;
+    8: ImageFormat := CAIRO_FORMAT_A8;
+    24: ImageFormat := CAIRO_FORMAT_ARGB32;
+    32: ImageFormat := CAIRO_FORMAT_ARGB32;
+  else
+    Exit(False);
+  end;
+  if NewData = nil then
+    ARowStride := GetBytesPerLine(Desc.Width, Desc.BitsPerPixel, rileDWordBoundary);
+  ABitmap := HBitmap(TGtk3Image.Create(NewData, Desc.Width, Desc.Height, ARowStride, ImageFormat,
+                     {not ASkipMask}true));  // Using ASkipMask for DataOwner param prevents a crash later.
+  Result := ABitmap <> 0;
+
+ { if ASkipMask then
+  FreeMem(NewData); }
+
+  if ASkipMask then Exit;
+
+  if (ARawImage.Mask <> nil) and (ARawImage.MaskSize > 0) then
+  begin
+    ARowStride := GetBytesPerLine(Desc.Width, 1, Desc.MaskLineEnd);
+    NewData := AllocMem(ARowStride * Desc.Height);
+    if ARawImage.MaskSize >= ARowStride * PtrUInt(Desc.Height) then
+      Move(ARawImage.Mask^, NewData^, ARowStride * Desc.Height)
+    else
+    if ARawImage.MaskSize > 0 then
+      Move(ARawImage.Mask^, NewData^, ARawImage.MaskSize);
+    //Store as width=1, height=H, rowstride=MaskRowStride RGBA pixbuf.
+    //numBytes = ARowStride * H = exact 1-bit data size, so RawImage_FromBitmap
+    //copies the right amount and GetMask_Generic reads correct bit values.
+    AMask := HBitmap(TGtk3Image.Create(NewData, 1, Desc.Height, ARowStride, CAIRO_FORMAT_ARGB32, True));
+  end else
+  begin
+    NewData := nil;
+    ARowStride := GetBytesPerLine(Desc.Width, 1, rilebyteBoundary);
+    AMask := HBitmap(TGtk3Image.Create(nil, Desc.Width, Desc.Height, ARowStride, CAIRO_FORMAT_A8, True));
+  end;
+
+end;
+
+{------------------------------------------------------------------------------
+  Function: RawImage_DescriptionFromBitmap
+  Params: Bitmap: HBITMAP;
+          Desc: PRawImageDescription
+  Returns: boolean;
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_DescriptionFromBitmap(ABitmap: HBITMAP; out ADesc: TRawImageDescription): boolean;
+// var
+//  GDIObject: PGDIObject absolute ABitmap;
+const
+  CairoImageFormatToDepth: array[CAIRO_FORMAT_INVALID..CAIRO_FORMAT_RGB30] of integer =
+  (
+    {CAIRO_FORMAT_INVALID}   -1,
+    {CAIRO_FORMAT_ARGB32}    32,
+    {CAIRO_FORMAT_RGB24}     24,
+    {CAIRO_FORMAT_A8}         8,
+    {CAIRO_FORMAT_A1}         1,
+    {CAIRO_FORMAT_RGB16_565} 16,
+    {CAIRO_FORMAT_RGB30}     15
+  );
+//============================
+var
+  Image: TGtk3Image absolute ABitmap;
+  AAlphaPtr: PByte;
+  APos, ANumBytes: PtrUInt;
+  AAllOpaque: Boolean;
+
+begin
+  Result := False;
+  Result := CheckBitmap(ABitmap, 'RawImage_DescriptionFromBitmap');
+  if not Result then Exit;
+  if Image.Handle = nil then Exit;
+
+  //FillStandardDescription(ADesc);
+  ADesc.Init;
+  ADesc.Width := Image.Width;
+  ADesc.Height := Image.Height;
+
+  ADesc.BitOrder := riboReversedBits;
+  ADesc.ByteOrder := DefaultByteOrder;
+  ADesc.LineOrder := riloTopToBottom;
+  ADesc.LineEnd := rileDWordBoundary;
+
+  ADesc.Depth := CairoImageFormatToDepth[Image.Format];
+  ADesc.BitsPerPixel := ADesc.Depth;
+  if ADesc.BitsPerPixel = 24 then
+    ADesc.BitsPerPixel := 32;
+
+  ADesc.Format := ricfRGBA;
+  case ADesc.Depth of
+    1, 8:
+      begin
+        ADesc.Format := ricfGray;
+
+        ADesc.RedPrec := ADesc.BitsPerPixel;
+      end;
+    16:
+      begin
+        ADesc.Depth := 15;
+
+        ADesc.RedPrec := 5;
+        ADesc.GreenPrec := 5;
+        ADesc.BluePrec := 5;
+
+        ADesc.RedShift := 10;
+        ADesc.GreenShift := 5;
+        ADesc.BlueShift := 0;
+      end;
+    24:
+      begin
+        ADesc.RedPrec := 8;
+        ADesc.GreenPrec := 8;
+        ADesc.BluePrec := 8;
+
+        ADesc.RedShift := 16;
+        ADesc.GreenShift := 8;
+        ADesc.BlueShift := 0;
+      end;
+    32:
+      begin
+        Image.UpdatePixbufFromSurface;
+        AAllOpaque := False;
+        if (Image.bits <> nil) and (Image.numBytes > 0) then
+        begin
+          AAllOpaque := True;
+          ANumBytes := Image.numBytes;
+          AAlphaPtr := Image.bits;
+          Inc(AAlphaPtr, 3);
+          APos := 3;
+          while APos < ANumBytes do
+          begin
+            if AAlphaPtr^ <> 255 then
+            begin
+              AAllOpaque := False;
+              break;
+            end;
+            Inc(AAlphaPtr, 4);
+            Inc(APos, 4);
+          end;
+        end;
+        if AAllOpaque then
+          ADesc.Depth := 24
+        else
+          ADesc.AlphaPrec := 8;
+        ADesc.RedPrec := 8;
+        ADesc.GreenPrec := 8;
+        ADesc.BluePrec := 8;
+        ADesc.AlphaShift := 24;
+        ADesc.RedShift := 0;
+        ADesc.GreenShift := 8;
+        ADesc.BlueShift := 16;
+      end;
+  end;
+  (*
+  if not IsValidGDIObject(ABitmap)
+  then begin
+    DebugLn('WARNING: [TGtk3WidgetSet.GetBitmapRawImageDescription] invalid Bitmap!');
+    exit;
+  end;
+
+  case GDIObject^.GDIBitmapType of
+    gbBitmap:
+      Result := RawImage_DescriptionFromDrawable(ADesc,
+        GdiObject^.GDIBitmapObject, False);
+    gbPixmap:
+      Result := RawImage_DescriptionFromDrawable(ADesc,
+        GdiObject^.GDIPixmapObject.Image, GdiObject^.GDIPixmapObject.Mask <> nil);
+    gbPixbuf:
+      Result := RawImage_DescriptionFromPixbuf(ADesc, GdiObject^.GDIPixbufObject);
+  else
+    DebugLn('WARNING: [TGtk3WidgetSet.RawImage_DescriptionFromBitmap] Unknown GDIBitmapType');
+    Exit;
+  end;
+  *)
+end;
+
+{------------------------------------------------------------------------------
+  function RawImage_DescriptionFromDevice
+  Params: DC: HDC;
+          Desc: PRawImageDescription
+  Returns: boolean;
+
+  Retrieves the information about the structure of the supported image data.
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_DescriptionFromDevice(ADC: HDC; out
+  ADesc: TRawImageDescription): Boolean;
+begin
+  Result := true;
+
+  FillStandardDescription(ADesc{%H-});
+  (*
+  if IsValidDC(ADC)
+  then begin
+    Drawable := DevCon.Drawable;
+    if DevCon.CurrentBitmap <> nil
+    then begin
+      case DevCon.CurrentBitmap^.GDIBitmapType of
+        gbBitmap: Drawable := DevCon.CurrentBitmap^.GDIBitmapObject;
+        gbPixmap: begin
+          Drawable := DevCon.CurrentBitmap^.GDIPixmapObject.Image;
+          UseAlpha := DevCon.CurrentBitmap^.GDIPixmapObject.Mask <> nil;
+        end;
+        gbPixbuf: begin
+          Result := RawImage_DescriptionFromPixbuf(ADesc, DevCon.CurrentBitmap^.GDIPixbufObject);
+          Exit;
+        end;
+      end;
+    end;
+  end
+  else
+    Drawable := nil;
+  
+  Result := RawImage_DescriptionFromDrawable(ADesc, Drawable, UseAlpha);
+  *)
+end;
+
+function RawImage_DescriptionFromPixbuf(out ADesc: TRawImageDescription; APixbuf: PGdkPixbuf): boolean;
+var
+  Width, Height, Depth: integer;
+  HasAlpha: Boolean;
+begin
+  Width := 0;
+  Height := 0;
+
+  if APixbuf = nil then
+  begin
+    HasAlpha := False;
+    Depth := 24;
+  end else
+  begin
+    Width := gdk_pixbuf_get_width(APixbuf);
+    Height := gdk_pixbuf_get_height(APixbuf);
+    Depth := gdk_pixbuf_get_bits_per_sample(APixbuf) * gdk_pixbuf_get_n_channels(APixbuf);
+    HasAlpha := gdk_pixbuf_get_has_alpha(APixbuf);
+  end;
+
+  ADesc.Init;
+  ADesc.Width := cardinal(Width);
+  ADesc.Height := cardinal(Height);
+  ADesc.BitOrder := riboBitsInOrder;
+
+  if HasAlpha then
+  begin
+    // always give pixbuf description for alpha images
+    ADesc.Format:=ricfRGBA;
+    ADesc.Depth := 32;
+    ADesc.BitsPerPixel := 32;
+    ADesc.LineEnd := rileDWordBoundary;
+    ADesc.ByteOrder := DefaultByteOrder;
+
+    ADesc.RedPrec := 8;
+    ADesc.RedShift := 0;
+    ADesc.GreenPrec := 8;
+    ADesc.GreenShift := 8;
+    ADesc.BluePrec := 8;
+    ADesc.BlueShift := 16;
+    ADesc.AlphaPrec := 8;
+    ADesc.AlphaShift := 24;
+
+    ADesc.MaskBitsPerPixel := 0;
+    ADesc.MaskShift := 0;
+    ADesc.MaskLineEnd := rileByteBoundary;
+    ADesc.MaskBitOrder := riboBitsInOrder;
+  end else
+  begin
+    ADesc.Depth := Depth;
+    ADesc.BitsPerPixel := 32;
+    ADesc.LineEnd := rileDWordBoundary;
+    ADesc.ByteOrder := DefaultByteOrder;
+    ADesc.MaskBitsPerPixel := 0;
+    ADesc.MaskShift := 0;
+    ADesc.MaskLineEnd := rileByteBoundary;
+    ADesc.MaskBitOrder := riboBitsInOrder;
+
+    ADesc.RedPrec := 8;
+    ADesc.RedShift := 0;
+    ADesc.GreenPrec := 8;
+    ADesc.GreenShift := 8;
+    ADesc.BluePrec := 8;
+    ADesc.BlueShift := 16;
+    ADesc.AlphaPrec := 0;
+    ADesc.AlphaShift := 24;
+  end;
+
+  Result := True;
+end;
+
+
+function RawImage_DescriptionFromDrawable(out
+  ADesc: TRawImageDescription; ADrawable: PGdkPixbuf; ACustomAlpha: Boolean
+  ): boolean;
+var
+  Visual: PGdkVisual;
+  Image: PGdkPixbuf;
+  Width, Height: integer;
+  IsBitmap: Boolean;
+  AMask: guint32;
+  AShift: gint;
+  APrecision: gint;
+begin
+  Visual := nil;
+  Width := 0;
+  Height := 0;
+
+  if ADrawable = nil then
+  begin
+    Visual := gdk_visual_get_system^.get_best;
+    if Visual = nil then
+      Visual := gdk_visual_get_system;
+    IsBitmap := False;
+  end else
+  begin
+    (*
+    gdk_drawable_get_size(ADrawable, @Width, @Height);
+    Depth := gdk_drawable_get_depth(ADrawable);
+    Visual := gdk_window_get_visual(ADrawable);
+    // pixmaps and bitmaps do not have a visual, but for pixmaps we need one
+    if Visual = nil
+    then Visual := gdk_visual_get_best_with_depth(Depth);
+    IsBitmap := Depth = 1;
+    *)
+  end;
+
+  if (Visual = nil) and not IsBitmap then // bitmaps don't have a visual
+  begin
+    DebugLn('TGtk3WidgetSet.RawImage_DescriptionFromDrawable: visual failed');
+    Exit(False);
+  end;
+
+  ADesc.Init;
+  ADesc.Width := cardinal(Width);
+  ADesc.Height := cardinal(Height);
+  ADesc.BitOrder := riboBitsInOrder;
+
+  if ACustomAlpha then
+  begin
+    // always give pixbuf description for alpha images
+    ADesc.Format:=ricfRGBA;
+    ADesc.Depth := 32;
+    ADesc.BitsPerPixel := 32;
+    ADesc.LineEnd := rileDWordBoundary;
+    ADesc.ByteOrder := DefaultByteOrder;
+
+    ADesc.RedPrec := 8;
+    ADesc.RedShift := 0;
+    ADesc.GreenPrec := 8;
+    ADesc.GreenShift := 8;
+    ADesc.BluePrec := 8;
+    ADesc.BlueShift := 16;
+    ADesc.AlphaPrec := 8;
+    ADesc.AlphaShift := 24;
+
+    ADesc.MaskBitsPerPixel := 1;
+    ADesc.MaskShift := 0;
+    ADesc.MaskLineEnd := rileByteBoundary;
+    ADesc.MaskBitOrder := riboBitsInOrder;
+
+    Exit(True);
+  end;
+
+  // Format
+  if IsBitmap then
+  begin
+    ADesc.Format := ricfGray;
+  end else
+  begin
+    case Visual^.get_visual_type of
+      GDK_VISUAL_STATIC_GRAY {0} :  ADesc.Format:=ricfGray;
+      GDK_VISUAL_GRAYSCALE {1} :    ADesc.Format:=ricfGray;
+      GDK_VISUAL_STATIC_COLOR {2} : ADesc.Format:=ricfGray; // this is not really gray, but an index in a color map, but colormaps are not supported yet, so use gray
+      GDK_VISUAL_PSEUDO_COLOR {3} : ADesc.Format:=ricfGray;
+      GDK_VISUAL_TRUE_COLOR {4} :   ADesc.Format:=ricfRGBA;
+      GDK_VISUAL_DIRECT_COLOR {5} : ADesc.Format:=ricfRGBA;
+    else
+      DebugLn('TGtk3WidgetSet.GetWindowRawImageDescription unknown Visual type ',
+              dbgs(Integer(Visual^.get_visual_type)));
+      Exit(False);
+    end;
+  end;
+
+  // Palette
+  if not IsBitmap and
+    (Visual^.get_visual_type in [GDK_VISUAL_GRAYSCALE,
+       GDK_VISUAL_STATIC_COLOR,GDK_VISUAL_PSEUDO_COLOR]) then
+  begin
+    // has palette
+    // ToDo
+    ADesc.PaletteColorCount:=0;
+  end;
+
+  // Depth
+  if IsBitmap then
+    ADesc.Depth := 1
+  else
+    ADesc.Depth := Visual^.get_depth;
+
+  if IsBitmap or (Visual^.get_byte_order = GDK_MSB_FIRST) then
+    ADesc.ByteOrder := riboMSBFirst
+  else
+    ADesc.ByteOrder := riboLSBFirst;
+
+  ADesc.LineOrder := riloTopToBottom;
+
+  case ADesc.Depth of
+    0..8:   ADesc.BitsPerPixel := ADesc.Depth;
+    9..16:  ADesc.BitsPerPixel := 16;
+    17..32: ADesc.BitsPerPixel := 32;
+  else
+    ADesc.BitsPerPixel := 64;
+  end;
+
+  if IsBitmap then
+  begin
+    ADesc.LineEnd  := rileByteBoundary;
+    ADesc.RedPrec  := 1;
+    ADesc.RedShift := 0;
+  end else
+  begin
+    // Try retrieving the lineend
+    Image := gdk_pixbuf_new(GDK_COLORSPACE_RGB, False, Visual^.get_bits_per_rgb, 1, 1);
+    // gdk_image_new(GDK_IMAGE_NORMAL, Visual, 1, 1);
+    if Image = nil then
+    begin
+      DebugLn('TGtk3WidgetSet.GetWindowRawImageDescription testimage creation failed ');
+      Exit(False);
+    end;
+    try
+      // the minimum alignment we can detect is bpp
+      // that is no problem since a line consists of n x bytesperpixel bytes
+      case Image^.get_bits_per_sample of
+        1: ADesc.LineEnd := rileByteBoundary;
+        2: ADesc.LineEnd := rileWordBoundary;
+        4: ADesc.LineEnd := rileDWordBoundary;
+        8: ADesc.LineEnd := rileQWordBoundary;
+      else
+        DebugLn('TGtk3WidgetSet.GetWindowRawImageDescription Unknown line end: %d', [Image^.get_bits_per_sample]);
+        Exit(False);
+      end;
+    finally
+      g_object_unref(Image);
+      // gdk_image_destroy(Image);
+      Image := nil;
+    end;
+
+    Visual^.get_red_pixel_details(@AMask, @AShift, @APrecision);
+    ADesc.RedPrec := APrecision;
+    ADesc.RedShift := AShift;
+    Visual^.get_green_pixel_details(@AMask, @AShift, @APrecision);
+    ADesc.GreenPrec := APrecision;
+    ADesc.GreenShift := AShift;
+    Visual^.get_blue_pixel_details(@AMask, @AShift, @APrecision);
+    ADesc.BluePrec := APrecision;
+    ADesc.BlueShift := AShift;
+
+    ADesc.MaskBitsPerPixel := 1;
+    ADesc.MaskShift := 0;
+    ADesc.MaskLineEnd := rileByteBoundary;
+    ADesc.MaskBitOrder := riboBitsInOrder;
+  end;
+
+  {$IFDEF VerboseRawImage}
+  DebugLn('TGtk3WidgetSet.GetWindowRawImageDescription A ',ADesc.AsString);
+  {$ENDIF}
+
+  Result := True;
+end;
+
+{------------------------------------------------------------------------------
+  Function: RawImage_QueryDescription
+  Params: AFlags:
+          ADesc:
+  Returns:
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_QueryDescription(AFlags: TRawImageQueryFlags; var ADesc: TRawImageDescription): Boolean;
+begin
+  Result := inherited RawImage_QueryDescription(AFlags, ADesc);
+  if ADesc.BitsPerPixel > 8 then
+    ADesc.BitsPerPixel := 32
+  else
+  if ADesc.BitsPerPixel > 1 then
+    ADesc.BitsPerPixel := 8
+  else
+  if ADesc.BitsPerPixel = 32 then
+  begin
+    ADesc.Depth := 32;
+    ADesc.AlphaPrec := 8;
+    ADesc.AlphaShift := 24;
+  end;
+end;
+
+{------------------------------------------------------------------------------
+  function TGtk3WidgetSet.GetRawImageFromBitmap(SrcBitmap, SrcMaskBitmap: HBITMAP;
+    const SrcRect: TRect; var NewRawImage: TRawImage): boolean; override;
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_FromBitmap(out ARawImage: TRawImage; ABitmap, AMask: HBITMAP; ARect: PRect): Boolean;
+var
+  Desc: TRawImageDescription absolute ARawImage.Description;
+  Image: TGtk3Image absolute ABitmap;
+  Mask: TGtk3Image absolute AMask;
+
+  WorkImage, WorkMask: TGtk3Image;
+  R: TRect;
+  Width, Height: Integer;
+  AHasAlpha: Boolean;
+  AAlphaPtr: PByte;
+  APos, ANumBytes: PtrUInt;
+  AMaskRowStride: PtrUInt;
+  AMaskData: PByte;
+  AMaskSrc: PByte;
+  x, y: Integer;
+  AByte: Byte;
+begin
+  Result := false;
+
+  if not CheckBitmap(ABitmap, 'RawImage_FromBitmap') then Exit;
+  if Image.Handle = nil then Exit;
+  if (AMask <> 0) and not CheckBitmap(AMask, 'RawImage_FromBitmap (mask)') then Exit;
+
+  ARawImage.Init;
+  RawImage_DescriptionFromBitmap(ABitmap, Desc);
+
+  if ARect = nil
+  then begin
+    Width := Image.Width;
+    Height := Image.Height;
+    R := Rect(0, 0, Width, Height)
+  end
+  else begin
+    R := ARect^;
+    Width := R.Right - R.Left;
+    Height := R.Bottom - R.Top;
+  end;
+
+  WorkMask:=nil;
+
+  if (Width = Image.Width) and (Height = Image.Height) then
+  begin
+    WorkImage := Image;
+    WorkMask := Mask;
+  end
+  else begin
+    WorkImage := TGtk3Image.Create;
+    WorkImage.CopyFrom(Image.Handle, R.Left, R.Top, Width, Height);
+    if Mask <> nil then
+    begin
+      WorkMask := TGtk3Image.Create;
+      WorkMask.CopyFrom(Mask.Handle, R.Left, R.Top, Width, Height);
+    end
+    else
+      WorkMask := nil;
+  end;
+
+  Desc.Width := WorkImage.width;
+  Desc.Height := WorkImage.height;
+
+  Image.UpdatePixbufFromSurface;
+  ARawImage.DataSize := WorkImage.numBytes;
+  ReAllocMem(ARawImage.Data, ARawImage.DataSize);
+
+  if ARawImage.DataSize > 0 then
+    Move(WorkImage.bits^, ARawImage.Data^, ARawImage.DataSize);
+
+  AHasAlpha := False;
+  if (WorkMask <> nil) and (Desc.AlphaPrec > 0) and
+    (Desc.BitsPerPixel = 32) and (WorkImage.bits <> nil) then
+  begin
+
+    ANumBytes := WorkImage.numBytes;
+    AAlphaPtr := WorkImage.bits;
+
+    Inc(AAlphaPtr, 3);
+    APos := 3;
+
+    while APos < ANumBytes do
+    begin
+      if AAlphaPtr^ <> 255 then
+      begin
+        AHasAlpha := True;
+        break;
+      end;
+      Inc(AAlphaPtr, 4);
+      Inc(APos, 4);
+    end;
+
+  end;
+
+  if (WorkMask <> nil) and not AHasAlpha then
+  begin
+    Desc.MaskLineEnd := rileDWordBoundary;
+    Desc.MaskBitOrder := riboReversedBits;
+    Desc.MaskBitsPerPixel := 1;
+
+    if WorkMask.width > 1 then
+    begin
+      AMaskRowStride := GetBytesPerLine(Width, 1, rileDWordBoundary);
+      ARawImage.MaskSize := AMaskRowStride * PtrUInt(Height);
+      ReAllocMem(ARawImage.Mask, ARawImage.MaskSize);
+      if (ARawImage.Mask <> nil) and (WorkMask.bits <> nil) then
+      begin
+        FillChar(ARawImage.Mask^, ARawImage.MaskSize, 0);
+        AMaskData := ARawImage.Mask;
+        for y := 0 to Height - 1 do
+        begin
+          AMaskSrc := WorkMask.bits;
+          Inc(AMaskSrc, PtrUInt(y) * PtrUInt(WorkMask.bytesPerLine));
+          for x := 0 to Width - 1 do
+          begin
+            if AMaskSrc[x * 4] <> 0 then
+            begin
+              AByte := $80 shr (x and 7);
+              AMaskData[PtrUInt(y) * AMaskRowStride + PtrUInt(x shr 3)] :=
+                AMaskData[PtrUInt(y) * AMaskRowStride + PtrUInt(x shr 3)] or AByte;
+            end;
+          end;
+        end;
+      end;
+    end else
+    begin
+      ARawImage.MaskSize := WorkMask.numBytes;
+      ReAllocMem(ARawImage.Mask, ARawImage.MaskSize);
+      if (ARawImage.MaskSize > 0) and (WorkMask.bits <> nil) and (ARawImage.Mask <> nil) then
+        Move(WorkMask.bits^, ARawImage.Mask^, ARawImage.MaskSize);
+    end;
+
+  end else
+    Desc.MaskBitsPerPixel := 0;
+
+  if WorkImage <> Image then
+    WorkImage.Free;
+  if WorkMask <> Mask then
+    WorkMask.Free;
+
+  Result := True;
+end;
+
+{------------------------------------------------------------------------------
+  function TGtk3WidgetSet.GetRawImageFromDevice(SrcDC: HDC; const SrcRect: TRect;
+    var NewRawImage: TRawImage): boolean;
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.RawImage_FromDevice(out ARawImage: TRawImage; ADC: HDC;
+  const ARect: TRect): Boolean;
+var
+  Desc: TRawImageDescription absolute ARawImage.Description;
+  DCSize: TSize;
+  Pixmap: PGdkPixbuf;
+  Context: TGtk3DeviceContext;
+  AScaleFactor: gint;
+
+  procedure RawImage_FromImage(AImage: PGdkPixbuf);
+  var
+    APixels: Pguint8;
+    ANewImage: PGdkPixbuf;
+    B: boolean;
+  begin
+    B := gdk_pixbuf_get_n_channels(AImage) * 8 = 24;
+    if B then
+      ANewImage := ConvertRGB24ToARGB32(aImage)
+    else
+      ANewImage := aImage;
+    ARawImage.DataSize := ANewImage^.get_byte_length;
+    ARawImage.Data := GetMem(ARawImage.DataSize);
+    APixels := ANewImage^.get_pixels;
+    Move(APixels^, ARawImage.Data^, ARawImage.DataSize);
+    ARawImage.Mask := nil;
+    ARawImage.MaskSize := 0;
+    ARawImage.Description.BitsPerPixel := gdk_pixbuf_get_n_channels(ANewImage) * 8;
+    if B then
+      ANewImage^.unref;
+  end;
+
+begin
+  Result := True;
+
+  if not IsValidDC(ADC) then
+  begin
+    DebugLn('WARNING: TGtk3WidgetSet.GetRawImageFromDevice invalid SrcDC');
+    Exit(False);
+  end;
+
+  ARawImage.Init;
+  FillStandardDescription(ARawImage.Description);
+
+  Context := TGtk3DeviceContext(ADC);
+
+  with DCSize, Context.getDeviceSize do
+  begin
+    cx := x;
+    cy := y;
+  end;
+
+  if Context.Parent <> nil then
+  begin
+    AScaleFactor := gdk_window_get_scale_factor(Context.Window);
+    Pixmap := gdk_pixbuf_get_from_window(Context.Parent^.window, 0, 0, DCSize.cx div AScaleFactor, DCSize.cy div AScaleFactor);
+    if Pixmap <> nil then
+    begin
+      try
+        RawImage_FromImage(Pixmap);
+      finally
+        g_object_unref(Pixmap);
+      end;
+    end else
+      Result := False;
+  end else
+  begin
+    if Context.ParentPixmap <> nil then
+    begin
+      Pixmap := gdk_pixbuf_copy(Context.ParentPixmap);
+      if Pixmap <> nil then
+      begin
+        RawImage_FromImage(Pixmap);
+        g_object_unref(Pixmap);
+      end;
+    end else
+    if Context.Window <> nil then
+    begin
+      AScaleFactor := gdk_window_get_scale_factor(Context.Window);
+      Pixmap := gdk_pixbuf_get_from_window(Context.Window, 0, 0, DCSize.cx div AScaleFactor, DCSize.cy div AScaleFactor);
+      if Pixmap <> nil then
+      begin
+        try
+          RawImage_FromImage(Pixmap);
+        finally
+          g_object_unref(Pixmap);
+        end;
+      end else
+        Result := False;
+    end else
+      Result := False;
+  end;
+
+  // In this case we use the size of the context
+  Desc.Width := DCSize.cx;
+  Desc.Height := DCSize.cy;
+
+  {$ifdef VerboseGtk3WinApi}
+  DebugLn('Trace:< [WinAPI GetRawImageFromDevice]');
+  {$endif}
+end;
+
+{------------------------------------------------------------------------------
+  Function: GetControlConstraints
+  Params: Constraints: TObject
+  Returns: true on success
+
+  Updates the constraints object (e.g. TSizeConstraints) with interface specific
+  bounds.
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.GetControlConstraints(Constraints: TObject): boolean;
+var
+  SizeConstraints: TSizeConstraints absolute Constraints;
+  Widget: PGtkWidget;
+  MinWidth: Integer;
+  MinHeight: Integer;
+  MaxWidth: Integer;
+  MaxHeight: Integer;
+  aPageControl: TPageControl;
+begin
+  Result := True;
+
+  if Constraints is TSizeConstraints then
+  begin
+    if (SizeConstraints.Control=nil) then exit;
+    MinWidth := 1;
+    MinHeight := 1;
+    MaxWidth := 0;
+    MaxHeight := 0;
+
+    if SizeConstraints.Control is TScrollBar then begin
+      // TScrollBar
+      if TScrollBar(SizeConstraints.Control).Kind=sbHorizontal then begin
+        Widget:=GetStyleWidget(lgsHorizontalScrollbar);
+        widget^.get_preferred_height(@MinHeight,@MaxHeight);
+      end else begin
+        Widget:=GetStyleWidget(lgsVerticalScrollbar);
+        widget^.get_preferred_width(@MinWidth,@MaxWidth);
+      end;
+      //DebugLn('TGtk3WidgetSet.GetControlConstraints A '+dbgs(MinWidth)+','+dbgs(MinHeight),' ',dbgs(TScrollBar(SizeConstraints.Control).Kind=sbHorizontal),' ',TScrollBar(SizeConstraints.Control).Name);
+    end else if SizeConstraints.Control is TPageControl then begin
+      aPageControl:=TPageControl(SizeConstraints.Control);
+      if aPageControl.TabPosition in [tpTop, tpBottom] then begin
+        MinHeight:=20;
+      end else begin
+        MinWidth:=20;
+      end;
+      //DebugLn('TGtk3WidgetSet.GetControlConstraints A '+DbgSName(SizeConstraints.Control),' ',dbgs(MinWidth)+','+dbgs(MinHeight));
+    end;
+
+    //DebugLn('TGtk3WidgetSet.GetControlConstraints A '+DbgSName(SizeConstraints.Control),' ',dbgs(MinWidth)+','+dbgs(MinHeight));
+
+    SizeConstraints.SetInterfaceConstraints(MinWidth,MinHeight,
+                                            MaxWidth,MaxHeight);
+  end;
+end;
+
+{------------------------------------------------------------------------------
+  function TGtk3WidgetSet.GetLCLOwnerObject(Handle: HWnd): TObject;
+
+ ------------------------------------------------------------------------------}
+function TGtk3WidgetSet.GetLCLOwnerObject(Handle: HWnd): TObject;
+begin
+  if Handle<>0 then
+    Result := TGtk3Widget(Handle).LCLObject
+  else
+    Result := nil;
+end;
+
+function TGtk3WidgetSet.AskUser(const DialogCaption, DialogMessage: string; DialogType:
+   LongInt; Buttons: TDialogButtons; HelpCtx: Longint): LongInt;
+var
+  fact:TGtk3DialogFactory;
+begin
+  fact:=TGtk3DialogFactory.CreateAsk(DialogCaption,DialogMessage,DialogType,Buttons,HelpCtx);
+  try
+    fact.run;
+    Result := fact.lcl_result;
+  finally
+    fact.Free;
+  end;
+end;
+
+function TGtk3WidgetSet.PromptUser(const DialogCaption: string;
+  const DialogMessage: string; DialogType: LongInt; Buttons: PLongInt;
+  ButtonCount: LongInt; DefaultIndex: LongInt; EscapeResult: LongInt): LongInt;
+var
+  fact:TGtk3DialogFactory;
+begin
+  fact:=TGtk3DialogFactory.CreatePrompt(DialogCaption,DialogMessage,
+     DialogType,Buttons,ButtonCount,DefaultIndex,EscapeResult);
+  try
+    fact.run;
+    Result:=fact.btn_result;
+  finally
+    fact.Free;
+  end;
+end;
+
+
+function TGtk3WidgetSet.SetComboMinDropDownSize(Handle: HWND; MinItemsWidth,
+  MinItemsHeight, MinItemCount: integer): boolean;
+var
+  p: PGtkWidget;
+  Menu: PGtkWidget;
+  Height, Width: GInt;
+begin
+  Result:=True;
+  p := TGtk3Widget(Handle).Widget;
+  if (p <> nil) and
+    g_type_check_instance_is_a(PGTypeInstance(p), gtk_combo_box_get_type) then
+  begin
+    //TODO: add TGtk3ComboBox.SetComboDropDownSize
+    Menu := PGtkWidget(g_object_get_data(p, 'Menu'));
+    if Menu<>nil then
+    begin
+      width := MinItemsWidth;
+      height := MinItemsHeight * MinItemCount;
+      gtk_widget_set_size_request(Menu, Width, Height);
+    end;
+  end;
+end;
+
+procedure TGtk3WidgetSet.SetCanvasScaleFactor(DC: HDC; const AScaleFactor: double);
+var
+  Gtk3DC: TGtk3DeviceContext absolute DC;
+begin
+  if (Gtk3DC <>  nil) then
+    gtk3DC.CanvasScaleFactor := AScaleFactor;
+end;
+
+//##apiwiz##eps##   // Do not remove, no wizard declaration after this line
+
+
+function waithandle_iocallback({%H-}source: PGIOChannel; condition: TGIOCondition;
+  data: gpointer): gboolean; cdecl;
+var
+  lEventHandler: PWaitHandleEventHandler absolute data;
+begin
+  //DebugLn(['waithandle_iocallback lEventHandler=',HexStr(Cardinal(lEventHandler),8)]);
+  lEventHandler^.OnEvent(lEventHandler^.UserData, DWORD(condition));
+  Result := true;
+end;
+
+function TGtk3WidgetSet.AddEventHandler(AHandle: TLCLHandle; AFlags: dword;
+  AEventHandler: TWaitHandleEvent; AData: PtrInt): PEventHandler;
+var
+  giochannel: pgiochannel;
+  lEventHandler: PWaitHandleEventHandler;
+begin
+  Result := nil;
+  if AEventHandler = nil then exit;
+  New(lEventHandler);
+  giochannel := g_io_channel_unix_new(AHandle);
+  lEventHandler^.Handle := AHandle;
+  lEventHandler^.UserData := AData;
+  lEventHandler^.GIOChannel := giochannel;
+  lEventHandler^.OnEvent := AEventHandler;
+  lEventHandler^.GSourceID := g_io_add_watch(giochannel,
+    TGIOCondition(AFlags), @waithandle_iocallback, lEventHandler);
+  //DebugLn(['TGtk3WidgetSet.AddEventHandler lEventHandler=',HexStr(Cardinal(lEventHandler),8),
+  //         ' AHandle=',dbgs(lEventHandler^.Handle)]);
+  lEventHandler^.PrevHandler := nil;
+  lEventHandler^.NextHandler := FWaitHandles;
+  if FWaitHandles <> nil then
+    FWaitHandles^.PrevHandler := lEventHandler;
+  FWaitHandles := lEventHandler;
+  Result := lEventHandler;
+end;
+
+
+procedure TGtk3WidgetSet.RemoveEventHandler(var AHandler: PEventHandler);
+ var
+  lEventHandler: PWaitHandleEventHandler absolute AHandler;
+begin
+  if AHandler = nil then exit;
+  g_source_remove(lEventHandler^.GSourceID);
+  { channel will be freed with ref count drops to 0 }
+  g_io_channel_unref(lEventHandler^.GIOChannel);
+  if lEventHandler^.PrevHandler = nil then
+    FWaitHandles := lEventHandler^.NextHandler
+  else
+    lEventHandler^.PrevHandler^.NextHandler := lEventHandler^.NextHandler;
+  if lEventHandler^.NextHandler <> nil then
+    lEventHandler^.NextHandler^.PrevHandler := lEventHandler^.PrevHandler;
+  //DebugLn(['TGtk3WidgetSet.RemoveEventHandler lEventHandler=',HexStr(Cardinal(lEventHandler),8),
+  //         ' AHandle=',dbgs(lEventHandler^.Handle)]);
+  Dispose(lEventHandler);
+  AHandler := nil;
+end;
+
+procedure TGtk3WidgetSet.SetEventHandlerFlags(AHandler: PEventHandler; NewFlags: dword);
+ var
+  lEventHandler: PWaitHandleEventHandler absolute AHandler;
+begin
+  if AHandler = nil then exit;
+   g_source_remove(lEventHandler^.GSourceID);
+   lEventHandler^.GSourceID := g_io_add_watch(lEventHandler^.GIOChannel,
+     TGIOCondition(NewFlags), @waithandle_iocallback, lEventHandler);
+  //DebugLn(['TGtk3WidgetSet.SetEventHandlerFlags lEventHandler=',HexStr(Cardinal(lEventHandler),8),
+  //        ' AHandle=',dbgs(lEventHandler^.Handle)]);
+end;
+
+procedure TGtk3WidgetSet.SetRubberBandRect(const ARubberBand: HWND; const ARect: TRect);
+begin
+  with ARect do
+    gdk_window_move_resize({%H-}PGtkWidget(ARubberBand)^.window, Left,
+      Top, Right - Left, Bottom - Top);
+end;
+
+function TGtk3WidgetSet.GetDesignerDC(WindowHandle: HWND): HDC;
+var
+  Widget: TGtk3Widget absolute WindowHandle;
+begin
+  Result := 0;
+  if IsValidHandle(WindowHandle) then
+  begin
+    if Widget is TGtk3DesignWidget then
+      Result := TGtk3DesignWidget(Widget).DesignContext;
+    if Result = 0 then
+      Result := GetDC(WindowHandle);
+  end;
+end;
+
+function TGtk3WidgetSet.IsDesignerDC(WindowHandle: HWND; DC: HDC): Boolean;
+begin
+  Result := IsValidHandle(WindowHandle) and (TGtk3Widget(WindowHandle) is TGtk3DesignWidget);
+  if Result then
+    Result := TGtk3DesignWidget(WindowHandle).DesignContext = DC;
+end;
+
+function TGtk3WidgetSet.ReleaseDesignerDC(Window: HWND; DC: HDC): Integer;
+begin
+  Result := 0;
+  if IsValidHandle(Window) and IsValidDC(DC) then
+  begin
+    if TGtk3DeviceContext(DC).CanRelease then
+      TGtk3DeviceContext(DC).Free;
+    Result := 1;
+  end;
+end;
+
+type
+  PPipeEventInfo = ^TPipeEventInfo;
+  TPipeEventInfo = record
+    Handler: PEventHandler;
+    UserData: PtrInt;
+    OnEvent: TPipeEvent;
+  end;
+
+const
+  GIO_IN_FLAG = 1 shl Ord(G_IO_IN);
+  GIO_OUT_FLAG = 1 shl Ord(G_IO_OUT);
+  GIO_HUP_FLAG = 1 shl Ord(G_IO_HUP);
+
+function TGtk3WidgetSet.AddPipeEventHandler(AHandle: TLCLHandle;
+  AEventHandler: TPipeEvent; AData: PtrInt): PPipeEventHandler;
+var
+  lPipeEventInfo: PPipeEventInfo;
+begin
+  Result := nil;
+  if AEventHandler = nil then exit;
+  New(lPipeEventInfo);
+  lPipeEventInfo^.UserData := AData;
+  lPipeEventInfo^.OnEvent := AEventHandler;
+  lPipeEventInfo^.Handler := AddEventHandler(AHandle, GIO_IN_FLAG or GIO_HUP_FLAG or GIO_OUT_FLAG,
+    @HandlePipeEvent, {%H-}PtrUInt(lPipeEventInfo));
+  Result := lPipeEventInfo;
+end;
+
+procedure TGtk3WidgetSet.HandlePipeEvent(AData: PtrInt; AFlags: dword);
+var
+  lPipeEventInfo: PPipeEventInfo absolute AData;
+  lReasons: TPipeReasons;
+begin
+  lReasons := [];
+  if AFlags and GIO_IN_FLAG <> 0 then
+    Include(lReasons, prDataAvailable);
+  if AFlags and GIO_OUT_FLAG <> 0 then
+    Include(lReasons, prCanWrite);
+  if AFlags and GIO_HUP_FLAG <> 0 then
+    Include(lReasons, prBroken);
+
+  lPipeEventInfo^.OnEvent(lPipeEventInfo^.UserData, lReasons);
+end;
+
+procedure TGtk3WidgetSet.RemovePipeEventHandler(var AHandler: PPipeEventHandler);
+var
+  lPipeEventInfo: PPipeEventInfo absolute AHandler;
+begin
+  if AHandler = nil then exit;
+  RemoveEventHandler(lPipeEventInfo^.Handler);
+  Dispose(lPipeEventInfo);
+  AHandler := nil;
+end;
+
+{$ifdef UNIX}
+function TGtk3WidgetSet.AddProcessEventHandler(AHandle: TLCLHandle;
+  AEventHandler: TChildExitEvent; AData: PtrInt): PProcessEventHandler;
+var
+  lHandler: PChildSignalEventHandler;
+begin
+  Result := nil;
+  if AEventHandler = nil then exit;
+  New(lHandler);
+  lHandler^.PID := TPid(AHandle);
+  lHandler^.UserData := AData;
+  lHandler^.OnEvent := AEventHandler;
+  lHandler^.PrevHandler := nil;
+  lHandler^.NextHandler := FChildSignalHandlers;
+  if FChildSignalHandlers <> nil then
+    FChildSignalHandlers^.PrevHandler := lHandler;
+  FChildSignalHandlers := lHandler;
+  Result := lHandler;
+end;
+
+procedure TGtk3WidgetSet.RemoveProcessEventHandler(var AHandler: PProcessEventHandler);
+var
+  lHandler: PChildSignalEventHandler absolute AHandler;
+begin
+  if AHandler = nil then exit;
+  if lHandler^.PrevHandler = nil then
+    FChildSignalHandlers := lHandler^.NextHandler
+  else
+    lHandler^.PrevHandler^.NextHandler := lHandler^.NextHandler;
+  if lHandler^.NextHandler <> nil then
+    lHandler^.NextHandler^.PrevHandler := lHandler^.PrevHandler;
+  Dispose(lHandler);
+  AHandler := nil;
+end;
+{$else}
+{$IFDEF VerboseGtkToDos}{$warning TGtk3WidgetSet.RemoveProcessEventHandler and TGtk3WidgetSet.AddProcessEventHandler not implemented on this OS}{$ENDIF}
+//PChildSignalEventHandler is only defined on unix
+function TGtk3WidgetSet.AddProcessEventHandler(AHandle: THandle;
+  AEventHandler: TChildExitEvent; AData: PtrInt): PProcessEventHandler;
+begin
+  Result := nil;
+end;
+
+procedure TGtk3WidgetSet.RemoveProcessEventHandler(var AHandler: PProcessEventHandler);
+begin
+end;
+{$endif}
+

@@ -1,0 +1,713 @@
+{
+ *****************************************************************************
+ *                               WSControls.pp                               * 
+ *                               -------------                               * 
+ *                                                                           *
+ *                                                                           *
+ *****************************************************************************
+
+ *****************************************************************************
+  This file is part of the Lazarus Component Library (LCL)
+
+  See the file COPYING.modifiedLGPL.txt, included in this distribution,
+  for details about the license.
+ *****************************************************************************
+}
+unit Gtk3WSControls;
+
+{$mode objfpc}{$H+}
+{$I gtk3defines.inc}
+
+interface
+////////////////////////////////////////////////////
+// I M P O R T A N T                                
+////////////////////////////////////////////////////
+// 1) Only class methods allowed
+// 2) Class methods have to be published and virtual
+// 3) To get as little as posible circles, the uses
+//    clause should contain only those LCL units 
+//    needed for registration. WSxxx units are OK
+// 4) To improve speed, register only classes in the 
+//    initialization section which actually 
+//    implement something
+// 5) To enable your XXX widgetset units, look at
+//    the uses clause of the XXXintf.pp
+////////////////////////////////////////////////////
+uses
+  Classes,
+////////////////////////////////////////////////////
+// To get as little as posible circles,
+// uncomment only when needed for registration
+////////////////////////////////////////////////////
+  Controls, Graphics, LCLType, Types, LCLProc, LazLogger,
+////////////////////////////////////////////////////
+  WSLCLClasses, WSControls, WSProc, LazGtk3, LazGdk3, LazGlib2, LazGObject2,
+  gtk3widgets, LazPango1, LazCairo1, LazGdkPixbuf2,
+  { TODO: remove when CreateHandle/Component code moved }
+  InterfaceBase;
+
+type
+  { TGtk3WSDragImageListResolution }
+
+  TGtk3WSDragImageListResolution = class(TWSDragImageListResolution)
+  published
+    class function BeginDrag(const ADragImageList: TDragImageListResolution; Window: HWND; AIndex, X, Y: Integer): Boolean; override;
+    class function DragMove(const ADragImageList: TDragImageListResolution; X, Y: Integer): Boolean; override;
+    class procedure EndDrag(const ADragImageList: TDragImageListResolution); override;
+    class function HideDragImage(const ADragImageList: TDragImageListResolution;
+      ALockedWindow: HWND; DoUnLock: Boolean): Boolean; override;
+    class function ShowDragImage(const ADragImageList: TDragImageListResolution;
+      ALockedWindow: HWND; X, Y: Integer; DoLock: Boolean): Boolean; override;
+  end;
+
+  TGtk3WSDragImageListResolutionClass = class of TGtk3WSDragImageListResolution;
+
+
+  { TGtk3WSControl }
+
+  TGtk3WSControl = class(TWSControl)
+    class function GetCanvasScaleFactor(const AControl: TControl): Double; override;
+  end;
+
+  TGtk3WSControlClass = class of TGtk3WSControl;
+
+
+  { TGtk3WSWinControl }
+
+  TGtk3WSWinControl = class(TWSWinControl)
+  published
+    class procedure AddControl(const AControl: TControl); override;
+    class function  CanFocus(const AWincontrol: TWinControl): Boolean; override;
+    class function GetCanvasScaleFactor(const AControl: TControl): Double; override;
+    class function  GetClientBounds(const AWincontrol: TWinControl; var ARect: TRect): Boolean; override;
+    class function  GetClientRect(const AWincontrol: TWinControl; var ARect: TRect): Boolean; override;
+    class procedure GetPreferredSize(const AWinControl: TWinControl; var PreferredWidth, PreferredHeight: integer; WithThemeSpace: Boolean); override;
+    class function  GetDefaultClientRect(const AWinControl: TWinControl; const aLeft, aTop, aWidth, aHeight: integer; var aClientRect: TRect): boolean; override;
+    class function GetDesignInteractive(const AWinControl: TWinControl; AClientPos: TPoint): Boolean; override;
+    class function  GetText(const AWinControl: TWinControl; var AText: String): Boolean; override;
+    class function  GetTextLen(const AWinControl: TWinControl; var ALength: Integer): Boolean; override;
+
+    class procedure SetBiDiMode(const AWinControl: TWinControl; UseRightToLeftAlign, UseRightToLeftReading, UseRightToLeftScrollBar : Boolean); override;
+    class procedure SetBorderStyle(const AWinControl: TWinControl; const ABorderStyle: TBorderStyle); override;
+    class procedure SetBounds(const AWinControl: TWinControl; const ALeft, ATop, AWidth, AHeight: Integer); override;
+    class procedure SetColor(const AWinControl: TWinControl); override;
+    class procedure SetChildZPosition(const AWinControl, AChild: TWinControl; const AOldPos, ANewPos: Integer; const AChildren: TFPList); override;
+    class procedure SetFont(const AWinControl: TWinControl; const AFont: TFont); override;
+    class procedure SetPos(const AWinControl: TWinControl; const ALeft, ATop: Integer); override;
+    class procedure SetSize(const AWinControl: TWinControl; const AWidth, AHeight: Integer); override;
+    class procedure SetText(const AWinControl: TWinControl; const AText: String); override;
+    class procedure SetCursor(const AWinControl: TWinControl; const ACursor: HCursor); override;
+    class procedure SetShape(const AWinControl: TWinControl; const AShape: HBITMAP); override;
+
+    { TODO: move AdaptBounds: it is only used in winapi interfaces }
+    class procedure AdaptBounds(const AWinControl: TWinControl;
+          var Left, Top, Width, Height: integer; var SuppressMove: boolean); override;
+          
+    class procedure ConstraintsChange(const AWinControl: TWinControl); override;
+    class function  CreateHandle(const AWinControl: TWinControl;
+      const AParams: TCreateParams): TLCLHandle; override;
+    class procedure DestroyHandle(const AWinControl: TWinControl); override;
+    class procedure DefaultWndHandler(const AWinControl: TWinControl; var AMessage); override;
+    class procedure Invalidate(const AWinControl: TWinControl); override;
+    class procedure PaintTo(const AWinControl: TWinControl; ADC: HDC; X, Y: Integer); override;
+    class procedure Repaint(const AWinControl: TWinControl); override;
+    class procedure ShowHide(const AWinControl: TWinControl); override; //TODO: rename to SetVisible(control, visible)
+    class procedure ScrollBy(const AWinControl: TWinControl; DeltaX, DeltaY: integer); override;
+  end;
+  TGtk3WSWinControlClass = class of TGtk3WSWinControl;
+
+
+  { TGtk3WSCustomControl }
+
+  TGtk3WSCustomControl = class(TGtk3WSWinControl)
+  published
+    class function CreateHandle(const AWinControl: TWinControl;
+      const AParams: TCreateParams): TLCLHandle; override;
+  end;
+
+
+implementation
+uses SysUtils, Forms, gtk3objects, gtk3procs, gtk3int;
+
+{ TGtk3WSWinControl }
+
+class procedure TGtk3WSWinControl.AdaptBounds(const AWinControl: TWinControl;
+  var Left, Top, Width, Height: integer; var SuppressMove: boolean);
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.AdaptBounds');
+  {$ENDIF}
+end;
+
+class procedure TGtk3WSWinControl.ConstraintsChange(const AWinControl: TWinControl);
+var
+  AWidget: TGtk3Widget;
+  Geometry: TGdkGeometry;
+  AHints: TGdkWindowHints;
+  AFixedWidthHeight: Boolean;
+  AForm: TCustomForm;
+  AShadowW, AShadowH: Integer;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.ConstraintsChange');
+  {$ENDIF}
+  if not AWinControl.HandleAllocated then Exit;
+  AWidget := TGtk3Widget(AWinControl.Handle);
+  if not Gtk3IsGtkWindow(AWidget.Widget) then Exit;
+  if not (AWinControl is TCustomForm) then Exit;
+  AForm := TCustomForm(AWinControl);
+  if csDesigning in AForm.ComponentState then Exit;
+
+  AFixedWidthHeight := AForm.BorderStyle in [bsDialog, bsSingle, bsToolWindow];
+
+  AShadowW := 0;
+  AShadowH := 0;
+  if Gtk3WidgetSet.IsWayland then
+  begin
+    AShadowW := TGtk3Window(AWidget).CSDShadowW;
+    AShadowH := TGtk3Window(AWidget).CSDShadowH;
+  end;
+
+  FillChar(Geometry, SizeOf(Geometry), 0);
+  with Geometry do
+  begin
+    if not AFixedWidthHeight and (AForm.Constraints.MinWidth > 0) then
+      min_width := AForm.Constraints.MinWidth + AShadowW
+    else
+      min_width := AForm.Width;
+    if not AFixedWidthHeight and (AForm.Constraints.MaxWidth > 0) then
+      max_width := AForm.Constraints.MaxWidth + AShadowW
+    else
+      max_width := AForm.Width;
+    if not AFixedWidthHeight and (AForm.Constraints.MinHeight > 0) then
+      min_height := AForm.Constraints.MinHeight + AShadowH
+    else
+      min_height := AForm.Height;
+    if not AFixedWidthHeight and (AForm.Constraints.MaxHeight > 0) then
+      max_height := AForm.Constraints.MaxHeight + AShadowH
+    else
+      max_height := AForm.Height;
+    base_width  := AForm.Width;
+    base_height := AForm.Height;
+    width_inc   := 1;
+    height_inc  := 1;
+    min_aspect  := 0;
+    max_aspect  := 1;
+    win_gravity := PGtkWindow(AWidget.Widget)^.get_gravity;
+  end;
+
+  if AFixedWidthHeight then
+  begin
+    if not (Gtk3WidgetSet.IsWayland and not AWidget.Widget^.get_mapped) then
+    begin
+      if Gtk3WidgetSet.IsWayland then
+      begin
+        Geometry.min_width := PGtkWidget(AWidget.Widget)^.get_allocated_width;
+        Geometry.max_width := Geometry.min_width;
+        Geometry.min_height := PGtkWidget(AWidget.Widget)^.get_allocated_height;
+        Geometry.max_height := Geometry.min_height;
+        Geometry.base_width := Geometry.min_width;
+        Geometry.base_height := Geometry.min_height;
+      end;
+      PGtkWindow(AWidget.Widget)^.set_geometry_hints(nil, @Geometry,
+        [GDK_HINT_POS, GDK_HINT_MIN_SIZE, GDK_HINT_MAX_SIZE]);
+    end;
+  end else
+  begin
+    if AForm.BorderStyle <> bsNone then
+    begin
+      AHints := [GDK_HINT_POS];
+      if (AForm.Constraints.MinWidth > 0) or (AForm.Constraints.MinHeight > 0) then
+        Include(AHints, GDK_HINT_MIN_SIZE);
+      if (AForm.Constraints.MaxWidth > 0) or (AForm.Constraints.MaxHeight > 0) then
+        Include(AHints, GDK_HINT_MAX_SIZE);
+      PGtkWindow(AWidget.Widget)^.set_geometry_hints(nil, @Geometry, AHints);
+    end;
+  end;
+end;
+
+class function TGtk3WSWinControl.CreateHandle(const AWinControl: TWinControl;
+  const AParams: TCreateParams): TLCLHandle;
+var
+  Gtk3WinControlPanel: TGtk3WinControlPanel;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.CreateHandle for ', DbgsName(AWinControl));
+  {$ENDIF}
+  Gtk3WinControlPanel := TGtk3WinControlPanel.Create(AWinControl, AParams);
+  Result := TLCLHandle(Gtk3WinControlPanel);
+end;
+
+class procedure TGtk3WSWinControl.DestroyHandle(const AWinControl: TWinControl);
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.DestroyHandle ',dbgsName(AWinControl),' handle ',dbgs(AWinControl.HandleAllocated));
+  {$ENDIF}
+  if AWinControl.HandleAllocated then
+    TGtk3Widget(AWinControl.Handle).Release;
+end;
+
+class procedure TGtk3WSWinControl.DefaultWndHandler(const AWinControl: TWinControl; var AMessage);
+begin
+  // WidgetSet.CallDefaultWndHandler(AWinControl, AMessage);
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.DefaultWndHandler');
+  {$ENDIF}
+end;
+
+class procedure TGtk3WSWinControl.AddControl(const AControl: TControl);
+var
+  AHandle: TGtk3Widget;
+  AWidget: PGtkWidget;
+  AParent: TWinControl;
+  AChild: PGtkWidget;
+begin
+  if not WSCheckHandleAllocated(TWinControl(AControl), 'AddControl') then
+    Exit;
+  AParent := TWinControl(AControl).Parent;
+  AHandle := TGtk3Widget(AParent.Handle);
+  AWidget := AHandle.Widget;
+
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE) OR DEFINED(GTK3DEBUGREPARENTING)}
+  DebugLn('TGtk3WSWinControl.AddControl ',dbgsName(AControl),' LEFT=',dbgs(AControl.Left),' TOP=',dbgs(AControl.Top),
+    ' PARENT=',dbgsName(AParent));
+  {$ENDIF}
+
+  // better use this, since it sets position imediatelly if its child of container
+  // so, reduce flickering.
+  TGtk3Widget(TWinControl(AControl).Handle).SetParent(AHandle, AControl.Left, AControl.Top);
+end;
+
+class function TGtk3WSWinControl.CanFocus(const AWincontrol: TWinControl): Boolean;
+begin
+  // lets consider that by deafult all WinControls can be focused
+  Result := False;
+  if AWinControl.HandleAllocated then
+    Result := TGtk3Widget(AWinControl.Handle).CanFocus;
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGFOCUS)}
+  DebugLn('TGtk3WSWinControl.CanFocus ',dbgsName(AWinControl),' result ',dbgs(Result));
+  {$ENDIF}
+end;
+
+class function TGtk3WSWinControl.GetCanvasScaleFactor(const AControl: TControl
+  ): Double;
+var
+  W: TGtk3Widget;
+begin
+  Result := 1;
+
+  if GTK3WidgetSet.IsWayland then
+    exit;
+
+  if TWinControl(AControl).HandleAllocated then
+  begin
+    W := TGtk3Widget(TWinControl(AControl).Handle);
+    if Gtk3IsGdkWindow(W.GetWindow) then
+      Result := gdk_window_get_scale_factor(W.GetWindow);
+  end;
+end;
+
+class function TGtk3WSWinControl.GetClientBounds(const AWincontrol: TWinControl; var ARect: TRect): Boolean;
+begin
+  // for now default to the WinAPI version
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  DebugLn('TGtk3WSWinControl.GetClientBounds ',dbgsName(AWinControl));
+  {$ENDIF}
+  Result := False;
+  if AWinControl.HandleAllocated then
+  begin
+    ARect := TGtk3Widget(AWinControl.Handle).getClientBounds;
+    Result := True;
+  end else
+    ARect := Rect(0, 0, 0, 0);
+
+  //TODO: USE winapi version
+    // Gtk3WidgetSet.GetClientBounds(AWincontrol.Handle, ARect);
+end;
+
+class function TGtk3WSWinControl.GetClientRect(const AWincontrol: TWinControl; var ARect: TRect): Boolean;
+begin
+  // for now default to the WinAPI version
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  DebugLn('TGtk3WSWinControl.GetClientRect ',dbgsName(AWinControl));
+  {$ENDIF}
+  //TODO: USE winapi version
+  Result := False;
+  if AWinControl.HandleAllocated then
+  begin
+    ARect := TGtk3Widget(AWinControl.Handle).getClientRect;
+    Result := True;
+  end else
+    ARect := Rect(0, 0, 0, 0);
+  // Result := Gtk3WidgetSet.GetClientRect(AWincontrol.Handle, ARect);
+end;
+
+{------------------------------------------------------------------------------
+  Function: TGtk3WSWinControl.GetText
+  Params:  Sender: The control to retrieve the text from
+  Returns: the requested text
+
+  Retrieves the text from a control. 
+ ------------------------------------------------------------------------------}
+class function TGtk3WSWinControl.GetText(const AWinControl: TWinControl; var AText: String): Boolean;
+begin
+  Result := False;
+  if not WSCheckHandleAllocated(AWinControl, 'GetText') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.GetText ',dbgsName(AWinControl));
+  {$ENDIF}
+  AText := TGtk3Widget(AWinControl.Handle).Text;
+  Result := True;
+end;
+  
+class function TGtk3WSWinControl.GetTextLen(const AWinControl: TWinControl; var ALength: Integer): Boolean;
+var
+  S: String;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.GetTextLen');
+  {$ENDIF}
+  Result := GetText(AWinControl, S);
+  if Result
+  then ALength := Length(S);
+end;
+
+class procedure TGtk3WSWinControl.SetBiDiMode(const AWinControl: TWinControl; UseRightToLeftAlign, UseRightToLeftReading, UseRightToLeftScrollBar : Boolean);
+const
+  WidgetDirection: array[Boolean] of TGtkTextDirection = (GTK_TEXT_DIR_LTR, GTK_TEXT_DIR_RTL);
+var
+  AWidget: TGtk3Widget;
+  ADir: TGtkTextDirection;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetBiDiMode');
+  {$ENDIF}
+  if not WSCheckHandleAllocated(AWinControl, 'SetBiDiMode') then
+    Exit;
+  AWidget := TGtk3Widget(AWinControl.Handle);
+  if (AWidget = nil) or not Gtk3IsWidget(AWidget.Widget) then
+    Exit;
+  ADir := WidgetDirection[UseRightToLeftAlign];
+  gtk_widget_set_direction(AWidget.Widget, ADir);
+  if (AWidget.GetContainerWidget <> nil) and (AWidget.GetContainerWidget <> AWidget.Widget)
+     and Gtk3IsWidget(AWidget.GetContainerWidget) then
+    gtk_widget_set_direction(AWidget.GetContainerWidget, ADir);
+end;
+
+class procedure TGtk3WSWinControl.GetPreferredSize(const AWinControl: TWinControl;
+  var PreferredWidth, PreferredHeight: integer; WithThemeSpace: Boolean);
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.GetPreferredSize');
+  {$ENDIF}
+  if not WSCheckHandleAllocated(AWinControl, 'GetPreferredSize') then
+    Exit;
+  TGtk3Widget(AWinControl.Handle).preferredSize(PreferredWidth, PreferredHeight, WithThemeSpace);
+end;
+
+class function TGtk3WSWinControl.GetDefaultClientRect(
+  const AWinControl: TWinControl; const aLeft, aTop, aWidth, aHeight: integer;
+  var aClientRect: TRect): boolean;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.GetDefaultClientRect ',dbgsName(AWinControl),' handle=',dbgs(AWinControl.HandleAllocated));
+  {$ENDIF}
+  Result:=false;
+end;
+
+class function TGtk3WSWinControl.GetDesignInteractive(
+  const AWinControl: TWinControl; AClientPos: TPoint): Boolean;
+begin
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.GetDesignInteractive');
+  {$ENDIF}
+  Result := False;
+end;
+
+class procedure TGtk3WSWinControl.Invalidate(const AWinControl: TWinControl);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'Invalidate') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.Invalidate');
+  {$ENDIF}
+  TGtk3Widget(AWinControl.Handle).Update(nil);
+end;
+
+class procedure TGtk3WSWinControl.PaintTo(const AWinControl: TWinControl; ADC: HDC;
+  X, Y: Integer);
+var
+  AWidget: TGtk3Widget;
+begin
+  if not WSCheckHandleAllocated(AWincontrol, 'PaintTo') or (ADC = 0) then
+    Exit;
+  AWidget := TGtk3Widget(AWinControl.Handle);
+  TGtk3DeviceContext(ADC).Save;
+  with TGtk3DeviceContext(ADC) do
+  begin
+    cairo_translate(pcr, X, Y);
+    gtk_widget_draw(AWidget.Widget, pcr);
+  end;
+  TGtk3DeviceContext(ADC).Restore;
+end;
+
+class procedure TGtk3WSWinControl.Repaint(const AWinControl: TWinControl);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'Repaint') then
+    Exit;
+  TGtk3Widget(AWinControl.Handle).Repaint(nil);
+end;
+
+class procedure TGtk3WSWinControl.SetBounds(const AWinControl: TWinControl; const ALeft, ATop, AWidth, AHeight: Integer);
+{$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+var
+  AWidget: TGtk3Widget;
+{$ENDIF}
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetBounds') then
+    Exit;
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  AWidget := TGtk3Widget(AWinControl.Handle);
+  DebugLn('TGtk3WSWinControl.SetBounds ',dbgsName(AWinControl),Format(' ALeft %d ATop %d AWidth %d AHeight %d',[ALeft, ATop, AWidth, AHeight]));
+  {$ENDIF}
+  TGtk3Widget(AWinControl.Handle).SetBounds(ALeft,ATop,AWidth,AHeight);
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  DebugLn('TGtk3WSWinControl.SetBounds ',dbgsName(AWinControl),' isRealized=',dbgs(AWidget.Widget^.get_realized),
+    ' IsMapped=',dbgs(AWidget.Widget^.get_mapped));
+  {$ENDIF}
+end;
+    
+class procedure TGtk3WSWinControl.SetBorderStyle(const AWinControl: TWinControl; const ABorderStyle: TBorderStyle);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetBorderStyle') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetBorderStyle');
+  {$ENDIF}
+end;
+
+class procedure TGtk3WSWinControl.SetChildZPosition(
+  const AWinControl, AChild: TWinControl; const AOldPos, ANewPos: Integer;
+  const AChildren: TFPList);
+var
+  Reorder: TFPList;
+  n: Integer;
+  Child: TWinControl;
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetChildZPosition') then
+    Exit;
+  if not WSCheckHandleAllocated(AChild, 'SetChildZPosition (child)') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetChildZPosition');
+  {$ENDIF}
+  if (ANewPos <= 0) or (ANewPos >= AChildren.Count - 1) then
+  begin
+    // simple
+    if ANewPos <= 0 then // bottom
+      TGtk3Widget(AChild.Handle).lowerWidget
+    else
+      TGtk3Widget(AChild.Handle).raiseWidget;
+  end else
+  begin
+    if (ANewPos >= 0) and (ANewPos < AChildren.Count -1) then
+    begin
+      Reorder := TFPList.Create;
+      for n := AChildren.Count - 1 downto 0 do
+        Reorder.Add(AChildren[n]);
+      Child := TWinControl(Reorder[ANewPos + 1]);
+      if Child.HandleAllocated then
+        TGtk3Widget(AChild.Handle).stackUnder(TGtk3Widget(Child.Handle).Widget)
+      else
+        TGtk3Widget(AChild.Handle).lowerWidget;
+      Reorder.Free;
+    end;
+  end;
+end;
+
+class procedure TGtk3WSWinControl.SetColor(const AWinControl: TWinControl);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetColor') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetColor ',dbgsName(AWinControl));
+  {$ENDIF}
+  TGtk3Widget(AWinControl.Handle).Color := AWinControl.Color;
+end;
+
+class procedure TGtk3WSWinControl.SetCursor(const AWinControl: TWinControl; const ACursor: HCursor);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetCursor') then
+    Exit;
+  {$IFDEF GTK3DEBUGNOTIMPLEMENTED}
+  // quiet for now
+  // DebugLn('TGtk3WSWinControl.SetCursor not implemented');
+  {$ENDIF}
+  TGtk3Widget(AWinControl.Handle).SetCursor(ACursor);
+end;
+
+class procedure TGtk3WSWinControl.SetShape(const AWinControl: TWinControl;
+  const AShape: HBITMAP);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetShape') then
+    Exit;
+  TGtk3Widget(AWinControl.Handle).Shape := TGtk3Image(AShape).Handle^.copy;
+end;
+
+class procedure TGtk3WSWinControl.SetFont(const AWinControl: TWinControl; const AFont: TFont);
+var
+  AWidget: TGtk3Widget;
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetFont') then
+    Exit;
+
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetFont ',dbgsName(AWinControl),' font.Size=',dbgs(AFont.Size),' font.Height=',dbgs(AFont.Height),' ASize=',dbgs(ASize),
+  ' pxPerInch ',dbgs(AFont.PixelsPerInch));
+  {$ENDIF}
+  AWidget := TGtk3Widget(AWinControl.Handle);
+  AWidget.SetLclFont(AFont);
+end;
+
+class procedure TGtk3WSWinControl.SetPos(const AWinControl: TWinControl; const ALeft, ATop: Integer);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetPos') then
+    Exit;
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  DebugLn('WARNING: TGtk3WSWinControl.SetPos is not implemented. *****');
+  {$ENDIF}
+end;
+
+class procedure TGtk3WSWinControl.SetSize(const AWinControl: TWinControl; const AWidth, AHeight: Integer);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetSize') then
+    Exit;
+  {$IF DEFINED(GTK3DEBUGCORE) OR DEFINED(GTK3DEBUGSIZE)}
+  DebugLn('WARNING: TGtk3WSWinControl.SetSize is not implemented. *****');
+  {$ENDIF}
+end;
+
+{------------------------------------------------------------------------------
+  Method: TGtk3WSWinControl.SetText
+  Params:  AWinControl - the calling object
+           AText       - String to be set as label/text for a control
+  Returns: Nothing
+
+  Sets the label text on a widget
+ ------------------------------------------------------------------------------}
+class procedure TGtk3WSWinControl.SetText(const AWinControl: TWinControl; const AText: String);
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'SetText') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.SetText ',dbgsName(AWinControl));
+  {$ENDIF}
+  TGtk3Widget(AWinControl.Handle).Text := AText;
+end;
+
+class procedure TGtk3WSWinControl.ShowHide(const AWinControl: TWinControl);
+var
+  wgt:TGtk3Widget;
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'ShowHide') then
+    Exit;
+  {$IFDEF GTK3DEBUGCORE}
+  DebugLn('TGtk3WSWinControl.ShowHide ',dbgsName(AWinControl));
+  {$ENDIF}
+  wgt:=TGtk3Widget(AWinControl.Handle);
+  wgt.BeginUpdate;
+  wgt.Visible := AWinControl.HandleObjectShouldBeVisible;
+  if wgt.Visible then
+  begin
+    wgt.ShowAll;
+    // imediatelly realize (create widget handles), so we'll get updated bounds
+    // and everything just on time.
+    if not (wtScrollingWin in wgt.WidgetType) then
+    begin
+      if Gtk3IsGtkWindow(wgt.GetContainerWidget^.get_toplevel) then
+        wgt.GetContainerWidget^.realize;
+    end;
+  end;
+  wgt.EndUpdate;
+end;
+
+class procedure TGtk3WSWinControl.ScrollBy(const AWinControl: TWinControl;
+  DeltaX, DeltaY: integer);
+begin
+  if not AWinControl.HandleAllocated then
+    exit;
+  AWinControl.Invalidate;
+end;
+
+{ TGtk3WSCustomControl }
+
+class function TGtk3WSCustomControl.CreateHandle(
+  const AWinControl: TWinControl; const AParams: TCreateParams): TLCLHandle;
+var
+  Gtk3CustomControl: TGtk3CustomControl;
+begin
+  Gtk3CustomControl := TGtk3CustomControl.Create(AWinControl, AParams);
+  Result := TLCLHandle(Gtk3CustomControl);
+end;
+
+
+{ TGtk3WSDragImageListResolution }
+
+class function TGtk3WSDragImageListResolution.BeginDrag(const ADragImageList: TDragImageListResolution;
+  Window: HWND; AIndex, X, Y: Integer): Boolean;
+var
+  ABitmap: TBitmap;
+  APixBuf: PGdkPixbuf;
+begin
+  Result := False;
+  ABitmap := TBitmap.Create;
+  ADragImageList.GetBitmap(AIndex, ABitmap);
+  if (ABitmap.Handle = 0) or (ABitmap.Width = 0) or (ABitmap.Height = 0) then
+  begin
+    ABitmap.Free;
+    exit;
+  end;
+  APixBuf := TGtk3Image(ABitmap.Handle).Handle;
+  APixBuf^.ref;
+  Result := Gtk3Widgetset.DragImageList_BeginDrag(APixBuf, ADragImageList.DragHotspot);
+  if Result then
+    Gtk3Widgetset.DragImageList_DragMove(X, Y);
+  APixBuf^.unref;
+  ABitmap.Free;
+end;
+
+class function TGtk3WSDragImageListResolution.DragMove(const ADragImageList: TDragImageListResolution;
+  X, Y: Integer): Boolean;
+begin
+  Result := Gtk3Widgetset.DragImageList_DragMove(X, Y);
+end;
+
+class procedure TGtk3WSDragImageListResolution.EndDrag(const ADragImageList: TDragImageListResolution);
+begin
+  Gtk3Widgetset.DragImageList_EndDrag;
+end;
+
+class function TGtk3WSDragImageListResolution.HideDragImage(const ADragImageList: TDragImageListResolution;
+  ALockedWindow: HWND; DoUnLock: Boolean): Boolean;
+begin
+  Result := Gtk3Widgetset.DragImageList_SetVisible(False);
+end;
+
+class function TGtk3WSDragImageListResolution.ShowDragImage(const ADragImageList: TDragImageListResolution;
+  ALockedWindow: HWND; X, Y: Integer; DoLock: Boolean): Boolean;
+begin
+  Result := Gtk3Widgetset.DragImageList_DragMove(X, Y) and Gtk3Widgetset.DragImageList_SetVisible(True);
+end;
+
+{ TGtk3WSControl }
+
+class function TGtk3WSControl.GetCanvasScaleFactor(const AControl: TControl
+  ): Double;
+begin
+	Result := 1;
+  if Assigned(AControl.Parent) then
+    Result := AControl.Parent.GetCanvasScaleFactor;
+end;
+
+end.

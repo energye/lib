@@ -1,0 +1,17 @@
+修复兼容 4.x 代码
+
+针对 fix4.x SynEdit 输入中文
+
+新增
+    gtk3globals.pas
+
+修改
+    gtk3int.pas
+    gtk3object.inc
+    gtk3procs.pas
+    gtk3widgets.pas
+    gtk3lclintfh.inc
+    gtk3themes.pas
+    gtk3winapi.inc
+
+不使用： 4.8 补丁不如 4.6-1 好用

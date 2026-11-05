@@ -1,0 +1,312 @@
+{%MainUnit gtk3widgets.pas}
+
+procedure LCLGtkFrameGetPreferredWidth(widget: PGtkWidget; min_width, nat_width: Pgint); cdecl;
+var
+  AControl: TGtk3Widget;
+  ParentClass: PGtkWidgetClass;
+begin
+  if not Assigned(min_width) or not Assigned(nat_width) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredWidth invalid params.');
+    Exit;
+  end;
+
+  if not Gtk3IsWidget(widget) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredWidth widget param is not PGtkWidget.');
+    Exit;
+  end;
+
+  ParentClass := PGtkWidgetClass(g_type_class_peek_parent(widget^.g_type_instance.g_class));
+  if not Assigned(ParentClass) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredWidth cannot get ParentClass !');
+    Exit;
+  end;
+
+  // Call parent class implementation
+  ParentClass^.get_preferred_width(widget, min_width, nat_width);
+  // writeln('LCLFrame preferred min_width=',min_width^,' natural w=',nat_width^);
+  AControl := TGtk3Widget(HwndFromGtkWidget(widget));
+  if not Assigned(AControl) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredWidth cannot get TGtk3Widget for widget parameter.');
+    Exit;
+  end;
+
+  if AControl.LCLWidth > 0 then
+  begin
+    min_width^ := AControl.LCLWidth;
+    nat_width^ := AControl.LCLWidth;
+  end else
+  if AControl.LCLObject.Width > 0 then
+  begin
+    min_width^ := AControl.LCLObject.Width;
+    nat_width^ := AControl.LCLObject.Width;
+  end;
+end;
+
+procedure LCLGtkFrameGetPreferredHeight(widget: PGtkWidget; min_height, nat_height: Pgint); cdecl;
+var
+  AControl: TGtk3Widget;
+  ParentClass: PGtkWidgetClass;
+begin
+  if not Assigned(min_height) or not Assigned(nat_height) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredHeight invalid params.');
+    Exit;
+  end;
+
+  if not Gtk3IsWidget(widget) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredHeight widget param is not PGtkWidget.');
+    Exit;
+  end;
+
+  ParentClass := PGtkWidgetClass(g_type_class_peek_parent(widget^.g_type_instance.g_class));
+  if not Assigned(ParentClass) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredHeight cannot get ParentClass !');
+    Exit;
+  end;
+
+  // Call parent class implementation
+  ParentClass^.get_preferred_height(widget, min_height, nat_height);
+
+  AControl := TGtk3Widget(HwndFromGtkWidget(widget));
+  if not Assigned(AControl) then
+  begin
+    DebugLn('Error: LCLGtkFrameGetPreferredHeight cannot get TGtk3Widget for widget parameter.');
+    Exit;
+  end;
+
+  if AControl.LCLHeight > 0 then
+  begin
+    min_height^ := AControl.LCLHeight;
+    nat_height^ := AControl.LCLHeight;
+  end else
+  if AControl.LCLObject.Height > 0 then
+  begin
+    min_height^ := AControl.LCLObject.Height;
+    nat_height^ := AControl.LCLObject.Height;
+  end;
+end;
+
+procedure LCLGtkFrameSizeAllocate(widget: PGtkWidget; allocation: PGtkAllocation); cdecl;
+var
+  ParentClass: PGtkWidgetClass;
+  labelWidget: PGtkWidget;
+  ctx: PGtkStyleContext;
+  border, padding, margin: TGtkBorder;
+  labelMinH, decorH, decorW: gint;
+  ClampedAlloc: TGtkAllocation;
+  NeedClamp: Boolean;
+begin
+  ParentClass := PGtkWidgetClass(g_type_class_peek_parent(widget^.g_type_instance.g_class));
+  if not Assigned(ParentClass) or not Assigned(ParentClass^.size_allocate) then
+    Exit;
+
+  decorW := 2;
+  decorH := 2;
+  labelWidget := PGtkFrame(widget)^.get_label_widget;
+  if Assigned(labelWidget) and Gtk3IsWidget(labelWidget) and labelWidget^.get_visible then
+  begin
+    labelMinH := 0;
+    gtk_widget_get_preferred_height(labelWidget, @labelMinH, nil);
+    if labelMinH > 0 then
+      inc(decorH, labelMinH);
+  end;
+  ctx := widget^.get_style_context;
+  if Assigned(ctx) then
+  begin
+    FillChar(border{%H-}, SizeOf(border), 0);
+    FillChar(padding{%H-}, SizeOf(padding), 0);
+    FillChar(margin{%H-}, SizeOf(margin), 0);
+    ctx^.get_border(GTK_STATE_FLAG_NORMAL, @border);
+    ctx^.get_padding(GTK_STATE_FLAG_NORMAL, @padding);
+    ctx^.get_margin(GTK_STATE_FLAG_NORMAL, @margin);
+    inc(decorH, gint(border.top) + gint(border.bottom) + gint(padding.top) + gint(padding.bottom)
+              + gint(margin.top) + gint(margin.bottom));
+    inc(decorW, gint(border.left) + gint(border.right) + gint(padding.left) + gint(padding.right)
+              + gint(margin.left) + gint(margin.right));
+  end;
+
+  NeedClamp := (allocation^.width < decorW) or (allocation^.height < decorH);
+  if NeedClamp then
+  begin
+    ClampedAlloc := allocation^;
+
+    if ClampedAlloc.width < decorW then
+      ClampedAlloc.width := decorW;
+
+    if ClampedAlloc.height < decorH then
+      ClampedAlloc.height := decorH;
+
+    ParentClass^.size_allocate(widget, @ClampedAlloc);
+    gtk_widget_set_allocation(widget, allocation);
+    gtk_widget_set_clip(widget, allocation);
+
+    exit;
+
+  end;
+
+  ParentClass^.size_allocate(widget, allocation);
+end;
+
+procedure LCLGtkFrameClassInit(klass: PGTypeClass; {%H-}data: Pointer); cdecl;
+var
+  AWidgetClass: PGtkWidgetClass;
+begin
+  AWidgetClass := PGtkWidgetClass(klass);
+  AWidgetClass^.size_allocate := @LCLGtkFrameSizeAllocate;
+  AWidgetClass^.get_preferred_width := @LCLGtkFrameGetPreferredWidth;
+  AWidgetClass^.get_preferred_height := @LCLGtkFrameGetPreferredHeight;
+end;
+
+procedure LCLGtkFrameInstanceInit(instance: PGTypeInstance; {%H-}klass: PGTypeClass); cdecl;
+begin
+  //
+end;
+
+var
+  LCLGtkFrameType: TGType = 0;
+
+function LCLGtkFrameGetType: TGType; cdecl;
+var
+  Query: TGTypeQuery;
+  Info: TGTypeInfo;
+  ParentType: TGType;
+begin
+  if LCLGtkFrameType = 0 then
+  begin
+    ParentType := gtk_frame_get_type;
+    g_type_query(ParentType, @Query);
+    FillChar(Info{%H-}, SizeOf(Info), 0);
+    Info.class_size    := guint16(Query.class_size);
+    Info.class_init    := @LCLGtkFrameClassInit;
+    Info.instance_size := guint16(Query.instance_size);
+    Info.instance_init := @LCLGtkFrameInstanceInit;
+    LCLGtkFrameType := g_type_register_static(ParentType,
+      'LCLGtkFrame', @Info, G_TYPE_FLAG_NONE);
+  end;
+  Result := LCLGtkFrameType;
+end;
+
+function LCLGtkFrameNew: PGtkFrame;
+begin
+                                                                      {in gtk3 this is default shadow}
+  Result := PGtkFrame(g_object_new(LCLGtkFrameGetType(),'shadow-type',[GTK_SHADOW_ETCHED_IN, nil]));
+end;
+
+
+procedure LCLGtkFixedGetPreferredWidth(widget: PGtkWidget; min_width, nat_width: Pgint); cdecl;
+begin
+  if not Assigned(min_width) or not Assigned(nat_width) then
+    Exit;
+  { LCLGtkFixed (Toolbars): TRULY SOFT WIDTH }
+  { We force 10px to break the expansion loop. Child positions (e.g. x=1950) }
+  { in a docked IDE otherwise 'push' the window to be too wide. }
+  min_width^ := 10;
+  nat_width^ := 10;
+end;
+
+procedure LCLGtkFixedGetPreferredHeight(widget: PGtkWidget; min_height, nat_height: Pgint); cdecl;
+var
+  AControl: TGtk3Widget;
+  ParentClass: PGtkWidgetClass;
+begin
+  if not Assigned(min_height) or not Assigned(nat_height) then
+  begin
+    DebugLn('Error: LCLGtkFixedGetPreferredHeight invalid params.');
+    Exit;
+  end;
+
+  if not Gtk3IsWidget(widget) then
+  begin
+    DebugLn('Error: LCLGtkFixedGetPreferredHeight widget param is not PGtkWidget.');
+    Exit;
+  end;
+
+  ParentClass := PGtkWidgetClass(g_type_class_peek_parent(widget^.g_type_instance.g_class));
+  if not Assigned(ParentClass) then
+  begin
+    DebugLn('Error: LCLGtkFixedGetPreferredHeight cannot get ParentClass !');
+    Exit;
+  end;
+
+  AControl := TGtk3Widget(HwndFromGtkWidget(widget));
+  if not Assigned(AControl) then
+  begin
+    DebugLn('Error: LCLGtkFixedGetPreferredHeight cannot get TGtk3Widget for widget parameter.');
+    Exit;
+  end;
+
+  // Call parent class implementation
+  ParentClass^.get_preferred_height(widget, min_height, nat_height);
+
+  { LCLGtkFixed (Toolbars): KEEP HARD HEIGHT to prevent 1px collapse.
+    Only apply the floor when the control is intended to be visible.
+    When LCL explicitly sets Height=0 (control collapsed), report 0 so GTK
+    does not prevent the widget from collapsing to zero. }
+  if AControl.LCLHeight > 0 then
+  begin
+    min_height^ := Max(min_height^, AControl.LCLHeight);
+    nat_height^ := Max(nat_height^, min_height^);
+  end else if Assigned(AControl.LCLObject) and (AControl.LCLObject.Height > 0) then
+  begin
+    min_height^ := Max(min_height^, AControl.LCLObject.Height);
+    nat_height^ := Max(nat_height^, min_height^);
+  end else
+  begin
+    { Height=0: collapsed intentionally — ensure at least 0, not 10 }
+    if min_height^ < 0 then min_height^ := 0;
+    nat_height^ := Max(nat_height^, min_height^);
+  end;
+end;
+
+procedure LCLGtkFixedClassInit(klass: PGTypeClass; {%H-}data: Pointer); cdecl;
+var
+  AWidgetClass: PGtkWidgetClass;
+begin
+  AWidgetClass := PGtkWidgetClass(klass);
+  AWidgetClass^.get_preferred_width := @LCLGtkFixedGetPreferredWidth;
+  AWidgetClass^.get_preferred_height := @LCLGtkFixedGetPreferredHeight;
+end;
+
+procedure LCLGtkFixedInstanceInit(instance: PGTypeInstance; {%H-}klass: PGTypeClass); cdecl;
+begin
+  //
+end;
+
+var
+  LCLGtkFixedType: TGType = 0;
+
+function LCLGtkFixedGetType: TGType; cdecl;
+var
+  Query: TGTypeQuery;
+  Info: TGTypeInfo;
+  ParentType: TGType;
+begin
+  if LCLGtkFixedType = 0 then
+  begin
+    ParentType := gtk_fixed_get_type;
+    g_type_query(ParentType, @Query);
+    FillChar(Info{%H-}, SizeOf(Info), 0);
+    Info.class_size    := guint16(Query.class_size);
+    Info.class_init    := @LCLGtkFixedClassInit;
+    Info.instance_size := guint16(Query.instance_size);
+    Info.instance_init := @LCLGtkFixedInstanceInit;
+    LCLGtkFixedType := g_type_register_static(ParentType,
+      'LCLGtkFixed', @Info, G_TYPE_FLAG_NONE);
+  end;
+  Result := LCLGtkFixedType;
+end;
+
+function LCLGtkFixedNew: PGtkFixed;
+begin
+                                                                      {in gtk3 this is default border-width}
+  Result := PGtkFixed(g_object_new(LCLGtkFixedGetType(),'border-width',[0, nil]));
+end;
+
+
+

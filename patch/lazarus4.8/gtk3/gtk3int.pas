@@ -1,0 +1,339 @@
+{
+ *****************************************************************************
+ *                               gtk3int.pas                                 *
+ *                               -------------                               *
+ *                                                                           *
+ *                                                                           *
+ *****************************************************************************
+
+ *****************************************************************************
+  This file is part of the Lazarus Component Library (LCL)
+
+  See the file COPYING.modifiedLGPL.txt, included in this distribution,
+  for details about the license.
+ *****************************************************************************
+}
+unit gtk3int;
+
+{$mode objfpc}{$H+}
+{$i gtk3defines.inc}
+
+interface
+
+uses
+  {$IFDEF UNIX}
+  BaseUnix, Unix,
+  {$ENDIF}
+  SysUtils, Classes, types, Math, FPImage,
+  // LazUtils
+  LazTracer, LazUTF8, IntegerList, GraphType, LazUtilities,
+  // LCL
+  LCLPlatformDef, InterfaceBase, LCLProc, LCLType, LMessages, LCLMessageGlue,
+  LazLogger, LCLStrConsts,
+  Controls, Forms, Graphics, GraphUtil, IntfGraphics, StdCtrls, ComCtrls, Themes,
+  LazGtk3, LazGdk3, LazGlib2, LazGObject2, LazCairo1, LazPango1, LazGio2,
+  LazGdkPixbuf2, gtk3widgets, gtk3objects, gtk3procs,
+  Gtk3Globals;
+
+type
+
+  { lazarus GtkInterface definition for additional timer data, not in gtk }
+  PGtkITimerInfo = ^TGtkITimerinfo;
+  TGtkITimerInfo = record
+    TimerHandle: guint;        // the gtk handle for this timer
+    TimerFunc  : TWSTimerProc; // owner function to handle timer
+  end;
+
+  { TWaitHandleEventHandler }
+
+  PPWaitHandleEventHandler = ^PWaitHandleEventHandler;
+  PWaitHandleEventHandler = ^TWaitHandleEventHandler;
+  TWaitHandleEventHandler = record
+    Handle: TLCLHandle;
+    GIOChannel: pgiochannel;
+    GSourceID: guint;
+    UserData: PtrInt;
+    OnEvent: TWaitHandleEvent;
+    PrevHandler: PWaitHandleEventHandler;
+    NextHandler: PWaitHandleEventHandler;
+  end;
+
+  { TGtk3WidgetSet }
+
+  TGtk3WidgetSet = class(TWidgetSet)
+  private
+    FIsWayland: boolean;
+    FWMName: string;
+    FWMNameCached: boolean;
+    FTrackBarKnobSize: Integer;
+    FActivityCounter: integer;
+    FLastUserEventTime: guint32;
+    FAppFocusTimerID: guint;
+    FLastFocusIn: PGtkWidget;
+    FLastFocusOut: PGtkWidget;
+    {$IFDEF UNIX}
+    FX11PollTimerID: guint;
+    {$ENDIF}
+    FMainPoll: PGPollFD;
+    FGtk3Application: PGtkApplication;
+    FDefaultAppFontName: String;
+    FIMContext: PGtkIMContext;
+    FIMCommitStr: string;
+    FIMInFilter: Boolean;
+    FIMTarget: TObject;
+    FWaitHandles: PWaitHandleEventHandler;
+    {$IFDEF UNIX}
+    FChildSignalHandlers: PChildSignalEventHandler;
+    FOverlayScrolling:gboolean;
+    {$ELSE}
+    {$IFDEF VerboseGtkToDos}{$warning no declaration of FChildSignalHandlers for this OS}{$ENDIF}
+    {$ENDIF}
+
+    procedure Gtk3Create;
+    procedure Gtk3Destroy;
+    {$IFNDEF UNIX}
+    procedure DoWakeMainThread(Sender: TObject);
+    {$ENDIF}
+    procedure SetDefaultAppFontName;
+    procedure InitSysColorBrushes;
+    procedure FreeSysColorBrushes;
+    procedure LoadThemeMetrics;
+  protected
+    {shared stuff}
+    FSystemMetricsList: TIntegerList;
+    FAppIcon: PGdkPixbuf;
+    FStockNullBrush: HBRUSH;
+    FStockBlackBrush: HBRUSH;
+    FStockLtGrayBrush: HBRUSH;
+    FStockGrayBrush: HBRUSH;
+    FStockDkGrayBrush: HBRUSH;
+    FStockWhiteBrush: HBRUSH;
+
+    FStockNullPen: HPEN;
+    FStockBlackPen: HPEN;
+    FStockWhitePen: HPEN;
+    FStockSystemFont: HFONT;
+    FStockDefaultDC: HDC;
+    FSysColorBrushes: array[0..MAX_SYS_COLORS] of HBRUSH;
+    FGlobalCursor: HCursor;
+    FThemeName: string;
+    FCSSTheme: TStringList;
+    // tmp
+    cssProvider:PGtkCssProvider;
+
+    FDockImage: PGtkWidget;
+
+    FDragImageList: PGtkWidget;
+    FDragImageListIcon: PGtkImage;
+    FDragHotSpot: TPoint;
+    FDragImageLock: Boolean;
+
+    function CreateThemeServices: TThemeServices; override;
+
+  public
+    FGtk3KeyStates: array[Byte] of Boolean;
+    // LCL drag cursor state. Used by SetGlobalCursor in gtk3procs and ReleaseCapture.
+    FDragIPCWidget: PGtkWidget;
+    FDragSeatGrabActive: Boolean;
+    FDragGrabWidget: PGtkWidget;
+    FDragGrabBrokenHandlerID: gulong;
+    FLCLCaptureWidget: PGtkWidget;
+    function IsWayland: boolean;
+    function IsKDEPlasmaWaylandSession: boolean;
+    function GetWMName: string;
+    function IsMarcoWM: boolean;
+    function CreateDCForWidget(AWidget: PGtkWidget; AWindow: PGdkWindow; cr: Pcairo_t): HDC;
+    procedure AddWindow(AWindow: PGtkWindow);
+    procedure HandlePipeEvent(AData: PtrInt; AFlags: dword);
+    {$IFDEF UNIX}
+    procedure InitSynchronizeSupport;
+    procedure ProcessChildSignal;
+    procedure PrepareSynchronize({%H-}AObject: TObject);
+    {$ENDIF}
+    procedure LoadCSSTheme;
+    procedure ClearCSSTheme;
+    function GetCSSTheme(AList: TStrings): boolean;
+    function GetThemeName: string;
+    procedure InitStockItems;
+    procedure FreeStockItems;
+    function CreateDefaultFont: HFONT;
+
+    {dragImageList support}
+    function DragImageList_BeginDrag(APixBuf: PGdkPixbuf; AHotSpot: TPoint): Boolean;
+    procedure DragImageList_EndDrag;
+    function DragImageList_DragMove(X, Y: Integer): Boolean;
+    function DragImageList_SetVisible(NewVisible: Boolean): Boolean;
+
+  public
+    constructor Create; override;
+    destructor Destroy; override;
+
+    function LCLPlatform: TLCLPlatform; override;
+    procedure AppInit(var ScreenInfo: TScreenInfo); override;
+    procedure AppRun(const ALoop: TApplicationMainLoop); override;
+    procedure AppWaitMessage; override;
+    procedure AppProcessMessages; override;
+    procedure AppTerminate; override;
+
+    procedure AppMinimize; override;
+    procedure AppRestore; override;
+    procedure AppBringToFront; override;
+    procedure AppSetIcon(const Small, Big: HICON); override;
+    procedure AppSetTitle(const ATitle: string); override;
+    function AppRemoveStayOnTopFlags(const ASystemTopAlso: Boolean = False): Boolean; override;
+    function AppRestoreStayOnTopFlags(const ASystemTopAlso: Boolean = False): Boolean; override;
+
+    function CreateStandardCursor(ACursor: SmallInt): HCURSOR; override;
+
+    function  DCGetPixel(CanvasHandle: HDC; X, Y: integer): TGraphicsColor; override;
+    procedure DCSetPixel(CanvasHandle: HDC; X, Y: integer; AColor: TGraphicsColor); override;
+    procedure DCRedraw(CanvasHandle: HDC); override;
+    procedure DCSetAntialiasing(CanvasHandle: HDC; AEnabled: Boolean); override;
+    procedure SetDesigning(AComponent: TComponent); override;
+    function  GetLCLCapability(ACapability: TLCLCapability): PtrUInt; override;
+
+    function CreateTimer(Interval: integer; TimerFunc: TWSTimerProc): TLCLHandle; override;
+    function DestroyTimer(TimerHandle: TLCLHandle): boolean; override;
+
+    function AllocateHWnd(Method: TLCLWndMethod): HWND; override;
+    procedure DeallocateHWnd(Wnd: HWND); override;
+
+    function SystemMetric(const AIndex: integer): integer;
+
+    function IsValidDC(const DC: HDC): Boolean;
+    function IsValidGDIObject(const AGdiObject: HGDIOBJ): Boolean;
+    function IsValidHandle(const AHandle: HWND): Boolean;
+
+    property ActivityCounter: integer read FActivityCounter write FActivityCounter;
+    property AppFocusTimerID: guint read FAppFocusTimerID write FAppFocusTimerID;
+    property AppIcon: PGdkPixbuf read FAppIcon;
+    property LastFocusIn: PGtkWidget read FLastFocusIn write FLastFocusIn;
+    property LastFocusOut: PGtkWidget read FLastFocusOut write FLastFocusOut;
+    {$IFDEF UNIX}
+    property X11PollTimerID: guint read FX11PollTimerID write FX11PollTimerID;
+    {$ENDIF}
+    property DefaultAppFontName: String read FDefaultAppFontName;
+    property Gtk3Application: PGtkApplication read FGtk3Application;
+    property LastUserEventTime: guint32 read FLastUserEventTime write FLastUserEventTime;
+    property TrackBarKnobSize: Integer read FTrackBarKnobSize write FTrackBarKnobSize;
+    property OverlayScrolling: gboolean read FOverlayScrolling write FOverlayScrolling;
+    property IMContext: PGtkIMContext read FIMContext;
+    property IMCommitStr: string read FIMCommitStr write FIMCommitStr;
+    property IMInFilter: Boolean read FIMInFilter write FIMInFilter;
+    property IMTarget: TObject read FIMTarget write FIMTarget;
+
+    {$i gtk3winapih.inc}
+    {$i gtk3lclintfh.inc}
+  end;
+
+var
+  GTK3WidgetSet: TGTK3WidgetSet;
+  // FTimerData contains the currently running timers
+  FTimerData: TFPList;   // list of PGtkITimerinfo
+
+
+function GetActiveGtkWindow: PGtkWindow;
+function Gtk3WidgetFromGtkWidget(const AWidget: PGtkWidget): TGtk3Widget;
+function HwndFromGtkWidget(AWidget: PGtkWidget): HWND;
+
+implementation
+
+uses
+  LazPangoCairo1, gtk3boxes, gtk3caret, gtk3themes,
+  {%H-}Gtk3WSFactory{%H-};
+
+{------------------------------------------------------------------------------
+  Function: FillStandardDescription
+  Params:
+  Returns:
+ ------------------------------------------------------------------------------}
+procedure FillStandardDescription(var Desc: TRawImageDescription);
+begin
+  Desc.Init;
+
+  Desc.Format := ricfRGBA;
+//  Desc.Width := 0
+//  Desc.Height := 0
+//  Desc.PaletteColorCount := 0;
+
+  Desc.BitOrder := riboReversedBits;
+  Desc.ByteOrder := DefaultByteOrder;
+  Desc.LineOrder := riloTopToBottom;
+
+  Desc.BitsPerPixel := 32;
+  Desc.Depth := 32;
+  // Qt wants dword-aligned data
+  Desc.LineEnd := rileDWordBoundary;
+
+  // 8-8-8-8 mode, high byte is Alpha
+  Desc.AlphaPrec := 8;
+  Desc.RedPrec := 8;
+  Desc.GreenPrec := 8;
+  Desc.BluePrec := 8;
+
+  Desc.AlphaShift := 24;
+  Desc.RedShift := 0;
+  Desc.GreenShift := 8;
+  Desc.BlueShift := 16;
+
+  // Qt wants dword-aligned data
+  Desc.MaskLineEnd := rileDWordBoundary;
+  Desc.MaskBitOrder := riboReversedBits;
+  Desc.MaskBitsPerPixel := 1;
+//  Desc.MaskShift := 0;
+end;
+
+function GetActiveGtkWindow: PGtkWindow;
+var
+  Toplevels, Node: PGList;
+  GtkWin: PGtkWidget;
+begin
+  Result := nil;
+  Toplevels := gtk_window_list_toplevels;
+  Node := Toplevels;
+
+  while Node <> nil do
+  begin
+    GtkWin := PGtkWidget(Node^.data);
+    if gtk_window_is_active(PGtkWindow(GtkWin)) then
+    begin
+      Result := PGtkWindow(GtkWin);
+      Break;
+    end;
+    Node := Node^.next;
+  end;
+
+  g_list_free(Toplevels);
+end;
+
+function Gtk3WidgetFromGtkWidget(const AWidget: PGtkWidget): TGtk3Widget;
+begin
+  Result := nil;
+
+  if AWidget = nil then
+    exit;
+
+  Result := TGtk3Widget(g_object_get_data(AWidget, 'lclwidget'));
+end;
+
+function HwndFromGtkWidget(AWidget: PGtkWidget): HWND;
+begin
+  Result := HWND(Gtk3WidgetFromGtkWidget(AWidget));
+end;
+
+function TGtk3WidgetSet.GetLCLCapability(ACapability: TLCLCapability): PtrUInt;
+begin
+  case ACapability of
+  lcTextHint: Result := LCL_CAPABILITY_YES;
+  lcCanDrawOutsideOnPaint: Result := LCL_CAPABILITY_NO;
+  else
+    Result := inherited GetLCLCapability(ACapability);
+  end;
+end;
+
+
+{$i gtk3object.inc}
+{$i gtk3winapi.inc}
+{$i gtk3lclintf.inc}
+
+end.
