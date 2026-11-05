@@ -211,6 +211,18 @@ func TestLegacyLinuxContainerImages(t *testing.T) {
 		if td.Container.Image != image {
 			t.Errorf("%s image = %q, want %q (old CI assignment)", key, td.Container.Image, image)
 		}
+		// debian:11 / ubuntu:18.04 are EOL: their default apt mirrors 404 on
+		// package download. Every Linux container must run the mirror fix
+		// before installing the GTK build dependencies.
+		hasMirrorFix := false
+		for _, cmd := range td.Container.Install {
+			if strings.Contains(cmd, "apt-eol.sh") {
+				hasMirrorFix = true
+			}
+		}
+		if !hasMirrorFix {
+			t.Errorf("%s container install does not run apt-eol.sh", key)
+		}
 	}
 }
 

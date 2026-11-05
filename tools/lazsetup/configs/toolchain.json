@@ -168,7 +168,7 @@
         "workdir": "/app",
         "shell": "/bin/sh",
         "install": [
-          "apt-get update -q -y",
+          "/bin/sh /app/tools/lazsetup/scripts/apt-eol.sh && apt-get update -q -y",
           "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
           "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
@@ -190,7 +190,7 @@
         "workdir": "/app",
         "shell": "/bin/sh",
         "install": [
-          "apt-get update -q -y",
+          "/bin/sh /app/tools/lazsetup/scripts/apt-eol.sh && apt-get update -q -y",
           "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
           "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
@@ -211,7 +211,7 @@
         "workdir": "/app",
         "shell": "/bin/sh",
         "install": [
-          "apt-get update -q -y",
+          "/bin/sh /app/tools/lazsetup/scripts/apt-eol.sh && apt-get update -q -y",
           "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
           "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
@@ -232,7 +232,7 @@
         "workdir": "/app",
         "shell": "/bin/sh",
         "install": [
-          "apt-get update -q -y",
+          "/bin/sh /app/tools/lazsetup/scripts/apt-eol.sh && apt-get update -q -y",
           "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
           "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
