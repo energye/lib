@@ -1,0 +1,22 @@
+{
+  // CEF 宏版本映射配置
+  // 支持的平台: all, 均可选: windows, linux, darwin
+  // 目录以 JSON 数组格式填写
+  // 支持 // 单行注释和 /* */ 多行注释
+  "CEF109": {
+    "all": ["cef/109", "src/3rd/CEF/109.1.18/source", "src/3rd/DCPcrypt", "src/3rd/DCPcrypt/Hashes"],
+    "windows": ["src/3rd/WebView2/1.0.3124.44/source"]
+  },
+  "CEF127": {
+    "all": ["cef/127", "src/3rd/CEF/127.3.5/source", "src/3rd/DCPcrypt", "src/3rd/DCPcrypt/Hashes"],
+    "windows": ["src/3rd/WebView2/1.0.3124.44/source"]
+  },
+  "CEF147": {
+    "all": ["cef/147", "src/3rd/CEF/147.0.14/source", "src/3rd/DCPcrypt", "src/3rd/DCPcrypt/Hashes"],
+    "windows": ["src/3rd/WebView2/1.0.3124.44/source"]
+  },
+  "CEF150": {
+    "all": ["cef/150", "src/3rd/CEF/150.0.14/source", "src/3rd/DCPcrypt", "src/3rd/DCPcrypt/Hashes"],
+    "windows": ["src/3rd/WebView2/1.0.3124.44/source"]
+  }
+}
