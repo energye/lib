@@ -152,10 +152,11 @@ func TestShippedModesHaveWidgetSet(t *testing.T) {
 
 // TestLinuxCurrentlyBuildsGTK2Only records a deliberate staging decision:
 // GTK2 must build right now, while GTK3 stays configured exactly like GTK2
-// (bm/ws/artifact/output) but disabled until its docker/toolchain environment
-// (Lazarus 5.0) is wired up. The two modes share the same lazbuild pipeline;
-// only --ws and the container differ, and the lib source needs no changes.
-// Re-enable by dropping the disabled flag.
+// (bm/ws/artifact/output) but disabled until the toolchain moves to Lazarus
+// 5.0. Both modes share the same lazbuild pipeline AND the same docker
+// container (old CI built gtk2/gtk3 sequentially in one container); only
+// --ws differs. The lib source needs no changes. Re-enable by dropping the
+// disabled flag.
 func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
 	if err != nil {
@@ -177,17 +178,47 @@ func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
 		t.Fatal("linux_GTK3 configuration must be kept")
 	}
 	if !gtk3.Disabled {
-		t.Error("linux_GTK3 must stay disabled until the Lazarus 5.0 container is wired up")
+		t.Error("linux_GTK3 must stay disabled until the Lazarus 5.0 toolchain is wired up")
 	}
 	if gtk3.WS != "gtk3" || gtk3.Artifact != "libenergy-gtk3.so" || gtk3.Output == "" {
 		t.Errorf("linux_GTK3 must stay fully configured, got %+v", *gtk3)
 	}
 }
 
+// TestLegacyLinuxContainerImages pins the image assignment of the old
+// build-linux-docker-*.yml workflows: x86 (amd64/i386) built in debian:11,
+// aarch64 in arm64v8/ubuntu:18.04. Old CI built GTK2 and GTK3 modes
+// sequentially inside the SAME container, so there is no per-widgetset image.
+// linux/arm is an extension (the old CI had no arm32 job) and stays on
+// debian:11 like the other 32-bit/x86 targets.
+func TestLegacyLinuxContainerImages(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{
+		"linux/386":   "i386/debian:11",
+		"linux/amd64": "amd64/debian:11",
+		"linux/arm":   "arm32v7/debian:11",
+		"linux/arm64": "arm64v8/ubuntu:18.04",
+	}
+	for key, image := range want {
+		td := c.Targets[key]
+		if td.Container == nil {
+			t.Errorf("%s has no container", key)
+			continue
+		}
+		if td.Container.Image != image {
+			t.Errorf("%s image = %q, want %q (old CI assignment)", key, td.Container.Image, image)
+		}
+	}
+}
+
 // TestShippedContainerMounts verifies that every Linux target builds inside a
-// container (Ubuntu 18/20 for the GTK2/GTK3 dependency baseline), mounts both
-// the checkout and the toolchain directory, and uses a stable container name
-// so FPC installed in /usr/local survives across the setup and build steps.
+// container (old CI's debian:11 / ubuntu:18.04 GTK2+GTK3 dependency baseline),
+// mounts both the checkout and the toolchain directory, and uses a stable
+// container name so FPC installed in /usr/local survives across the setup and
+// build steps.
 func TestShippedContainerMounts(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
 	if err != nil {

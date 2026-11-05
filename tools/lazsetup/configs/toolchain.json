@@ -178,7 +178,7 @@
       "profile": "linux-source",
       "container": {
         "engine": "docker",
-        "image": "ubuntu:20.04",
+        "image": "amd64/debian:11",
         "platform": "linux/amd64",
         "name": "lazsetup-${os}-${arch}",
         "hostPath": "${repo}",

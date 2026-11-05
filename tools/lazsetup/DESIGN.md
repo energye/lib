@@ -74,11 +74,11 @@
 3. `fpc-<fpc>.source.tar.gz` → RTL/FCL 源码，解压到 `${prefix}`
 4. `cd ${cprefix}/fpc-<fpc>.<fpc_suffix> && printf '\n\n\n\n\n\n' | ./install.sh`（用默认答案，与旧 CI 一致）
 5. `cd ${cprefix} && make clean all` → 产出 `lazbuild`（默认只构建 gtk2 的 LCL）
-6. **GTK3 暂缓**：`linux_GTK3` 与 `linux_GTK2` 完全对称 —— 同一条 `lazbuild -B` 流水线、同样的 `artifact` / `output` 打包方式，**差别只有两处**：传 `--ws=gtk3`（而不是 `--ws=gtk2`），以及所跑的 docker / 工具链环境不同（Lazarus 5.0）。当前 `linux_GTK3` 标记 `disabled: true`、`make lcl LCL_PLATFORM=gtk3` 也暂不执行，Linux 只产出 `libenergy-gtk2.so`，lib 库源码不做任何改动。启用时：① 工具链版本切到 `5.0RC1` 并配好对应容器环境；② 去掉 mode 的 `disabled`；③ 视 5.0 的 LCL 情况决定是否恢复 `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3`
+6. **GTK3 暂缓**：`linux_GTK3` 与 `linux_GTK2` 完全对称 —— 同一条 `lazbuild -B` 流水线、**同一个 docker 容器**、同样的 `artifact` / `output` 打包方式，**差别只有 `--ws=gtk3`**（而不是 `--ws=gtk2`）。旧 CI 也是把 gtk2/gtk3 的各模式放在同一容器里依次编译，镜像按架构分配而非按 widgetset。当前 `linux_GTK3` 标记 `disabled: true`、`make lcl LCL_PLATFORM=gtk3` 也暂不执行，Linux 只产出 `libenergy-gtk2.so`，lib 库源码不做任何改动。启用时：① 工具链版本切到 `5.0RC1`（容器矩阵不动）；② 去掉 mode 的 `disabled`；③ 视 5.0 的 LCL 情况决定是否恢复 `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3`
 
 FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 `install.sh`，只有 Lazarus 需要 `make`。这与旧 workflow 中 `run-on-arch-action` 容器里做的事一致，现在由配置里的 `commands` 编排。
 
-**宿主 runner 用最新 Ubuntu，但工具链编译和 lib 编译全部在 docker 容器里完成**。镜像按 GTK2/GTK3 依赖基线选择：`linux/amd64` → `ubuntu:20.04`，`linux/arm64` → 旧 CI 验证过的 `arm64v8/ubuntu:18.04`，`linux/386` → `i386/debian:11`，`linux/arm` → `arm32v7/debian:11`（22.04 之后已无 `libgtk2.0-dev`，所以编译容器固定用 18/20 或 debian:11）。
+**宿主 runner 用最新 Ubuntu，但工具链编译和 lib 编译全部在 docker 容器里完成**。镜像严格按旧 `build-linux-docker-*.yml` 的分配：**x86 用 debian:11**（`linux/amd64` → `amd64/debian:11`、`linux/386` → `i386/debian:11`、`linux/arm` → `arm32v7/debian:11`，旧 CI 无 arm32 job 故沿用 debian:11），**aarch64 用 `arm64v8/ubuntu:18.04`**（22.04 之后已移除 `libgtk2.0-dev`，所以编译容器固定用 18.04 / debian:11 这条低版本 GTK 基线）。旧 CI 中 GTK2 与 GTK3 的各 build mode 是在**同一个容器里依次编译**的，镜像不按 widgetset 区分；`linux_GTK3` 启用后同样复用该架构的容器，只有 `--ws=gtk3` 不同。
 
 容器同时挂两个卷：`${repo}:/app` 放仓库源码，`${prefix}:/toolchain` 放工具链。关键点是**命名容器会话**：`docker run -d --name lazsetup-<os>-<arch> ... sleep infinity` 只创建一次，后续所有 `install.sh` / `make` / `lazbuild` 都通过 `docker exec` 进同一个容器。若沿用 `docker run --rm`，FPC 装进容器 `/usr/local` 后会随容器销毁，`make` 与 build 步骤必然失败。`--no-container` 仅用于本机调试，正式构建不用。
 
