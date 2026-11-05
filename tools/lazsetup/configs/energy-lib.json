@@ -1,12 +1,64 @@
 {
   "schema": 1,
-  "_note": "Build modes MUST match <BuildModes><Item Name=...> in liblcl.lpi. Artifact names come from each mode's Target/Filename. 'ws' is REQUIRED for Linux/macOS: lazbuild needs --ws=gtk2/gtk3/cocoa to find the matching LCL units (the lpi's LCLWidgetType macro alone is not enough). Current liblcl.lpi references all third-party units through OtherUnitFiles (source dirs), so no lpk registration is needed; run `lazsetup doctor` after changing the .lpi. linux_GTK3 mirrors linux_GTK2 exactly (same lazbuild pipeline, same docker container, same package layout): the only build difference is --ws=gtk3 instead of --ws=gtk2. Old CI built GTK2 and GTK3 modes sequentially inside the SAME container; images are assigned per architecture (x86 debian:11, arm64 ubuntu:18.04), never per widgetset. It stays fully configured but disabled for now; re-enable it when the toolchain moves to Lazarus 5.0. No change to the lib source is needed.",
+  "_note": "Build modes MUST match <BuildModes><Item Name=...> in liblcl.lpi. The four Debug_* modes are deliberately unused by the new combination builder; only the six platform modes (win_amd64 / win_386 / linux_GTK2 / linux_GTK3 / darwin_amd64 / darwin_arm64) are used. combinations.json-style data lives in build.combinations: each combination declares the -d macros to inject into liblcl.lpi, the module segment for the zip name and which widgetsets it supports. CEF combinations are expanded over cefVersions. gtk2 has no webkit2gtk, so only lcl and cef are produced there. Every produced library is zipped immediately after its own lazbuild invocation, because a build mode has a fixed Target/Filename and the next combination would overwrite it.",
   "build": {
     "project": "liblcl.lpi",
     "workDir": ".",
     "containerDir": "${repo}",
     "outDir": "bins",
     "packages": [],
+    "lazbuildWrapper": "${repo}/tools/lazbuild/lazbuild-${os}-${arch}${exe}",
+    "lazbuildConf": "${repo}/tools/lazbuild/lazbuild.conf.json",
+    "patchDir": "${repo}/patch/lazarus${laz}",
+    "reservedArches": ["loong64"],
+    "cefVersions": [
+      { "name": "CEF109", "num": "109" },
+      { "name": "CEF127", "num": "127" },
+      { "name": "CEF147", "num": "147" },
+      { "name": "CEF150", "num": "150" }
+    ],
+    "combinations": [
+      {
+        "name": "lcl",
+        "module": "",
+        "defines": [],
+        "widgetsets": ["win32", "gtk2", "gtk3", "cocoa"]
+      },
+      {
+        "name": "webview",
+        "module": "webview",
+        "defines": ["Webview"],
+        "widgetsets": ["win32", "gtk3", "cocoa"]
+      },
+      {
+        "name": "cef",
+        "module": "cef${cefNum}",
+        "defines": ["${cef}"],
+        "widgetsets": ["win32", "gtk2", "gtk3", "cocoa"],
+        "cef": true
+      },
+      {
+        "name": "cef-webview",
+        "module": "cef${cefNum}-webview",
+        "defines": ["${cef}", "Webview"],
+        "widgetsets": ["win32", "gtk3", "cocoa"],
+        "cef": true
+      }
+    ],
+    "platformModes": [
+      { "os": "windows", "arch": "amd64", "ws": "win32", "wsTag": "", "bm": "win_amd64", "artifact": "libenergy-amd64.dll" },
+      { "os": "windows", "arch": "386", "ws": "win32", "wsTag": "", "bm": "win_386", "artifact": "libenergy-386.dll" },
+      { "os": "linux", "arch": "386", "ws": "gtk2", "wsTag": "gtk2", "bm": "linux_GTK2", "artifact": "libenergy-gtk2.so" },
+      { "os": "linux", "arch": "386", "ws": "gtk3", "wsTag": "gtk3", "bm": "linux_GTK3", "artifact": "libenergy-gtk3.so" },
+      { "os": "linux", "arch": "amd64", "ws": "gtk2", "wsTag": "gtk2", "bm": "linux_GTK2", "artifact": "libenergy-gtk2.so" },
+      { "os": "linux", "arch": "amd64", "ws": "gtk3", "wsTag": "gtk3", "bm": "linux_GTK3", "artifact": "libenergy-gtk3.so" },
+      { "os": "linux", "arch": "arm", "ws": "gtk2", "wsTag": "gtk2", "bm": "linux_GTK2", "artifact": "libenergy-gtk2.so" },
+      { "os": "linux", "arch": "arm", "ws": "gtk3", "wsTag": "gtk3", "bm": "linux_GTK3", "artifact": "libenergy-gtk3.so" },
+      { "os": "linux", "arch": "arm64", "ws": "gtk2", "wsTag": "gtk2", "bm": "linux_GTK2", "artifact": "libenergy-gtk2.so" },
+      { "os": "linux", "arch": "arm64", "ws": "gtk3", "wsTag": "gtk3", "bm": "linux_GTK3", "artifact": "libenergy-gtk3.so" },
+      { "os": "darwin", "arch": "amd64", "ws": "cocoa", "wsTag": "", "bm": "darwin_amd64", "artifact": "libenergy-amd64.dylib" },
+      { "os": "darwin", "arch": "arm64", "ws": "cocoa", "wsTag": "", "bm": "darwin_arm64", "artifact": "libenergy-arm64.dylib", "extra": "--opt=-FD${repo}/tools/lazsetup/scripts/darwin-lld" }
+    ],
     "modes": [
       {
         "name": "win_amd64",
@@ -40,8 +92,7 @@
         "os": ["linux"],
         "arch": ["386", "amd64", "arm", "arm64"],
         "artifact": "libenergy-gtk3.so",
-        "output": "lcl_binary_${os}_${arch}_gtk3.zip",
-        "disabled": true
+        "output": "lcl_binary_${os}_${arch}_gtk3.zip"
       },
       {
         "name": "darwin_amd64",

@@ -113,6 +113,52 @@ type BuildConfig struct {
 	OutDir    string            `json:"outDir"`
 	Container *Container        `json:"container"`
 	Env       map[string]string `json:"env"`
+
+	// Combination builder. A "combination" is one UI module set (lcl,
+	// webview, cef, cef-webview); each is compiled for every matching
+	// platform mode and zipped immediately under its own name.
+	LazbuildWrapper string         `json:"lazbuildWrapper"`
+	LazbuildConf    string         `json:"lazbuildConf"`
+	PatchDir        string         `json:"patchDir"`
+	CEFVersions     []CEFVersion   `json:"cefVersions"`
+	Combinations    []Combination  `json:"combinations"`
+	PlatformModes   []PlatformMode `json:"platformModes"`
+	ReservedArches  []string       `json:"reservedArches"`
+}
+
+// CEFVersion is one selectable CEF branch. Name is the -d define (CEF109),
+// Num is the short form used in artifact names (109).
+type CEFVersion struct {
+	Name string `json:"name"`
+	Num  string `json:"num"`
+}
+
+// Combination declares the macros injected into liblcl.lpi and the module
+// segment of the zip name. WidgetSets limits which LCL widgetsets can build
+// it (gtk2 has no webkit2gtk, so Webview combinations exclude it).
+// ${cef} / ${cefNum} are substituted for each CEFVersion when CEF is true.
+type Combination struct {
+	Name       string   `json:"name"`
+	Module     string   `json:"module"`
+	Defines    []string `json:"defines"`
+	WidgetSets []string `json:"widgetsets"`
+	CEF        bool     `json:"cef"`
+	Disabled   bool     `json:"disabled"`
+}
+
+// PlatformMode maps one (os, arch, widgetset) to a real liblcl.lpi BuildMode
+// name, the --ws value and the library file that lazbuild will produce.
+// WSTag is the widgetset segment of the zip name; it stays empty on Windows
+// and macOS, where only Linux carries gtk2/gtk3 in artifact names.
+type PlatformMode struct {
+	OS       string `json:"os"`
+	Arch     string `json:"arch"`
+	WS       string `json:"ws"`
+	WSTag    string `json:"wsTag"`
+	BM       string `json:"bm"`
+	Artifact string `json:"artifact"`
+	Extra    string `json:"extra"`
+	Disabled bool   `json:"disabled"`
 }
 
 type BuildPkg struct {
@@ -233,6 +279,27 @@ func merge(dst, src *Config) {
 	if len(src.Build.Modes) > 0 {
 		dst.Build.Modes = src.Build.Modes
 	}
+	if src.Build.LazbuildWrapper != "" {
+		dst.Build.LazbuildWrapper = src.Build.LazbuildWrapper
+	}
+	if src.Build.LazbuildConf != "" {
+		dst.Build.LazbuildConf = src.Build.LazbuildConf
+	}
+	if src.Build.PatchDir != "" {
+		dst.Build.PatchDir = src.Build.PatchDir
+	}
+	if len(src.Build.CEFVersions) > 0 {
+		dst.Build.CEFVersions = src.Build.CEFVersions
+	}
+	if len(src.Build.Combinations) > 0 {
+		dst.Build.Combinations = src.Build.Combinations
+	}
+	if len(src.Build.PlatformModes) > 0 {
+		dst.Build.PlatformModes = src.Build.PlatformModes
+	}
+	if len(src.Build.ReservedArches) > 0 {
+		dst.Build.ReservedArches = src.Build.ReservedArches
+	}
 	if src.Build.Container != nil {
 		dst.Build.Container = src.Build.Container
 	}
@@ -342,6 +409,10 @@ func (c *Config) Resolve(o Options) (*Resolved, error) {
 		}
 	}
 	vars["repo"] = filepath.Clean(repo)
+	// patchDir follows the Lazarus version: only apply the bundled LCL patch
+	// when patch/lazarus<version>/ actually exists in the checkout.
+	patchSub := filepath.ToSlash(filepath.Join("patch", "lazarus"+laz))
+	vars["patch_dir"] = filepath.ToSlash(filepath.Join(vars["repo"], patchSub))
 
 	container := expandContainer(td.Container, vars)
 	if o.NoContainer {
@@ -361,6 +432,12 @@ func (c *Config) Resolve(o Options) (*Resolved, error) {
 		}
 	}
 	vars["cwork"], vars["cprefix"] = guestWork, guestPrefix
+	vars["cpatch"] = vars["patch_dir"]
+	if container != nil {
+		// The checkout is bind-mounted at guestPath, so the patch sources are
+		// visible inside the container at <guestPath>/patch/lazarus<version>.
+		vars["cpatch"] = path.Join(guestWork, patchSub)
+	}
 
 	components := append([]Component(nil), profile.Components...)
 	for _, ov := range td.Overrides {
@@ -592,8 +669,28 @@ func expandBuild(b BuildConfig, vars map[string]string) BuildConfig {
 	b.LazarusDir = Expand(b.LazarusDir, vars)
 	b.Output = Expand(b.Output, vars)
 	b.OutDir = Expand(b.OutDir, vars)
+	b.LazbuildWrapper = Expand(b.LazbuildWrapper, vars)
+	b.LazbuildConf = Expand(b.LazbuildConf, vars)
+	b.PatchDir = Expand(b.PatchDir, vars)
 	if len(b.Packages) > 0 {
 		b.Packages = append([]BuildPkg(nil), b.Packages...)
+	}
+	if len(b.CEFVersions) > 0 {
+		b.CEFVersions = append([]CEFVersion(nil), b.CEFVersions...)
+	}
+	if len(b.Combinations) > 0 {
+		cs := append([]Combination(nil), b.Combinations...)
+		for i := range cs {
+			cs[i].Defines = append([]string(nil), cs[i].Defines...)
+			cs[i].WidgetSets = append([]string(nil), cs[i].WidgetSets...)
+		}
+		b.Combinations = cs
+	}
+	if len(b.PlatformModes) > 0 {
+		b.PlatformModes = append([]PlatformMode(nil), b.PlatformModes...)
+	}
+	if len(b.ReservedArches) > 0 {
+		b.ReservedArches = append([]string(nil), b.ReservedArches...)
 	}
 	if len(b.Modes) > 0 {
 		modes := make([]BuildMode, len(b.Modes))
@@ -635,6 +732,22 @@ func expandBuildTail(b BuildConfig, vars map[string]string) BuildConfig {
 		for j := range b.Modes[i].Arch {
 			b.Modes[i].Arch[j] = Expand(b.Modes[i].Arch[j], vars)
 		}
+	}
+	for i := range b.CEFVersions {
+		b.CEFVersions[i].Name = Expand(b.CEFVersions[i].Name, vars)
+		b.CEFVersions[i].Num = Expand(b.CEFVersions[i].Num, vars)
+	}
+	// Combination.Module / Combination.Defines intentionally keep ${cef} and
+	// ${cefNum}; they are substituted per CEF version by the build expander.
+	for i := range b.PlatformModes {
+		pm := &b.PlatformModes[i]
+		pm.OS = Expand(pm.OS, vars)
+		pm.Arch = Expand(pm.Arch, vars)
+		pm.WS = Expand(pm.WS, vars)
+		pm.WSTag = Expand(pm.WSTag, vars)
+		pm.BM = Expand(pm.BM, vars)
+		pm.Artifact = Expand(pm.Artifact, vars)
+		pm.Extra = Expand(pm.Extra, vars)
 	}
 	b.Container = expandContainer(b.Container, vars)
 	return b

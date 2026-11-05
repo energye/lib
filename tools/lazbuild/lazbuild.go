@@ -27,6 +27,8 @@ func main() {
 	ws := flag.String("ws", "", "widget set (必填)")
 	defines := flag.String("d", "", "宏，逗号分隔")
 	conf := flag.String("conf", "", "配置文件路径")
+	lazarusDir := flag.String("lazarusdir", "", "透传 --lazarusdir 给 lazbuild（源码编译的 Lazarus 必需）")
+	extra := flag.String("extra", "", "透传额外参数给 lazbuild，如 --opt=-FD/path")
 	flag.Parse()
 
 	if *bm == "" || *ws == "" {
@@ -84,7 +86,7 @@ func main() {
 
 	// 编译
 	if *lazbuild != "" {
-		if err := run(*lazbuild, lpiPath, *bm, *ws); err != nil {
+		if err := run(*lazbuild, lpiPath, *bm, *ws, *lazarusDir, *extra); err != nil {
 			restore()
 			fatal("错误: 编译失败: %v", err)
 		}
@@ -532,8 +534,15 @@ func detectIndent(content string, pos int) string {
 
 // ==================== lazbuild 执行 ====================
 
-func run(lazbuild, lpi, bm, ws string) error {
-	args := []string{"-B", fmt.Sprintf("--bm=%s", bm), fmt.Sprintf("--ws=%s", ws), lpi}
+func run(lazbuild, lpi, bm, ws, lazarusDir, extra string) error {
+	args := []string{"-B", fmt.Sprintf("--bm=%s", bm), fmt.Sprintf("--ws=%s", ws)}
+	if lazarusDir != "" {
+		args = append(args, "--lazarusdir="+lazarusDir)
+	}
+	if extra != "" {
+		args = append(args, strings.Fields(extra)...)
+	}
+	args = append(args, lpi)
 	fmt.Printf("执行: %s %s\n", lazbuild, strings.Join(args, " "))
 
 	cmd := exec.Command(lazbuild, args...)

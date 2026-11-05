@@ -1,7 +1,8 @@
 name: debug lazsetup
 
-# 新增的调试 workflow：只做验证，不发布产物。
-# 原有 5 个构建 workflow 已用 if: false 停用，待这里验证通过后再改造恢复。
+# Combination matrix validation entry point. The 5 production workflows stay
+# disabled (job-level if: false) until the owner explicitly asks to restore
+# them; this workflow is the only place where real toolchain/lib builds run.
 on:
   workflow_dispatch:
     inputs:
@@ -36,9 +37,25 @@ on:
         type: choice
         options: ['386', 'amd64', 'arm', 'arm64']
       mode:
-        description: 'Build mode name from liblcl.lpi, e.g. win_amd64 / linux_GTK2 (empty = all enabled matching modes; linux_GTK3 is currently disabled)'
+        description: 'Legacy build mode name from liblcl.lpi (only used when combo_mode is off)'
         required: false
         default: ''
+      combo_mode:
+        description: 'Build the UI combination matrix instead of legacy build modes'
+        type: boolean
+        default: true
+      combos:
+        description: 'Comma separated combinations (empty = all): lcl,webview,cef,cef-webview'
+        required: false
+        default: ''
+      cef_versions:
+        description: 'Comma separated CEF versions (empty = all four)'
+        required: false
+        default: 'CEF109'
+      widgetsets:
+        description: 'Comma separated Linux widgetsets (empty = gtk2+gtk3)'
+        required: false
+        default: 'gtk2,gtk3'
       run_setup:
         description: 'Really download + install + compile the toolchain on the runner'
         type: boolean
@@ -52,7 +69,7 @@ on:
         type: boolean
         default: false
       no_container:
-        description: 'Compile on the host instead of docker'
+        description: 'Compile on the host instead of docker (diagnostics only)'
         type: boolean
         default: false
 
@@ -62,7 +79,7 @@ env:
 jobs:
   debug:
     runs-on: ${{ inputs.runner }}
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -71,6 +88,7 @@ jobs:
         run: |
           mkdir -p "$HOME/.cache/lazsetup"
           echo "runner=${{ inputs.runner }} lazarus=${{ inputs.lazarus }} target=${{ inputs.target_os }}/${{ inputs.target_arch }} mode='${{ inputs.mode }}'"
+          echo "combo_mode=${{ inputs.combo_mode }} combos='${{ inputs.combos }}' cef='${{ inputs.cef_versions }}' ws='${{ inputs.widgetsets }}'"
           echo "setup=${{ inputs.run_setup }} build=${{ inputs.run_build }} no_container=${{ inputs.no_container }}"
           if [ "$RUNNER_OS" = "macOS" ]; then
             echo "=== macOS linker (FPC 3.2.x breaks on Xcode 26+ ld) ==="
@@ -88,10 +106,8 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          # Go 1.21/1.22 link macOS test binaries without an LC_UUID load
-          # command; current macOS dyld aborts them with "missing LC_UUID".
-          # Keep go.mod at 1.21 (source compatibility) but build/test with a
-          # newer toolchain on every runner.
+          # Go 1.21/1.22 link macOS test binaries without LC_UUID; current
+          # macOS dyld aborts them. Keep go.mod at 1.21, build with 1.24.
           go-version: '1.24'
           cache: false
 
@@ -103,6 +119,23 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then BIN=lazsetup.exe; fi
           go -C tools/lazsetup build -o "../../$BIN" ./cmd/lazsetup
           echo "LAZSETUP_BIN=$BIN" >> "$GITHUB_ENV"
+
+      # tools/lazbuild is a standalone package main with no go.mod. Build it
+      # as a single file from inside the lazsetup module, cross-compiled for
+      # the target so the Linux docker container can execute it natively.
+      - name: Build tools/lazbuild wrapper for the target
+        shell: bash
+        run: |
+          set -e
+          OS="${{ inputs.target_os }}"
+          ARCH="${{ inputs.target_arch }}"
+          SUFFIX=""
+          if [ "$OS" = "windows" ]; then SUFFIX=".exe"; fi
+          OUT="$GITHUB_WORKSPACE/tools/lazbuild/lazbuild-${OS}-${ARCH}${SUFFIX}"
+          GOOS="$OS" GOARCH="$ARCH" go -C tools/lazsetup build -o "$OUT" ../../tools/lazbuild/lazbuild.go
+          if [ "$OS" != "windows" ]; then chmod +x "$OUT"; fi
+          echo "wrapper: $OUT"
+          ls -lh "$OUT"
 
       - name: Unit tests (offline end-to-end)
         shell: bash
@@ -131,12 +164,31 @@ jobs:
           done
           echo "all 8 targets resolved"
 
-      - name: Resolve config (offline)
+      - name: Resolve combination arguments
         shell: bash
         run: |
-          ./"$LAZSETUP_BIN" version
-          ./"$LAZSETUP_BIN" list --expand
-          ./"$LAZSETUP_BIN" env --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}"
+          set -e
+          ARGS=""
+          if [ "${{ inputs.combo_mode }}" = "true" ]; then
+            ARGS="--all-combos"
+            for v in $(echo "${{ inputs.combos }}" | tr ',' ' '); do
+              [ -n "$v" ] && ARGS="$ARGS --combo $v"
+            done
+            for v in $(echo "${{ inputs.cef_versions }}" | tr ',' ' '); do
+              [ -n "$v" ] && ARGS="$ARGS --cef $v"
+            done
+            for v in $(echo "${{ inputs.widgetsets }}" | tr ',' ' '); do
+              [ -n "$v" ] && ARGS="$ARGS --ws $v"
+            done
+          fi
+          echo "COMBO_ARGS=$ARGS" >> "$GITHUB_ENV"
+          echo "combo args: $ARGS"
+
+      - name: Show combination plan
+        if: ${{ inputs.combo_mode }}
+        shell: bash
+        run: |
+          ./"$LAZSETUP_BIN" combos --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" $COMBO_ARGS
 
       - name: Dry-run plan (no network, no commands)
         shell: bash
@@ -144,9 +196,9 @@ jobs:
           EXTRA=""
           if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
           MODES=""
-          if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
+          if [ -n "${{ inputs.mode }}" ] && [ "${{ inputs.combo_mode }}" != "true" ]; then MODES="--mode ${{ inputs.mode }}"; fi
           ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --dry-run $EXTRA
-          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --dry-run $EXTRA $MODES
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --dry-run $EXTRA $MODES $COMBO_ARGS
 
       - name: Verify downloads (checksum only)
         if: ${{ inputs.verify_downloads }}
@@ -187,8 +239,8 @@ jobs:
           EXTRA=""
           if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
           MODES=""
-          if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
-          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --out bins $EXTRA $MODES
+          if [ -n "${{ inputs.mode }}" ] && [ "${{ inputs.combo_mode }}" != "true" ]; then MODES="--mode ${{ inputs.mode }}"; fi
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --out bins $EXTRA $MODES $COMBO_ARGS
 
       - name: Verify built libraries
         if: ${{ inputs.run_setup && inputs.run_build }}

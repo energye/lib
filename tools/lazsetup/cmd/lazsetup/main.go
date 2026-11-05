@@ -44,11 +44,21 @@ type globalOpts struct {
 }
 
 type buildOpts struct {
-	modes      multiFlag
-	out        string
-	lazbuild   string
-	lazarusDir string
-	noPackage  bool
+	modes       multiFlag
+	out         string
+	lazbuild    string
+	lazarusDir  string
+	noPackage   bool
+	combos      multiFlag
+	cefVersions multiFlag
+	widgetSets  multiFlag
+	allCombos   bool
+}
+
+// comboMode is true only when a combination flag was given, so the original
+// build-mode path (and its tests) stays untouched.
+func (b *buildOpts) comboMode() bool {
+	return b.allCombos || len(b.combos) > 0 || len(b.cefVersions) > 0 || len(b.widgetSets) > 0
 }
 
 func main() {
@@ -77,7 +87,7 @@ func main() {
 		fs.BoolVar(&updateHashes, "update-hashes", false, "download and print sha256/size for the config")
 	case "doctor":
 		fs.BoolVar(&network, "network", false, "probe download URLs over HTTP (may be blocked by Cloudflare)")
-	case "build", "all":
+	case "build", "all", "combos":
 		addBuildFlags(fs, b)
 	case "list":
 		fs.BoolVar(&expand, "expand", false, "show fully expanded URLs and commands for every target")
@@ -121,6 +131,8 @@ func main() {
 		}
 	case "build":
 		_, err = doBuild(r, rn, b, "")
+	case "combos":
+		err = doCombosList(r, b)
 	default:
 		usage()
 		os.Exit(2)
@@ -154,6 +166,10 @@ func addBuildFlags(fs *flag.FlagSet, b *buildOpts) {
 	fs.StringVar(&b.lazbuild, "lazbuild", "", "path to lazbuild (default: $LAZBUILD or PATH)")
 	fs.StringVar(&b.lazarusDir, "lazarus-dir", "", "pass --lazarusdir to lazbuild (source installs)")
 	fs.BoolVar(&b.noPackage, "no-package", false, "skip third-party package registration")
+	fs.Var(&b.combos, "combo", "combination name (repeatable): lcl|webview|cef|cef-webview; enables combination mode")
+	fs.Var(&b.cefVersions, "cef", "CEF version (repeatable): CEF109|CEF127|CEF147|CEF150 or 109|127|147|150")
+	fs.Var(&b.widgetSets, "ws", "Linux widgetset tag (repeatable): gtk2|gtk3")
+	fs.BoolVar(&b.allCombos, "all-combos", false, "build every applicable combination for this target")
 }
 
 func loadAndResolve(g *globalOpts) (*config.Config, *config.Resolved, *runner.Runner, error) {
@@ -202,7 +218,22 @@ func fileExists(p string) bool {
 	return err == nil && !fi.IsDir()
 }
 
+func comboOptions(r *config.Resolved, rn *runner.Runner, b *buildOpts, lazbuild string) build.ComboOptions {
+	lb := b.lazbuild
+	if lb == "" {
+		lb = lazbuild
+	}
+	return build.ComboOptions{
+		R: r, Runner: rn, Lazbuild: lb, OutDir: b.out,
+		Combos: []string(b.combos), CEFVersions: []string(b.cefVersions),
+		WidgetSets: []string(b.widgetSets),
+	}
+}
+
 func doBuild(r *config.Resolved, rn *runner.Runner, b *buildOpts, lazbuild string) (*build.Result, error) {
+	if b.comboMode() {
+		return build.BuildCombos(comboOptions(r, rn, b, lazbuild))
+	}
 	if lazbuild != "" && b.lazbuild == "" {
 		b.lazbuild = lazbuild
 	}
@@ -213,6 +244,20 @@ func doBuild(r *config.Resolved, rn *runner.Runner, b *buildOpts, lazbuild strin
 		R: r, Runner: rn, Lazbuild: b.lazbuild,
 		Modes: []string(b.modes), OutDir: b.out, NoPackage: b.noPackage,
 	})
+}
+
+// doCombosList prints the resolved matrix without compiling anything.
+func doCombosList(r *config.Resolved, b *buildOpts) error {
+	jobs, err := build.ExpandCombos(comboOptions(r, nil, b, ""))
+	if err != nil {
+		return err
+	}
+	fmt.Printf("target: %s (%d jobs)\n", r.Target.String(), len(jobs))
+	for _, j := range jobs {
+		fmt.Printf("  %-58s bm=%-14s ws=%-6s -d %s\n",
+			j.ZipName, j.BM, j.WS, strings.Join(j.Defines, ","))
+	}
+	return nil
 }
 
 func doList(c *config.Config, g *globalOpts, expand bool) error {
@@ -297,6 +342,7 @@ Usage:
 Commands:
   setup     download, verify, install and (if configured) compile the toolchain
   build     register packages and build liblcl dynamic library per build mode
+  combos    list the combination matrix for this target (no compile)
   all       setup followed by build
   list      show releases, targets and build modes (--expand shows resolved URLs)
   verify    download and checksum only, no install
@@ -324,6 +370,12 @@ Build flags:
   --lazbuild PATH    explicit lazbuild path
   --lazarus-dir PATH override --lazarusdir passed to lazbuild
   --no-package       skip third-party lpk registration
+
+Combination flags (enable the multi-module build matrix):
+  --combo NAME       lcl | webview | cef | cef-webview (repeatable)
+  --all-combos       build every applicable combination
+  --cef VERSION      CEF109 | CEF127 | CEF147 | CEF150 (repeatable)
+  --ws TAG           gtk2 | gtk3 (repeatable)
 
 Examples:
   lazsetup list --expand

@@ -273,7 +273,58 @@ func Run(o Options) (*Report, error) {
 		rep.add(Warn, "checksums", "%d components of the current target have no sha256 (size-only verification)", unhashed)
 	}
 
-	// 6. Optional live reachability probe for the current target only.
+	// 6. Combination matrix: every platform mode must name a real .lpi build
+	// mode, the lazbuild wrapper config must exist, and the versioned Lazarus
+	// patch must be discoverable (a missing patch is legal - setup just skips).
+	if len(o.Config.Build.Combinations) == 0 || len(o.Config.Build.PlatformModes) == 0 {
+		// A minimal config may legitimately only use the original build-mode
+		// path. Combination builds are opt-in, so this is not a failure.
+		rep.add(Warn, "combination matrix", "no combinations/platformModes configured (legacy build-mode path only)")
+	} else {
+		bad := 0
+		for _, pm := range o.Config.Build.PlatformModes {
+			if !lpiModes[pm.BM] {
+				rep.add(Fail, "combo mode "+pm.BM, "bm does not exist in liblcl.lpi")
+				bad++
+			}
+		}
+		for _, cb := range o.Config.Build.Combinations {
+			if cb.Name == "" {
+				rep.add(Fail, "combination", "unnamed combination")
+				bad++
+			}
+			if strings.Contains(cb.Name, "webview") {
+				for _, ws := range cb.WidgetSets {
+					if strings.EqualFold(ws, "gtk2") {
+						rep.add(Fail, "combination "+cb.Name, "gtk2 has no webkit2gtk")
+						bad++
+					}
+				}
+			}
+		}
+		if bad == 0 {
+			rep.add(Pass, "combination matrix", "%d combinations, %d platform modes, %d CEF versions",
+				len(o.Config.Build.Combinations), len(o.Config.Build.PlatformModes), len(o.Config.Build.CEFVersions))
+		}
+	}
+	conf := o.Resolved.Build.LazbuildConf
+	if conf == "" {
+		rep.add(Warn, "lazbuild conf", "build.lazbuildConf is not configured (combination builds unavailable)")
+	} else if _, err := os.Stat(conf); err != nil {
+		rep.add(Fail, "lazbuild conf", "%s: %v", conf, err)
+	} else {
+		rep.add(Pass, "lazbuild conf", conf)
+	}
+	if o.Resolved.Target.OS == "linux" {
+		patch := o.Resolved.Build.PatchDir
+		if st, err := os.Stat(patch); err == nil && st.IsDir() {
+			rep.add(Pass, "lazarus patch", "%s (applied before make clean all)", patch)
+		} else {
+			rep.add(Warn, "lazarus patch", "%s missing; setup will skip the patch", patch)
+		}
+	}
+
+	// 7. Optional live reachability probe for the current target only.
 	if o.Network {
 		probeNetwork(rep, o.Resolved)
 	} else {

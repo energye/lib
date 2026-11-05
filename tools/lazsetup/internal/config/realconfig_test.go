@@ -150,14 +150,11 @@ func TestShippedModesHaveWidgetSet(t *testing.T) {
 	}
 }
 
-// TestLinuxCurrentlyBuildsGTK2Only records a deliberate staging decision:
-// GTK2 must build right now, while GTK3 stays configured exactly like GTK2
-// (bm/ws/artifact/output) but disabled until the toolchain moves to Lazarus
-// 5.0. Both modes share the same lazbuild pipeline AND the same docker
-// container (old CI built gtk2/gtk3 sequentially in one container); only
-// --ws differs. The lib source needs no changes. Re-enable by dropping the
-// disabled flag.
-func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
+// TestBothLinuxWidgetSetsEnabled records the current decision: GTK2 and GTK3
+// are both built. GTK3 used to be staged out because Lazarus 4.8 lacks
+// Gtk3Globals; the repository now ships patch/lazarus4.8/{gtk3,synedit},
+// which setup applies to the toolchain before `make clean all`.
+func TestBothLinuxWidgetSetsEnabled(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
 	if err != nil {
 		t.Fatal(err)
@@ -177,11 +174,115 @@ func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
 	if gtk3 == nil {
 		t.Fatal("linux_GTK3 configuration must be kept")
 	}
-	if !gtk3.Disabled {
-		t.Error("linux_GTK3 must stay disabled until the Lazarus 5.0 toolchain is wired up")
+	if gtk3.Disabled {
+		t.Error("linux_GTK3 must be enabled now that the Lazarus patch is applied")
 	}
 	if gtk3.WS != "gtk3" || gtk3.Artifact != "libenergy-gtk3.so" || gtk3.Output == "" {
 		t.Errorf("linux_GTK3 must stay fully configured, got %+v", *gtk3)
+	}
+}
+
+// TestCombinationConfigIsComplete guards the data the new matrix builder
+// depends on: four CEF versions, four combinations, and a platform mode for
+// every (os, arch, widgetset) pair used by the shipped targets.
+func TestCombinationConfigIsComplete(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(c.Build.CEFVersions) != 4 {
+		t.Errorf("expected 4 CEF versions, got %d", len(c.Build.CEFVersions))
+	}
+	if len(c.Build.Combinations) != 4 {
+		t.Errorf("expected 4 combinations, got %d", len(c.Build.Combinations))
+	}
+	if c.Build.LazbuildWrapper == "" || c.Build.LazbuildConf == "" {
+		t.Error("lazbuildWrapper / lazbuildConf must be configured")
+	}
+	seen := map[string]bool{}
+	for _, pm := range c.Build.PlatformModes {
+		if pm.BM == "" || pm.WS == "" || pm.Artifact == "" {
+			t.Errorf("incomplete platform mode: %+v", pm)
+		}
+		seen[pm.OS+"/"+pm.Arch+"/"+pm.WSTag] = true
+	}
+	for _, want := range []string{
+		"windows/amd64/", "windows/386/",
+		"linux/386/gtk2", "linux/386/gtk3",
+		"linux/amd64/gtk2", "linux/amd64/gtk3",
+		"linux/arm/gtk2", "linux/arm/gtk3",
+		"linux/arm64/gtk2", "linux/arm64/gtk3",
+		"darwin/amd64/", "darwin/arm64/",
+	} {
+		if !seen[want] {
+			t.Errorf("missing platform mode for %s", want)
+		}
+	}
+	// gtk2 has no webkit2gtk: Webview combinations must exclude it.
+	for _, cb := range c.Build.Combinations {
+		if strings.Contains(cb.Name, "webview") {
+			for _, ws := range cb.WidgetSets {
+				if ws == "gtk2" {
+					t.Errorf("combination %s must not target gtk2", cb.Name)
+				}
+			}
+		}
+	}
+}
+
+// TestPatchDirFollowsLazarusVersion pins the patch source path. Only Linux
+// targets apply it, and only when patch/lazarus<version> exists.
+func TestPatchDirFollowsLazarusVersion(t *testing.T) {
+	c, err := Load(
+		filepath.Join("..", "..", "configs", "toolchain.json"),
+		filepath.Join("..", "..", "configs", "energy-lib.json"),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := filepath.Join(t.TempDir(), "repo")
+	r, err := c.Resolve(Options{Lazarus: "4.8", OS: "linux", Arch: "amd64", Repo: repo})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(r.Build.PatchDir, "patch/lazarus4.8") {
+		t.Errorf("patchDir = %q, want patch/lazarus4.8", r.Build.PatchDir)
+	}
+	if !strings.HasPrefix(r.Vars["cpatch"], "/app/patch/lazarus4.8") {
+		t.Errorf("container patch path = %q, want /app/patch/lazarus4.8", r.Vars["cpatch"])
+	}
+	found := false
+	for _, cp := range r.Components {
+		if cp.ID == "lazarus-patch" {
+			found = true
+			if len(cp.Commands) != 2 {
+				t.Errorf("lazarus-patch must cover gtk3 and synedit, got %d commands", len(cp.Commands))
+			}
+			for _, cmd := range cp.Commands {
+				if !strings.Contains(cmd, "/app/patch/lazarus4.8") {
+					t.Errorf("patch command does not point at the container patch dir: %s", cmd)
+				}
+				if !strings.Contains(cmd, "if [ -d") {
+					t.Errorf("patch command must skip when the directory is absent: %s", cmd)
+				}
+			}
+		}
+	}
+	if !found {
+		t.Error("linux-source profile is missing the lazarus-patch component")
+	}
+	// The patch must be applied before Lazarus itself is compiled.
+	patchIdx, buildIdx := -1, -1
+	for i, cp := range r.Components {
+		switch cp.ID {
+		case "lazarus-patch":
+			patchIdx = i
+		case "build-lazarus":
+			buildIdx = i
+		}
+	}
+	if patchIdx < 0 || buildIdx < 0 || patchIdx > buildIdx {
+		t.Errorf("lazarus-patch (%d) must run before build-lazarus (%d)", patchIdx, buildIdx)
 	}
 }
 

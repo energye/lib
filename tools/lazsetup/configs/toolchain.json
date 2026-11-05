@@ -111,6 +111,14 @@
           ]
         },
         {
+          "id": "lazarus-patch",
+          "kind": "commands",
+          "commands": [
+            "P=${cpatch}; if [ -d \"$P/gtk3\" ]; then rm -rf \"${cprefix}/lcl/interfaces/gtk3\" && mkdir -p \"${cprefix}/lcl/interfaces\" && cp -a \"$P/gtk3\" \"${cprefix}/lcl/interfaces/gtk3\" && echo \"patched gtk3 from $P\"; else echo \"no gtk3 patch at $P, skipping\"; fi",
+            "P=${cpatch}; if [ -d \"$P/synedit\" ]; then rm -rf \"${cprefix}/components/synedit\" && mkdir -p \"${cprefix}/components\" && cp -a \"$P/synedit\" \"${cprefix}/components/synedit\" && echo \"patched synedit from $P\"; else echo \"no synedit patch at $P, skipping\"; fi"
+          ]
+        },
+        {
           "id": "build-lazarus",
           "kind": "commands",
           "commands": [
