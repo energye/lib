@@ -1,0 +1,37 @@
+name: probe i386 dns
+
+# Temporary diagnostic: i386/debian:11 cannot resolve archive.debian.org
+# inside the GitHub runner's default docker bridge network, while
+# amd64/debian:11 with the same apt-eol.sh works. Removed after diagnosis.
+on: workflow_dispatch
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Host DNS
+        run: |
+          cat /etc/resolv.conf
+          getent hosts archive.debian.org || true
+
+      - name: Probe i386 container networking
+        shell: bash
+        run: |
+          for MODE in default host publicdns; do
+            echo "==================== MODE=$MODE ===================="
+            case "$MODE" in
+              default)   OPTS="";;
+              host)      OPTS="--network=host";;
+              publicdns) OPTS="--dns 8.8.8.8 --dns 1.1.1.1";;
+            esac
+            docker run --rm --platform linux/386 $OPTS i386/debian:11 sh -c '
+              echo "--- /etc/resolv.conf ---"; cat /etc/resolv.conf
+              echo "--- /etc/nsswitch.conf ---"; cat /etc/nsswitch.conf 2>/dev/null || true
+              echo "--- getent ---"; getent hosts archive.debian.org || echo GETENT-FAIL
+              echo "--- apt update (archive.debian.org) ---"
+              printf "deb http://archive.debian.org/debian bullseye main\n" > /etc/apt/sources.list
+              printf "Acquire::Check-Valid-Until \"false\";\n" > /etc/apt/apt.conf.d/99no-valid-until
+              apt-get update -o Acquire::Retries=0 -q 2>&1 | tail -6
+            ' || echo "MODE=$MODE container failed"
+          done
