@@ -16,6 +16,7 @@ on:
           - ubuntu-22.04
           - windows-latest
           - macos-latest
+          - macos-15
           - macos-14
           - macos-15-intel
       lazarus:
@@ -71,6 +72,12 @@ jobs:
           mkdir -p "$HOME/.cache/lazsetup"
           echo "runner=${{ inputs.runner }} lazarus=${{ inputs.lazarus }} target=${{ inputs.target_os }}/${{ inputs.target_arch }} mode='${{ inputs.mode }}'"
           echo "setup=${{ inputs.run_setup }} build=${{ inputs.run_build }} no_container=${{ inputs.no_container }}"
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            echo "=== macOS linker (FPC 3.2.x breaks on Xcode 26+ ld) ==="
+            sw_vers
+            xcodebuild -version 2>&1 | head -3 || true
+            ld -v 2>&1 | head -4 || true
+          fi
 
       - name: Restore toolchain download cache
         uses: actions/cache/restore@v4
