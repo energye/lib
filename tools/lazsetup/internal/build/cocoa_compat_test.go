@@ -10,14 +10,15 @@ import (
 	"github.com/energye/lib/tools/lazsetup/internal/runner"
 )
 
-func writeCocoaUnit(t *testing.T, repo, rel, uses string) string {
+func writeCocoaUnit(t *testing.T, repo, rel, uses, nsapp string) string {
 	t.Helper()
 	p := filepath.Join(repo, filepath.FromSlash(rel))
 	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
 		t.Fatal(err)
 	}
 	content := "unit uCEFLazarusCocoa;\n\n{$IFDEF DARWIN}\nuses\n  " + uses +
-		"\n  Classes, SysUtils;\n{$ENDIF}\n"
+		"\n  Classes, SysUtils;\n{$ENDIF}\n" +
+		"procedure Stop;\nbegin\n  tryToTerminateApplication(" + nsapp + ");\nend;\n"
 	if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -33,7 +34,7 @@ func readCocoaUnit(t *testing.T, p string) string {
 	return string(data)
 }
 
-func TestPatchCocoaCompatAddsUnitAndRestores(t *testing.T) {
+func TestPatchCocoaCompatAddsUnitsAndRestores(t *testing.T) {
 	repo := t.TempDir()
 	rn := runner.New(io.Discard)
 
@@ -42,9 +43,9 @@ func TestPatchCocoaCompatAddsUnitAndRestores(t *testing.T) {
 	already := cocoaCompatRel[2]
 	missing := cocoaCompatRel[3]
 
-	pOld := writeCocoaUnit(t, repo, old, cocoaUsesOld)
-	pNewer := writeCocoaUnit(t, repo, newer, cocoaUsesOld)
-	pAlready := writeCocoaUnit(t, repo, already, cocoaUsesNew)
+	pOld := writeCocoaUnit(t, repo, old, cocoaFixes[0].old, cocoaFixes[1].old)
+	pNewer := writeCocoaUnit(t, repo, newer, cocoaFixes[0].old, cocoaFixes[1].old)
+	pAlready := writeCocoaUnit(t, repo, already, cocoaFixes[0].new, cocoaFixes[1].new)
 	beforeOld := readCocoaUnit(t, pOld)
 	beforeNewer := readCocoaUnit(t, pNewer)
 	beforeAlready := readCocoaUnit(t, pAlready)
@@ -53,11 +54,19 @@ func TestPatchCocoaCompatAddsUnitAndRestores(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got := readCocoaUnit(t, pOld); !strings.Contains(got, cocoaUsesNew) {
-		t.Errorf("old uses clause was not patched: %s", got)
-	}
-	if got := readCocoaUnit(t, pNewer); !strings.Contains(got, cocoaUsesNew) {
-		t.Errorf("second CEF version was not patched: %s", got)
+	for _, tc := range []struct {
+		name string
+		path string
+	}{{"first CEF version", pOld}, {"second CEF version", pNewer}} {
+		got := readCocoaUnit(t, tc.path)
+		for _, f := range cocoaFixes {
+			if !strings.Contains(got, f.new) {
+				t.Errorf("%s missing fix %q: %s", tc.name, f.new, got)
+			}
+			if !strings.HasPrefix(f.new, f.old) && strings.Contains(got, f.old) {
+				t.Errorf("%s still has %q: %s", tc.name, f.old, got)
+			}
+		}
 	}
 	if got := readCocoaUnit(t, pAlready); got != beforeAlready {
 		t.Errorf("already-patched file must not be touched: %s", got)
@@ -74,7 +83,7 @@ func TestPatchCocoaCompatAddsUnitAndRestores(t *testing.T) {
 		t.Errorf("restore did not put back the original bytes: %s", got)
 	}
 
-	// Patching twice must not append CocoaApplication twice.
+	// Patching twice must not append a fix twice.
 	restore2, err := patchCocoaCompat(repo, rn)
 	if err != nil {
 		t.Fatal(err)
@@ -86,8 +95,6 @@ func TestPatchCocoaCompatAddsUnitAndRestores(t *testing.T) {
 }
 
 func TestPatchCocoaCompatOnlyTouchesDarwin(t *testing.T) {
-	// BuildCombos is the only caller and gates on Target.OS == "darwin".
-	// Guard that the gate is really in the shipped source.
 	data, err := os.ReadFile("combos.go")
 	if err != nil {
 		t.Fatal(err)
