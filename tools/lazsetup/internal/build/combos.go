@@ -194,6 +194,18 @@ func BuildCombos(o ComboOptions) (*Result, error) {
 		r.Logf("  backed up %s (%d bytes)", lpiHost, len(backup))
 	}
 
+	// Lazarus 4.8 moved TCocoaApplication into its own CocoaApplication unit.
+	// The vendored CEF4Delphi Cocoa units still carry the old Lazarus 2.x uses
+	// clause, so darwin CEF combinations need a temporary compatibility patch.
+	// It only ever touches files on darwin and is fully reverted on return.
+	if !r.DryRun && resolved.Target.OS == "darwin" {
+		restoreCocoa, err := patchCocoaCompat(repo, r)
+		if err != nil {
+			return nil, err
+		}
+		defer restoreCocoa()
+	}
+
 	outDir := firstNonEmpty(o.OutDir, resolved.Build.OutDir, "bins")
 	if !r.DryRun {
 		if err := os.MkdirAll(outDir, 0o755); err != nil {
