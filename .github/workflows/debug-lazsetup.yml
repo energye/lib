@@ -165,13 +165,22 @@ jobs:
           set -e
           echo "=== bins/ ==="
           ls -lh bins/
+          TMP="$RUNNER_TEMP/lazsetup-verify"
+          mkdir -p "$TMP"
           for z in bins/*.zip; do
             [ -f "$z" ] || continue
             echo "--- $z"
-            unzip -l "$z"
-            echo -n "    first entry magic: "
-            entry=$(unzip -Z1 "$z" | head -1)
-            unzip -p "$z" "$entry" | od -An -tx1 -N4
+            unzip -t "$z"
+            unzip -Z1 "$z" > "$TMP/entries.txt"
+            entry=$(sed -n '1p' "$TMP/entries.txt")
+            [ -n "$entry" ] || { echo "empty archive: $z"; exit 1; }
+            # Write to a file first: piping unzip into `od -N4` closes the pipe
+            # early and fails the step with SIGPIPE (exit 141) under pipefail.
+            unzip -p "$z" "$entry" > "$TMP/entry.bin"
+            echo "    entry:   $entry"
+            echo -n "    magic:   "
+            od -An -tx1 -N4 "$TMP/entry.bin"
+            echo "    bytes:   $(wc -c < "$TMP/entry.bin")"
           done
 
       - name: Upload artifacts
