@@ -181,6 +181,10 @@ jobs:
             echo -n "    magic:   "
             od -An -tx1 -N4 "$TMP/entry.bin"
             echo "    bytes:   $(wc -c < "$TMP/entry.bin")"
+            if command -v file >/dev/null 2>&1; then
+              echo -n "    format:  "
+              file "$TMP/entry.bin"
+            fi
           done
 
       - name: Upload artifacts
