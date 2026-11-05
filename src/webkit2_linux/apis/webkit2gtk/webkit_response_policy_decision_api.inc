@@ -1,0 +1,2 @@
+webkit_response_policy_decision_get_request    : function(decision :WebKitResponsePolicyDecision): WebKitURIRequest; cdecl;
+webkit_response_policy_decision_get_response   : function(decision :WebKitResponsePolicyDecision): WebKitURIResponse; cdecl;

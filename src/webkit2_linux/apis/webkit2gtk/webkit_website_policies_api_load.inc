@@ -1,0 +1,3 @@
+Pointer(webkit_website_policies_new) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_website_policies_new');
+Pointer(webkit_website_policies_new_with_policies) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_website_policies_new_with_policies');
+Pointer(webkit_website_policies_get_autoplay_policy) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_website_policies_get_autoplay_policy');

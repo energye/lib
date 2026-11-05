@@ -1,0 +1,2 @@
+Pointer(webkit_navigation_action_get_request) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_navigation_action_get_request');
+Pointer(webkit_navigation_action_free) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_navigation_action_free');

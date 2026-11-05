@@ -10,6 +10,8 @@ uses
   {$IFDEF LCLCocoa}CocoaWSFactory,{$ENDIF}
   InterfaceBase;
 
+// 自定义组件接口初始化
+// 在 Linux 仅 CEF 使用 GTK2 GTK3 初始化时使用
 procedure CustomWidgetSetInitialization;
 procedure CustomWidgetSetFinalization;
 
@@ -86,18 +88,17 @@ begin
   FreeWidgetSet;
 end;
 
-//{$IF Defined(LCLGTK2) or Defined(LCLGTK3)}
-//{$IFnDEF LCLGTK3}
+
 {$IFnDEF Linux}
 initialization
-  begin
-    CustomWidgetSetInitialization;
-  end;
+begin
+  CustomWidgetSetInitialization;
+end;
 
 finalization
-  begin
-    CustomWidgetSetFinalization;
-  end;
+begin
+  CustomWidgetSetFinalization;
+end;
 {$ENDIF}
 
 end.

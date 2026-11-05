@@ -1,0 +1,2 @@
+Pointer(webkit_response_policy_decision_get_request) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_response_policy_decision_get_request');
+Pointer(webkit_response_policy_decision_get_response) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_response_policy_decision_get_response');

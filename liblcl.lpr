@@ -1,11 +1,3 @@
-//----------------------------------------
-//
-// Copyright © yanghy. All Rights Reserved.
-//
-// Licensed under Lazarus.modifiedLGPL
-//
-//----------------------------------------
-
 library liblcl;
 
 {$mode delphi}
@@ -14,117 +6,78 @@ library liblcl;
   {$define UseCThreads}
 {$ENDIF}
 
-
-// lib lcl 宏定义
-{$I liblcl.inc}
-
 uses
-{$IFDEF UNIX}{$IFDEF UseCThreads}cthreads,{$ENDIF}{$ENDIF}
-  Interfaces, InterfaceBase,
-{$IFDEF WINDOWS}
-  Windows, MultiMon, ShlObj, ComObj, ActiveX, Win32Int, win32proc, CommCtrl, LazUTF8,
-{$ENDIF}
-  Types, LCLType, typinfo, LCLProc, LCLIntf, LCLStrConsts,
-  Messages, LMessages, DateUtils, IniFiles, Registry,
-  Forms, lazcontrols, datetimectrls, printer4lazarus,
-  StdCtrls, Dialogs, ExtCtrls, Graphics, Controls, Buttons,
-  ComCtrls, ToolWin, ImgList, ExtDlgs, ActnList, ColorBox,
-  PrintersDlgs, DateTimePicker, Calendar, Menus, Clipbrd, CheckLst,
-  MaskEdit, Grids, ValEdit, Spin, Printers, ComboEx, EditBtn,
-  LResources, GraphType, Themes, LCLClasses,
-  WSLCLClasses, GroupedEdit, CustApp, RichMemo, CustomTimer,
-  FPCanvas, FPImage, FPReadJPEG, IntfGraphics, DividerBevel,
-  LDockTree, Laz_AVL_Tree, laz.VirtualTrees, LazarusPackageIntf,
-  Classes, SysUtils, LCLVersion, OpenGLContext,
-{$IFDEF LCLCocoa}
-  uMacOSPatchs,
-{$ENDIF}
-{$IFDEF LINUX}
-  uLinuxPatchs,
-{$ENDIF}
-  uControlPatchs, ATGauge, ATFlatThemes,
-  uGoForm, uRichEdit, uGauge,
-  uString, uRunMainThread,
-  //uComponents, uFormDesignerFile,
-  uLinkLabel, uImageButton, xButton,
-  uExceptionHandle,
-  uLCL_RecordStruct, uLCL_SortMethods,
-  //LCL 事件回调
-  uLCL_EventCallback
-
-// ============ xxx.unit ============= //
-
-// CEF unit's
-{$IFDEF UseCEF}
-,{$I UnitsCEF.inc}
-{$ENDIF}
-
-// Webview2 Windows unit's
-{$IFDEF UseWebview2}
- ,{$I UnitsWV2.inc}
-{$ENDIF}
-
-// Webkit2 MacOS
-{$IFDEF UseMacOSWebkit2}
-,{$I UnitsWK2MacOS.inc}
-{$ENDIF}
-
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit2}
-,{$I UnitsWK2Linux.inc}
-{$ENDIF}
-
-// Webkit Linux GTK2
-{$IFDEF UseLinuxWebkit}
-//,{$I UnitsWKLinux.inc}
-{$ENDIF}
+  {$IFDEF UNIX}{$IFDEF UseCThreads}cthreads,{$ENDIF}{$ENDIF}
+    Interfaces, InterfaceBase
+  // LCL Units
+  ,{$I uLCLUnits.inc}
+  // CEF Units
+  {$IF defined(LCLWin32) or defined(LCLGTK2) or defined(LCLGTK3) or defined(LCLCocoa)}
+  {$I ./cef/CEFUnits.inc}
+  {$ENDIF}
+  // Webview2 Units
+  {$IFDEF LCLWin32}
+  {$I uWVWindowsUnits.inc}
+  {$ENDIF}
+  // Webkit2 Units
+  {$IFDEF LCLGTK3}
+  {$I uWVLinuxUnits.inc}
+  {$ENDIF}
+  // Webkit2 Units
+  {$IFDEF LCLCocoa}
+  {$I uWVDarwinUnits.inc}
+  {$ENDIF}
+  // test
+  //,testapi
 ;
 
-// ============ xxx.inc ============= //
-
 {$IFDEF WINDOWS}
-  {$R *.res}
+  //{$R *.res}
   {$SetPEFlags IMAGE_FILE_LARGE_ADDRESS_AWARE}
 {$ENDIF}
 
 {$I ExtDecl.inc}
+{$I ./common/LazarusDef.inc}
+{$I ./common/LCLMisc.inc}
+{$I ./common/WidgetInterfaces.inc}
 
-{$I CustomWidgetInterfaces.inc}
+// Export API Auto Generate
 
-{$I LazarusDef.inc}
+{$I ./lcl/LCLImport.inc}
 
-// LCL
-{$I ImportLCL.inc}
-
-// CEF
-//{$IFDEF UseCEF}
-{$I ImportCEF.inc}
-//{$ENDIF}
-
-// Webview2
-{$IFDEF UseWebview2}
-{$I ImportWV.inc}
+// CEF Auto Generate
+{$IF defined(LCLWin32) or defined(LCLGTK2) or defined(LCLGTK3) or defined(LCLCocoa)}
+{$I ./cef/CEFImports.inc}
 {$ENDIF}
 
-// Webkit2 MacOS
-{$IFDEF UseMacOSWebkit2}
-{$I ImportWK2Mac.inc}
+// Webview2 Auto Generate
+{$IFDEF LCLWin32}
+{$I ./wv/libs/WINDOWSImport.inc}
+{$I ./wv/libs/WindowsPreDef.inc}
 {$ENDIF}
 
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit2}
-{$I ImportWK2Linux.inc}
+// Webkit2 Auto Generate
+{$IFDEF LCLGTK3}
+{$I ./wv/libs/LINUXImport.inc}
 {$ENDIF}
 
-// Webkit2 Linux GTK3
-{$IFDEF UseLinuxWebkit}
-//{$I ImportWKLinux.inc}
+// Webkit2 Auto Generate
+{$IFDEF LCLCocoa}
+{$I ./wv/libs/DARWINImport.inc}
 {$ENDIF}
+
+// test
+//{$I ./TestAPI.inc}
+
+
+
+{$R *.res}
 
 begin
+  //TCrCocoaApplication.sharedApplication; // VF 需要？？
+  // LazarusResources
 
   RequireDerivedFormResource := False;
   IsMultiThread := True;
-  InitLazarusDef;
 end.
 

@@ -1,0 +1,1 @@
+webkit_notification_close : procedure(notification: WebKitNotification); cdecl;

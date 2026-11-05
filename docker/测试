@@ -1,8 +1,0 @@
-
-docker run -d -it \
-  -v /home/yanghy/app/docker/workspace:/app \
-  --name ubuntu18.04_i386_test ubuntu18.04_i386_base:1
-docker exec -it ubuntu18.04_i386_test /bin/bash
-
-export GOBIN=/app/go386/bin
-export PATH=$PATH:/app/go386/bin

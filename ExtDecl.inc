@@ -21,16 +21,16 @@
 
 // 异常宏定义
 {$ifdef UsehandleException}
-  {$define handleExceptionFuncName :=''}
+  {$define handleExceptionID := 0}
   {$define handleExceptionBegin :=try}
   {$define handleExceptionEnd :=
      except
        on E: Exception do
-         CallException(handleExceptionFuncName, E);
+         CallException(handleExceptionID, E);
      end;
   }
 {$else}
-  {$define handleExceptionFuncName :=}
+  {$define handleExceptionID :=}
   {$define handleExceptionBegin :=}
   {$define handleExceptionEnd :=}
 {$endif}
@@ -42,7 +42,7 @@
 *)
 
 // 宏事件方法定义 LCL
-{$DEFINE EventMethodCode :=
+{$DEFINE LCLEventMethodCode :=
   try
     if AEventData = nil then
     begin
@@ -61,8 +61,17 @@
   end;
 }
 
+// 宏事件方法定义 只写 LCL
+{$DEFINE LCLEventOnlyWriteMethodCode :=
+  try
+    AObj.EventName := TLCLEvent.Create(AEventData).EventMethodName;
+  except
+     on E: Exception do
+       CallException(E);
+  end;
+}
 
-// 宏事件方法定义 CEF
+// 宏事件方法定义 CEF of object
 {$DEFINE CEFEventMethodCode :=
   try
     if AEventData = nil then
@@ -79,9 +88,24 @@
        CallException(E);
   end;
 }
+{$DEFINE CEFEventMethodCodeNotObject :=
+  try
+    if AEventData = nil then
+    begin
+      EventMethodPtr := nil;
+      AObj.EventName := nil;
+      Exit;
+    end;
+    EventMethodPtr := AEventData;
+    AObj.EventName := EventMethodName;
+  except
+     on E: Exception do
+       CallException(E);
+  end;
+}
 
 
-// 宏事件方法定义 WV
+// 宏事件方法定义 Webview(Webview2, Webkit2)
 {$DEFINE WVEventMethodCode :=
   try
     if AEventData = nil then
@@ -98,19 +122,16 @@
        CallException(E);
   end;
 }
-
-// 宏事件方法定义 WK
-{$DEFINE WKEventMethodCode :=
+{$DEFINE WVEventMethodCodeNotObject :=
   try
     if AEventData = nil then
     begin
-      TWKEvent.Remove(TMethod(AObj.EventName));
+      EventMethodPtr := nil;
       AObj.EventName := nil;
       Exit;
     end;
-    if TWKEvent.CheckAndUpdate(TMethod(AObj.EventName), AEventData) then
-      Exit;
-    AObj.EventName := TWKEvent.Create(AEventData).EventMethodName;
+    EventMethodPtr := AEventData;
+    AObj.EventName := EventMethodName;
   except
      on E: Exception do
        CallException(E);

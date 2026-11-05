@@ -1,0 +1,1 @@
+webkit_navigation_policy_decision_get_navigation_action    : function(decision :WebKitNavigationPolicyDecision): WebKitNavigationAction; cdecl;

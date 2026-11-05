@@ -1,0 +1,10 @@
+webkit_uri_scheme_request_get_scheme           : function(request: WebKitURISchemeRequest): Pgchar; cdecl;
+webkit_uri_scheme_request_get_uri              : function(request: WebKitURISchemeRequest): Pgchar; cdecl;
+webkit_uri_scheme_request_get_path             : function(request: WebKitURISchemeRequest): Pgchar; cdecl;
+webkit_uri_scheme_request_get_web_view         : function(request: WebKitURISchemeRequest): WebKitWebView; cdecl;
+webkit_uri_scheme_request_get_http_method      : function(request: WebKitURISchemeRequest): Pgchar; cdecl;
+webkit_uri_scheme_request_get_http_headers     : function(request: WebKitURISchemeRequest): PSoupMessageHeaders; cdecl;
+webkit_uri_scheme_request_get_http_body        : function(request: WebKitURISchemeRequest): PGInputStream; cdecl;
+webkit_uri_scheme_request_finish               : procedure(request: WebKitURISchemeRequest; stream: PGInputStream; stream_length: gint64; content_type: Pgchar); cdecl;
+webkit_uri_scheme_request_finish_with_response : procedure(request: WebKitURISchemeRequest; response: WebKitURISchemeResponse); cdecl;
+webkit_uri_scheme_request_finish_error         : procedure(request: WebKitURISchemeRequest; error: PGError); cdecl;

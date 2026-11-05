@@ -1,0 +1,43 @@
+{
+  "types": {
+    "TCefFrameIdentifier": "string"
+  },
+  "methods": {
+    "ICefFrame.GetIdentifier": {
+      "description": "CEF 109 returns a numeric frame id, while newer CEF bindings return a string id. Treat it as an opaque identifier.",
+      "common": {
+        "params": [],
+        "results": [
+          {
+            "type": "TCefFrameIdentifier"
+          }
+        ],
+        "result": [
+          {
+            "kind": "identifier_string"
+          }
+        ]
+      },
+      "versions": {}
+    },
+    "ICEFOSRIMEHandler.UpdateCaretPosition": {
+      "description": "CEF 109 uses int32, while newer versions use uint32. Expose uint32 in the unified interface.",
+      "common": {
+        "params": [
+          {
+            "name": "index",
+            "type": "uint32"
+          }
+        ],
+        "results": []
+      },
+      "versions": {
+        "109": {
+          "args": [
+            "int32(index)"
+          ]
+        }
+      }
+    }
+  }
+}

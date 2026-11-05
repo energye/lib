@@ -1,0 +1,17 @@
+soup3_0_cookie_new           : function(name: Pgchar; value: Pgchar; domain: Pgchar; path: Pgchar; max_age: gint): PSoupCookie; cdecl;
+soup3_0_cookie_free          : procedure(cookie: PSoupCookie); cdecl;
+soup3_0_cookie_get_domain    : function(cookie: PSoupCookie): Pgchar; cdecl;
+soup3_0_cookie_get_expires   : function(cookie: PSoupCookie): PGDateTime; cdecl;
+soup3_0_cookie_get_http_only : function(cookie: PSoupCookie): gboolean; cdecl;
+soup3_0_cookie_get_name      : function (cookie: PSoupCookie): Pgchar; cdecl;
+soup3_0_cookie_get_path      : function(cookie: PSoupCookie): Pgchar; cdecl;
+soup3_0_cookie_get_secure    : function(cookie: PSoupCookie): gboolean; cdecl;
+soup3_0_cookie_get_value     : function(cookie: PSoupCookie): Pgchar; cdecl;
+soup3_0_cookie_set_domain    : procedure(cookie: PSoupCookie; domain: Pgchar); cdecl;
+soup3_0_cookie_set_expires   : procedure(cookie: PSoupCookie; expires: PGDateTime); cdecl;
+soup3_0_cookie_set_http_only : procedure(cookie: PSoupCookie; http_only: gboolean); cdecl;
+soup3_0_cookie_set_max_age   : procedure(cookie: PSoupCookie; max_age: gint); cdecl;
+soup3_0_cookie_set_name      : procedure(cookie: PSoupCookie; name: Pgchar); cdecl;
+soup3_0_cookie_set_path      : procedure(cookie: PSoupCookie; path: Pgchar); cdecl;
+soup3_0_cookie_set_secure    : procedure(cookie: PSoupCookie; secure: gboolean); cdecl;
+soup3_0_cookie_set_value     : procedure(cookie: PSoupCookie; value: Pgchar); cdecl;

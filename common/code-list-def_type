@@ -1,0 +1,49 @@
+unit defType_uGrids;
+
+type
+
+TOnDrawCell = procedure(Sender: TObject; aCol, aRow: Integer; aRect: TRect; aState:TGridDrawState) of object;
+
+TOnSelectCellEvent = procedure(Sender: TObject; aCol, aRow: Integer; var CanSelect: Boolean) of object;
+
+TOnSelectEvent = procedure(Sender: TObject; aCol, aRow: Integer) of object;
+
+TGridOperationEvent = procedure (Sender: TObject; IsColumn:Boolean; sIndex, tIndex: Integer) of object;
+
+THdrEvent = procedure(Sender: TObject; IsColumn: Boolean; Index: Integer) of object;
+
+TOnCompareCells = procedure (Sender: TObject; ACol, ARow, BCol,BRow: Integer; var Result: integer) of object;
+
+TSelectEditorEvent = procedure(Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl) of object;
+
+TOnPrepareCanvasEvent = procedure(Sender: TObject; aCol, aRow: Integer; aState: TGridDrawState) of object;
+
+TUserCheckBoxBitmapEvent = procedure(Sender: TObject; const aCol, aRow: Integer; const CheckedState: TCheckboxState; var ABitmap: TBitmap) of object;
+
+TUserCheckBoxImageEvent = procedure(Sender: TObject; const aCol, aRow: Integer; const CheckedState: TCheckBoxState; var ImageList: TCustomImageList; var ImageIndex: TImageIndex) of object;
+
+TValidateEntryEvent = procedure(Sender: TObject; aCol, aRow: Integer; const OldValue: string; var NewValue: String) of object;
+
+TToggledCheckboxEvent = procedure(Sender: TObject; aCol, aRow: Integer; aState: TCheckboxState) of object;
+
+THeaderSizingEvent = procedure(Sender: TObject; const IsColumn: boolean; const aIndex, aSize: Integer) of object;
+
+TCellProcessEvent = procedure(Sender: TObject; aCol, aRow: Integer; processType: TCellProcessType; var aValue: string) of object;
+
+TGetCellHintEvent = procedure (Sender: TObject; ACol, ARow: Integer; var HintText: String) of object;
+
+TSaveColumnEvent = procedure (Sender, aColumn: TObject; aColIndex: Integer; aCfg: TXMLConfig; const aVersion: integer; const aPath: string) of object;
+
+TStatStg = record
+ pwcsName      : string;
+ dwType        : DWORD;
+ cbSize        : uint64;
+ mtime         : string;
+ ctime         : string;
+ atime         : string;
+ grfMode       : DWORD;
+ grfLocksSupported : DWORD;
+ clsid         : string;
+ grfStateBits  : DWORD;
+ reserved      : DWORD;
+end;

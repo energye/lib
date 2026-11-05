@@ -1,0 +1,2 @@
+Pointer(webkit_web_inspector_close) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_web_inspector_close');
+Pointer(webkit_web_inspector_show) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_web_inspector_show');

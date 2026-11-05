@@ -1,0 +1,1 @@
+Pointer(webkit_navigation_policy_decision_get_navigation_action) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_navigation_policy_decision_get_navigation_action');

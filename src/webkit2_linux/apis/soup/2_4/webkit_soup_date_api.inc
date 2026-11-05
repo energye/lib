@@ -1,0 +1,12 @@
+soup2_4_date_new             : function(year: gint; month: gint; day: gint; hour: gint; minute: gint; second: gint): PSoupDate; cdecl;
+soup2_4_date_get_year        : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_month       : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_day         : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_hour        : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_minute      : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_second      : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_utc         : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_get_offset      : function(date: PSoupDate): gint; cdecl;
+soup2_4_date_to_string       : function(date: PSoupDate; format: TSoupDateFormat): Pgchar; cdecl;
+soup2_4_date_to_time_t       : function(date: PSoupDate): glong; cdecl;
+soup2_4_date_free            : procedure(date: PSoupDate); cdecl;

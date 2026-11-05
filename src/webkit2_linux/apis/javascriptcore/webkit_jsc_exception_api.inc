@@ -1,0 +1,1 @@
+jsc_exception_get_message    : function(exception: JSCException): Pgchar; cdecl;

@@ -8,169 +8,553 @@
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
         <MainUnitHasScaledStatement Value="False"/>
-        <CompatibilityMode Value="True"/>
       </Flags>
-      <SessionStorage Value="InProjectDir"/>
+      <Title Value="libenergy"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
-      <UseXPManifest Value="True"/>
       <XPManifest>
-        <DpiAware Value="True/PM"/>
+        <DpiAware Value="True"/>
       </XPManifest>
     </General>
-    <i18n>
-      <EnableI18N LFM="False"/>
-    </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
+      <BuildNr Value="109"/>
+      <Language Value="0804"/>
       <CharSet Value="04B0"/>
-      <StringTable Comments="Go Energy LCL for Windows" CompanyName="yanghy" FileDescription="Go Energy LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright yanghy" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="3.0.0.0"/>
+      <StringTable Comments="Energy Cross-Platform GUI Framework" CompanyName="YangHY / Energy " FileDescription="Energy Framework Cross-Platform Runtime Library" InternalName="energy" LegalCopyright="Copyright (C) 2026 YangHY." LegalTrademarks="All trademarks are property of their respective owners." OriginalFilename="libenergy.dll / libenergy.dylib / libenergy.so" ProductName="Energy Framework" ProductVersion="3.0.0.0"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro2 Name="LCLWidgetType" Value="win32"/>
+      <Macro1 Name="LCLWidgetType" Value="win32"/>
     </MacroValues>
-    <BuildModes Count="1">
-      <Item1 Name="Win32_CEF" Default="True"/>
-      <SharedMatrixOptions Count="5">
-        <Item1 ID="400096739333" Type="IDEMacro" MacroName="LCLWidgetType" Value="carbon"/>
-        <Item2 ID="028265915746" Modes="Win32_CEF" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
-        <Item3 ID="316477307003" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
-        <Item4 ID="411076831854" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
-        <Item5 ID="558457850193" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
+    <BuildModes Active="Debug_CEF147">
+      <Item Name="Debug" Default="True"/>
+      <Item Name="Debug_CEF147">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;cef\147;src\3rd\CEF\147.0.14\source;src\3rd\DCPcrypt;src\3rd\DCPcrypt\Hashes;src\3rd\WebView2\1.0.3124.44\source;src\webkit2_linux;src\webkit2_mac"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dUseCthreads
+-dCEF147"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Debug_CEF127">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;cef\127;src\3rd\CEF\127.3.5\source;src\3rd\DCPcrypt;src\3rd\DCPcrypt\Hashes;src\3rd\WebView2\1.0.3124.44\source;src\webkit2_linux;src\webkit2_mac"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dUseCthreads
+-dCEF127"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Debug_CEF109">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;cef\109;src\3rd\CEF\109.1.18\source;src\3rd\DCPcrypt;src\3rd\DCPcrypt\Hashes;src\3rd\WebView2\1.0.3124.44\source;src\webkit2_linux;src\webkit2_mac"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dCEF109"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="win_amd64">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-amd64"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+      <Item Name="win_386">
+        <MacroValues Count="1">
+          <Macro1 Name="LCLWidgetType" Value="win32"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-386"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="i386"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+      <Item Name="linux_GTK3">
+        <MacroValues Count="1">
+          <Macro2 Name="LCLWidgetType" Value="gtk3"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-gtk3"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="cef;common;src\webkit2_linux;src\synedit"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+      <Item Name="linux_GTK2">
+        <MacroValues Count="1">
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-gtk2"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="cef;common;src\webkit2_linux;src\synedit"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+      <Item Name="darwin_arm64">
+        <MacroValues Count="1">
+          <Macro4 Name="LCLWidgetType" Value="cocoa"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-arm64"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="cef;common;src\webkit2_mac;src\synedit"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="aarch64"/>
+            <TargetOS Value="darwin"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-WM11.0
+-dUseCthreads"/>
+            <ExecuteAfter>
+              <Command Value="install_name_tool -id &quot;@loader_path\libenergy-arm64.dylib&quot; &quot;libenergy-arm64.dylib&quot;"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="darwin_amd64">
+        <MacroValues Count="1">
+          <Macro4 Name="LCLWidgetType" Value="cocoa"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-amd64"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="cef;common;src\webkit2_mac;src\synedit"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="darwin"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+              <DebugInfoType Value="dsDwarf2Set"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-WM10.15
+-dUseCthreads"/>
+            <ExecuteAfter>
+              <Command Value="install_name_tool -id &quot;@loader_path\libenergy-amd64.dylib&quot; &quot;libenergy-amd64.dylib&quot;"/>
+            </ExecuteAfter>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <SharedMatrixOptions Count="4">
+        <Item1 ID="563702502280" Modes="win_386,win_amd64,Debug" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
+        <Item2 ID="372211248348" Modes="linux_GTK3,Debug_CEF127,Debug_CEF147,Debug_CEF109" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk3"/>
+        <Item3 ID="420761859387" Modes="linux_GTK2" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item4 ID="864512940941" Modes="darwin_arm64,darwin_amd64" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
+      <UseFileFilters Value="True"/>
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <RequiredPackages Count="10">
-      <Item1>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="lazopenglcontext"/>
+      </Item>
+      <Item>
+        <PackageName Value="LazEdit"/>
+      </Item>
+      <Item>
         <PackageName Value="laz.virtualtreeview_package"/>
-      </Item1>
-      <Item2>
-        <PackageName Value="LazOpenGLContext"/>
-      </Item2>
-      <Item3>
-        <PackageName Value="CEF4Delphi_Lazarus"/>
-      </Item3>
-      <Item4>
-        <PackageName Value="atflatcontrols_package"/>
-      </Item4>
-      <Item5>
-        <PackageName Value="richmemopackage"/>
-      </Item5>
-      <Item6>
-        <PackageName Value="AnchorDockingDsgn"/>
-      </Item6>
-      <Item7>
-        <PackageName Value="LazControls"/>
-      </Item7>
-      <Item8>
-        <PackageName Value="DateTimeCtrls"/>
-      </Item8>
-      <Item9>
+      </Item>
+      <Item>
         <PackageName Value="Printer4Lazarus"/>
-      </Item9>
-      <Item10>
+      </Item>
+      <Item>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item>
+      <Item>
+        <PackageName Value="LazControls"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
-      </Item10>
+      </Item>
     </RequiredPackages>
-    <Units Count="11">
-      <Unit0>
+    <Units>
+      <Unit>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-      </Unit0>
-      <Unit1>
-        <Filename Value="uGoForm.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit1>
-      <Unit2>
-        <Filename Value="uMiniWebview.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="uExceptionHandle.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="uGauge.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="uLinkLabel.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="uMacOSPatchs.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="uLinuxPatchs.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="xButton.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="uRichEdit.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="uImageButton.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit10>
+        <TopLine Value="14"/>
+        <CursorPos X="11" Y="21"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\CEFUnits.inc"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="36" Y="16"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\CEFImports.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="9" Y="12"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\CEFImport.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="230"/>
+        <CursorPos X="20" Y="260"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\libs\TChromiumCore.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="69"/>
+        <CursorPos X="25" Y="87"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\109.1.18\source\uCEFChromiumCore.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="746"/>
+        <CursorPos Y="754"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\libs\TChromium.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="37"/>
+        <CursorPos X="33" Y="54"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\109.1.18\source\uCEFChromium.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="60"/>
+        <CursorPos X="17" Y="76"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\libs\TCEFWorkScheduler.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="41"/>
+        <CursorPos X="43" Y="62"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\109.1.18\source\uCEFWorkScheduler.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="111"/>
+        <CursorPos X="19" Y="126"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\libs\TCefApplicationCore.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1820"/>
+        <CursorPos X="36" Y="1834"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\109.1.18\source\uCEFApplicationCore.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="552"/>
+        <CursorPos X="16" Y="566"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\109\libs\uCEFMiscFunctions.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="599"/>
+        <CursorPos X="43" Y="722"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\109.1.18\source\uCEFMiscFunctions.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="934"/>
+        <CursorPos X="21" Y="940"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWVLinuxUnits.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23" Y="12"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\..\..\usr\share\lazarus\4.8.0\lcl\interfaces\gtk3\gtk3widgets.pas"/>
+        <UnitName Value="Gtk3Widgets"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14271"/>
+        <CursorPos X="11" Y="14271"/>
+        <UsageCount Value="8"/>
+      </Unit>
     </Units>
+    <JumpHistory HistoryIndex="2">
+      <Position>
+        <Filename Value="cef\CEFImports.inc"/>
+        <Caret Line="25" Column="17"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\CEFUnits.inc"/>
+        <Caret Line="16" Column="36"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="17" Column="11" TopLine="14"/>
+      </Position>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value=".\bin\liblcl"/>
+      <Filename Value="libenergy"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="cef;common;src\synedit"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
-      <SmartLinkUnit Value="True"/>
       <RelocatableUnit Value="True"/>
-      <TargetCPU Value="i386"/>
-      <TargetOS Value="win32"/>
-      <Optimizations>
-        <OptimizationLevel Value="4"/>
-      </Optimizations>
     </CodeGeneration>
     <Linking>
-      <Debugging>
-        <GenerateDebugInfo Value="False"/>
-      </Debugging>
-      <LinkSmart Value="True"/>
       <Options>
         <ExecutableType Value="Library"/>
       </Options>
     </Linking>
-    <Other>
-      <CustomOptions Value="-dCEF"/>
-      <OtherDefines Count="1">
-        <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
-      </OtherDefines>
-    </Other>
   </CompilerOptions>
-  <Debugging>
-    <Exceptions Count="3">
-      <Item1>
-        <Name Value="EAbort"/>
-      </Item1>
-      <Item2>
-        <Name Value="ECodetoolError"/>
-      </Item2>
-      <Item3>
-        <Name Value="EFOpenError"/>
-      </Item3>
-    </Exceptions>
-  </Debugging>
 </CONFIG>

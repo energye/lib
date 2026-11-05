@@ -1,0 +1,1 @@
+Pointer(webkit_notification_close) := dynlibs.GetProcAddress(LibWebkitGtkHandle, 'webkit_notification_close');

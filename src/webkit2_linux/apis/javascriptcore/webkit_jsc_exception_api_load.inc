@@ -1,0 +1,1 @@
+Pointer(jsc_exception_get_message) := dynlibs.GetProcAddress(LibJavascriptCoreGtkHandle, 'jsc_exception_get_message');

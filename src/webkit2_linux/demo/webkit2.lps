@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="webkit2.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos Y="21"/>
+        <UsageCount Value="211"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="webkit2form.pas"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="246"/>
+        <CursorPos Y="274"/>
+        <UsageCount Value="211"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkwebcontext.pas"/>
+        <UnitName Value="uWkWebContext"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="19"/>
+        <UsageCount Value="186"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkinputstream.pas"/>
+        <UnitName Value="uWkInputStream"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="20"/>
+        <UsageCount Value="150"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkevents.pas"/>
+        <UnitName Value="uWkEvents"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15"/>
+        <UsageCount Value="149"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkHeaders.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
+        <CursorPos Y="43"/>
+        <UsageCount Value="192"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkURISchemeRequest.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="100"/>
+        <CursorPos X="28" Y="108"/>
+        <UsageCount Value="192"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkWebview.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="220"/>
+        <CursorPos X="32" Y="255"/>
+        <UsageCount Value="207"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkWebViewParent.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="9"/>
+        <CursorPos X="41" Y="17"/>
+        <UsageCount Value="192"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkFunctions.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="7"/>
+        <UsageCount Value="192"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uLibWebkit.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="8" Y="26"/>
+        <UsageCount Value="207"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkcookiemanager.pas"/>
+        <UnitName Value="uWkCookieManager"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="21" Y="8"/>
+        <UsageCount Value="187"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkinterfaces.pas"/>
+        <UnitName Value="uWkInterfaces"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="6"/>
+        <UsageCount Value="182"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkpolicydecision.pas"/>
+        <UnitName Value="uWkPolicyDecision"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23"/>
+        <UsageCount Value="181"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkwebsitepolicies.pas"/>
+        <UnitName Value="uWkWebsitePolicies"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="13" Y="3"/>
+        <UsageCount Value="181"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwksettings.pas"/>
+        <UnitName Value="uWkSettings"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="9"/>
+        <UsageCount Value="135"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwknavigationaction.pas"/>
+        <UnitName Value="uWkNavigationAction"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="25"/>
+        <UsageCount Value="125"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkurirequest.pas"/>
+        <UnitName Value="uWkURIRequest"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="19"/>
+        <UsageCount Value="123"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkuriresponse.pas"/>
+        <UnitName Value="uWkURIResponse"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="20"/>
+        <UsageCount Value="123"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkcontextmenu.pas"/>
+        <UnitName Value="uWkContextMenu"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="20"/>
+        <UsageCount Value="87"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uwkcontextmenuitem.pas"/>
+        <UnitName Value="uWkContextMenuItem"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="24"/>
+        <UsageCount Value="74"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazsoup2_4.pas"/>
+        <UnitName Value="LazSoup2_4"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1169"/>
+        <CursorPos X="7" Y="1169"/>
+        <UsageCount Value="105"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazglib2.pas"/>
+        <UnitName Value="LazGLib2"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2162"/>
+        <CursorPos X="9" Y="2183"/>
+        <UsageCount Value="92"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkCookieManager.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="465"/>
+        <CursorPos X="8" Y="480"/>
+        <UsageCount Value="74"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgio2.pas"/>
+        <UnitName Value="LazGio2"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1219"/>
+        <CursorPos X="27" Y="1226"/>
+        <UsageCount Value="18"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkInterfaces.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="94"/>
+        <CursorPos X="38" Y="102"/>
+        <UsageCount Value="100"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgobject2.pas"/>
+        <UnitName Value="LazGObject2"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="2"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkNavigationAction.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="9"/>
+        <CursorPos X="3" Y="9"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkURIRequest.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="35" Y="16"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkURIResponse.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="8"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgtk3.pas"/>
+        <UnitName Value="LazGtk3"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2751"/>
+        <CursorPos Y="2770"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkContextMenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="43" Y="13"/>
+        <UsageCount Value="37"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkContextMenuItem.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="12" Y="15"/>
+        <UsageCount Value="30"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uchildform.pas"/>
+        <UnitName Value="uChildForm"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="51"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkJSValue.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="55" Y="30"/>
+        <UsageCount Value="39"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uChildForm.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="5" Y="54"/>
+        <UsageCount Value="39"/>
+      </Unit>
+      <Unit>
+        <Filename Value="demo/udemo.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="12"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkWebContext.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="18"/>
+        <CursorPos X="27" Y="40"/>
+        <UsageCount Value="15"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkInputStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="31" Y="17"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/inc/objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="194"/>
+        <CursorPos X="21" Y="215"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkEvents.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="22"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkWebviewEvents.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="12"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uWkTypes.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="21"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkInputStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="9" Y="19"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkInterfaces.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="79"/>
+        <CursorPos X="3" Y="62"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uLibWebkit.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="27"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkURIRequest.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23" Y="20"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkContextMenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="13"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkWebview.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="123"/>
+        <CursorPos X="20" Y="147"/>
+        <UsageCount Value="18"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkWebviewParent.pas"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="9" Y="30"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/3.6.0/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="47"/>
+        <CursorPos X="67" Y="68"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkWebviewEvents.pas"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="76" Y="18"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkSettings.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="3" Y="14"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkCookieManager.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="472"/>
+        <CursorPos X="7" Y="485"/>
+        <UsageCount Value="16"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkLoader.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="72"/>
+        <CursorPos X="26" Y="81"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/lazarus/4.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgdk3.pas"/>
+        <UnitName Value="LazGdk3"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="3717"/>
+        <CursorPos X="26" Y="3733"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../uWkTypes.pas"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="3" Y="15"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="229" Column="17" TopLine="209"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/share/lazarus/4.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgdk3.pas"/>
+        <Caret Line="3723" Column="3" TopLine="3700"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="229" Column="39" TopLine="209"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="223" Column="27" TopLine="209"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="67" Column="26" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="238" Column="49" TopLine="200"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="241" Column="49" TopLine="203"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="258" Column="49" TopLine="220"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="261" Column="49" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="444" Column="33" TopLine="430"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="67" Column="26" TopLine="45"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="238" Column="49" TopLine="242"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="241" Column="49" TopLine="218"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="258" Column="49" TopLine="220"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="261" Column="49" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="463" Column="5" TopLine="427"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="444" Column="32" TopLine="214"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/share/lazarus/4.2.0/lcl/interfaces/gtk3/gtk3bindings/lazgdk3.pas"/>
+        <Caret Line="3726" Column="5" TopLine="3703"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="444" Column="32" TopLine="214"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="238" Column="48" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="241" Column="48" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="446" Column="19" TopLine="427"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="238" Column="53" TopLine="207"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="447" Column="27" TopLine="428"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="38" Column="17" TopLine="15"/>
+      </Position>
+      <Position>
+        <Filename Value="../uWkWebview.pas"/>
+        <Caret Line="147" Column="26" TopLine="123"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="405" Column="25" TopLine="376"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="57" Column="40" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="412" Column="40" TopLine="382"/>
+      </Position>
+      <Position>
+        <Filename Value="webkit2form.pas"/>
+        <Caret Line="58" Column="26" TopLine="36"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../uWkCookieManager.pas"/>
+        <Line Value="170"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="webkit2form.pas"/>
+        <Line Value="274"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

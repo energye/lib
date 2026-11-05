@@ -1,0 +1,3 @@
+webkit_user_script_ref                        : function(user_script: WebKitUserScript): WebKitUserScript; cdecl;
+webkit_user_script_unref                      : procedure(user_script: WebKitUserScript); cdecl;
+webkit_user_script_new                        : function(source: Pgchar; injected_frames: WebKitUserContentInjectedFrames; injection_time: WebKitUserScriptInjectionTime; allow_list, block_list: Pgchar): WebKitUserScript; cdecl;

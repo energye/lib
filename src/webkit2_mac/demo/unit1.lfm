@@ -1,0 +1,88 @@
+object Form1: TForm1
+  Left = 684
+  Height = 450
+  Top = 141
+  Width = 600
+  Caption = 'WebKit'
+  ClientHeight = 450
+  ClientWidth = 600
+  Menu = MainMenu1
+  LCLVersion = '4.5.0.0'
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object GoURL: TButton
+    Left = 481
+    Height = 25
+    Top = 5
+    Width = 43
+    Anchors = [akTop, akRight]
+    Caption = 'Go'
+    TabOrder = 0
+    OnClick = GoURLClick
+  end
+  object Process: TLabel
+    Left = 544
+    Height = 16
+    Top = 10
+    Width = 19
+    Anchors = [akTop, akRight]
+    Caption = ' - -'
+  end
+  object Back: TButton
+    Left = 0
+    Height = 25
+    Top = 5
+    Width = 32
+    Caption = '<='
+    TabOrder = 1
+  end
+  object Forwad: TButton
+    Left = 64
+    Height = 25
+    Top = 5
+    Width = 32
+    Caption = '=>'
+    TabOrder = 2
+  end
+  object Stop: TButton
+    Left = 35
+    Height = 25
+    Top = 5
+    Width = 27
+    Caption = 'S'
+    TabOrder = 3
+  end
+  object Addr: TComboBox
+    Left = 104
+    Height = 20
+    Top = 6
+    Width = 369
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 18
+    ItemIndex = 0
+    Items.Strings = (
+      'energy://test.com'
+      'file:///Users/yanghy/app/github.com/workspace/lib/wk/webkit2/index.html'
+      'file:///Users/yanghy/app/github.com/workspace/lib/wk/webkit2_mac/demo/test.html'
+      'https://energye.github.io'
+      'https://www.baidu.com'
+    )
+    TabOrder = 4
+    Text = 'energy://test.com'
+  end
+  object MainMenu1: TMainMenu
+    Left = 280
+    Top = 48
+    object MenuItem1: TMenuItem
+      Caption = '菜单'
+      OnClick = MenuItem1Click
+      object MenuItem2: TMenuItem
+        Caption = 'MenuItem2'
+        ShortCut = 4184
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'MenuItem3'
+      end
+    end
+  end
+end

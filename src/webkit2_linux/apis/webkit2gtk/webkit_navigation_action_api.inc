@@ -1,0 +1,2 @@
+webkit_navigation_action_get_request    : function(navigation :WebKitNavigationAction): WebKitURIRequest; cdecl;
+webkit_navigation_action_free           : procedure(navigation: WebKitNavigationAction); cdecl;

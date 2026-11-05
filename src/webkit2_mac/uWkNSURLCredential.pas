@@ -1,0 +1,73 @@
+unit uWkNSURLCredential;
+
+{$mode ObjFPC}{$H+}
+{$modeswitch objectivec2}
+{$modeswitch cblocks}
+
+interface
+
+uses
+  Classes, SysUtils, Forms,
+  CocoaAll;
+
+type
+
+  // An authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
+  // https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc
+  TWkNSURLCredential = class
+  private
+    FData: NSURLCredential;
+  public
+    constructor Create(AData: NSURLCredential);
+    destructor Destroy; override;
+    // Returns the object implemented by this class.
+    function Data(): NSURLCredential;
+    // Freeing the class and the objects it implements.
+    procedure Release();
+  public
+    // The credential’s persistence setting.
+    function Persistence: NSURLCredentialPersistence;
+  end;
+
+
+implementation
+
+constructor TWkNSURLCredential.Create(AData: NSURLCredential);
+begin
+  inherited Create;
+  FData := AData;
+end;
+
+destructor TWkNSURLCredential.Destroy;
+begin
+  if Assigned(FData) then
+  begin
+    FData := nil;
+  end;
+  inherited Destroy;
+end;
+
+procedure TWkNSURLCredential.Release();
+begin
+  if Assigned(FData) then
+  begin
+    FData.release;
+    self.Free;
+  end;
+end;
+
+function TWkNSURLCredential.Data(): NSURLCredential;
+begin
+  Result := FData;
+end;
+
+function TWkNSURLCredential.Persistence: NSURLCredentialPersistence;
+begin
+  Result := 0;
+  if Assigned(FData) then
+  begin
+    Result := FData.persistence;
+  end;
+end;
+
+end.

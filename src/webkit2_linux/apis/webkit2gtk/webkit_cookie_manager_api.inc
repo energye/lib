@@ -1,0 +1,12 @@
+webkit_cookie_manager_set_persistent_storage    : procedure(cookie_manager: WebKitCookieManager; filename: Pgchar; storage: WebKitCookiePersistentStorage); cdecl;
+webkit_cookie_manager_set_accept_policy         : procedure(cookie_manager: WebKitCookieManager; policy: WebKitCookieAcceptPolicy); cdecl;
+webkit_cookie_manager_get_accept_policy         : procedure(cookie_manager: WebKitCookieManager; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
+webkit_cookie_manager_get_accept_policy_finish  : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): WebKitCookieAcceptPolicy; cdecl;
+webkit_cookie_manager_add_cookie                : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
+webkit_cookie_manager_add_cookie_finish         : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): gboolean; cdecl;
+webkit_cookie_manager_get_cookies               : procedure(cookie_manager: WebKitCookieManager; uri: Pgchar; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
+webkit_cookie_manager_get_cookies_finish        : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): PGList; cdecl;
+webkit_cookie_manager_delete_cookie             : procedure(cookie_manager: WebKitCookieManager; cookie: PSoupCookie; cancellable: PCancellable; callback: TAsyncReadyCallback; user_data: gpointer); cdecl;
+webkit_cookie_manager_delete_cookie_finish      : function(cookie_manager: WebKitCookieManager; result: PAsyncResult; error: PPGError): gboolean; cdecl;
+webkit_cookie_manager_delete_cookies_for_domain : procedure(cookie_manager: WebKitCookieManager; domain: Pgchar); cdecl;
+webkit_cookie_manager_delete_all_cookies        : procedure(cookie_manager: WebKitCookieManager); cdecl;
