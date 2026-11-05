@@ -73,8 +73,10 @@
 2. `fpc-<fpc>.<arch>-linux.tar` → 官方预编译编译器，解压到 `${prefix}`
 3. `fpc-<fpc>.source.tar.gz` → RTL/FCL 源码，解压到 `${prefix}`
 4. `cd ${cprefix}/fpc-<fpc>.<fpc_suffix> && printf '\n\n\n\n\n\n' | ./install.sh`（用默认答案，与旧 CI 一致）
-5. `cd ${cprefix} && make clean all` → 产出 `lazbuild`（默认只构建 gtk2 的 LCL）
-6. **GTK3 暂缓**：`linux_GTK3` 与 `linux_GTK2` 完全对称 —— 同一条 `lazbuild -B` 流水线、**同一个 docker 容器**、同样的 `artifact` / `output` 打包方式，**差别只有 `--ws=gtk3`**（而不是 `--ws=gtk2`）。旧 CI 也是把 gtk2/gtk3 的各模式放在同一容器里依次编译，镜像按架构分配而非按 widgetset。当前 `linux_GTK3` 标记 `disabled: true`、`make lcl LCL_PLATFORM=gtk3` 也暂不执行，Linux 只产出 `libenergy-gtk2.so`，lib 库源码不做任何改动。启用时：① 工具链版本切到 `5.0RC1`（容器矩阵不动）；② 去掉 mode 的 `disabled`；③ 视 5.0 的 LCL 情况决定是否恢复 `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3`
+5. `lazarus-patch` 组件（**仅 Linux、必须在 make 之前**）：按 `${laz}` 拼出 `patch/lazarus<版本>/`（容器内为 `${cpatch}`），目录存在就用 `cp -a "$P/gtk3/." "$T/"` 把 `gtk3/` 与 `synedit/` **按文件覆盖（overlay）**到 `${cprefix}/lcl/interfaces/gtk3` 与 `${cprefix}/components/synedit`；目录不存在直接跳过，不做任何版本比较或降级。补丁是**增量文件集**，不是完整源码树：`patch/lazarus4.8/synedit/` 里没有 `design/` 等原版目录，早期实现用 `rm -rf` 整目录替换会让 `components/Makefile` 的 `make -C synedit/design clean` 报 `No such file or directory` 并中断 `make clean all`，因此只能覆盖、不能删目标目录。4.8 的补丁补上了官方源码缺失的 `gtk3globals.pas`，这是 GTK3 能编译的关键。若放到 `make` 之后，LCL 单元已编译成 .ppu，覆盖源码不会生效。
+6. `cd ${cprefix} && make clean all` → 产出 `lazbuild`。GTK2 与 GTK3 在**同一个容器**里依次编译，差别只有 `--ws=gtk2` / `--ws=gtk3`，镜像按架构分配而非按 widgetset。
+
+补丁只有 4.8 一份；将来若换到 `patch/` 下没有对应目录的 Lazarus 版本，按规则不打补丁，GTK3 需要另备补丁目录。
 
 FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 `install.sh`，只有 Lazarus 需要 `make`。这与旧 workflow 中 `run-on-arch-action` 容器里做的事一致，现在由配置里的 `commands` 编排。
 
@@ -94,10 +96,21 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 - `build.modes` — 每个模式的 `--bm`、`--ws`、`extra`、`artifact`（产物文件）、`output`（zip 名），并用 `os` / `arch` 限定适用范围
 - `bm` 必须匹配 `liblcl.lpi` 的 `<BuildModes><Item Name="...">`；`artifact` 对应该模式的 `Target/Filename`，例如 `win_amd64 → libenergy-amd64.dll`、`linux_GTK3 → libenergy-gtk3.so`、`Debug_CEF150 → libenergy-${laz_target}.${lib_ext}`
 - 源码模式下自动追加 `--lazarusdir=${cprefix}`，容器模式下 `lazbuild` 用 `${cprefix}/lazbuild` 而不是宿主机路径
-- **`ws` 必须显式配置**：`linux_GTK2 → gtk2`、`linux_GTK3 → gtk3`、`darwin_* → cocoa`（Windows 沿用默认 win32，不传 `--ws`）。`liblcl.lpi` 里的 `LCLWidgetType` 宏只供 IDE 使用，`lazbuild` 靠 `--ws` 决定去 `lcl/units/<cpu>-<os>/<widgetset>` 找 LCL 单元；不传会回落到默认 gtk2 单元目录。旧 CI 的 `build-lib-in-linux-docker.sh` / `build-macos.yml` 也始终显式传 `--ws`。当前 `linux_GTK3` 的 `--ws=gtk3` 只是预留配置，尚未启用
+- **`ws` 必须显式配置**：`linux_GTK2 → gtk2`、`linux_GTK3 → gtk3`、`darwin_* → cocoa`、`win_* → win32`。`liblcl.lpi` 里的 `LCLWidgetType` 宏只供 IDE 使用，`lazbuild` 靠 `--ws` 决定去 `lcl/units/<cpu>-<os>/<widgetset>` 找 LCL 单元；不传会回落到默认 gtk2 单元目录
 - 每个模式编译后立即把 `artifact` 打包成 zip（Go 原生 `archive/zip`）；产物不存在时**直接报错**，避免静默假成功
 
-默认只跑适合当前目标平台的模式；`--mode NAME` 可显式指定多个。
+默认只跑适合当前目标平台的模式；`--mode NAME` 可显式指定多个。**这条是旧的 build-mode 路径**，由现有测试锁定，保持不变。
+
+### 5.1 组合矩阵路径
+
+带 `--all-combos` / `--combo` / `--cef` / `--ws` 任一项时，`build` 改走 `internal/build/combos.go`，不再直接用 `build.modes`：
+
+- 配置在 `build.combinations` / `build.cefVersions` / `build.platformModes`。`ExpandCombos` 对 CEF 组合按 4 个版本扇出，并按 `widgetsets` 白名单过滤（**gtk2 没有 webkit2gtk，含 Webview 的组合不产 gtk2**），再按 `os/arch` 匹配 `platformModes` 得到 `bm`、`--ws`、产物文件名。
+- 每个 job 调 `tools/lazbuild`（`package main` 单文件，CI 里用 `GOOS/GOARCH` 从 `lazsetup` module 现场交叉编译，放进挂载进容器的 `tools/lazbuild/lazbuild-<os>-<arch>`）。它把 `-d` 宏追加到目标 BuildMode 的 `CustomOptions`、按 `lazbuild.conf.json` 追加 `OtherUnitFiles` 目录，再执行 `lazbuild -B --bm --ws`，结束时恢复 lpi。
+- `tools/lazbuild` 新增 `-lazarusdir`（源码编译必需，容器内传 `${cprefix}`、宿主传 `LAZARUSDIR`）和 `-extra`（macOS arm64 的 `--opt=-FD...` lld shim）两个透传参数。
+- **lpi 一致性**：`BuildCombos` 在循环前备份 lpi，`defer` 无条件恢复；`tools/lazbuild` 自己也有一层恢复。所有 job 严格串行（同一工作树改写同一文件），临时改写不进 git。
+- **产物**：每个 job 编译完立刻打 zip，命名 `libenergy-[module-][os]-[arch]-[ws].zip`，随后删除原始库文件，避免下一个组合覆盖。`ws` 仅 Linux 有；`loong64` 只在 `reservedArches` 占位，不生成 target（FPC 3.2.2 不支持 loongarch64）。
+- 容器命令里的 wrapper/lpi/conf/lazbuild 全部直接生成 guest 路径（`/app/...`、`/toolchain/lazbuild`），不依赖 `ContainerCommand` 对宿主路径的字符串替换 —— `%q` 会转义 Windows 反斜杠导致替换失效。
 
 ## 6. 环境导出与缓存
 
@@ -118,9 +131,10 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 
 ## 8. 实施状态
 
-- 已完成：配置解析/展开、下载校验缓存与 HTML 挑战页识别、归档解压、平台映射、安装与源码编译编排（含双卷容器挂载）、build 模式与逐模式产物、`doctor` 一致性自检、CLI、单元测试与离线端到端测试、debug workflow、旧 workflow 停用。
-- **测试策略**：真实下载 / 工具链编译 / 动态库编译全部在 GitHub Actions runner 上验证；本机只做 `go build` / `go vet` / `go test`。`debug-lazsetup.yml` 默认 `run_setup=true`、`run_build=true`，手动触发一次即跑完整链路并上传 `bins/**`。
-- 下一步（Actions 验证通过后）：补齐 sha256、恢复并改造 5 个正式 workflow。
+- 已完成：配置解析/展开、下载校验缓存与 HTML 挑战页识别、归档解压、平台映射、安装与源码编译编排（含双卷容器挂载）、build 模式与逐模式产物、组合矩阵（4 组合 × 4 CEF 版本 × 平台/widgetset）、Lazarus 版本补丁、lpi 双保险恢复、`doctor` 一致性自检、CLI、单元测试、debug workflow、旧 workflow 停用。
+- **测试策略**：真实下载 / 工具链编译 / 动态库编译全部在 GitHub Actions runner 上验证；本机只做 `go build` / `go vet` / `go test`。`debug-lazsetup.yml` 默认就是最小闭环（`combo_mode=true`、`cef_versions=CEF109`、`widgetsets=gtk2,gtk3`），一次触发产出 6 个 zip。
+- 当前阶段：先让所有组合在 Actions 上编译成功，再扩全矩阵（全量 100 个 zip，不含 loong64）。
+- 仍需决定：补齐 sha256；恢复并改造 5 个正式 workflow（**用户已明确暂停，未获同意不动**）；tag 触发时把 zip 传到 GitHub Release；loong64 需要 FPC 3.3.1 工具链。
 
 ## 9. doctor 自检项
 

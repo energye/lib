@@ -25,9 +25,11 @@ GOWORK=off go -C tools/lazsetup build -o ../../lazsetup.exe ./cmd/lazsetup
 
 ## GitHub Actions
 
-`.github/workflows/debug-lazsetup.yml` 是**唯一的验证入口**（`workflow_dispatch`）。**真实下载、工具链安装/编译、动态库编译全部在 Actions runner 上执行**；本机只做 `go build` / `go vet` / `go test` 这类编译级验证。
+`.github/workflows/debug-lazsetup.yml` 是**唯一的验证入口**（`workflow_dispatch`）。**真实下载、工具链安装/编译、动态库编译全部在 Actions runner 上执行**；本机只做 `go build` / `go vet` / `go test` 这类编译级验证。原有 5 个正式构建 workflow 仍是 `if: false`，未经明确同意不恢复。
 
-一次触发会依次跑：`go build` → 单元测试（含离线端到端）→ `doctor` 离线一致性检查 → 下载 URL 可达性诊断 → 8 个平台的 `setup`/`build` dry-run → **真实 setup + build** → 上传产物。`run_setup` / `run_build` 默认都是 `true`；只想看配置时把它们取消勾选即可。CI 上通过 `inputs.runner`、`target_os`、`target_arch` 选择要验证的组合。
+一次触发会依次跑：`go build` 两个 Go 程序（`lazsetup` + 按目标平台交叉编译的 `tools/lazbuild`）→ 单元测试 → `doctor` → 8 个平台 dry-run → 打印组合计划 → **真实 setup（含 Lazarus 补丁）+ 组合编译** → 逐个 zip 校验 → 上传产物。
+
+`combo_mode` 默认开启，默认参数就是最小闭环：`cef_versions=CEF109`、`widgetsets=gtk2,gtk3`、组合全选。扩全矩阵时把 `cef_versions` 清空（4 个版本全编）即可。
 
 CI 中的最小形态：
 
@@ -52,6 +54,7 @@ CI 中的最小形态：
 | `setup` | 下载 → 校验 → 解压/安装 → 源码模式执行 `install.sh` + `make clean all` → 导出环境 |
 | `build` | 注册三方 lpk，按 build mode 逐个 `lazbuild -B`，每个模式立即打包产物 |
 | `all` | `setup` + `build` |
+| `combos` | 列出当前目标的组合编译计划（zip 名 / bm / ws / 注入宏），不联网不编译 |
 | `list` / `list --expand` | 列出版本/目标/模式；`--expand` 显示每个目标完全展开的 URL 与命令（排查配置首选） |
 | `verify` | 只下载并校验 sha256/size，不安装 |
 | `doctor` | 离线自检：build mode 是否存在于 `liblcl.lpi`、三方 lpk / `OtherUnitFiles` 路径、8 个 target 的 URL 与容器挂载；`--network` 额外探测下载源 |
@@ -71,8 +74,12 @@ CI 中的最小形态：
 --network            doctor：探测下载 URL（可能遇到 Cloudflare 挑战页）
 --no-cache           强制重新下载
 --no-container       仅调试用：跳过 docker，直接在宿主机编译（正式构建统一走容器）
---mode NAME          build/all 的模式（可重复）
+--mode NAME          build/all 的模式（可重复，旧 build-mode 路径）
 --out DIR            产物目录
+--all-combos         启用组合矩阵编译
+--combo NAME         组合名（可重复）：lcl / webview / cef / cef-webview
+--cef VERSION        CEF 版本（可重复）：CEF109 / CEF127 / CEF147 / CEF150
+--ws TAG             Linux widgetset（可重复）：gtk2 / gtk3
 --lazbuild PATH      指定 lazbuild
 --lazarus-dir PATH   覆盖 --lazarusdir
 --no-package         跳过三方包注册
@@ -80,7 +87,26 @@ CI 中的最小形态：
 
 不带 `--mode` 时，`build` 只运行配置里 `os`/`arch` 匹配当前目标、且未标记 `disabled` 的模式。
 
-> **当前验证范围**：`linux_GTK3` 与 `linux_GTK2` 是同一条构建流水线、同一个 docker 容器，配置完全对称，差别只有 `--ws=gtk3`；目前标记 `disabled: true` 暂不编译，Linux 只产出 `libenergy-gtk2.so`。启用时去掉 `disabled`、把工具链切到 `5.0RC1` 即可，lib 库源码无需改动。
+## 组合矩阵
+
+库是多个 UI 模块的集合：LCL 基座 + CEF + WebView（Windows 用 WebView2、Linux 用 webkit2gtk、macOS 用 WKWebView）。四种组合靠注入 `liblcl.lpi` 的 `-d` 宏区分，每种都要出全平台产物：
+
+| 组合 | `-d` 宏 | zip 中的 module 段 |
+| --- | --- | --- |
+| 仅 LCL | 无 | 省略 |
+| LCL + WebView | `Webview` | `webview` |
+| LCL + CEF | `CEF109` / `127` / `147` / `150` | `cef109` / … / `cef150` |
+| LCL + CEF + WebView | `CEFxxx,Webview` | `cef109-webview` / … |
+
+产物名 `libenergy-[module-][os]-[arch]-[ws].zip`，`ws` 仅 Linux 有（`gtk2` / `gtk3`）。**gtk2 没有 webkit2gtk，所以只产 LCL 与 CEF**。每个组合编译完立即打包：6 个平台 BuildMode 的 `Target/Filename` 是固定的，不打包就会被下一个组合覆盖。`arch` 里 `loong64` 只是预留枚举位，不生成 target（FPC 3.2.2 不支持 loongarch64，需要 3.3.1）。
+
+编译时 `lazsetup` 不再直接调 Lazarus，而是调用 `tools/lazbuild` 包装器：它把 `-d` 宏写进目标 BuildMode 的 `CustomOptions`、按 `lazbuild.conf.json` 追加 `OtherUnitFiles` 目录，再执行 `lazbuild -B --bm --ws`，结束后恢复 lpi。`lazsetup` 自己在循环开始前也备份 lpi，并 `defer` 无条件恢复（双保险）；所有临时改写都不进 git。
+
+**只用 6 个平台 BuildMode**（`win_amd64` / `win_386` / `linux_GTK2` / `linux_GTK3` / `darwin_amd64` / `darwin_arm64`），`Debug*` 四个不使用。Linux 的 `-ws=gtk2|gtk3` 靠参数控制。
+
+**Lazarus 补丁**（仅 Linux）：`setup` 在 `make clean all` 之前检查 `patch/lazarus<版本>/`，存在就把 `gtk3/` 与 `synedit/` **以文件覆盖（overlay）方式**复制到 `lcl/interfaces/gtk3` 与 `components/synedit`；不存在直接跳过。补丁是增量文件集，**不能整目录删除后替换**——`patch/lazarus4.8/synedit/` 里没有 `design/` 等原版目录，删掉目标目录会让 `make clean` 在 `synedit/design: No such file or directory` 处中断。4.8 的补丁补齐了 `gtk3globals.pas`，这是 GTK3 能编译的关键。将来若切到没有补丁目录的 Lazarus 版本，GTK3 会失去补丁。
+
+最小闭环：`linux/amd64` × gtk2+gtk3 × 四个组合（CEF 取 109）= 6 个 zip；全矩阵（不含 loong64）共 100 个 zip。
 
 ## 下载源
 

@@ -265,6 +265,16 @@ func TestPatchDirFollowsLazarusVersion(t *testing.T) {
 				if !strings.Contains(cmd, "if [ -d") {
 					t.Errorf("patch command must skip when the directory is absent: %s", cmd)
 				}
+				// The shipped patch is an incremental overlay, not a full
+				// replacement tree. Deleting the target directory removes
+				// directories Lazarus' own Makefile needs (e.g.
+				// components/synedit/design), so `make clean all` aborts.
+				if strings.Contains(cmd, "rm -rf") {
+					t.Errorf("patch must not delete the Lazarus source tree: %s", cmd)
+				}
+				if !strings.Contains(cmd, "cp -a") || !strings.Contains(cmd, "/.") {
+					t.Errorf("patch must overlay files with cp -a <src>/. <dst>/: %s", cmd)
+				}
 			}
 		}
 	}

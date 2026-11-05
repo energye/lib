@@ -14,6 +14,8 @@ lazbuild 命令参数说明
 │ -lpi      │ string │ ❌   │ liblcl.lpi │ lpi 文件路径，支持相对路径和绝对路径                 │
 ├───────────┼────────┼──────┼────────────┼──────────────────────────────────────────────────────┤
 │ -d        │ string │ ❌   │ ""         │ 自定义宏，多个用逗号分隔，如 CEF147,ENABLE_LOG       │
+│ -lazarusdir│string │ ❌   │ ""         │ 透传 --lazarusdir 给 lazbuild（源码编译必需）       │
+│ -extra    │ string │ ❌   │ ""         │ 透传额外参数，如 --opt=-FD/path（macOS arm64 lld）  │
 └───────────┴────────┴──────┴────────────┴──────────────────────────────────────────────────────┘
 
 执行逻辑
@@ -26,7 +28,7 @@ lazbuild 命令参数说明
    c. 只追加不存在的宏（去重）
    d. 写入 lpi 文件
 4. 如果 -lazbuild 不为空：
-   a. 执行 lazbuild -B --bm=xxx --ws=xxx liblcl.lpi
+   a. 执行 lazbuild -B --bm=xxx --ws=xxx [--lazarusdir=...] [extra...] liblcl.lpi
    b. 实时输出编译日志
 5. 无论编译成功或失败，恢复 lpi 文件原始内容
 
