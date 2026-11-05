@@ -34,7 +34,7 @@ CI 中的最小形态：
 ```yaml
 - uses: actions/checkout@v4
 - uses: actions/setup-go@v5
-  with: { go-version: '1.21' }
+  with: { go-version: '1.24' }  # 1.21 在最新 macOS 上会因缺少 LC_UUID 导致测试二进制被 dyld 拒绝
 - run: go -C tools/lazsetup build -o ../../lazsetup ./cmd/lazsetup
   shell: bash
 - run: ./lazsetup setup --lazarus 4.8 --os linux --arch arm64 --github
