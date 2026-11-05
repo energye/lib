@@ -81,17 +81,16 @@ func TestShippedConfigResolves(t *testing.T) {
 	}
 }
 
-// TestShippedContainerMounts verifies the cross-architecture targets mount
-// both the checkout (source) and the toolchain directory. linux/amd64 is
-// intentionally native: FPC installed into /usr/local must survive across
-// separate setup/build CI steps, which disposable `docker run --rm` jobs
-// would not allow.
+// TestShippedContainerMounts verifies that every Linux target builds inside a
+// container (Ubuntu 18/20 for the GTK2/GTK3 dependency baseline), mounts both
+// the checkout and the toolchain directory, and uses a stable container name
+// so FPC installed in /usr/local survives across the setup and build steps.
 func TestShippedContainerMounts(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, key := range []string{"linux/386", "linux/arm", "linux/arm64"} {
+	for _, key := range []string{"linux/386", "linux/amd64", "linux/arm", "linux/arm64"} {
 		td := c.Targets[key]
 		if td.Container == nil {
 			t.Errorf("%s has no container", key)
@@ -100,9 +99,19 @@ func TestShippedContainerMounts(t *testing.T) {
 		if td.Container.PrefixGuest == "" || len(td.Container.Mounts) == 0 {
 			t.Errorf("%s container lacks prefixGuest or mounts", key)
 		}
+		if td.Container.Image == "" {
+			t.Errorf("%s container has no image", key)
+		}
 	}
-	if c.Targets["linux/amd64"].Container != nil {
-		t.Error("linux/amd64 must compile natively (no disposable container)")
+	// A named session is mandatory: one-shot `docker run --rm` would discard
+	// the FPC installation before `make` / `lazbuild` run.
+	parts := strings.SplitN("linux/amd64", "/", 2)
+	r, err := c.Resolve(Options{Lazarus: c.Defaults.Lazarus, OS: parts[0], Arch: parts[1]})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if r.Container == nil || r.Container.Name == "" {
+		t.Error("linux/amd64 resolved container has no stable name")
 	}
 }
 

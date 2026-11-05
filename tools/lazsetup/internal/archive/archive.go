@@ -159,6 +159,7 @@ func extractTar(src, dest string, strip int, gzipped bool) error {
 	if err := os.MkdirAll(dest, 0o755); err != nil {
 		return err
 	}
+	skippedLinks := 0
 	for {
 		hdr, err := tr.Next()
 		if err == io.EOF {
@@ -200,12 +201,21 @@ func extractTar(src, dest string, strip int, gzipped bool) error {
 		case tar.TypeSymlink:
 			link := hdr.Linkname
 			if filepath.IsAbs(link) || strings.HasPrefix(link, "..") {
-				return fmt.Errorf("unsafe symlink in archive: %s -> %s", hdr.Name, link)
+				// The official Lazarus source tarball contains macOS .app
+				// bundles whose relative links escape their bundle. They are
+				// irrelevant when building on Linux and must not abort the
+				// extraction. Regular files are still checked by safeJoin, so
+				// skipping these links cannot be used to write outside dest.
+				skippedLinks++
+				continue
 			}
 			_ = os.MkdirAll(filepath.Dir(target), 0o755)
 			_ = os.Remove(target)
 			_ = os.Symlink(link, target)
 		}
+	}
+	if skippedLinks > 0 {
+		fmt.Fprintf(os.Stderr, "  archive: skipped %d out-of-tree symlinks (macOS app bundles)\n", skippedLinks)
 	}
 	return nil
 }

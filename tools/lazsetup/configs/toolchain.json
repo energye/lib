@@ -169,13 +169,32 @@
         "shell": "/bin/sh",
         "install": [
           "apt-get update -q -y",
-          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+          "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
+          "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
       }
     },
     "linux/amd64": {
       "profile": "linux-source",
-      "note": "Native runner: compile on the host so FPC/lazbuild stay available across CI steps. GTK deps are installed by the workflow."
+      "container": {
+        "engine": "docker",
+        "image": "ubuntu:20.04",
+        "platform": "linux/amd64",
+        "name": "lazsetup-${os}-${arch}",
+        "hostPath": "${repo}",
+        "guestPath": "/app",
+        "prefixGuest": "/toolchain",
+        "mounts": [
+          { "host": "${prefix}", "guest": "/toolchain" }
+        ],
+        "workdir": "/app",
+        "shell": "/bin/sh",
+        "install": [
+          "apt-get update -q -y",
+          "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
+          "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
+        ]
+      }
     },
     "linux/arm": {
       "profile": "linux-source",
@@ -193,7 +212,8 @@
         "shell": "/bin/sh",
         "install": [
           "apt-get update -q -y",
-          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+          "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
+          "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
       }
     },
@@ -213,7 +233,8 @@
         "shell": "/bin/sh",
         "install": [
           "apt-get update -q -y",
-          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+          "DEBIAN_FRONTEND=noninteractive apt-get install -q -y --no-install-recommends make binutils build-essential zip unzip libx11-dev libgtk2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev",
+          "apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev"
         ]
       }
     },

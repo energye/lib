@@ -79,6 +79,7 @@ type TargetDef struct {
 type Container struct {
 	Engine      string         `json:"engine"`
 	Image       string         `json:"image"`
+	Name        string         `json:"name"`
 	Platform    string         `json:"platform"`
 	HostPath    string         `json:"hostPath"`
 	GuestPath   string         `json:"guestPath"`
@@ -537,6 +538,7 @@ func expandContainer(ct *Container, vars map[string]string) *Container {
 	}
 	out.Engine = Expand(out.Engine, vars)
 	out.Image = Expand(out.Image, vars)
+	out.Name = Expand(out.Name, vars)
 	out.Platform = Expand(out.Platform, vars)
 	out.HostPath = Expand(out.HostPath, vars)
 	out.GuestPath = Expand(out.GuestPath, vars)
@@ -563,6 +565,11 @@ func expandContainer(ct *Container, vars map[string]string) *Container {
 	}
 	if out.Shell == "" {
 		out.Shell = "/bin/sh"
+	}
+	if out.Name == "" {
+		// A stable name keeps the toolchain (FPC installed in /usr/local)
+		// alive across setup commands and the separate build step.
+		out.Name = "lazsetup-" + vars["os"] + "-" + vars["arch"]
 	}
 	return &out
 }

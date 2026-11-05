@@ -8,7 +8,6 @@ import (
 	"io"
 	"os"
 	"os/exec"
-	"runtime"
 	"sort"
 	"strings"
 )
@@ -37,14 +36,6 @@ func (r *Runner) Debugf(format string, a ...any) {
 	}
 }
 
-// Shell returns the shell command used to interpret a command line.
-func (r *Runner) Shell() (string, []string) {
-	if runtime.GOOS == "windows" {
-		return "cmd.exe", []string{"/C"}
-	}
-	return "/bin/sh", []string{"-c"}
-}
-
 // ExecOption customizes the underlying exec.Cmd.
 type ExecOption func(*exec.Cmd)
 
@@ -55,9 +46,7 @@ func WithEnv(env ...string) ExecOption {
 }
 
 func (r *Runner) prepare(command string, opts ...ExecOption) *exec.Cmd {
-	shell, args := r.Shell()
-	args = append(args, command)
-	cmd := exec.Command(shell, args...)
+	cmd := prepareCmd(command)
 	cmd.Env = append(os.Environ(), r.Env...)
 	cmd.Stdout = r.Out
 	cmd.Stderr = r.Out
@@ -172,36 +161,79 @@ type Mount struct {
 	Guest string
 }
 
-func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell string, install, cmds []string, mounts ...Mount) string {
-	combined := append(append([]string{}, install...), cmds...)
-	mapped := make([]string, 0, len(combined))
-	for _, c := range combined {
+func shellQuote(s string) string {
+	return "'" + strings.ReplaceAll(s, "'", `'\''`) + "'"
+}
+
+// ContainerCommand wraps commands into a container invocation.
+//
+// With a name, the container is created once (`docker run -d ... sleep
+// infinity`) and all later calls reuse it via `docker exec`. This is essential
+// for source builds: FPC's install.sh puts the compiler in the container's
+// /usr/local, which a one-shot `docker run --rm` would discard before the next
+// `make` or `lazbuild` command. Without a name the old one-shot behaviour is
+// kept for callers that do not need persistent state.
+func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell, name string, install, cmds []string, mounts ...Mount) string {
+	mapPath := func(c string) string {
 		s := strings.ReplaceAll(c, hostPath, guestPath)
 		for _, m := range mounts {
 			if m.Host != "" && m.Guest != "" {
 				s = strings.ReplaceAll(s, m.Host, m.Guest)
 			}
 		}
-		mapped = append(mapped, s)
+		return s
 	}
-	inner := strings.Join(mapped, " && ")
-	quoted := "'" + strings.ReplaceAll(inner, "'", `'\''`) + "'"
-	parts := []string{engine, "run", "--rm"}
-	if platform != "" {
-		parts = append(parts, "--platform", platform)
+	mapped := make([]string, 0, len(cmds))
+	for _, c := range cmds {
+		mapped = append(mapped, mapPath(c))
 	}
-	parts = append(parts, "-v", fmt.Sprintf(`"%s:%s"`, hostPath, guestPath))
+	installed := make([]string, 0, len(install))
+	for _, c := range install {
+		installed = append(installed, mapPath(c))
+	}
+	volumes := []string{"-v", fmt.Sprintf(`"%s:%s"`, hostPath, guestPath)}
 	for _, m := range mounts {
 		if m.Host != "" && m.Guest != "" {
-			parts = append(parts, "-v", fmt.Sprintf(`"%s:%s"`, m.Host, m.Guest))
+			volumes = append(volumes, "-v", fmt.Sprintf(`"%s:%s"`, m.Host, m.Guest))
 		}
 	}
-	parts = append(parts, "-w", fmt.Sprintf(`"%s"`, workdir))
+	wd := fmt.Sprintf(`"%s"`, workdir)
+
+	if name == "" {
+		combined := append(append([]string{}, installed...), mapped...)
+		parts := []string{engine, "run", "--rm"}
+		if platform != "" {
+			parts = append(parts, "--platform", platform)
+		}
+		parts = append(parts, volumes...)
+		parts = append(parts, "-w", wd)
+		if image != "" {
+			parts = append(parts, image)
+		}
+		if shell != "" {
+			parts = append(parts, shell, "-c", shellQuote(strings.Join(combined, " && ")))
+		}
+		return strings.Join(parts, " ")
+	}
+
+	create := []string{engine, "run", "-d", "--name", name}
+	if platform != "" {
+		create = append(create, "--platform", platform)
+	}
+	create = append(create, volumes...)
+	create = append(create, "-w", wd)
 	if image != "" {
-		parts = append(parts, image)
+		create = append(create, image)
 	}
-	if shell != "" {
-		parts = append(parts, shell, "-c", quoted)
+	create = append(create, "sleep", "infinity")
+	installExec := ""
+	if len(installed) > 0 {
+		installExec = " && " + fmt.Sprintf("%s exec %s %s -c %s", engine, name, shell,
+			shellQuote(strings.Join(installed, " && ")))
 	}
-	return strings.Join(parts, " ")
+	execCmd := fmt.Sprintf("%s exec -w %s %s %s -c %s", engine, wd, name, shell,
+		shellQuote(strings.Join(mapped, " && ")))
+	return fmt.Sprintf(
+		"if ! %s inspect %s >/dev/null 2>&1; then %s%s; else %s start %s >/dev/null 2>&1 || true; fi && %s",
+		engine, name, strings.Join(create, " "), installExec, engine, name, execCmd)
 }

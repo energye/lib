@@ -127,19 +127,10 @@ jobs:
         run: |
           ./"$LAZSETUP_BIN" verify --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE"
 
-      - name: Linux native build dependencies
-        if: ${{ inputs.run_setup && inputs.target_os == 'linux' }}
+      - name: Enable cross-architecture containers
+        if: ${{ inputs.run_setup && inputs.target_os == 'linux' && inputs.target_arch != 'amd64' }}
         shell: bash
-        run: |
-          sudo apt-get update -q -y
-          sudo apt-get install -q -y --no-install-recommends \
-            make binutils build-essential zip unzip \
-            libx11-dev libcairo2-dev libpango1.0-dev libgtk-3-dev
-          # GTK2 dev package names differ between Ubuntu releases.
-          sudo apt-get install -q -y --no-install-recommends libgtk2.0-dev || true
-          sudo apt-get install -q -y --no-install-recommends libgdk-pixbuf-2.0-dev || \
-            sudo apt-get install -q -y --no-install-recommends libgdk-pixbuf2.0-dev || true
-          dpkg -l | grep -E 'libgtk2.0-dev|libgdk-pixbuf' || true
+        run: docker run --rm --privileged tonistiigi/binfmt --install all
 
       - name: Setup toolchain
         if: ${{ inputs.run_setup }}

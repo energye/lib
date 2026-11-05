@@ -202,7 +202,7 @@ func runOne(o Options, r *runner.Runner, workDir, command string, withInstall bo
 		mounts = append(mounts, runner.Mount{Host: m.Host, Guest: m.Guest})
 	}
 	wrapped := runner.ContainerCommand(ct.Engine, ct.Image, ct.Platform,
-		ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, install, cmds, mounts...)
+		ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, ct.Name, install, cmds, mounts...)
 	return r.Run(wrapped)
 }
 
