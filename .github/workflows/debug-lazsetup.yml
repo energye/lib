@@ -32,19 +32,19 @@ on:
         type: choice
         options: ['386', 'amd64', 'arm', 'arm64']
       mode:
-        description: 'Build mode name (empty = all modes matching the target)'
+        description: 'Build mode name from liblcl.lpi, e.g. win_amd64 / linux_GTK3 (empty = all matching modes)'
         required: false
         default: ''
       run_setup:
-        description: 'Really install the toolchain (otherwise dry-run only)'
+        description: 'Really download + install + compile the toolchain on the runner'
         type: boolean
-        default: false
+        default: true
       run_build:
-        description: 'Really build lib (requires run_setup)'
+        description: 'Really build libenergy (requires run_setup)'
         type: boolean
-        default: false
+        default: true
       verify_downloads:
-        description: 'Download artifacts and check sha/size without installing'
+        description: 'Extra step: download artifacts and check sha/size without installing'
         type: boolean
         default: false
       no_container:
@@ -75,9 +75,32 @@ jobs:
           go -C tools/lazsetup build -o "../../$BIN" ./cmd/lazsetup
           echo "LAZSETUP_BIN=$BIN" >> "$GITHUB_ENV"
 
-      - name: Unit tests
+      - name: Unit tests (offline end-to-end)
         shell: bash
         run: go -C tools/lazsetup test ./...
+
+      - name: Config doctor (offline consistency)
+        shell: bash
+        run: |
+          ./"$LAZSETUP_BIN" doctor --repo "$GITHUB_WORKSPACE"
+
+      - name: Download URL reachability (diagnostic)
+        continue-on-error: true
+        shell: bash
+        run: |
+          ./"$LAZSETUP_BIN" doctor --network --repo "$GITHUB_WORKSPACE" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}"
+
+      - name: Full matrix dry-run (8 targets)
+        shell: bash
+        run: |
+          set -e
+          for t in windows/386 windows/amd64 linux/386 linux/amd64 linux/arm linux/arm64 darwin/amd64 darwin/arm64; do
+            os=${t%/*}; arch=${t#*/}
+            echo "--- $t"
+            ./"$LAZSETUP_BIN" setup --os "$os" --arch "$arch" --lazarus "${{ inputs.lazarus }}" --repo "$GITHUB_WORKSPACE" --dry-run > /dev/null
+            ./"$LAZSETUP_BIN" build  --os "$os" --arch "$arch" --lazarus "${{ inputs.lazarus }}" --repo "$GITHUB_WORKSPACE" --dry-run > /dev/null
+          done
+          echo "all 8 targets resolved"
 
       - name: Resolve config (offline)
         shell: bash
@@ -93,14 +116,14 @@ jobs:
           if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
           MODES=""
           if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
-          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --dry-run $EXTRA
-          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --dry-run $EXTRA $MODES
+          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --dry-run $EXTRA
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --dry-run $EXTRA $MODES
 
       - name: Verify downloads (checksum only)
         if: ${{ inputs.verify_downloads }}
         shell: bash
         run: |
-          ./"$LAZSETUP_BIN" verify --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}"
+          ./"$LAZSETUP_BIN" verify --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE"
 
       - name: Setup toolchain
         if: ${{ inputs.run_setup }}
@@ -108,7 +131,7 @@ jobs:
         run: |
           EXTRA=""
           if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
-          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --github $EXTRA
+          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --github $EXTRA
 
       - name: Build lib
         if: ${{ inputs.run_setup && inputs.run_build }}
@@ -118,7 +141,7 @@ jobs:
           if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
           MODES=""
           if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
-          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --out bins $EXTRA $MODES
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --out bins $EXTRA $MODES
 
       - name: Upload artifacts
         if: ${{ inputs.run_setup && inputs.run_build }}

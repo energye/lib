@@ -77,14 +77,23 @@ type TargetDef struct {
 }
 
 type Container struct {
-	Engine    string   `json:"engine"`
-	Image     string   `json:"image"`
-	Platform  string   `json:"platform"`
-	HostPath  string   `json:"hostPath"`
-	GuestPath string   `json:"guestPath"`
-	Workdir   string   `json:"workdir"`
-	Shell     string   `json:"shell"`
-	Install   []string `json:"install"`
+	Engine      string         `json:"engine"`
+	Image       string         `json:"image"`
+	Platform    string         `json:"platform"`
+	HostPath    string         `json:"hostPath"`
+	GuestPath   string         `json:"guestPath"`
+	PrefixGuest string         `json:"prefixGuest"`
+	Workdir     string         `json:"workdir"`
+	Shell       string         `json:"shell"`
+	Install     []string       `json:"install"`
+	Mounts      []VolumeMount  `json:"mounts"`
+}
+
+// VolumeMount binds an extra host directory into the container. Host is a
+// template (usually ${prefix} or ${repo}); Guest is a container path.
+type VolumeMount struct {
+	Host  string `json:"host"`
+	Guest string `json:"guest"`
 }
 
 type BuildConfig struct {
@@ -113,6 +122,7 @@ type BuildMode struct {
 	WS       string   `json:"ws"`
 	Extra    string   `json:"extra"`
 	Output   string   `json:"output"`
+	Artifact string   `json:"artifact"`
 	OS       []string `json:"os"`
 	Arch     []string `json:"arch"`
 	Disabled bool     `json:"disabled"`
@@ -263,6 +273,7 @@ type Options struct {
 	Prefix      string
 	Cache       string
 	Work        string
+	Repo        string
 	NoContainer bool
 }
 
@@ -318,6 +329,13 @@ func (c *Config) Resolve(o Options) (*Resolved, error) {
 	vars["work"] = filepath.Clean(Expand(work, vars))
 	vars["cache"] = filepath.Clean(Expand(cache, vars))
 	vars["prefix"] = filepath.Clean(Expand(prefix, vars))
+	repo := o.Repo
+	if repo == "" {
+		if wd, err := os.Getwd(); err == nil {
+			repo = wd
+		}
+	}
+	vars["repo"] = filepath.Clean(repo)
 
 	container := expandContainer(td.Container, vars)
 	if o.NoContainer {
@@ -327,7 +345,11 @@ func (c *Config) Resolve(o Options) (*Resolved, error) {
 	if container != nil && container.GuestPath != "" {
 		guestWork = container.GuestPath
 		guestPrefix = container.GuestPath
-		if rel, err := filepath.Rel(vars["work"], vars["prefix"]); err == nil &&
+		// When the toolchain is bind-mounted separately, its in-container path
+		// is fixed by prefixGuest; otherwise derive it from the repo/work mount.
+		if container.PrefixGuest != "" {
+			guestPrefix = container.PrefixGuest
+		} else if rel, err := filepath.Rel(vars["work"], vars["prefix"]); err == nil &&
 			rel != "." && !strings.HasPrefix(rel, "..") {
 			guestPrefix = path.Join(container.GuestPath, filepath.ToSlash(rel))
 		}
@@ -510,14 +532,22 @@ func expandContainer(ct *Container, vars map[string]string) *Container {
 	if len(out.Install) > 0 {
 		out.Install = append([]string(nil), out.Install...)
 	}
+	if len(out.Mounts) > 0 {
+		out.Mounts = append([]VolumeMount(nil), out.Mounts...)
+	}
 	out.Engine = Expand(out.Engine, vars)
 	out.Image = Expand(out.Image, vars)
 	out.Platform = Expand(out.Platform, vars)
 	out.HostPath = Expand(out.HostPath, vars)
 	out.GuestPath = Expand(out.GuestPath, vars)
+	out.PrefixGuest = Expand(out.PrefixGuest, vars)
 	out.Workdir = Expand(out.Workdir, vars)
 	for i := range out.Install {
 		out.Install[i] = Expand(out.Install[i], vars)
+	}
+	for i := range out.Mounts {
+		out.Mounts[i].Host = Expand(out.Mounts[i].Host, vars)
+		out.Mounts[i].Guest = Expand(out.Mounts[i].Guest, vars)
 	}
 	if out.Engine == "" {
 		out.Engine = "docker"
@@ -580,6 +610,7 @@ func expandBuildTail(b BuildConfig, vars map[string]string) BuildConfig {
 		b.Modes[i].WS = Expand(b.Modes[i].WS, vars)
 		b.Modes[i].Extra = Expand(b.Modes[i].Extra, vars)
 		b.Modes[i].Output = Expand(b.Modes[i].Output, vars)
+		b.Modes[i].Artifact = Expand(b.Modes[i].Artifact, vars)
 		for j := range b.Modes[i].OS {
 			b.Modes[i].OS[j] = Expand(b.Modes[i].OS[j], vars)
 		}
@@ -601,6 +632,7 @@ func (c *Config) buildVars(t platform.Target, laz, fpc string, aliases map[strin
 		"fpc_arch": n.FPCArch, "fpc_suffix": n.FPCSuffix,
 		"mac_arch": n.MacArch, "mac_dir": n.MacDir,
 		"deb_arch": n.DebArch, "lib_ext": n.LibExt,
+		"laz_target": n.LazTarget,
 		"exe": n.ExeSuffix, "path_sep": n.PathSep,
 		"docker_platform": n.DockerPlatform, "container_prefix": n.ContainerPrefix,
 		"home": home,

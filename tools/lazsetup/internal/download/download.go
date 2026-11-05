@@ -39,10 +39,21 @@ type statusError struct{ code int }
 
 func (e *statusError) Error() string { return fmt.Sprintf("HTTP %d", e.code) }
 
+// htmlError means the server returned a web page (bot challenge / 404 page)
+// instead of the requested artifact. Retrying the same URL cannot help, but
+// switching to the next mirror can, so it is non-retryable per URL.
+type htmlError struct{ detail string }
+
+func (e *htmlError) Error() string { return e.detail }
+
 func retryable(err error) bool {
 	var se *statusError
 	if errors.As(err, &se) {
 		return se.code >= 500 || se.code == 408 || se.code == 429
+	}
+	var he *htmlError
+	if errors.As(err, &he) {
+		return false
 	}
 	return true
 }
@@ -165,7 +176,11 @@ func attemptDownload(client *http.Client, rawURL, part string, o Options) error 
 	if err != nil {
 		return err
 	}
-	req.Header.Set("User-Agent", "lazsetup/1.0")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; lazsetup/1.0; +https://github.com/energye/lib)")
+	req.Header.Set("Accept", "*/*")
+	if u, e := url.Parse(rawURL); e == nil {
+		req.Header.Set("Referer", u.Scheme+"://"+u.Host+"/")
+	}
 	for k, v := range o.Headers {
 		req.Header.Set(k, v)
 	}
@@ -187,6 +202,9 @@ func attemptDownload(client *http.Client, rawURL, part string, o Options) error 
 		return nil
 	default:
 		return &statusError{code: resp.StatusCode}
+	}
+	if ct := strings.ToLower(resp.Header.Get("Content-Type")); strings.Contains(ct, "text/html") {
+		return &htmlError{detail: fmt.Sprintf("server returned an HTML page (Content-Type %s) instead of the installer; likely a bot challenge or 404 page", ct)}
 	}
 	flags := os.O_CREATE | os.O_WRONLY
 	if offset > 0 {
@@ -216,6 +234,20 @@ func verify(file, expectedSHA string, expectedSize int64) (string, int64, error)
 		return "", 0, err
 	}
 	sum := hex.EncodeToString(h.Sum(nil))
+	// A cached or mislabelled HTML challenge page must never reach the
+	// installer. Check the leading bytes as well as Content-Type, because some
+	// CDNs omit or lie about the latter.
+	if n > 0 {
+		if _, err := f.Seek(0, io.SeekStart); err == nil {
+			head := make([]byte, 512)
+			m, _ := f.Read(head)
+			low := strings.ToLower(string(head[:m]))
+			if strings.Contains(low, "<!doctype html") || strings.Contains(low, "<html") ||
+				strings.Contains(low, "just a moment") {
+				return sum, n, &htmlError{detail: "downloaded file is an HTML page, not an installer (bot challenge / 404 / mirror error)"}
+			}
+		}
+	}
 	if expectedSize > 0 && n != expectedSize {
 		return sum, n, fmt.Errorf("size mismatch: got %d, want %d", n, expectedSize)
 	}

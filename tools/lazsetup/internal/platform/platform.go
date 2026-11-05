@@ -40,6 +40,7 @@ type Names struct {
 	MacDir          string // x86-64 | aarch64 (SourceForge directory name)
 	DebArch         string // i386 | amd64 | arm64 | armhf
 	LibExt          string // dll | so | dylib
+	LazTarget       string // x86_64-win64 | aarch64-linux | ... ($(TargetCPU)-$(TargetOS))
 	ExeSuffix       string // .exe | ""
 	PathSep         string // ; | :
 	DockerPlatform  string // linux/amd64 | linux/arm64 | ...
@@ -100,6 +101,14 @@ func (t Target) Names() Names {
 		n.DockerPlatform, n.ContainerPrefix = "linux/arm/v7", "arm32v7/"
 	}
 	n.FPCSuffix = n.FPCArch + "-linux"
+	// Lazarus expands $(TargetCPU)-$(TargetOS) into these values. They appear
+	// in the .lpi Target/Filename of the Debug_* build modes.
+	cpu := map[string]string{"386": "i386", "amd64": "x86_64", "arm": "arm", "arm64": "aarch64"}[t.Arch]
+	lazOS := map[string]string{"windows": "win", "linux": "linux", "darwin": "darwin"}[t.OS]
+	if t.OS == "windows" {
+		lazOS = map[string]string{"386": "win32", "amd64": "win64"}[t.Arch]
+	}
+	n.LazTarget = cpu + "-" + lazOS
 	switch t.OS {
 	case "windows":
 		n.LibExt, n.ExeSuffix, n.PathSep = "dll", ".exe", ";"

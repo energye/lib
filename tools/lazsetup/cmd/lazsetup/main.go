@@ -13,6 +13,7 @@ import (
 
 	"github.com/energye/lib/tools/lazsetup/internal/build"
 	"github.com/energye/lib/tools/lazsetup/internal/config"
+	"github.com/energye/lib/tools/lazsetup/internal/doctor"
 	"github.com/energye/lib/tools/lazsetup/internal/runner"
 	"github.com/energye/lib/tools/lazsetup/internal/setup"
 )
@@ -36,6 +37,7 @@ type globalOpts struct {
 	lazarus, fpc           string
 	osName, arch           string
 	prefix, cache, work    string
+	repo                   string
 	dryRun, github         bool
 	verbose, noCache       bool
 	noContainer            bool
@@ -69,10 +71,12 @@ func main() {
 	b := &buildOpts{}
 	addGlobalFlags(fs, g)
 	var updateHashes, expand bool
-	var jsonOut bool
+	var jsonOut, network bool
 	switch cmd {
 	case "setup", "verify":
 		fs.BoolVar(&updateHashes, "update-hashes", false, "download and print sha256/size for the config")
+	case "doctor":
+		fs.BoolVar(&network, "network", false, "probe download URLs over HTTP (may be blocked by Cloudflare)")
 	case "build", "all":
 		addBuildFlags(fs, b)
 	case "list":
@@ -93,6 +97,17 @@ func main() {
 		err = doList(c, g, expand)
 	case "env":
 		err = doEnv(r, jsonOut)
+	case "doctor":
+		var rep *doctor.Report
+		rep, err = doctor.Run(doctor.Options{
+			Config: c, Resolved: r, WorkDir: ".", Lazarus: g.lazarus, Network: network,
+		})
+		if err == nil {
+			rep.Print(os.Stdout)
+			if !rep.OK() {
+				os.Exit(1)
+			}
+		}
 	case "verify":
 		_, err = setup.Setup(setup.Options{R: r, Runner: rn, NoCache: g.noCache, VerifyOnly: true, UpdateHashes: updateHashes})
 	case "setup", "all":
@@ -125,6 +140,7 @@ func addGlobalFlags(fs *flag.FlagSet, g *globalOpts) {
 	fs.StringVar(&g.prefix, "prefix", "", "toolchain install directory")
 	fs.StringVar(&g.cache, "cache", "", "download cache directory")
 	fs.StringVar(&g.work, "work", "", "working directory")
+	fs.StringVar(&g.repo, "repo", "", "repository root (default: current directory); used as container mount root")
 	fs.BoolVar(&g.dryRun, "dry-run", false, "print actions without downloading or executing")
 	fs.BoolVar(&g.github, "github", false, "write GITHUB_PATH / GITHUB_ENV (CI only)")
 	fs.BoolVar(&g.verbose, "verbose", false, "verbose logging")
@@ -151,7 +167,7 @@ func loadAndResolve(g *globalOpts) (*config.Config, *config.Resolved, *runner.Ru
 	}
 	r, err := c.Resolve(config.Options{
 		Lazarus: g.lazarus, FPC: g.fpc, OS: g.osName, Arch: g.arch,
-		Prefix: g.prefix, Cache: g.cache, Work: g.work, NoContainer: g.noContainer,
+		Prefix: g.prefix, Cache: g.cache, Work: g.work, Repo: g.repo, NoContainer: g.noContainer,
 	})
 	if err != nil {
 		return nil, nil, nil, err
@@ -284,6 +300,7 @@ Commands:
   all       setup followed by build
   list      show releases, targets and build modes (--expand shows resolved URLs)
   verify    download and checksum only, no install
+  doctor    offline consistency check: config vs liblcl.lpi, packages, URLs
   env       show resolved variables for --os/--arch
   version   print version
 
@@ -292,12 +309,13 @@ Common flags:
   --lazarus VER      Lazarus version, e.g. 4.8
   --fpc VER          FPC version override
   --os / --arch      target platform (default: host)
-  --prefix/--work/--cache DIR
+  --prefix/--work/--cache/--repo DIR
   --dry-run          print what would happen, no network, no commands
   --github           write GITHUB_PATH / GITHUB_ENV (CI only)
   --no-cache         force re-download
   --no-container     compile on the host instead of docker
   --update-hashes    verify: print sha256/size for the config
+  --network          doctor: probe download URLs over HTTP
   --verbose
 
 Build flags:

@@ -9,9 +9,10 @@
 ```bash
 go -C tools/lazsetup build -o ../../lazsetup.exe ./cmd/lazsetup   # Linux/macOS 去掉 .exe
 ./lazsetup.exe list --expand                            # 先看每个平台解析出的 URL 和命令
+./lazsetup.exe doctor                                   # 离线一致性自检（配置 vs liblcl.lpi）
 ./lazsetup.exe setup --lazarus 4.8 --arch amd64 --dry-run
-./lazsetup.exe setup --lazarus 4.8 --arch amd64          # 真正安装
-./lazsetup.exe build --mode Win64 --out ../bins          # 编译并打包
+./lazsetup.exe setup --lazarus 4.8 --arch amd64          # 真正安装（建议交给 CI）
+./lazsetup.exe build --mode win_amd64 --out bins         # 编译并打包
 ```
 
 本机若处于父级 `go.work` 工作区且该 work 不含本模块，编译时加 `GOWORK=off`：
@@ -24,7 +25,9 @@ GOWORK=off go -C tools/lazsetup build -o ../../lazsetup.exe ./cmd/lazsetup
 
 ## GitHub Actions
 
-`.github/workflows/debug-lazsetup.yml` 是**新增的手动调试 workflow**（`workflow_dispatch`），用于验证配置展开、编译、下载和构建。默认所有安装/构建步骤都是 dry-run，需要真实执行时勾选对应输入。
+`.github/workflows/debug-lazsetup.yml` 是**唯一的验证入口**（`workflow_dispatch`）。**真实下载、工具链安装/编译、动态库编译全部在 Actions runner 上执行**；本机只做 `go build` / `go vet` / `go test` 这类编译级验证。
+
+一次触发会依次跑：`go build` → 单元测试（含离线端到端）→ `doctor` 离线一致性检查 → 下载 URL 可达性诊断 → 8 个平台的 `setup`/`build` dry-run → **真实 setup + build** → 上传产物。`run_setup` / `run_build` 默认都是 `true`；只想看配置时把它们取消勾选即可。CI 上通过 `inputs.runner`、`target_os`、`target_arch` 选择要验证的组合。
 
 CI 中的最小形态：
 
@@ -36,7 +39,7 @@ CI 中的最小形态：
   shell: bash
 - run: ./lazsetup setup --lazarus 4.8 --os linux --arch arm64 --github
   shell: bash
-- run: ./lazsetup build --mode LinuxARM64_CEF --out ../bins
+- run: ./lazsetup build --mode linux_GTK3 --repo "$GITHUB_WORKSPACE" --out bins
   shell: bash
 ```
 
@@ -51,6 +54,7 @@ CI 中的最小形态：
 | `all` | `setup` + `build` |
 | `list` / `list --expand` | 列出版本/目标/模式；`--expand` 显示每个目标完全展开的 URL 与命令（排查配置首选） |
 | `verify` | 只下载并校验 sha256/size，不安装 |
+| `doctor` | 离线自检：build mode 是否存在于 `liblcl.lpi`、三方 lpk / `OtherUnitFiles` 路径、8 个 target 的 URL 与容器挂载；`--network` 额外探测下载源 |
 | `env` | 显示指定平台解析出的全部变量 |
 | `version` | 版本号 |
 
@@ -61,9 +65,10 @@ CI 中的最小形态：
 --lazarus VER        Lazarus 版本，默认 4.8
 --fpc VER            覆盖该 release 的 FPC 版本
 --os / --arch        目标平台，默认本机
---prefix/--work/--cache DIR
+--prefix/--work/--cache/--repo DIR
 --dry-run            只打印，不联网、不执行命令
 --github             CI：写 GITHUB_PATH / GITHUB_ENV
+--network            doctor：探测下载 URL（可能遇到 Cloudflare 挑战页）
 --no-cache           强制重新下载
 --no-container       宿主机直接编译，不用 docker（同架构时推荐）
 --mode NAME          build/all 的模式（可重复）
@@ -97,7 +102,7 @@ macOS 的下载地址就是靠 `${mac_dir}`（aarch64 / x86-64）和 `${laz}` �
 
 **加新架构/新平台**：在 `targets` 增加 `os/arch → profile`，必要时用 `overrides` 覆盖某个组件的 URL，或用 `byRelease` 让不同版本走不同 profile。
 
-**加 build 模式**：在 `energy-lib.json` 的 `build.modes` 增加 `{name, bm, ws, os, arch, output}`。
+**加 build 模式**：在 `energy-lib.json` 的 `build.modes` 增加 `{name, bm, os, arch, artifact, output}`。`bm` 必须是 `liblcl.lpi` 里 `<BuildModes><Item Name="...">` 的真实名称（当前为 `win_amd64`/`win_386`/`linux_GTK2`/`linux_GTK3`/`darwin_amd64`/`darwin_arm64` 以及 `Debug_CEF*`）；`artifact` 是该模式 `Target/Filename` 对应的产物文件，支持 `${laz_target}`、`${lib_ext}` 变量。改完先跑 `doctor`。
 
 **补校验值**：`./lazsetup.exe verify --update-hashes --os linux --arch arm64`，把打印出的 `sha256` / `size` 填回对应组件。
 

@@ -165,11 +165,24 @@ func AppendGitHubEnv(values map[string]string, githubEnv string) error {
 
 // ContainerCommand wraps commands into one docker run invocation, mapping host
 // paths to the container mount and running prerequisite installers first.
-func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell string, install, cmds []string) string {
+// Mount is an additional host:guest volume. Windows drive letters are kept in
+// Host, so callers must not try to split a "host:guest" string on ":".
+type Mount struct {
+	Host  string
+	Guest string
+}
+
+func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell string, install, cmds []string, mounts ...Mount) string {
 	combined := append(append([]string{}, install...), cmds...)
 	mapped := make([]string, 0, len(combined))
 	for _, c := range combined {
-		mapped = append(mapped, strings.ReplaceAll(c, hostPath, guestPath))
+		s := strings.ReplaceAll(c, hostPath, guestPath)
+		for _, m := range mounts {
+			if m.Host != "" && m.Guest != "" {
+				s = strings.ReplaceAll(s, m.Host, m.Guest)
+			}
+		}
+		mapped = append(mapped, s)
 	}
 	inner := strings.Join(mapped, " && ")
 	quoted := "'" + strings.ReplaceAll(inner, "'", `'\''`) + "'"
@@ -177,7 +190,13 @@ func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, she
 	if platform != "" {
 		parts = append(parts, "--platform", platform)
 	}
-	parts = append(parts, "-v", fmt.Sprintf(`"%s:%s"`, hostPath, guestPath), "-w", fmt.Sprintf(`"%s"`, workdir))
+	parts = append(parts, "-v", fmt.Sprintf(`"%s:%s"`, hostPath, guestPath))
+	for _, m := range mounts {
+		if m.Host != "" && m.Guest != "" {
+			parts = append(parts, "-v", fmt.Sprintf(`"%s:%s"`, m.Host, m.Guest))
+		}
+	}
+	parts = append(parts, "-w", fmt.Sprintf(`"%s"`, workdir))
 	if image != "" {
 		parts = append(parts, image)
 	}

@@ -1,42 +1,92 @@
 {
+  "schema": 1,
+  "_note": "Build modes MUST match <BuildModes><Item Name=...> in liblcl.lpi. Artifact names come from each mode's Target/Filename. Current liblcl.lpi references all third-party units through OtherUnitFiles (source dirs), so no lpk registration is needed; run `lazsetup doctor` after changing the .lpi.",
   "build": {
     "project": "liblcl.lpi",
     "workDir": ".",
-    "containerDir": "${cwork}/lib",
-    "output": "bin/liblcl.${lib_ext}",
-    "outDir": "../bins",
-    "packages": [
-      { "path": "./3rd-party/richmemo/richmemopackage.lpk", "link": true },
-      { "path": "./3rd-party/richmemo/ide/richmemo_design.lpk", "add": true },
-      { "path": "./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk", "add": true },
-      { "path": "./3rd-party/DCPcrypt/dcpcrypt.lpk", "link": true },
-      { "path": "./3rd-party/DCPcrypt/dcpcrypt_laz.lpk", "add": true },
-      { "path": "./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk", "add": true }
-    ],
+    "containerDir": "${repo}",
+    "outDir": "bins",
+    "packages": [],
     "modes": [
-      { "name": "Win64", "bm": "Win64", "os": ["windows"], "arch": ["amd64"], "output": "lcl_binary_windows64.zip" },
-      { "name": "Win64_CEF", "bm": "Win64_CEF", "os": ["windows"], "arch": ["amd64"], "output": "lcl_cef_binary_windows64.zip" },
-      { "name": "Win64_WV2", "bm": "Win64_WV2", "os": ["windows"], "arch": ["amd64"], "output": "lcl_wv2_binary_windows64.zip" },
-      { "name": "Win32", "bm": "Win32", "os": ["windows"], "arch": ["386"], "output": "lcl_binary_windows32.zip" },
-      { "name": "Win32_CEF", "bm": "Win32_CEF", "os": ["windows"], "arch": ["386"], "output": "lcl_cef_binary_windows32.zip" },
-      { "name": "Win32_WV2", "bm": "Win32_WV2", "os": ["windows"], "arch": ["386"], "output": "lcl_wv2_binary_windows32.zip" },
-
-      { "name": "Linux64", "bm": "Linux64", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_binary_linux64.zip" },
-      { "name": "Linux64_CEF", "bm": "Linux64 CEF", "ws": "gtk3", "os": ["linux"], "arch": ["amd64"], "output": "lcl_cef_binary_linux64.zip" },
-      { "name": "Linux64_WK2", "bm": "Linux64 WK2", "ws": "gtk3", "os": ["linux"], "arch": ["amd64"], "output": "lcl_wk2_binary_linux64.zip" },
-      { "name": "Linux64_GTK2_CEF", "bm": "Linux64 GTK2 CEF", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_cef_binary_linux64_gtk2.zip" },
-      { "name": "Linux64_GTK2_WK", "bm": "Linux64 GTK2 WK", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_wk_binary_linux64_gtk2.zip" },
-      { "name": "Linux32", "bm": "Linux32", "ws": "gtk2", "os": ["linux"], "arch": ["386"], "output": "lcl_binary_linux32.zip" },
-      { "name": "LinuxARM64", "bm": "LinuxARM64", "ws": "gtk2", "os": ["linux"], "arch": ["arm64"], "output": "lcl_binary_linuxarm64.zip" },
-      { "name": "LinuxARM64_CEF", "bm": "LinuxARM64 CEF", "ws": "gtk3", "os": ["linux"], "arch": ["arm64"], "output": "lcl_cef_binary_linuxarm64.zip" },
-      { "name": "LinuxARM64_WK2", "bm": "LinuxARM64 WK2", "ws": "gtk3", "os": ["linux"], "arch": ["arm64"], "output": "lcl_wk2_binary_linuxarm64.zip" },
-
-      { "name": "MacOSx64", "bm": "MacOSx64", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_binary_macosx64.zip" },
-      { "name": "MacOSARM64", "bm": "MacOSARM64", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_binary_macosarm64.zip" },
-      { "name": "MacOSx64_CEF", "bm": "MacOSx64_CEF", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_cef_binary_macosx64.zip" },
-      { "name": "MacOSARM64_CEF", "bm": "MacOSARM64_CEF", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_cef_binary_macosarm64.zip" },
-      { "name": "MacOSx64_WK2", "bm": "MacOSx64_WK2", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_wk2_binary_macosx64.zip" },
-      { "name": "MacOSARM64_WK2", "bm": "MacOSARM64_WK2", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_wk2_binary_macosarm64.zip" }
+      {
+        "name": "win_amd64",
+        "bm": "win_amd64",
+        "os": ["windows"],
+        "arch": ["amd64"],
+        "artifact": "libenergy-amd64.dll",
+        "output": "lcl_binary_windows64.zip"
+      },
+      {
+        "name": "win_386",
+        "bm": "win_386",
+        "os": ["windows"],
+        "arch": ["386"],
+        "artifact": "libenergy-386.dll",
+        "output": "lcl_binary_windows32.zip"
+      },
+      {
+        "name": "linux_GTK2",
+        "bm": "linux_GTK2",
+        "os": ["linux"],
+        "arch": ["386", "amd64", "arm", "arm64"],
+        "artifact": "libenergy-gtk2.so",
+        "output": "lcl_binary_${os}_${arch}_gtk2.zip"
+      },
+      {
+        "name": "linux_GTK3",
+        "bm": "linux_GTK3",
+        "os": ["linux"],
+        "arch": ["386", "amd64", "arm", "arm64"],
+        "artifact": "libenergy-gtk3.so",
+        "output": "lcl_binary_${os}_${arch}_gtk3.zip"
+      },
+      {
+        "name": "darwin_amd64",
+        "bm": "darwin_amd64",
+        "os": ["darwin"],
+        "arch": ["amd64"],
+        "artifact": "libenergy-amd64.dylib",
+        "output": "lcl_binary_macosx64.zip"
+      },
+      {
+        "name": "darwin_arm64",
+        "bm": "darwin_arm64",
+        "os": ["darwin"],
+        "arch": ["arm64"],
+        "artifact": "libenergy-arm64.dylib",
+        "output": "lcl_binary_macosarm64.zip"
+      },
+      {
+        "name": "Debug_CEF150",
+        "bm": "Debug_CEF150",
+        "artifact": "libenergy-${laz_target}.${lib_ext}",
+        "output": "lcl_cef150_${os}_${arch}.zip",
+        "disabled": true
+      },
+      {
+        "name": "Debug_CEF147",
+        "bm": "Debug_CEF147",
+        "os": ["linux"],
+        "artifact": "libenergy-${laz_target}.${lib_ext}",
+        "output": "lcl_cef147_${os}_${arch}.zip",
+        "disabled": true
+      },
+      {
+        "name": "Debug_CEF127",
+        "bm": "Debug_CEF127",
+        "os": ["linux"],
+        "artifact": "libenergy-${laz_target}.${lib_ext}",
+        "output": "lcl_cef127_${os}_${arch}.zip",
+        "disabled": true
+      },
+      {
+        "name": "Debug_CEF109",
+        "bm": "Debug_CEF109",
+        "os": ["linux"],
+        "artifact": "libenergy-${laz_target}.${lib_ext}",
+        "output": "lcl_cef109_${os}_${arch}.zip",
+        "disabled": true
+      }
     ]
   }
 }

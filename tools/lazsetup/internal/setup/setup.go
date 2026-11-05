@@ -234,7 +234,8 @@ func (o Options) runCommands(cmds []string) error {
 	}
 	if ct := o.R.Container; ct != nil && ct.Engine != "" {
 		command := runner.ContainerCommand(ct.Engine, ct.Image, ct.Platform,
-			ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, ct.Install, cmds)
+			ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, ct.Install, cmds,
+			mountsOf(ct)...)
 		return o.Runner.Run(command)
 	}
 	for _, c := range cmds {
@@ -243,6 +244,17 @@ func (o Options) runCommands(cmds []string) error {
 		}
 	}
 	return nil
+}
+
+func mountsOf(ct *config.Container) []runner.Mount {
+	if ct == nil {
+		return nil
+	}
+	out := make([]runner.Mount, 0, len(ct.Mounts))
+	for _, m := range ct.Mounts {
+		out = append(out, runner.Mount{Host: m.Host, Guest: m.Guest})
+	}
+	return out
 }
 
 func (o Options) runDirect(name string, args ...string) error {

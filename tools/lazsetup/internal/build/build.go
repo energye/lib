@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -37,8 +38,18 @@ func Build(o Options) (*Result, error) {
 	if r == nil {
 		r = runner.New(nil)
 	}
-	lazbuild := firstNonEmpty(o.Lazbuild, os.Getenv("LAZBUILD"), "lazbuild"+o.R.Vars["exe"])
-	if !r.DryRun && !filepath.IsAbs(lazbuild) && !strings.ContainsAny(lazbuild, `/\`) {
+	lazbuild := firstNonEmpty(o.Lazbuild, "lazbuild"+o.R.Vars["exe"])
+	inContainer := o.R.Build.Container != nil && o.R.Build.Container.Engine != ""
+	if inContainer && o.Lazbuild == "" {
+		// A host-side LAZBUILD path is meaningless inside the container. Use
+		// the toolchain volume's guest path instead.
+		if guest := o.R.Vars["cprefix"]; guest != "" {
+			lazbuild = path.Join(guest, "lazbuild"+o.R.Vars["exe"])
+		}
+	} else {
+		lazbuild = firstNonEmpty(o.Lazbuild, os.Getenv("LAZBUILD"), "lazbuild"+o.R.Vars["exe"])
+	}
+	if !r.DryRun && !inContainer && !filepath.IsAbs(lazbuild) && !strings.ContainsAny(lazbuild, `/\`) {
 		p, err := runner.LookPath(lazbuild, o.R.Prefix)
 		if err != nil {
 			return nil, fmt.Errorf("lazbuild not found (run `lazsetup setup` first or pass --lazbuild): %w", err)
@@ -186,19 +197,27 @@ func runOne(o Options, r *runner.Runner, workDir, command string, withInstall bo
 	if withInstall {
 		install = ct.Install
 	}
+	var mounts []runner.Mount
+	for _, m := range ct.Mounts {
+		mounts = append(mounts, runner.Mount{Host: m.Host, Guest: m.Guest})
+	}
 	wrapped := runner.ContainerCommand(ct.Engine, ct.Image, ct.Platform,
-		ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, install, cmds)
+		ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, install, cmds, mounts...)
 	return r.Run(wrapped)
 }
 
 func packageOutput(r *runner.Runner, workDir, outDir, output string, m config.BuildMode) (string, error) {
 	src := output
+	if m.Artifact != "" {
+		src = m.Artifact
+	}
 	if !filepath.IsAbs(src) {
 		src = filepath.Join(workDir, src)
 	}
 	if _, err := os.Stat(src); err != nil {
-		r.Logf("  warning: expected output %s not found, skipped", src)
-		return "", nil
+		return "", fmt.Errorf("build mode %q produced no artifact at %s: %w "+
+			"(check Target/Filename in the .lpi and the mode's \"artifact\" in energy-lib.json)",
+			m.Name, src, err)
 	}
 	name := m.Output
 	if name == "" {

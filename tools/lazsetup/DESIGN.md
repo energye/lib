@@ -75,16 +75,19 @@
 
 FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 `install.sh`，只有 Lazarus 需要 `make`。这与旧 workflow 中 `run-on-arch-action` 容器里做的事一致，现在由配置里的 `commands` 编排。
 
-`linux/386`、`linux/arm`、`linux/arm64` 在 x86 runner 上通过 `container` 段用 docker/qemu 执行上述编译；`linux/amd64` 默认直接在 runner 上编译。任何目标都可以用 `--no-container` 强制在宿主机编译。
+4 个 Linux 架构全部通过 `container` 段用 docker/qemu 执行编译（同架构的 `linux/amd64` 也走容器，以便统一安装 `build-essential` 与 GTK 开发头文件）。容器同时挂两个卷：`${repo}:/app` 放仓库源码，`${prefix}:/toolchain` 放工具链，因此 `make clean all`、`lazbuild`、`liblcl.lpi` 都在容器里可见。任何目标都可以用 `--no-container` 强制在宿主机编译。
+
+Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / source 也解压到 `${prefix}`，三者汇合到同一个目录，`cd ${cprefix} && make clean all` 才能找到 `Makefile`；不依赖 `prefix` 恰好叫 `work/lazarus`。
 
 ## 5. 构建 lib 动态库
 
 `lazsetup build` 把原先分散在 `.github/shell/add-package.*` 和 5 个 workflow 里的内容配置化：
 
-- `build.packages` — 第三方 lpk 的 `--add-package-link` / `--add-package` 注册与编译
-- `build.modes` — 每个模式的 `--bm`、`--ws`、`extra`、产物 zip 名，并用 `os` / `arch` 限定适用范围
-- 源码模式下自动追加 `--lazarusdir=${cprefix}`
-- 每个模式编译后立即把 `bin/liblcl.<ext>` 打包成 zip（Go 原生 `archive/zip`，不依赖 7z/zip 命令）
+- `build.packages` — 第三方 lpk 的 `--add-package-link` / `--add-package` 注册与编译。当前 `liblcl.lpi` 通过 `OtherUnitFiles` 直接引用 `src/3rd/...` 源码，因此默认为空数组
+- `build.modes` — 每个模式的 `--bm`、`--ws`、`extra`、`artifact`（产物文件）、`output`（zip 名），并用 `os` / `arch` 限定适用范围
+- `bm` 必须匹配 `liblcl.lpi` 的 `<BuildModes><Item Name="...">`；`artifact` 对应该模式的 `Target/Filename`，例如 `win_amd64 → libenergy-amd64.dll`、`linux_GTK3 → libenergy-gtk3.so`、`Debug_CEF150 → libenergy-${laz_target}.${lib_ext}`
+- 源码模式下自动追加 `--lazarusdir=${cprefix}`，容器模式下 `lazbuild` 用 `${cprefix}/lazbuild` 而不是宿主机路径
+- 每个模式编译后立即把 `artifact` 打包成 zip（Go 原生 `archive/zip`）；产物不存在时**直接报错**，避免静默假成功
 
 默认只跑适合当前目标平台的模式；`--mode NAME` 可显式指定多个。
 
@@ -97,13 +100,19 @@ FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 
 ## 7. 已知限制
 
 - `macOS arm64` 当前走官方 4.8 aarch64 包。仓库里的《a_libenergy.dylib 编译说明.md》提到 arm64 可能需要 fpcupdeluxe 安装的 FPC 3.3.1 trunk 与 `-WM11.0 -dUseCthreads`，x86_64 用 `-WM10.15`。若实际编译报架构/SDK 错，需要新增一个 `mac-trunk` profile 并在 `targets.darwin/arm64.byRelease` 中切换。
-- FPC 的 `install.sh` 是交互式脚本，配置里用 `printf "\n...\n" | ./install.sh` 提供默认答案；不同版本若提示项数量变化需要调整。非 root 的本机 Linux 需自行给命令加 `sudo` 或改用容器。
-- `build.packages` 的 `./3rd-party/...` 路径沿用了现有 `add-package.sh`；若仓库实际目录不同，直接改配置。
+- FPC 的 `install.sh` 是交互式脚本，配置里用 `./install.sh < /dev/null`（与现有 workflow 的空 here-doc 等价）让它取默认值。
+- 旧 `.github/shell/add-package.*` 引用的 `./3rd-party/...` 在当前 main 分支已不存在；配置不再沿用。若将来 `liblcl.lpi` 改为依赖已安装的 IDE 包，在 `build.packages` 里填 `./src/3rd/...` 下真实存在的 lpk，`doctor` 会校验路径。
+- 每个下载组件都带 2~3 个 SourceForge 备用镜像；下载器会识别 Cloudflare/404 返回的 HTML 页面并自动切换镜像，不会把网页当安装包交给静默安装器。
 - deb/pkg 安装需要管理员权限；Windows InnoSetup 需要可写目录。
 - SourceForge 没有统一 checksum 清单，`sha256` 需要按 2. 的方式自己维护。
 - 本机若处于某个 `go.work` 工作区（例如 `E:\app\workspace\go.work` 不含本模块），编译时加 `GOWORK=off`；CI 无此文件，debug workflow 已显式设置。
 
 ## 8. 实施状态
 
-- 已完成：配置解析/展开、下载校验缓存、归档解压、平台映射、安装与源码编译编排、build 模式、CLI、单元测试、debug workflow、旧 workflow 停用。
-- 下一步（debug workflow 验证通过后）：补齐 sha256、按真实容器路径微调 `containerDir`、恢复并改造 5 个正式 workflow、本机 Windows amd64 冒烟编译 `liblcl.dll`。
+- 已完成：配置解析/展开、下载校验缓存与 HTML 挑战页识别、归档解压、平台映射、安装与源码编译编排（含双卷容器挂载）、build 模式与逐模式产物、`doctor` 一致性自检、CLI、单元测试与离线端到端测试、debug workflow、旧 workflow 停用。
+- **测试策略**：真实下载 / 工具链编译 / 动态库编译全部在 GitHub Actions runner 上验证；本机只做 `go build` / `go vet` / `go test`。`debug-lazsetup.yml` 默认 `run_setup=true`、`run_build=true`，手动触发一次即跑完整链路并上传 `bins/**`。
+- 下一步（Actions 验证通过后）：补齐 sha256、恢复并改造 5 个正式 workflow。
+
+## 9. doctor 自检项
+
+`lazsetup doctor`（离线，不联网、不安装）逐项校验：项目文件可读 → 解析 `liblcl.lpi` 的 `BuildModes` → 每个启用模式的 `bm` 存在且 `artifact` 已展开 → 三方 lpk 路径存在 → `OtherUnitFiles` 的 16 个源码目录存在 → 8 个 target 全部能 Resolve 且 URL 合法、有备用镜像 → sha256 覆盖情况。`--network` 额外对当前 target 的下载 URL 做 256 字节探测，能诊断出 Cloudflare 挑战页。配置与 `.lpi` 不一致时返回非零退出码，CI 会在下载之前就失败。
