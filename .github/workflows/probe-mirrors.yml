@@ -1,0 +1,56 @@
+name: probe download mirrors
+
+# Temporary diagnostic: find a download source reachable from GitHub runners.
+# Delete this file once toolchain.json is pointed at a working mirror.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Probe SourceForge mirrors and GitHub sources
+        shell: bash
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+          FILE='Lazarus%20Zip%20_%20GZip/Lazarus%204.8/lazarus-4.8-0.tar.gz'
+          URLS=(
+            "https://sourceforge.net/projects/lazarus/files/$FILE/download"
+            "https://sourceforge.net/projects/lazarus/files/$FILE/download?use_mirror=netix"
+            "https://downloads.sourceforge.net/project/lazarus/$FILE"
+            "https://master.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://netix.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://versaweb.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://phoenixnap.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://netcologne.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://freefr.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://deac-ams.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://ayera.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://zenlayer.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://altushost-swe.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://ixpeering.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://superb-sea2.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://pilotfiber.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://onboardcloud.dl.sourceforge.net/project/lazarus/$FILE"
+            "https://downloads.freepascal.org/fpc/dist/3.2.2/x86_64-linux/fpc-3.2.2.x86_64-linux.tar"
+            "https://ftp.freepascal.org/fpc/dist/3.2.2/x86_64-linux/fpc-3.2.2.x86_64-linux.tar"
+            "https://github.com/lazarus-ide/Lazarus/archive/refs/tags/lazarus_4_8.tar.gz"
+            "https://codeload.github.com/lazarus-ide/Lazarus/tar.gz/refs/tags/lazarus_4_8"
+            "https://github.com/fpc/FPCSource/archive/refs/tags/3.2.2.tar.gz"
+            "https://gitlab.com/freepascal.org/fpc/source/-/archive/3.2.2/source-3.2.2.tar.gz"
+          )
+          TMP=probe.bin
+          echo "runner=$RUNNER_OS"
+          for u in "${URLS[@]}"; do
+            meta=$(curl -sSL --max-time 30 -A "$UA" -r 0-2047 -o "$TMP" \
+              -w '%{http_code}|%{content_type}|%{size_download}' "$u" 2>/dev/null || echo 'ERR||0')
+            magic=$(head -c 8 "$TMP" 2>/dev/null | od -An -tx1 | tr -d ' \n')
+            echo "[$meta] magic=$magic  $u"
+          done
+          echo "=== extra: SourceForge file page / best_release.json ==="
+          curl -sSL --max-time 20 -A "$UA" -o /dev/null -w 'best_release.json -> %{http_code} %{content_type}\n' \
+            "https://sourceforge.net/projects/lazarus/best_release.json" || true
