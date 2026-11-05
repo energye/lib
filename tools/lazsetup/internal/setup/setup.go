@@ -201,10 +201,12 @@ func (o Options) install(cp config.Component, file string) error {
 
 func (o Options) installDMG(file, sudo string) error {
 	r := o.Runner
-	out, err := r.Output(fmt.Sprintf("hdiutil attach -nobrowse -readonly %q", file))
+	r.Logf("  [dmg] attaching %s", file)
+	out, err := r.Output(fmt.Sprintf("hdiutil attach -nobrowse -noautoopen -readonly %q", file))
 	if err != nil {
 		return err
 	}
+	r.Logf("  [dmg] attach output: %s", strings.TrimSpace(out))
 	mount := ""
 	for _, line := range strings.Split(out, "\n") {
 		if i := strings.Index(line, "/Volumes/"); i >= 0 {
@@ -214,7 +216,13 @@ func (o Options) installDMG(file, sudo string) error {
 	if mount == "" {
 		return fmt.Errorf("could not determine DMG mount point from: %s", out)
 	}
-	defer r.Run(fmt.Sprintf("hdiutil detach %q", mount))
+	defer func() {
+		r.Logf("  [dmg] detaching %s", mount)
+		// -force avoids waiting on a busy mount; a plain detach can hang after
+		// a package install and stall the whole CI job.
+		_ = r.Run(fmt.Sprintf("hdiutil detach -force %q", mount))
+	}()
+	r.Logf("  [dmg] mount point: %s", mount)
 	entries, err := os.ReadDir(mount)
 	if err != nil {
 		return err
@@ -222,7 +230,12 @@ func (o Options) installDMG(file, sudo string) error {
 	for _, e := range entries {
 		if strings.HasSuffix(e.Name(), ".pkg") || strings.HasSuffix(e.Name(), ".mpkg") {
 			pkg := filepath.Join(mount, e.Name())
-			return r.Run(sudo + fmt.Sprintf("installer -package %q -target /", pkg))
+			r.Logf("  [dmg] installing package %s", pkg)
+			if err := r.Run(sudo + fmt.Sprintf("installer -package %q -target /", pkg)); err != nil {
+				return err
+			}
+			r.Logf("  [dmg] package installed")
+			return nil
 		}
 	}
 	return fmt.Errorf("no .pkg/.mpkg found inside DMG %s", file)

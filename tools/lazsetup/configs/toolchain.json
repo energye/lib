@@ -114,7 +114,8 @@
           "id": "build-lazarus",
           "kind": "commands",
           "commands": [
-            "cd \"${cprefix}\" && make clean all"
+            "cd \"${cprefix}\" && make clean all",
+            "cd \"${cprefix}\" && make lcl LCL_PLATFORM=gtk3"
           ]
         }
       ]
