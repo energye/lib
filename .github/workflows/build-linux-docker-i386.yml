@@ -1,3 +1,5 @@
+# [DISABLED] lazsetup 调试验证期间停用；恢复方式：删除下方 job 的 `if: false`。
+# 新的验证入口见 .github/workflows/debug-lazsetup.yml
 name: Build Linux docker i386
 
 on:
@@ -8,6 +10,7 @@ on:
 
 jobs:
   linux-i386:
+    if: false  # [DISABLED] 调试验证期间不执行
     runs-on: ${{ matrix.operating-system }}
     name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
 

@@ -1,3 +1,5 @@
+# [DISABLED] lazsetup 调试验证期间停用；恢复方式：删除下方 job 的 `if: false`。
+# 新的验证入口见 .github/workflows/debug-lazsetup.yml
 name: Build Windows(i386, x86_64)
 
 on:
@@ -8,6 +10,7 @@ on:
 
 jobs:
   windows-64:
+    if: false  # [DISABLED] 调试验证期间不执行
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
@@ -95,6 +98,7 @@ jobs:
           files: D:/bins/**
 
   windows-32:
+    if: false  # [DISABLED] 调试验证期间不执行
     runs-on: ${{ matrix.operating-system }}
 
     strategy:

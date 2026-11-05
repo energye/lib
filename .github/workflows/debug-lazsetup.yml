@@ -1,0 +1,129 @@
+name: debug lazsetup
+
+# 新增的调试 workflow：只做验证，不发布产物。
+# 原有 5 个构建 workflow 已用 if: false 停用，待这里验证通过后再改造恢复。
+on:
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Runner label'
+        required: true
+        default: ubuntu-latest
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+          - macos-14
+      lazarus:
+        description: 'Lazarus version'
+        required: true
+        default: '4.8'
+      target_os:
+        description: 'Target OS'
+        required: true
+        default: linux
+        type: choice
+        options: [windows, linux, darwin]
+      target_arch:
+        description: 'Target architecture'
+        required: true
+        default: amd64
+        type: choice
+        options: ['386', 'amd64', 'arm', 'arm64']
+      mode:
+        description: 'Build mode name (empty = all modes matching the target)'
+        required: false
+        default: ''
+      run_setup:
+        description: 'Really install the toolchain (otherwise dry-run only)'
+        type: boolean
+        default: false
+      run_build:
+        description: 'Really build lib (requires run_setup)'
+        type: boolean
+        default: false
+      verify_downloads:
+        description: 'Download artifacts and check sha/size without installing'
+        type: boolean
+        default: false
+      no_container:
+        description: 'Compile on the host instead of docker'
+        type: boolean
+        default: false
+
+env:
+  GOWORK: off
+
+jobs:
+  debug:
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+          cache: false
+
+      - name: Build lazsetup binary
+        shell: bash
+        run: |
+          set -e
+          BIN=lazsetup
+          if [ "$RUNNER_OS" = "Windows" ]; then BIN=lazsetup.exe; fi
+          go -C tools/lazsetup build -o "../../$BIN" ./cmd/lazsetup
+          echo "LAZSETUP_BIN=$BIN" >> "$GITHUB_ENV"
+
+      - name: Unit tests
+        shell: bash
+        run: go -C tools/lazsetup test ./...
+
+      - name: Resolve config (offline)
+        shell: bash
+        run: |
+          ./"$LAZSETUP_BIN" version
+          ./"$LAZSETUP_BIN" list --expand
+          ./"$LAZSETUP_BIN" env --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}"
+
+      - name: Dry-run plan (no network, no commands)
+        shell: bash
+        run: |
+          EXTRA=""
+          if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
+          MODES=""
+          if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
+          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --dry-run $EXTRA
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --dry-run $EXTRA $MODES
+
+      - name: Verify downloads (checksum only)
+        if: ${{ inputs.verify_downloads }}
+        shell: bash
+        run: |
+          ./"$LAZSETUP_BIN" verify --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}"
+
+      - name: Setup toolchain
+        if: ${{ inputs.run_setup }}
+        shell: bash
+        run: |
+          EXTRA=""
+          if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
+          ./"$LAZSETUP_BIN" setup --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --github $EXTRA
+
+      - name: Build lib
+        if: ${{ inputs.run_setup && inputs.run_build }}
+        shell: bash
+        run: |
+          EXTRA=""
+          if [ "${{ inputs.no_container }}" = "true" ]; then EXTRA="--no-container"; fi
+          MODES=""
+          if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
+          ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --out bins $EXTRA $MODES
+
+      - name: Upload artifacts
+        if: ${{ inputs.run_setup && inputs.run_build }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lazsetup-debug-${{ inputs.target_os }}-${{ inputs.target_arch }}
+          path: bins/**
+          if-no-files-found: warn

@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "vars": {
+    "SF_LAZ": "https://sourceforge.net/projects/lazarus/files",
+    "SF_FPC": "https://sourceforge.net/projects/freepascal/files"
+  },
+  "defaults": {
+    "lazarus": "4.8",
+    "work": "${home}/.lazsetup",
+    "prefix": "${work}/lazarus",
+    "cache": "${home}/.cache/lazsetup",
+    "retries": 3,
+    "timeout": "30m"
+  },
+  "releases": {
+    "4.8": {
+      "fpc": "3.2.2",
+      "aliases": {
+        "laz_src": "lazarus-4.8-0.tar.gz",
+        "laz_win": "lazarus-4.8-fpc-3.2.2-${win_tag}.exe",
+        "laz_mac_zip": "lazarus-darwin-${mac_arch}-4.8.zip",
+        "mac_fpc_dmg": "fpc-3.2.4rc1a.intelarm64-macosx.dmg"
+      }
+    },
+    "4.0": {
+      "fpc": "3.2.2",
+      "aliases": {
+        "laz_src": "lazarus-4.0-0.tar.gz",
+        "laz_win": "lazarus-4.0-fpc-3.2.2-${win_tag}.exe",
+        "laz_mac_zip": "lazarus-darwin-${mac_arch}-4.0.zip",
+        "mac_fpc_dmg": "fpc-3.2.2.intelarm64-macosx.dmg"
+      }
+    },
+    "3.8": {
+      "fpc": "3.2.2",
+      "aliases": {
+        "laz_src": "lazarus-3.8-0.tar.gz",
+        "laz_win": "lazarus-3.8-fpc-3.2.2-${win_tag}.exe",
+        "laz_mac_zip": "lazarus-darwin-${mac_arch}-3.8.zip",
+        "mac_fpc_dmg": "fpc-3.2.2.intelarm64-macosx.dmg"
+      }
+    }
+  },
+  "profiles": {
+    "win-binary": {
+      "os": ["windows"],
+      "arch": ["386", "amd64"],
+      "components": [
+        {
+          "id": "lazarus",
+          "url": "${SF_LAZ}/Lazarus%20Windows%20${win_bits}%20bits/Lazarus%20${laz}/${laz_win}",
+          "kind": "inno",
+          "dest": "${prefix}",
+          "provides": ["lazbuild.exe", "fpc.exe"]
+        }
+      ]
+    },
+    "linux-source": {
+      "os": ["linux"],
+      "arch": ["386", "amd64", "arm", "arm64"],
+      "components": [
+        {
+          "id": "lazarus-src",
+          "url": "${SF_LAZ}/Lazarus%20Zip%20_%20GZip/Lazarus%20${laz}/${laz_src}",
+          "kind": "targz",
+          "dest": "${work}",
+          "strip": 0
+        },
+        {
+          "id": "fpc-bin",
+          "url": "${SF_FPC}/Linux/${fpc}/fpc-${fpc}.${fpc_arch}-linux.tar",
+          "kind": "tar",
+          "dest": "${prefix}",
+          "strip": 0
+        },
+        {
+          "id": "fpcsrc",
+          "url": "${SF_FPC}/Source/${fpc}/fpc-${fpc}.source.tar.gz",
+          "kind": "targz",
+          "dest": "${prefix}",
+          "strip": 0
+        },
+        {
+          "id": "build-fpc",
+          "kind": "commands",
+          "commands": [
+            "cd \"${cprefix}/fpc-${fpc}.${fpc_suffix}\" && printf \"\\n\\n\\n\\n\\n\\n\" | ./install.sh"
+          ]
+        },
+        {
+          "id": "build-lazarus",
+          "kind": "commands",
+          "commands": [
+            "cd \"${cprefix}\" && make clean all"
+          ]
+        }
+      ]
+    },
+    "mac-binary": {
+      "os": ["darwin"],
+      "arch": ["amd64", "arm64"],
+      "components": [
+        {
+          "id": "fpc",
+          "url": "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${mac_fpc_dmg}",
+          "kind": "dmg",
+          "sudo": true
+        },
+        {
+          "id": "lazarus",
+          "url": "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${laz_mac_zip}",
+          "kind": "zip",
+          "dest": "/Applications",
+          "commands": [
+            "sudo xattr -cr /Applications/Lazarus",
+            "sudo mkdir -p /usr/local/bin",
+            "sudo ln -sfn /Applications/Lazarus/lazbuild /usr/local/bin/lazbuild"
+          ]
+        }
+      ]
+    }
+  },
+  "targets": {
+    "windows/386": { "profile": "win-binary" },
+    "windows/amd64": { "profile": "win-binary" },
+    "linux/386": {
+      "profile": "linux-source",
+      "container": {
+        "engine": "docker",
+        "image": "i386/debian:11",
+        "platform": "linux/386",
+        "hostPath": "${work}",
+        "guestPath": "/app",
+        "workdir": "/app",
+        "shell": "/bin/sh",
+        "install": [
+          "apt-get update -q -y",
+          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+        ]
+      }
+    },
+    "linux/amd64": { "profile": "linux-source" },
+    "linux/arm": {
+      "profile": "linux-source",
+      "container": {
+        "engine": "docker",
+        "image": "arm32v7/debian:11",
+        "platform": "linux/arm/v7",
+        "hostPath": "${work}",
+        "guestPath": "/app",
+        "workdir": "/app",
+        "shell": "/bin/sh",
+        "install": [
+          "apt-get update -q -y",
+          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+        ]
+      }
+    },
+    "linux/arm64": {
+      "profile": "linux-source",
+      "container": {
+        "engine": "docker",
+        "image": "arm64v8/ubuntu:18.04",
+        "platform": "linux/arm64",
+        "hostPath": "${work}",
+        "guestPath": "/app",
+        "workdir": "/app",
+        "shell": "/bin/sh",
+        "install": [
+          "apt-get update -q -y",
+          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
+        ]
+      }
+    },
+    "darwin/amd64": { "profile": "mac-binary" },
+    "darwin/arm64": {
+      "profile": "mac-binary",
+      "note": "官方 aarch64 zip; 若需 FPC 3.3.1 trunk 请另配 profile (见 DESIGN.md)"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "build": {
+    "project": "liblcl.lpi",
+    "workDir": ".",
+    "containerDir": "${cwork}/lib",
+    "output": "bin/liblcl.${lib_ext}",
+    "outDir": "../bins",
+    "packages": [
+      { "path": "./3rd-party/richmemo/richmemopackage.lpk", "link": true },
+      { "path": "./3rd-party/richmemo/ide/richmemo_design.lpk", "add": true },
+      { "path": "./3rd-party/ATFlatControls/atflatcontrols/atflatcontrols_package.lpk", "add": true },
+      { "path": "./3rd-party/DCPcrypt/dcpcrypt.lpk", "link": true },
+      { "path": "./3rd-party/DCPcrypt/dcpcrypt_laz.lpk", "add": true },
+      { "path": "./3rd-party/CEF4Delphi/packages/cef4delphi_lazarus.lpk", "add": true }
+    ],
+    "modes": [
+      { "name": "Win64", "bm": "Win64", "os": ["windows"], "arch": ["amd64"], "output": "lcl_binary_windows64.zip" },
+      { "name": "Win64_CEF", "bm": "Win64_CEF", "os": ["windows"], "arch": ["amd64"], "output": "lcl_cef_binary_windows64.zip" },
+      { "name": "Win64_WV2", "bm": "Win64_WV2", "os": ["windows"], "arch": ["amd64"], "output": "lcl_wv2_binary_windows64.zip" },
+      { "name": "Win32", "bm": "Win32", "os": ["windows"], "arch": ["386"], "output": "lcl_binary_windows32.zip" },
+      { "name": "Win32_CEF", "bm": "Win32_CEF", "os": ["windows"], "arch": ["386"], "output": "lcl_cef_binary_windows32.zip" },
+      { "name": "Win32_WV2", "bm": "Win32_WV2", "os": ["windows"], "arch": ["386"], "output": "lcl_wv2_binary_windows32.zip" },
+
+      { "name": "Linux64", "bm": "Linux64", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_binary_linux64.zip" },
+      { "name": "Linux64_CEF", "bm": "Linux64 CEF", "ws": "gtk3", "os": ["linux"], "arch": ["amd64"], "output": "lcl_cef_binary_linux64.zip" },
+      { "name": "Linux64_WK2", "bm": "Linux64 WK2", "ws": "gtk3", "os": ["linux"], "arch": ["amd64"], "output": "lcl_wk2_binary_linux64.zip" },
+      { "name": "Linux64_GTK2_CEF", "bm": "Linux64 GTK2 CEF", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_cef_binary_linux64_gtk2.zip" },
+      { "name": "Linux64_GTK2_WK", "bm": "Linux64 GTK2 WK", "ws": "gtk2", "os": ["linux"], "arch": ["amd64"], "output": "lcl_wk_binary_linux64_gtk2.zip" },
+      { "name": "Linux32", "bm": "Linux32", "ws": "gtk2", "os": ["linux"], "arch": ["386"], "output": "lcl_binary_linux32.zip" },
+      { "name": "LinuxARM64", "bm": "LinuxARM64", "ws": "gtk2", "os": ["linux"], "arch": ["arm64"], "output": "lcl_binary_linuxarm64.zip" },
+      { "name": "LinuxARM64_CEF", "bm": "LinuxARM64 CEF", "ws": "gtk3", "os": ["linux"], "arch": ["arm64"], "output": "lcl_cef_binary_linuxarm64.zip" },
+      { "name": "LinuxARM64_WK2", "bm": "LinuxARM64 WK2", "ws": "gtk3", "os": ["linux"], "arch": ["arm64"], "output": "lcl_wk2_binary_linuxarm64.zip" },
+
+      { "name": "MacOSx64", "bm": "MacOSx64", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_binary_macosx64.zip" },
+      { "name": "MacOSARM64", "bm": "MacOSARM64", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_binary_macosarm64.zip" },
+      { "name": "MacOSx64_CEF", "bm": "MacOSx64_CEF", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_cef_binary_macosx64.zip" },
+      { "name": "MacOSARM64_CEF", "bm": "MacOSARM64_CEF", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_cef_binary_macosarm64.zip" },
+      { "name": "MacOSx64_WK2", "bm": "MacOSx64_WK2", "ws": "cocoa", "os": ["darwin"], "arch": ["amd64"], "output": "lcl_wk2_binary_macosx64.zip" },
+      { "name": "MacOSARM64_WK2", "bm": "MacOSARM64_WK2", "ws": "cocoa", "os": ["darwin"], "arch": ["arm64"], "output": "lcl_wk2_binary_macosarm64.zip" }
+    ]
+  }
+}
