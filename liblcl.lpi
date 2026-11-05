@@ -20,7 +20,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
-      <BuildNr Value="109"/>
+      <BuildNr Value="111"/>
       <Language Value="0804"/>
       <CharSet Value="04B0"/>
       <StringTable Comments="Energy Cross-Platform GUI Framework" CompanyName="YangHY / Energy " FileDescription="Energy Framework Cross-Platform Runtime Library" InternalName="energy" LegalCopyright="Copyright (C) 2026 YangHY." LegalTrademarks="All trademarks are property of their respective owners." OriginalFilename="libenergy.dll / libenergy.dylib / libenergy.so" ProductName="Energy Framework" ProductVersion="3.0.0.0"/>
@@ -28,8 +28,44 @@
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="win32"/>
     </MacroValues>
-    <BuildModes Active="Debug_CEF147">
+    <BuildModes Active="Debug_CEF150">
       <Item Name="Debug" Default="True"/>
+      <Item Name="Debug_CEF150">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="libenergy-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;cef\150;src\3rd\CEF\150.0.14\source;src\3rd\DCPcrypt;src\3rd\DCPcrypt\Hashes;src\3rd\WebView2\1.0.3124.44\source;src\webkit2_linux;src\webkit2_mac"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dUseCthreads
+-dCEF150"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
       <Item Name="Debug_CEF147">
         <MacroValues Count="1">
           <Macro2 Name="LCLWidgetType" Value="gtk3"/>
@@ -410,25 +446,26 @@
       <Unit>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="14"/>
-        <CursorPos X="11" Y="21"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="13"/>
+        <CursorPos Y="33"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFUnits.inc"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="36" Y="16"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="6"/>
+        <CursorPos X="27" Y="12"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFImports.inc"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="9" Y="12"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="2" Y="30"/>
         <UsageCount Value="31"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\109\CEFImport.inc"/>
@@ -514,19 +551,58 @@
         <UsageCount Value="7"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\..\..\..\..\usr\share\lazarus\4.8.0\lcl\interfaces\gtk3\gtk3widgets.pas"/>
+        <Filename Value="E:\usr\share\lazarus\4.8.0\lcl\interfaces\gtk3\gtk3widgets.pas"/>
         <UnitName Value="Gtk3Widgets"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="14271"/>
         <CursorPos X="11" Y="14271"/>
         <UsageCount Value="8"/>
       </Unit>
+      <Unit>
+        <Filename Value="cef\150\libs\TChromiumCore.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1142"/>
+        <CursorPos Y="1158"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\147.0.14\source\uCEFChromiumCore.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2751"/>
+        <CursorPos X="51" Y="2762"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\150.0.14\source\uCEFChromiumCore.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1614"/>
+        <CursorPos X="19" Y="1623"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\150\CEFImport.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="244"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\150\CEFUnit.inc"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\150.0.14\source\uCEFComponentUpdateCallback.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\3rd\CEF\150.0.14\source\uCEFApp.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="2">
-      <Position>
-        <Filename Value="cef\CEFImports.inc"/>
-        <Caret Line="25" Column="17"/>
-      </Position>
+    <JumpHistory HistoryIndex="5">
       <Position>
         <Filename Value="cef\CEFUnits.inc"/>
         <Caret Line="16" Column="36"/>
@@ -534,6 +610,21 @@
       <Position>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="17" Column="11" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="16" Column="11" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\CEFUnits.inc"/>
+        <Caret Line="31" Column="36" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\CEFUnits.inc"/>
+        <Caret Line="12" Column="27" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\150\CEFUnit.inc"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

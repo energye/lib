@@ -74,9 +74,6 @@ uses
 {$R *.res}
 
 begin
-  //TCrCocoaApplication.sharedApplication; // VF 需要？？
-  // LazarusResources
-
   RequireDerivedFormResource := False;
   IsMultiThread := True;
 end.
