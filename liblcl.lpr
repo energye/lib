@@ -51,18 +51,18 @@ uses
 {$ENDIF}
 
 // Webview2 Auto Generate
-{$IFDEF LCLWin32}
+{$IF defined(LCLWin32) and defined(Webview)}
 {$I ./wv/libs/WINDOWSImport.inc}
 {$I ./wv/libs/WindowsPreDef.inc}
 {$ENDIF}
 
 // Webkit2 Auto Generate
-{$IFDEF LCLGTK3}
+{$IF defined(LCLGTK3) and defined(Webview)}
 {$I ./wv/libs/LINUXImport.inc}
 {$ENDIF}
 
 // Webkit2 Auto Generate
-{$IFDEF LCLCocoa}
+{$IF defined(LCLCocoa) and defined(Webview)}
 {$I ./wv/libs/DARWINImport.inc}
 {$ENDIF}
 

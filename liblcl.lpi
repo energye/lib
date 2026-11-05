@@ -28,7 +28,7 @@
     <MacroValues Count="1">
       <Macro1 Name="LCLWidgetType" Value="win32"/>
     </MacroValues>
-    <BuildModes Active="Debug_CEF150">
+    <BuildModes Active="Debug_CEF109">
       <Item Name="Debug" Default="True"/>
       <Item Name="Debug_CEF150">
         <CompilerOptions>
@@ -62,7 +62,8 @@
           </Linking>
           <Other>
             <CustomOptions Value="-dUseCthreads
--dCEF150"/>
+-dCEF150
+-dWebview"/>
           </Other>
         </CompilerOptions>
       </Item>
@@ -101,7 +102,8 @@
           </Linking>
           <Other>
             <CustomOptions Value="-dUseCthreads
--dCEF147"/>
+-dCEF147
+-dWebview"/>
           </Other>
         </CompilerOptions>
       </Item>
@@ -139,7 +141,8 @@
           </Linking>
           <Other>
             <CustomOptions Value="-dUseCthreads
--dCEF127"/>
+-dCEF127
+-dWebview"/>
           </Other>
         </CompilerOptions>
       </Item>
@@ -176,7 +179,9 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dCEF109"/>
+            <CustomOptions Value="-dUseCthreads
+-dCEF109
+-dWebview"/>
           </Other>
         </CompilerOptions>
       </Item>
@@ -447,25 +452,25 @@
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="13"/>
-        <CursorPos Y="33"/>
+        <TopLine Value="28"/>
+        <CursorPos X="39" Y="36"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFUnits.inc"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="27" Y="12"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="11" Y="31"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFImports.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="5"/>
-        <CursorPos X="2" Y="30"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="2"/>
+        <CursorPos X="14" Y="22"/>
         <UsageCount Value="31"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\109\CEFImport.inc"/>
@@ -587,7 +592,7 @@
       </Unit>
       <Unit>
         <Filename Value="cef\150\CEFUnit.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
@@ -601,8 +606,23 @@
         <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="ExtDecl.inc"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uLCLEventCallback.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cef\CEFPreDef.inc"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="5">
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="cef\CEFUnits.inc"/>
         <Caret Line="16" Column="36"/>
@@ -625,6 +645,32 @@
       </Position>
       <Position>
         <Filename Value="cef\150\CEFUnit.inc"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="50" Column="19" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\CEFUnits.inc"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="22" Column="19" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="50" Column="26" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="cef\CEFImports.inc"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="8" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="13" Column="14"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
