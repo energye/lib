@@ -159,6 +159,19 @@ jobs:
         shell: bash
         run: docker run --rm --privileged tonistiigi/binfmt --install all
 
+      # FPC 3.2.4rc1a emits Objective-C method lists that Apple ld rejects on
+      # aarch64-darwin (Xcode 15+). The darwin_arm64 build mode points FPC at
+      # this shim via --opt=-FD, which links through LLVM's ld64.lld.
+      - name: Provide ld64.lld for macOS arm64
+        if: ${{ runner.os == 'macOS' && inputs.run_setup && inputs.run_build && inputs.target_os == 'darwin' && inputs.target_arch == 'arm64' }}
+        shell: bash
+        run: |
+          set -e
+          if ! command -v ld64.lld >/dev/null 2>&1; then brew install lld; fi
+          chmod +x "$GITHUB_WORKSPACE/tools/lazsetup/scripts/darwin-lld/ld"
+          command -v ld64.lld
+          ld64.lld --version | head -2
+
       - name: Setup toolchain
         if: ${{ inputs.run_setup }}
         shell: bash

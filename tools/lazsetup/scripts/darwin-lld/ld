@@ -1,0 +1,48 @@
+#!/bin/bash
+# Link shim for FPC 3.2.x on macOS arm64.
+#
+# Apple's ld (Xcode 15+/ld-1167.5 and newer) rejects the Objective-C protocol
+# method lists emitted by FPC 3.2.x for aarch64-darwin:
+#   ld: malformed method list atom 'ltmp3', fixups found beyond the number of
+#       method entries
+# or FPC reports "(9014) Can't call the linker". x86_64-darwin is unaffected.
+# FPC 3.2.4-rc2 fixes the emitter; until the Lazarus/FPC toolchain is upgraded,
+# link through LLVM's ld64.lld instead.
+#
+# lazsetup passes -FD<this directory> to fpc (via lazbuild --opt=) for the
+# darwin_arm64 build mode, so FPC finds this file when it looks for "ld".
+# CI installs the linker with `brew install lld`.
+
+if [ -z "${LD64_LLD:-}" ]; then
+  LD64_LLD=$(command -v ld64.lld 2>/dev/null || true)
+fi
+if [ -z "$LD64_LLD" ]; then
+  LD64_LLD=$(ls /opt/homebrew/bin/ld64.lld /usr/local/bin/ld64.lld 2>/dev/null | head -n1 || true)
+fi
+if [ -z "$LD64_LLD" ] || [ ! -x "$LD64_LLD" ]; then
+  echo "darwin-lld/ld: ld64.lld not found (install with: brew install lld)" >&2
+  exit 1
+fi
+
+args=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -macosx_version_min|-macos_version_min)
+      # lld only accepts -platform_version <platform> <min> <sdk>.
+      args+=(-platform_version macos "$2" "$2")
+      shift 2
+      ;;
+    -no_dead_strip_inits_and_terms)
+      shift
+      ;;
+    -multiply_defined)
+      shift 2
+      ;;
+    *)
+      args+=("$1")
+      shift
+      ;;
+  esac
+done
+
+exec "$LD64_LLD" "${args[@]}"

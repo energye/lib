@@ -83,6 +83,45 @@ func TestShippedConfigResolves(t *testing.T) {
 	}
 }
 
+// TestDarwinArm64UsesLLDShim pins the linker workaround. FPC 3.2.4rc1a emits
+// Objective-C protocol method lists that Apple ld (Xcode 15+) rejects for
+// aarch64-darwin; FPC 3.2.4-rc2 fixes the emitter. Until the toolchain moves
+// to Lazarus 5.0, darwin_arm64 must hand -FD<shim dir> to fpc through
+// lazbuild --opt=. The shim lives at tools/lazsetup/scripts/darwin-lld/ld.
+func TestDarwinArm64UsesLLDShim(t *testing.T) {
+	root := filepath.Join("..", "..", "configs")
+	c, err := Load(filepath.Join(root, "toolchain.json"), filepath.Join(root, "energy-lib.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var m *BuildMode
+	for i := range c.Build.Modes {
+		if c.Build.Modes[i].Name == "darwin_arm64" {
+			m = &c.Build.Modes[i]
+		}
+	}
+	if m == nil {
+		t.Fatal("darwin_arm64 mode missing")
+	}
+	if !strings.Contains(m.Extra, "--opt=-FD") || !strings.Contains(m.Extra, "darwin-lld") {
+		t.Errorf("darwin_arm64 extra = %q, want --opt=-FD<shim dir>", m.Extra)
+	}
+	repo := filepath.Join(t.TempDir(), "repo")
+	r, err := c.Resolve(Options{Lazarus: c.Defaults.Lazarus, OS: "darwin", Arch: "arm64", Repo: repo})
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := ""
+	for _, rm := range r.Build.Modes {
+		if rm.Name == "darwin_arm64" {
+			found = rm.Extra
+		}
+	}
+	if !strings.Contains(found, repo) || !strings.Contains(found, "darwin-lld") {
+		t.Errorf("resolved darwin_arm64 extra = %q, want the repo-relative shim directory under %s", found, repo)
+	}
+}
+
 // TestShippedModesHaveWidgetSet locks in the explicit --ws value for GTK2,
 // GTK3 and Cocoa. liblcl.lpi's LCLWidgetType macro is not enough for lazbuild:
 // without --ws=gtk3 lazbuild searches the gtk2 LCL unit directory instead of

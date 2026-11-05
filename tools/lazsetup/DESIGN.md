@@ -106,6 +106,7 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 ## 7. 已知限制
 
 - `macOS arm64` 当前走官方 4.8 aarch64 包。仓库里的《a_libenergy.dylib 编译说明.md》提到 arm64 可能需要 fpcupdeluxe 安装的 FPC 3.3.1 trunk 与 `-WM11.0 -dUseCthreads`，x86_64 用 `-WM10.15`。若实际编译报架构/SDK 错，需要新增一个 `mac-trunk` profile 并在 `targets.darwin/arm64.byRelease` 中切换。
+- **macOS arm64 链接器绕法**：官方 4.8 包里的 FPC 3.2.4rc1a 在 aarch64-darwin 生成的 Objective-C 协议方法表会被 Apple `ld`（Xcode 15+/ld-1167.5 起）拒绝 —— macOS 26 报 `ld: malformed method list atom ... fixups found beyond the number of method entries`，macOS 15 报 FPC `(9014) Can't call the linker`；x86_64 不受影响，换 runner 无效。`darwin_arm64` 的 `extra` 给 lazbuild 传 `--opt=-FD${repo}/tools/lazsetup/scripts/darwin-lld`，FPC 因此找到该目录下名为 `ld` 的 shim，改用 LLVM `ld64.lld` 链接；CI 里 `brew install lld` 提供链接器。FPC 3.2.4-rc2 已修复发射端，等工具链切到 Lazarus 5.0 后可去掉 `extra`、shim 与 brew 步骤。
 - FPC 的 `install.sh` 是交互式脚本，配置里用 `./install.sh < /dev/null`（与现有 workflow 的空 here-doc 等价）让它取默认值。
 - 旧 `.github/shell/add-package.*` 引用的 `./3rd-party/...` 在当前 main 分支已不存在；配置不再沿用。若将来 `liblcl.lpi` 改为依赖已安装的 IDE 包，在 `build.packages` 里填 `./src/3rd/...` 下真实存在的 lpk，`doctor` 会校验路径。
 - 每个下载组件都带 2~3 个 SourceForge 备用镜像；下载器会识别 Cloudflare/404 返回的 HTML 页面并自动切换镜像，不会把网页当安装包交给静默安装器。

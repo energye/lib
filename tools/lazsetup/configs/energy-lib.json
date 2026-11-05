@@ -59,7 +59,8 @@
         "os": ["darwin"],
         "arch": ["arm64"],
         "artifact": "libenergy-arm64.dylib",
-        "output": "lcl_binary_macosarm64.zip"
+        "output": "lcl_binary_macosarm64.zip",
+        "extra": "--opt=-FD${repo}/tools/lazsetup/scripts/darwin-lld"
       },
       {
         "name": "Debug_CEF150",
