@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "_note": "Build modes MUST match <BuildModes><Item Name=...> in liblcl.lpi. Artifact names come from each mode's Target/Filename. 'ws' is REQUIRED for Linux/macOS: lazbuild needs --ws=gtk2/gtk3/cocoa to find the matching LCL units (the lpi's LCLWidgetType macro alone is not enough). Current liblcl.lpi references all third-party units through OtherUnitFiles (source dirs), so no lpk registration is needed; run `lazsetup doctor` after changing the .lpi.",
+  "_note": "Build modes MUST match <BuildModes><Item Name=...> in liblcl.lpi. Artifact names come from each mode's Target/Filename. 'ws' is REQUIRED for Linux/macOS: lazbuild needs --ws=gtk2/gtk3/cocoa to find the matching LCL units (the lpi's LCLWidgetType macro alone is not enough). Current liblcl.lpi references all third-party units through OtherUnitFiles (source dirs), so no lpk registration is needed; run `lazsetup doctor` after changing the .lpi. linux_GTK3 mirrors linux_GTK2 exactly (same lazbuild pipeline and package layout); the only differences are --ws=gtk3 instead of --ws=gtk2 and the docker/toolchain environment it runs in (Lazarus 5.0). It stays fully configured but disabled for now; re-enable it once the Lazarus 5.0 container environment is wired up. No change to the lib source is needed.",
   "build": {
     "project": "liblcl.lpi",
     "workDir": ".",
@@ -40,7 +40,8 @@
         "os": ["linux"],
         "arch": ["386", "amd64", "arm", "arm64"],
         "artifact": "libenergy-gtk3.so",
-        "output": "lcl_binary_${os}_${arch}_gtk3.zip"
+        "output": "lcl_binary_${os}_${arch}_gtk3.zip",
+        "disabled": true
       },
       {
         "name": "darwin_amd64",

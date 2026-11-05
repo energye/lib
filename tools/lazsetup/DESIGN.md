@@ -74,7 +74,7 @@
 3. `fpc-<fpc>.source.tar.gz` → RTL/FCL 源码，解压到 `${prefix}`
 4. `cd ${cprefix}/fpc-<fpc>.<fpc_suffix> && printf '\n\n\n\n\n\n' | ./install.sh`（用默认答案，与旧 CI 一致）
 5. `cd ${cprefix} && make clean all` → 产出 `lazbuild`（默认只构建 gtk2 的 LCL）
-6. `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3` → 补齐 gtk3 LCL，否则 `linux_GTK3` 找不到 `Gtk3Globals`
+6. **GTK3 暂缓**：`linux_GTK3` 与 `linux_GTK2` 完全对称 —— 同一条 `lazbuild -B` 流水线、同样的 `artifact` / `output` 打包方式，**差别只有两处**：传 `--ws=gtk3`（而不是 `--ws=gtk2`），以及所跑的 docker / 工具链环境不同（Lazarus 5.0）。当前 `linux_GTK3` 标记 `disabled: true`、`make lcl LCL_PLATFORM=gtk3` 也暂不执行，Linux 只产出 `libenergy-gtk2.so`，lib 库源码不做任何改动。启用时：① 工具链版本切到 `5.0RC1` 并配好对应容器环境；② 去掉 mode 的 `disabled`；③ 视 5.0 的 LCL 情况决定是否恢复 `cd ${cprefix} && make lcl LCL_PLATFORM=gtk3`
 
 FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 `install.sh`，只有 Lazarus 需要 `make`。这与旧 workflow 中 `run-on-arch-action` 容器里做的事一致，现在由配置里的 `commands` 编排。
 
@@ -92,7 +92,7 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 - `build.modes` — 每个模式的 `--bm`、`--ws`、`extra`、`artifact`（产物文件）、`output`（zip 名），并用 `os` / `arch` 限定适用范围
 - `bm` 必须匹配 `liblcl.lpi` 的 `<BuildModes><Item Name="...">`；`artifact` 对应该模式的 `Target/Filename`，例如 `win_amd64 → libenergy-amd64.dll`、`linux_GTK3 → libenergy-gtk3.so`、`Debug_CEF150 → libenergy-${laz_target}.${lib_ext}`
 - 源码模式下自动追加 `--lazarusdir=${cprefix}`，容器模式下 `lazbuild` 用 `${cprefix}/lazbuild` 而不是宿主机路径
-- **`ws` 必须显式配置**：`linux_GTK2 → gtk2`、`linux_GTK3 → gtk3`、`darwin_* → cocoa`（Windows 沿用默认 win32，不传 `--ws`）。`liblcl.lpi` 里的 `LCLWidgetType` 宏只供 IDE 使用，`lazbuild` 靠 `--ws` 决定去 `lcl/units/<cpu>-<os>/<widgetset>` 找 LCL 单元。缺了 `--ws=gtk3` 时，即使已经 `make lcl LCL_PLATFORM=gtk3`，仍会报 `Can't find unit Gtk3Globals used by LazSynGtk3IMM`。旧 CI 的 `build-lib-in-linux-docker.sh` / `build-macos.yml` 也始终显式传 `--ws`
+- **`ws` 必须显式配置**：`linux_GTK2 → gtk2`、`linux_GTK3 → gtk3`、`darwin_* → cocoa`（Windows 沿用默认 win32，不传 `--ws`）。`liblcl.lpi` 里的 `LCLWidgetType` 宏只供 IDE 使用，`lazbuild` 靠 `--ws` 决定去 `lcl/units/<cpu>-<os>/<widgetset>` 找 LCL 单元；不传会回落到默认 gtk2 单元目录。旧 CI 的 `build-lib-in-linux-docker.sh` / `build-macos.yml` 也始终显式传 `--ws`。当前 `linux_GTK3` 的 `--ws=gtk3` 只是预留配置，尚未启用
 - 每个模式编译后立即把 `artifact` 打包成 zip（Go 原生 `archive/zip`）；产物不存在时**直接报错**，避免静默假成功
 
 默认只跑适合当前目标平台的模式；`--mode NAME` 可显式指定多个。

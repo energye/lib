@@ -17,6 +17,7 @@ on:
           - windows-latest
           - macos-latest
           - macos-14
+          - macos-15-intel
       lazarus:
         description: 'Lazarus version'
         required: true
@@ -34,7 +35,7 @@ on:
         type: choice
         options: ['386', 'amd64', 'arm', 'arm64']
       mode:
-        description: 'Build mode name from liblcl.lpi, e.g. win_amd64 / linux_GTK3 (empty = all matching modes)'
+        description: 'Build mode name from liblcl.lpi, e.g. win_amd64 / linux_GTK2 (empty = all enabled matching modes; linux_GTK3 is currently disabled)'
         required: false
         default: ''
       run_setup:

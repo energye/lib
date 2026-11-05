@@ -27,9 +27,11 @@ func TestShippedConfigResolves(t *testing.T) {
 	if len(c.Targets) != 8 {
 		t.Errorf("expected 8 platform targets, got %d", len(c.Targets))
 	}
+	// linux_GTK3 is intentionally staged out; TestLinuxCurrentlyBuildsGTK2Only
+	// checks that it stays configured but disabled.
 	wantModes := map[string]bool{
 		"win_amd64": false, "win_386": false,
-		"linux_GTK2": false, "linux_GTK3": false,
+		"linux_GTK2": false,
 		"darwin_amd64": false, "darwin_arm64": false,
 	}
 	for _, m := range c.Build.Modes {
@@ -83,9 +85,8 @@ func TestShippedConfigResolves(t *testing.T) {
 
 // TestShippedModesHaveWidgetSet locks in the explicit --ws value for GTK2,
 // GTK3 and Cocoa. liblcl.lpi's LCLWidgetType macro is not enough for lazbuild:
-// without --ws=gtk3 lazbuild searches the gtk2 LCL unit directory and fails
-// with "Can't find unit Gtk3Globals used by LazSynGtk3IMM". The old CI scripts
-// always passed --ws explicitly.
+// without --ws=gtk3 lazbuild searches the gtk2 LCL unit directory instead of
+// the gtk3 one. The old CI scripts always passed --ws explicitly.
 func TestShippedModesHaveWidgetSet(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
 	if err != nil {
@@ -107,6 +108,40 @@ func TestShippedModesHaveWidgetSet(t *testing.T) {
 	}
 	for name := range want {
 		t.Errorf("required widgetset mode %q missing", name)
+	}
+}
+
+// TestLinuxCurrentlyBuildsGTK2Only records a deliberate staging decision:
+// GTK2 must build right now, while GTK3 stays configured exactly like GTK2
+// (bm/ws/artifact/output) but disabled until its docker/toolchain environment
+// (Lazarus 5.0) is wired up. The two modes share the same lazbuild pipeline;
+// only --ws and the container differ, and the lib source needs no changes.
+// Re-enable by dropping the disabled flag.
+func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "energy-lib.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var gtk2, gtk3 *BuildMode
+	for i := range c.Build.Modes {
+		switch c.Build.Modes[i].Name {
+		case "linux_GTK2":
+			gtk2 = &c.Build.Modes[i]
+		case "linux_GTK3":
+			gtk3 = &c.Build.Modes[i]
+		}
+	}
+	if gtk2 == nil || gtk2.Disabled {
+		t.Fatal("linux_GTK2 must stay enabled")
+	}
+	if gtk3 == nil {
+		t.Fatal("linux_GTK3 configuration must be kept")
+	}
+	if !gtk3.Disabled {
+		t.Error("linux_GTK3 must stay disabled until the Lazarus 5.0 container is wired up")
+	}
+	if gtk3.WS != "gtk3" || gtk3.Artifact != "libenergy-gtk3.so" || gtk3.Output == "" {
+		t.Errorf("linux_GTK3 must stay fully configured, got %+v", *gtk3)
 	}
 }
 

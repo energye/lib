@@ -39,7 +39,7 @@ CI 中的最小形态：
   shell: bash
 - run: ./lazsetup setup --lazarus 4.8 --os linux --arch arm64 --github
   shell: bash
-- run: ./lazsetup build --mode linux_GTK3 --repo "$GITHUB_WORKSPACE" --out bins
+- run: ./lazsetup build --mode linux_GTK2 --repo "$GITHUB_WORKSPACE" --out bins
   shell: bash
 ```
 
@@ -78,7 +78,9 @@ CI 中的最小形态：
 --no-package         跳过三方包注册
 ```
 
-不带 `--mode` 时，`build` 只运行配置里 `os`/`arch` 匹配当前目标的模式。
+不带 `--mode` 时，`build` 只运行配置里 `os`/`arch` 匹配当前目标、且未标记 `disabled` 的模式。
+
+> **当前验证范围**：`linux_GTK3` 与 `linux_GTK2` 是同一条构建流水线，配置完全对称，差别只有 `--ws=gtk3` 和将来使用的 docker / 工具链环境（Lazarus 5.0）；目前标记 `disabled: true` 暂不编译，Linux 只产出 `libenergy-gtk2.so`。启用时去掉 `disabled`、把工具链切到 `5.0RC1` 并配好对应容器即可，lib 库源码无需改动。
 
 ## 下载源
 

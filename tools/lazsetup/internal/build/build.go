@@ -4,6 +4,7 @@ package build
 import (
 	"fmt"
 	"io"
+	"io/fs"
 	"os"
 	"path"
 	"path/filepath"
@@ -60,10 +61,31 @@ func Build(o Options) (*Result, error) {
 	ld := ""
 	lazarusDir := o.R.Build.LazarusDir
 	if lazarusDir == "" {
+		sourceBuild := false
 		for _, cp := range o.R.Components {
 			if cp.ID == "build-lazarus" {
-				lazarusDir = o.R.Vars["cprefix"]
+				sourceBuild = true
 				break
+			}
+		}
+		switch {
+		case sourceBuild:
+			// Linux: Lazarus was built from source inside the container, so the
+			// guest-side toolchain path is the Lazarus root.
+			lazarusDir = o.R.Vars["cprefix"]
+		case o.R.Target.OS == "darwin":
+			// The official macOS zip is unpacked into ${prefix}/lazarus and
+			// lazbuild is symlinked into /usr/local/bin. `setup` resolves that
+			// symlink and exports LAZARUSDIR as the real root; trust it whenever
+			// the directory exists. Without --lazarusdir lazbuild falls back to
+			// its baked-in /Developer/lazarus/ path and fails with
+			// "Invalid Lazarus directory".
+			if d := os.Getenv("LAZARUSDIR"); isDir(d) {
+				lazarusDir = d
+			} else if d := findLazarusRoot(o.R.Prefix); d != "" {
+				lazarusDir = d
+			} else {
+				lazarusDir = o.R.Prefix
 			}
 		}
 	}
@@ -253,6 +275,49 @@ func copyFile(src, dst string) error {
 	defer out.Close()
 	_, err = io.Copy(out, in)
 	return err
+}
+
+// isDir reports whether p is an existing directory.
+func isDir(p string) bool {
+	if p == "" {
+		return false
+	}
+	fi, err := os.Stat(p)
+	return err == nil && fi.IsDir()
+}
+
+// hasLazarusRoot reports whether dir looks like a Lazarus installation root
+// (the directory that contains lcl/, components/, ide/ ...).
+func hasLazarusRoot(dir string) bool {
+	return isDir(dir) && isDir(filepath.Join(dir, "lcl"))
+}
+
+// findLazarusRoot locates the real Lazarus root below prefix. The macOS zip
+// adds a top-level lazarus/ directory (and may nest an .app bundle), so the
+// prefix itself is not necessarily the root.
+func findLazarusRoot(prefix string) string {
+	if prefix == "" || hasLazarusRoot(prefix) {
+		return prefix
+	}
+	if _, err := os.Stat(prefix); err != nil {
+		return ""
+	}
+	found := ""
+	_ = filepath.WalkDir(prefix, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || !d.IsDir() {
+			return nil
+		}
+		rel, _ := filepath.Rel(prefix, p)
+		if rel != "." && strings.Count(rel, string(os.PathSeparator)) > 3 {
+			return fs.SkipDir
+		}
+		if hasLazarusRoot(p) {
+			found = p
+			return fs.SkipAll
+		}
+		return nil
+	})
+	return found
 }
 
 func contains(list []string, value string) bool {

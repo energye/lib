@@ -118,6 +118,11 @@ func Setup(o Options) (*Result, error) {
 		func() string { p, _ := runner.LookPath("fpc" + o.R.Vars["exe"]); return p }(),
 		findBinary(o.R.Prefix, "fpc"),
 	)
+	// On macOS the zip install only symlinks lazbuild into /usr/local/bin.
+	// Resolve symlinks before deriving LAZARUSDIR/LAZBUILD, otherwise the
+	// exported root is /usr/local/bin and lazbuild falls back to the baked-in
+	// /Developer/lazarus/ path.
+	lazbuild, fpc = resolvePath(lazbuild), resolvePath(fpc)
 	res.Lazbuild, res.FPC = lazbuild, fpc
 
 	paths := uniquePaths([]string{
@@ -322,6 +327,19 @@ func parentOf(p string) string {
 		return ""
 	}
 	return filepath.Dir(p)
+}
+
+// resolvePath follows symlinks (e.g. /usr/local/bin/lazbuild -> the real
+// binary inside the extracted Lazarus tree). It never fails the setup: an
+// unreadable path is returned unchanged.
+func resolvePath(p string) string {
+	if p == "" {
+		return ""
+	}
+	if resolved, err := filepath.EvalSymlinks(p); err == nil {
+		return resolved
+	}
+	return p
 }
 
 func firstExisting(values ...string) string {
