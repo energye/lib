@@ -1,6 +1,8 @@
 {
   "schema": 1,
   "vars": {
+    "LAZ_MIRROR": "https://download.lazarus-ide.org",
+    "FPC_CDN": "https://downloads.freepascal.org/fpc/dist",
     "SF_LAZ": "https://sourceforge.net/projects/lazarus/files",
     "SF_FPC": "https://sourceforge.net/projects/freepascal/files",
     "SF_LAZ_DL": "https://downloads.sourceforge.net/project/lazarus",
@@ -52,7 +54,7 @@
       "components": [
         {
           "id": "lazarus",
-          "url": "${SF_LAZ}/Lazarus%20Windows%20${win_bits}%20bits/Lazarus%20${laz}/${laz_win}",
+          "url": "${LAZ_MIRROR}/Lazarus%20Windows%20${win_bits}%20bits/Lazarus%20${laz}/${laz_win}",
           "urls": [
             "${SF_LAZ}/Lazarus%20Windows%20${win_bits}%20bits/Lazarus%20${laz}/${laz_win}/download",
             "${SF_LAZ_DL}/Lazarus%20Windows%20${win_bits}%20bits/Lazarus%20${laz}/${laz_win}",
@@ -70,7 +72,7 @@
       "components": [
         {
           "id": "lazarus-src",
-          "url": "${SF_LAZ}/Lazarus%20Zip%20_%20GZip/Lazarus%20${laz}/${laz_src}",
+          "url": "${LAZ_MIRROR}/Lazarus%20Zip%20_%20GZip/Lazarus%20${laz}/${laz_src}",
           "urls": [
             "${SF_LAZ}/Lazarus%20Zip%20_%20GZip/Lazarus%20${laz}/${laz_src}/download",
             "${SF_LAZ_DL}/Lazarus%20Zip%20_%20GZip/Lazarus%20${laz}/${laz_src}"
@@ -81,7 +83,7 @@
         },
         {
           "id": "fpc-bin",
-          "url": "${SF_FPC}/Linux/${fpc}/fpc-${fpc}.${fpc_arch}-linux.tar",
+          "url": "${FPC_CDN}/${fpc}/${fpc_arch}-linux/fpc-${fpc}.${fpc_arch}-linux.tar",
           "urls": [
             "${SF_FPC}/Linux/${fpc}/fpc-${fpc}.${fpc_arch}-linux.tar/download",
             "${SF_FPC_DL}/Linux/${fpc}/fpc-${fpc}.${fpc_arch}-linux.tar"
@@ -92,7 +94,7 @@
         },
         {
           "id": "fpcsrc",
-          "url": "${SF_FPC}/Source/${fpc}/fpc-${fpc}.source.tar.gz",
+          "url": "${FPC_CDN}/${fpc}/source/fpc-${fpc}.source.tar.gz",
           "urls": [
             "${SF_FPC}/Source/${fpc}/fpc-${fpc}.source.tar.gz/download",
             "${SF_FPC_DL}/Source/${fpc}/fpc-${fpc}.source.tar.gz"
@@ -105,7 +107,7 @@
           "id": "build-fpc",
           "kind": "commands",
           "commands": [
-            "cd \"${cprefix}/fpc-${fpc}.${fpc_suffix}\" && ./install.sh < /dev/null"
+            "cd \"${cprefix}/fpc-${fpc}.${fpc_suffix}\" && printf \"\\n\\n\\n\\n\\n\\n\" | ./install.sh"
           ]
         },
         {
@@ -123,7 +125,7 @@
       "components": [
         {
           "id": "fpc",
-          "url": "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${mac_fpc_dmg}",
+          "url": "${LAZ_MIRROR}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${mac_fpc_dmg}",
           "urls": [
             "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${mac_fpc_dmg}/download",
             "${SF_LAZ_DL}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${mac_fpc_dmg}"
@@ -133,7 +135,7 @@
         },
         {
           "id": "lazarus",
-          "url": "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${laz_mac_zip}",
+          "url": "${LAZ_MIRROR}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${laz_mac_zip}",
           "urls": [
             "${SF_LAZ}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${laz_mac_zip}/download",
             "${SF_LAZ_DL}/Lazarus%20macOS%20${mac_dir}/Lazarus%20${laz}/${laz_mac_zip}"
@@ -173,23 +175,7 @@
     },
     "linux/amd64": {
       "profile": "linux-source",
-      "container": {
-        "engine": "docker",
-        "image": "amd64/debian:11",
-        "platform": "linux/amd64",
-        "hostPath": "${repo}",
-        "guestPath": "/app",
-        "prefixGuest": "/toolchain",
-        "mounts": [
-          { "host": "${prefix}", "guest": "/toolchain" }
-        ],
-        "workdir": "/app",
-        "shell": "/bin/sh",
-        "install": [
-          "apt-get update -q -y",
-          "apt-get install -q -y make binutils build-essential gdb subversion zip unzip libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libgtk-3-dev"
-        ]
-      }
+      "note": "Native runner: compile on the host so FPC/lazbuild stay available across CI steps. GTK deps are installed by the workflow."
     },
     "linux/arm": {
       "profile": "linux-source",

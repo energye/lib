@@ -141,7 +141,18 @@ func Fetch(urls []string, expectedSHA string, expectedSize int64, o Options) (Re
 	}
 	part := final + ".part"
 	var lastErr error
+	var failures []string
+	prevURL := ""
 	for _, rawURL := range clean {
+		// A partial file belongs to exactly one URL. Switching mirrors must not
+		// resume into a differently-served (or HTML challenge) body.
+		if prevURL != "" && rawURL != prevURL {
+			_ = os.Remove(part)
+		}
+		prevURL = rawURL
+		if len(clean) > 1 {
+			fmt.Fprintf(o.Out, "  trying %s\n", rawURL)
+		}
 		for attempt := 0; attempt < o.Retries; attempt++ {
 			if attempt > 0 {
 				wait := time.Duration(1<<uint(attempt-1)) * time.Second
@@ -150,6 +161,7 @@ func Fetch(urls []string, expectedSHA string, expectedSize int64, o Options) (Re
 			}
 			if err := attemptDownload(client, rawURL, part, o); err != nil {
 				lastErr = err
+				failures = append(failures, fmt.Sprintf("%s: %v", rawURL, err))
 				if !retryable(err) {
 					break
 				}
@@ -158,15 +170,23 @@ func Fetch(urls []string, expectedSHA string, expectedSize int64, o Options) (Re
 			sum, n, err := verify(part, expectedSHA, expectedSize)
 			if err != nil {
 				lastErr = err
+				failures = append(failures, fmt.Sprintf("%s: %v", rawURL, err))
 				_ = os.Remove(part)
 				break
 			}
-			if err := os.Rename(part, final); err != nil {
-				return Result{}, err
-			}
-			fmt.Fprintf(o.Out, "  saved: %s (%s, sha256=%s)\n", final, humanBytes(n), sum[:12])
-			return Result{Path: final, Size: n, SHA256: sum}, nil
+		if err := os.Rename(part, final); err != nil {
+			return Result{}, err
 		}
+		fmt.Fprintf(o.Out, "  saved: %s (%s, sha256=%s)\n", final, humanBytes(n), sum[:12])
+		return Result{Path: final, Size: n, SHA256: sum}, nil
+		}
+	}
+	if len(failures) > 0 {
+		shown := failures
+		if len(shown) > 4 {
+			shown = shown[len(shown)-4:]
+		}
+		return Result{}, fmt.Errorf("download failed after %d URL(s): %s", len(clean), strings.Join(shown, "; "))
 	}
 	return Result{}, fmt.Errorf("download failed for %s: %w", clean[0], lastErr)
 }

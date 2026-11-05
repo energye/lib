@@ -125,6 +125,16 @@ jobs:
         run: |
           ./"$LAZSETUP_BIN" verify --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE"
 
+      - name: Linux native build dependencies
+        if: ${{ inputs.run_setup && inputs.target_os == 'linux' }}
+        shell: bash
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -q -y --no-install-recommends \
+            make binutils build-essential zip unzip \
+            libx11-dev libgtk2.0-dev libgdk-pixbuf2.0-dev libcairo2-dev \
+            libpango1.0-dev libgtk-3-dev
+
       - name: Setup toolchain
         if: ${{ inputs.run_setup }}
         shell: bash
@@ -142,6 +152,22 @@ jobs:
           MODES=""
           if [ -n "${{ inputs.mode }}" ]; then MODES="--mode ${{ inputs.mode }}"; fi
           ./"$LAZSETUP_BIN" build --lazarus "${{ inputs.lazarus }}" --os "${{ inputs.target_os }}" --arch "${{ inputs.target_arch }}" --repo "$GITHUB_WORKSPACE" --out bins $EXTRA $MODES
+
+      - name: Verify built libraries
+        if: ${{ inputs.run_setup && inputs.run_build }}
+        shell: bash
+        run: |
+          set -e
+          echo "=== bins/ ==="
+          ls -lh bins/
+          for z in bins/*.zip; do
+            [ -f "$z" ] || continue
+            echo "--- $z"
+            unzip -l "$z"
+            echo -n "    first entry magic: "
+            entry=$(unzip -Z1 "$z" | head -1)
+            unzip -p "$z" "$entry" | od -An -tx1 -N4
+          done
 
       - name: Upload artifacts
         if: ${{ inputs.run_setup && inputs.run_build }}

@@ -82,13 +82,16 @@ func TestShippedConfigResolves(t *testing.T) {
 }
 
 // TestShippedContainerMounts verifies the cross-architecture targets mount
-// both the checkout (source) and the toolchain directory.
+// both the checkout (source) and the toolchain directory. linux/amd64 is
+// intentionally native: FPC installed into /usr/local must survive across
+// separate setup/build CI steps, which disposable `docker run --rm` jobs
+// would not allow.
 func TestShippedContainerMounts(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, key := range []string{"linux/386", "linux/amd64", "linux/arm", "linux/arm64"} {
+	for _, key := range []string{"linux/386", "linux/arm", "linux/arm64"} {
 		td := c.Targets[key]
 		if td.Container == nil {
 			t.Errorf("%s has no container", key)
@@ -96,6 +99,33 @@ func TestShippedContainerMounts(t *testing.T) {
 		}
 		if td.Container.PrefixGuest == "" || len(td.Container.Mounts) == 0 {
 			t.Errorf("%s container lacks prefixGuest or mounts", key)
+		}
+	}
+	if c.Targets["linux/amd64"].Container != nil {
+		t.Error("linux/amd64 must compile natively (no disposable container)")
+	}
+}
+
+// TestShippedURLsAvoidSourceForge locks in the official mirrors: every
+// SourceForge endpoint returns a Cloudflare 403 page on GitHub-hosted runners.
+func TestShippedURLsAvoidSourceForge(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, key := range c.TargetKeys() {
+		parts := strings.SplitN(key, "/", 2)
+		r, err := c.Resolve(Options{Lazarus: c.Defaults.Lazarus, OS: parts[0], Arch: parts[1]})
+		if err != nil {
+			t.Fatalf("resolve %s: %v", key, err)
+		}
+		for _, cp := range r.Components {
+			if cp.URL == "" {
+				continue
+			}
+			if strings.Contains(cp.URL, "sourceforge.net") {
+				t.Errorf("%s component %s primary URL still points at SourceForge: %s", key, cp.ID, cp.URL)
+			}
 		}
 	}
 }
