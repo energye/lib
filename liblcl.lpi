@@ -192,7 +192,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="common;src\synedit;cef"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;src\3rd\WebView2\1.0.3124.44\source"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -227,7 +227,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="common;src\synedit;cef"/>
+            <OtherUnitFiles Value="common;src\synedit;cef;src\3rd\WebView2\1.0.3124.44\source"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
