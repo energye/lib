@@ -173,7 +173,7 @@ func shellQuote(s string) string {
 // /usr/local, which a one-shot `docker run --rm` would discard before the next
 // `make` or `lazbuild` command. Without a name the old one-shot behaviour is
 // kept for callers that do not need persistent state.
-func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell, name string, install, cmds []string, mounts ...Mount) string {
+func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, shell, name string, install, cmds, securityOpt []string, mounts ...Mount) string {
 	mapPath := func(c string) string {
 		s := strings.ReplaceAll(c, hostPath, guestPath)
 		for _, m := range mounts {
@@ -198,6 +198,12 @@ func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, she
 		}
 	}
 	wd := fmt.Sprintf(`"%s"`, workdir)
+	secOpts := make([]string, 0, len(securityOpt)*2)
+	for _, s := range securityOpt {
+		if s != "" {
+			secOpts = append(secOpts, "--security-opt", shellQuote(s))
+		}
+	}
 
 	if name == "" {
 		combined := append(append([]string{}, installed...), mapped...)
@@ -205,6 +211,7 @@ func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, she
 		if platform != "" {
 			parts = append(parts, "--platform", platform)
 		}
+		parts = append(parts, secOpts...)
 		parts = append(parts, volumes...)
 		parts = append(parts, "-w", wd)
 		if image != "" {
@@ -220,6 +227,7 @@ func ContainerCommand(engine, image, platform, hostPath, guestPath, workdir, she
 	if platform != "" {
 		create = append(create, "--platform", platform)
 	}
+	create = append(create, secOpts...)
 	create = append(create, volumes...)
 	create = append(create, "-w", wd)
 	if image != "" {

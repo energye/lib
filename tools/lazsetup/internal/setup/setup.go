@@ -253,7 +253,7 @@ func (o Options) runCommands(cmds []string) error {
 	if ct := o.R.Container; ct != nil && ct.Engine != "" {
 		command := runner.ContainerCommand(ct.Engine, ct.Image, ct.Platform,
 			ct.HostPath, ct.GuestPath, ct.Workdir, ct.Shell, ct.Name, ct.Install, cmds,
-			mountsOf(ct)...)
+			ct.SecurityOpt, mountsOf(ct)...)
 		return o.Runner.Run(command)
 	}
 	for _, c := range cmds {

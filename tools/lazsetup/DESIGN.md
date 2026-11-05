@@ -80,6 +80,8 @@ FPC **不需要从零自举**：官方 tar 里已经是可运行的编译器和 
 
 **宿主 runner 用最新 Ubuntu，但工具链编译和 lib 编译全部在 docker 容器里完成**。镜像严格按旧 `build-linux-docker-*.yml` 的分配：**x86 用 debian:11**（`linux/amd64` → `amd64/debian:11`、`linux/386` → `i386/debian:11`、`linux/arm` → `arm32v7/debian:11`，旧 CI 无 arm32 job 故沿用 debian:11），**aarch64 用 `arm64v8/ubuntu:18.04`**（22.04 之后已移除 `libgtk2.0-dev`，所以编译容器固定用 18.04 / debian:11 这条低版本 GTK 基线）。旧 CI 中 GTK2 与 GTK3 的各 build mode 是在**同一个容器里依次编译**的，镜像不按 widgetset 区分；`linux_GTK3` 启用后同样复用该架构的容器，只有 `--ws=gtk3` 不同。这两个发行版现已 EOL（默认 apt 源下载包时 404），所以每个 Linux 容器在安装依赖前先执行挂载进来的 `tools/lazsetup/scripts/apt-eol.sh`，把源切到 `archive.debian.org` / `old-releases.ubuntu.com`。
 
+32 位 x86 容器还有一个独立坑：`i386/debian:11` 在 Docker 默认 seccomp 下无法解析任何域名（`getent` 失败、`apt-get` 报 `Temporary failure resolving ...`），换 host 网络或公共 DNS 都无效，只有 `--security-opt seccomp=unconfined` / `--privileged` 能恢复 —— 默认 profile 拦掉了 32 位 glibc 用于 DNS 的 socket 系统调用。因此 `linux/386` 的 container 配置里带 `securityOpt: ["seccomp=unconfined"]`，由 `runner.ContainerCommand` 同时作用于一次性与命名会话两种 `docker run`；其余架构保持默认 seccomp。
+
 容器同时挂两个卷：`${repo}:/app` 放仓库源码，`${prefix}:/toolchain` 放工具链。关键点是**命名容器会话**：`docker run -d --name lazsetup-<os>-<arch> ... sleep infinity` 只创建一次，后续所有 `install.sh` / `make` / `lazbuild` 都通过 `docker exec` 进同一个容器。若沿用 `docker run --rm`，FPC 装进容器 `/usr/local` 后会随容器销毁，`make` 与 build 步骤必然失败。`--no-container` 仅用于本机调试，正式构建不用。
 
 Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / source 也解压到 `${prefix}`，三者汇合到同一个目录，`cd ${cprefix} && make clean all` 才能找到 `Makefile`；不依赖 `prefix` 恰好叫 `work/lazarus`。

@@ -159,6 +159,7 @@
         "engine": "docker",
         "image": "i386/debian:11",
         "platform": "linux/386",
+        "securityOpt": ["seccomp=unconfined"],
         "hostPath": "${repo}",
         "guestPath": "/app",
         "prefixGuest": "/toolchain",

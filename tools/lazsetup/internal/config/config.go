@@ -88,6 +88,11 @@ type Container struct {
 	Shell       string         `json:"shell"`
 	Install     []string       `json:"install"`
 	Mounts      []VolumeMount  `json:"mounts"`
+	// SecurityOpt is passed to `docker run` as --security-opt flags. A 32-bit
+	// i386 container needs seccomp=unconfined: Docker's default seccomp
+	// profile blocks the i386 socket syscalls glibc uses for DNS, so apt
+	// fails with "Temporary failure resolving ..." even with public DNS.
+	SecurityOpt []string `json:"securityOpt"`
 }
 
 // VolumeMount binds an extra host directory into the container. Host is a
@@ -536,6 +541,9 @@ func expandContainer(ct *Container, vars map[string]string) *Container {
 	if len(out.Mounts) > 0 {
 		out.Mounts = append([]VolumeMount(nil), out.Mounts...)
 	}
+	if len(out.SecurityOpt) > 0 {
+		out.SecurityOpt = append([]string(nil), out.SecurityOpt...)
+	}
 	out.Engine = Expand(out.Engine, vars)
 	out.Image = Expand(out.Image, vars)
 	out.Name = Expand(out.Name, vars)
@@ -550,6 +558,9 @@ func expandContainer(ct *Container, vars map[string]string) *Container {
 	for i := range out.Mounts {
 		out.Mounts[i].Host = Expand(out.Mounts[i].Host, vars)
 		out.Mounts[i].Guest = Expand(out.Mounts[i].Guest, vars)
+	}
+	for i := range out.SecurityOpt {
+		out.SecurityOpt[i] = Expand(out.SecurityOpt[i], vars)
 	}
 	if out.Engine == "" {
 		out.Engine = "docker"

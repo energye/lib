@@ -191,6 +191,40 @@ func TestLinuxCurrentlyBuildsGTK2Only(t *testing.T) {
 // sequentially inside the SAME container, so there is no per-widgetset image.
 // linux/arm is an extension (the old CI had no arm32 job) and stays on
 // debian:11 like the other 32-bit/x86 targets.
+// TestI386ContainerRelaxesSeccomp locks in the fix for i386/debian:11:
+// Docker's default seccomp profile denies the 32-bit socket syscalls glibc
+// uses for DNS, so every apt-get fails with "Temporary failure resolving
+// archive.debian.org" unless the container runs with seccomp=unconfined.
+// Only the 32-bit x86 container needs this; other targets keep the default
+// profile.
+func TestI386ContainerRelaxesSeccomp(t *testing.T) {
+	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	ct := c.Targets["linux/386"].Container
+	if ct == nil {
+		t.Fatal("linux/386 has no container")
+	}
+	found := false
+	for _, s := range ct.SecurityOpt {
+		if s == "seccomp=unconfined" {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("linux/386 container needs seccomp=unconfined, got %v", ct.SecurityOpt)
+	}
+	for key, td := range c.Targets {
+		if key == "linux/386" || td.Container == nil {
+			continue
+		}
+		for _, s := range td.Container.SecurityOpt {
+			t.Errorf("%s unexpectedly weakens seccomp with %q", key, s)
+		}
+	}
+}
+
 func TestLegacyLinuxContainerImages(t *testing.T) {
 	c, err := Load(filepath.Join("..", "..", "configs", "toolchain.json"))
 	if err != nil {

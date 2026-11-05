@@ -91,7 +91,7 @@ CI 中的最小形态：
 
 SourceForge 只作为 `urls` 备用源保留：GitHub-hosted runner（以及部分网络出口）访问它一律返回 Cloudflare 403 HTML 页面，下载器会识别 HTML 并自动切下一个源。**不要把 SourceForge 写回主 `url`**，`config` 包里有回归测试守着这一点。
 
-Linux 编译一律在 docker 容器里完成（宿主 runner 用最新 Ubuntu），镜像按旧 `build-linux-docker-*.yml` 的分配：**x86 用 `debian:11`**（`amd64` → `amd64/debian:11`、`386` → `i386/debian:11`、`arm` → `arm32v7/debian:11`），**arm64 用 `arm64v8/ubuntu:18.04`**；22.04 之后已移除 `libgtk2.0-dev`，所以编译容器固定用 18.04 / debian:11 这条低版本 GTK 基线。旧 CI 中 GTK2 与 GTK3 的各模式在**同一个容器里依次编译**，镜像不按 widgetset 区分；`linux_GTK3` 启用后也复用该架构容器。容器用固定名字 + `docker exec` 复用，保证 `install.sh` 装进 `/usr/local` 的 FPC 在 `make`、`lazbuild` 两个步骤之间不会随 `docker run --rm` 消失。
+Linux 编译一律在 docker 容器里完成（宿主 runner 用最新 Ubuntu），镜像按旧 `build-linux-docker-*.yml` 的分配：**x86 用 `debian:11`**（`amd64` → `amd64/debian:11`、`386` → `i386/debian:11`、`arm` → `arm32v7/debian:11`），**arm64 用 `arm64v8/ubuntu:18.04`**；22.04 之后已移除 `libgtk2.0-dev`，所以编译容器固定用 18.04 / debian:11 这条低版本 GTK 基线。旧 CI 中 GTK2 与 GTK3 的各模式在**同一个容器里依次编译**，镜像不按 widgetset 区分；`linux_GTK3` 启用后也复用该架构容器。容器用固定名字 + `docker exec` 复用，保证 `install.sh` 装进 `/usr/local` 的 FPC 在 `make`、`lazbuild` 两个步骤之间不会随 `docker run --rm` 消失。`linux/386` 另外配置了 `securityOpt: ["seccomp=unconfined"]`：Docker 默认 seccomp 会拦掉 32 位容器 DNS 所需的 socket 系统调用，否则 `i386/debian:11` 里 `apt-get` 一律报 `Temporary failure resolving ...`。
 
 macOS arm64（4.8 工具链）需要 `brew install lld`：FPC 3.2.4rc1a 生成的 Objective-C 方法表会被 Xcode 15+ 的 `ld` 拒绝，`energy-lib.json` 里 `darwin_arm64` 的 `extra` 会把 FPC 指向 `tools/lazsetup/scripts/darwin-lld/ld` shim，改用 `ld64.lld` 链接；x86_64 不需要。等工具链切到 Lazarus 5.0（FPC 3.2.4-rc2+）后可移除这段绕法。
 
