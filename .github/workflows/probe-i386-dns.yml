@@ -18,17 +18,22 @@ jobs:
       - name: Probe i386 container networking
         shell: bash
         run: |
-          for MODE in default host publicdns; do
+          for MODE in default host publicdns seccomp privileged amd64; do
             echo "==================== MODE=$MODE ===================="
+            IMAGE=i386/debian:11
+            PLATFORM=linux/386
             case "$MODE" in
-              default)   OPTS="";;
-              host)      OPTS="--network=host";;
-              publicdns) OPTS="--dns 8.8.8.8 --dns 1.1.1.1";;
+              default)    OPTS="";;
+              host)       OPTS="--network=host";;
+              publicdns)  OPTS="--dns 8.8.8.8 --dns 1.1.1.1";;
+              seccomp)    OPTS="--security-opt seccomp=unconfined";;
+              privileged) OPTS="--privileged";;
+              amd64)      OPTS=""; IMAGE=amd64/debian:11; PLATFORM=linux/amd64;;
             esac
-            docker run --rm --platform linux/386 $OPTS i386/debian:11 sh -c '
-              echo "--- /etc/resolv.conf ---"; cat /etc/resolv.conf
-              echo "--- /etc/nsswitch.conf ---"; cat /etc/nsswitch.conf 2>/dev/null || true
-              echo "--- getent ---"; getent hosts archive.debian.org || echo GETENT-FAIL
+            docker run --rm --platform "$PLATFORM" $OPTS "$IMAGE" sh -c '
+              echo "--- getent archive.debian.org ---"; getent hosts archive.debian.org || echo GETENT-FAIL
+              echo "--- getent deb.debian.org ---"; getent hosts deb.debian.org || echo GETENT-FAIL
+              echo "--- getent ahostsv4 ---"; getent ahostsv4 archive.debian.org || echo AHOSTSV4-FAIL
               echo "--- apt update (archive.debian.org) ---"
               printf "deb http://archive.debian.org/debian bullseye main\n" > /etc/apt/sources.list
               printf "Acquire::Check-Valid-Until \"false\";\n" > /etc/apt/apt.conf.d/99no-valid-until
