@@ -451,26 +451,25 @@
       <Unit>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="28"/>
-        <CursorPos X="39" Y="36"/>
+        <TopLine Value="40"/>
+        <CursorPos X="34" Y="49"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFUnits.inc"/>
-        <EditorIndex Value="2"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="11" Y="31"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\CEFImports.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="14" Y="22"/>
         <UsageCount Value="31"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cef\109\CEFImport.inc"/>
@@ -592,8 +591,8 @@
       </Unit>
       <Unit>
         <Filename Value="cef\150\CEFUnit.inc"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -622,7 +621,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="12">
+    <JumpHistory HistoryIndex="11">
       <Position>
         <Filename Value="cef\CEFUnits.inc"/>
         <Caret Line="16" Column="36"/>
@@ -660,9 +659,6 @@
       <Position>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="50" Column="26" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="cef\CEFImports.inc"/>
       </Position>
       <Position>
         <Filename Value="liblcl.lpr"/>
