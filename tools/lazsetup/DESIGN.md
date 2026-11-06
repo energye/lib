@@ -132,10 +132,11 @@ Lazarus 源码 tar 以 `strip: 1` 直接解压到 `${prefix}`，FPC 的 tar / so
 
 ## 8. 实施状态
 
-- 已完成：配置解析/展开、下载校验缓存与 HTML 挑战页识别、归档解压、平台映射、安装与源码编译编排（含双卷容器挂载）、build 模式与逐模式产物、组合矩阵（4 组合 × 4 CEF 版本 × 平台/widgetset）、Lazarus 版本补丁、lpi 双保险恢复、`doctor` 一致性自检、CLI、单元测试、debug workflow、旧 workflow 停用。
+- 已完成：配置解析/展开、下载校验缓存与 HTML 挑战页识别、归档解压、平台映射、安装与源码编译编排（含双卷容器挂载）、build 模式与逐模式产物、组合矩阵（4 组合 × 4 CEF 版本 × 平台/widgetset）、Lazarus 版本补丁、lpi 双保险恢复、`doctor` 一致性自检、CLI、单元测试、debug workflow、`release.yml` 正式发布链路。旧 5 个 Lazarus 3.6 构建 workflow 已删除。
 - **测试策略**：真实下载 / 工具链编译 / 动态库编译全部在 GitHub Actions runner 上验证；本机只做 `go build` / `go vet` / `go test`。`debug-lazsetup.yml` 默认就是最小闭环（`combo_mode=true`、`cef_versions=CEF109`、`widgetsets=gtk2,gtk3`），一次触发产出 6 个 zip。
-- 当前阶段：先让所有组合在 Actions 上编译成功，再扩全矩阵（全量 100 个 zip，不含 loong64）。
-- 仍需决定：补齐 sha256；恢复并改造 5 个正式 workflow（**用户已明确暂停，未获同意不动**）；tag 触发时把 zip 传到 GitHub Release；loong64 需要 FPC 3.3.1 工具链。
+- 全矩阵已在 Actions 上按 target 分轮验证通过：linux 4 架构各 15、windows 2 架构各 10、darwin 2 架构各 10，共 8 target / 100 个 zip（不含 loong64）。
+- **正式发布**：`release.yml` 仅由 `v*` tag push 触发；`build` job 用 `fail-fast: false` 的 8 行 matrix 并行，每个 job 自检 zip 数量（15 或 10）后上传 `lazsetup-<os>-<arch>` artifact；`publish` job `needs: build`，任一失败即跳过发布，成功时下载 8 个 artifact 合并、断言恰好 100 个 `libenergy-*.zip` 且名字唯一、生成 `SHA256SUMS.txt`，再用 `gh` CLI 一次性创建/上传 Release。权限最小化：全局 `contents: read`，仅 publish job 提权 `contents: write`。
+- 仍需决定：补齐下载件的 sha256 校验清单；loong64 需要 FPC 3.3.1 工具链（当前仅预留占位）。
 
 ## 9. doctor 自检项
 

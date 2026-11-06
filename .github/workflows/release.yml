@@ -1,0 +1,264 @@
+name: release libenergy
+
+# Production release entry point. Triggered only by pushing a version tag.
+# Eight independent matrix jobs build the full 100-zip combination matrix in
+# parallel; the publish job creates the GitHub Release only after every build
+# job succeeds, so a partial matrix can never become a partial release.
+# Manual validation belongs to debug-lazsetup.yml (workflow_dispatch only).
+on:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  GOWORK: off
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}/${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: linux,   arch: amd64,  runner: ubuntu-latest,  zips: 15 }
+          - { os: linux,   arch: '386', runner: ubuntu-latest,  zips: 15 }
+          - { os: linux,   arch: arm,    runner: ubuntu-latest,  zips: 15 }
+          - { os: linux,   arch: arm64,  runner: ubuntu-latest,  zips: 15 }
+          - { os: windows, arch: amd64,  runner: windows-latest, zips: 10 }
+          - { os: windows, arch: '386', runner: windows-latest, zips: 10 }
+          - { os: darwin,  arch: amd64,  runner: macos-latest,   zips: 10 }
+          - { os: darwin,  arch: arm64,  runner: macos-latest,   zips: 10 }
+    env:
+      LAZ: '4.8'
+      TARGET_OS: ${{ matrix.os }}
+      TARGET_ARCH: ${{ matrix.arch }}
+      EXPECTED_ZIPS: ${{ matrix.zips }}
+      COMBO_ARGS: '--all-combos --cef CEF109 --cef CEF127 --cef CEF147 --cef CEF150 --ws gtk2 --ws gtk3'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show release target
+        shell: bash
+        run: |
+          set -e
+          mkdir -p "$HOME/.cache/lazsetup"
+          echo "tag=${GITHUB_REF_NAME} target=$TARGET_OS/$TARGET_ARCH lazarus=$LAZ expected_zips=$EXPECTED_ZIPS"
+          echo "combo args: $COMBO_ARGS"
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            echo "=== macOS linker (FPC 3.2.x breaks on Xcode 26+ ld) ==="
+            sw_vers
+            xcodebuild -version 2>&1 | head -3 || true
+            ld -v 2>&1 | head -4 || true
+          fi
+
+      - name: Restore toolchain download cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/lazsetup
+          key: lazsetup-dl-${{ runner.os }}-4.8-${{ matrix.os }}-${{ matrix.arch }}-v1
+          restore-keys: lazsetup-dl-
+
+      - uses: actions/setup-go@v5
+        with:
+          # Go 1.21/1.22 link macOS test binaries without LC_UUID; current
+          # macOS dyld aborts them. Keep go.mod at 1.21, build with 1.24.
+          go-version: '1.24'
+          cache: false
+
+      - name: Build lazsetup binary
+        shell: bash
+        run: |
+          set -e
+          BIN=lazsetup
+          if [ "$RUNNER_OS" = "Windows" ]; then BIN=lazsetup.exe; fi
+          go -C tools/lazsetup build -o "../../$BIN" ./cmd/lazsetup
+          echo "LAZSETUP_BIN=$BIN" >> "$GITHUB_ENV"
+
+      # tools/lazbuild is a standalone package main with no go.mod. Build it as
+      # a single file from inside the lazsetup module, cross-compiled for the
+      # target so the Linux docker container can execute it natively.
+      - name: Build tools/lazbuild wrapper for the target
+        shell: bash
+        run: |
+          set -e
+          SUFFIX=""
+          if [ "$TARGET_OS" = "windows" ]; then SUFFIX=".exe"; fi
+          OUT="$GITHUB_WORKSPACE/tools/lazbuild/lazbuild-$TARGET_OS-$TARGET_ARCH$SUFFIX"
+          GOOS="$TARGET_OS" GOARCH="$TARGET_ARCH" go -C tools/lazsetup build -o "$OUT" ../../tools/lazbuild/lazbuild.go
+          if [ "$TARGET_OS" != "windows" ]; then chmod +x "$OUT"; fi
+          echo "wrapper: $OUT"
+          ls -lh "$OUT"
+
+      - name: Unit tests (offline end-to-end)
+        shell: bash
+        run: go -C tools/lazsetup test ./...
+
+      - name: Config doctor (offline consistency)
+        shell: bash
+        run: ./"$LAZSETUP_BIN" doctor --repo "$GITHUB_WORKSPACE"
+
+      - name: Show combination plan
+        shell: bash
+        run: ./"$LAZSETUP_BIN" combos --lazarus "$LAZ" --os "$TARGET_OS" --arch "$TARGET_ARCH" --repo "$GITHUB_WORKSPACE" $COMBO_ARGS
+
+      - name: Dry-run plan (no network, no commands)
+        shell: bash
+        run: |
+          set -e
+          ./"$LAZSETUP_BIN" setup --lazarus "$LAZ" --os "$TARGET_OS" --arch "$TARGET_ARCH" --repo "$GITHUB_WORKSPACE" --dry-run
+          ./"$LAZSETUP_BIN" build  --lazarus "$LAZ" --os "$TARGET_OS" --arch "$TARGET_ARCH" --repo "$GITHUB_WORKSPACE" --dry-run $COMBO_ARGS
+
+      - name: Enable cross-architecture containers
+        if: ${{ matrix.os == 'linux' && matrix.arch != 'amd64' }}
+        shell: bash
+        run: docker run --rm --privileged tonistiigi/binfmt --install all
+
+      # FPC 3.2.4rc1a emits Objective-C method lists that Apple ld rejects on
+      # aarch64-darwin. The darwin_arm64 build mode links through ld64.lld.
+      - name: Provide ld64.lld for macOS arm64
+        if: ${{ matrix.os == 'darwin' && matrix.arch == 'arm64' }}
+        shell: bash
+        run: |
+          set -e
+          if ! command -v ld64.lld >/dev/null 2>&1; then brew install lld; fi
+          chmod +x "$GITHUB_WORKSPACE/tools/lazsetup/scripts/darwin-lld/ld"
+          command -v ld64.lld
+          ld64.lld --version | head -2
+
+      - name: Setup toolchain
+        shell: bash
+        run: ./"$LAZSETUP_BIN" setup --lazarus "$LAZ" --os "$TARGET_OS" --arch "$TARGET_ARCH" --repo "$GITHUB_WORKSPACE" --github
+
+      - name: Build lib
+        shell: bash
+        run: ./"$LAZSETUP_BIN" build --lazarus "$LAZ" --os "$TARGET_OS" --arch "$TARGET_ARCH" --repo "$GITHUB_WORKSPACE" --out bins $COMBO_ARGS
+
+      - name: Verify built libraries
+        shell: bash
+        run: |
+          set -e
+          echo "=== bins/ ==="
+          ls -lh bins/
+          count=$(find bins -maxdepth 1 -type f -name '*.zip' | wc -l)
+          echo "zip count: $count (expected $EXPECTED_ZIPS)"
+          [ "$count" -eq "$EXPECTED_ZIPS" ] || { echo "wrong zip count for $TARGET_OS/$TARGET_ARCH"; exit 1; }
+          TMP="$RUNNER_TEMP/lazsetup-verify"
+          mkdir -p "$TMP"
+          for z in bins/*.zip; do
+            [ -f "$z" ] || continue
+            echo "--- $z"
+            unzip -t "$z"
+            unzip -Z1 "$z" > "$TMP/entries.txt"
+            entry=$(sed -n '1p' "$TMP/entries.txt")
+            [ -n "$entry" ] || { echo "empty archive: $z"; exit 1; }
+            # Write to a file first: piping unzip into `od -N4` closes the pipe
+            # early and fails the step with SIGPIPE (exit 141) under pipefail.
+            unzip -p "$z" "$entry" > "$TMP/entry.bin"
+            echo "    entry:   $entry"
+            echo -n "    magic:   "
+            od -An -tx1 -N4 "$TMP/entry.bin"
+            echo "    bytes:   $(wc -c < "$TMP/entry.bin")"
+            if command -v file >/dev/null 2>&1; then
+              echo -n "    format:  "
+              file "$TMP/entry.bin"
+            fi
+          done
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lazsetup-${{ matrix.os }}-${{ matrix.arch }}
+          path: bins/**
+          if-no-files-found: error
+          retention-days: 7
+
+      # Save even when a later step fails or the job is cancelled: macOS pulls
+      # ~500 MB per run, so keeping every already-completed component matters.
+      - name: Save toolchain download cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/lazsetup
+          key: lazsetup-dl-${{ runner.os }}-4.8-${{ matrix.os }}-${{ matrix.arch }}-v1
+
+  publish:
+    name: Publish GitHub Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: lazsetup-*
+          path: dist
+          merge-multiple: true
+
+      - name: Verify the complete 100-zip set
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t ZIPS < <(find dist -type f -name '*.zip' | sort)
+          echo "zip count: ${#ZIPS[@]}"
+          if [ "${#ZIPS[@]}" -ne 100 ]; then
+            echo "expected 100 zips, got ${#ZIPS[@]}"
+            printf '%s\n' "${ZIPS[@]}"
+            exit 1
+          fi
+          declare -A seen=()
+          bad=0
+          for z in "${ZIPS[@]}"; do
+            n=${z##*/}
+            case "$n" in
+              libenergy-*.zip) ;;
+              *) echo "unexpected zip name: $n"; bad=1 ;;
+            esac
+            if [ -n "${seen[$n]:-}" ]; then echo "duplicate zip name: $n"; bad=1; fi
+            seen[$n]=1
+          done
+          [ "$bad" -eq 0 ] || exit 1
+          # download-artifact may keep a bins/ prefix; normalize to dist/ so
+          # one sha256sum call covers all 100 files.
+          for z in "${ZIPS[@]}"; do
+            d=${z%/*}
+            n=${z##*/}
+            if [ "$d" != "dist" ]; then mv "$z" "dist/$n"; fi
+          done
+          (cd dist && sha256sum *.zip > SHA256SUMS.txt)
+          echo "=== SHA256SUMS.txt (first 3) ==="
+          head -3 dist/SHA256SUMS.txt
+          echo "total $(wc -l < dist/SHA256SUMS.txt) entries"
+
+      - name: Create or update the GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          TAG="$GITHUB_REF_NAME"
+          mapfile -t ZIPS < <(find dist -type f -name '*.zip' | sort)
+          FILES=("${ZIPS[@]}" dist/SHA256SUMS.txt)
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "release $TAG already exists -> uploading assets"
+            gh release upload "$TAG" "${FILES[@]}" --clobber
+          else
+            echo "creating release $TAG"
+            gh release create "$TAG" "${FILES[@]}" --title "$TAG" --generate-notes
+          fi
+          echo "=== uploaded assets ==="
+          gh release view "$TAG" --json assets --jq '.assets | length'

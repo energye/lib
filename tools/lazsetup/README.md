@@ -25,7 +25,7 @@ GOWORK=off go -C tools/lazsetup build -o ../../lazsetup.exe ./cmd/lazsetup
 
 ## GitHub Actions
 
-`.github/workflows/debug-lazsetup.yml` 是**唯一的验证入口**（`workflow_dispatch`）。**真实下载、工具链安装/编译、动态库编译全部在 Actions runner 上执行**；本机只做 `go build` / `go vet` / `go test` 这类编译级验证。原有 5 个正式构建 workflow 仍是 `if: false`，未经明确同意不恢复。
+两个入口：`.github/workflows/release.yml` 是**正式发布**（仅 `push: tags: ['v*']` 触发，8 个 matrix job 并行编完 100 个 zip，再由 `publish` job 汇总上传到 GitHub Release）；`.github/workflows/debug-lazsetup.yml` 是**手动调试入口**（`workflow_dispatch`，单 target，不触发发布）。**真实下载、工具链安装/编译、动态库编译全部在 Actions runner 上执行**；本机只做 `go build` / `go vet` / `go test` 这类编译级验证。旧的 5 个基于 Lazarus 3.6 的构建 workflow 已删除。
 
 一次触发会依次跑：`go build` 两个 Go 程序（`lazsetup` + 按目标平台交叉编译的 `tools/lazbuild`）→ 单元测试 → `doctor` → 8 个平台 dry-run → 打印组合计划 → **真实 setup（含 Lazarus 补丁）+ 组合编译** → 逐个 zip 校验 → 上传产物。
 
@@ -45,7 +45,7 @@ CI 中的最小形态：
   shell: bash
 ```
 
-原有 5 个构建 workflow 目前已被 `if: false` 停用，等 debug workflow 验证通过后再逐个改造、恢复。
+正式发布不再走旧的 5 个构建 workflow（已删除）：`release.yml` 一次 tag push 并行跑 8 个 target，全部成功后由 `publish` job 把 100 个 zip 和 `SHA256SUMS.txt` 传到 GitHub Release；`debug-lazsetup.yml` 保持纯手动，用于单 target 调试和演练。
 
 ## 命令
 

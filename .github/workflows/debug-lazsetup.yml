@@ -1,8 +1,8 @@
 name: debug lazsetup
 
-# Combination matrix validation entry point. The 5 production workflows stay
-# disabled (job-level if: false) until the owner explicitly asks to restore
-# them; this workflow is the only place where real toolchain/lib builds run.
+# Manual validation entry point (workflow_dispatch only). Production releases
+# are handled by release.yml, which runs on version tags and uploads all 100
+# zips to the GitHub Release. The 5 legacy build workflows were removed.
 on:
   workflow_dispatch:
     inputs:
