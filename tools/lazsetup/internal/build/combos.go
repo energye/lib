@@ -216,6 +216,12 @@ func BuildCombos(o ComboOptions) (*Result, error) {
 	res := &Result{}
 	for _, j := range jobs {
 		r.Logf("[combo %s] bm=%s ws=%s defines=%v -> %s", j.Combo, j.BM, j.WS, j.Defines, j.ZipName)
+		// All CEF versions share lib/$(TargetCPU)-$(TargetOS). On darwin a
+		// stale PPU from another CEF version makes FPC look for a source file
+		// with the wrong case, so start every job from clean compiled units.
+		if !r.DryRun && resolved.Target.OS == "darwin" {
+			clearDarwinUnits(repo, r)
+		}
 		command := comboCommand(j, lpiArg, wrapperArg, confArg, lazbuildArg, lazarusDir)
 		if err := runComboCommand(resolved, r, command); err != nil {
 			return nil, fmt.Errorf("combination %q (%s): %w", j.Combo, j.ZipName, err)
