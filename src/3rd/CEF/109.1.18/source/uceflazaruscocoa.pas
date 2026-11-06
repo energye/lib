@@ -29,7 +29,7 @@ interface
 
 uses
 {$IFDEF DARWIN}  // $IFDEF MACOSX
-  CocoaAll, CocoaInt, Cocoa_Extra,
+  CocoaAll, CocoaInt, Cocoa_Extra, CocoaApplication,
 {$ENDIF}
   Classes, SysUtils, ctypes;
 
@@ -171,7 +171,7 @@ var
   AppDelegate: TChromeAppDelegateIntercept;
 begin
   AppDelegate:=TChromeAppDelegateIntercept(NSApp.delegate);
-  AppDelegate.tryToTerminateApplication(CocoaWidgetSet.NSApp);
+  AppDelegate.tryToTerminateApplication(NSApplication(NSApp));
 end;
 
 {$ENDIF}

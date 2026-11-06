@@ -194,18 +194,6 @@ func BuildCombos(o ComboOptions) (*Result, error) {
 		r.Logf("  backed up %s (%d bytes)", lpiHost, len(backup))
 	}
 
-	// Lazarus 4.8 moved TCocoaApplication into its own CocoaApplication unit.
-	// The vendored CEF4Delphi Cocoa units still carry the old Lazarus 2.x uses
-	// clause, so darwin CEF combinations need a temporary compatibility patch.
-	// It only ever touches files on darwin and is fully reverted on return.
-	if !r.DryRun && resolved.Target.OS == "darwin" {
-		restoreCocoa, err := patchCocoaCompat(repo, r)
-		if err != nil {
-			return nil, err
-		}
-		defer restoreCocoa()
-	}
-
 	outDir := firstNonEmpty(o.OutDir, resolved.Build.OutDir, "bins")
 	if !r.DryRun {
 		if err := os.MkdirAll(outDir, 0o755); err != nil {
@@ -216,12 +204,6 @@ func BuildCombos(o ComboOptions) (*Result, error) {
 	res := &Result{}
 	for _, j := range jobs {
 		r.Logf("[combo %s] bm=%s ws=%s defines=%v -> %s", j.Combo, j.BM, j.WS, j.Defines, j.ZipName)
-		// All CEF versions share lib/$(TargetCPU)-$(TargetOS). On darwin a
-		// stale PPU from another CEF version makes FPC look for a source file
-		// with the wrong case, so start every job from clean compiled units.
-		if !r.DryRun && resolved.Target.OS == "darwin" {
-			clearDarwinUnits(repo, r)
-		}
 		command := comboCommand(j, lpiArg, wrapperArg, confArg, lazbuildArg, lazarusDir)
 		if err := runComboCommand(resolved, r, command); err != nil {
 			return nil, fmt.Errorf("combination %q (%s): %w", j.Combo, j.ZipName, err)

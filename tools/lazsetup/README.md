@@ -106,7 +106,7 @@ CI 中的最小形态：
 
 **Lazarus 补丁**（仅 Linux）：`setup` 在 `make clean all` 之前检查 `patch/lazarus<版本>/`，存在就把 `gtk3/` 与 `synedit/` **以文件覆盖（overlay）方式**复制到 `lcl/interfaces/gtk3` 与 `components/synedit`；不存在直接跳过。补丁是增量文件集，**不能整目录删除后替换**——`patch/lazarus4.8/synedit/` 里没有 `design/` 等原版目录，删掉目标目录会让 `make clean` 在 `synedit/design: No such file or directory` 处中断。4.8 的补丁补齐了 `gtk3globals.pas`，这是 GTK3 能编译的关键。将来若切到没有补丁目录的 Lazarus 版本，GTK3 会失去补丁。
 
-**macOS CEF 兼容补丁**（仅 darwin）：CEF4Delphi 的 `src/3rd/CEF/*/source/uceflazaruscocoa.pas` 是按 Lazarus 2.x 写的，在 4.8 上有两处过时 API：① uses 段只有 `CocoaAll, CocoaInt, Cocoa_Extra`，而 `TCocoaApplication` 已移到独立单元 `CocoaApplication`，导致 `Identifier not found "TCocoaApplication"` 并连带 `sendEvent` / `terminate` 的 override 报错；② `CocoaWidgetSet.NSApp` 已不存在（4.8 的 `cocoaint.pas` 全程用全局 `NSApp`），报 `identifier idents no member "NSApp"`。`BuildCombos` 只在 `Target.OS == "darwin"` 且非 dry-run 时，临时给四个 CEF 版本做两条替换：uses 段补 `CocoaApplication`、`CocoaWidgetSet.NSApp` → `NSApplication(NSApp)`；循环结束 `defer` 无条件写回原始字节，文件已修复或不存在就跳过。与 lpi 一样属于运行时改写，**不提交、不留痕**，Windows / Linux 完全不受影响。此外 darwin 每个组合编译前会清掉 `lib/*-darwin/` 里的 `.ppu/.o`：四个 CEF 版本共用同一个 `UnitOutputDirectory`，而 109 的 `uCEFDownLoadItem.pas` 与 127+ 的 `uCEFDownloadItem.pas` 在 macOS 输出目录里冲突，残留的 PPU 会让 `cef-webview` 组合报 `Can't find unit uCEFDownloadItem`。
+**CEF 源码已按 Lazarus 4.8 统一修正**（不再是构建期补丁）：四个 `src/3rd/CEF/*/source/uceflazaruscocoa.pas` 的 uses 段补上 `CocoaApplication`（4.8 把 `TCocoaApplication` 从 `CocoaInt` 拆到了该单元），并把已删除的 `CocoaWidgetSet.NSApp` 改为 `NSApplication(NSApp)`；CEF109 的 `uCEFDownLoadItem.pas` 统一重命名为 `uCEFDownloadItem.pas` 并同步所有引用，消除四个 CEF 版本共用 `lib/$(TargetCPU)-$(TargetOS)` 时因文件名大小写不同导致的 PPU 源名冲突。构建时不再对 CEF 源码做任何运行时改写。
 
 最小闭环：`linux/amd64` × gtk2+gtk3 × 四个组合（CEF 取 109）= 6 个 zip；全矩阵（不含 loong64）共 100 个 zip。
 

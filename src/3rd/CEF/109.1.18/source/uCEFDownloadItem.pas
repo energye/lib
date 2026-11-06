@@ -35,7 +35,7 @@
  *
  *)
 
-unit uCEFDownLoadItem;
+unit uCEFDownloadItem;
 
 {$IFDEF FPC}
   {$MODE OBJFPC}{$H+}

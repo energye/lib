@@ -11,7 +11,7 @@ interface
 
 {$IFDEF DARWIN}  // $IFDEF MACOSX
 uses
-  CocoaAll, CocoaInt, Cocoa_Extra,
+  CocoaAll, CocoaInt, Cocoa_Extra, CocoaApplication,
   Classes, SysUtils, ctypes;
 
 type
@@ -155,7 +155,7 @@ var
   AppDelegate: TChromeAppDelegateIntercept;
 begin
   AppDelegate:=TChromeAppDelegateIntercept(NSApp.delegate);
-  AppDelegate.tryToTerminateApplication(CocoaWidgetSet.NSApp);
+  AppDelegate.tryToTerminateApplication(NSApplication(NSApp));
 end;
 
 {$ENDIF}
