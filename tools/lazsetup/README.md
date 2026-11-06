@@ -123,6 +123,138 @@ Linux 编译一律在 docker 容器里完成（宿主 runner 用最新 Ubuntu）
 
 macOS arm64（4.8 工具链）需要 `brew install lld`：FPC 3.2.4rc1a 生成的 Objective-C 方法表会被 Xcode 15+ 的 `ld` 拒绝，`energy-lib.json` 里 `darwin_arm64` 的 `extra` 会把 FPC 指向 `tools/lazsetup/scripts/darwin-lld/ld` shim，改用 `ld64.lld` 链接；x86_64 不需要。等工具链切到 Lazarus 5.0（FPC 3.2.4-rc2+）后可移除这段绕法。
 
+## Lazarus 版本与工具链编译方式
+
+这一节是**版本配置的主说明**。先直接回答两个常被问到的能力：
+
+| 需求 | 支持情况 | 实现方式 |
+| --- | --- | --- |
+| 指定 Lazarus 版本 | ✅ 完全支持 | `--lazarus 4.8`，或 `defaults.lazarus` |
+| **不同平台 / 架构用不同 Lazarus 版本** | ✅ 支持，**但在编排层** | 每次调用 / 每个 CI job 各传一个 `--lazarus`；单份 JSON 不按 target 存版本 |
+| 同一 target 按版本切换安装方式 | ✅ 支持 | `targets.<os/arch>.byRelease`（代码已实现，当前配置未启用） |
+| **Linux 用源码编译 Lazarus** | ✅ **默认且唯一的内置方式** | `linux-source` profile，4 个架构全在 docker 容器内 `make clean all` |
+| Windows / macOS 也用源码编译 | ⚠️ 机制上可扩展，**无内置配方、未在 CI 验证** | 自定义 profile + `byRelease` 切换 |
+| 单独覆盖 FPC 版本 | ✅ 支持 | `--fpc 3.2.2`，或 `releases.<ver>.fpc` |
+
+### 版本从哪来、怎么生效
+
+`Resolve` 的取值优先级：
+
+```
+--lazarus  >  defaults.lazarus ("4.8")  >  兜底 "4.8"
+--fpc      >  releases.<ver>.fpc        >  兜底 "3.2.2"
+```
+
+版本**必须是 `releases` 里的键**，否则直接报错 `lazarus version "x" not in config (available: [...])`。当前内置 `4.8` / `4.0` / `3.8` 三个版本，但**只有 `4.8` 在 Actions 上做过 8 target / 100 zip 的全矩阵验证**（即 `v3.0.1`）。
+
+版本会变成 `${laz}`、`${fpc}` 注入所有模板：下载 URL、`releases.<ver>.aliases` 里的四个文件名（`laz_src` / `laz_win` / `laz_mac_zip` / `mac_fpc_dmg`）、macOS 的 `${mac_dir}` 目录，以及 `patch/lazarus${laz}` 补丁目录。所以**换版本只需在 `releases` 加一项并写对这四个别名**，URL 模板不用改。
+
+换版本后先用四个不联网、不安装的命令自查：
+
+```bash
+./lazsetup.exe list --expand --lazarus 4.0                       # 每个 target 展开后的 URL / 命令
+./lazsetup.exe env --lazarus 4.0 --os darwin --arch arm64        # 全部变量，含 laz/fpc/别名
+./lazsetup.exe doctor --lazarus 4.0 --os linux --arch amd64      # 补丁目录缺失会 Warn
+./lazsetup.exe setup --lazarus 4.0 --os linux --arch amd64 --dry-run
+```
+
+### 关键限制：一次运行只解析一个版本
+
+`Resolve` 只算出一个 `laz`，`targets` 里**没有**「这个 target 用哪个 Lazarus 版本」这样的字段——它只描述 `profile` / `container` / `overrides` / `byRelease`。因此「同一份 JSON 里 windows 用 4.0、linux 用 4.8」不是直接支持的配置方式。
+
+「不同平台用不同版本」要在**调用层**做，三种场景：
+
+**1）本机分两次调用**
+
+```bash
+./lazsetup.exe setup --lazarus 4.0 --os windows --arch amd64 --dry-run
+./lazsetup.exe setup --lazarus 4.8 --os linux   --arch amd64 --dry-run
+```
+
+**2）debug workflow**：`lazarus` 本来就是 `workflow_dispatch` 的 input，一次一个 target 一个版本，天然支持。
+
+**3）release.yml**：8 个 matrix job 各自独立运行 `lazsetup`，给每行加版本即可：
+
+```yaml
+strategy:
+  matrix:
+    include:
+      - { os: windows, arch: amd64, runner: windows-latest, zips: 10, lazarus: '4.0' }
+      - { os: linux,   arch: amd64, runner: ubuntu-latest,  zips: 15, lazarus: '4.8' }
+      # ...其余 6 行
+env:
+  LAZ: ${{ matrix.lazarus }}     # 原来是写死的 LAZ: '4.8'
+```
+
+⚠️ 当前 `release.yml` 有两处硬编码：job env 的 `LAZ: '4.8'`，以及下载缓存 key 里的 `lazsetup-dl-${{ runner.os }}-4.8-${{ matrix.os }}-${{ matrix.arch }}-v1`（restore 与 save 各一处）。**按平台分版本时必须同步把这两处 `4.8` 换成 `${{ matrix.lazarus }}`**，否则不同版本的下载件会互相命中/污染同一个缓存。
+
+### 按版本切换安装方式：`byRelease`
+
+`targets.<os/arch>.byRelease` 在 `Resolve` 里优先于 `profile`：
+
+```go
+profileName := td.Profile
+if v, exists := td.ByRelease[laz]; exists { profileName = v }
+```
+
+例如「4.8 走源码编译、4.0 走某个二进制 profile」：
+
+```json
+"linux/amd64": {
+  "profile": "linux-source",
+  "byRelease": { "4.0": "linux-binary-legacy" },
+  "container": { "...": "原有容器配置保持不变" }
+}
+```
+
+`linux-binary-legacy` 需在 `profiles` 里自行定义（可用 `extends` 复用已有 profile）。**当前 `toolchain.json` 没有启用 `byRelease`**，8 个 target 都只写了 `profile`。
+
+### 源码编译 Lazarus
+
+**Linux（386 / amd64 / arm / arm64）默认就是源码编译**，也是仓库里唯一内置的源码编译实现。`linux-source` 的六个组件按顺序执行：
+
+| # | 组件 | 动作 |
+| --- | --- | --- |
+| 1 | `lazarus-src` | Lazarus 源码 tarball → `${prefix}` |
+| 2 | `fpc-bin` | 目标架构的 FPC 编译器 tar |
+| 3 | `fpcsrc` | FPC 源码 |
+| 4 | `build-fpc` | `install.sh`（把 FPC 装进容器 `/usr/local`） |
+| 5 | `lazarus-patch` | 覆盖式打 `patch/lazarus${laz}/gtk3` 与 `synedit` |
+| 6 | `build-lazarus` | `cd ${cprefix} && make clean all` |
+
+全部在**命名 docker 容器**里执行（`${repo}:/app`、`${prefix}:/toolchain` 双挂载），所以 FPC 装进 `/usr/local` 后不会因 `docker run --rm` 丢失。之后 `build` 会给 `lazbuild` 传 `--lazarusdir /toolchain`；本机跑源码安装时可用 `--lazarus-dir PATH` 覆盖。`--no-container` 只用于调试（直接在宿主机编译），正式构建一律走容器。
+
+**Windows / macOS 目前是官方二进制安装**：`win-binary`（Inno exe）、`mac-binary`（FPC dmg + Lazarus zip + 软链 `lazbuild`）。仓库里**没有**这两个平台的源码编译 profile，也没有在 CI 上验证过。
+
+不过 profile 是纯 JSON 且 `components[].kind: "commands"` 可执行任意命令，所以源码编译在机制上是可扩展的。最小骨架（**示例，不是可用配方**）：
+
+```json
+"profiles": {
+  "mac-source": {
+    "os": ["darwin"],
+    "arch": ["amd64", "arm64"],
+    "components": [
+      { "id": "laz-src", "kind": "targz", "url": "...", "dest": "${prefix}", "strip": 1 },
+      { "id": "make", "kind": "commands", "commands": ["cd \"${prefix}\" && make clean all"] }
+    ]
+  }
+},
+"targets": {
+  "darwin/arm64": { "profile": "mac-binary", "byRelease": { "4.0": "mac-source" } }
+}
+```
+
+真要落地还需补齐 FPC 引导、Cocoa/SDK 依赖、`--lazarusdir`、链接器 shim 与签名，并且必须先在 Actions 上跑通再用于发版。
+
+### 换版本时必须复核的连带项
+
+- `releases.<ver>.aliases` 四个文件名要与官方发布包完全一致（含 `${win_tag}` / `${mac_arch}` 占位），否则 URL 404。
+- `patch/lazarus<ver>/` 不存在时补丁会**直接跳过**；4.8 的补丁补了 `gtk3globals.pas`，**切到 4.0 / 3.8 很可能编不过 `linux_GTK3`**。`doctor` 对缺失补丁目录给 Warn 而不是 Fail。
+- `mac_fpc_dmg` 在 4.8 是 `3.2.4rc1a`，在 4.0 / 3.8 是 `3.2.2`，别混用。
+- `energy-lib.json` 里 `darwin_arm64.extra` 是 FPC 3.2.4rc1a + Apple ld 的 `ld64.lld` shim，换 FPC 版本后要重新判断是否需要。
+- CEF 源码（`CocoaApplication` / `NSApplication(NSApp)` / `uCEFDownloadItem`）是按 Lazarus 4.8 修的，换到旧版 Lazarus 的兼容性未实测。
+- workflow 与缓存 key 里硬编码的 `4.8`（见上）。
+
 ## 改配置
 
 两份配置按顺序合并：`configs/toolchain.json`（工具链）+ `configs/energy-lib.json`（构建）。
@@ -141,7 +273,7 @@ macOS arm64（4.8 工具链）需要 `brew install lld`：FPC 3.2.4rc1a 生成�
 }
 ```
 
-macOS 的下载地址就是靠 `${mac_dir}`（aarch64 / x86-64）和 `${laz}` 拼出 `.../Lazarus%20macOS%20aarch64/Lazarus%204.8/`，所以版本号只改 `releases` 就能切换目录和文件名。
+macOS 的下载地址就是靠 `${mac_dir}`（aarch64 / x86-64）和 `${laz}` 拼出 `.../Lazarus%20macOS%20aarch64/Lazarus%204.8/`，所以版本号只改 `releases` 就能切换目录和文件名。按平台分版本、源码编译、`byRelease` 等完整说明见上文《Lazarus 版本与工具链编译方式》。
 
 **加新架构/新平台**：在 `targets` 增加 `os/arch → profile`，必要时用 `overrides` 覆盖某个组件的 URL，或用 `byRelease` 让不同版本走不同 profile。
 
